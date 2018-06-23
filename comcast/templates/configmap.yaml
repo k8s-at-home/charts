@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "comcast.fullname" . }}
+  labels:
+    app: {{ template "comcast.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  config.ini: |
+    [GENERAL]
+    Delay = {{ .Values.config.delay }}
+    {{- if .Values.debug }}
+    Output = True
+    {{- else }}
+    Output = False
+    {{- end }}
+    [INFLUXDB]
+    Address = {{ .Values.config.influxdb.host }}
+    Port = {{ .Values.config.influxdb.port }}
+    Database = {{ .Values.config.influxdb.database }}
+    Username = {{ .Values.config.influxdb.username }}
+    Password = {{ .Values.config.influxdb.password }}
+    {{- if .Values.config.influxdb.ssl }}
+    Verify_SSL = True
+    {{- else }}
+    Verify_SSL = False
+    {{- end }}
+    [COMCAST]
+    Username = {{ .Values.config.comcast.username }}
+    Password = {{ .Values.config.comcast.password }}

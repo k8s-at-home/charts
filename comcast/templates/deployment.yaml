@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+#apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "comcast.fullname" . }}
+  labels:
+    app: {{ template "comcast.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "comcast.name" . }}
+      release: {{ .Release.Name }}
+  replicas: {{ default 1 .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "comcast.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+          - name: {{ template "comcast.name" . }}
+            mountPath: /src/config.ini
+            subPath: config.ini
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+      volumes:
+      - name: {{ template "comcast.name" . }}
+        configMap:
+          name: {{ template "comcast.fullname" . }}
+          items:
+          - key: config.ini
+            path: config.ini
