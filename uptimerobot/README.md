@@ -46,7 +46,6 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `image.tag`                          | uptimerobot image tag                        | `latest`                                                   |
 | `image.pullPolicy`                   | uptimerobot image pull policy                | `IfNotPresent`                                             |
 | `delay`                              | number of seconds to wait between collections | `300`                                                     |
-| `config.delay`                       | how many seconds to wait between checks      | `3600`                                                     |
 | `config.influxdb.host`               | InfluxDB hostname                            | `influxdb-influxdb`                                        |
 | `config.influxdb.port`               | InfluxDB port                                | `8086`                                                     |
 | `config.influxdb.database`           | InfluxDB database                            | `uptimerobot`                                              |
