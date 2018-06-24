@@ -1,22 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "comcast.fullname" . }}
+  name: {{ template "modem-stats.fullname" . }}
   labels:
-    app: {{ template "comcast.name" . }}
+    app: {{ template "modem-stats.name" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "comcast.name" . }}
+      app: {{ template "modem-stats.name" . }}
       release: {{ .Release.Name }}
   replicas: {{ default 1 .Values.replicas }}
   template:
     metadata:
       labels:
-        app: {{ template "comcast.name" . }}
+        app: {{ template "modem-stats.name" . }}
         release: {{ .Release.Name }}
     spec:
       containers:
@@ -26,7 +26,7 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
-          - name: {{ template "comcast.name" . }}
+          - name: {{ template "modem-stats.name" . }}
             mountPath: /src/config.ini
             subPath: config.ini
     {{- if .Values.nodeSelector }}
@@ -34,9 +34,9 @@ spec:
 {{ toYaml .Values.nodeSelector | indent 8 }}
     {{- end }}
       volumes:
-      - name: {{ template "comcast.name" . }}
+      - name: {{ template "modem-stats.name" . }}
         configMap:
-          name: {{ template "comcast.fullname" . }}
+          name: {{ template "modem-stats.fullname" . }}
           items:
           - key: config.ini
             path: config.ini
