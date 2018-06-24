@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "uptimerobot.fullname" . }}
+  labels:
+    app: {{ template "uptimerobot.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  config.json: |
+    {
+      "uptimerobot" : {
+        "apikey" : "{{ .Values.config.uptimerobot.apikey }}"
+      },
+      "influx" : {
+        "host" : "{{ .Values.config.influxdb.host }}",
+        "port" : {{ .Values.config.influxdb.port }},
+        "protocol" : "{{ .Values.config.influxdb.protocol }}",
+        "database" : "{{ .Values.config.influxdb.database }}"
+      }
+    }

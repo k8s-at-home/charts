@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "uptimerobot.fullname" . }}
+  labels:
+    app: {{ template "uptimerobot.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "uptimerobot.name" . }}
+      release: {{ .Release.Name }}
+  replicas: {{ default 1 .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "uptimerobot.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DELAY
+              value: "{{ .Values.delay }}"
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+          - name: {{ template "uptimerobot.name" . }}
+            mountPath: /usr/src/node-influx-uptimerobot/config.json
+            subPath: config.json
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+      volumes:
+      - name: {{ template "uptimerobot.name" . }}
+        configMap:
+          name: {{ template "uptimerobot.fullname" . }}
+          items:
+          - key: config.json
+            path: config.json
