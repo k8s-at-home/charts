@@ -1,4 +1,4 @@
-# Comcast Data Cap Usage Collector For InfluxDB and Grafana**
+# Comcast Data Cap Usage Collector For InfluxDB and Grafana
 
 ![Screenshot](https://github.com/billimek/comcastUsage-for-influxdb/raw/master/images/comcast_grafana_example.png)
 

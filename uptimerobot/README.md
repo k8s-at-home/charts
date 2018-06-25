@@ -50,6 +50,8 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `config.influxdb.port`               | InfluxDB port                                | `8086`                                                     |
 | `config.influxdb.database`           | InfluxDB database                            | `uptimerobot`                                              |
 | `config.influxdb.protocol`           | InfluxDB protocol                            | `http`                                                     |
+| `config.influxdb.username`           | InfluxDB username                            | ``                                                         |
+| `config.influxdb.password`           | InfluxDB password                            | ``                                              |
 | `config.uptimerobot.apikey`          | uptimerobot API key (REQUIRED)               | `someapikey`                                               |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,

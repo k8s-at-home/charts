@@ -24,22 +24,46 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: DELAY
+            - name: UPTIMEROBOT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "uptimerobot.fullname" . }}
+                  key: uptimerobot-apikey
+            {{- if .Values.config.influxdb.username }}
+            - name: INFLUX_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "uptimerobot.fullname" . }}
+                  key: influxdb-username
+            {{- end }}
+            {{- if .Values.config.influxdb.password }}
+            - name: INFLUX_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "uptimerobot.fullname" . }}
+                  key: influxdb-password
+            {{- end }}
+            - name: APPLICATION_INTERVAL
               value: "{{ .Values.delay }}"
+            {{- if .Values.config.uptimerobot.logs_limit }}
+            - name: UPTIMEROBOT_LOGS_LIMIT
+              value: "{{ .Values.config.uptimerobot.logs_limit }}"
+            {{- end }}
+            {{- if .Values.config.uptimerobot.response_times_limit }}
+            - name: UPTIMEROBOT_RESPONSE_TIMES_LIMIT
+              value: "{{ .Values.config.uptimerobot.response_times_limit }}"
+            {{- end }}
+            - name: INFLUX_HOST
+              value: "{{ .Values.config.influxdb.host }}"
+            - name: INFLUX_PORT
+              value: "{{ .Values.config.influxdb.port }}"
+            - name: INFLUX_PROTOCOL
+              value: "{{ .Values.config.influxdb.protocol }}"
+            - name: INFLUX_DATABASE
+              value: "{{ .Values.config.influxdb.database }}"
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-          volumeMounts:
-          - name: {{ template "uptimerobot.name" . }}
-            mountPath: /usr/src/node-influx-uptimerobot/config.json
-            subPath: config.json
     {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
     {{- end }}
-      volumes:
-      - name: {{ template "uptimerobot.name" . }}
-        configMap:
-          name: {{ template "uptimerobot.fullname" . }}
-          items:
-          - key: config.json
-            path: config.json
