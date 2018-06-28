@@ -1,0 +1,51 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "digitalocean-dyndns.fullname" . }}
+  labels:
+    app: {{ template "digitalocean-dyndns.name" . }}
+    chart: {{ template "digitalocean-dyndns.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "digitalocean-dyndns.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "digitalocean-dyndns.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DIGITALOCEAN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "digitalocean-dyndns.fullname" . }}
+                  key: digitalocean-dyndns-apikey
+            - name: DOMAIN
+              value: "{{ .Values.digitialocean.domain }}"
+            - name: NAME
+              value: "{{ .Values.digitialocean.name }}"
+            - name: SLEEP_INTERVAL
+              value: "{{ .Values.digitialocean.sleep_interval }}"
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
