@@ -67,7 +67,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `mqttService.loadBalancerIP`   | Loadbalance IP for the mqtt service | `` |
 | `mqttService.loadBalancerSourceRanges`   | Loadbalance client IP restriction range for the mqtt service | `[]` |
 | `mqttService.nodePort`   | nodePort to listen on for the mqtt service | `` |
-| `configurator.enabled`     | Enable the optional hass configuration UI | `false` |
+| `configurator.enabled`     | Enable the optional [configuration UI](https://github.com/danielperna84/hass-configurator) | `false` |
 | `configurator.name`        | Default name for the configurator UI | `configurator` |
 | `configurator.image.repository`         | Image repository | `billimek/hass-configurator-docker` |
 | `configurator.image.tag`                | Image tag | `x86_64-0.3.0`|
@@ -119,3 +119,9 @@ helm install --name my-release -f values.yaml stable/home-assistant
 ```
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
+
+## Regarding configuring home assistnat
+
+Much of the home assistant configuration occurs inside the various files persisted to the `/config` directory.  This will require external access to the persistant storage location where the home assistant configuration data is stored.
+
+Because this may be a limitation, the [Home Assistant Configurator UI](https://github.com/danielperna84/hass-configurator) is added to the chart as an option to provide a webUI for editing the various configuration files
