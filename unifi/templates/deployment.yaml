@@ -24,7 +24,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-          - name: https
+          - name: gui
             containerPort: {{ .Values.guiService.port }}
             protocol: TCP
           - name: controller
@@ -36,14 +36,18 @@ spec:
           - name: stun
             containerPort: {{ .Values.stunService.port }}
             protocol: UDP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: gui
+              scheme: HTTPS
+              initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: gui
+              scheme: HTTPS
+              initialDelaySeconds: 15
           env:
             - name: TZ
               value: "{{ .Values.timezone }}"

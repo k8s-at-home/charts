@@ -5,8 +5,7 @@ This is a helm chart for [Ubiqiti Network's](https://www.ubnt.com/) [Unifi Contr
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://raw.githubusercontent.com/billimek/helm-repo/master
-$ helm install billimek/unifi
+$ helm install stable/unifi
 ```
 
 ## Introduction
@@ -18,7 +17,7 @@ This code is adopted from [this original repo](https://github.com/jacobalberty/u
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install --name my-release billimek/unifi
+$ helm install --name my-release stable/unifi
 ```
 ## Uninstalling the Chart
 
@@ -67,7 +66,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `mongodb.db_uri`               | external MongoDB URI | `mongodb://mongo/unifi` |
 | `mongodb.statdb_uri`           | external MongoDB statdb URI | `mongodb://mongo/unifi_stat` |
 | `mongodb.database_name`        | external MongoDB database name | `unifi` |
-| `persistence.enabled`      | Use persistent volume to store data | `false` |
+| `persistence.enabled`      | Use persistent volume to store data | `true` |
 | `persistence.size`         | Size of persistent volume claim | `5Gi` |
 | `persistence.existingClaim`| Use an existing PVC to persist data | `nil` |
 | `persistence.storageClass` | Type of persistent volume claim | `-` |
@@ -81,14 +80,14 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```console
 helm install --name my-release \
-  --set config.digitalocean.token=thisismyapikey \
-    billimek/unifi
+  --set timezone="America/New York" \
+    stable/unifi
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install --name my-release -f values.yaml billimek/unifi
+helm install --name my-release -f values.yaml stable/unifi
 ```
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
