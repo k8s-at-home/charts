@@ -6,10 +6,8 @@ replicaCount: 1
 
 image:
   repository: homeassistant/home-assistant
-  tag: 0.72.1
+  tag: 0.74.2
   pullPolicy: IfNotPresent
-
-name: home-assistant
 
 service:
   type: ClusterIP
@@ -60,56 +58,29 @@ persistence:
 ##
 extraEnv: {}
 
-
-## service to leverage the MQTT broker service if it is enabled within Home Assistant
-mqttService:
-  enabled: false
-  type: NodePort
-  port: 1883
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  clusterIP: ""
-  ## List of IP addresses at which the hass-configurator service is available
-  ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-  ##
-  externalIPs: []
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
-  loadBalancerIP:
-  loadBalancerSourceRanges: []
-  # nodePort: 30000
-
-
 configurator:
   enabled: false
-  name: configurator
 
   ## hass-configurator container image
   ##
   image:
-    repository: billimek/hass-configurator-docker
-    tag: x86_64-0.3.0
+    repository: causticlab/hass-configurator-docker
+    tag: x86_64-0.3.1
     pullPolicy: IfNotPresent
 
   ## URL for the home assistant API endpoint
   # hassApiUrl: http://home-assistant:8123/api/
   ## home assistant API password
-  # hassApiPassword: 
+  # hassApiPassword:
   ## path where the home assistant configuration is stored
   basepath: /config
   ## don't allow switching out of the base path
   enforceBasepath: true
-  ## enforce <username:password> basic auth for accessing the configurator
-  # credentials: 
+  ## username for basic auth for accessing the configurator
+  # username:
+  ## password (sha256-hash) for basic auth for accessing the configurator
+  ## For example "test" would be "{sha256}9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+  # password:
 
   ## Additional hass-configurator container environment variable
   ## For instance to add a http_proxy
@@ -138,7 +109,7 @@ configurator:
     ## Secrets must be manually created in the namespace
     ##
     tls: []
-    #   - secretName: prometheus-alerts-tls
+    #   - secretName: hass-configurator-tls
     #     hosts:
     #       - hass-configurator.domain.com
 
@@ -209,8 +180,6 @@ configurator:
     ##
     loadBalancerIP:
     loadBalancerSourceRanges: []
-
-
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

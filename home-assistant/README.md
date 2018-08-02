@@ -38,7 +38,6 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `image.repository`         | Image repository | `homeassistant/home-assistant` |
 | `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/jacobalberty/home-assistant/tags/).| `0.72.1`|
 | `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
-| `name`                     | Default name | `home-assistant` |
 | `service.type`             | Kubernetes service type for the home-assistant GUI | `ClusterIP` |
 | `service.port`             | Kubernetes port where the home-assistant GUI is exposed| `8123` |
 | `service.annotations`      | Service annotations for the home-assistant GUI | `{}` |
@@ -58,17 +57,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.storageClass` | Type of persistent volume claim | `-` |
 | `persistence.accessMode`  | Persistence access modes | `ReadWriteMany` |
 | `extraEnv`          | Extra ENV vars to pass to the home-assistant container | `{}` |
-| `mqttService.enabled`             | Enable the mqtt service port for home-assistant | `false` |
-| `mqttService.type`             | Kubernetes service type for the mqtt service | `NodePort` |
-| `mqttService.port`             | Kubernetes port where the mqtt service is exposed| `1883` |
-| `mqttService.annotations`      | Service annotations for the mqtt service | `{}` |
-| `mqttService.clusterIP`   | Cluster IP for the mqtt service | `` |
-| `mqttService.externalIPs`   | External IPs for the mqtt service | `[]` |
-| `mqttService.loadBalancerIP`   | Loadbalance IP for the mqtt service | `` |
-| `mqttService.loadBalancerSourceRanges`   | Loadbalance client IP restriction range for the mqtt service | `[]` |
-| `mqttService.nodePort`   | nodePort to listen on for the mqtt service | `` |
 | `configurator.enabled`     | Enable the optional [configuration UI](https://github.com/danielperna84/hass-configurator) | `false` |
-| `configurator.name`        | Default name for the configurator UI | `configurator` |
 | `configurator.image.repository`         | Image repository | `billimek/hass-configurator-docker` |
 | `configurator.image.tag`                | Image tag | `x86_64-0.3.0`|
 | `configurator.image.pullPolicy`         | Image pull policy | `IfNotPresent` |
@@ -76,7 +65,8 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `configurator.hassApiPassword`          | Home Assistant API Password | `` |
 | `configurator.basepath`                 | Base path of the home assistant configuration files | `/config` |
 | `configurator.enforceBasepath`          | If set to true, will prevent navigation to other directories in the configurator UI | `true` |
-| `configurator.credentials`              | If set, will require basic auth to access the configurator UI using the format 'username:password' | `` |
+| `configurator.username`                 | If this and password (below) are set, will require basic auth to access the configurator UI  | `` |
+| `configurator.password`                 | If this and username (above) are set, will require basic auth to access the configurator UI. password is in the format of a sha256 hash (e.g. "test" would be "{sha256}9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08")  | `` |
 | `configurator.extraEnv`                 | Extra ENV vars to pass to the configuration UI | `{}` |
 | `configurator.ingress.enabled`          | Enables Ingress for the configurator UI | `false` |
 | `configurator.ingress.annotations`      | Ingress annotations for the configurator UI | `{}` |
