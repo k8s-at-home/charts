@@ -67,3 +67,5 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+      securityContext:
+        fsGroup: 1001
