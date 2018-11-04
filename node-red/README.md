@@ -5,7 +5,7 @@ Flow-based programming for the Internet of Things
 ## TL;DR;
 
 ```console
-helm repo add billimek https://raw.githubusercontent.com/billimek/helm-repo/master
+helm repo add billimek https://billimek.github.io/helm-repo
 helm install billimek/node-red
 ```
 
