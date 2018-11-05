@@ -1,0 +1,25 @@
+
+{{- if and .Values.persistence.downloads.enabled (not .Values.persistence.downloads.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "nzbget.fullname" . }}-downloads
+  labels:
+    app: {{ template "nzbget.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  accessModes:
+    - {{ .Values.persistence.downloads.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.downloads.size | quote }}
+{{- if .Values.persistence.downloads.storageClass }}
+{{- if (eq "-" .Values.persistence.downloads.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.downloads.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end -}}
