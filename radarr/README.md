@@ -40,7 +40,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `puid`                     | process userID the radarr instance should run as | `1001` |
 | `pgid`                     | process groupID the radarr instance should run as | `1001` |
 | `Service.type`          | Kubernetes service type for the radarr GUI | `ClusterIP` |
-| `Service.port`          | Kubernetes port where the radarr GUI is exposed| `6789` |
+| `Service.port`          | Kubernetes port where the radarr GUI is exposed| `7878` |
 | `Service.annotations`   | Service annotations for the radarr GUI | `{}` |
 | `Service.labels`        | Custom labels | `{}` |
 | `Service.loadBalancerIP` | Loadbalance IP for the radarr GUI | `{}` |

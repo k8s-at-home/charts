@@ -1,5 +1,5 @@
 
-{{- if and .Values.persistence.downloads.enabled (not .Values.persistence.downloads.existingClaim) }}
+{{- if and .Values.persistence.movies.enabled (not .Values.persistence.movies.existingClaim) }}
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -11,15 +11,15 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   accessModes:
-    - {{ .Values.persistence.downloads.accessMode | quote }}
+    - {{ .Values.persistence.movies.accessMode | quote }}
   resources:
     requests:
-      storage: {{ .Values.persistence.downloads.size | quote }}
-{{- if .Values.persistence.downloads.storageClass }}
-{{- if (eq "-" .Values.persistence.downloads.storageClass) }}
+      storage: {{ .Values.persistence.movies.size | quote }}
+{{- if .Values.persistence.movies.storageClass }}
+{{- if (eq "-" .Values.persistence.movies.storageClass) }}
   storageClassName: ""
 {{- else }}
-  storageClassName: "{{ .Values.persistence.downloads.storageClass }}"
+  storageClassName: "{{ .Values.persistence.movies.storageClass }}"
 {{- end }}
 {{- end }}
 {{- end -}}
