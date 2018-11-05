@@ -1,12 +1,12 @@
-# Deluge BitTorrent client
+# NZBGet Usenet client
 
-This is a helm chart for [Deluge](https://deluge-torrent.org/) leveraging the [Linuxserver.io image](https://hub.docker.com/r/linuxserver/deluge/)
+This is a helm chart for [NZBGet](https://nzbget.net/) leveraging the [Linuxserver.io image](https://hub.docker.com/r/linuxserver/nzbget/)
 
 ## TL;DR;
 
 ```shell
 $ helm repo add billimek https://billimek.github.io/helm-repo
-$ helm install billimek/deluge
+$ helm install billimek/nzbget
 ```
 
 ## Installing the Chart
@@ -14,8 +14,13 @@ $ helm install billimek/deluge
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/deluge
+helm install --name my-release billimek/nzbget
 ```
+
+The default login details (change ASAP) are:
+
+* login:nzbget
+* password:tegbzn6789
 
 ## Uninstalling the Chart
 
@@ -36,31 +41,15 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `image.repository`         | Image repository | `linuxserver/nzbget` |
 | `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/nzbget/tags/).| `147`|
 | `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
-| `timezone`                 | Timezone the deluge instance should run as, e.g. 'America/New_York' | `UTC` |
-| `umask`                    | umask for file creation/manipulation - important for shared resources like the downloads persistant storage | `022` |
-| `puid`                     | process userID the deluge instance should run as | `1001` |
-| `pgid`                     | process groupID the deluge instance should run as | `1001` |
-| `guiService.type`          | Kubernetes service type for the Deluge GUI | `ClusterIP` |
-| `guiService.port`          | Kubernetes port where the Deluge GUI is exposed| `8112` |
-| `guiService.annotations`   | Service annotations for the Deluge GUI | `{}` |
-| `guiService.labels`        | Custom labels | `{}` |
-| `guiService.loadBalancerIP` | Loadbalance IP for the Deluge GUI | `{}` |
-| `guiService.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
-| `guiService.externalTrafficPolicy` | Set the externalTrafficPolicy in the Service to either Cluster or Local | `Cluster`
-| `daemonService.type`       | Kubernetes service type for the deluge daemon service | `ClusterIP` |
-| `daemonService.port`       | Kubernetes port where the deluge daemon service is exposed | `58846` |
-| `daemonService.annotations` | Service annotations for the deluge daemon service | `{}` |
-| `daemonService.labels`     | Custom labels | `{}` |
-| `daemonService.loadBalancerIP` | Loadbalance IP for the deluge daemon service | `{}` |
-| `daemonService.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
-| `daemonService.externalTrafficPolicy` | Set the externalTrafficPolicy in the Service to either Cluster or Local | `Cluster`
-| `btService.type`       | Kubernetes service type for the deluge bittorrent endpoint | `NodePort` |
-| `btService.port`       | Kubernetes port where the deluge bittorrent endpoint is exposed | `51414` |
-| `btService.annotations` | Service annotations for the deluge bittorrent endpoint | `{}` |
-| `btService.labels`     | Custom labels | `{}` |
-| `btService.loadBalancerIP` | Loadbalance IP for the deluge bittorrent endpoint | `{}` |
-| `btService.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
-| `btService.externalTrafficPolicy` | Set the externalTrafficPolicy in the Service to either Cluster or Local | `Cluster`
+| `timezone`                 | Timezone the nzbget instance should run as, e.g. 'America/New_York' | `UTC` |
+| `puid`                     | process userID the nzbget instance should run as | `1001` |
+| `pgid`                     | process groupID the nzbget instance should run as | `1001` |
+| `Service.type`          | Kubernetes service type for the nzbget GUI | `ClusterIP` |
+| `Service.port`          | Kubernetes port where the nzbget GUI is exposed| `6789` |
+| `Service.annotations`   | Service annotations for the nzbget GUI | `{}` |
+| `Service.labels`        | Custom labels | `{}` |
+| `Service.loadBalancerIP` | Loadbalance IP for the nzbget GUI | `{}` |
+| `Service.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
 | `ingress.enabled`              | Enables Ingress | `false` |
 | `ingress.annotations`          | Ingress annotations | `{}` |
 | `ingress.labels`               | Custom labels                       | `{}`
@@ -87,19 +76,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install --name my-release \
   --set timezone="America/New York" \
-    billimek/deluge
+    billimek/nzbget
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install --name my-release -f values.yaml stable/deluge
+helm install --name my-release -f values.yaml stable/nzbget
 ```
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
-
-## Regarding the services
-
-* `guiService`: represents the main web UI and is what one would normally point the ingress to
-* `daemonService`: This is used to interact with the deluge daemon server from a client other than the embeded UI
-* `btService`: This used to listen for external connections from other bittorrent clients and is gernally only useful if exposed to clients outside of the kubernetes cluster

@@ -1,12 +1,12 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "nzbget.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "nzbget.name" . }}
-    helm.sh/chart: {{ include "nzbget.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app: {{ template "nzbget.name" . }}
+    chart: {{ template "nzbget.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
