@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: {{ include "nzbget.fullname" . }}
   labels:
-    app: {{ template "nzbget.name" . }}
-    chart: {{ template "nzbget.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app.kubernetes.io/name: {{ include "nzbget.name" . }}
+    helm.sh/chart: {{ include "nzbget.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:

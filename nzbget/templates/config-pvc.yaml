@@ -5,10 +5,10 @@ apiVersion: v1
 metadata:
   name: {{ template "nzbget.fullname" . }}-config
   labels:
-    app: {{ template "nzbget.fullname" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    app.kubernetes.io/name: {{ include "nzbget.name" . }}
+    helm.sh/chart: {{ include "nzbget.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   accessModes:
     - {{ .Values.persistence.config.accessMode | quote }}
