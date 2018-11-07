@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: {{ template "deluge.fullname" . }}-daemon
   labels:
-    app: {{ template "deluge.name" . }}
-    chart: {{ template "deluge.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app.kubernetes.io/name: {{ include "deluge.name" . }}
+    helm.sh/chart: {{ include "deluge.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.daemonService.labels }}
 {{ toYaml .Values.daemonService.labels | indent 4 }}
 {{- end }}
@@ -48,5 +48,5 @@ spec:
       nodePort: {{.Values.daemonService.nodePort}}
 {{ end }}
   selector:
-    app: {{ template "deluge.name" . }}
-    release: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ include "deluge.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

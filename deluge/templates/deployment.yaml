@@ -3,21 +3,21 @@ kind: Deployment
 metadata:
   name: {{ template "deluge.fullname" . }}
   labels:
-    app: {{ template "deluge.name" . }}
-    chart: {{ template "deluge.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app.kubernetes.io/name: {{ include "deluge.name" . }}
+    helm.sh/chart: {{ include "deluge.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "deluge.name" . }}
-      release: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ include "deluge.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "deluge.name" . }}
-        release: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ include "deluge.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}

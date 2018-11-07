@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: {{ template "deluge.fullname" . }}-gui
   labels:
-    app: {{ template "deluge.name" . }}
-    chart: {{ template "deluge.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app.kubernetes.io/name: {{ include "deluge.name" . }}
+    helm.sh/chart: {{ include "deluge.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.guiService.labels }}
 {{ toYaml .Values.guiService.labels | indent 4 }}
 {{- end }}
@@ -48,5 +48,5 @@ spec:
       nodePort: {{.Values.guiService.nodePort}}
 {{ end }}
   selector:
-    app: {{ template "deluge.name" . }}
-    release: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ include "deluge.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
