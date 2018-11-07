@@ -11,13 +11,13 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-    app.kubernetes.io/name: {{ include "deluge.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "deluge.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-    app.kubernetes.io/name: {{ include "deluge.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ include "deluge.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
