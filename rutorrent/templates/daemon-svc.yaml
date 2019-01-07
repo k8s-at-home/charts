@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "rutorrent.fullname" . }}-daemon
+  labels:
+    app.kubernetes.io/name: {{ include "rutorrent.name" . }}
+    helm.sh/chart: {{ include "rutorrent.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.daemonService.labels }}
+{{ toYaml .Values.daemonService.labels | indent 4 }}
+{{- end }}
+{{- with .Values.daemonService.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+{{- if (or (eq .Values.daemonService.type "ClusterIP") (empty .Values.daemonService.type)) }}
+  type: ClusterIP
+  {{- if .Values.daemonService.clusterIP }}
+  clusterIP: {{ .Values.daemonService.clusterIP }}
+  {{end}}
+{{- else if eq .Values.daemonService.type "LoadBalancer" }}
+  type: {{ .Values.daemonService.type }}
+  {{- if .Values.daemonService.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.daemonService.loadBalancerIP }}
+  {{- end }}
+  {{- if .Values.daemonService.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+{{ toYaml .Values.daemonService.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+{{- else }}
+  type: {{ .Values.daemonService.type }}
+{{- end }}
+{{- if .Values.daemonService.externalIPs }}
+  externalIPs:
+{{ toYaml .Values.daemonService.externalIPs | indent 4 }}
+{{- end }}
+  {{- if .Values.daemonService.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.daemonService.externalTrafficPolicy }}
+  {{- end }}
+  ports:
+    - name: daemon
+      port: {{ .Values.daemonService.port }}
+      protocol: TCP
+      targetPort: daemon
+{{ if (and (eq .Values.daemonService.type "NodePort") (not (empty .Values.daemonService.nodePort))) }}
+      nodePort: {{.Values.daemonService.nodePort}}
+{{ end }}
+  selector:
+    app.kubernetes.io/name: {{ include "rutorrent.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
