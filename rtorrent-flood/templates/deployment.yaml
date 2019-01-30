@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "rtorrent-flood.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "rtorrent-flood.name" . }}
+    helm.sh/chart: {{ include "rtorrent-flood.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "rtorrent-flood.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "rtorrent-flood.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+            - name: bt
+              containerPort: 49184
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: http
+              scheme: HTTP
+              initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              port: http
+              scheme: HTTP
+              initialDelaySeconds: 15
+          tty: true
+          env:
+            - name: TZ
+              value: "{{ .Values.timezone }}"
+            - name: FLOOD_SECRET
+              value: "{{ .Values.floodSecret }}"
+            - name: UID
+              value: "{{ .Values.uid }}"
+            - name: GID
+              value: "{{ .Values.gid }}"
+          volumeMounts:
+            - mountPath: /flood-db
+              name: flood-db
+            - mountPath: /data
+              name: data
+            {{- if .Values.persistence.data.subPath }}
+              subPath: {{ .Values.persistence.data.subPath }}
+            {{ end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      volumes:
+      - name: flood-db
+      {{- if .Values.persistence.config.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ if .Values.persistence.config.existingClaim }}{{ .Values.persistence.config.existingClaim }}{{- else }}{{ template "rtorrent-flood.fullname" . }}-config{{- end }}
+      {{- else }}
+        emptyDir: {}
+      {{ end }}
+      - name: data
+      {{- if .Values.persistence.data.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ if .Values.persistence.data.existingClaim }}{{ .Values.persistence.data.existingClaim }}{{- else }}{{ template "rtorrent-flood.fullname" . }}-data{{- end }}
+      {{- else }}
+        emptyDir: {}
+      {{ end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
