@@ -11,11 +11,6 @@ data:
   config.ini: |
     [GENERAL]
     Delay = {{ .Values.config.delay }}
-    {{- if .Values.debug }}
-    Output = True
-    {{- else }}
-    Output = False
-    {{- end }}
     [INFLUXDB]
     Address = {{ .Values.config.influxdb.host }}
     Port = {{ .Values.config.influxdb.port }}
@@ -29,4 +24,9 @@ data:
     {{- end }}
     [SPEEDTEST]
     Server = {{ .Values.config.speedtest.server }}
-
+    [LOGGING]
+    {{- if .Values.debug }}
+    Level = debug
+    {{- else }}
+    Level = info
+    {{- end }}
