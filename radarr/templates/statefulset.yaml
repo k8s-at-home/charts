@@ -61,13 +61,6 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
-      - name: config
-      {{- if .Values.persistence.config.enabled }}
-        persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.config.existingClaim }}{{ .Values.persistence.config.existingClaim }}{{- else }}{{ template "radarr.fullname" . }}-config{{- end }}
-      {{- else }}
-        emptyDir: {}
-      {{- end }}
       - name: downloads
       {{- if .Values.persistence.downloads.enabled }}
         persistentVolumeClaim:
@@ -87,6 +80,38 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .existingClaim }}
       {{- end }}
+{{- if and .Values.persistence.config.enabled .Values.persistence.config.existingClaim }}
+      - name: config
+      {{- if .Values.persistence.config.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.config.existingClaim }}
+      {{- else }}
+        emptyDir: {}
+      {{- end }}
+{{- else if not .Values.persistence.config.enabled }}
+      - name: config
+        emptyDir: {}
+{{- else if and .Values.persistence.config.enabled (not .Values.persistence.config.existingClaim) }}
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+      labels:
+        app.kubernetes.io/name: {{ include "radarr.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      accessModes: 
+        - {{ .Values.persistence.config.accessMode | quote }}
+      resources:
+        requests:
+          storage: {{ .Values.persistence.config.size | quote }}
+      {{- if .Values.persistence.config.storageClass }}
+      {{- if (eq "-" .Values.persistence.config.storageClass) }}
+        storageClassName: ""
+      {{- else }}
+        storageClassName: "{{ .Values.persistence.config.storageClass }}"
+      {{- end }}
+      {{- end }}
+{{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
