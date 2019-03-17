@@ -1,3 +1,0 @@
-# RUTorrent BitTorrent client
-
-TBD
