@@ -2,12 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
-
 image:
   repository: linuxserver/nzbget
-  tag: amd64-v21.0-r2296-ls5
+  tag: amd64-v21.0-r2302-ls8 
   pullPolicy: IfNotPresent
+
+# upgrade strategy type (e.g. Recreate or RollingUpdate)
+strategyType: Recreate
 
 nameOverride: ""
 fullnameOverride: ""
