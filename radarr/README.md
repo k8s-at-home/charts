@@ -34,8 +34,9 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | Parameter                  | Description                         | Default                                                 |
 |----------------------------|-------------------------------------|---------------------------------------------------------|
 | `image.repository`         | Image repository | `linuxserver/radarr` |
-| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/radarr/tags/).| `137`|
+| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/radarr/tags/).| `amd64-v0.2.0.1293-ls9`|
 | `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
+| `strategyType`             | Specifies the strategy used to replace old Pods by new ones | `Recreate` |
 | `timezone`                 | Timezone the radarr instance should run as, e.g. 'America/New_York' | `UTC` |
 | `puid`                     | process userID the radarr instance should run as | `1001` |
 | `pgid`                     | process groupID the radarr instance should run as | `1001` |
