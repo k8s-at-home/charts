@@ -2,12 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
-
 image:
   repository: wonderfall/rtorrent-flood
   tag: 0.9.7-0.13.7
   pullPolicy: IfNotPresent
+
+# upgrade strategy type (e.g. Recreate or RollingUpdate)
+strategyType: Recreate
 
 nameOverride: ""
 fullnameOverride: ""
