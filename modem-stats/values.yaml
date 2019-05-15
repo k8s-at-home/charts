@@ -20,15 +20,15 @@ resources: {}
 nodeSelector: {}
 debug: false
 config:
-    # how many seconds to wait between checks
-    delay: 3600
-    influxdb:
-        # host/port/database are mandatory - change as needed
-        host: influxdb-influxdb
-        port: 8086
-        database: cable_modem_stats
-        # username:
-        # password:
-        ssl: false
-    modem:
-        url: http://192.168.100.1/RgConnect.asp
+  # how many seconds to wait between checks
+  delay: 3600
+  influxdb:
+    # host/port/database are mandatory - change as needed
+    host: influxdb-influxdb
+    port: 8086
+    database: cable_modem_stats
+    # username:
+    # password:
+    ssl: false
+  modem:
+      url: http://192.168.100.1/RgConnect.asp
