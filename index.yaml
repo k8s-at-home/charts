@@ -3,9 +3,9 @@ entries:
   comcast:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: 2019-05-15T22:38:42.599569224Z
+    created: 2019-05-15T22:43:42.629601971Z
     description: periodic comcast data usage checks and save the results to InfluxDB
-    digest: 6d75c3df5b96c0d5041b8fe3faef98e66329e776464c89c5f40fc4904051c253
+    digest: 899d2c6aeb170997e926cbd91f16727f054420fd0c5e78f7a975d0d7e66ff17f
     home: https://github.com/billimek/billimek-charts/tree/master/comcast
     keywords:
     - comcast
@@ -24,9 +24,9 @@ entries:
   digitalocean-dyndns:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-05-15T22:38:42.600637666Z
+    created: 2019-05-15T22:43:42.630162657Z
     description: Dynamic DNS using DigitalOcean's DNS Services
-    digest: 0c93e38d21b75c53fe9bde2c6e78c4eee62a7914ec73d2c51bcf6ec1e24e72af
+    digest: 0eab9ed556f2670725bc13e5d04f9e24a7dfe431f77f7e24bdd13343c49d11a9
     home: https://github.com/billimek/billimek-charts/tree/master/digitalocean-dyndns
     keywords:
     - digitalocean
@@ -61,6 +61,25 @@ entries:
     - https://billimek.com/billimek-charts/digitalocean-dyndns-0.1.0.tgz
     version: 0.1.0
   modem-stats:
+  - apiVersion: v1
+    appVersion: 1.0.0
+    created: 2019-05-15T22:43:42.630588755Z
+    description: periodic cable modem data collection and save the results to InfluxDB
+    digest: 65e3d25466c18a4db64c6521319e80915ff166d2ae427247492dd9904b3712d2
+    home: https://github.com/billimek/billimek-charts/tree/master/modem-stats
+    keywords:
+    - sb6183
+    - influxdb
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: modem-stats
+    sources:
+    - https://github.com/billimek/SB6183-stats-for-influxdb
+    - https://github.com/billimek/billimek-charts
+    urls:
+    - '[".","https:/billimek.com/billimek-charts/"]/modem-stats-1.0.3.tgz'
+    version: 1.0.3
   - apiVersion: v1
     appVersion: 1.0.0
     created: 2019-05-15T22:38:42.601411404Z
@@ -102,9 +121,9 @@ entries:
   nzbget:
   - apiVersion: v1
     appVersion: amd64-v21.0-r2302-ls8
-    created: 2019-05-15T22:38:42.602191149Z
+    created: 2019-05-15T22:43:42.631335321Z
     description: NZBGet is a Usenet downloader client
-    digest: 9210c9df816cde1127f7e5559a199147f09c96907be046969799c30de51a8f1a
+    digest: bd91dd587cbf494dc328aadc8d099fe0815d3406508355fd10c50832d7392eae
     home: https://github.com/billimek/billimek-charts/tree/master/nzbget
     icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
     keywords:
@@ -143,9 +162,9 @@ entries:
   radarr:
   - apiVersion: v1
     appVersion: amd64-v0.2.0.1293-ls9
-    created: 2019-05-15T22:38:42.60349356Z
+    created: 2019-05-15T22:43:42.632009152Z
     description: Radarr is a movie downloading client
-    digest: e17979b56e5d5197f9f8f5db9eee6fe2864b65f4fa30d7a8f93f09f93c22a264
+    digest: 87c004979e1a3bedfc07276e46d2c2029ad8fd0f40e29ad85d2d46b829301405
     home: https://github.com/billimek/billimek-charts/tree/master/radarr
     icon: https://avatars3.githubusercontent.com/u/25025331?s=400&v=4
     keywords:
@@ -165,9 +184,9 @@ entries:
   rtorrent-flood:
   - apiVersion: v1
     appVersion: 0.9.7-0.13.7
-    created: 2019-05-15T22:38:42.604527336Z
+    created: 2019-05-15T22:43:42.632733583Z
     description: flood-rtorrent
-    digest: 6b9cd43f0dee615a9f18711042fa07bac00ee939261ac43143216e99083f8138
+    digest: 0d1d36bacfcb2209d6eb2e72ada6f70194bb8a2da1f30be5cdaca36d14af664f
     home: https://github.com/billimek/billimek-charts/tree/master/rtorrent-flood
     icon: https://github.com/jfurrow/flood/blob/master/flood.png?raw=true
     keywords:
@@ -187,9 +206,9 @@ entries:
   sonarr:
   - apiVersion: v1
     appVersion: amd64-3.0.1.418-ls45
-    created: 2019-05-15T22:38:42.605554064Z
+    created: 2019-05-15T22:43:42.633509293Z
     description: Sonarr is a television show downloading client
-    digest: eb038a6e7238118d10435101417d65abaddde7f2e3307e7b31acc7293d736106
+    digest: ecc86c2d4bfe78b694cdc6b4601ca68966d43bf0eb99decb9fa1943381b0cc5e
     home: https://github.com/billimek/billimek-charts/tree/master/sonarr
     icon: https://avatars1.githubusercontent.com/u/1082903?s=400&v=4
     keywords:
@@ -209,9 +228,9 @@ entries:
   speedtest:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: 2019-05-15T22:38:42.606094237Z
+    created: 2019-05-15T22:43:42.634130852Z
     description: periodic speedtest and save the results to InfluxDB
-    digest: fa2450f4105bb1348665d0c82c9bda0ea94beee405bcad3d621c92c372586951
+    digest: 2b747a9d763a1c8410d2a9f313c6202ed4256842e5ecf4aad83998275ff9b05c
     home: https://github.com/billimek/billimek-charts/tree/master/speedtest
     keywords:
     - speedtest
@@ -229,9 +248,9 @@ entries:
   uptimerobot:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: 2019-05-15T22:38:42.606896395Z
+    created: 2019-05-15T22:43:42.634657117Z
     description: A tool to get statistics from Uptime Robot and log it into InfluxDB
-    digest: 7d8b311fe13de5923b60b8ab71080bb95b2e0d010c1064e2b790997ce2d16294
+    digest: f5fb76d23cf2d53393b217ca6b39174f0e2f05bd57f9c3913337c499285bfac7
     home: https://github.com/billimek/billimek-charts/tree/master/uptimerobot
     keywords:
     - uptimerobot
@@ -246,4 +265,4 @@ entries:
     urls:
     - '[".","https:/billimek.com/billimek-charts/"]/uptimerobot-1.1.2.tgz'
     version: 1.1.2
-generated: 2019-05-15T22:38:42.598703943Z
+generated: 2019-05-15T22:43:42.628857246Z
