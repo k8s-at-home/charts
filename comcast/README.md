@@ -59,7 +59,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
-$ helm install --name my-release \
+helm install --name my-release \
   --set config.comcast.username=tonystark,config.comcast.password=mypassword \
     billimek/comcast
 ```
@@ -67,7 +67,7 @@ $ helm install --name my-release \
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install --name my-release -f values.yaml billimek/comcast
+helm install --name my-release -f values.yaml billimek/comcast
 ```
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
