@@ -1,8 +1,8 @@
-workflow "Publish Helm chart" {
-  on = "push"
+workflow "Lint & Publish Helm chart" {
   resolves = [
     "Package Helm Chart(s)",
   ]
+  on = "push"
 }
 
 action "Package Helm Chart(s)" {
