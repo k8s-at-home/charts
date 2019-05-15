@@ -20,17 +20,17 @@ resources: {}
 nodeSelector: {}
 debug: false
 config:
-    # how many seconds to wait between checks
-    delay: 3600
-    influxdb:
-        # host/port/database are mandatory - change as needed
-        host: influxdb-influxdb
-        port: 8086
-        database: comcast
-        # username:
-        # password:
-        ssl: false
-    comcast:
-        # username/password are mandatory and must be populated
-        username: someuser
-        password: somepassword
+  # how many seconds to wait between checks
+  delay: 3600
+  influxdb:
+    # host/port/database are mandatory - change as needed
+    host: influxdb-influxdb
+    port: 8086
+    database: comcast
+    # username:
+    # password:
+    ssl: false
+  comcast:
+    # username/password are mandatory and must be populated
+    username: someuser
+    password: somepassword
