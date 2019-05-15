@@ -5,6 +5,6 @@ workflow "Publish Helm chart" {
 
 action "Helm gh-pages" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
-  args = ["*", "https://billimek.com/billimek-charts/"]
+  args = [".", "https://billimek.com/billimek-charts/"]
   secrets = ["GITHUB_TOKEN"]
 }
