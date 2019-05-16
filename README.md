@@ -1,4 +1,4 @@
-# personal helm charts
+# billimek helm charts
 
 ## Installation
 
