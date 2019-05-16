@@ -16,10 +16,10 @@ action "Package Helm Chart(s)" {
 
 workflow "Pull Request" {
   on = "pull_request"
-  resolves = ["billimek/gh-actions/helm-gh-pages@master"]
+  resolves = ["Pull Request Linting"]
 }
 
-action "billimek/gh-actions/helm-gh-pages@master" {
+action "Pull Request Linting" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
   args = "\"https://billimek.com/billimek-charts/\""
   secrets = ["GITHUB_TOKEN"]
