@@ -7,6 +7,15 @@ workflow "Lint & Publish Helm chart" {
 
 action "Package Helm Chart(s)" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
-  secrets = ["GITHUB_TOKEN"]
-  args = "[\".\",\"https://billimek.com/billimek-charts/\"]"
+  args = "[\"https://billimek.com/billimek-charts/\"]"
+}
+
+workflow "Pull Request" {
+  on = "pull_request"
+  resolves = ["billimek/gh-actions/helm-gh-pages@master"]
+}
+
+action "billimek/gh-actions/helm-gh-pages@master" {
+  uses = "billimek/gh-actions/helm-gh-pages@master"
+  args = "\"https://billimek.com/billimek-charts/\""
 }
