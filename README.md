@@ -1,4 +1,4 @@
-# billimek helm charts
+# [billimek helm charts](https://github.com/billimek/billimek-charts)
 
 ## Installation
 
