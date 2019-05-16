@@ -7,7 +7,7 @@ workflow "Lint & Publish Helm chart" {
 
 action "Package Helm Chart(s)" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
-  args = "\"https://billimek.com/billimek-charts/\""
+  args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
   needs = ["Filter for master "]
 }
@@ -21,7 +21,7 @@ workflow "Pull Request" {
 
 action "Pull Request Linting" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
-  args = "\"https://billimek.com/billimek-charts/\""
+  args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
 }
 
