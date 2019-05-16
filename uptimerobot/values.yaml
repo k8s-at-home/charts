@@ -18,19 +18,19 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 nodeSelector: {}
-delay: 300 # number of seconds to wait between collections
+# number of seconds to wait between collections
+delay: 300
 config:
-    influxdb:
-        # host/port/database are mandatory - change as needed
-        host: influxdb-influxdb
-        port: 8086
-        protocol: http
-        database: uptimerobot
-        # username:
-        # password:
-    uptimerobot:
-        # API key is mandatory and must be populated
-        apikey: someapikey
-        # logs_limit: 100
-        # response_times_limit: 100
-
+  influxdb:
+    # host/port/database are mandatory - change as needed
+    host: influxdb-influxdb
+    port: 8086
+    protocol: http
+    database: uptimerobot
+    # username:
+    # password:
+  uptimerobot:
+    # API key is mandatory and must be populated
+    apikey: someapikey
+    # logs_limit: 100
+    # response_times_limit: 100
