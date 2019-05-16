@@ -3,6 +3,6 @@
 ## Installation
 
 ```console
-helm repo add billimek https://billimek.github.io/helm-repo
+helm repo add billimek https://billimek.com/billimek-charts/
 helm search billimek
 ```
