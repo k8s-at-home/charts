@@ -7,7 +7,7 @@ This tool allows you to run periodic scanning of the sb6183 cable modem and save
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.github.io/helm-repo
+$ helm repo add billimek https://billimek.com/billimek-charts/
 $ helm install billimek/modem-stats
 ```
 

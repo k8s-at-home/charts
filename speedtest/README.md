@@ -7,7 +7,7 @@ This tool is a wrapper for speedtest-cli which allows you to run periodic speedt
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.github.io/helm-repo
+$ helm repo add billimek https://billimek.com/billimek-charts/
 $ helm install billimek/speedtest
 ```
 

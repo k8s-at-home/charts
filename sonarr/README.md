@@ -5,7 +5,7 @@ This is a helm chart for [sonarr](https://github.com/sonarr/sonarr/) leveraging 
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.github.io/helm-repo
+$ helm repo add billimek https://billimek.com/billimek-charts/
 $ helm install billimek/sonarr
 ```
 

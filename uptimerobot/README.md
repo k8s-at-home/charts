@@ -7,7 +7,7 @@ This tool allows you to run periodic uptimerobot data usage checks and save the 
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.github.io/helm-repo
+$ helm repo add billimek https://billimek.com/billimek-charts/
 $ helm install billimek/uptimerobot
 ```
 

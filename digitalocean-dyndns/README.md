@@ -5,7 +5,7 @@ A script that pushes the public IP address of the running machine to DigitalOcea
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.github.io/helm-repo
+$ helm repo add billimek https://billimek.com/billimek-charts/
 $ helm install billimek/digitalocean-dyndns
 ```
 
