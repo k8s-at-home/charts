@@ -1,7 +1,7 @@
 workflow "Lint & Publish Helm chart" {
   resolves = [
     "Package Helm Chart(s)",
-    "Filter for non-merged PRs",
+    "Pull Request Linting",
   ]
   on = "push"
 }
@@ -10,20 +10,14 @@ action "Package Helm Chart(s)" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
-  needs = ["Filter for non-merged PRs"]
-}
-
-workflow "Pull Request" {
-  on = "pull_request"
-  resolves = [
-    "Pull Request Linting",
-  ]
+  needs = ["Filter for master"]
 }
 
 action "Pull Request Linting" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
+  needs = ["Filter for not master"]
 }
 
 action "Filter for master" {
@@ -32,9 +26,8 @@ action "Filter for master" {
   secrets = ["GITHUB_TOKEN"]
 }
 
-action "Filter for non-merged PRs" {
+action "Filter for not master" {
   uses = "actions/bin/filter@master"
-  needs = ["Filter for master"]
-  args = "not merged true"
+  args = "not branch master"
   secrets = ["GITHUB_TOKEN"]
 }
