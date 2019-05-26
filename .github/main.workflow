@@ -1,6 +1,12 @@
 workflow "Lint & Publish Helm chart" {
   resolves = [
     "Package Helm Chart(s)",
+  ]
+  on = "push"
+}
+
+workflow "Pull Requests" {
+  resolves = [
     "Pull Request Linting",
   ]
   on = "push"
