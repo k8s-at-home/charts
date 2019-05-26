@@ -34,7 +34,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-The configuration is set as a block of text through a configmap and mouted as a file in /src/config.ini Any value in this text block should match the defined Comcast configuration. There are several values here that will have to match our kubernetes configuration.
+The configuration is set as a block of text through a configmap and mounted as a file in /src/config.ini Any value in this text block should match the defined Comcast configuration. There are several values here that will have to match our kubernetes configuration.
 
 ## Configuration
 
@@ -70,7 +70,7 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name my-release -f values.yaml billimek/comcast
 ```
 
-Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/comcast/values.yaml) file. It has several commented out suggested values.
 
 ## InfluxDB metrics
 ```
