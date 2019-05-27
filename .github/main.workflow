@@ -9,7 +9,7 @@ workflow "Pull Requests" {
   resolves = [
     "Pull Request Linting",
   ]
-  on = "push"
+  on = "pull_request"
 }
 
 action "Package Helm Chart(s)" {
