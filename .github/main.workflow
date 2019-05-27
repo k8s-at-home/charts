@@ -24,9 +24,9 @@ action "Package Helm Chart(s)" {
   needs = ["Filter: not deleted"]
 }
 
-action "Filter: not deleted PR" {
+action "Filter: action 'opened|synchronize'" {
   uses = "actions/bin/filter@master"
-  args = "not deleted"
+  args = "action 'opened|synchronize'"
   secrets = ["GITHUB_TOKEN"]
   needs = ["Filter: not master branch"]
 }
@@ -35,9 +35,8 @@ action "Lint changed chart(s) in pull request" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
-  needs = ["Filter: not deleted PR"]
+  needs = ["Filter: action 'opened|synchronize'"]
 }
-
 
 action "Filter: master branch" {
   uses = "actions/bin/filter@master"
