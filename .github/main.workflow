@@ -24,12 +24,20 @@ action "Package Helm Chart(s)" {
   needs = ["Filter: not deleted"]
 }
 
+action "Filter: not deleted PR" {
+  uses = "actions/bin/filter@master"
+  args = "not deleted"
+  secrets = ["GITHUB_TOKEN"]
+  needs = ["Filter: not master branch"]
+}
+
 action "Lint changed chart(s) in pull request" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
-  needs = ["Filter: not master branch"]
+  needs = ["Filter: not deleted PR"]
 }
+
 
 action "Filter: master branch" {
   uses = "actions/bin/filter@master"
@@ -38,14 +46,14 @@ action "Filter: master branch" {
 }
 
 action "Filter: not deleted" {
-  uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
+  uses = "actions/bin/filter@master"
   args = "not deleted"
   secrets = ["GITHUB_TOKEN"]
   needs = ["Filter: master branch"]
 }
 
 action "Filter: not master branch" {
-  uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
+  uses = "actions/bin/filter@master"
   args = "not branch master"
   secrets = ["GITHUB_TOKEN"]
 }
