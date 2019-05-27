@@ -1,7 +1,7 @@
 workflow "Lint & Publish Helm chart" {
   resolves = [
-    "Package Helm Chart(s)",
     "Not a deleted event",
+    "Package Helm Chart(s)",
   ]
   on = "push"
 }
@@ -19,6 +19,7 @@ action "Package Helm Chart(s)" {
   secrets = [
     "GITHUB_TOKEN",
     "COMMIT_EMAIL",
+    "ACCESS_TOKEN",
   ]
   needs = ["Not a deleted event"]
 }
