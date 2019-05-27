@@ -10,7 +10,6 @@ workflow "Pull Requests" {
   on = "pull_request"
   resolves = [
     "Lint changed chart(s) in pull request",
-    "Branch Cleanup",
   ]
 }
 
@@ -41,16 +40,18 @@ action "Not a deleted event" {
   needs = ["Push on the master branch?"]
 }
 
-action "Branch Cleanup" {
-  uses = "jessfraz/branch-cleanup-action@master"
-  secrets = ["GITHUB_TOKEN"]
-  env = {
-    NO_BRANCH_DELETED_EXIT_CODE = "0"
-  }
-}
-
 action "Not on master branch ?" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   args = "not branch master"
+  secrets = ["GITHUB_TOKEN"]
+}
+
+workflow "on pull request merge, delete the branch" {
+  on = "pull_request"
+  resolves = ["branch cleanup"]
+}
+
+action "branch cleanup" {
+  uses = "jessfraz/branch-cleanup-action@master"
   secrets = ["GITHUB_TOKEN"]
 }
