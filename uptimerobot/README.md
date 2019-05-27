@@ -6,7 +6,7 @@ This tool allows you to run periodic uptimerobot data usage checks and save the 
 
 ## TL;DR;
 
-```shell
+```console
 $ helm repo add billimek https://billimek.com/billimek-charts/
 $ helm install billimek/uptimerobot
 ```
@@ -19,14 +19,14 @@ This code is adopted from [this original repo](https://github.com/trojanc/node-i
 
 To install the chart with the release name `my-release`:
 
-```shell
+```console
 $ helm install --name my-release billimek/uptimerobot
 ```
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
 
-```shell
+```console
 $ helm delete my-release --purge
 ```
 
@@ -56,7 +56,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
-```shell
+```console
 $ helm install --name my-release \
   --set config.uptimerobot.apikey=thisismyapikey \
     billimek/uptimerobot
@@ -64,7 +64,7 @@ $ helm install --name my-release \
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
-```shell
+```console
 $ helm install --name my-release -f values.yaml billimek/uptimerobot
 ```
 
