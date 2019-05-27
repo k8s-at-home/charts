@@ -1,6 +1,6 @@
 # A tool to get statistics from Uptime Robot and log it into InfluxDB
 
-![Screenshot](https://github.com/billimek/node-influx-uptimerobot/blob/master/docs/dashboard.png)
+![Screenshot](https://raw.githubusercontent.com/billimek/node-influx-uptimerobot/master/docs/dashboard.png)
 
 This tool allows you to run periodic uptimerobot data usage checks and save the results to Influxdb
 
@@ -68,4 +68,4 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 $ helm install --name my-release -f values.yaml billimek/uptimerobot
 ```
 
-Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/uptimerobot/values.yaml) file. It has several commented out suggested values.
