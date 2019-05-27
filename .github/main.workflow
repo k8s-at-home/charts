@@ -1,7 +1,7 @@
 workflow "Lint & Publish Helm chart" {
   resolves = [
     "Package Helm Chart(s)",
-    "Push on refs/heads/master ?",
+    "Not a deleted event",
   ]
   on = "push"
 }
@@ -15,7 +15,7 @@ action "Package Helm Chart(s)" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
-  needs = ["Push on refs/heads/master ?"]
+  needs = ["Not a deleted event"]
 }
 
 action "Lint changed chart(s) in pull request" {
@@ -36,9 +36,9 @@ action "Filter for not master" {
   secrets = ["GITHUB_TOKEN"]
 }
 
-action "Push on refs/heads/master ?" {
+action "Not a deleted event" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
-  args = "ref refs/heads/master"
+  args = "not deleted"
   secrets = ["GITHUB_TOKEN"]
   needs = ["Push on the master branch?"]
 }
