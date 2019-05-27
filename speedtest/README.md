@@ -67,3 +67,4 @@ $ helm install --name my-release -f values.yaml billimek/speedtest
 ```
 
 Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/speedtest/values.yaml) file. It has several commented out suggested values.
+
