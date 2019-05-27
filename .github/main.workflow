@@ -44,6 +44,9 @@ action "Not a deleted event" {
 action "Branch Cleanup" {
   uses = "jessfraz/branch-cleanup-action@master"
   secrets = ["GITHUB_TOKEN"]
+  env = {
+    NO_BRANCH_DELETED_EXIT_CODE = "0"
+  }
 }
 
 action "Not on master branch ?" {
