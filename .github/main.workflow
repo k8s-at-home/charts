@@ -16,7 +16,10 @@ workflow "Pull Requests" {
 action "Package Helm Chart(s)" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
   args = "https://billimek.com/billimek-charts/"
-  secrets = ["GITHUB_TOKEN"]
+  secrets = [
+    "GITHUB_TOKEN",
+    "COMMIT_EMAIL",
+  ]
   needs = ["Not a deleted event"]
 }
 
