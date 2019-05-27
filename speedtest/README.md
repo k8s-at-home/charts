@@ -31,7 +31,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-The configuration is set as a block of text through a configmap and mouted as a file in /src/config.ini Any value in this text block should match the defined speedtest configuration. There are several values here that will have to match our kubernetes configuration.
+The configuration is set as a block of text through a configmap and mouted as a file in /src/config.ini Any value in this text block should match the defined speedtest configuration. There are several values here that will have to match our kubernetes configuration. 
 
 ## Configuration
 
