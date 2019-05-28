@@ -1,7 +1,6 @@
 workflow "Lint & Publish Helm chart" {
   resolves = [
     "Package Helm Chart(s)",
-    "Filter: not deleted",
   ]
   on = "push"
 }
@@ -21,7 +20,10 @@ action "Package Helm Chart(s)" {
     "COMMIT_EMAIL",
     "ACCESS_TOKEN",
   ]
-  needs = ["Filter: not deleted"]
+  needs = [
+    "Filter: not deleted",
+    "Filter: master branch",
+  ]
 }
 
 action "Filter: master branch" {
@@ -34,7 +36,6 @@ action "Filter: not deleted" {
   uses = "actions/bin/filter@master"
   args = "not deleted"
   secrets = ["GITHUB_TOKEN"]
-  needs = ["Filter: master branch"]
 }
 
 workflow "on pull request merge, delete the branch" {
