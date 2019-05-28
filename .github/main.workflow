@@ -49,7 +49,7 @@ action "branch cleanup" {
 
 action "Filter: not master branch" {
   uses = "actions/bin/filter@master"
-  args = "not master branch"
+  args = "not branch master"
   secrets = ["GITHUB_TOKEN"]
 }
 
