@@ -39,7 +39,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | Parameter                  | Description                         | Default                                                 |
 |----------------------------|-------------------------------------|---------------------------------------------------------|
 | `image.repository`         | Image repository | `linuxserver/nzbget` |
-| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/nzbget/tags/).| `amd64-v21.0-r2302-ls8 `|
+| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/nzbget/tags/).| `v21.0-ls14`|
 | `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
 | `strategyType`             | Specifies the strategy used to replace old Pods by new ones | `Recreate` |
 | `timezone`                 | Timezone the nzbget instance should run as, e.g. 'America/New_York' | `UTC` |
