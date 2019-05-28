@@ -7,10 +7,11 @@ workflow "Lint & Publish Helm chart" {
 }
 
 workflow "Pull Requests" {
-  on = "pull_request"
   resolves = [
+    "actions/bin/filter@master-1",
     "Lint changed chart(s) in pull request",
   ]
+  on = "pull_request"
 }
 
 action "Package Helm Chart(s)" {
@@ -22,20 +23,6 @@ action "Package Helm Chart(s)" {
     "ACCESS_TOKEN",
   ]
   needs = ["Filter: not deleted"]
-}
-
-action "Filter: action 'opened|synchronize'" {
-  uses = "actions/bin/filter@master"
-  args = "action 'opened|synchronize'"
-  secrets = ["GITHUB_TOKEN"]
-  needs = ["Filter: not master branch"]
-}
-
-action "Lint changed chart(s) in pull request" {
-  uses = "billimek/gh-actions/helm-gh-pages@master"
-  args = "https://billimek.com/billimek-charts/"
-  secrets = ["GITHUB_TOKEN"]
-  needs = ["Filter: action 'opened|synchronize'"]
 }
 
 action "Filter: master branch" {
@@ -51,12 +38,6 @@ action "Filter: not deleted" {
   needs = ["Filter: master branch"]
 }
 
-action "Filter: not master branch" {
-  uses = "actions/bin/filter@master"
-  args = "not branch master"
-  secrets = ["GITHUB_TOKEN"]
-}
-
 workflow "on pull request merge, delete the branch" {
   on = "pull_request"
   resolves = ["branch cleanup"]
@@ -64,5 +45,24 @@ workflow "on pull request merge, delete the branch" {
 
 action "branch cleanup" {
   uses = "jessfraz/branch-cleanup-action@master"
+  secrets = ["GITHUB_TOKEN"]
+}
+
+action "Filter: not master branch" {
+  uses = "actions/bin/filter@master"
+  args = "not master branch"
+  secrets = ["GITHUB_TOKEN"]
+}
+
+action "actions/bin/filter@master-1" {
+  uses = "actions/bin/filter@master"
+  args = "action 'opened|synchronize'"
+  secrets = ["GITHUB_TOKEN"]
+}
+
+action "Lint changed chart(s) in pull request" {
+  uses = "billimek/gh-actions/helm-gh-pages@master"
+  needs = ["actions/bin/filter@master-1", "Filter: not master branch"]
+  args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
 }
