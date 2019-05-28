@@ -1,4 +1,4 @@
-workflow "Lint & Publish Helm chart" {
+workflow "Publish Helm chart(s)" {
   resolves = [
     "Package Helm Chart(s)",
     "Filter: not deleted",
@@ -22,6 +22,9 @@ action "Package Helm Chart(s)" {
     "ACCESS_TOKEN",
   ]
   needs = ["Filter: not deleted"]
+  env = {
+    SKIP_LINTING = "true"
+  }
 }
 
 action "Filter: action 'opened|synchronize'" {
@@ -36,9 +39,6 @@ action "Lint changed chart(s) in pull request" {
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
   needs = ["Filter: action 'opened|synchronize'"]
-  env = {
-    SKIP_LINTING = "true"
-  }
 }
 
 action "Filter: master branch" {
