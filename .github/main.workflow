@@ -36,6 +36,9 @@ action "Lint changed chart(s) in pull request" {
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
   needs = ["Filter: action 'opened|synchronize'"]
+  env = {
+    SKIP_LINTING = "true"
+  }
 }
 
 action "Filter: master branch" {
