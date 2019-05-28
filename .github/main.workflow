@@ -8,7 +8,6 @@ workflow "Lint & Publish Helm chart" {
 
 workflow "Pull Requests" {
   resolves = [
-    "actions/bin/filter@master-1",
     "Lint changed chart(s) in pull request",
   ]
   on = "pull_request"
@@ -54,7 +53,7 @@ action "Filter: not master branch" {
   secrets = ["GITHUB_TOKEN"]
 }
 
-action "actions/bin/filter@master-1" {
+action "Filter: action 'opened|synchronize'" {
   uses = "actions/bin/filter@master"
   args = "action 'opened|synchronize'"
   secrets = ["GITHUB_TOKEN"]
@@ -62,7 +61,10 @@ action "actions/bin/filter@master-1" {
 
 action "Lint changed chart(s) in pull request" {
   uses = "billimek/gh-actions/helm-gh-pages@master"
-  needs = ["actions/bin/filter@master-1", "Filter: not master branch"]
+  needs = [
+    "Filter: not master branch",
+    "Filter: action 'opened|synchronize'",
+  ]
   args = "https://billimek.com/billimek-charts/"
   secrets = ["GITHUB_TOKEN"]
 }
