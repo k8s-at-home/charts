@@ -35,15 +35,15 @@ spec:
           livenessProbe:
             httpGet:
               port: http
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             failureThreshold: 5
-            timeoutSeconds: 10
+            timeoutSeconds: 15
           readinessProbe:
             httpGet:
               port: http
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             failureThreshold: 5
-            timeoutSeconds: 10
+            timeoutSeconds: 20
           tty: true
           env:
             - name: TZ
