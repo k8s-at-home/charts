@@ -22,15 +22,46 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: {{ .Chart.Name }}-rtorrent
+          image: "{{ .Values.rtorrent.image.repository }}:{{ .Values.rtorrent.image.tag }}"
+          imagePullPolicy: {{ .Values.rtorrent.image.pullPolicy }}
+          ports:
+            - name: bt
+              containerPort: 49161
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: bt
+          livenessProbe:
+            tcpSocket:
+              port: bt
+          env:
+            - name: TZ
+              value: "{{ .Values.timezone }}"
+            - name: PUID
+              value: "{{ .Values.uid }}"
+            - name: PGID
+              value: "{{ .Values.gid }}"
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+            {{- if .Values.persistence.data.subPath }}
+              subPath: {{ .Values.persistence.data.subPath }}
+            {{ end }}
+            - mountPath: /session
+              name: data
+              subPath: .session
+            - mountPath: /tmp
+              name: socket
+          resources:
+        - name: {{ .Chart.Name }}-flood
+          image: "{{ .Values.flood.image.repository }}:{{ .Values.flood.image.tag }}"
+          imagePullPolicy: {{ .Values.flood.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 3000
-              protocol: TCP
-            - name: bt
-              containerPort: 49184
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -50,22 +81,20 @@ spec:
               value: "{{ .Values.timezone }}"
             - name: FLOOD_SECRET
               value: "{{ .Values.floodSecret }}"
-            - name: UID
-              value: "{{ .Values.uid }}"
-            - name: GID
-              value: "{{ .Values.gid }}"
+            - name: RTORRENT_SOCK
+              value: "true"
           volumeMounts:
-            - mountPath: /flood-db
-              name: flood-db
             - mountPath: /data
               name: data
             {{- if .Values.persistence.data.subPath }}
               subPath: {{ .Values.persistence.data.subPath }}
             {{ end }}
+            - mountPath: /tmp
+              name: socket
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
-      - name: flood-db
+      - name: config
       {{- if .Values.persistence.config.enabled }}
         persistentVolumeClaim:
           claimName: {{ if .Values.persistence.config.existingClaim }}{{ .Values.persistence.config.existingClaim }}{{- else }}{{ template "rtorrent-flood.fullname" . }}-config{{- end }}
@@ -79,6 +108,8 @@ spec:
       {{- else }}
         emptyDir: {}
       {{ end }}
+      - name: socket
+        emptyDir: {}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

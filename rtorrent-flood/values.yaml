@@ -1,11 +1,6 @@
-# Default values for deluge.
+# Default values for rtorrent-flood.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
-image:
-  repository: wonderfall/rtorrent-flood
-  tag: new
-  pullPolicy: IfNotPresent
 
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
 strategyType: Recreate
@@ -17,6 +12,20 @@ fullnameOverride: ""
 floodSecret: "supersecret"
 uid: 1001
 gid: 1001
+
+rtorrent:
+  enabled: true
+  image:
+    repository: looselyrigorous/rtorrent
+    tag: latest
+    pullPolicy: Always
+
+flood:
+  enabled: true
+  image:
+    repository: billimek/flood
+    tag: latest
+    pullPolicy: Always
 
 guiService:
   type: ClusterIP
@@ -41,7 +50,7 @@ guiService:
 
 btService:
   type: NodePort
-  port: 49184
+  port: 49161
   ## Specify the nodePort value for the LoadBalancer and NodePort service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
