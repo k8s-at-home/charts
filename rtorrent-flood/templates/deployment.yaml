@@ -53,7 +53,7 @@ spec:
             - mountPath: /session
               name: data
               subPath: .session
-            - mountPath: /tmp
+            - mountPath: /socket
               name: socket
           resources:
         - name: {{ .Chart.Name }}-flood
