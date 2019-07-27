@@ -1,6 +1,6 @@
 # frigate: Realtime object detection on RTSP cameras with the Google Coral
 
-This is a helm chart for [frigate](https://github.com/frigate/frigate/) leveraging the [Linuxserver.io image](https://hub.docker.com/r/linuxserver/frigate/)
+This is a helm chart for [frigate](https://github.com/blakeblackshear/frigate)
 
 ## TL;DR;
 
