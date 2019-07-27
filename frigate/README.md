@@ -17,6 +17,24 @@ To install the chart with the release name `my-release`:
 helm install --name my-release billimek/frigate
 ```
 
+**IMPORTANT NOTE:** the [Google Coral USB Accelerator](https://coral.withgoogle.com/products/accelerator/) must be accessible on the node where this pod runs, in order for this chart to function properly.
+
+A way to achieve this can be with nodeAffinity rules, for example:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: tpu
+          operator: In
+          values:
+          - google-coral
+```
+
+... where a node with an attached Coral USB device is labeled with `tpu: google-coral`
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
