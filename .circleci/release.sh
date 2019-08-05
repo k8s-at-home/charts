@@ -44,7 +44,7 @@ main() {
     while read -r dir; do
         echo "checking $dir"
         if find "$dir" -type f -iname "Chart.yaml" | grep -E -q 'Chart.yaml'; then
-            changed_charts+=($dir)
+            changed_charts+=("$dir")
         fi
     done < /tmp/modified_dirs.txt
     rm /tmp/modified_dirs.txt
