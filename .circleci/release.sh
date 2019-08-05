@@ -66,8 +66,8 @@ find_latest_tag() {
 
 package_chart() {
     local chart="$1"
-    Helm dependency build "$chart"
-    Helm package "$chart" --destination .deploy
+    helm dependency build "$chart"
+    helm package "$chart" --destination .deploy
 }
 
 release_charts() {
