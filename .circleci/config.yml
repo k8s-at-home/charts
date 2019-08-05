@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  lint-scripts:
+    docker:
+      - image: koalaman/shellcheck-alpine
+    steps:
+      - checkout
+      - run:
+          name: lint
+          command: shellcheck -x .circleci/*.sh
+  release-charts:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo "export GIT_REPOSITORY_URL=$CIRCLE_REPOSITORY_URL" >> $BASH_ENV
+            echo "export GIT_USERNAME=$CIRCLE_PROJECT_USERNAME" >> $BASH_ENV
+            echo "export GIT_REPOSITORY_NAME=$CIRCLE_PROJECT_REPONAME" >> $BASH_ENV
+            .circleci/install_tools.sh
+            .circleci/release.sh
+
+workflows:
+  version: 2
+  release:
+    jobs:
+      - lint-scripts
+      - release-charts:
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: master
