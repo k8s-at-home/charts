@@ -30,6 +30,9 @@ jobs:
     machine: true
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "07:2a:c4:7a:48:3b:e5:cd:0c:80:bb:0d:be:f1:25:32"
       - run:
           command: |
             echo "export GIT_REPOSITORY_URL=$CIRCLE_REPOSITORY_URL" >> $BASH_ENV
