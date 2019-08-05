@@ -40,21 +40,17 @@ main() {
     echo "Identifying changed charts since tag '$latest_tag'..."
 
     local changed_charts=()
-    readarray -t changed_charts <<< "$(git diff --find-renames --name-only "$latest_tag_rev" -- . | cut -d '/' -f 1 | uniq)"
+    readarray -t changed_charts <<< "$(find $(git diff --find-renames --name-only $latest_tag_rev -- .) -type f -iname 'Chart.yaml' | cut -d '/' -f 1 | uniq)"
 
     if [[ -n "${changed_charts[*]}" ]]; then
         for chart in "${changed_charts[@]}"; do
-            if find "$chart" -type f -iname "Chart.yaml" | grep -E -q '.'; then
-            echo "$chart is a valid chart directory - packaging"
+            echo "Packaging chart '$chart'..."
             package_chart "$chart"
-            fi
         done
 
-        if [[ -d .deploy ]]; then
-            release_charts
-            sleep 5
-            update_index
-        fi
+        release_charts
+        sleep 5
+        update_index
     else
         echo "Nothing to do. No chart changes detected."
     fi
