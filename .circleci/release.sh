@@ -40,12 +40,12 @@ main() {
     echo "Identifying changed charts since tag '$latest_tag'..."
 
     local changed_charts=()
-    readarray -t changed_charts <<< "$(git diff --find-renames --name-only "$latest_tag_rev" -- charts | cut -d '/' -f 2 | uniq)"
+    readarray -t changed_charts <<< "$(git diff --find-renames --name-only "$latest_tag_rev" -- . | cut -d '/' -f 1 | uniq)"
 
     if [[ -n "${changed_charts[*]}" ]]; then
         for chart in "${changed_charts[@]}"; do
             echo "Packaging chart '$chart'..."
-            package_chart "charts/$chart"
+            package_chart "$chart"
         done
 
         release_charts
@@ -80,7 +80,7 @@ update_index() {
     git config user.email "$GIT_EMAIL"
     git config user.name "$GIT_USERNAME"
 
-    for file in charts/*/*.md; do
+    for file in */*.md; do
         if [[ -e $file ]]; then
             mkdir -p ".deploy/docs/$(dirname "$file")"
             cp --force "$file" ".deploy/docs/$(dirname "$file")"
@@ -90,9 +90,9 @@ update_index() {
     git checkout gh-pages
     cp --force .deploy/index.yaml index.yaml
 
-    if [[ -e ".deploy/docs/charts" ]]; then
-        mkdir -p charts
-        cp --force --recursive .deploy/docs/charts/* charts/
+    if [[ -e ".deploy/docs" ]]; then
+        # mkdir -p charts
+        cp --force --recursive .deploy/docs/* .
     fi
 
     git checkout master -- README.md

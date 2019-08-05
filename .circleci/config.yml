@@ -8,7 +8,7 @@ jobs:
       - run:
           name: lint
           command: |
-            git remote add upstream https://github.com/paulczar/percona-helm-charts
+            git remote add upstream https://github.com/billimek/billimek-charts
             git fetch upstream master
             ct lint --config .circleci/ct.yaml
   install-charts:
