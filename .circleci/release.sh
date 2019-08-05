@@ -50,9 +50,11 @@ main() {
             fi
         done
 
-        release_charts
-        sleep 5
-        update_index
+        if [[ -d .deploy ]]; then
+            release_charts
+            sleep 5
+            update_index
+        fi
     else
         echo "Nothing to do. No chart changes detected."
     fi
