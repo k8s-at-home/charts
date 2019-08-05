@@ -44,18 +44,17 @@ main() {
         if find "$dir" -type f -iname "Chart.yaml" | grep -E -q 'Chart.yaml'; then
             echo "Packaging chart '$dir'..."
             package_chart "$dir"
+            packaged=true
         fi
     done < /tmp/modified_dirs.txt
     rm /tmp/modified_dirs.txt
 
-    ls -ald .deploy
-
-    if [ -d .deploy ]; then
+    if [ $packaged ]; then
         release_charts
         sleep 5
         update_index
     else
-        "Nothing to do. No chart changes detected."
+        echo "Nothing to do. No chart changes detected."
     fi
 
     popd > /dev/null
