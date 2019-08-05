@@ -50,7 +50,7 @@ main() {
     done < /tmp/modified_dirs.txt
     rm /tmp/modified_dirs.txt
 
-    if [ $packaged ]; then
+    if [ "$packaged" = true ]; then
         release_charts
         sleep 5
         update_index
