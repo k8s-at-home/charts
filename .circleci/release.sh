@@ -39,27 +39,21 @@ main() {
 
     echo "Identifying changed charts since tag '$latest_tag'..."
 
-    local changed_charts=()
-    git diff --find-renames --name-only comcast-1.0.5 -- . | cut -d '/' -f 1 | uniq > /tmp/modified_dirs.txt
+    git diff --find-renames --name-only "$latest_tag_rev" -- . | cut -d '/' -f 1 | uniq > /tmp/modified_dirs.txt
     while read -r dir; do
-        echo "checking $dir"
         if find "$dir" -type f -iname "Chart.yaml" | grep -E -q 'Chart.yaml'; then
-            changed_charts+=("$dir")
+            echo "Packaging chart '$dir'..."
+            package_chart "$dir"
         fi
     done < /tmp/modified_dirs.txt
     rm /tmp/modified_dirs.txt
 
-    if [[ -n "${changed_charts[*]}" ]]; then
-        for chart in "${changed_charts[@]}"; do
-            echo "Packaging chart '$chart'..."
-            package_chart "$chart"
-        done
-
+    if [[ -d .deploy ]]; then
         release_charts
         sleep 5
         update_index
     else
-        echo "Nothing to do. No chart changes detected."
+        "Nothing to do. No chart changes detected."
     fi
 
     popd > /dev/null
