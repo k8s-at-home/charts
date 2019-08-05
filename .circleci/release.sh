@@ -48,7 +48,9 @@ main() {
     done < /tmp/modified_dirs.txt
     rm /tmp/modified_dirs.txt
 
-    if [[ -d .deploy ]]; then
+    ls -ald .deploy
+
+    if [ -d .deploy ]; then
         release_charts
         sleep 5
         update_index
