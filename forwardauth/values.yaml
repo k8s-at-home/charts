@@ -1,0 +1,62 @@
+replicaCount: 1
+
+image:
+  repository: index.docker.io/dniel/forwardauth
+  tag: latest
+  pullPolicy: Always
+
+# set logLevel to DEBUG, TEST, or PRODUCTION to control the verbosity of logs
+logLevel: DEBUG
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/priority: "99999"
+  path: /oauth2
+
+## Uncomment and complete the following section to set the configuration
+# applicationYaml:
+#   domain: https://xxxxx.xx.auth0.com/
+#   token-endpoint: https://xxx.xx.auth0.com/oauth/token
+#   authorize-url: https://xxxx.xx.auth0.com/authorize
+#   default:
+#       name: www.example.test
+#       client-id: <from auth0 application config>
+#       client-secret: <from auth0 application config>
+#       audience: <from auth0 api config> or blank
+#       scope: "profile openid email"
+#       redirect-uri: http://www.example.test/oauth2/signin
+#       token-cookie-domain: example.test
+#   apps:
+#     - name: www.example.test
+#       client-id: <from auth0 application config>
+#       client-secret: <from auth0 application config>
+#       audience: <from auth0 api config> or blank
+#       scope: "profile openid email"
+#       redirect-uri: http://www.example.test/oauth2/signin
+#       token-cookie-domain: example.test
+#     - name: traefik.example.test
+#       client-id: <from auth0 application config>
+#       client-secret: <from auth0 application config>
+#       audience: <from auth0 api config> or blank
+#       scope: "profile openid email"
+#       redirect-uri: http://traefik.example.test/oauth2/signin
+#       token-cookie-domain: traefik.example.test
+
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    memory: 512Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
