@@ -40,7 +40,7 @@ main() {
     echo "Identifying changed charts since tag '$latest_tag'..."
 
     local packaged=false
-    git diff --find-renames --name-only "$latest_tag_rev" -- . | cut -d '/' -f 1 | uniq > /tmp/modified_dirs.txt
+    git diff --find-renames --name-only "$latest_tag_rev" -- [a-zA-Z0-9]* | cut -d '/' -f 1 | uniq > /tmp/modified_dirs.txt
     while read -r dir; do
         if find "$dir" -type f -iname "Chart.yaml" | grep -E -q 'Chart.yaml'; then
             echo "Packaging chart '$dir'..."
