@@ -29,12 +29,16 @@ spec:
             - name: bt
               containerPort: 49161
               protocol: TCP
+          tty: true
+          livenessProbe:
+            tcpSocket:	
+              port: bt
           readinessProbe:
             tcpSocket:
               port: bt
-          livenessProbe:
-            tcpSocket:
-              port: bt
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           env:
             - name: TZ
               value: "{{ .Values.timezone }}"
@@ -56,6 +60,7 @@ spec:
             - mountPath: /socket
               name: socket
           resources:
+{{ toYaml .Values.rtorrent.resources | indent 12 }}
         - name: {{ .Chart.Name }}-flood
           image: "{{ .Values.flood.image.repository }}:{{ .Values.flood.image.tag }}"
           imagePullPolicy: {{ .Values.flood.image.pullPolicy }}
@@ -75,7 +80,7 @@ spec:
             initialDelaySeconds: 60
             failureThreshold: 5
             timeoutSeconds: 20
-          tty: true
+          # tty: true
           env:
             - name: TZ
               value: "{{ .Values.timezone }}"
@@ -92,7 +97,7 @@ spec:
             - mountPath: /tmp
               name: socket
           resources:
-{{ toYaml .Values.resources | indent 12 }}
+{{ toYaml .Values.flood.resources | indent 12 }}
       volumes:
       - name: config
       {{- if .Values.persistence.config.enabled }}
