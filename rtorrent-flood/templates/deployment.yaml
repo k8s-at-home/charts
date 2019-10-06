@@ -56,7 +56,11 @@ spec:
             {{ end }}
             - mountPath: /session
               name: data
+            {{- if .Values.persistence.data.subPath }}
+              subPath: {{ .Values.persistence.data.subPath }}/.session
+            {{- else }}
               subPath: .session
+            {{ end }}
             - mountPath: /socket
               name: socket
           resources:
