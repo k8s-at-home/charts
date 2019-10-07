@@ -51,6 +51,8 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `config.influxdb.password`           | InfluxDB password                            | ``                                                       |
 | `config.influxdb.ssl`                | InfluxDB connection using SSL                | `false`                                                  |
 | `config.speedtest.server`            | server to use for speedtest - leave blank to auto-pick | ``                                               |
+| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
+
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
