@@ -53,6 +53,8 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `config.influxdb.username`           | InfluxDB username                            | ``                                                         |
 | `config.influxdb.password`           | InfluxDB password                            | ``                                              |
 | `config.uptimerobot.apikey`          | uptimerobot API key (REQUIRED)               | `someapikey`                                               |
+| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
+
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
