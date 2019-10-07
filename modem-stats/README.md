@@ -50,6 +50,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `config.influxdb.password`           | InfluxDB password                            | ``                                                         |
 | `config.influxdb.ssl`                | InfluxDB connection using SSL                | `false`                                                    |
 | `config.modem.url`                   | sb6183 stats URL page                        | `http://192.168.100.1/RgConnect.asp`                       |
+| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
