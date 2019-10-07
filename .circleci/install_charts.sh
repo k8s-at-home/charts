@@ -56,7 +56,7 @@ create_kind_cluster() {
 
 install_local_path_provisioner() {
     docker_exec kubectl delete storageclass standard
-    docker_exec kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+    docker_exec kubectl apply -f https://raw.githubusercontent.com/helm/chart-testing/master/examples/kind/test/local-path-provisioner.yaml
 }
 
 install_tiller() {
