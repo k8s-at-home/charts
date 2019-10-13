@@ -7,12 +7,6 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-  {{- if .Values.podAnnotations }}
-  annotations:
-    {{- range $key, $value := .Values.podAnnotations }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
-  {{- end }}
 spec:
   selector:
     matchLabels:
@@ -24,6 +18,12 @@ spec:
       labels:
         app: {{ template "comcast.name" . }}
         release: {{ .Release.Name }}
+      {{- if .Values.podAnnotations }}
+      annotations:
+        {{- range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
