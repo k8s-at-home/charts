@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ser2sock.fullname" . }}
+  labels:
+{{ include "ser2sock.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  strategy:
+    type: {{ .Values.strategyType }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "ser2sock.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "ser2sock.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- if .Values.podAnnotations }}
+      annotations:
+        {{- range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            privileged: true
+          ports:
+            - name: http
+              containerPort: 10000
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            timeoutSeconds: 5
+          env:
+            {{- if .Values.timezone }}
+            - name: TZ
+              value: "{{ .Values.timezone }}"
+            {{- end }}
+            - name: LISTENER_PORT
+              value: "10000"
+            - name: BAUD_RATE
+              value: "115200"
+            - name: SERIAL_DEVICE
+              value: "{{ .Values.device }}"
+            - name: PUID
+              value: "{{ .Values.puid }}"
+            - name: PGID
+              value: "{{ .Values.pgid }}"
+          volumeMounts:
+            - mountPath: /dev/ttyUSB0
+              name: usb
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: usb
+          hostPath:
+            path: {{ .Values.device }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
