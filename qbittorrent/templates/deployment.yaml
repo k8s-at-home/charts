@@ -61,7 +61,7 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: config
-            - mountPath: /data
+            - mountPath: /downloads
               name: data
             {{- if .Values.persistence.data.subPath }}
               subPath: {{ .Values.persistence.data.subPath }}
