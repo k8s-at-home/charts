@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "qbittorrent.fullname" . }}-bt
+  labels:
+    app.kubernetes.io/name: {{ include "qbittorrent.name" . }}
+    helm.sh/chart: {{ include "qbittorrent.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.btService.labels }}
+{{ toYaml .Values.btService.labels | indent 4 }}
+{{- end }}
+{{- with .Values.btService.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+{{- if (or (eq .Values.btService.type "ClusterIP") (empty .Values.btService.type)) }}
+  type: ClusterIP
+  {{- if .Values.btService.clusterIP }}
+  clusterIP: {{ .Values.btService.clusterIP }}
+  {{end}}
+{{- else if eq .Values.btService.type "LoadBalancer" }}
+  type: {{ .Values.btService.type }}
+  {{- if .Values.btService.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.btService.loadBalancerIP }}
+  {{- end }}
+  {{- if .Values.btService.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+{{ toYaml .Values.btService.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+{{- else }}
+  type: {{ .Values.btService.type }}
+{{- end }}
+{{- if .Values.btService.externalIPs }}
+  externalIPs:
+{{ toYaml .Values.btService.externalIPs | indent 4 }}
+{{- end }}
+  {{- if .Values.btService.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.btService.externalTrafficPolicy }}
+  {{- end }}
+  ports:
+    - name: bt
+      port: {{ .Values.btService.port }}
+      protocol: TCP
+      targetPort: bt
+{{ if (and (eq .Values.btService.type "NodePort") (not (empty .Values.btService.nodePort))) }}
+      nodePort: {{.Values.btService.nodePort}}
+{{ end }}
+  selector:
+    app.kubernetes.io/name: {{ include "qbittorrent.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

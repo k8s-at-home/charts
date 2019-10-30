@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "qbittorrent.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "qbittorrent.name" . }}
+    helm.sh/chart: {{ include "qbittorrent.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  strategy:
+    type: {{ .Values.strategyType }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "qbittorrent.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "qbittorrent.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- if .Values.podAnnotations }}
+      annotations:
+        {{- range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: bt
+              containerPort: 6881
+              protocol: TCP
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:	
+              port: bt
+          readinessProbe:
+            tcpSocket:
+              port: bt
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: TZ
+              value: "{{ .Values.timezone }}"
+            - name: PUID
+              value: "{{ .Values.uid }}"
+            - name: PGID
+              value: "{{ .Values.gid }}"
+            - name: UMASK_SET
+              value: "{{ .Values.umask }}"
+            # - name: WEBUI_PORT
+            #   value: "{{ .Values.guiService.port }}"
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+            {{- if .Values.persistence.data.subPath }}
+              subPath: {{ .Values.persistence.data.subPath }}
+            {{ end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      volumes:
+      - name: config
+      {{- if .Values.persistence.config.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ if .Values.persistence.config.existingClaim }}{{ .Values.persistence.config.existingClaim }}{{- else }}{{ template "qbittorrent.fullname" . }}-config{{- end }}
+      {{- else }}
+        emptyDir: {}
+      {{ end }}
+      - name: data
+      {{- if .Values.persistence.data.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ if .Values.persistence.data.existingClaim }}{{ .Values.persistence.data.existingClaim }}{{- else }}{{ template "qbittorrent.fullname" . }}-data{{- end }}
+      {{- else }}
+        emptyDir: {}
+      {{ end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
