@@ -40,6 +40,12 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `timezone`                 | Timezone the radarr instance should run as, e.g. 'America/New_York' | `UTC` |
 | `puid`                     | process userID the radarr instance should run as | `1001` |
 | `pgid`                     | process groupID the radarr instance should run as | `1001` |
+| `probes.liveness.initialDelaySeconds`  | Specify liveness `initialDelaySeconds` parameter for the deployment  | `60` |
+| `probes.liveness.failureThreshold`     | Specify liveness `failureThreshold` parameter for the deployment     | `5`  |
+| `probes.liveness.timeoutSeconds`       | Specify liveness `timeoutSeconds` parameter for the deployment       | `10` |
+| `probes.readiness.initialDelaySeconds` | Specify readiness `initialDelaySeconds` parameter for the deployment | `60` |
+| `probes.readiness.failureThreshold`    | Specify readiness `failureThreshold` parameter for the deployment    | `5`  |
+| `probes.readiness.timeoutSeconds`      | Specify readiness `timeoutSeconds` parameter for the deployment      | `10` |
 | `Service.type`          | Kubernetes service type for the radarr GUI | `ClusterIP` |
 | `Service.port`          | Kubernetes port where the radarr GUI is exposed| `7878` |
 | `Service.annotations`   | Service annotations for the radarr GUI | `{}` |
