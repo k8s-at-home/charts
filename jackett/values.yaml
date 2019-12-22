@@ -13,13 +13,15 @@ strategyType: Recreate
 # Probes configuration
 probes:
   liveness:
-    initialDelaySeconds: 60
     failureThreshold: 5
-    timeoutSeconds: 10
+    periodSeconds: 10
   readiness:
-    initialDelaySeconds: 60
     failureThreshold: 5
-    timeoutSeconds: 10
+    periodSeconds: 10
+  startup:
+    initialDelaySeconds: 5
+    failureThreshold: 30
+    periodSeconds: 10
 
 nameOverride: ""
 fullnameOverride: ""
