@@ -40,12 +40,13 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `timezone`                 | Timezone the Jackett instance should run as, e.g. 'America/New_York' | `UTC` |
 | `puid`                     | process userID the Jackett instance should run as | `1001` |
 | `pgid`                     | process groupID the Jackett instance should run as | `1001` |
-| `probes.liveness.initialDelaySeconds`  | Specify liveness `initialDelaySeconds` parameter for the deployment  | `60` |
 | `probes.liveness.failureThreshold`     | Specify liveness `failureThreshold` parameter for the deployment     | `5`  |
-| `probes.liveness.timeoutSeconds`       | Specify liveness `timeoutSeconds` parameter for the deployment       | `10` |
-| `probes.readiness.initialDelaySeconds` | Specify readiness `initialDelaySeconds` parameter for the deployment | `60` |
+| `probes.liveness.periodSeconds`       | Specify liveness `periodSeconds` parameter for the deployment       | `10` |
 | `probes.readiness.failureThreshold`    | Specify readiness `failureThreshold` parameter for the deployment    | `5`  |
-| `probes.readiness.timeoutSeconds`      | Specify readiness `timeoutSeconds` parameter for the deployment      | `10` |
+| `probes.readiness.periodSeconds`      | Specify readiness `periodSeconds` parameter for the deployment      | `10` |
+| `probes.startup.initialDelaySeconds`    | Specify startup `initialDelaySeconds` parameter for the deployment    | `5`  |
+| `probes.startup.failureThreshold`      | Specify startup `failureThreshold` parameter for the deployment      | `30` |
+| `probes.startup.periodSeconds`      | Specify startup `periodSeconds` parameter for the deployment      | `10` |
 | `Service.type`          | Kubernetes service type for the Jackett GUI | `ClusterIP` |
 | `Service.port`          | Kubernetes port where the Jackett GUI is exposed| `9117` |
 | `Service.annotations`   | Service annotations for the Jackett GUI | `{}` |
