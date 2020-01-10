@@ -83,4 +83,4 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name my-release -f values.yaml billimek/tautulli
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/tautulli/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/tautulli/values.yaml) file. It has several commented out suggested values.
