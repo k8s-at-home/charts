@@ -83,4 +83,4 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name my-release -f values.yaml billimek/ombi
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/ombi/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/ombi/values.yaml) file. It has several commented out suggested values.
