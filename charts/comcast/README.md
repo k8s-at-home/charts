@@ -71,7 +71,7 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name my-release -f values.yaml billimek/comcast
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/comcast/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/comcast/values.yaml) file. It has several commented out suggested values.
 
 ## InfluxDB metrics
 ```
