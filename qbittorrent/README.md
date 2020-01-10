@@ -1,3 +1,0 @@
-# qBitTorrent client
-
-TBD
