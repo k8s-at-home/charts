@@ -83,4 +83,4 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name my-release -f values.yaml billimek/ser2sock
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/ser2sock/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/ser2sock/values.yaml) file. It has several commented out suggested values.
