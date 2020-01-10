@@ -64,4 +64,4 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name my-release -f values.yaml billimek/cloudflare-dyndns
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/cloudflare-dyndns/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/cloudflare-dyndns/values.yaml) file. It has several commented out suggested values.
