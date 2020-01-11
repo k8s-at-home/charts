@@ -14,7 +14,11 @@ Once Helm is set up properly, add the repo as follows:
 helm repo add billimek https://billimek.com/billimek-charts/
 ```
 
-You can then run `helm search repo billimek` to see the charts.
+You can then run `helm search billimek` to see the charts.
+
+## Charts
+
+See [helm hub](https://hub.helm.sh/charts/billimek) for a complete list.
 
 ## Contributing
 
