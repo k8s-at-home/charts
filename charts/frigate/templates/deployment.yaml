@@ -39,14 +39,18 @@ spec:
               containerPort: 5000
               protocol: TCP
           livenessProbe:
-            tcpSocket:
+            httpGet:
+              path: /
               port: http
+              scheme: HTTP
             initialDelaySeconds: 30
             failureThreshold: 5
             timeoutSeconds: 5
           readinessProbe:
-            tcpSocket:
+            httpGet:
+              path: /
               port: http
+              scheme: HTTP
             initialDelaySeconds: 30
             failureThreshold: 5
             timeoutSeconds: 5
@@ -55,7 +59,7 @@ spec:
             - name: TZ
               value: "{{ .Values.timezone }}"
             {{- end }}
-            - name: RTSP_PASSWORD
+            - name: FRIGATE_RTSP_PASSWORD
               value: "{{ .Values.rtspPassword }}"
           volumeMounts:
             - mountPath: /dev/bus/usb
