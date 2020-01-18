@@ -72,7 +72,8 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.downloads.size`         | Size of persistent volume claim | `10Gi` |
 | `persistence.downloads.existingClaim`| Use an existing PVC to persist data | `nil` |
 | `persistence.downloads.storageClass` | Type of persistent volume claim | `-` |
-| `persistence.downloads.accessMode`  | Persistence access mode | `ReadWriteOnce` |
+| `persistence.downloads.accessMode`   | Persistence access mode | `ReadWriteOnce` |
+| `persistence.extraMounts`            | Array of additional claims to mount | `[]` |
 | `resources`                | CPU/Memory resource requests/limits | `{}` |
 | `nodeSelector`             | Node labels for pod assignment | `{}` |
 | `tolerations`              | Toleration labels for pod assignment | `[]` |
