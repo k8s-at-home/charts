@@ -4,7 +4,7 @@
 
 image:
   repository: linuxserver/tautulli
-  tag: v2.1.39-ls32
+  tag: v2.1.42-ls34
   pullPolicy: IfNotPresent
 
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
@@ -79,6 +79,10 @@ persistence:
     # existingClaim: your-claim
     accessMode: ReadWriteOnce
     size: 1Gi
+    ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
+    ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
+    ##
+    subPath: ""
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

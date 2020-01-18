@@ -62,6 +62,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.config.enabled`      | Use persistent volume to store configuration data | `true` |
 | `persistence.config.size`         | Size of persistent volume claim | `1Gi` |
 | `persistence.config.existingClaim`| Use an existing PVC to persist data | `nil` |
+| `persistence.config.subPath`  | Mount a sub directory of the persistent volume if set | `""` |
 | `persistence.config.storageClass` | Type of persistent volume claim | `-` |
 | `persistence.config.accessMode`  | Persistence access mode | `ReadWriteOnce` |
 | `resources`                | CPU/Memory resource requests/limits | `{}` |

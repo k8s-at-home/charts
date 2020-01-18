@@ -4,7 +4,7 @@
 
 image:
   repository: linuxserver/ombi
-  tag: 3.0.4914-ls72
+  tag: 3.0.4958-ls73
   pullPolicy: IfNotPresent
 
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
@@ -79,6 +79,11 @@ persistence:
     # existingClaim: your-claim
     accessMode: ReadWriteOnce
     size: 1Gi
+
+    ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
+    ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
+    ##
+    subPath: ""
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
