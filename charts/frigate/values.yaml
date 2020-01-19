@@ -150,6 +150,18 @@ config: |
         - size: 400
           x_offset: 750
           y_offset: 250
+
+# Probes configuration
+probes:
+  liveness:
+    initialDelaySeconds: 30
+    failureThreshold: 5
+    timeoutSeconds: 10
+  readiness:
+    initialDelaySeconds: 30
+    failureThreshold: 5
+    timeoutSeconds: 10
+
 service:
   type: ClusterIP
   port: 5000
