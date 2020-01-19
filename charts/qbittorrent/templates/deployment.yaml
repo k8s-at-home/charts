@@ -54,21 +54,26 @@ spec:
             - name: TZ
               value: "{{ .Values.timezone }}"
             - name: PUID
-              value: "{{ .Values.uid }}"
+              value: "{{ .Values.puid }}"
             - name: PGID
-              value: "{{ .Values.gid }}"
+              value: "{{ .Values.pgid }}"
             - name: UMASK_SET
               value: "{{ .Values.umask }}"
-            # - name: WEBUI_PORT
-            #   value: "{{ .Values.guiService.port }}"
           volumeMounts:
             - mountPath: /config
               name: config
-            - mountPath: /downloads
-              name: data
-            {{- if .Values.persistence.data.subPath }}
-              subPath: {{ .Values.persistence.data.subPath }}
+            {{- if .Values.persistence.config.subPath }}
+              subPath: {{ .Values.persistence.config.subPath }}
             {{ end }}
+            - mountPath: /downloads
+              name: downloads
+            {{- if .Values.persistence.downloads.subPath }}
+              subPath: {{ .Values.persistence.downloads.subPath }}
+            {{ end }}
+            {{-  range .Values.persistence.extraMounts }}
+            - mountPath: /{{ .name }}
+              name: {{ .name }}
+            {{- end }}            
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
@@ -79,13 +84,18 @@ spec:
       {{- else }}
         emptyDir: {}
       {{ end }}
-      - name: data
-      {{- if .Values.persistence.data.enabled }}
+      - name: downloads
+      {{- if .Values.persistence.downloads.enabled }}
         persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.data.existingClaim }}{{ .Values.persistence.data.existingClaim }}{{- else }}{{ template "qbittorrent.fullname" . }}-data{{- end }}
+          claimName: {{ if .Values.persistence.downloads.existingClaim }}{{ .Values.persistence.downloads.existingClaim }}{{- else }}{{ template "qbittorrent.fullname" . }}-downloads{{- end }}
       {{- else }}
         emptyDir: {}
       {{ end }}
+     {{- range .Values.persistence.extraMounts }}
+      - name: {{ .name }}
+        persistentVolumeClaim:
+          claimName: {{ .claimName }}
+     {{- end }}      
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

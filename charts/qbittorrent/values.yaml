@@ -20,13 +20,13 @@ nameOverride: ""
 fullnameOverride: ""
 
 # timezone: UTC
-# umask: "0022"
-uid: 1001
-gid: 1001
+puid: 1001
+pgid: 1001
+umask: 022
 
 image:
   repository: linuxserver/qbittorrent
-  tag: 4.1.8.99201910202234-6729-cb31684ubuntu18.04.1-ls47
+  tag: 14.2.0.99201912180418-6819-118af03ubuntu18.04.1-ls57
   pullPolicy: IfNotPresent
 # resources:
 #   requests:
@@ -94,7 +94,7 @@ ingress:
 persistence:
   config:
     enabled: true
-    ## configuration data Persistent Volume Storage Class
+    ## qbittorrent configuration data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is
@@ -108,9 +108,13 @@ persistence:
     # existingClaim: your-claim
     accessMode: ReadWriteOnce
     size: 1Gi
-  data:
+    ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
+    ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
+    ##
+    subPath: ""
+  downloads:
     enabled: true
-    ## torrents data volume configuration
+    ## qbittorrent torrents downloads volume configuration
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is
@@ -125,6 +129,17 @@ persistence:
     # subPath: some-subpath
     accessMode: ReadWriteOnce
     size: 10Gi
+    ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
+    ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
+    ##
+    subPath: ""
+
+  extraMounts: []
+  ## Include additional claims that can be mounted inside the
+  ## pod. This is useful if you wish to use different paths with categories
+  ## Claim will me mounted as /{name}
+  # - name: video
+  #   claimName: video-claim
 
 nodeSelector: {}
 
