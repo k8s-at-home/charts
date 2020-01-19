@@ -76,7 +76,7 @@ spec:
         {{- end }}
         - name: usb
           hostPath:
-            path: /dev/bus/usb
+            path: {{ .Values.device }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
