@@ -1,0 +1,64 @@
+# zwave2mqtt: Fully configurable Zwave to MQTT Gateway and Control Panel
+
+This is a helm chart for [zwave2mqtt](https://github.com/OpenZWave/Zwave2Mqtt)
+
+## TL;DR;
+
+```shell
+$ helm repo add billimek https://billimek.com/billimek-charts/
+$ helm install billimek/zwave2mqtt
+```
+
+## Installing the Chart
+
+To install the chart with the release name `my-release`:
+
+```console
+helm install --name my-release billimek/zwave2mqtt
+```
+
+**IMPORTANT NOTE:** a zwave controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
+
+A way to achieve this can be with nodeAffinity rules, for example:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: app
+          operator: In
+          values:
+          - zwave-controller
+```
+
+... where a node with an attached zwave controller USB device is labeled with `app: zwave-controller`
+
+## Uninstalling the Chart
+
+To uninstall/delete the `my-release` deployment:
+
+```console
+helm delete my-release --purge
+```
+
+The command removes all the Kubernetes components associated with the chart and deletes the release.
+
+## Configuration
+
+Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/zwave2mqtt/values.yaml) file. It has several commented out suggested values.
+
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+
+```console
+helm install --name my-release \
+  --set rtspPassword="nosecrets" \
+    billimek/zwave2mqtt
+```
+
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+
+```console
+helm install --name my-release -f values.yaml stable/zwave2mqtt
+```
