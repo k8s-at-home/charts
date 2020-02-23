@@ -6,6 +6,7 @@ metadata:
 {{ include "ser2sock.labels" . | indent 4 }}
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
   strategy:
     type: {{ .Values.strategyType }}
   selector:

@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "teslamate.name" . }}

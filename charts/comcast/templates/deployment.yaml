@@ -13,6 +13,7 @@ spec:
       app: {{ template "comcast.name" . }}
       release: {{ .Release.Name }}
   replicas: {{ default 1 .Values.replicas }}
+  revisionHistoryLimit: 3
   template:
     metadata:
       labels:
