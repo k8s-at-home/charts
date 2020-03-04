@@ -17,7 +17,9 @@ To install the chart with the release name `my-release`:
 helm install --name my-release billimek/frigate
 ```
 
-**IMPORTANT NOTE:** the [Google Coral USB Accelerator](https://coral.withgoogle.com/products/accelerator/) must be accessible on the node where this pod runs, in order for this chart to function properly.
+~~**IMPORTANT NOTE:** the [Google Coral USB Accelerator](https://coral.withgoogle.com/products/accelerator/) must be accessible on the node where this pod runs, in order for this chart to function properly.~~
+
+The Coral USB device is now optional
 
 A way to achieve this can be with nodeAffinity rules, for example:
 
@@ -52,11 +54,14 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | Parameter                  | Description                         | Default                                                 |
 |----------------------------|-------------------------------------|---------------------------------------------------------|
 | `image.repository`         | Image repository | `blakeblackshear/frigate` |
-| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/blakeblackshear/frigate/tags/).| `0.2.0`|
+| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/blakeblackshear/frigate/tags/).| `0.5.0`|
 | `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
 | `strategyType`             | Specifies the strategy used to replace old Pods by new ones | `Recreate` |
 | `timezone`                 | Timezone the frigate instance should run as, e.g. 'America/New_York' | `UTC` |
 | `rtspPassword`             | Password to use for RTSP cameras | `password` |
+| `coral.enabled`            | Use the Coral USB device | `false` |
+| `coral.hostPath`           | Host Path to reference USB device location (on the host) | `/dev/bus/usb` |
+| `shmSize`                  | Shared memory size for processing | `1Gi` |
 | `config`                   | frigate configuration - see [config.yaml](https://github.com/blakeblackshear/frigate/blob/master/config/config.yml) for example  | `{}` |
 | `Service.type`          | Kubernetes service type for the frigate GUI | `ClusterIP` |
 | `Service.port`          | Kubernetes port where the frigate GUI is exposed| `5000` |

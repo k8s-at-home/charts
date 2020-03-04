@@ -63,19 +63,29 @@ spec:
             - name: FRIGATE_RTSP_PASSWORD
               value: "{{ .Values.rtspPassword }}"
           volumeMounts:
+            {{- if .Values.coral.enabled }}
             - mountPath: /dev/bus/usb
               name: usb
+            {{- end }}
             - mountPath: /config
               name: config
+            - name: dshm
+              mountPath: /dev/shm
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: config
           configMap:
             name: {{ template "frigate.fullname" . }}
+        {{- if .Values.coral.enabled }}
         - name: usb
           hostPath:
-            path: /dev/bus/usb
+            path: {{ .Values.coral.hostPath }}
+        {{- end }}
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: {{ .Values.shmSize }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -9,10 +9,16 @@ strategyType: Recreate
 
 image:
   repository: blakeblackshear/frigate
-  tag: 0.4.0-beta
+  tag: 0.5.0
   pullPolicy: IfNotPresent
 
 rtspPassword: password
+
+coral:
+  enabled: false
+  hostPath: /dev/bus/usb
+
+shmSize: 1Gi
 
 imagePullSecrets: []
 nameOverride: ""
@@ -23,11 +29,15 @@ config: |
   web_port: 5000
 
   mqtt:
-    host: mqtt.server.com
+    host: test.mosquitto.org
     topic_prefix: frigate
-  #  client_id: frigate # Optional -- set to override default client id of 'frigate' if running multiple instances
-  #  user: username # Optional -- Uncomment for use
-  #  password: password # Optional -- Uncomment for use
+    # client_id: frigate # Optional -- set to override default client id of 'frigate' if running multiple instances
+    # user: username # Optional
+    #################
+    ## Environment variables that begin with 'FRIGATE_' may be referenced in {}.
+    ##   password: '{FRIGATE_MQTT_PASSWORD}'
+    #################
+    # password: password # Optional
 
   #################
   # Default ffmpeg args. Optional and can be overwritten per camera.
@@ -61,8 +71,6 @@ config: |
   #     - -use_wallclock_as_timestamps
   #     - '1'
   #   output_args:
-  #     - -vf
-  #     - mpdecimate
   #     - -f
   #     - rawvideo
   #     - -pix_fmt
@@ -105,12 +113,21 @@ config: |
         # output_args: []
 
       ################
-      ## Optional mask. Must be the same dimensions as your video feed.
+      ## Optionally specify the resolution of the video feed. Frigate will try to auto detect if not specified
+      ################
+      # height: 1280
+      # width: 720
+
+      ################
+      ## Optional mask. Must be the same aspect ratio as your video feed.
+      ##
       ## The mask works by looking at the bottom center of the bounding box for the detected
       ## person in the image. If that pixel in the mask is a black pixel, it ignores it as a
       ## false positive. In my mask, the grass and driveway visible from my backdoor camera
       ## are white. The garage doors, sky, and trees (anywhere it would be impossible for a
       ## person to stand) are black.
+      ##
+      ## Masked areas are also ignored for motion detection.
       ################
       # mask: back-mask.bmp
 
@@ -122,7 +139,20 @@ config: |
       take_frame: 1
 
       ################
-      # Overrides for global object config
+      # The expected framerate for the camera. Frigate will try and ensure it maintains this framerate
+      # by dropping frames as necessary. Setting this lower than the actual framerate will allow frigate
+      # to process every frame at the expense of realtime processing.
+      ################
+      fps: 5
+
+      ################
+      # Configuration for the snapshots in the debug view and mqtt
+      ################
+      snapshots:
+        show_timestamp: True
+
+      ################
+      # Camera level object config. This config is merged with the global config above.
       ################
       objects:
         track:
@@ -133,23 +163,6 @@ config: |
             max_area: 100000
             threshold: 0.5
 
-      ################
-      # size: size of the region in pixels
-      # x_offset/y_offset: position of the upper left corner of your region (top left of image is 0,0)
-      # Tips: All regions are resized to 300x300 before detection because the model is trained on that size.
-      #       Resizing regions takes CPU power. Ideally, all regions should be as close to 300x300 as possible.
-      #       Defining a region that goes outside the bounds of the image will result in errors.
-      ################
-      regions:
-        - size: 350
-          x_offset: 0
-          y_offset: 300
-        - size: 400
-          x_offset: 350
-          y_offset: 250
-        - size: 400
-          x_offset: 750
-          y_offset: 250
 
 # Probes configuration
 probes:
