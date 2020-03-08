@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "blocky.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "blocky.name" . }}
+    helm.sh/chart: {{ include "blocky.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "blocky.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "blocky.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if .Values.timeZone }}
+            - name: TZ
+              value: {{ .Values.timeZone | quote }}
+            {{- end }}
+          volumeMounts:
+            - name: config
+              mountPath: /app/config.yml
+              subPath: config.yml
+            - name: logs
+              mountPath: /logs
+          ports:
+            - name: prometheus
+              containerPort: 4000
+              protocol: TCP
+            - containerPort: 53
+              name: dns
+              protocol: TCP
+            - containerPort: 53
+              name: dns-udp
+              protocol: UDP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          #   failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+          #   periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          #   failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+          #   periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+          # startupProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          #   initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
+          #   failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+          #   periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "blocky.fullname" . }}
+        - name: logs
+          emptyDir:
+            medium: Memory
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

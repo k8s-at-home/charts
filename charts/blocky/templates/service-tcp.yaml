@@ -1,0 +1,26 @@
+{{- if .Values.serviceTCP.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "blocky.fullname" . }}-tcp
+  labels:
+    app.kubernetes.io/name: {{ include "blocky.name" . }}
+    helm.sh/chart: {{ include "blocky.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.serviceTCP.type }}
+  {{- if .Values.serviceTCP.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.serviceTCP.loadBalancerIP }}
+  {{- end }}
+  externalTrafficPolicy: {{ .Values.serviceTCP.externalTrafficPolicy }}
+  ports:
+    - port: 53
+      targetPort: dns
+      protocol: TCP
+      name: dns
+  selector:
+    app.kubernetes.io/name: {{ include "blocky.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
