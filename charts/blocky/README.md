@@ -4,11 +4,11 @@ This is an opinionated helm chart for [blocky](https://github.com/0xERR0R/blocky
 
 The default values and container images used in this chart will allow for running in a multi-arch cluster (amd64, arm, arm64)
 
-## TL;DR;
+## TL;DR
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/blocky
+helm repo add billimek https://billimek.com/billimek-charts/
+helm install billimek/blocky
 ```
 
 ## Installing the Chart
