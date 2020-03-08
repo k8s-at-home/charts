@@ -12,7 +12,7 @@ spec:
   type: {{ .Values.servicePrometheus.type }}
   ports:
     - port: {{ .Values.servicePrometheus.port }}
-      targetPort: http
+      targetPort: prometheus
       protocol: TCP
       name: prometheus
   selector:
