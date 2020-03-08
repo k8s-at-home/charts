@@ -9,9 +9,9 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.servicePrometheus.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.servicePrometheus.port }}
       targetPort: http
       protocol: TCP
       name: prometheus
