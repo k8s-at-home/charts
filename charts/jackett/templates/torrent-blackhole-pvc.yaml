@@ -1,0 +1,25 @@
+
+{{- if and .Values.persistence.torrentblackhole.enabled (not .Values.persistence.torrentblackhole.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "jackett.fullname" . }}-torrentblackhole
+  labels:
+    app.kubernetes.io/name: {{ include "jackett.name" . }}
+    helm.sh/chart: {{ include "jackett.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.torrentblackhole.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.torrentblackhole.size | quote }}
+{{- if .Values.persistence.torrentblackhole.storageClass }}
+{{- if (eq "-" .Values.persistence.torrentblackhole.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.torrentblackhole.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end -}}

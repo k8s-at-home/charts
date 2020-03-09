@@ -65,6 +65,13 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.config.subPath`  | Mount a sub directory of the persistent volume if set | `""` |
 | `persistence.config.storageClass` | Type of persistent volume claim | `-` |
 | `persistence.config.accessMode`  | Persistence access mode | `ReadWriteOnce` |
+| `persistence.torrentblackhole.enabled`      | Use persistent volume to store torrent files | `true` |
+| `persistence.torrentblackhole.size`         | Size of persistent volume claim | `1Gi` |
+| `persistence.torrentblackhole.existingClaim`| Use an existing PVC to persist data | `nil` |
+| `persistence.torrentblackhole.subPath`  | Mount a sub directory of the persistent volume if set | `""` |
+| `persistence.torrentblackhole.storageClass` | Type of persistent volume claim | `-` |
+| `persistence.torrentblackhole.accessMode`  | Persistence access mode | `ReadWriteOnce` |
+| `persistence.extraExistingClaimMounts`  | Optionally add multiple existing claims | `[]` |
 | `resources`                | CPU/Memory resource requests/limits | `{}` |
 | `nodeSelector`             | Node labels for pod assignment | `{}` |
 | `tolerations`              | Toleration labels for pod assignment | `[]` |
