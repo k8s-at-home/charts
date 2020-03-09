@@ -1,21 +1,18 @@
-{{- if .Values.servicePrometheus.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "blocky.fullname" . }}-prometheus
+  name: {{ include "blocky.fullname" . }}-headless
   labels:
     app.kubernetes.io/name: {{ include "blocky.name" . }}
     helm.sh/chart: {{ include "blocky.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  type: {{ .Values.servicePrometheus.type }}
+  clusterIP: None
   ports:
-    - port: {{ .Values.servicePrometheus.port }}
-      targetPort: prometheus
-      protocol: TCP
-      name: prometheus
+  - name: monitoring
+    port: 4000
+    targetPort: monitoring
   selector:
     app.kubernetes.io/name: {{ include "blocky.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}

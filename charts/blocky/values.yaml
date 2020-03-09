@@ -152,14 +152,14 @@ serviceUDP:
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: blocky-svc
 
-servicePrometheus:
+serviceMonitor:
   enabled: false
-  port: 4000
-  type: ClusterIP
-  externalTrafficPolicy: Local
-  loadBalancerIP: ""
-    # a fixed LoadBalancer IP
-  annotations: {}
+  additionalLabels: {}
+
+## Pod Annotations
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "monitoring"
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

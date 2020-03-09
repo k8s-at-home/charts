@@ -19,6 +19,10 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "blocky.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -36,34 +40,34 @@ spec:
             - name: logs
               mountPath: /logs
           ports:
-            - name: prometheus
+          ports:
+            - name: monitoring
               containerPort: 4000
+            - name: dns
+              containerPort: 53
               protocol: TCP
-            - containerPort: 53
-              name: dns
-              protocol: TCP
-            - containerPort: 53
-              name: dns-udp
+            - name: dns-udp
+              containerPort: 53
               protocol: UDP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          #   failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
-          #   periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          #   failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-          #   periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
-          # startupProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          #   initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
-          #   failureThreshold: {{ .Values.probes.startup.failureThreshold }}
-          #   periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: monitoring
+            failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: monitoring
+            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+          startupProbe:
+            httpGet:
+              path: /metrics
+              port: monitoring
+            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
+            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
