@@ -9,5 +9,8 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
+{{- if .Values.config }}
+{{ $root := . }}
   config.yml: |
-{{ .Values.config | indent 4 }}
+{{ tpl (toYaml .Values.config | indent 4) $root }}
+{{- end }}

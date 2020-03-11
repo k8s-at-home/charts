@@ -37,8 +37,6 @@ spec:
             - name: config
               mountPath: /app/config.yml
               subPath: config.yml
-            - name: logs
-              mountPath: /logs
           ports:
           ports:
             - name: monitoring
@@ -74,9 +72,6 @@ spec:
         - name: config
           configMap:
             name: {{ template "blocky.fullname" . }}
-        - name: logs
-          emptyDir:
-            medium: Memory
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
