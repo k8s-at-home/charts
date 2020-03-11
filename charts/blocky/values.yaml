@@ -26,15 +26,15 @@ config:
 
   # optional: custom IP address for domain name (with all sub-domains)
   # example: query "printer.lan" or "my.printer.lan" will return 192.168.178.3
-  customDNS:
-    mapping:
-      printer.lan: 192.168.178.3
+  # customDNS:
+  #   mapping:
+  #     printer.lan: 192.168.178.3
 
   # optional: definition, which DNS resolver should be used for queries to the domain (with all sub-domains).
   # Example: Query client.fritz.box will ask DNS server 192.168.178.1. This is necessary for local network, to resolve clients by host name
-  conditional:
-    mapping:
-      fritz.box: udp:192.168.178.1
+  # conditional:
+  #   mapping:
+  #     fritz.box: udp:192.168.178.1
 
   # optional: use black and white lists to block queries (for example ads, trackers, adult pages etc.)
   blocking:
@@ -50,9 +50,9 @@ config:
       special:
         - https://hosts-file.net/ad_servers.txt
     # definition of whitelist groups. Attention: if the same group has black and whitelists, whitelists will be used to disable particular blacklist entries. If a group has only whitelist entries -> this means only domains from this list are allowed, all other domains will be blocked
-    whiteLists:
-      ads:
-        - whitelist.txt
+    # whiteLists:
+    #   ads:
+    #     - whitelist.txt
     # definition: which groups should be applied for which client
     clientGroupsBlock:
       # default will be used, if no special definition for a client name exists
@@ -60,12 +60,12 @@ config:
         - ads
         - special
       # use client name or ip address
-      laptop.fritz.box:
-        - ads
+      # laptop.fritz.box:
+      #   - ads
     # which response will be sent, if query is blocked:
     # zeroIp: 0.0.0.0 will be returned (default)
     # nxDomain: return NXDOMAIN as return code
-    blockType: zeroIp
+    # blockType: zeroIp
     # optional: automatically list refresh period in minutes. Default: 4h.
     # Negative value -> deactivate automatically refresh.
     # 0 value -> use default
@@ -73,37 +73,33 @@ config:
 
   # optional: configuration for caching of DNS responses
   # caching:
-    # amount in minutes, how long a response must be cached (min value).
-    # If <=0, use response's TTL, if >0 use this value, if TTL is smaller
-    # Default: 0
-    # minTime: 40
-    # amount in minutes, how long a response must be cached (max value).
-    # If <0, do not cache responses
-    # If 0, use TTL
-    # If > 0, use this value, if TTL is greater
-    # Default: 0
-    # maxTime: -1
+  #   # amount in minutes, how long a response must be cached (min value).
+  #   # If <=0, use response's TTL, if >0 use this value, if TTL is smaller
+  #   # Default: 0
+  #   minTime: 40
+  #   # amount in minutes, how long a response must be cached (max value).
+  #   # If <0, do not cache responses
+  #   # If 0, use TTL
+  #   # If > 0, use this value, if TTL is greater
+  #   # Default: 0
+  #   maxTime: -1
 
   # optional: configuration of client name resolution
-  clientLookup:
-    # this DNS resolver will be used to perform reverse DNS lookup (typically local router)
-    upstream: udp:192.168.178.1
-    # optional: some routers return multiple names for client (host name and user defined name). Define which single name should be used.
-    # Example: take second name if present, if not take first name
-    # singleNameOrder:
-    #   - 2
-    #   - 1
+  # clientLookup:
+  #   # this DNS resolver will be used to perform reverse DNS lookup (typically local router)
+  #   upstream: udp:192.168.178.1
+  #   # optional: some routers return multiple names for client (host name and user defined name). Define which single name should be used.
+  #   # Example: take second name if present, if not take first name
+  #   singleNameOrder:
+  #     - 2
+  #     - 1
   # optional: configuration for prometheus metrics endpoint
   prometheus:
     # enabled if true
     enable: true
-    # port, optional (default 4000)
-    # port: 4000
     # url path, optional (default '/metrics')
     path: /metrics
 
-  # optional: DNS listener port, default 53 (UDP and TCP)
-  port: 53
   # optional: HTTP listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, ...
   httpPort: 4000
   # optional: Log level (one from debug, info, warn, error). Default: info
