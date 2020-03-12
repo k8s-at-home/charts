@@ -77,6 +77,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `tolerations`              | Toleration labels for pod assignment | `[]` |
 | `affinity`                 | Affinity settings for pod assignment | `{}` |
 | `podAnnotations`           | Key-value pairs to add as pod annotations  | `{}` |
+| `deploymentAnnotations`    | Key-value pairs to add as deployment annotations  | `{}` |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
