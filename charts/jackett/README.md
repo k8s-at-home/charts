@@ -65,12 +65,14 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.config.subPath`  | Mount a sub directory of the persistent volume if set | `""` |
 | `persistence.config.storageClass` | Type of persistent volume claim | `-` |
 | `persistence.config.accessMode`  | Persistence access mode | `ReadWriteOnce` |
+| `persistence.config.skipuninstall`  | Do not delete the pvc upon helm uninstall | `false` |
 | `persistence.torrentblackhole.enabled`      | Use persistent volume to store torrent files | `false` |
 | `persistence.torrentblackhole.size`         | Size of persistent volume claim | `1Gi` |
 | `persistence.torrentblackhole.existingClaim`| Use an existing PVC to persist data | `nil` |
 | `persistence.torrentblackhole.subPath`  | Mount a sub directory of the persistent volume if set | `""` |
 | `persistence.torrentblackhole.storageClass` | Type of persistent volume claim | `-` |
 | `persistence.torrentblackhole.accessMode`  | Persistence access mode | `ReadWriteOnce` |
+| `persistence.torrentblackhole.skipuninstall`  | Do not delete the pvc upon helm uninstall | `false` |
 | `persistence.extraExistingClaimMounts`  | Optionally add multiple existing claims | `[]` |
 | `resources`                | CPU/Memory resource requests/limits | `{}` |
 | `nodeSelector`             | Node labels for pod assignment | `{}` |
@@ -92,5 +94,12 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 helm install --name my-release -f values.yaml billimek/jackett
 ```
+
+---
+**NOTE**
+
+If you get `Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...` it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+
+---
 
 Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/jackett/values.yaml) file. It has several commented out suggested values.

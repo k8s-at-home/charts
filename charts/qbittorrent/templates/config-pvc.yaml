@@ -3,6 +3,10 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ template "qbittorrent.fullname" . }}-config
+  {{- if .Values.persistence.config.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
   labels:
     app.kubernetes.io/name: {{ include "qbittorrent.name" . }}
     helm.sh/chart: {{ include "qbittorrent.chart" . }}

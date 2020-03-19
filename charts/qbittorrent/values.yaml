@@ -112,6 +112,8 @@ persistence:
     ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
     ##
     subPath: ""
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
   downloads:
     enabled: true
     ## qbittorrent torrents downloads volume configuration
@@ -133,6 +135,8 @@ persistence:
     ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
     ##
     subPath: ""
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
 
   extraMounts: []
   ## Include additional claims that can be mounted inside the

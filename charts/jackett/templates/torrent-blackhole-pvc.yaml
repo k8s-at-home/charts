@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ template "jackett.fullname" . }}-torrentblackhole
+  {{- if .Values.persistence.torrentblackhole.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
   labels:
     app.kubernetes.io/name: {{ include "jackett.name" . }}
     helm.sh/chart: {{ include "jackett.chart" . }}

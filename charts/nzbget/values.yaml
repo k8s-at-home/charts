@@ -79,6 +79,8 @@ persistence:
     # existingClaim: your-claim
     accessMode: ReadWriteOnce
     size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
   downloads:
     enabled: true
     ## nzbget torrents downloads volume configuration
@@ -96,6 +98,8 @@ persistence:
     # subPath: some-subpath
     accessMode: ReadWriteOnce
     size: 10Gi
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
   extraMounts: []
   ## Include additional claims that can be mounted inside the
   ## pod. This is useful if you wish to use different paths with categories

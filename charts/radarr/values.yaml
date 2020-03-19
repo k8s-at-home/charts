@@ -79,6 +79,8 @@ persistence:
     # existingClaim: your-claim
     accessMode: ReadWriteOnce
     size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
   downloads:
     enabled: true
     ## radarr downloads volume configuration
@@ -96,6 +98,8 @@ persistence:
     # subPath: some-subpath
     accessMode: ReadWriteOnce
     size: 10Gi
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
   movies:
     enabled: true
     ## Directory where movies are persisted
@@ -113,6 +117,8 @@ persistence:
     # subPath: some-subpath
     accessMode: ReadWriteOnce
     size: 10Gi
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
   extraExistingClaimMounts: []
     # - name: external-mount
     #   mountPath: /srv/external-mount

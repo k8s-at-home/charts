@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ template "radarr.fullname" . }}-downloads
+  {{- if .Values.persistence.downloads.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
   labels:
     app.kubernetes.io/name: {{ include "radarr.name" . }}
     helm.sh/chart: {{ include "radarr.chart" . }}

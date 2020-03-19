@@ -47,6 +47,8 @@ persistence:
   # existingClaim: your-claim
   accessMode: ReadWriteOnce
   size: 1Gi
+  ## Do not delete the pvc upon helm uninstall
+  skipuninstall: false
 
 service:
   type: ClusterIP

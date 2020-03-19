@@ -84,6 +84,8 @@ persistence:
     ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
     ##
     subPath: ""
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

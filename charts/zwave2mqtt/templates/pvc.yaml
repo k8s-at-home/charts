@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ template "zwave2mqtt.fullname" . }}
+  {{- if .Values.persistence.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
   labels:
     app.kubernetes.io/name: {{ include "zwave2mqtt.name" . }}
     helm.sh/chart: {{ include "zwave2mqtt.chart" . }}

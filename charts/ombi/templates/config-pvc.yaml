@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ template "ombi.fullname" . }}-config
+  {{- if .Values.persistence.config.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
   labels:
     app.kubernetes.io/name: {{ include "ombi.name" . }}
     helm.sh/chart: {{ include "ombi.chart" . }}
