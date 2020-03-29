@@ -37,6 +37,7 @@ spec:
             - name: config
               mountPath: /app/config.yml
               subPath: config.yml
+              readOnly: true
           ports:
           ports:
             - name: monitoring
@@ -70,8 +71,14 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: config
-          configMap:
-            name: {{ template "blocky.fullname" . }}
+          projected:
+            defaultMode: 0444
+            sources:
+              - configMap:
+                  name: {{ template "blocky.fullname" . }}
+                  items:
+                    - key: config.yml
+                      path: config.yml
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
