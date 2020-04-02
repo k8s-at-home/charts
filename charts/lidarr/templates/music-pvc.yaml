@@ -1,0 +1,29 @@
+
+{{- if and .Values.persistence.music.enabled (not .Values.persistence.music.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "lidarr.fullname" . }}-music
+  {{- if .Values.persistence.music.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+  labels:
+    app.kubernetes.io/name: {{ include "lidarr.name" . }}
+    helm.sh/chart: {{ include "lidarr.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.music.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.music.size | quote }}
+{{- if .Values.persistence.music.storageClass }}
+{{- if (eq "-" .Values.persistence.music.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.music.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end -}}
