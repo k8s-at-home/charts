@@ -1,0 +1,29 @@
+
+{{- if and .Values.persistence.tvshows.enabled (not .Values.persistence.tvshows.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "jellyfin.fullname" . }}-tvshows
+  {{- if .Values.persistence.tvshows.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+  labels:
+    app.kubernetes.io/name: {{ include "jellyfin.name" . }}
+    helm.sh/chart: {{ include "jellyfin.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.tvshows.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.tvshows.size | quote }}
+{{- if .Values.persistence.tvshows.storageClass }}
+{{- if (eq "-" .Values.persistence.tvshows.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.tvshows.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end -}}
