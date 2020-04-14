@@ -83,6 +83,44 @@ spec:
             {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
+{{- if .Values.exportarr.enabled }}
+        - name: sonarr-exporter
+          image: "{{ .Values.exportarr.image.repository }}:{{ .Values.exportarr.image.tag }}"
+          imagePullPolicy: {{ .Values.exportarr.image.pullPolicy }}
+          command: ["exportarr"]
+          args: ["sonarr"]
+          env:
+          - name: PORT
+            value: "{{ .Values.exportarr.port }}"
+          - name: URL
+            value: "{{ .Values.exportarr.url }}"
+          - name: APIKEY
+            value: "{{ .Values.exportarr.apikey }}"
+          - name: ENABLE_EPISODE_QUALITY_METRICS
+            value: "{{ .Values.exportarr.enableEpisodeQualityMetrics }}"
+          ports:
+          - name: monitoring
+            containerPort: {{ .Values.exportarr.port }}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: monitoring
+            failureThreshold: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: monitoring
+            failureThreshold: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+{{- end }}
       volumes:
       - name: config
       {{- if .Values.persistence.config.enabled }}
