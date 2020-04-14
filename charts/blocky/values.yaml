@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: spx01/blocky
-  tag: v0.5
+  tag: v0.6
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -119,6 +119,15 @@ probes:
     failureThreshold: 30
     periodSeconds: 10
 
+service:
+  type: ClusterIP
+  # externalTrafficPolicy: Local
+  # loadBalancerIP: ""
+    # a fixed LoadBalancer IP
+  annotations: {}
+    # metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/allow-shared-ip: blocky-svc
+
 serviceTCP:
   enabled: false
   type: NodePort
@@ -146,7 +155,7 @@ serviceMonitor:
 ## Pod Annotations
 podAnnotations:
   prometheus.io/scrape: "true"
-  prometheus.io/port: "monitoring"
+  prometheus.io/port: "api"
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

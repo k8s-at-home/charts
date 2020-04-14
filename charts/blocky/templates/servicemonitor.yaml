@@ -17,7 +17,7 @@ spec:
       app.kubernetes.io/name: {{ include "blocky.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   endpoints:
-  - port: monitoring
+  - port: api
     interval: 30s
     path: /metrics
 {{- end }}

@@ -40,7 +40,7 @@ spec:
               readOnly: true
           ports:
           ports:
-            - name: monitoring
+            - name: api
               containerPort: 4000
             - name: dns
               containerPort: 53
@@ -51,19 +51,19 @@ spec:
           livenessProbe:
             httpGet:
               path: /metrics
-              port: monitoring
+              port: api
             failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
             periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
           readinessProbe:
             httpGet:
               path: /metrics
-              port: monitoring
+              port: api
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
             periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
           startupProbe:
             httpGet:
               path: /metrics
-              port: monitoring
+              port: api
             initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.startup.failureThreshold }}
             periodSeconds: {{ .Values.probes.startup.periodSeconds }}
