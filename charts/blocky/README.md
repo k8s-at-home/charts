@@ -46,3 +46,29 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 helm install --name blocky -f values.yaml billimek/blocky
 ```
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 2.2.2 -> 3.0.0) indicates that there is an
+incompatible breaking change needing manual actions.
+
+### Upgrading from 2.x.x to 3.x.x
+
+Due to the renaming of the service port, an upgrade-in-place will not work.  The following are possible approaches to solve this:
+
+#### Helm force upgrade
+
+```sh
+helm upgrade --force
+```
+
+#### Delete the existing `blocky` service prior to upgrading
+
+```sh
+kubectl delete svc/blocky
+```
+
+#### Remove the existing blocky chart first
+
+This is the 'easiest' approach, but will incur downtime which can be problematic if you rely on blocky for DNS
+
