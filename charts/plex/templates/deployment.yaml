@@ -1,0 +1,184 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "plex.fullname" . }}
+  labels:
+    {{- include "plex.labels" . | nindent 4 }}
+  {{- if .Values.deploymentAnnotations }}
+  annotations:
+    {{- range $key, $value := .Values.deploymentAnnotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: {{ .Values.strategyType }}
+  selector:
+    matchLabels:
+      {{- include "plex.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "plex.selectorLabels" . | nindent 8 }}
+      {{- if .Values.podAnnotations }}
+      annotations:
+        {{- range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: pms
+              containerPort: 32400
+            - name: http
+              containerPort: 32400
+            - name: https
+              containerPort: 32443
+          env:
+          - name: TZ
+            value: "{{ .Values.timezone }}"
+          # TODO: move this to a secret?
+          - name: PLEX_CLAIM
+            value: "{{ .Values.claimToken }}"
+          # plex env vars
+          - name: PMS_INTERNAL_ADDRESS
+            value: http://{{ template "plex.fullname" . }}:32400
+          - name: PMS_IMAGE
+            value: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          - name: KUBE_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: TRANSCODE_PVC
+  {{- if .Values.persistence.transcode.claimName }}
+            value: "{{ .Values.persistence.transcode.claimName }}"
+  {{- else }}
+            value: "{{ template "plex.fullname" . }}-transcode"
+  {{- end }}
+          - name: DATA_PVC
+  {{- if .Values.persistence.data.claimName }}
+            value: "{{ .Values.persistence.data.claimName }}"
+  {{- else }}
+            value: "{{ template "plex.fullname" . }}-data"
+  {{- end }}
+          - name: CONFIG_PVC
+  {{- if .Values.persistence.config.claimName }}
+            value: "{{ .Values.persistence.config.claimName }}"
+  {{- else }}
+            value: "{{ template "plex.fullname" . }}-config"
+  {{- end }}
+  {{- if .Values.proxy.enable }}
+    {{- if .Values.proxy.http }}
+          - name: "HTTP_PROXY"
+            value: "{{.Values.proxy.http}}"
+    {{- end }}
+    {{- if .Values.proxy.https }}
+          - name: "HTTPS_PROXY"
+            value: "{{.Values.proxy.https}}"
+    {{- end }}
+    {{- if .Values.proxy.noproxy }}
+          - name: "NO_PROXY"
+            value: "{{.Values.proxy.noproxy}}"
+    {{- end }}
+  {{- end }}
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
+            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
+            failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+            timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+          volumeMounts:
+          - name: data
+            mountPath: /data
+          {{- if .Values.persistence.data.subPath }}
+            subPath: {{ .Values.persistence.data.subPath }}
+          {{ end }}
+          - name: config
+            mountPath: /config
+          {{- if .Values.persistence.config.subPath }}
+            subPath: {{ .Values.persistence.config.subPath }}
+          {{ end }}
+          - name: transcode
+            mountPath: /transcode
+          {{- if .Values.persistence.transcode.subPath }}
+            subPath: {{ .Values.persistence.transcode.subPath }}
+          {{ end }}
+          {{-  range .Values.persistence.extraData }}
+          - mountPath: "/data-{{ .name }}"
+            name: "extradata-{{ .name }}"
+          {{- end }}
+          - name: shared
+            mountPath: /shared
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+{{- if .Values.persistence.data.claimName }}
+          claimName: "{{ .Values.persistence.data.claimName }}"
+{{- else }}
+          claimName: "{{ template "plex.fullname" . }}-data"
+{{- end }}
+      - name: config
+        persistentVolumeClaim:
+{{- if .Values.persistence.config.claimName }}
+          claimName: "{{ .Values.persistence.config.claimName }}"
+{{- else }}
+          claimName: "{{ template "plex.fullname" . }}-config"
+{{- end }}
+      - name: transcode
+{{- if .Values.persistence.transcode.enabled }}
+        persistentVolumeClaim:
+{{- if .Values.persistence.transcode.claimName }}
+          claimName: "{{ .Values.persistence.transcode.claimName }}"
+{{- else }}
+          claimName: "{{ template "plex.fullname" . }}-transcode"
+{{- end }}
+{{- else }}
+        emptyDir: {}
+{{- end }}
+{{-  range .Values.persistence.extraData }}
+      - name: "extradata-{{ .name }}"
+        persistentVolumeClaim:
+{{- if .claimName }}
+          claimName: "{{ .claimName }}"
+{{- else }}
+          claimName: "extradata-{{ .name }}"
+{{- end }}
+{{- end }}
+      - name: shared
+        emptyDir: {}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
