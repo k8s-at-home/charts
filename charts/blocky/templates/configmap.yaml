@@ -14,3 +14,7 @@ data:
   config.yml: |
 {{ tpl (toYaml .Values.config | indent 4) $root }}
 {{- end }}
+{{- range $name, $value := .Values.extraLists }}
+  {{ $name }}: |-
+{{ $value | indent 4}}
+{{- end }}

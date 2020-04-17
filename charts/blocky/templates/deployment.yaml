@@ -39,6 +39,12 @@ spec:
               mountPath: /app/config.yml
               subPath: config.yml
               readOnly: true
+            {{- range $name, $value := .Values.extraLists }}
+            - name: config
+              mountPath: /app/{{ $name }}
+              subPath: {{ $name }}
+              readOnly: true
+            {{- end }}
           ports:
             - name: api
               containerPort: 4000
@@ -79,6 +85,10 @@ spec:
                   items:
                     - key: config.yml
                       path: config.yml
+                  {{- range $name, $value := .Values.extraLists }}
+                    - key: {{ $name }}
+                      path: {{ $name }}
+                  {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
