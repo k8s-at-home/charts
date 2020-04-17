@@ -19,8 +19,9 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "blocky.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
         {{ toYaml . | nindent 8 }}
       {{- end }}
     spec:
@@ -38,7 +39,6 @@ spec:
               mountPath: /app/config.yml
               subPath: config.yml
               readOnly: true
-          ports:
           ports:
             - name: api
               containerPort: 4000
