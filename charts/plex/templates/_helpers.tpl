@@ -61,3 +61,21 @@ Create the name of the service account to use
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+abstract: |
+  Joins a list of values into a comma separated string
+values: |
+  test:
+    - foo
+    - bar
+usage: |
+  {{ include "joinListWithComma" .Values.test }}
+return: |
+  foo,bar
+*/}}
+
+{{- define "joinListWithComma" -}}
+{{- $local := dict "first" true -}}
+{{- range $k, $v := . -}}{{- if not $local.first -}},{{- end -}}{{- $v -}}{{- $_ := set $local "first" false -}}{{- end -}}
+{{- end -}}

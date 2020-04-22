@@ -95,6 +95,31 @@ spec:
             value: "{{.Values.proxy.noproxy}}"
     {{- end }}
   {{- end }}
+  {{- if .Values.advertiseIp }}
+          - name: "ADVERTISE_IP"
+            value: "{{.Values.advertiseIp}}"
+{{- end }}
+{{- if .Values.changeConfigDirOwnership }}
+          - name: "CHANGE_CONFIG_DIR_OWNERSHIP"
+            value: "{{.Values.changeConfigDirOwnership}}"
+{{- end }}
+{{- if .Values.allowedNetworks }}
+          - name: "ALLOWED_NETWORKS"
+            value: "{{include "joinListWithComma" .Values.allowedNetworks}}"
+{{- end }}
+{{- if .Values.plexUid }}
+          - name: "PLEX_UID"
+            value: "{{.Values.plexUid}}"
+{{- end }}
+{{- if .Values.plexGid }}
+          - name: "PLEX_GID"
+            value: "{{.Values.plexGid}}"
+{{- end }}
+# Extra ENV Values supplied by user
+{{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value }}
+{{- end }}
           readinessProbe:
             httpGet:
               path: /identity

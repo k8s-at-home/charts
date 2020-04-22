@@ -1,13 +1,49 @@
+# Default values
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
 image:
   repository: plexinc/pms-docker
   tag: 1.19.1.2645-ccb6eb67e
   pullPolicy: IfNotPresent
 
+#####   START  --> Official PLEX container environment variables
 # Override this with the plex claim token from plex.tv/claim
 claimToken: ""
 
 # Set the timezone of the plex server
 timezone: "UTC"
+
+# add your pod network subnet to the `List of IP addresses and networks that are allowed without auth`
+# This will override the manual settings, so only use this if you will not need to change it manually.
+# This list will be automatically converted to a command seperated string when passed to the container.
+# You would specify this when using helm CLI with --set allowedNetworks="{127.0.0.1,10.54.2.0/24}"
+# allowedNetworks:
+#   -   127.0.0.1
+#   -   10.54.2.0/24
+
+# Instruct the Plex Media Server Container to Change the Configuration Directory Ownership
+# Default is true, you would only need to set this if you want to disable it.
+# changeConfigDirOwnership: true
+
+# advertiseIp This variable defines the additional IPs on which the server may be be found.
+# For example: http://10.1.1.23:32400.
+# This adds to the list where the server advertises that it can be found.
+# See https://hub.docker.com/r/plexinc/pms-docker/ for details
+# advertiseIp: "http://10.1.1.23:32400"
+
+# Set The user id of the plex user created inside the container.
+# See https://hub.docker.com/r/plexinc/pms-docker/ for details
+# plexUid: 1000
+
+# Set The group id of the plex group created inside the container
+# See https://hub.docker.com/r/plexinc/pms-docker/ for details
+# plexGid: 1000
+
+#####   END  --> Official PLEX container environment variables
+# You can add as many Additional ENV variables here
+# The following is the same as --set extraEnv.TMPDIR="/transcode"
+# extraEnv:
+#   TMPDIR: /transcode
 
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
 strategyType: Recreate
