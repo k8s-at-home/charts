@@ -156,6 +156,11 @@ spec:
           {{- end }}
           - name: shared
             mountPath: /shared
+          {{- if .Values.plexPreferences.enabled }}
+          - name: {{ .Values.plexPreferences.volume.name }}
+            mountPath: {{ .Values.plexPreferences.volume.mountPath }}
+            subPath: {{ .Values.plexPreferences.volume.subPath }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -186,7 +191,12 @@ spec:
           claimName: "{{ template "plex.fullname" . }}-transcode"
 {{- end }}
 {{- else }}
-        emptyDir: {}
+{{- if .Values.persistence.transcode.emptyDir.medium }}
+        emptyDir: 
+          medium: "{{ .Values.persistence.transcode.emptyDir.medium }}"
+{{- else }}
+        emptyDir: {}          
+{{- end }}
 {{- end }}
 {{-  range .Values.persistence.extraData }}
       - name: "extradata-{{ .name }}"
@@ -199,6 +209,12 @@ spec:
 {{- end }}
       - name: shared
         emptyDir: {}
+      {{- if .Values.plexPreferences.enabled }}
+      - name: {{ .Values.plexPreferences.volume.name }}
+        configMap:
+          name: {{ .Values.plexPreferences.configmap.name }}
+          defaultMode: {{ .Values.plexPreferences.volume.defaultMode }}
+      {{- end }}
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

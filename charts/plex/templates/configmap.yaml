@@ -1,0 +1,20 @@
+{{- if .Values.plexPreferences.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.plexPreferences.configmap.name }}
+  labels:
+    {{- include "plex.labels" . | nindent 4 }}
+{{- if .Values.plexPreferences.configmap.labels }}
+{{ toYaml .Values.plexPreferences.configmap.labels | indent 4 }}
+{{- end }}
+{{- with .Values.plexPreferences.configmap.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+
+data:
+# At some point figure out how to use a value/Variable here to be able to specify
+# a different file or something.
+{{ (tpl (.Files.Glob "configs/41-plex-preferences").AsConfig . ) | indent 2 }}
+{{- end -}}

@@ -1,6 +1,9 @@
 # Default values
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
+# The Image to use for PLEX
+
 image:
   repository: plexinc/pms-docker
   tag: 1.19.1.2645-ccb6eb67e
@@ -40,6 +43,8 @@ timezone: "UTC"
 # plexGid: 1000
 
 #####   END  --> Official PLEX container environment variables
+
+
 # You can add as many Additional ENV variables here
 # The following is the same as --set extraEnv.TMPDIR="/transcode"
 # extraEnv:
@@ -97,8 +102,49 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+
+plexPreferences:
+  # Enable init script that will read all environment variables starting with PLEX_PREFERENCE_
+  # and take the value (of PLEX_PREFERENCE_<whatever>) as the Key:Value option to set in Plex Preference.xml
+  # You can use extraEnv to add the addtional ENV's to the container.
+  # NOTE: Plex preference options are camelCase and CASE SENSITIVE!
+  # You can do horrible things to your PLEX configuration if you are not careful.
+  # --set extraEnv.PLEX_PREFERENCE_1="FriendlyName=plex-kubeernetes-test1" `
+  # --set extraEnv.PLEX_PREFERENCE_2="EnableIPv6=0" `
+  # --set extraEnv.PLEX_PREFERENCE_3="logDebug=0" `
+  # --set extraEnv.PLEX_PREFERENCE_4="DisableTLSv1_0=1" `
+  # --set extraEnv.PLEX_PREFERENCE_5="LanNetworksBandwidth=xxx.xxx.xxx.0/18\,xxx.xxx.xxx.0/24\,xxx.xxx.xxx.0/24" `
+  # --set extraEnv.PLEX_PREFERENCE_6="TranscoderQuality=2" `
+  # --set extraEnv.PLEX_PREFERENCE_7="TreatWanIpAsLocal=0" `
+  # --set extraEnv.PLEX_PREFERENCE_8="TranscoderH264BackgroundPreset=fast"
+  # Why not use a single ENV?
+  #      I thought using multiple environment variables would be less confusing
+  #      It should work easily with CLI and value.yaml usage
+  #      There is only minimal parsing required on the ENV value, as the only deliminator is =
+  #      From what I can see, all the PLEX preferences that are NOT currently supported by the OFFICIAL
+  #      Container are simple enough to work with this.
+  enabled: false
+  configmap:
+    labels: {}
+    annotations: {}
+    # Right now you can't really change this, additionally the configmap data is
+    # not configurable.
+    name: 41-plex-preferences
+  volume:
+    name: 41-plex-preferences
+    defaultMode: 493  # 0755 in octal permission notation
+    # Using mountPath & SubPath allow you to volume mount a configMap AS A FILE
+    # Unfortunately this also means that updates to the configMap are not automtically
+    # propagated to the file contents. But it's better then replacing the entire
+    # /etc/cont-init.d/ directory which is the "normal" behavior when doing volume
+    # mounts.
+    mountPath: /etc/cont-init.d/41-plex-preferences
+    subPath: 41-plex-preferences
+
 persistence:
   transcode:
+    # We want to enable a transcode pvc
+    enabled: false
     # Optionally specify claimName to manually override the PVC to be used for
     # the transcode directory. If claimName is specified, storageClass and size
     # are ignored.
@@ -113,6 +159,13 @@ persistence:
     size: 20Gi
     # Access mode for this volume
     accessMode: ReadWriteOnce
+    # If not using a transcode PVC, specify emptyDir.medium="Memory" to use a tmpfs (in-memory)
+    # Volume for /transcode. Warning! this will greatly increase the amount of memory the plex pod is using
+    # AND it will count toward any ram pod/namespace limits. Additionally all data will be lost if/when the
+    # pod is moved to another node.
+    # emptyDir:
+    #   medium: "Memory"
+
   data:
     # Optionally specify claimName to manually override the PVC to be used for
     # the data directory. If claimName is specified, storageClass and size are
@@ -128,6 +181,7 @@ persistence:
     size: 40Gi
     # Access mode for this volume
     accessMode: ReadWriteOnce
+
   extraData: []
     # Optionally specifify additional Data mounts.  These will be mounted as
     # /data-${name}.  This should be in the same format as the above 'data',
