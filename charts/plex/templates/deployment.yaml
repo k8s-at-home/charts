@@ -35,6 +35,28 @@ spec:
     {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+  {{- if .Values.certificate.pkcsMangler.enabled }}
+      initContainers:
+      # This is ugly, but it does work to create a pks file that will work with PLEX from the tls.crt and tls.key that cert-manager normally creates
+      {{- if .Values.certificate.pkcsMangler.enabled }}
+      - name: pkcsmangler-init-container
+        image: tlsprint/openssl:1.1.1f
+        imagePullPolicy: Always
+        command: ["/bin/sh"]
+        args: ["-c", "openssl pkcs12 -export -passout pass:$(PKCSMANGLER_PFXPASSWORD) -out /shared/cert.pfx -inkey {{ .Values.certificate.pkcsMangler.certificateSecret.volume.mountPath }}/{{ .Values.certificate.pkcsMangler.certificateSecret.keyName }} -in {{ .Values.certificate.pkcsMangler.certificateSecret.volume.mountPath }}/{{ .Values.certificate.pkcsMangler.certificateSecret.crtName }}; chmod 0444 /shared/cert.pfx"]
+        env:
+          - name: "PKCSMANGLER_PFXPASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.certificate.pkcsMangler.pfxPassword.secretName }}
+                key: {{ .Values.certificate.pkcsMangler.pfxPassword.passwordKey }}
+        volumeMounts:
+        - name: shared
+          mountPath: /shared
+        - name: {{ .Values.certificate.pkcsMangler.certificateSecret.volume.name }}
+          mountPath: {{ .Values.certificate.pkcsMangler.certificateSecret.volume.mountPath }}
+      {{- end }}
+  {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -44,10 +66,6 @@ spec:
           ports:
             - name: pms
               containerPort: 32400
-            - name: http
-              containerPort: 32400
-            - name: https
-              containerPort: 32443
           env:
           - name: TZ
             value: "{{ .Values.timezone }}"
@@ -81,7 +99,7 @@ spec:
   {{- else }}
             value: "{{ template "plex.fullname" . }}-config"
   {{- end }}
-  {{- if .Values.proxy.enable }}
+  {{- if .Values.proxy.enabled }}
     {{- if .Values.proxy.http }}
           - name: "HTTP_PROXY"
             value: "{{.Values.proxy.http}}"
@@ -119,6 +137,20 @@ spec:
 {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
             value: {{ $value }}
+{{- end }}
+# This is part of pkcsMangler
+{{- if .Values.certificate.pkcsMangler.enabled }}
+          - name: "PKCSMANGLER_PFXINCONTAINERPATH"
+            value: "{{.Values.certificate.pkcsMangler.pfxInContainerPath}}"
+{{- if .Values.certificate.pkcsMangler.setPlexPreferences.enabled }}
+          - name: "PKCSMANGLER_PFXPASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.certificate.pkcsMangler.pfxPassword.secretName }}
+                key: {{ .Values.certificate.pkcsMangler.pfxPassword.passwordKey }}
+          - name: "PKCSMANGLER_CUSTOMCERTDOMAIN"
+            value: "customCertificateDomain={{.Values.certificate.pkcsMangler.plexPreferences.customCertificateDomain}}"
+{{- end }}
 {{- end }}
           readinessProbe:
             httpGet:
@@ -161,6 +193,11 @@ spec:
             mountPath: {{ .Values.plexPreferences.volume.mountPath }}
             subPath: {{ .Values.plexPreferences.volume.subPath }}
           {{- end }}
+          {{- if .Values.certificate.pkcsMangler.enabled }}
+          - name: {{ .Values.certificate.pkcsMangler.volume.name }}
+            mountPath: {{ .Values.certificate.pkcsMangler.volume.mountPath }}
+            subPath: {{ .Values.certificate.pkcsMangler.volume.subPath }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -192,10 +229,10 @@ spec:
 {{- end }}
 {{- else }}
 {{- if .Values.persistence.transcode.emptyDir.medium }}
-        emptyDir: 
+        emptyDir:
           medium: "{{ .Values.persistence.transcode.emptyDir.medium }}"
 {{- else }}
-        emptyDir: {}          
+        emptyDir: {}
 {{- end }}
 {{- end }}
 {{-  range .Values.persistence.extraData }}
@@ -215,6 +252,16 @@ spec:
           name: {{ .Values.plexPreferences.configmap.name }}
           defaultMode: {{ .Values.plexPreferences.volume.defaultMode }}
       {{- end }}
+      {{- if .Values.certificate.pkcsMangler.enabled }}
+      - name: {{ .Values.certificate.pkcsMangler.volume.name }}
+        configMap:
+          name: {{ .Values.certificate.pkcsMangler.configmap.name }}
+          defaultMode: {{ .Values.certificate.pkcsMangler.volume.defaultMode }}
+      - name: {{ .Values.certificate.pkcsMangler.certificateSecret.volume.name }}
+        secret:
+          secretName: {{ .Values.certificate.pkcsMangler.certificateSecret.name  }}
+      {{- end }}
+##### VOLUMES END  #####
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

@@ -44,7 +44,6 @@ timezone: "UTC"
 
 #####   END  --> Official PLEX container environment variables
 
-
 # You can add as many Additional ENV variables here
 # The following is the same as --set extraEnv.TMPDIR="/transcode"
 # extraEnv:
@@ -101,7 +100,6 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-
 
 plexPreferences:
   # Enable init script that will read all environment variables starting with PLEX_PREFERENCE_
@@ -162,9 +160,11 @@ persistence:
     # If not using a transcode PVC, specify emptyDir.medium="Memory" to use a tmpfs (in-memory)
     # Volume for /transcode. Warning! this will greatly increase the amount of memory the plex pod is using
     # AND it will count toward any ram pod/namespace limits. Additionally all data will be lost if/when the
-    # pod is moved to another node.
-    # emptyDir:
-    #   medium: "Memory"
+    # pod is moved to another node. --set persistence.transcode.emptyDir.medium="Memory" `
+    emptyDir:
+      medium: ""
+  #   medium: "Memory"
+
 
   data:
     # Optionally specify claimName to manually override the PVC to be used for
@@ -205,6 +205,57 @@ persistence:
     # Access mode for this volume
     accessMode: ReadWriteOnce
 
+# Certificate(s) in Plex
+certificate:
+  # Assuming you have a kubernetes certificate secret (say from cert-manager) that has a tls.crt and tls.key but NO PFX!
+  # pkcsMangler to the rescue. The pkcsMangler part will add the supplied pfxPassword to a kubernetes secret
+  # This is so it's not in the clear in the YAML of the deployment in the kubernetes api.
+  # We will then use an OpenSSL init container to create a pfx file using the supplied secret (only available in container)
+  # Then we will use an init script (via configMap) to move the pfx file out of /shared (it's temporary storage) to
+  # the location specified in pfxInContainerPath.
+  pkcsMangler:
+    enabled: false
+    configmap:
+      labels: {}
+      annotations: {}
+      # Right now you can't really change this, additionally the configmap data is
+      # not configurable.
+      name: 42-pkcs-mangler
+    volume:
+      name: 42-pkcs-mangler
+      defaultMode: 493  # 0755 in octal permission notation
+      # Using mountPath & SubPath allow you to volume mount a configMap AS A FILE
+      # Unfortunately this also means that updates to the configMap are not automtically
+      # propagated to the file contents. But it's better then replacing the entire
+      # /etc/cont-init.d/ directory which is the "normal" behavior when doing volume
+      # mounts.
+      mountPath: /etc/cont-init.d/42-pkcs-mangler
+      subPath: 42-pkcs-mangler
+    setPlexPreferences:
+      enabled: true  # Set Plex Preferences related to Certificates
+      customCertificateDomain: ""  # If not empty, Set the Plex Preference customCertificateDomain
+      # Use spec.certificate.pkcsMangler.pfxPassword.value to Set the Plex Preference customCertificateKey
+      # Use spec.certificate.pkcsMangler.pfxInContainerPath to Set the Plex Preference customCertificatePath
+    pfxPassword:
+      value: "setpassword"
+      # We wlll create a Kubernetes Secret for spec.certificate.pkcsMangler.pfxPassword.value
+      # These are your options.
+      secretName: "plex-media-server-pfx-password"
+      passwordKey: "pfx-password"
+      labels: {}
+      annotations: {}
+    pfxInContainerPath: "/config/plex.pfx"  # This is full path in the container pkcsMangler will copy the pfx file to
+    # This is the SSL Certificate Secret that will provide our crt and key file.  If you used cert-manager to create
+    # the certificate, these defaults should work for you.  This Secret (and volume details) are only used by the
+    # pkcsMangler Init Container.
+    certificateSecret:
+      name: ""
+      keyName: "tls.key"
+      crtName: "tls.crt"
+      volume:
+        name: plex-certs
+        mountPath: /etc/plex-certs
+
 # Probes configuration
 probes:
   liveness:
@@ -240,7 +291,7 @@ deploymentAnnotations: {}
 
 proxy:
   # This allows to set a proxy environment variable, which PMS uses to fetch the token and assets like movie cover
-  enable: false
+  enabled: false
   # http: "http://proxy:8080"
   # https: "https://proxy:8080"
   # noproxy: "localhost,127.0.0.1,10.96.0.0/12,10.244.0.0/12"

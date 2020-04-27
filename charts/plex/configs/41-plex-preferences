@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bash
+
 # This file is based off of the official 40-plex-first-run
 # Here: https://github.com/plexinc/pms-docker/blob/master/root/etc/cont-init.d/40-plex-first-run
 # It should live in /etc/cont-init.d/
@@ -7,6 +8,12 @@
 if [ "${DEBUG,,}" = "true" ]; then
   set -x
 fi
+
+function getPref {
+  local key="$1"
+
+  xmlstarlet sel -T -t -m "/Preferences" -v "@${key}" -n "${prefFile}"
+}
 
 function setPref {
   local key="$1"

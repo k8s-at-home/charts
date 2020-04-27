@@ -49,6 +49,6 @@ spec:
       targetPort: pms
     - name: https
       port: 443
-      targetPort: 32443
+      targetPort: pms
   selector:
     {{- include "plex.selectorLabels" . | nindent 4 }}
