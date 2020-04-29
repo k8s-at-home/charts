@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "speedtest-prometheus.fullname" . }}
+  labels:
+    {{- include "speedtest-prometheus.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "speedtest-prometheus.selectorLabels" . | nindent 4 }}

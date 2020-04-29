@@ -1,0 +1,23 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "speedtest-prometheus.fullname" . }}
+  labels:
+    {{- include "speedtest-prometheus.labels" . | nindent 4 }}
+  {{- with .Values.serviceMonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "speedtest-prometheus.selectorLabels" . | nindent 6 }}
+  endpoints:
+  - port: http
+    interval: {{ .Values.serviceMonitor.interval }}
+    path: /probe
+    params:
+      script:
+        - speedtest
+    scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
+{{- end }}
