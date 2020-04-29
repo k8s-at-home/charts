@@ -31,7 +31,7 @@ jobs:
           helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.0.0-alpha.2
+        uses: helm/chart-releaser-action@v1.0.0-rc.2
         with:
           charts_repo_url: https://billimek.com/billimek-charts/
         env:
