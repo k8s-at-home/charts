@@ -1811,6 +1811,30 @@ entries:
     version: 2.0.0
   teslamate:
   - apiVersion: v1
+    appVersion: v1.19.3
+    created: "2020-05-04T02:01:02.611795972Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 8.1.0
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: 3d9a153a7afd10d2c094489dd1a12d24055d6b5cc03be142e612926b2f3433eb
+    home: https://github.com/billimek/billimek-charts/tree/master/charts/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    urls:
+    - https://github.com/billimek/billimek-charts/releases/download/teslamate-2.0.4/teslamate-2.0.4.tgz
+    version: 2.0.4
+  - apiVersion: v1
     appVersion: v1.16.0
     created: "2020-02-23T13:57:19.724015555Z"
     description: "A self-hosted data logger for your Tesla \U0001F698"
