@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: teslamate/teslamate
-  tag: 1.16.0
+  tag: 1.19.3
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -36,13 +36,13 @@ locale: en
 # Probes configuration
 probes:
   liveness:
-    failureThreshold: 5
+    failureThreshold: 15
     periodSeconds: 10
   readiness:
-    failureThreshold: 5
+    failureThreshold: 15
     periodSeconds: 10
   startup:
-    initialDelaySeconds: 5
+    initialDelaySeconds: 15
     failureThreshold: 30
     periodSeconds: 10
 
