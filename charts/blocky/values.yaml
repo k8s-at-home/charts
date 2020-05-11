@@ -49,7 +49,11 @@ config:
         - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
       special:
         - https://hosts-file.net/ad_servers.txt
-    # definition of whitelist groups. Attention: if the same group has black and whitelists, whitelists will be used to disable particular blacklist entries. If a group has only whitelist entries -> this means only domains from this list are allowed, all other domains will be blocked
+    # definition of whitelist groups. Attention: if the same group has black and whitelists,
+    # whitelists will be used to disable particular blacklist entries. If a group has only
+    # whitelist entries -> this means only domains from this list are allowed,
+    # all other domains will be blocked.
+    # Also see the extraLists section below to add your own in-line whitelists
     # whiteLists:
     #   ads:
     #     - whitelist.txt
@@ -62,10 +66,12 @@ config:
       # use client name or ip address
       # laptop.fritz.box:
       #   - ads
+
     # which response will be sent, if query is blocked:
-    # zeroIp: 0.0.0.0 will be returned (default)
-    # nxDomain: return NXDOMAIN as return code
+    #   zeroIp: 0.0.0.0 will be returned (default)
+    #   nxDomain: return NXDOMAIN as return code
     # blockType: zeroIp
+
     # optional: automatically list refresh period in minutes. Default: 4h.
     # Negative value -> deactivate automatically refresh.
     # 0 value -> use default
@@ -174,7 +180,9 @@ tolerations: []
 
 affinity: {}
 
-## Add any extra files you want populated to /app here
-# ex:
-# - whitelist.txt: "line1"
+## Add any extra files you want populated to /app here, e.g.:
+#  extraLists:
+#    whitelist.txt: |
+#      analytics.google.com
+#      googleadservices.com
 extraLists: {}
