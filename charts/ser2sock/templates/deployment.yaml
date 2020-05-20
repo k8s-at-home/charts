@@ -45,7 +45,7 @@ spec:
             - name: BAUD_RATE
               value: "115200"
             - name: SERIAL_DEVICE
-              value: "{{ .Values.device }}"
+              value: "/dev/ttyUSB0"
             - name: PUID
               value: "{{ .Values.puid }}"
             - name: PGID
