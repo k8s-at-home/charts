@@ -64,15 +64,10 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: config
-            - mountPath: /downloads
-              name: downloads
-            {{- if .Values.persistence.downloads.subPath }}
-              subPath: {{ .Values.persistence.downloads.subPath }}
-            {{- end }}
-            - mountPath: /music
-              name: music
-            {{- if .Values.persistence.music.subPath }}
-              subPath: {{ .Values.persistence.music.subPath }}
+            - mountPath: /media
+              name: media
+            {{- if .Values.persistence.media.subPath }}
+              subPath: {{ .Values.persistence.media.subPath }}
             {{- end }}
             {{- range .Values.persistence.extraExistingClaimMounts }}
             - name: {{ .name }}
@@ -89,17 +84,10 @@ spec:
       {{- else }}
         emptyDir: {}
       {{- end }}
-      - name: downloads
-      {{- if .Values.persistence.downloads.enabled }}
+      - name: media
+      {{- if .Values.persistence.media.enabled }}
         persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.downloads.existingClaim }}{{ .Values.persistence.downloads.existingClaim }}{{- else }}{{ template "lidarr.fullname" . }}-downloads{{- end }}
-      {{- else }}
-        emptyDir: {}
-      {{- end }}
-      - name: music
-      {{- if .Values.persistence.music.enabled }}
-        persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.music.existingClaim }}{{ .Values.persistence.music.existingClaim }}{{- else }}{{ template "lidarr.fullname" . }}-music{{- end }}
+          claimName: {{ if .Values.persistence.media.existingClaim }}{{ .Values.persistence.media.existingClaim }}{{- else }}{{ template "lidarr.fullname" . }}-media{{- end }}
       {{- else }}
         emptyDir: {}
       {{- end }}
