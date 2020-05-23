@@ -66,21 +66,16 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: config
-            - mountPath: /downloads
-              name: downloads
-            {{- if .Values.persistence.downloads.subPath }}
-              subPath: {{ .Values.persistence.downloads.subPath }}
-            {{- end }}
-            - mountPath: /tv
-              name: tv
-            {{- if .Values.persistence.tv.subPath }}
-              subPath: {{ .Values.persistence.tv.subPath }}
+            - mountPath: /media
+              name: media
+            {{- if .Values.persistence.media.subPath }}
+              subPath: {{ .Values.persistence.media.subPath }}
             {{- end }}
             {{- range .Values.persistence.extraExistingClaimMounts }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
               readOnly: {{ .readOnly }}
-            {{- end }}
+            {{- end }}    
           resources:
 {{ toYaml .Values.resources | indent 12 }}
 {{- if .Values.exportarr.enabled }}
@@ -129,17 +124,10 @@ spec:
       {{- else }}
         emptyDir: {}
       {{- end }}
-      - name: downloads
-      {{- if .Values.persistence.downloads.enabled }}
+      - name: media
+      {{- if .Values.persistence.media.enabled }}
         persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.downloads.existingClaim }}{{ .Values.persistence.downloads.existingClaim }}{{- else }}{{ template "sonarr.fullname" . }}-downloads{{- end }}
-      {{- else }}
-        emptyDir: {}
-      {{- end }}
-      - name: tv
-      {{- if .Values.persistence.tv.enabled }}
-        persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.tv.existingClaim }}{{ .Values.persistence.tv.existingClaim }}{{- else }}{{ template "sonarr.fullname" . }}-tv{{- end }}
+          claimName: {{ if .Values.persistence.media.existingClaim }}{{ .Values.persistence.media.existingClaim }}{{- else }}{{ template "sonarr.fullname" . }}-media{{- end }}
       {{- else }}
         emptyDir: {}
       {{- end }}
