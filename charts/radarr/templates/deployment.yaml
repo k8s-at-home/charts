@@ -64,15 +64,10 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: config
-            - mountPath: /downloads
-              name: downloads
-            {{- if .Values.persistence.downloads.subPath }}
-              subPath: {{ .Values.persistence.downloads.subPath }}
-            {{- end }}
-            - mountPath: /movies
-              name: movies
-            {{- if .Values.persistence.movies.subPath }}
-              subPath: {{ .Values.persistence.movies.subPath }}
+            - mountPath: /media
+              name: media
+            {{- if .Values.persistence.media.subPath }}
+              subPath: {{ .Values.persistence.media.subPath }}
             {{- end }}
             {{- range .Values.persistence.extraExistingClaimMounts }}
             - name: {{ .name }}
@@ -125,17 +120,10 @@ spec:
       {{- else }}
         emptyDir: {}
       {{- end }}
-      - name: downloads
-      {{- if .Values.persistence.downloads.enabled }}
+      - name: media
+      {{- if .Values.persistence.media.enabled }}
         persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.downloads.existingClaim }}{{ .Values.persistence.downloads.existingClaim }}{{- else }}{{ template "radarr.fullname" . }}-downloads{{- end }}
-      {{- else }}
-        emptyDir: {}
-      {{- end }}
-      - name: movies
-      {{- if .Values.persistence.movies.enabled }}
-        persistentVolumeClaim:
-          claimName: {{ if .Values.persistence.movies.existingClaim }}{{ .Values.persistence.movies.existingClaim }}{{- else }}{{ template "radarr.fullname" . }}-movies{{- end }}
+          claimName: {{ if .Values.persistence.media.existingClaim }}{{ .Values.persistence.media.existingClaim }}{{- else }}{{ template "radarr.fullname" . }}-media{{- end }}
       {{- else }}
         emptyDir: {}
       {{- end }}

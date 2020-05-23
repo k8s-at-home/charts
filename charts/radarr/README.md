@@ -17,6 +17,19 @@ To install the chart with the release name `my-release`:
 helm install --name my-release billimek/radarr
 ```
 
+## Upgrading
+
+Chart versions 3.2.0 and earlier used separate PVCs for Downloads and Movies. This presented an issue where Radarr would be unable to hard-link files between the /downloads and /movies directories when importing media. This is caused because each PVC is exposed to the pod as a separate filesystem. This resulted in Radarr copying files rather than linking; using additional storage without the user's knowledge.
+
+This chart now uses a single PVC for Downloads and Movies. This means all of your media (and downloads) must be in, or be subdirectories of, a single directory. If upgrading from v1 of the chart, do the following:
+
+1. [Uninstall](#uninstalling-the-chart) your current release
+2. On your backing store, organize your media, ie. media/movies, media/downloads
+3. If using a pre-existing PVC, create a single new PVC for all of your media
+4. Refer to the [configuration](#configuration) for updates to the chart values
+5. Re-install the chart
+6. Update your settings in the app to point to the new PVC, which is mounted at /media. This can be done using Radarr's `Movie Editor` under the `Movies` tab. Simply select all movies in your library, and use the editor to change the `Root Folder` and hit save.
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
@@ -32,7 +45,7 @@ The command removes all the Kubernetes components associated with the chart and 
 The following tables lists the configurable parameters of the Sentry chart and their default values.
 
 | Parameter                                   | Description                                                                                  | Default                                        |
-|---------------------------------------------|----------------------------------------------------------------------------------------------|------------------------------------------------|
+| ------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | `image.repository`                          | Image repository                                                                             | `linuxserver/radarr`                           |
 | `image.tag`                                 | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/radarr/tags/). | `v0.2.0.1480-ls58`                             |
 | `image.pullPolicy`                          | Image pull policy                                                                            | `IfNotPresent`                                 |
@@ -77,18 +90,12 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.config.storageClass`           | Type of persistent volume claim                                                              | `-`                                            |
 | `persistence.config.accessMode`             | Persistence access mode                                                                      | `ReadWriteOnce`                                |
 | `persistence.config.skipuninstall`          | Do not delete the pvc upon helm uninstall                                                    | `false`                                        |
-| `persistence.downloads.enabled`             | Use persistent volume to store configuration data                                            | `true`                                         |
-| `persistence.downloads.size`                | Size of persistent volume claim                                                              | `10Gi`                                         |
-| `persistence.downloads.existingClaim`       | Use an existing PVC to persist data                                                          | `nil`                                          |
-| `persistence.downloads.storageClass`        | Type of persistent volume claim                                                              | `-`                                            |
-| `persistence.downloads.accessMode`          | Persistence access mode                                                                      | `ReadWriteOnce`                                |
-| `persistence.downloads.skipuninstall`       | Do not delete the pvc upon helm uninstall                                                    | `false`                                        |
-| `persistence.movies.enabled`                | Use persistent volume to store configuration data                                            | `true`                                         |
-| `persistence.movies.size`                   | Size of persistent volume claim                                                              | `10Gi`                                         |
-| `persistence.movies.existingClaim`          | Use an existing PVC to persist data                                                          | `nil`                                          |
-| `persistence.movies.storageClass`           | Type of persistent volume claim                                                              | `-`                                            |
-| `persistence.movies.accessMode`             | Persistence access mode                                                                      | `ReadWriteOnce`                                |
-| `persistence.movies.skipuninstall`          | Do not delete the pvc upon helm uninstall                                                    | `false`                                        |
+| `persistence.media.enabled`                 | Use persistent volume to store media                                                         | `true`                                         |
+| `persistence.media.size`                    | Size of persistent volume claim                                                              | `10Gi`                                         |
+| `persistence.media.existingClaim`           | Use an existing PVC to persist data                                                          | `nil`                                          |
+| `persistence.media.storageClass`            | Type of persistent volume claim                                                              | `-`                                            |
+| `persistence.media.accessMode`              | Persistence access mode                                                                      | `ReadWriteOnce`                                |
+| `persistence.media.skipuninstall`           | Do not delete the pvc upon helm uninstall                                                    | `false`                                        |
 | `persistence.extraExistingClaimMounts`      | Optionally add multiple existing claims                                                      | `[]`                                           |
 | `resources`                                 | CPU/Memory resource requests/limits                                                          | `{}`                                           |
 | `nodeSelector`                              | Node labels for pod assignment                                                               | `{}`                                           |
@@ -112,6 +119,7 @@ helm install --name my-release -f values.yaml stable/radarr
 ```
 
 ---
+
 **NOTE**
 
 If you get `Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...` it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
