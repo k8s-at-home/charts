@@ -81,28 +81,9 @@ persistence:
     size: 1Gi
     ## Do not delete the pvc upon helm uninstall
     skipuninstall: false
-  tv:
+  media:
     enabled: true
-    ## bazarr tv volume configuration
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    # subPath: some-subpath
-    accessMode: ReadWriteOnce
-    size: 10Gi
-    ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-  movies:
-    enabled: true
-    ## bazarr movie volume configuration
+    ## bazarr media volume configuration
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is
