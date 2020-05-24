@@ -34,7 +34,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | Parameter                  | Description                         | Default                                                 |
 |----------------------------|-------------------------------------|---------------------------------------------------------|
 | `image.repository`         | Image repository | `linuxserver/hydra2` |
-| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/hydra2/tags/).| `v0.12.1132-ls37`|
+| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/nzbhydra2/tags/).| `v2.22.2-ls9`|
 | `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
 | `strategyType`             | Specifies the strategy used to replace old Pods by new ones | `Recreate` |
 | `timezone`                 | Timezone the nzbhydra2 instance should run as, e.g. 'America/New_York' | `UTC` |
