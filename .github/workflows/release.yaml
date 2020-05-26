@@ -8,10 +8,18 @@ on:
 
 jobs:
   release:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Turnstyle
+        uses: softprops/turnstyle@v1
+        with:
+          continue-after-seconds: 180
+        env:
+          GITHUB_TOKEN: ${{ secrets.CR_TOKEN }}
 
       - name: Fetch history
         run: git fetch --prune --unshallow
