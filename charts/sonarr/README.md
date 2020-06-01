@@ -89,12 +89,14 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.config.size`                   | Size of persistent volume claim                                                              | `1Gi`                                          |
 | `persistence.config.existingClaim`          | Use an existing PVC to persist data                                                          | `nil`                                          |
 | `persistence.config.storageClass`           | Type of persistent volume claim                                                              | `-`                                            |
+| `persistence.config.subPath`                | Mount a sub directory if set                                                                    | `nil          `                              |
 | `persistence.config.accessMode`             | Persistence access mode                                                                      | `ReadWriteOnce`                                |
 | `persistence.config.skipuninstall`          | Do not delete the pvc upon helm uninstall                                                    | `false`                                        |
 | `persistence.media.enabled`                 | Use persistent volume for media                                                              | `true`                                         |
 | `persistence.media.size`                    | Size of persistent volume claim                                                              | `10Gi`                                         |
 | `persistence.media.existingClaim`           | Use an existing PVC to persist data                                                          | `nil`                                          |
 | `persistence.media.storageClass`            | Type of persistent volume claim                                                              | `-`                                            |
+| `persistence.media.subPath`                | Mount a sub directory if set                                                                    | `nil          `                              |
 | `persistence.media.accessMode`              | Persistence access mode                                                                      | `ReadWriteOnce`                                |
 | `persistence.media.skipuninstall`           | Do not delete the pvc upon helm uninstall                                                    | `false`                                        |
 | `persistence.extraExistingClaimMounts`      | Optionally add multiple existing claims                                                      | `[]`                                           |
