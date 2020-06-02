@@ -65,7 +65,7 @@ spec:
             - mountPath: /config
               name: config
             {{- if .Values.persistence.config.subPath }}
-              subPath: {{ .Values.persistence.media.subPath }}
+              subPath: {{ .Values.persistence.config.subPath }}
             {{- end }}
             - mountPath: /media
               name: media
