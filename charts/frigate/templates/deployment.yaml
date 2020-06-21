@@ -39,6 +39,7 @@ spec:
             - name: http
               containerPort: 5000
               protocol: TCP
+          {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
             httpGet:
               path: /
@@ -47,6 +48,8 @@ spec:
             initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
             timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+          {{- end }}
+          {{- if .Values.probes.readiness.enabled }}
           readinessProbe:
             httpGet:
               path: /
@@ -55,6 +58,7 @@ spec:
             initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
             timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
+          {{- end }}
           env:
             {{- if .Values.timezone }}
             - name: TZ
@@ -62,6 +66,11 @@ spec:
             {{- end }}
             - name: FRIGATE_RTSP_PASSWORD
               value: "{{ .Values.rtspPassword }}"
+          envFrom:
+          {{- range .Values.extraSecretForEnvFrom }}
+            - secretRef:
+                name: {{ . }}
+          {{- end }}
           volumeMounts:
             {{- if .Values.coral.enabled }}
             - mountPath: /dev/bus/usb

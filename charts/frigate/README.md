@@ -54,11 +54,12 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | Parameter                  | Description                         | Default                                                 |
 |----------------------------|-------------------------------------|---------------------------------------------------------|
 | `image.repository`         | Image repository | `blakeblackshear/frigate` |
-| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/blakeblackshear/frigate/tags/).| `0.5.0`|
+| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/blakeblackshear/frigate/tags/).| `0.5.1`|
 | `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
 | `strategyType`             | Specifies the strategy used to replace old Pods by new ones | `Recreate` |
 | `timezone`                 | Timezone the frigate instance should run as, e.g. 'America/New_York' | `UTC` |
 | `rtspPassword`             | Password to use for RTSP cameras | `password` |
+| `extraSecretForEnvFrom`    | Secrets containing env variables for  | `[]` |
 | `coral.enabled`            | Use the Coral USB device | `false` |
 | `coral.hostPath`           | Host Path to reference USB device location (on the host) | `/dev/bus/usb` |
 | `shmSize`                  | Shared memory size for processing | `1Gi` |

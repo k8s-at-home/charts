@@ -9,10 +9,13 @@ strategyType: Recreate
 
 image:
   repository: blakeblackshear/frigate
-  tag: 0.5.0
+  tag: 0.5.1
   pullPolicy: IfNotPresent
 
 rtspPassword: password
+
+# secret name containing environment variables for frigate
+extraSecretForEnvFrom: []
 
 coral:
   enabled: false
@@ -167,10 +170,12 @@ config: |
 # Probes configuration
 probes:
   liveness:
+    enabled: true
     initialDelaySeconds: 30
     failureThreshold: 5
     timeoutSeconds: 10
   readiness:
+    enabled: true
     initialDelaySeconds: 30
     failureThreshold: 5
     timeoutSeconds: 10
