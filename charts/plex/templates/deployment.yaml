@@ -40,7 +40,7 @@ spec:
       # This is ugly, but it does work to create a pks file that will work with PLEX from the tls.crt and tls.key that cert-manager normally creates
       {{- if .Values.certificate.pkcsMangler.enabled }}
       - name: pkcsmangler-init-container
-        image: tlsprint/openssl:1.1.1f
+        image: "{{ .Values.certificate.pkcsMangler.image.repository }}:{{ .Values.certificate.pkcsMangler.image.tag }}"
         imagePullPolicy: Always
         command: ["/bin/sh"]
         args: ["-c", "openssl pkcs12 -export -passout pass:$(PKCSMANGLER_PFXPASSWORD) -out /shared/cert.pfx -inkey {{ .Values.certificate.pkcsMangler.certificateSecret.volume.mountPath }}/{{ .Values.certificate.pkcsMangler.certificateSecret.keyName }} -in {{ .Values.certificate.pkcsMangler.certificateSecret.volume.mountPath }}/{{ .Values.certificate.pkcsMangler.certificateSecret.crtName }}; chmod 0444 /shared/cert.pfx"]
