@@ -64,8 +64,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: pms
-              containerPort: 32400
+          - name: pms
+            containerPort: 32400
           env:
           - name: TZ
             value: "{{ .Values.timezone }}"
