@@ -69,7 +69,26 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
           - name: pms
+            protocol: TCP
             containerPort: 32400
+          - name: plex-dlna
+            protocol: TCP
+            containerPort: 32469
+          - name: plex-dlna-udp
+            protocol: UDP
+            containerPort: 1900
+          - name: plex-gdm1
+            protocol: UDP
+            containerPort: 32410
+          - name: plex-gdm2
+            protocol: UDP
+            containerPort: 32412
+          - name: plex-gdm3
+            protocol: UDP
+            containerPort: 32413
+          - name: plex-gdm4
+            protocol: UDP
+            containerPort: 32414
           env:
           - name: TZ
             value: "{{ .Values.timezone }}"
