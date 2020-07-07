@@ -209,6 +209,10 @@ spec:
           - mountPath: "/data-{{ .name }}"
             name: "extradata-{{ .name }}"
           {{- end }}
+          {{-  range .Values.persistence.extraMounts }}
+          - mountPath: "/{{ .name }}"
+            name: "{{ .name }}"
+          {{- end }}
           - name: shared
             mountPath: /shared
           {{- if .Values.plexPreferences.enabled }}
@@ -266,6 +270,11 @@ spec:
 {{- else }}
           claimName: "extradata-{{ .name }}"
 {{- end }}
+{{- end }}
+{{- range .Values.persistence.extraMounts }}
+      - name: {{ .name }}
+        persistentVolumeClaim:
+          claimName: {{ .claimName }}
 {{- end }}
       - name: shared
         emptyDir: {}
