@@ -1,0 +1,82 @@
+# Default values for piaware.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# upgrade strategy type (e.g. Recreate or RollingUpdate)
+strategyType: Recreate
+
+image:
+  repository: mikenye/piaware
+  tag: v3.8.1
+  pullPolicy: IfNotPresent
+
+# timezone to run the service as
+# timezone: "America/New York"
+
+# feeder id of device
+# feederId: "c478b1c99-23d3-4376-1f82-47352a28cg37"
+
+# coordinates of device
+# latitude: "-73.14980"
+# longitude: "30.66783"
+
+# device where the flight-aware device can be accessed
+device: "/dev/bus/usb/001/004"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 8080
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  labels: {}
+  ## Use loadBalancerIP to request a specific static IP,
+  ## otherwise leave blank
+  ##
+  loadBalancerIP:
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  # externalTrafficPolicy: Cluster
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+podAnnotations: {}

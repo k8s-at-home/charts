@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "piaware.fullname" . }}
+  labels:
+{{ include "piaware.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: {{ .Values.strategyType }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "piaware.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "piaware.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- if .Values.podAnnotations }}
+      annotations:
+        {{- range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            privileged: true
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            {{- if .Values.timezone }}
+            - name: TZ
+              value: "{{ .Values.timezone }}"
+            {{- end }}
+            {{- if .Values.latitude }}
+            - name: LAT
+              value: "{{ .Values.latitude }}"
+            {{- end }}
+            {{- if .Values.longitude }}
+            - name: LONG
+              value: "{{ .Values.longitude }}"
+            {{- end }}
+            {{- if .Values.feederId }}
+            - name: FEEDER_ID
+              value: "{{ .Values.feederId }}"
+            {{- end }}
+          volumeMounts:
+            - mountPath: {{ .Values.device }}
+              name: usb
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: usb
+          hostPath:
+            path: {{ .Values.device }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
