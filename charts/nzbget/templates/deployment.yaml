@@ -70,7 +70,7 @@ spec:
               subPath: {{ .Values.persistence.downloads.subPath }}
             {{ end }}
             {{-  range .Values.persistence.extraMounts }}
-            - mountPath: /{{ .name }}
+            - mountPath: /{{ .mountPath }}
               name: {{ .name }}
             {{- end }}
           resources:
