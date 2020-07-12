@@ -4,7 +4,7 @@
 
 image:
   repository: linuxserver/ombi
-  tag: 3.0.5020-ls5
+  tag: v3.0.4892-ls61
   pullPolicy: IfNotPresent
 
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
@@ -27,6 +27,12 @@ fullnameOverride: ""
 timezone: UTC
 puid: 1001
 pgid: 1001
+
+# Subfolder can optionally be defined as an env variable for reverse proxies. Keep
+# in mind that once this value is defined, the gui setting for base url no longer
+# works. To use the gui setting, remove this env variable.
+#
+# baseUrl: /ombi
 
 service:
   type: ClusterIP

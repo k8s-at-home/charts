@@ -61,6 +61,10 @@ spec:
               value: "{{ .Values.puid }}"
             - name: PGID
               value: "{{ .Values.pgid }}"
+            {{- if .Values.baseUrl }}
+            - name: BASE_URL
+              value: "{{ .Values.baseUrl }}"
+            {{ end }}
           volumeMounts:
             - mountPath: /config
               name: config
