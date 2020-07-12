@@ -43,7 +43,7 @@ spec:
             - name: LISTENER_PORT
               value: "10000"
             - name: BAUD_RATE
-              value: "115200"
+              value: "{{ .Values.baudRate }}"
             - name: SERIAL_DEVICE
               value: "/dev/ttyUSB0"
             - name: PUID
