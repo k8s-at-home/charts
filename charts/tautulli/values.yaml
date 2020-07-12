@@ -85,6 +85,13 @@ persistence:
     subPath: ""
     ## Do not delete the pvc upon helm uninstall
     skipuninstall: false
+  extraExistingClaimMounts: []
+    # - name: external-mount
+    #   mountPath: /srv/external-mount
+    ## A manually managed Persistent Volume and Claim
+    ## If defined, PVC must be created manually before volume will be bound
+    #   existingClaim:
+    #   readOnly: true
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

@@ -66,7 +66,12 @@ spec:
               name: config
               {{- if .Values.persistence.config.subPath }}
               subPath: "{{ .Values.persistence.config.subPath }}"
-              {{- end }}              
+              {{- end }}
+            {{- range .Values.persistence.extraExistingClaimMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+              readOnly: {{ .readOnly }}
+            {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
@@ -77,6 +82,11 @@ spec:
       {{- else }}
         emptyDir: {}
       {{ end }}
+      {{- range .Values.persistence.extraExistingClaimMounts }}
+      - name: {{ .name }}
+        persistentVolumeClaim:
+          claimName: {{ .existingClaim }}
+      {{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
