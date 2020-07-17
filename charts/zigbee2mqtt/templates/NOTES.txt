@@ -1,0 +1,9 @@
+{{- if not .Values.persistence.enabled }}
+WARNING: You have disabled persistence. Your pairings and settings will be lost on container restart!
+{{- else }}
+Your setting will be applied on first start, and cannot be managed from this chart
+  {{- if not .Values.config.advanced.network_key }}
+WARNING: You have not set a network key, which makes zigbee2mqtt run with a well-known network key. This is highly insecure.
+Please read https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html
+  {{- end }}
+{{- end }}

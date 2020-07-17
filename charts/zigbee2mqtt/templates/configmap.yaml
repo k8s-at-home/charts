@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "zigbee2mqtt.fullname" . }}
+  labels:
+{{ include "zigbee2mqtt.labels" . | indent 4 }}
+data:
+  configuration.yaml: |
+{{- with .Values.config }}
+    {{- toYaml . | nindent 4 }}
+{{- end }}
