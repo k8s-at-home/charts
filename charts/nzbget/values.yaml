@@ -103,7 +103,8 @@ persistence:
   extraMounts: []
   ## Include additional claims that can be mounted inside the
   ## pod. This is useful if you wish to use different paths with categories
-  ## Claim will me mounted as /{mountPath}
+  ## Claim will me mounted as /{mountPath} if specified. If no {mountPath} is given,
+  ## mountPath will default to {name}
   # - name: video
   #   claimName: video-claim
   #   mountPath: /mnt/path/in/pod
