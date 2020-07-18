@@ -64,7 +64,7 @@ ingress:
 
 openvpn:
   # Enables an openvpn sidecar that when configured properly will provide a
-  # Secure outbound VPN for use by NZBGet. 
+  # Secure outbound VPN for use by NZBGet.
   enabled: false
 
   image:
@@ -79,14 +79,14 @@ openvpn:
   # TZ: EST5EDT
 
   # Provide a customized vpn.conf file to be used by openvpn.
-  vpnConf: # |-
+  vpnConf:  # |-
     # Some Example Config
     # remote greatvpnhost.com 8888
     # auth-user-pass
     # Cipher AES
 
   # Credentials to connect to the VPN Service (used with -a)
-  auth: # "user;password"
+  auth:  # "user;password"
 
   # If set to true, will deploy a network policy that blocks all outbound
   # traffic except traffic specified as allowed
