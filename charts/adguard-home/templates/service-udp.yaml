@@ -1,0 +1,29 @@
+{{- if .Values.serviceUDP.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "adguard-home.fullname" . }}-udp
+  labels:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    helm.sh/chart: {{ include "adguard-home.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.serviceUDP.annotations }}
+  annotations:
+{{ toYaml .Values.serviceUDP.annotations | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.serviceUDP.type }}
+  {{- if .Values.serviceUDP.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.serviceUDP.loadBalancerIP }}
+  {{- end }}
+  externalTrafficPolicy: {{ .Values.serviceUDP.externalTrafficPolicy }}
+  ports:
+    - port: 53
+      targetPort: dns-udp
+      protocol: UDP
+      name: dns-udp
+  selector:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

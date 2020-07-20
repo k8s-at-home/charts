@@ -1,0 +1,154 @@
+image:
+  repository: adguard/adguardhome
+  tag: v0.102.0
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+timezone: "UTC"
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+
+# Probes configuration
+probes:
+  liveness:
+    failureThreshold: 5
+    periodSeconds: 10
+  readiness:
+    failureThreshold: 5
+    periodSeconds: 10
+  startup:
+    initialDelaySeconds: 5
+    failureThreshold: 30
+    periodSeconds: 10
+
+service:
+  type: ClusterIP
+  # externalTrafficPolicy: Local
+  # loadBalancerIP: ""
+    # a fixed LoadBalancer IP
+  annotations: {}
+    # metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/allow-shared-ip: adguard-home-svc
+
+serviceTCP:
+  enabled: false
+  type: NodePort
+  # externalTrafficPolicy: Local
+  loadBalancerIP: ""
+    # a fixed LoadBalancer IP
+  annotations: {}
+    # metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/allow-shared-ip: adguard-home-svc
+
+serviceUDP:
+  enabled: true
+  type: NodePort
+  # externalTrafficPolicy: Local
+  loadBalancerIP: ""
+    # a fixed LoadBalancer IP
+  annotations: {}
+    # metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/allow-shared-ip: adguard-home-svc
+
+serviceDNSOverTLS:
+  enabled: false
+  ## Enable if you use AdGuard as a DNS over TLS/HTTPS server
+  type: NodePort
+  # externalTrafficPolicy: Local
+  loadBalancerIP: ""
+    # a fixed LoadBalancer IP
+  annotations: {}
+    # metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/allow-shared-ip: adguard-home-svc
+
+serviceDHCP:
+  enabled: false
+  ## Enable if you use AdGuard as a DHCP Server
+  type: NodePort
+  # externalTrafficPolicy: Local
+  loadBalancerIP: ""
+    # a fixed LoadBalancer IP
+  annotations: {}
+    # metallb.universe.tf/address-pool: network-services
+    # metallb.universe.tf/allow-shared-ip: adguard-home-svc
+
+serviceMonitor:
+  enabled: false
+  additionalLabels: {}
+
+## Pod Annotations
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "api"
+
+persistence:
+  config:
+    enabled: true
+    ## adguard-home configuration data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+    ##
+    ## If you want to reuse an existing claim, you can pass the name of the PVC using
+    ## the existingClaim variable
+    # existingClaim: your-claim
+    # subPath: some-subpath
+    accessMode: ReadWriteOnce
+    size: 20Mi
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
+  work:
+    enabled: true
+    ## adguard-home work volume configuration
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+    ##
+    ## If you want to reuse an existing claim, you can pass the name of the PVC using
+    ## the existingClaim variable
+    # existingClaim: your-claim
+    # subPath: some-subpath
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    ## Do not delete the pvc upon helm uninstall
+    skipuninstall: false
+
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  memory: 500Mi
+  # requests:
+  #  cpu: 50m
+  #  memory: 275Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

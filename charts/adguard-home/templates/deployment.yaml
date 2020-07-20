@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "adguard-home.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    helm.sh/chart: {{ include "adguard-home.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if .Values.timezone }}
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+            {{- end }}
+          volumeMounts:
+            - name: work
+              mountPath: /opt/adguardhome/work
+              readOnly: false
+            - name: config
+              mountPath: /opt/adguardhome/conf
+              readOnly: false
+          ports:
+            - name: http
+              containerPort: 3000
+            - name: dns
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            {{- if .Values.serviceDHCP.enabled }}
+            - name: dhcp-server-udp
+              containerPort: 67
+              protocol: UDP
+            - name: dhcp-client-tcp
+              containerPort: 68
+              protocol: TCP
+            - name: dhcp-client-udp
+              containerPort: 68
+              protocol: UDP
+            {{- end }}
+            {{- if .Values.serviceDNSOverTLS.enabled }}
+            - name: dns-over-tls
+              containerPort: 853
+              protocol: TCP
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+      - name: config
+      {{- if .Values.persistence.config.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ if .Values.persistence.config.existingClaim }}{{ .Values.persistence.config.existingClaim }}{{- else }}{{ template "adguard-home.fullname" . }}-config{{- end }}
+      {{- else }}
+        emptyDir: {}
+      {{- end }}
+      - name: work
+      {{- if .Values.persistence.work.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ if .Values.persistence.work.existingClaim }}{{ .Values.persistence.work.existingClaim }}{{- else }}{{ template "adguard-home.fullname" . }}-work{{- end }}
+      {{- else }}
+        emptyDir: {}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

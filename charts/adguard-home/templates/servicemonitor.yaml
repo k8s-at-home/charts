@@ -1,0 +1,23 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "adguard-home.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "adguard-home.chart" . }}
+  {{- with .Values.serviceMonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  endpoints:
+  - port: http
+    interval: 30s
+    path: /
+{{- end }}

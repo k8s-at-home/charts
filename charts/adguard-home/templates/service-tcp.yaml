@@ -1,0 +1,29 @@
+{{- if .Values.serviceTCP.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "adguard-home.fullname" . }}-tcp
+  labels:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    helm.sh/chart: {{ include "adguard-home.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.serviceTCP.annotations }}
+  annotations:
+{{ toYaml .Values.serviceTCP.annotations | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.serviceTCP.type }}
+  {{- if .Values.serviceTCP.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.serviceTCP.loadBalancerIP }}
+  {{- end }}
+  externalTrafficPolicy: {{ .Values.serviceTCP.externalTrafficPolicy }}
+  ports:
+    - port: 53
+      targetPort: dns
+      protocol: TCP
+      name: dns
+  selector:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

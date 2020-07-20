@@ -1,0 +1,29 @@
+
+{{- if and .Values.persistence.work.enabled (not .Values.persistence.work.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "adguard-home.fullname" . }}-work
+  {{- if .Values.persistence.work.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+  labels:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    helm.sh/chart: {{ include "adguard-home.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.work.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.work.size | quote }}
+{{- if .Values.persistence.work.storageClass }}
+{{- if (eq "-" .Values.persistence.work.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.work.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end -}}

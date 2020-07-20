@@ -1,0 +1,37 @@
+{{- if .Values.serviceDHCP.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "adguard-home.fullname" . }}-dhcp
+  labels:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    helm.sh/chart: {{ include "adguard-home.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.serviceDHCP.annotations }}
+  annotations:
+{{ toYaml .Values.serviceDHCP.annotations | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.serviceDHCP.type }}
+  {{- if .Values.serviceDHCP.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.serviceDHCP.loadBalancerIP }}
+  {{- end }}
+  externalTrafficPolicy: {{ .Values.serviceDHCP.externalTrafficPolicy }}
+  ports:
+    - port: 67
+      targetPort: dhcp-server-udp
+      protocol: UDP
+      name: dhcp-server-udp
+    - port: 68
+      targetPort: dhcp-client-tcp
+      protocol: TCP
+      name: dhcp-client-tcp
+    - port: 68
+      targetPort: dhcp-client-udp
+      protocol: UDP
+      name: dhcp-client-udp
+  selector:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

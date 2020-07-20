@@ -1,0 +1,29 @@
+{{- if .Values.serviceDNSOverTLS.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "adguard-home.fullname" . }}-dns-over-tls
+  labels:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    helm.sh/chart: {{ include "adguard-home.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.serviceDNSOverTLS.annotations }}
+  annotations:
+{{ toYaml .Values.serviceDNSOverTLS.annotations | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.serviceDNSOverTLS.type }}
+  {{- if .Values.serviceDNSOverTLS.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.serviceDNSOverTLS.loadBalancerIP }}
+  {{- end }}
+  externalTrafficPolicy: {{ .Values.serviceDNSOverTLS.externalTrafficPolicy }}
+  ports:
+    - port: 853
+      targetPort: dns-over-tls
+      protocol: TCP
+      name: dns-over-tls
+  selector:
+    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
