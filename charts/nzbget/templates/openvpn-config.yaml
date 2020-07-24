@@ -1,0 +1,16 @@
+{{- if and .Values.openvpn.enabled .Values.openvpn.vpnConf}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "nzbget.fullname" . }}-openvpnconf
+  labels:
+    app.kubernetes.io/name: {{ include "nzbget.name" . }}
+    helm.sh/chart: {{ include "nzbget.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  {{- if .Values.openvpn.vpnConf }}
+  vpnConf: |-
+    {{- .Values.openvpn.vpnConf | nindent 4}}
+  {{- end }}
+{{- end -}}

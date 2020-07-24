@@ -79,6 +79,28 @@ spec:
             {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
+        {{- if .Values.openvpn.enabled }}
+        - name: openvpn
+          image: "{{ .Values.openvpn.image.repository }}:{{ .Values.openvpn.image.tag }}"
+          imagePullPolicy: {{ .Values.openvpn.image.pullPolicy }}
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          {{- if .Values.openvpn.env }}
+          envFrom:
+          - secretRef:
+              name: {{ template "nzbget.fullname" . }}-openvpnenv
+          {{- end }}
+          {{- if .Values.openvpn.vpnConf }}
+          volumeMounts:
+          - name: openvpnconf
+            mountPath: /vpn/vpn.conf
+            subPath: vpnConf
+          {{- end }}
+          env:
+          - name: NETWORK_POLICY_ENABLED
+            value: {{ .Values.openvpn.networkPolicy.enabled | quote }}
+        {{- end }}
       volumes:
       - name: config
       {{- if .Values.persistence.config.enabled }}
@@ -93,6 +115,11 @@ spec:
           claimName: {{ if .Values.persistence.downloads.existingClaim }}{{ .Values.persistence.downloads.existingClaim }}{{- else }}{{ template "nzbget.fullname" . }}-downloads{{- end }}
       {{- else }}
         emptyDir: {}
+      {{ end }}
+      {{- if .Values.openvpn.vpnConf }}
+      - name: openvpnconf
+        configMap:
+          name: {{ template "nzbget.fullname" . }}-openvpnconf
       {{ end }}
      {{- range .Values.persistence.extraMounts }}
       - name: {{ .name }}
