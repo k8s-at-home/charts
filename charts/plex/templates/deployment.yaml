@@ -192,10 +192,12 @@ spec:
             failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
             timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
           volumeMounts:
+          {{- if .Values.persistence.data.enabled }}
           - name: data
             mountPath: /data
           {{- if .Values.persistence.data.subPath }}
             subPath: {{ .Values.persistence.data.subPath }}
+          {{ end }}
           {{ end }}
           - name: config
             mountPath: /config
