@@ -110,11 +110,13 @@ spec:
   {{- else }}
             value: "{{ template "plex.fullname" . }}-transcode"
   {{- end }}
+  {{- if .Values.persistence.data.enabled }}
           - name: DATA_PVC
-  {{- if .Values.persistence.data.claimName }}
+    {{- if .Values.persistence.data.claimName }}
             value: "{{ .Values.persistence.data.claimName }}"
-  {{- else }}
+    {{- else }}
             value: "{{ template "plex.fullname" . }}-data"
+    {{- end }}
   {{- end }}
           - name: CONFIG_PVC
   {{- if .Values.persistence.config.claimName }}
@@ -210,8 +212,12 @@ spec:
             name: "extradata-{{ .name }}"
           {{- end }}
           {{-  range .Values.persistence.extraMounts }}
-          - mountPath: "/{{ .mountPath }}"
-            name: "{{ .name }}"
+          {{- if .mountPath }}
+          - mountPath: /{{ .mountPath }}
+          {{- else }}
+          - mountPath: /{{ .name }}
+          {{- end }}
+            name: {{ .name }}
           {{- end }}
           - name: shared
             mountPath: /shared
@@ -232,12 +238,14 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
+{{- if .Values.persistence.data.enabled }}
       - name: data
         persistentVolumeClaim:
-{{- if .Values.persistence.data.claimName }}
+  {{- if .Values.persistence.data.claimName }}
           claimName: "{{ .Values.persistence.data.claimName }}"
-{{- else }}
+  {{- else }}
           claimName: "{{ template "plex.fullname" . }}-data"
+  {{- end }}
 {{- end }}
       - name: config
         persistentVolumeClaim:
