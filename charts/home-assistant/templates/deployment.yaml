@@ -158,6 +158,7 @@ spec:
           {{- if or .Values.zwave.enabled (.Values.hostMounts) }}
           securityContext:
             privileged: true
+            allowPrivilegeEscalation: true
           {{- end }}
         {{- if .Values.configurator.enabled }}
         - name: configurator
