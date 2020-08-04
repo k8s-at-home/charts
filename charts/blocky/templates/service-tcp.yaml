@@ -17,6 +17,10 @@ spec:
   {{- if .Values.serviceTCP.loadBalancerIP }}
   loadBalancerIP: {{ .Values.serviceTCP.loadBalancerIP }}
   {{- end }}
+{{- if .Values.serviceTCP.externalIPs }}
+  externalIPs:
+{{ toYaml .Values.serviceTCP.externalIPs | indent 4 }}
+{{- end }}
   externalTrafficPolicy: {{ .Values.serviceTCP.externalTrafficPolicy }}
   ports:
     - port: 53

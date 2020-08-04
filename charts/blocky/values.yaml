@@ -136,6 +136,7 @@ service:
 
 serviceTCP:
   enabled: false
+  externalIPs: []
   type: NodePort
   externalTrafficPolicy: Local
   loadBalancerIP: ""
@@ -146,6 +147,7 @@ serviceTCP:
 
 serviceUDP:
   enabled: true
+  externalIPs: []
   type: NodePort
   externalTrafficPolicy: Local
   loadBalancerIP: ""
