@@ -1,13 +1,191 @@
 # upgrade strategy type (e.g. Recreate or RollingUpdate)
 strategyType: Recreate
 
+configAsCode:
+  enabled: false
+  resources: {}
+  # requests:
+  #   memory: 128Mi
+  #   cpu: 100m
+  image:
+    repository: busybox
+    tag: latest
+    pullPolicy: Always
+  config:
+    bind_host: 0.0.0.0
+    bind_port: 3000
+    users: []
+    # - name: admin
+    #   password: $2y$05$mV4GSa5Dymk4Hjg3NCscBuCYSckCGfc2mbS57SNkBkBAfvqfOdFfm
+    http_proxy: ""
+    language: "en"
+    rlimit_nofile: 0
+    debug_pprof: false
+    web_session_ttl: 720
+    dns:
+      bind_host: 0.0.0.0
+      port: 53
+      statistics_interval: 1
+      querylog_enabled: true
+      querylog_interval: 90
+      querylog_size_memory: 1000
+      anonymize_client_ip: false
+      protection_enabled: true
+      blocking_mode: default
+      blocking_ipv4: ""
+      blocking_ipv6: ""
+      blocked_response_ttl: 10
+      parental_block_host: family-block.dns.adguard.com
+      safebrowsing_block_host: standard-block.dns.adguard.com
+      ratelimit: 0
+      ratelimit_whitelist: []
+      refuse_any: true
+      upstream_dns:
+      - https://dns10.quad9.net/dns-query
+      bootstrap_dns:
+      - 9.9.9.10
+      - 149.112.112.10
+      - 2620:fe::10
+      - 2620:fe::fe:10
+      all_servers: false
+      fastest_addr: false
+      allowed_clients: []
+      # - 10.0.0.1
+      # - 10.0.1.1/24
+      disallowed_clients: []
+      # - 10.0.1.1
+      # - 10.0.11.1/24
+      blocked_hosts: []
+      # - example.org
+      # - '*.example.org'
+      # - '||example.org^'
+      cache_size: 4194304
+      cache_ttl_min: 0
+      cache_ttl_max: 0
+      bogus_nxdomain: []
+      aaaa_disabled: false
+      enable_dnssec: false
+      edns_client_subnet: false
+      filtering_enabled: true
+      filters_update_interval: 24
+      parental_enabled: false
+      safesearch_enabled: false
+      safebrowsing_enabled: false
+      safebrowsing_cache_size: 1048576
+      safesearch_cache_size: 1048576
+      parental_cache_size: 1048576
+      cache_time: 30
+      rewrites: []
+      # - domain: example.org
+      #   answer: 127.0.0.1
+      # - domain: '*.example.org'
+      #   answer: 127.0.0.1
+      blocked_services: []
+      # - facebook
+      # - origin
+      # - twitter
+      # - snapchat
+      # - skype
+      # - whatsapp
+      # - instagram
+      # - youtube
+      # - netflix
+      # - twitch
+      # - discord
+      # - amazon
+      # - ebay
+      # - cloudflare
+      # - steam
+      # - epic_games
+      # - reddit
+      # - ok
+      # - vk
+      # - mail_ru
+      # - tiktok
+    tls:
+      enabled: false
+      server_name: ""
+      force_https: false
+      port_https: 443
+      port_dns_over_tls: 853
+      allow_unencrypted_doh: false
+      strict_sni_check: false
+      certificate_chain: ""
+      private_key: ""
+      certificate_path: ""
+      private_key_path: ""
+    filters:
+    - enabled: true
+      url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+      name: AdGuard DNS filter
+      id: 1
+    - enabled: false
+      url: https://adaway.org/hosts.txt
+      name: AdAway
+      id: 2
+    - enabled: false
+      url: https://www.malwaredomainlist.com/hostslist/hosts.txt
+      name: MalwareDomainList.com Hosts List
+      id: 4
+    whitelist_filters: []
+    # - enabled: true
+    #   url: https://easylist-downloads.adblockplus.org/exceptionrules.txt
+    #   name: Allow nonintrusive advertising
+    #   id: 1595760241
+    user_rules: []
+    # - '||example.org^'
+    # - '@@||example.org^'
+    # - 127.0.0.1 example.org
+    # - '! Here goes a comment'
+    # - '# Also a comment'
+    dhcp:
+      enabled: false
+      interface_name: ""
+      gateway_ip: ""
+      subnet_mask: ""
+      range_start: ""
+      range_end: ""
+      lease_duration: 86400
+      icmp_timeout_msec: 1000
+    clients: []
+    # - name: myuser
+    #   tags:
+    #   - user_admin
+    #   ids:
+    #   - 192.168.91.1
+    #   use_global_settings: true
+    #   filtering_enabled: false
+    #   parental_enabled: false
+    #   safesearch_enabled: false
+    #   safebrowsing_enabled: false
+    #   use_global_blocked_services: true
+    #   blocked_services: []
+    #   upstreams: []
+    log_file: ""
+    verbose: false
+    schema_version: 6
+
 image:
   repository: adguard/adguardhome
-  tag: v0.102.0
+  # Image tag is set via charts appVersion. If you want to override the tag, specify it here
+  # tag: vX.Y.Z
   pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  #   add:
+  #   - NET_BIND_SERVICE
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
 timezone: "UTC"
 
@@ -143,6 +321,15 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     skipuninstall: false
 
+volumePermissions:
+  image:
+    repository: busybox
+    tag: latest
+    pullPolicy: Always
+  resources: {}
+    # requests:
+    #   memory: 128Mi
+    #   cpu: 100m
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
