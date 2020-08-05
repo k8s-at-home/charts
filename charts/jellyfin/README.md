@@ -65,12 +65,6 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.config.storageClass` | Type of persistent volume claim | `-` |
 | `persistence.config.accessMode`  | Persistence access mode | `ReadWriteOnce` |
 | `persistence.config.skipuninstall`  | Do not delete the pvc upon helm uninstall | `false` |
-| `persistence.downloads.enabled`      | Use persistent volume to store configuration data | `true` |
-| `persistence.downloads.size`         | Size of persistent volume claim | `10Gi` |
-| `persistence.downloads.existingClaim`| Use an existing PVC to persist data | `nil` |
-| `persistence.downloads.storageClass` | Type of persistent volume claim | `-` |
-| `persistence.downloads.accessMode`  | Persistence access mode | `ReadWriteOnce` |
-| `persistence.downloads.skipuninstall`  | Do not delete the pvc upon helm uninstall | `false` |
 | `persistence.tvshows.enabled`      | Use persistent volume to store tvshows data | `true` |
 | `persistence.tvshows.size`         | Size of persistent volume claim | `10Gi` |
 | `persistence.tvshows.existingClaim`| Use an existing PVC to persist data | `nil` |
