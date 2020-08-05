@@ -10,7 +10,9 @@ metadata:
     helm.sh/chart: {{ include "radarr.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    {{ toYaml .Values.ingress.labels | nindent 4 }}
+    {{- with .Values.ingress.labels -}}
+    {{ toYaml . | nindent 4 }}
+    {{- end -}}
 {{- with .Values.ingress.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
