@@ -29,6 +29,27 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+      initContainers:
+        - name: config
+          securityContext:
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.initContainer.image.repository }}:{{ .Values.initContainer.image.tag }}"
+          imagePullPolicy: {{ .Values.initContainer.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /frigate-config
+              name: configmap
+            - mountPath: /masks
+              name: masks
+            - mountPath: /config
+              name: config
+              readOnly: false
+          command: ['sh', '-c']
+          args:
+            - cp /frigate-config/* /config;
+              {{- if .Values.masksConfigMap }}
+              cp /masks/* /config;
+              {{- end }}
+
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -59,6 +80,15 @@ spec:
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
             timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
           {{- end }}
+          {{- if .Values.probes.startup.enabled }}
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+          {{- end }}
           env:
             {{- if .Values.timezone }}
             - name: TZ
@@ -84,8 +114,18 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: config
+          emptyDir: {}
+        - name: configmap
           configMap:
             name: {{ template "frigate.fullname" . }}
+        - name: masks
+          {{- if .Values.masksConfigMap }}
+          configMap:
+            name: {{ .Values.masksConfigMap }}
+          {{- else }}
+          emptyDir:
+            {}
+          {{- end }}
         {{- if .Values.coral.enabled }}
         - name: usb
           hostPath:

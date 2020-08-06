@@ -9,7 +9,7 @@ strategyType: Recreate
 
 image:
   repository: blakeblackshear/frigate
-  tag: 0.5.1
+  tag: 0.5.2
   pullPolicy: IfNotPresent
 
 rtspPassword: password
@@ -20,6 +20,18 @@ extraSecretForEnvFrom: []
 coral:
   enabled: false
   hostPath: /dev/bus/usb
+
+# Specify image that generates the config folder containing the Frigate config file, masks (if specified), etc.
+initContainer:
+  image:
+    repository: busybox
+    tag: latest
+    pullPolicy: Always
+
+# reference to configMap that contains the binary data of the masks to be copied into the container
+# this requires that generateConfigFolder.enabled = true
+# see https://github.com/blakeblackshear/frigate#masks-and-limiting-detection-to-a-certain-area for more info
+masksConfigMap: {}
 
 shmSize: 1Gi
 
@@ -179,6 +191,10 @@ probes:
     initialDelaySeconds: 30
     failureThreshold: 5
     timeoutSeconds: 10
+  startup:
+    enabled: false
+    failureThreshold: 30
+    periodSeconds: 10
 
 service:
   type: ClusterIP

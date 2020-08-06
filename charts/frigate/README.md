@@ -49,7 +49,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-The following tables lists the configurable parameters of the Sentry chart and their default values.
+The following tables lists the configurable parameters of the Frigate chart and their default values.
 
 | Parameter                  | Description                         | Default                                                 |
 |----------------------------|-------------------------------------|---------------------------------------------------------|
@@ -62,6 +62,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `extraSecretForEnvFrom`    | Secrets containing env variables for  | `[]` |
 | `coral.enabled`            | Use the Coral USB device | `false` |
 | `coral.hostPath`           | Host Path to reference USB device location (on the host) | `/dev/bus/usb` |
+| `masksConfigMap`           | Reference to existing ConfigMap that contains camera masks - [more info](https://github.com/blakeblackshear/frigate#masks-and-limiting-detection-to-a-certain-area) | `{}` |
 | `shmSize`                  | Shared memory size for processing | `1Gi` |
 | `config`                   | frigate configuration - see [config.yaml](https://github.com/blakeblackshear/frigate/blob/master/config/config.yml) for example  | `{}` |
 | `Service.type`          | Kubernetes service type for the frigate GUI | `ClusterIP` |
