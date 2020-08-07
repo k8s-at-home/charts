@@ -2429,6 +2429,36 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/plex-1.0.0/plex-1.0.0.tgz
     version: 1.0.0
+  powerdns:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2020-08-07T15:54:25.507235424Z"
+    dependencies:
+    - condition: postgres.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.2
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 7.7.1
+    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL.
+      It runs on most Unix derivatives. PowerDNS features a large number of different
+      backends ranging from simple BIND style zonefiles to relational databases and
+      load balancing/failover algorithms. A DNS recursor is provided as a separate
+      program.
+    digest: 37afde42d46229ec33347392058c3d380fb035acf5ec7c0cf5450d0742abbe8f
+    home: https://www.powerdns.com/
+    icon: https://www.powerdns.com/img/pDNS_logo_positive_claim_down_screen_xsmall.png
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: powerdns
+    sources:
+    - http://www.github.com/PowerDNS/
+    urls:
+    - https://github.com/billimek/billimek-charts/releases/download/powerdns-1.0.0/powerdns-1.0.0.tgz
+    version: 1.0.0
   qbittorrent:
   - apiVersion: v1
     appVersion: 14.2.0.99201912180418-6819-118af03ubuntu18.04.1-ls62
