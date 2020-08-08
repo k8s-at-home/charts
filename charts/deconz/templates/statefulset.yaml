@@ -72,7 +72,7 @@ spec:
             {{- end }}
           volumeMounts:
             {{- if .Values.zigbeeDevice.enabled }}
-            - name: zigbeeDevice
+            - name: zigbee-device
               mountPath: {{ .Values.zigbeeDevice.hostPath }}
             {{- end }}
             - name: config
@@ -118,7 +118,7 @@ spec:
 
       volumes:
         {{- if .Values.zigbeeDevice.enabled }}
-        - name: zigbeeDevice
+        - name: zigbee-device
           hostPath:
             path: {{ .Values.zigbeeDevice.hostPath }}
         {{- end }}
@@ -132,7 +132,6 @@ spec:
             claimName: {{ .Values.persistence.existingClaim }}
         {{- end }}
         {{- include "deconz.extraVolumes" . | nindent 8 }}
-
 
   volumeClaimTemplates:
     {{- if and .Values.persistence.enabled ( not .Values.persistence.existingClaim ) }}
