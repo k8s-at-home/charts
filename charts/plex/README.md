@@ -13,7 +13,7 @@ helm install billimek/plex
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `plex`:
 
 ```console
 helm install plex billimek/plex
