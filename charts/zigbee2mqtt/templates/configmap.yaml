@@ -9,3 +9,40 @@ data:
 {{- with .Values.config }}
     {{- toYaml . | nindent 4 }}
 {{- end }}
+---
+{{- if .Values.assistant.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "zigbee2mqtt.fullname" . }}assistant
+  labels:
+{{ include "zigbee2mqtt.labels" . | indent 4 }}
+data:
+  TZ: {{ .Values.timezone | quote }}  
+  {{- $server := default "mqtt://localhost:1883" .Values.config.mqtt.server }}
+  {{- $protocol := (split "://" $server)._0 }}
+  {{- $host := (split ":" (split "://" $server)._1)._0 }}
+  {{- $port := (split ":" $server)._2 }}
+  Z2MA_SETTINGS__MQTTSERVER: {{ $host }}
+  {{- if eq $protocol "mqtts"}}
+  Z2MA_SETTINGS__MQTTSECURE: "true"
+  {{- end }}
+  {{- if $port }}
+  Z2MA_SETTINGS__MQTTPORT: {{ $port }}
+  {{- end }}
+  {{- if .Values.config.mqtt.user }}
+  Z2MA_SETTINGS__MQTTUSERNAME: {{ .Values.config.mqtt.user }}
+  {{- end }}
+  {{- if .Values.config.mqtt.password }}
+  Z2MA_SETTINGS__MQTTPASSWORD: {{ .Values.config.mqtt.password }}
+  {{- end }}
+  {{- if .Values.config.mqtt.base_topic }}
+  Z2MA_SETTINGS__BASETOPIC: {{ .Values.config.mqtt.base_topic }}
+  {{- end }}
+  {{- if and .Values.config.homeassistant .Values.config.advanced.homeassistant_discovery_topic }}
+  Z2MA_SETTINGS__HOMEASSISTANTDISCOVERYBASETOPIC: {{ .Values.config.advanced.homeassistant_discovery_topic }}
+  {{- end }}
+  {{- range $key, $val := .Values.assistant.config }}
+  Z2MA_SETTINGS__{{ $key | upper }}: {{ $val | quote }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,50 @@
+{{- if .Values.assistant.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "zigbee2mqtt.fullname" . }}
+  labels:
+{{ include "zigbee2mqtt.labels" . | indent 4 }}
+{{- if .Values.assistant.service.labels }}
+{{ toYaml .Values.assistant.service.labels | indent 4 }}
+{{- end }}
+{{- with .Values.assistant.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+{{- if (or (eq .Values.assistant.service.type "ClusterIP") (empty .Values.assistant.service.type)) }}
+  type: ClusterIP
+  {{- if .Values.assistant.service.clusterIP }}
+  clusterIP: {{ .Values.assistant.service.clusterIP }}
+  {{end}}
+{{- else if eq .Values.assistant.service.type "LoadBalancer" }}
+  type: {{ .Values.assistant.service.type }}
+  {{- if .Values.assistant.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.assistant.service.loadBalancerIP }}
+  {{- end }}
+  {{- if .Values.assistant.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+{{ toYaml .Values.assistant.service.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+{{- else }}
+  type: {{ .Values.assistant.service.type }}
+{{- end }}
+{{- if .Values.assistant.service.externalIPs }}
+  externalIPs:
+{{ toYaml .Values.assistant.service.externalIPs | indent 4 }}
+{{- end }}
+  {{- if .Values.assistant.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.assistant.service.externalTrafficPolicy }}
+  {{- end }}
+  ports:
+    - name: http
+      port: {{ .Values.assistant.service.port }}
+      protocol: TCP
+      targetPort: http
+{{ if (and (eq .Values.assistant.service.type "NodePort") (not (empty .Values.assistant.service.nodePort))) }}
+      nodePort: {{.Values.assistant.service.nodePort}}
+{{ end }}
+  selector:
+    {{- include "zigbee2mqtt.selectorLabels" . | nindent 4 }}
+{{- end }}

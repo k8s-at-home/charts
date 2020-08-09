@@ -1,0 +1,35 @@
+{{- if and .Values.assistant.enabled .Values.assistant.ingress.enabled -}}
+{{- $fullName := include "zigbee2mqtt.fullname" . -}}
+{{- $ingressPath := .Values.assistant.ingress.path -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+{{ include "zigbee2mqtt.labels" . | indent 4 }}
+  {{- with .Values.assistant.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+{{- if .Values.assistant.ingress.tls }}
+  tls:
+  {{- range .Values.assistant.ingress.tls }}
+    - hosts:
+      {{- range .hosts }}
+        - {{ . | quote }}
+      {{- end }}
+      secretName: {{ .secretName }}
+  {{- end }}
+{{- end }}
+  rules:
+  {{- range .Values.assistant.ingress.hosts }}
+    - host: {{ . | quote }}
+      http:
+        paths:
+          - path: {{ $ingressPath }}
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: http
+  {{- end }}
+{{- end }}
