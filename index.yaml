@@ -1074,6 +1074,36 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/heimdall-1.0.1/heimdall-1.0.1.tgz
     version: 1.0.1
   home-assistant:
+  - apiVersion: v2
+    appVersion: 0.113.3
+    created: "2020-08-11T13:15:02.678147426Z"
+    dependencies:
+    - condition: esphome.enabled
+      name: esphome
+      repository: https://billimek.com/billimek-charts
+      version: ~1.0.0
+    description: Home Assistant
+    digest: afc9da9d4d4159f760f91e0eb10baf6bf3e36b62f7ece05646e562035b7cc4e7
+    home: https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: phil@hellmi.de
+      name: runningman84
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/danielperna84/hass-configurator
+    - https://github.com/cdr/code-server
+    - https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+    urls:
+    - https://github.com/billimek/billimek-charts/releases/download/home-assistant-1.1.0/home-assistant-1.1.0.tgz
+    version: 1.1.0
   - apiVersion: v1
     appVersion: 0.113.3
     created: "2020-08-06T12:43:53.998082874Z"
