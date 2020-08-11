@@ -1,8 +1,8 @@
-apiVersion: v1
+apiVersion: v2
 appVersion: 0.113.3
 description: Home Assistant
 name: home-assistant
-version: 1.0.5
+version: 1.1.0
 keywords:
 - home-assistant
 - hass
@@ -19,3 +19,8 @@ maintainers:
   email: jeff@billimek.com
 - name: runningman84
   email: phil@hellmi.de
+dependencies:
+- name: esphome
+  repository: https://billimek.com/billimek-charts
+  version: ~1.0.0
+  condition: esphome.enabled

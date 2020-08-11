@@ -322,6 +322,18 @@ appdaemon:
     loadBalancerSourceRanges: []
     # nodePort: 30000
 
+esphome:
+  enabled: false
+  # Mount home-assistant's secrets.yaml into the esphome container.
+  extraVolumes:
+    - name: ha-config
+      persistentVolumeClaim:
+        claimName: home-assistant
+  extraVolumeMounts:
+    - name: ha-config
+      mountPath: /config/secrets.yaml
+      subPath: secrets.yaml
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little

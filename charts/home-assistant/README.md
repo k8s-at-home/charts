@@ -169,6 +169,7 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `appdaemon.service.externalIPs`                 | External IPs for the AppDaemon UI                                                                                                                                                                                                         | `[]`                                |
 | `appdaemon.service.loadBalancerIP`              | Loadbalancer IP for the AppDaemon UI                                                                                                                                                                                                      | ``                                  |
 | `appdaemon.service.loadBalancerSourceRanges`    | Loadbalancer client IP restriction range for the VS Code UI                                                                                                                                                                               | `[]`                                |
+| `esphome.enabled`                               | Enable the optional [ESPHome](https://esphome.io) deployment                                                                                                                                                                              | `false`                             |
 | `resources`                                     | CPU/Memory resource requests/limits or the home-assistant GUI                                                                                                                                                                             | `{}`                                |
 | `nodeSelector`                                  | Node labels for pod assignment or the home-assistant GUI                                                                                                                                                                                  | `{}`                                |
 | `tolerations`                                   | Toleration labels for pod assignment or the home-assistant GUI                                                                                                                                                                            | `[]`                                |
@@ -183,9 +184,6 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `monitoring.serviceMonitor.labels`              | Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator                                                                                                                                           | `{}`                                |
 | `monitoring.serviceMonitor.bearerTokenFile`     | Set bearerTokenFile for home-assistant auth (use long lived access tokens)                                                                                                                                                                | `nil`                               |
 | `monitoring.serviceMonitor.bearerTokenSecret`   | Set bearerTokenSecret for home-assistant auth (use long lived access tokens)                                                                                                                                                              | `nil`                               |
-
-
-
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
