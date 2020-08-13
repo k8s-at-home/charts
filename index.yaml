@@ -1075,6 +1075,36 @@ entries:
     version: 1.0.1
   home-assistant:
   - apiVersion: v2
+    appVersion: 0.114.0
+    created: "2020-08-13T15:03:03.530304033Z"
+    dependencies:
+    - condition: esphome.enabled
+      name: esphome
+      repository: https://billimek.com/billimek-charts
+      version: ~1.0.0
+    description: Home Assistant
+    digest: 46b83b18db5059521e2a780288f51171ca90e12ffc3e58b30d778ba924794ad0
+    home: https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: phil@hellmi.de
+      name: runningman84
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/danielperna84/hass-configurator
+    - https://github.com/cdr/code-server
+    - https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+    urls:
+    - https://github.com/billimek/billimek-charts/releases/download/home-assistant-1.1.1/home-assistant-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
     appVersion: 0.113.3
     created: "2020-08-11T13:15:02.678147426Z"
     dependencies:
