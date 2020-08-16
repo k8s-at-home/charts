@@ -1,0 +1,153 @@
+# Default values for lazylibrarian.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+
+image:
+  repository: linuxserver/lazylibrarian
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 581cdfb3-ls23
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+timezone: UTC
+puid: 1001
+pgid: 1001
+
+# Linuxserver.io additional layers.
+# Enables additional features for the image, at the cost of increased size and
+# possible incompatabilities with certain architectures. Disabled by default.
+#
+# To enable, set enabled to true, and follow the guide at: https://github.com/linuxserver/docker-lazylibrarian#application-setup
+# to configure the application.
+dockerMods:
+  # Enable the Calibre Docker Mod to allow Calibredb import
+  calibre:
+    enabled: false
+    image:
+      repository: linuxserver/calibre-web
+      tag: calibre
+  # Enable the FFMpeg Docker Mod. This allows using the audiobook conversion features of LazyLibrarian.
+  ffmpeg:
+    enabled: false
+    image:
+      repository: linuxserver/mods
+      tag: lazylibrarian-ffmpeg
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+persistence:
+  enabled: false
+  annotations: {}
+  ## lazylibrarian data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+
+  ## If you want to reuse an existing claim, you can pass the name of the PVC using
+  ## the existingClaim variable
+  ##
+  # existingClaim: lazylibrarian-config
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+  # Any extra volumes to define for the pod
+  # Volumes will be mounted to the folder specified under mountPath
+  # If no mountPath is set it will be mounted to /mnt/<name>
+  extraVolumes: []
+  #  - name: example-name
+  #    hostPath:
+  #      path: /path/on/host
+  #    type: DirectoryOrCreate
+  #    mountPath: "/mnt/test"
+
+service:
+  type: ClusterIP
+  port: 5299
+  # externalTrafficPolicy: Local
+  # loadBalancerIP: ""
+  # loadBalancerSourceRanges: []
+  annotations: {}
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+probes:
+  liveness:
+    enabled: true
+    scheme: HTTP
+    initialDelaySeconds: 60
+    failureThreshold: 5
+    timeoutSeconds: 10
+  readiness:
+    enabled: true
+    scheme: HTTP
+    initialDelaySeconds: 60
+    failureThreshold: 5
+    timeoutSeconds: 10
+  startup:
+    enabled: false
+    scheme: HTTP
+    failureThreshold: 30
+    periodSeconds: 10
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
