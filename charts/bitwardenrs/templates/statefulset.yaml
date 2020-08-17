@@ -1,0 +1,121 @@
+{{- if eq .Values.persistence.type "statefulset" }}
+  {{- $fullName := include "bitwardenrs.fullname" . -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ $fullName }}
+  labels:
+  {{- include "bitwardenrs.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+  {{- include "bitwardenrs.selectorLabels" . | nindent 6 }}
+  serviceName: {{ $fullName }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+    {{- include "bitwardenrs.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "bitwardenrs.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ $fullName }}
+          {{- with .Values.securityContext }}
+          securityContext:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ $fullName }}
+          env:
+            {{- with .Values.bitwardenrs.admin }}
+            {{- if and .enabled (not .disableAdminToken) }}
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  {{- if .existingSecret.enabled }}
+                  name: {{ .existingSecret.name | quote }}
+                  key: {{ .existingSecret.tokenKey | quote }}
+                  {{- else }}
+                  name: {{ $fullName }}
+                  key: admin-token
+                {{- end }}
+                {{- end }}
+                {{- end }}
+                {{- with .Values.bitwardenrs.smtp }}
+                {{- if eq .enabled true }}
+            {{- if and .existingSecret.enabled (not .user) }}
+            - name: SMTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .existingSecret.name | quote }}
+                  key: {{ .existingSecret.userKey | quote }}
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .existingSecret.name | quote }}
+                  key: {{ .existingSecret.passwordKey | quote }}
+              {{- end }}
+          {{- end }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            {{- if .Values.bitwardenrs.websockets.enabled }}
+            - name: websocket
+              containerPort: {{ .Values.bitwardenrs.websockets.port }}
+              protocol: TCP
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          {{- with .Values.resources }}
+          resources:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: {{ include "bitwardenrs.fullname" . }}
+              mountPath: /data
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: {{ include "bitwardenrs.fullname" . }}
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim | quote }}{{- else }}{{ include "bitwardenrs.fullname" . }}{{- end }}
+          {{- else }}
+          emptyDir: {}
+  {{- end }}
+  {{- end }}
