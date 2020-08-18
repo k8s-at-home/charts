@@ -1,0 +1,24 @@
+type: application
+
+apiVersion: v2
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+appVersion: 0.6.8-ls74
+description: Calibre-Web is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database.
+name: calibre-web
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 1.1.2
+keywords:
+  - calibre
+  - ebook
+home: https://github.com/billimek/billimek-charts/tree/master/charts/calibre-web
+icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-web-icon.png
+sources:
+  - https://hub.docker.com/r/linuxserver/calibre-web/
+  - https://github.com/janeczku/calibre-web
+maintainers:
+  - name: wojoinc
+    email: wojoinc@pm.me
