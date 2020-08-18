@@ -68,17 +68,23 @@ tolerations: []
 
 affinity: {}
 
+# if using prometheus in the options below
+# wire up a servicemonitor for prometheus-operator
+prometheus:
+  serviceMonitor:
+    enabled: false
+    interval: 1m
+    additionalLabels: {}
+
 config:
   poller:
     # config.poller.debug -- Turns on line numbers, microsecond logging, and a per-device log.
     # The default is false, but I personally leave this on at home (four devices).
     # This may be noisy if you have a lot of devices. It adds one line per device.
     debug: false
-
     # config.poller.quiet -- Turns off per-interval logs. Only startup and error logs will be emitted.
     # Recommend enabling debug with this setting for better error logging.
     quiet: false
-
     # config.poller.plugins -- Load dynamic plugins. Advanced use; only sample mysql plugin provided by default.
     plugins: []
 
@@ -94,7 +100,7 @@ config:
 
   influxdb:
     # config.influxdb.disable -- Disable prometheus output
-    disable: false
+    disable: true
     # config.influxdb.interval --
     interval: "30s"
     # config.influxdb.url -- InfluxDB does not require auth by default, so the user/password are probably unimportant.
@@ -133,13 +139,11 @@ config:
       pass: "unifipoller"
       # config.unifi.defaults.url -- Url to talk to unifi
       url: "https://127.0.0.1:8443"
-
       # config.unifi.defaults.sites -- If the controller has more than one site, specify which sites to poll here.
       # Set this to ["default"] to poll only the first site on the controller.
       # A setting of ["all"] will poll all sites; this works if you only have 1 site too.
       sites:
         - all
-
       # config.unifi.defaults.verify_ssl -- If your UniFi controller has a valid SSL certificate (like lets encrypt),
       # you can enable this option to validate it. Otherwise, any SSL certificate is
       # valid. If you don't know if you have a valid SSL cert, then you don't have one
@@ -154,10 +158,8 @@ config:
       # more API requests to your controller(s). Don't let these "cons" sway you:
       # it's cool data. Please provide feedback on your experience with this feature.
       save_dpi: false
-
       # config.unifi.defaults.save_sites -- Enable collection of site data. This data powers the Network Sites dashboard.
       # It's not valuable to everyone and setting this to false will save resources.
       save_sites: true
-
     # config.unifi.controllers -- Repeat any controllers like default above
     controllers: []

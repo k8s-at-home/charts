@@ -4,16 +4,9 @@ metadata:
   name: {{ include "unifi-poller.fullname" . }}
   labels:
 {{ include "unifi-poller.labels" . | indent 4 }}
-{{- if or (not .Values.config.prometheus.disable) (.Values.service.annotations) }}
+{{- if .Values.service.annotations }}
   annotations:
-    {{- if not .Values.config.prometheus.disable }}
-    prometheus.io/path: /metrics
-    prometheus.io/port: "9130"
-    prometheus.io/scrape: "true"
-    {{- end }}
-    {{- if .Values.service.annotations }}
-    {{ toYaml .Values.service.annotations | nindent 4 }}
-    {{- end }}
+{{ toYaml .Values.service.annotations | indent 4 }}
 {{- end }}
 spec:
   type: {{ .Values.service.type }}
