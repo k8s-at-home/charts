@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "librespeed.fullname" . }}
+  {{- if .Values.deploymentAnnotations }}
+  annotations:
+    {{- range $key, $value := .Values.deploymentAnnotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+  labels:
+    app.kubernetes.io/name: {{ include "librespeed.name" . }}
+    helm.sh/chart: {{ include "librespeed.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  strategy:
+    type: {{ .Values.strategyType }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "librespeed.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "librespeed.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- if .Values.podAnnotations }}
+      annotations:
+        {{- range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.livenessProbePath }}
+              port: http
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.readinessProbePath }}
+              port: http
+          env:
+            - name: TZ
+              value: "{{ .Values.timezone }}"
+            - name: PUID
+              value: "{{ .Values.puid }}"
+            - name: GUID
+              value: "{{ .Values.pgid }}"
+            {{ if .Values.telemetry }}
+            - name: TELEMETRY
+              value: "{{ .Values.telemetry }}"
+            - name: PASSWORD
+              value: "{{ .Values.password }}"
+            - name: ENABLE_ID_OBFUSCATION
+              value: "{{ .Values.idObfuscation }}"
+            - name: REDACT_IP_ADDRESSES
+              value: "{{ .Values.redactIPAddresses }}"
+            - name: EMAIL
+              value: "{{ .Values.email }}"
+            {{ end }}
+            - name: TITLE
+              value: "{{ .Values.title }}"
+            - name: DISTANCE
+              value: "{{ .Values.distance }}"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+{{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+{{- end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      volumes:
+        - name: config
+        {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "librespeed.fullname" . }}{{- end }}
+        {{- else }}
+          emptyDir: {}
+        {{ end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
