@@ -4,6 +4,13 @@ metadata:
   name: {{ include "deconz.fullname" . }}
   labels:
     {{- include "deconz.labels" . | nindent 4 }}
+  {{- if .Values.service.labels }}
+    {{ toYaml .Values.service.labels | nindent 4 }}
+  {{- end }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{ toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   {{- if (or (eq .Values.service.type "ClusterIP") (empty .Values.service.type)) }}
   type: ClusterIP
@@ -20,15 +27,24 @@ spec:
   {{- end }}
   {{- if .Values.service.loadBalancerSourceRanges }}
   loadBalancerSourceRanges:
-  {{ toYaml .Values.service.loadBalancerSourceRanges | indent 4 }}
+    {{ toYaml .Values.service.loadBalancerSourceRanges | nindent 4 }}
   {{- end -}}
   {{- else }}
-  {{- if .Values.service.externalIPs }}
-  externalIPs:
-  {{ toYaml .Values.service.externalIPs | indent 4 }}
-  {{- end }}
-  publishNotReadyAddresses: {{ .Values.service.publishNotReadyAddresses }}
   type: {{ .Values.service.type }}
+  {{- end }}
+  {{- if .Values.service.sessionAffinity }}
+  sessionAffinity: {{ .Values.service.sessionAffinity }}
+  {{- if .Values.service.sessionAffinityConfig }}
+  sessionAffinityConfig:
+    {{ toYaml .Values.service.sessionAffinityConfig | nindent 4 }}
+  {{- end -}}
+  {{- end }}
+  {{- with .Values.service.externalIPs }}
+  externalIPs:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if .Values.service.publishNotReadyAddresses }}
+  publishNotReadyAddresses: {{ .Values.service.publishNotReadyAddresses }}
   {{- end }}
   ports:
     - port: {{ .Values.service.httpPort }}
