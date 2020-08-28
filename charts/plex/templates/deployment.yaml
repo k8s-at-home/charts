@@ -243,7 +243,7 @@ spec:
           - name: shared
             mountPath: /shared
           - name: shared-logs
-            mountPath: "/config/Library/Application Support/Plex Media Server/Logs/"
+            mountPath: "/config/Library/Application Support/Plex Media Server/Logs"
           {{- if .Values.plexPreferences.enabled }}
           - name: {{ .Values.plexPreferences.volume.name }}
             mountPath: {{ .Values.plexPreferences.volume.mountPath }}
@@ -324,15 +324,15 @@ spec:
           secretName: {{ .Values.certificate.pkcsMangler.certificateSecret.name  }}
       {{- end }}
       {{- if .Values.logging.promtail.enabled -}}
-        - name: promtail-config
-          projected:
-            defaultMode: 0444
-            sources:
-              - configMap:
-                  name: {{ template "plex.fullname" . }}-promtail
-                  items:
-                    - key: promtail.yaml
-                      path: promtail.yaml
+      - name: promtail-config
+        projected:
+          defaultMode: 0444
+          sources:
+            - configMap:
+                name: {{ template "plex.fullname" . }}-promtail
+                items:
+                  - key: promtail.yaml
+                    path: promtail.yaml
       {{- end }}
 ##### VOLUMES END #####
     {{- with .Values.nodeSelector }}
