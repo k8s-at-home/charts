@@ -62,20 +62,20 @@ spec:
       {{- end }}
   {{- end }}
       containers:
-      {{- if .Values.logging.promtail.enabled -}}
+      {{- if .Values.logging.promtail.enabled }}
         - name: {{ .Chart.Name }}-promtail
           image: "{{ .Values.logging.promtail.image.repository }}:{{ .Values.logging.promtail.image.tag }}"
           imagePullPolicy: {{ .Values.logging.promtail.image.pullPolicy }}
           args:
-            - -config.file=/etc/promtail/promtail.yaml
+          - -config.file=/etc/promtail/promtail.yaml
           volumeMounts:
-            - name: promtail-config
-              mountPath: /etc/promtail/promtail.yaml
-              subPath: promtail.yaml
-              readOnly: true
-            - name: shared-logs
-              mountPath: /plex-logs
-      {{ end }}
+          - name: promtail-config
+            mountPath: /etc/promtail/promtail.yaml
+            subPath: promtail.yaml
+            readOnly: true
+          - name: shared-logs
+            mountPath: /plex-logs
+      {{- end }}
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -321,18 +321,18 @@ spec:
           defaultMode: {{ .Values.certificate.pkcsMangler.volume.defaultMode }}
       - name: {{ .Values.certificate.pkcsMangler.certificateSecret.volume.name }}
         secret:
-          secretName: {{ .Values.certificate.pkcsMangler.certificateSecret.name  }}
+          secretName: {{ .Values.certificate.pkcsMangler.certificateSecret.name }}
       {{- end }}
-      {{- if .Values.logging.promtail.enabled -}}
+      {{- if .Values.logging.promtail.enabled }}
       - name: promtail-config
         projected:
           defaultMode: 0444
           sources:
-            - configMap:
-                name: {{ template "plex.fullname" . }}-promtail
-                items:
-                  - key: promtail.yaml
-                    path: promtail.yaml
+          - configMap:
+              name: {{ template "plex.fullname" . }}-promtail
+              items:
+                - key: promtail.yaml
+                  path: promtail.yaml
       {{- end }}
 ##### VOLUMES END #####
     {{- with .Values.nodeSelector }}
