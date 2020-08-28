@@ -1,0 +1,18 @@
+{{- if .Values.logging.promtail.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "plex.fullname" . }}-promtail
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "plex.name" . }}
+    helm.sh/chart: {{ include "plex.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+{{- if .Values.logging.promtail.config }}
+{{ $root := . }}
+  promtail.yaml: |
+{{ tpl (toYaml .Values.logging.promtail.config | indent 4) $root }}
+{{- end }}
+{{- end }}

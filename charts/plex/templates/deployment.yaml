@@ -62,6 +62,20 @@ spec:
       {{- end }}
   {{- end }}
       containers:
+      {{- if .Values.logging.promtail.enabled -}}
+        - name: {{ .Chart.Name }}-promtail
+          image: "{{ .Values.logging.promtail.image.repository }}:{{ .Values.logging.promtail.image.tag }}"
+          imagePullPolicy: {{ .Values.logging.promtail.image.pullPolicy }}
+          args:
+            - -config.file=/etc/promtail/promtail.yaml
+          volumeMounts:
+            - name: promtail-config
+              mountPath: /etc/promtail/promtail.yaml
+              subPath: promtail.yaml
+              readOnly: true
+            - name: shared-logs
+              mountPath: /plex-logs
+      {{ end }}
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -181,16 +195,21 @@ spec:
             httpGet:
               path: /identity
               port: 32400
-            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
+            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
           livenessProbe:
             httpGet:
               path: /identity
               port: 32400
-            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
-            timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+          startupProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
+            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
+            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
           volumeMounts:
           {{- if .Values.persistence.data.enabled }}
           - name: data
@@ -223,6 +242,8 @@ spec:
           {{- end }}
           - name: shared
             mountPath: /shared
+          - name: shared-logs
+            mountPath: "/config/Library/Application Support/Plex Media Server/Logs/"
           {{- if .Values.plexPreferences.enabled }}
           - name: {{ .Values.plexPreferences.volume.name }}
             mountPath: {{ .Values.plexPreferences.volume.mountPath }}
@@ -235,10 +256,7 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+##### VOLUMES START #####
       volumes:
 {{- if .Values.persistence.data.enabled }}
       - name: data
@@ -288,6 +306,8 @@ spec:
 {{- end }}
       - name: shared
         emptyDir: {}
+      - name: shared-logs
+        emptyDir: {}
       {{- if .Values.plexPreferences.enabled }}
       - name: {{ .Values.plexPreferences.volume.name }}
         configMap:
@@ -303,7 +323,22 @@ spec:
         secret:
           secretName: {{ .Values.certificate.pkcsMangler.certificateSecret.name  }}
       {{- end }}
-##### VOLUMES END  #####
+      {{- if .Values.logging.promtail.enabled -}}
+        - name: promtail-config
+          projected:
+            defaultMode: 0444
+            sources:
+              - configMap:
+                  name: {{ template "plex.fullname" . }}-promtail
+                  items:
+                    - key: promtail.yaml
+                      path: promtail.yaml
+      {{- end }}
+##### VOLUMES END #####
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
