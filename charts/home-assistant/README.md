@@ -5,8 +5,8 @@ This is a helm chart for [Home Assistant](https://www.home-assistant.io/)
 ## TL;DR;
 
 ```shell
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/home-assistant
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/home-assistant
 ```
 
 ## Introduction
@@ -18,7 +18,7 @@ This code is adapted for [the official home assistant docker image](https://hub.
 To install the chart with the release name `my-release`:
 
 ```shell
-helm install --name my-release billimek/home-assistant
+helm install --name my-release k8s-at-home/home-assistant
 ```
 
 ## Uninstalling the Chart
@@ -96,7 +96,7 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `extraEnv`                                      | Extra ENV vars to pass to the home-assistant container                                                                                                                                                                                    | `{}`                                |
 | `extraEnvSecrets`                               | Extra env vars to pass to the home-assistant container from k8s secrets - see `values.yaml` for an example                                                                                                                                | `{}`                                |
 | `configurator.enabled`                          | Enable the optional [configuration UI](https://github.com/danielperna84/hass-configurator)                                                                                                                                                | `false`                             |
-| `configurator.image.repository`                 | Image repository                                                                                                                                                                                                                          | `billimek/hass-configurator-docker` |
+| `configurator.image.repository`                 | Image repository                                                                                                                                                                                                                          | `k8s-at-home/hass-configurator-docker` |
 | `configurator.image.tag`                        | Image tag                                                                                                                                                                                                                                 | `0.3.5-x86_64`                      |
 | `configurator.image.pullPolicy`                 | Image pull policy                                                                                                                                                                                                                         | `IfNotPresent`                      |
 | `configurator.hassApiUrl`                       | Home Assistant API URL (e.g. 'http://home-assistant:8123/api/') - will auto-configure to proper URL if not set                                                                                                                            | ``                                  |
@@ -193,13 +193,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```shell
 helm install --name my-release \
   --set configurator.hassApiPassword="$HASS_API_PASSWORD" \
-    billimek/home-assistant
+    k8s-at-home/home-assistant
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```shell
-helm install --name my-release -f values.yaml billimek/home-assistant
+helm install --name my-release -f values.yaml k8s-at-home/home-assistant
 ```
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.

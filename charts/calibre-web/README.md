@@ -5,8 +5,8 @@ This is a helm chart for [calibre-web](https://github.com/janeczku/calibre-web) 
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.github.io/billimek-charts/
-$ helm install billimek/calibre-web
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/calibre-web
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/calibre-web
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/calibre-web
+helm install --name my-release k8s-at-home/calibre-web
 ```
 
 ## Uninstalling the Chart
@@ -87,7 +87,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install --name my-release \
   --set timezone="America/New York" \
-    billimek/calibre-web
+    k8s-at-home/calibre-web
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
@@ -104,4 +104,4 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 ---
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/calibre-web/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/calibre-web/values.yaml) file. It has several commented out suggested values.

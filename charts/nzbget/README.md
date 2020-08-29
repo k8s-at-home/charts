@@ -5,8 +5,8 @@ This is a helm chart for [NZBGet](https://nzbget.net/) leveraging the [Linuxserv
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/nzbget
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/nzbget
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/nzbget
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/nzbget
+helm install --name my-release k8s-at-home/nzbget
 ```
 
 The default login details (change ASAP) are:
@@ -88,7 +88,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install --name my-release \
   --set timezone="America/New York" \
-    billimek/nzbget
+    k8s-at-home/nzbget
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
@@ -104,4 +104,4 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 ---
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/nzbget/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/nzbget/values.yaml) file. It has several commented out suggested values.

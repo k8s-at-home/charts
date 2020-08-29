@@ -7,8 +7,8 @@ The default values and container images used in this chart will allow for runnin
 ## TL;DR
 
 ```console
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/bitwardenrs
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/bitwardenrs
 ```
 
 ## Installing the Chart
@@ -16,7 +16,7 @@ helm install billimek/bitwardenrs
 To install the chart with the release name `bitwarden`:
 
 ```console
-helm install bitwarden billimek/bitwardenrs
+helm install bitwarden k8s-at-home/bitwardenrs
 ```
 
 ## Uninstalling the Chart
@@ -31,18 +31,18 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/bitwardenrs/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/bitwardenrs/values.yaml) file. It has several commented out suggested values.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 helm install bitwarden \
   --set timeZone="America/New York" \
-    billimek/bitwardenrs
+    k8s-at-home/bitwardenrs
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install bitwarden billimek/bitwardenrs  --values values.yaml 
+helm install bitwarden k8s-at-home/bitwardenrs  --values values.yaml 
 ```

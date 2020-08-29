@@ -7,8 +7,8 @@ This tool is a wrapper for speedtest-cli which allows you to run periodic speedt
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/speedtest
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/speedtest
 ```
 
 ## Installing the Chart
@@ -16,7 +16,7 @@ $ helm install billimek/speedtest
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install --name my-release billimek/speedtest
+$ helm install --name my-release k8s-at-home/speedtest
 ```
 
 ## Uninstalling the Chart
@@ -39,7 +39,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 
 | Parameter                            | Description                                | Default                                                    |
 | -------------------------------      | -------------------------------            | ---------------------------------------------------------- |
-| `image.repository`                   | speedtest image                                | `billimek/speedtestusage-for-influxdb`                     |
+| `image.repository`                   | speedtest image                                | `k8s-at-home/speedtestusage-for-influxdb`                     |
 | `image.tag`                          | speedtest image tag                            | `latest`                                                 |
 | `image.pullPolicy`                   | speedtest image pull policy                    | `IfNotPresent`                                           |
 | `debug`                              | Display debugging output                     | `false`                                                  |
@@ -59,14 +59,14 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 $ helm install --name my-release \
   --set config.influxdb.host=some-influx-host \
-    billimek/speedtest
+    k8s-at-home/speedtest
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install --name my-release -f values.yaml billimek/speedtest
+$ helm install --name my-release -f values.yaml k8s-at-home/speedtest
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/speedtest/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/speedtest/values.yaml) file. It has several commented out suggested values.
 

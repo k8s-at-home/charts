@@ -5,8 +5,8 @@ This is a helm chart for [heimdall](https://github.com/heimdall/heimdall) levera
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/heimdall
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/heimdall
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/heimdall
 To install the chart with the release name `my-release`:
 
 ```console
-helm install my-release billimek/heimdall
+helm install my-release k8s-at-home/heimdall
 ```
 
 ## Uninstalling the Chart
@@ -77,13 +77,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install my-release \
   --set timezone="America/New York" \
-    billimek/heimdall
+    k8s-at-home/heimdall
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install my-release -f values.yaml billimek/heimdall
+helm install my-release -f values.yaml k8s-at-home/heimdall
 ```
 
 ---
@@ -93,4 +93,4 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 ---
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/heimdall/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/heimdall/values.yaml) file. It has several commented out suggested values.

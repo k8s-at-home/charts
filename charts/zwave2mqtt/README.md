@@ -5,8 +5,8 @@ This is a helm chart for [zwave2mqtt](https://github.com/OpenZWave/Zwave2Mqtt)
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/zwave2mqtt
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/zwave2mqtt
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/zwave2mqtt
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/zwave2mqtt
+helm install --name my-release k8s-at-home/zwave2mqtt
 ```
 
 **IMPORTANT NOTE:** a zwave controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
@@ -47,14 +47,14 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/zwave2mqtt/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/zwave2mqtt/values.yaml) file. It has several commented out suggested values.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 helm install --name my-release \
   --set rtspPassword="nosecrets" \
-    billimek/zwave2mqtt
+    k8s-at-home/zwave2mqtt
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,

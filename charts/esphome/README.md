@@ -5,8 +5,8 @@ This is a helm chart for [ESPHome](https://esphome.io)
 ## TL;DR;
 
 ```shell
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/esphome
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/esphome
 ```
 
 ## Introduction
@@ -18,7 +18,7 @@ This code is adapted for [the official esphome docker image](https://hub.docker.
 To install the chart with the release name `my-release`:
 
 ```shell
-helm install --name my-release billimek/esphome
+helm install --name my-release k8s-at-home/esphome
 ```
 ## Uninstalling the Chart
 
@@ -101,13 +101,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```shell
 helm install --name my-release \
   --set image.tag=latest \
-    billimek/esphome
+    k8s-at-home/esphome
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```shell
-helm install --name my-release -f values.yaml billimek/esphome
+helm install --name my-release -f values.yaml k8s-at-home/esphome
 ```
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.

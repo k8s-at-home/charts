@@ -7,8 +7,8 @@ This chart is 'forked' from the excellent [munnerz/kube-plex](https://github.com
 ## TL;DR
 
 ```shell
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/plex
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/plex
 ```
 
 ## Installing the Chart
@@ -16,7 +16,7 @@ helm install billimek/plex
 To install the chart with the release name `plex`:
 
 ```console
-helm install plex billimek/plex
+helm install plex k8s-at-home/plex
 ```
 
 ## Uninstalling the Chart
@@ -31,18 +31,18 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/plex/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/plex/values.yaml) file. It has several commented out suggested values.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 helm install plex \
   --set timezone="America/New York" \
-    billimek/plex
+    k8s-at-home/plex
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install plex -f values.yaml billimek/plex
+helm install plex -f values.yaml k8s-at-home/plex
 ```

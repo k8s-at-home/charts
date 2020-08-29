@@ -5,8 +5,8 @@ This is a helm chart for [piaware](https://github.com/flightaware/piaware)
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/piaware
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/piaware
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/piaware
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/piaware
+helm install --name my-release k8s-at-home/piaware
 ```
 
 **IMPORTANT NOTE:** a flight-aware USB device must be accessible on the node where this pod runs, in order for this chart to function properly.
@@ -47,14 +47,14 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/piaware/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/piaware/values.yaml) file. It has several commented out suggested values.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 helm install --name my-release \
   --set rtspPassword="nosecrets" \
-    billimek/piaware
+    k8s-at-home/piaware
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
