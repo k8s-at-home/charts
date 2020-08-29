@@ -2,13 +2,13 @@
 
 Low-code programming for event-driven applications
 
-**This chart is not maintained by the Node-RED project and any issues with the chart should be raised [here](https://github.com/billimek/billimek-charts/issues/new)**
+**This chart is not maintained by the Node-RED project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new)**
 
 ## TL;DR;
 
 ```shell
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/node-red
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/node-red
 ```
 
 ## Introduction
@@ -20,7 +20,7 @@ This code is adopted from the [official node-red docker image](https://hub.docke
 To install the chart with the release name `my-release`:
 
 ```shell
-helm install --name my-release billimek/node-red
+helm install --name my-release k8s-at-home/node-red
 ```
 ## Uninstalling the Chart
 
@@ -81,13 +81,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```shell
 helm install --name my-release \
   --set config.timezone="America/New_York" \
-    billimek/node-red
+    k8s-at-home/node-red
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```shell
-helm install --name my-release -f values.yaml billimek/node-red
+helm install --name my-release -f values.yaml k8s-at-home/node-red
 ```
 
 Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.

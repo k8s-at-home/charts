@@ -2,18 +2,18 @@ apiVersion: v2
 appVersion: 0.114.0
 description: Home Assistant
 name: home-assistant
-version: 1.2.0
+version: 2.0.0
 keywords:
 - home-assistant
 - hass
 - homeassistant
-home: https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+home: https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
 icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
 sources:
 - https://github.com/home-assistant/home-assistant
 - https://github.com/danielperna84/hass-configurator
 - https://github.com/cdr/code-server
-- https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+- https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
 maintainers:
 - name: billimek
   email: jeff@billimek.com
@@ -21,7 +21,7 @@ maintainers:
   email: phil@hellmi.de
 dependencies:
 - name: esphome
-  repository: https://billimek.com/billimek-charts
+  repository: https://k8s-at-home.com/charts/
   version: ~1.0.0
   condition: esphome.enabled
 - name: postgresql

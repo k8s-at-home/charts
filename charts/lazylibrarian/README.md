@@ -5,8 +5,8 @@ This is a helm chart for [LazyLibrarian](https://gitlab.com/LazyLibrarian/LazyLi
 ## TL;DR
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/lazylibrarian
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/lazylibrarian
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/lazylibrarian
 To install the chart with the release name `my-release`:
 
 ```shell
-helm install my-release billimek/lazylibrarian
+helm install my-release k8s-at-home/lazylibrarian
 ```
 
 ## Uninstalling the Chart
@@ -87,15 +87,15 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install my-release \
   --set timezone="Europe/Amsterdam" \
-    billimek/lazylibrarian
+    k8s-at-home/lazylibrarian
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install my-release -f values.yaml billimek/lazylibrarian
+helm install my-release -f values.yaml k8s-at-home/lazylibrarian
 ```
 
 ---
 
-Read through the [values.yaml](https://github.com/billimek/charts/lazylibrarian/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/lazylibrarian/values.yaml) file. It has several commented out suggested values.

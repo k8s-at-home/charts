@@ -7,8 +7,8 @@ This tool allows you to run periodic scanning of the sb6183 cable modem and save
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/modem-stats
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/modem-stats
 ```
 
 ## Installing the Chart
@@ -16,7 +16,7 @@ $ helm install billimek/modem-stats
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install --name my-release billimek/modem-stats
+$ helm install --name my-release k8s-at-home/modem-stats
 ```
 ## Uninstalling the Chart
 
@@ -57,13 +57,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 $ helm install --name my-release \
   --set onfig.influxdb.host=some-influx-host \
-    billimek/modem-stats
+    k8s-at-home/modem-stats
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install --name my-release -f values.yaml billimek/modem-stats
+$ helm install --name my-release -f values.yaml k8s-at-home/modem-stats
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/modem-stats/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/modem-stats/values.yaml) file. It has several commented out suggested values.

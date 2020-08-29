@@ -7,8 +7,8 @@ This tool allows you to run periodic uptimerobot data usage checks and save the 
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/uptimerobot
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/uptimerobot
 ```
 
 ## Introduction
@@ -20,7 +20,7 @@ This code is adopted from [this original repo](https://github.com/trojanc/node-i
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install --name my-release billimek/uptimerobot
+$ helm install --name my-release k8s-at-home/uptimerobot
 ```
 ## Uninstalling the Chart
 
@@ -61,13 +61,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 $ helm install --name my-release \
   --set config.uptimerobot.apikey=thisismyapikey \
-    billimek/uptimerobot
+    k8s-at-home/uptimerobot
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install --name my-release -f values.yaml billimek/uptimerobot
+$ helm install --name my-release -f values.yaml k8s-at-home/uptimerobot
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/uptimerobot/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/uptimerobot/values.yaml) file. It has several commented out suggested values.

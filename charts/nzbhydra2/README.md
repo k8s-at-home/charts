@@ -5,8 +5,8 @@ This is a helm chart for [nzbhydra2](https://github.com/theotherp/nzbhydra2) lev
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/nzbhydra2
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/nzbhydra2
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/nzbhydra2
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/nzbhydra2
+helm install --name my-release k8s-at-home/nzbhydra2
 ```
 
 ## Uninstalling the Chart
@@ -78,13 +78,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install --name my-release \
   --set timezone="America/New York" \
-    billimek/nzbhydra2
+    k8s-at-home/nzbhydra2
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install --name my-release -f values.yaml billimek/nzbhydra2
+helm install --name my-release -f values.yaml k8s-at-home/nzbhydra2
 ```
 
 ---
@@ -94,4 +94,4 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 ---
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/nzbhydra2/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/nzbhydra2/values.yaml) file. It has several commented out suggested values.

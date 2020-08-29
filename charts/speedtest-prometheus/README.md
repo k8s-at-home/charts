@@ -7,8 +7,8 @@ This is a helm chart provising a prometheus exporter (with optional ServiceMonto
 ## TL;DR;
 
 ```console
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/speedtest-prometheus
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/speedtest-prometheus
 ```
 
 ## Installing the Chart
@@ -16,7 +16,7 @@ helm install billimek/speedtest-prometheus
 To install the chart with the release name `speedtest-prometheus`:
 
 ```console
-helm install --name speedtest-prometheus billimek/speedtest-prometheus
+helm install --name speedtest-prometheus k8s-at-home/speedtest-prometheus
 ```
 
 ## Uninstalling the Chart
@@ -31,20 +31,20 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/speedtest-prometheus/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/speedtest-prometheus/values.yaml) file. It has several commented out suggested values.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```console
 helm install --name speedtest-prometheus \
    --set serviceMonitor.enabled=true \
-    billimek/speedtest-prometheus
+    k8s-at-home/speedtest-prometheus
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install --name speedtest-prometheus -f values.yaml billimek/speedtest-prometheus
+helm install --name speedtest-prometheus -f values.yaml k8s-at-home/speedtest-prometheus
 ```
 
 ## Grafana Dashboard

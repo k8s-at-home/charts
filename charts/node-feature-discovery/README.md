@@ -5,8 +5,8 @@ This is a helm chart for [node-feature-discovery](https://github.com/kubernetes-
 ## TL;DR
 
 ```shell
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/node-feature-discovery
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/node-feature-discovery
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ helm install billimek/node-feature-discovery
 To install the chart with the release name `my-release`:
 
 ```shell
-helm install my-release billimek/node-feature-discovery
+helm install my-release k8s-at-home/node-feature-discovery
 ```
 
 ## Uninstalling the Chart
@@ -30,7 +30,7 @@ The command removes all the Kubernetes components associated with the chart and 
 ## Configuration
 
 The following tables lists the configurable parameters of the Sentry chart and their default values.
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/node-feature-discovery/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/node-feature-discovery/values.yaml) file. It has several commented out suggested values.
 
 | Parameter                                   | Description                                                                                  | Default                                               |
 | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
@@ -50,8 +50,8 @@ Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/
 | `master.replicaCount`                       | Number of replicas to scale the master component to                                          | `1`                                                   |
 | `master.resources`                          | CPU/Memory resource requests/limits for master component                                     | `{}`                                                  |
 | `master.nodeSelector`                       | Node labels for master component pod assignment                                              | `{}`                                                  |
-| `master.tolerations`                        | Toleration labels for master component pod assignment                                        | See [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/node-feature-discovery/values.yaml)                                                  |
-| `master.affinity`                           | Affinity settings for master component pod assignment                                        | See [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/node-feature-discovery/values.yaml)                                                  |
+| `master.tolerations`                        | Toleration labels for master component pod assignment                                        | See [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/node-feature-discovery/values.yaml)                                                  |
+| `master.affinity`                           | Affinity settings for master component pod assignment                                        | See [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/node-feature-discovery/values.yaml)                                                  |
 | `worker.resources`                          | CPU/Memory resource requests/limits for worker component                                     | `{}`                                                  |
 | `worker.nodeSelector`                       | Node labels for worker component pod assignment                                              | `{}`                                                  |
 | `worker.tolerations`                        | Toleration labels for worker component pod assignment                                        | `[]`                                                  |
@@ -62,11 +62,11 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install my-release \
   --set image.pullPolicy="Always" \
-    billimek/node-feature-discovery
+    k8s-at-home/node-feature-discovery
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install my-release -f values.yaml billimek/node-feature-discovery
+helm install my-release -f values.yaml k8s-at-home/node-feature-discovery
 ```

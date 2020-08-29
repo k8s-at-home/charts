@@ -5,8 +5,8 @@ A script that pushes the public IP address of the running machine to DigitalOcea
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/digitalocean-dyndns
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/digitalocean-dyndns
 ```
 
 ## Introduction
@@ -18,7 +18,7 @@ This code is adopted from [this original repo](https://github.com/tunix/digitalo
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install --name my-release billimek/digitalocean-dyndns
+$ helm install --name my-release k8s-at-home/digitalocean-dyndns
 ```
 ## Uninstalling the Chart
 
@@ -50,13 +50,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install --name my-release \
   --set config.digitalocean.token=thisismyapikey \
-    billimek/digitalocean-dyndns
+    k8s-at-home/digitalocean-dyndns
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install --name my-release -f values.yaml billimek/digitalocean-dyndns
+helm install --name my-release -f values.yaml k8s-at-home/digitalocean-dyndns
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/digitalocean-dyndns/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/digitalocean-dyndns/values.yaml) file. It has several commented out suggested values.

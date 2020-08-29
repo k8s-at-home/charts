@@ -5,8 +5,8 @@ This is a helm chart for [duplicati](https://github.com/duplicati/duplicati) lev
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/duplicati
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/duplicati
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/duplicati
 To install the chart with the release name `my-release`:
 
 ```console
-helm install my-release billimek/duplicati
+helm install my-release k8s-at-home/duplicati
 ```
 
 ## Uninstalling the Chart
@@ -90,13 +90,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install my-release \
   --set timezone="America/New York" \
-    billimek/duplicati
+    k8s-at-home/duplicati
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install my-release -f values.yaml billimek/duplicati
+helm install my-release -f values.yaml k8s-at-home/duplicati
 ```
 
 ---
@@ -106,4 +106,4 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 ---
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/duplicati/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/duplicati/values.yaml) file. It has several commented out suggested values.

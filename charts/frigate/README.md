@@ -5,8 +5,8 @@ This is a helm chart for [frigate](https://github.com/blakeblackshear/frigate)
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/frigate
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/frigate
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/frigate
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/frigate
+helm install --name my-release k8s-at-home/frigate
 ```
 
 ~~**IMPORTANT NOTE:** the [Google Coral USB Accelerator](https://coral.withgoogle.com/products/accelerator/) must be accessible on the node where this pod runs, in order for this chart to function properly.~~
@@ -87,7 +87,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install --name my-release \
   --set rtspPassword="nosecrets" \
-    billimek/frigate
+    k8s-at-home/frigate
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
@@ -96,4 +96,4 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name my-release -f values.yaml stable/frigate
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/frigate/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/frigate/values.yaml) file. It has several commented out suggested values.

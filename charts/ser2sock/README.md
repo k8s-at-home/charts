@@ -5,8 +5,8 @@ This is a helm chart for [ser2sock](https://github.com/nutechsoftware/ser2sock)
 ## TL;DR;
 
 ```shell
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/ser2sock
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/ser2sock
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ $ helm install billimek/ser2sock
 To install the chart with the release name `my-release`:
 
 ```console
-helm install --name my-release billimek/ser2sock
+helm install --name my-release k8s-at-home/ser2sock
 ```
 
 **IMPORTANT NOTE:** the USB device must be accessible on the node where this pod runs, in order for this chart to function properly.
@@ -74,13 +74,13 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```console
 helm install --name my-release \
-    billimek/ser2sock
+    k8s-at-home/ser2sock
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install --name my-release -f values.yaml billimek/ser2sock
+helm install --name my-release -f values.yaml k8s-at-home/ser2sock
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/ser2sock/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/ser2sock/values.yaml) file. It has several commented out suggested values.

@@ -5,8 +5,8 @@ This is a helm chart for [deCONZ](https://www.dresden-elektronik.de/funk/softwar
 ## TL;DR
 
 ```shell
-helm repo add billimek https://billimek.com/billimek-charts/
-helm install billimek/deconz
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/deconz
 ```
 
 ## Installing the Chart
@@ -14,7 +14,7 @@ helm install billimek/deconz
 To install the chart with the release name `my-release`:
 
 ```shell
-helm install my-release billimek/deconz
+helm install my-release k8s-at-home/deconz
 ```
 
 ## Uninstalling the Chart
@@ -30,7 +30,7 @@ The command removes all the Kubernetes components associated with the chart and 
 ## Configuration
 
 The following tables lists the configurable parameters of the Sentry chart and their default values.
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/deconz/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/deconz/values.yaml) file. It has several commented out suggested values.
 
 | Parameter                                   | Description                                                                                  | Default                                        |
 | ------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------- |
@@ -91,11 +91,11 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install my-release \
   --set timezone="Europe/Amsterdam" \
-    billimek/deconz
+    k8s-at-home/deconz
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install my-release -f values.yaml billimek/deconz
+helm install my-release -f values.yaml k8s-at-home/deconz
 ```

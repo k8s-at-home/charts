@@ -7,8 +7,8 @@ This tool allows you to run periodic comcast data usage checks and save the resu
 ## TL;DR;
 
 ```console
-$ helm repo add billimek https://billimek.com/billimek-charts/
-$ helm install billimek/comcast
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/comcast
 ```
 
 ## Introduction
@@ -20,7 +20,7 @@ This code is adopted from the work done by [barrycarey](https://github.com/barry
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm install --name my-release billimek/comcast
+$ helm install --name my-release k8s-at-home/comcast
 ```
 ## Uninstalling the Chart
 
@@ -62,16 +62,16 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install --name my-release \
   --set config.comcast.username=tonystark,config.comcast.password=mypassword \
-    billimek/comcast
+    k8s-at-home/comcast
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-helm install --name my-release -f values.yaml billimek/comcast
+helm install --name my-release -f values.yaml k8s-at-home/comcast
 ```
 
-Read through the [values.yaml](https://github.com/billimek/billimek-charts/blob/master/charts/comcast/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/comcast/values.yaml) file. It has several commented out suggested values.
 
 ## InfluxDB metrics
 ```
