@@ -1,6 +1,25 @@
 apiVersion: v1
 entries:
   adguard-home:
+  - apiVersion: v2
+    appVersion: v0.102.0
+    created: "2020-08-29T15:24:33.31643393Z"
+    description: DNS proxy as ad-blocker for local network
+    digest: 303ea5bc7db140c8ac3da9cadfe4b809fe03f8bd91ac09b989cc2207f80cd5e0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/adguard-home
+    icon: https://avatars3.githubusercontent.com/u/8361145?s=200&v=4?sanitize=true
+    keywords:
+    - adguard-home
+    - adguard
+    - dns
+    maintainers:
+    - name: billimek
+    name: adguard-home
+    sources:
+    - https://github.com/AdguardTeam/AdGuardHome
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/adguard-home-2.0.0/adguard-home-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: v0.102.0
     created: "2020-08-04T03:59:52.863857743Z"
@@ -59,6 +78,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/adguard-home-1.0.0/adguard-home-1.0.0.tgz
     version: 1.0.0
   bazarr:
+  - apiVersion: v2
+    appVersion: v0.8.4.2-ls72
+    created: "2020-08-29T15:24:33.410563713Z"
+    description: Bazarr is a companion application to Sonarr and Radarr. It manages
+      and downloads subtitles based on your requirements
+    digest: 7f292f15829b6d1af495c26a3326e6990e40f2c2158f9cc21d641c000d97b524
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/bazarr
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - bittorrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: bazarr
+    sources:
+    - https://hub.docker.com/r/linuxserver/bazarr/
+    - https://github.com/morpheus65535/bazarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bazarr-3.0.0/bazarr-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: v0.8.4.2-ls72
     created: "2020-08-05T17:32:22.111764595Z"
@@ -162,6 +206,29 @@ entries:
   bitwardenrs:
   - apiVersion: v2
     appVersion: 1.16.3
+    created: "2020-08-29T15:24:33.553878024Z"
+    description: Unofficial Bitwarden compatible server written in Rust
+    digest: ebefdf477da9ef925a21b9e953b49840edd9e6f2a89365f10bed42b7ab0e7ad3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/bitwarden_rs
+    icon: https://raw.githubusercontent.com/bitwarden/brand/master/icons/256x256.png
+    keywords:
+    - bitwarden
+    - bitwardenrs
+    - bitwarden_rs
+    - password
+    - rust
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: bitwardenrs
+    sources:
+    - https://github.com/dani-garcia/bitwarden_rs
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bitwardenrs-1.0.0/bitwardenrs-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 1.16.3
     created: "2020-08-17T00:53:54.175517056Z"
     description: Unofficial Bitwarden compatible server written in Rust
     digest: 5957746298c5a2dfe3a45739c6172d5e1191b34cc0760fd0691c0f1b47b68986
@@ -184,6 +251,25 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/bitwardenrs-0.1.0/bitwardenrs-0.1.0.tgz
     version: 0.1.0
   blocky:
+  - apiVersion: v2
+    appVersion: v0.8
+    created: "2020-08-29T15:24:33.645939626Z"
+    description: DNS proxy as ad-blocker for local network
+    digest: 68ebf64265d571f1f19a8e1b94c9703972cf6ccae0a86bebbed716b8f58c5243
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/blocky
+    icon: https://github.com/0xERR0R/blocky/raw/master/docs/blocky.svg?sanitize=true
+    keywords:
+    - blocky
+    - dbs
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: blocky
+    sources:
+    - https://github.com/0xERR0R/blocky
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/blocky-4.0.0/blocky-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v1
     appVersion: v0.8
     created: "2020-08-04T17:53:07.082128161Z"
@@ -510,6 +596,28 @@ entries:
   calibre-web:
   - apiVersion: v2
     appVersion: 0.6.8-ls74
+    created: "2020-08-29T15:24:33.746532478Z"
+    description: Calibre-Web is a web app providing a clean interface for browsing,
+      reading and downloading eBooks using an existing Calibre database.
+    digest: 6c12990718e992b9d17f88ac15bdacb770ca21d7dee4c7b7cf08c9c87305cb0a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/calibre-web
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-web-icon.png
+    keywords:
+    - calibre
+    - ebook
+    maintainers:
+    - email: wojoinc@pm.me
+      name: wojoinc
+    name: calibre-web
+    sources:
+    - https://hub.docker.com/r/linuxserver/calibre-web/
+    - https://github.com/janeczku/calibre-web
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/calibre-web-2.0.0/calibre-web-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 0.6.8-ls74
     created: "2020-08-18T17:55:46.26163347Z"
     description: Calibre-Web is a web app providing a clean interface for browsing,
       reading and downloading eBooks using an existing Calibre database.
@@ -572,6 +680,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/cloudflare-dyndns-1.0.0/cloudflare-dyndns-1.0.0.tgz
     version: 1.0.0
   comcast:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-08-29T15:24:33.872365951Z"
+    description: periodic comcast data usage checks and save the results to InfluxDB
+    digest: 3424d4a2fc90d62b3c783c153c5924492f2b685f6d0ef9ff8df68248c3e4b744
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/comcast
+    icon: https://i.imgur.com/iR1dUpp.png
+    keywords:
+    - comcast
+    - influxdb
+    - xfinity
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: comcast
+    sources:
+    - https://github.com/billimek/comcastUsage-for-influxdb
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/comcast-3.0.0/comcast-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: 1.0.0
     created: "2020-02-23T13:57:18.561398726Z"
@@ -615,6 +744,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/comcast-2.0.0/comcast-2.0.0.tgz
     version: 2.0.0
   couchpotato:
+  - apiVersion: v2
+    appVersion: 7260c12f-ls33
+    created: "2020-08-29T15:24:33.976816543Z"
+    description: couchpotato is a movie downloading client
+    digest: 1eabde7c8505de0f06b20b824b708c5ba2a18f90eb44f7383ad50b3cec317ae1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/couchpotato
+    icon: https://github.com/CouchPotato/CouchPotatoServer/raw/master/couchpotato/static/images/icons/android.png
+    keywords:
+    - couchpotato
+    - usenet
+    - bittorrent
+    maintainers:
+    - email: simon.caron@protonmail.com
+      name: skaro13
+    name: couchpotato
+    sources:
+    - https://hub.docker.com/r/linuxserver/couchpotato/
+    - https://github.com/CouchPotato/CouchPotatoServer/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/couchpotato-2.0.0/couchpotato-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 7260c12f-ls33
     created: "2020-08-05T17:32:22.215538006Z"
@@ -681,6 +831,27 @@ entries:
   deconz:
   - apiVersion: v2
     appVersion: 2.05.80
+    created: "2020-08-29T15:24:34.090531155Z"
+    description: A Helm chart for deploying deCONZ
+    digest: d28f9b42253214916b2598da0b7c00e5340ed0a7bf765f8e62c9423314089f57
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/deconz
+    icon: https://avatars1.githubusercontent.com/u/4217524?s=400&v=4
+    keywords:
+    - deconz
+    - home-automation
+    - zigbee
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: deconz
+    sources:
+    - https://github.com/dresden-elektronik/deconz-rest-plugin
+    - https://github.com/marthoc/docker-deconz
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/deconz-2.0.0/deconz-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 2.05.80
     created: "2020-08-28T12:49:51.10284098Z"
     description: A Helm chart for deploying deCONZ
     digest: 7055eae57b16b734aad7c27b5454b06d7d16437df64917621d44b08632129459
@@ -743,6 +914,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/deconz-1.0.0/deconz-1.0.0.tgz
     version: 1.0.0
   digitalocean-dyndns:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2020-08-29T15:24:34.188083433Z"
+    description: Dynamic DNS using DigitalOcean's DNS Services
+    digest: 823bb1491f893df9fcac21d8317e774a326d36f9d08a28a4a62a54b0ff90cbe2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/digitalocean-dyndns
+    icon: https://i.imgur.com/cS6iqXD.png
+    keywords:
+    - digitalocean
+    - dynamicdns
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: digitalocean-dyndns
+    sources:
+    - https://github.com/tunix/digitalocean-dyndns
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/digitalocean-dyndns-2.0.0/digitalocean-dyndns-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-02-23T13:57:18.626064618Z"
@@ -804,6 +995,25 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/digitalocean-dyndns-0.1.4/digitalocean-dyndns-0.1.4.tgz
     version: 0.1.4
   duplicati:
+  - apiVersion: v2
+    appVersion: v2.0.5.1-2.0.5.1_beta_2020-01-18-ls58
+    created: "2020-08-29T15:24:34.277394595Z"
+    description: Store securely encrypted backups on cloud storage services!
+    digest: 3b549d85808a00a35479806715bdfef34aadb3123f644a405ed03d06a9546211
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/duplicati
+    icon: https://i.imgur.com/KjnkhUJ.png
+    keywords:
+    - duplicati
+    maintainers:
+    - email: simon.caron@protonmail.com
+      name: skaro13
+    name: duplicati
+    sources:
+    - https://hub.docker.com/r/linuxserver/duplicati/
+    - https://github.com/duplicati/duplicati
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/duplicati-2.0.0/duplicati-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: v2.0.5.1-2.0.5.1_beta_2020-01-18-ls58
     created: "2020-08-05T17:32:22.307730915Z"
@@ -862,6 +1072,24 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/duplicati-1.0.0/duplicati-1.0.0.tgz
     version: 1.0.0
   esphome:
+  - apiVersion: v2
+    appVersion: 1.14.5
+    created: "2020-08-29T15:24:34.385649004Z"
+    description: ESPHome
+    digest: 863656bc14af99b02ab158f76e98bd131b81060b645762979f3dd929cb9e4e9c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/esphome
+    icon: https://esphome.io/_images/logo-text.svg
+    keywords:
+    - esphome
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: esphome
+    sources:
+    - https://github.com/esphome/esphome
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/esphome-2.0.0/esphome-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 1.14.5
     created: "2020-07-07T19:10:25.297647889Z"
@@ -881,6 +1109,28 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/esphome-1.0.0/esphome-1.0.0.tgz
     version: 1.0.0
   frigate:
+  - apiVersion: v2
+    appVersion: 0.5.2
+    created: "2020-08-29T15:24:34.499179771Z"
+    description: Realtime object detection on RTSP cameras with the Google Coral
+    digest: e9f89714d529742bfbab1e4cce88c16e4706efb6dc73e337b1f111de78a4efe6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/frigate
+    icon: https://upload.wikimedia.org/wikipedia/commons/a/a4/Lutine1.jpg
+    keywords:
+    - tensorflow
+    - coral
+    - ml
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: blakeb@blakeshome.com
+      name: blakeblackshear
+    name: frigate
+    sources:
+    - https://github.com/blakeblackshear/frigate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/frigate-4.0.0/frigate-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v1
     appVersion: 0.5.2
     created: "2020-08-06T12:42:02.842627057Z"
@@ -1026,6 +1276,25 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/frigate-1.0.0/frigate-1.0.0.tgz
     version: 1.0.0
   grocy:
+  - apiVersion: v2
+    appVersion: v2.6.1
+    created: "2020-08-29T15:24:34.595421035Z"
+    description: ERP beyond your fridge - grocy is a web-based self-hosted groceries
+      & household management solution for your home
+    digest: 6e493bc0056fd3e1acd9f51c113cff35bb07cd19452d6f678d13066b1b1f9392
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/grocy
+    icon: https://github.com/grocy/grocy/raw/master/public/img/appicons/mstile-150x150.png
+    keywords:
+    - grocy
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: grocy
+    sources:
+    - https://github.com/grocy/grocy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/grocy-2.0.0/grocy-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: v2.6.1
     created: "2020-08-05T17:32:22.378303423Z"
@@ -1084,6 +1353,25 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/grocy-1.0.0/grocy-1.0.0.tgz
     version: 1.0.0
   heimdall:
+  - apiVersion: v2
+    appVersion: 2.2.2-ls84
+    created: "2020-08-29T15:24:34.69959939Z"
+    description: An Application dashboard and launcher
+    digest: 7efdccefcae6fe3bec67fb108b2ab76b1afdad224413006860acfd9e2afc9c4d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/heimdall
+    icon: https://i.imgur.com/mM4tcO5.png
+    keywords:
+    - heimdall
+    maintainers:
+    - email: simon.caron@protonmail.com
+      name: skaro13
+    name: heimdall
+    sources:
+    - https://hub.docker.com/r/linuxserver/heimdall/
+    - https://github.com/linuxserver/heimdall
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/heimdall-2.0.0/heimdall-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 2.2.2-ls84
     created: "2020-08-05T17:32:22.45375713Z"
@@ -1142,6 +1430,44 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/heimdall-1.0.1/heimdall-1.0.1.tgz
     version: 1.0.1
   home-assistant:
+  - apiVersion: v2
+    appVersion: 0.114.0
+    created: "2020-08-29T15:24:34.8170804Z"
+    dependencies:
+    - condition: esphome.enabled
+      name: esphome
+      repository: https://k8s-at-home.com/charts/
+      version: ~1.0.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.2
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 7.7.1
+    description: Home Assistant
+    digest: 6da117e1733f4dc7b860f591ec89e90250d21168ba039a17ef8d34a48a5037a5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: phil@hellmi.de
+      name: runningman84
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/danielperna84/hass-configurator
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-2.0.0/home-assistant-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 0.114.0
     created: "2020-08-13T15:34:26.951458299Z"
@@ -1393,6 +1719,26 @@ entries:
   icantbelieveitsnotvaletudo:
   - apiVersion: v2
     appVersion: 0.3.0
+    created: "2020-08-29T15:24:34.914815894Z"
+    description: Create live map data from Valetudo powered robots
+    digest: 91fae5c55cbdc606805f69dc83fac62080ace8ce8597abde0ca42a1adccce31d
+    home: https://valetudo.cloud
+    keywords:
+    - MQTT
+    - valetudo
+    - iot
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    name: icantbelieveitsnotvaletudo
+    sources:
+    - https://github.com/Hypfer/ICantBelieveItsNotValetudo
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/icantbelieveitsnotvaletudo-1.0.0/icantbelieveitsnotvaletudo-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 0.3.0
     created: "2020-08-09T12:05:08.831454063Z"
     description: Create live map data from Valetudo powered robots
     digest: 9a1a4582e4eb08a922eb72989930d7ec9c11fffadce85acbf786420baed77a72
@@ -1412,6 +1758,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/icantbelieveitsnotvaletudo-0.1.0/icantbelieveitsnotvaletudo-0.1.0.tgz
     version: 0.1.0
   jackett:
+  - apiVersion: v2
+    appVersion: v0.13.446-ls55
+    created: "2020-08-29T15:24:35.015405029Z"
+    description: API Support for your favorite torrent trackers
+    digest: 2f8c2977a90e86d0bca8e23aca65db7a33fa2bfc03c7b8b98fae05ab3b9ce9e2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-3.0.0/jackett-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: v0.13.446-ls55
     created: "2020-08-05T17:32:22.529455538Z"
@@ -1593,6 +1959,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/jackett-2.0.0/jackett-2.0.0.tgz
     version: 2.0.0
   jellyfin:
+  - apiVersion: v2
+    appVersion: v10.5.3-ls45
+    created: "2020-08-29T15:24:35.11723707Z"
+    description: Jellyfin is a Free Software Media System
+    digest: d8ff8fc55950ba4873e951b5060901431cb0a44b3f2a2e109b9f297888daf1e6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/Jellyfin
+    icon: https://github.com/jellyfin/jellyfin-ux/blob/master/branding/SVG/icon-solid-black.svg
+    keywords:
+    - Jellyfin
+    - mediaplayer
+    maintainers:
+    - email: simon.caron@protonmail.com
+      name: skaro13
+    name: jellyfin
+    sources:
+    - https://hub.docker.com/r/linuxserver/Jellyfin/
+    - https://github.com/Jellyfin/Jellyfin
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jellyfin-2.0.0/jellyfin-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: v10.5.3-ls45
     created: "2020-08-05T17:32:22.618420047Z"
@@ -1676,6 +2062,26 @@ entries:
   lazylibrarian:
   - apiVersion: v2
     appVersion: 581cdfb3-ls23
+    created: "2020-08-29T15:24:35.211963601Z"
+    description: A Helm chart for deploying LazyLibrarian
+    digest: 2fa6c37a3a7eaee92ef1ec4834f279eaad9df3459d5fd34f868eb0b12e4ae709
+    home: https://github.com/k8s-at-home/charts/lazylibrarian
+    icon: https://lazylibrarian.gitlab.io/logo.svg
+    keywords:
+    - lazylibrarian
+    - ebooks
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lazylibrarian
+    sources:
+    - https://gitlab.com/LazyLibrarian/LazyLibrarian.git
+    - https://lazylibrarian.gitlab.io
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lazylibrarian-2.0.0/lazylibrarian-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 581cdfb3-ls23
     created: "2020-08-16T12:08:52.207657813Z"
     description: A Helm chart for deploying LazyLibrarian
     digest: b84db3ab825ac1239d5f189093afb70a920fed1600525148be4e039a2b612901
@@ -1695,6 +2101,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/lazylibrarian-1.0.0/lazylibrarian-1.0.0.tgz
     version: 1.0.0
   librespeed:
+  - apiVersion: v2
+    appVersion: 1.0.6-12
+    created: "2020-08-29T15:24:35.31947533Z"
+    description: Librespeed is a HTML5 webpage to test upload and download speeds
+    digest: 5cb6b28ae6715873340d663ddb4886a2dadf5aa58f27fa87edec6b4261eafeaf
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/librespeed
+    icon: https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true
+    keywords:
+    - librespeed
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: librespeed
+    sources:
+    - https://github.com/librespeed/speedtest
+    - https://hub.docker.com/r/linuxserver/librespeed
+    - https://github.com/k8s-at-home/charts/tree/master/charts/librespeed
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/librespeed-2.0.0/librespeed-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 1.0.6-12
     created: "2020-08-20T12:08:03.263919376Z"
@@ -1716,6 +2142,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - apiVersion: v2
+    appVersion: 0.7.1.1381-ls7
+    created: "2020-08-29T15:24:35.410009301Z"
+    description: Looks and smells like Sonarr but made for music.
+    digest: b8c33f11b8bb31c488cb8b0e75747fd5595b903e65e2cee00fc2e2d13155db58
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/lidarr
+    icon: https://lidarr.audio/img/logo.png
+    keywords:
+    - lidarr
+    - usenet
+    - bittorrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://hub.docker.com/r/linuxserver/lidarr/
+    - https://github.com/lidarr/Lidarr/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-3.0.0/lidarr-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: 0.7.1.1381-ls7
     created: "2020-08-05T17:32:22.691350755Z"
@@ -1822,6 +2269,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/lidarr-1.0.0/lidarr-1.0.0.tgz
     version: 1.0.0
   modem-stats:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-08-29T15:24:35.516685758Z"
+    description: periodic cable modem data collection and save the results to InfluxDB
+    digest: e8e597844b5b4dc10a2d878a148be8282dc1c5698f328825978028ac184028a8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/modem-stats
+    icon: https://i.imgur.com/NprLyFf.png
+    keywords:
+    - sb6183
+    - influxdb
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: modem-stats
+    sources:
+    - https://github.com/k8s-at-home/SB6183-stats-for-influxdb
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/modem-stats-3.0.0/modem-stats-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: 1.0.0
     created: "2020-01-10T21:10:35.486377415Z"
@@ -1843,6 +2310,28 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/modem-stats-2.0.0/modem-stats-2.0.0.tgz
     version: 2.0.0
   node-feature-discovery:
+  - apiVersion: v2
+    appVersion: 0.6.0
+    created: "2020-08-29T15:24:35.614861685Z"
+    description: Detect hardware features available on each node in a Kubernetes cluster,
+      and advertises those features using node labels
+    digest: 4b343d741e7c195144f7130af497ff792401e9d2037dd56febc0403e48ea8011
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/node-feature-discovery
+    icon: https://avatars1.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - cluster
+    - hardware
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: node-feature-discovery
+    sources:
+    - https://github.com/kubernetes-sigs/node-feature-discovery
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/node-feature-discovery-2.0.0/node-feature-discovery-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 0.6.0
     created: "2020-08-12T11:59:57.826402042Z"
@@ -1866,6 +2355,28 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/node-feature-discovery-1.0.0/node-feature-discovery-1.0.0.tgz
     version: 1.0.0
   node-red:
+  - apiVersion: v2
+    appVersion: 1.0.6-12
+    created: "2020-08-29T15:24:35.775689191Z"
+    description: Node-RED is low-code programming for event-driven applications
+    digest: 18901693eb24a59f313ed97acd62daebad72e8e645423af30c90dbeca64cbef1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/node-red
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - nodered
+    - node-red
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: batazor111@gmail.com
+      name: batazor
+    name: node-red
+    sources:
+    - https://github.com/node-red/node-red-docker
+    - https://github.com/k8s-at-home/charts/tree/master/charts/node-red
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/node-red-3.0.0/node-red-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: 1.0.6-12
     created: "2020-07-31T13:27:40.472017995Z"
@@ -1933,6 +2444,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/node-red-2.0.0/node-red-2.0.0.tgz
     version: 2.0.0
   nzbget:
+  - apiVersion: v2
+    appVersion: v21.0-ls14
+    created: "2020-08-29T15:24:35.894667204Z"
+    description: NZBGet is a Usenet downloader client
+    digest: 7c23d8951b56c4d08e083a32c896a1f27c6aba1d92a86e8047a0f7a6e981f9d3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/nzbget
+    icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+    keywords:
+    - nzbget
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbget
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbget/
+    - https://nzbget.net/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbget-4.0.0/nzbget-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v1
     appVersion: v21.0-ls14
     created: "2020-08-05T17:32:22.820167668Z"
@@ -2134,6 +2665,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/nzbget-3.0.0/nzbget-3.0.0.tgz
     version: 3.0.0
   nzbhydra2:
+  - apiVersion: v2
+    appVersion: v2.22.2-ls9
+    created: "2020-08-29T15:24:35.997418424Z"
+    description: Usenet meta search
+    digest: 37e67386413767ab6c66c5adb8e2a8498c503011955ad320faf4453c0d57ded7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/nzbhydra2
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
+    keywords:
+    - nzbhydra2
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbhydra2
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbhydra2/
+    - https://github.com/theotherp/nzbhydra2
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbhydra2-3.0.0/nzbhydra2-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: v2.22.2-ls9
     created: "2020-08-05T17:32:22.904876277Z"
@@ -2295,6 +2846,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/nzbhydra2-2.0.1/nzbhydra2-2.0.1.tgz
     version: 2.0.1
   ombi:
+  - apiVersion: v2
+    appVersion: v3.0.4892-ls61
+    created: "2020-08-29T15:24:36.103938562Z"
+    description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+    digest: 220b51f28b6b7bcdf63051d9bf8975a95b4ca5bb8684c64ff67dad7fcba35cf8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/ombi
+    icon: https://ombi.io/img/logo-orange-small.png
+    keywords:
+    - ombi
+    - plex
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ombi
+    sources:
+    - https://hub.docker.com/r/linuxserver/ombi/
+    - https://ombi.io/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ombi-3.0.0/ombi-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: v3.0.4892-ls61
     created: "2020-08-05T17:32:22.985402785Z"
@@ -2456,6 +3027,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/ombi-2.0.1/ombi-2.0.1.tgz
     version: 2.0.1
   piaware:
+  - apiVersion: v2
+    appVersion: 3.8.1
+    created: "2020-08-29T15:24:36.213508252Z"
+    description: Program for forwarding ADS-B data to FlightAware
+    digest: 92bed07a0eb643249fec4f08f41bad309df5d00a6ba06f5b14fbc0147d4abe77
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/piaware
+    icon: https://pbs.twimg.com/profile_images/964269455483088897/mr2UgvfG_400x400.jpg
+    keywords:
+    - piaware
+    - flight-aware
+    - flight-tracker
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: piaware
+    sources:
+    - https://github.com/flightaware/piaware
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/piaware-2.0.0/piaware-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 3.8.1
     created: "2020-07-08T23:42:18.93888381Z"
@@ -2477,6 +3068,25 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/piaware-1.0.0/piaware-1.0.0.tgz
     version: 1.0.0
   plex:
+  - apiVersion: v2
+    appVersion: 1.19.5.3112-b23ab3896
+    created: "2020-08-29T15:24:36.353024181Z"
+    description: Plex Media Server
+    digest: 1aeca7656a9de4a8c0c5b1569489129ed638b8f1b685faf978acd26aaf6fd92e
+    home: https://plex.tv/
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: plex
+    sources:
+    - https://github.com/k8s-at-home/charts/tree/master/charts/plex
+    - https://hub.docker.com/r/plexinc/pms-docker/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/plex-2.0.0/plex-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 1.19.5.3112-b23ab3896
     created: "2020-08-28T19:30:27.112550425Z"
@@ -2822,6 +3432,35 @@ entries:
   powerdns:
   - apiVersion: v2
     appVersion: latest
+    created: "2020-08-29T15:24:36.449809986Z"
+    dependencies:
+    - condition: postgres.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.2
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 7.7.1
+    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL.
+      It runs on most Unix derivatives. PowerDNS features a large number of different
+      backends ranging from simple BIND style zonefiles to relational databases and
+      load balancing/failover algorithms. A DNS recursor is provided as a separate
+      program.
+    digest: 6ed59035066f60e58de0e8e0bee17dad09a4c766ccad0aa3cd7a8c0111ac3ea7
+    home: https://www.powerdns.com/
+    icon: https://www.powerdns.com/img/pDNS_logo_positive_claim_down_screen_xsmall.png
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: powerdns
+    sources:
+    - http://www.github.com/PowerDNS/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/powerdns-2.0.0/powerdns-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2020-08-07T20:25:45.917460266Z"
     dependencies:
     - condition: postgres.enabled
@@ -2879,6 +3518,25 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/powerdns-1.0.0/powerdns-1.0.0.tgz
     version: 1.0.0
   qbittorrent:
+  - apiVersion: v2
+    appVersion: 14.2.0.99201912180418-6819-118af03ubuntu18.04.1-ls62
+    created: "2020-08-29T15:24:36.554378452Z"
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: 22d57e580e14282098976504f7f9f92e2582f288cad0faeb3ff1ac4ca82a3077
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: qbittorrent
+    sources:
+    - https://hub.docker.com/r/linuxserver/qbittorrent/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/qbittorrent-4.0.0/qbittorrent-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v1
     appVersion: 14.2.0.99201912180418-6819-118af03ubuntu18.04.1-ls62
     created: "2020-08-05T17:32:23.065514593Z"
@@ -3013,6 +3671,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - apiVersion: v2
+    appVersion: v0.2.0.1480-ls58
+    created: "2020-08-29T15:24:36.66085778Z"
+    description: Radarr is a movie downloading client
+    digest: 4973b3bc3fc591a3203d62d2a28c5d9aab07bfcc9ecb4eace10e2ded28ce5c61
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
+    icon: https://avatars3.githubusercontent.com/u/25025331?s=400&v=4
+    keywords:
+    - radarr
+    - usenet
+    - bittorrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://hub.docker.com/r/linuxserver/radarr/
+    - https://github.com/Radarr/Radarr/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-5.0.0/radarr-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v1
     appVersion: v0.2.0.1480-ls58
     created: "2020-08-05T17:32:23.148622301Z"
@@ -3224,6 +3903,28 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/radarr-3.0.0/radarr-3.0.0.tgz
     version: 3.0.0
   rtorrent-flood:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-08-29T15:24:36.764612577Z"
+    description: rtorrent and flood co-located in the same deployment
+    digest: 954c812f5bd7cc763cded377d8479b4c4e882b1cc211bc684b855b0b69c359e5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/rtorrent-flood
+    icon: https://github.com/jfurrow/flood/blob/master/flood.png?raw=true
+    keywords:
+    - rtorrent
+    - flood
+    - torrrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: rtorrent-flood
+    sources:
+    - https://hub.docker.com/r/looselyrigorous/rtorrent
+    - https://github.com/looselyrigorous/docker-rtorrent
+    - https://github.com/Flood-UI/flood
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/rtorrent-flood-5.0.0/rtorrent-flood-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v1
     appVersion: 1.0.0
     created: "2020-04-19T13:01:02.268687911Z"
@@ -3313,6 +4014,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/rtorrent-flood-4.0.0/rtorrent-flood-4.0.0.tgz
     version: 4.0.0
   sabnzbd:
+  - apiVersion: v2
+    appVersion: 2.3.9
+    created: "2020-08-29T15:24:36.918696041Z"
+    description: Free and easy binary newsreader
+    digest: 7fa40fe826deee85aba5abfd737722b9ab4b132227041ed52d861739ea62e3f3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/sabnzbd
+    icon: https://avatars1.githubusercontent.com/u/960698?s=400&v=4
+    keywords:
+    - sabnzbd
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sabnzbd
+    sources:
+    - https://hub.docker.com/r/linuxserver/sabnzbd/
+    - https://sabnzbd.org/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sabnzbd-2.0.0/sabnzbd-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 2.3.9
     created: "2020-08-05T17:32:23.215735608Z"
@@ -3374,6 +4095,25 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/sabnzbd-1.0.0/sabnzbd-1.0.0.tgz
     version: 1.0.0
   ser2sock:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-08-29T15:24:37.017432605Z"
+    description: Serial to Socket Redirector
+    digest: 2c01c8563e13c6f3c59237e9c14a161ec0fb446afa1c72b49e690272090cf414
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/ser2sock
+    icon: https://i.imgur.com/GfZ7McO.png
+    keywords:
+    - ser2sock
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ser2sock
+    sources:
+    - https://github.com/nutechsoftware/ser2sock
+    - https://github.com/tenstartups/ser2sock
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ser2sock-2.0.0/ser2sock-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 1.0.0
     created: "2020-07-12T19:40:10.308382181Z"
@@ -3451,6 +4191,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/ser2sock-1.0.0/ser2sock-1.0.0.tgz
     version: 1.0.0
   sonarr:
+  - apiVersion: v2
+    appVersion: 2.0.0.5344-ls60
+    created: "2020-08-29T15:24:37.132062505Z"
+    description: Sonarr is a television show downloading client
+    digest: b5396a828d0d6c68e329dabd40a7037e6dd5b2b2534ef40e8e99c2e9c8b05c27
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/sonarr
+    icon: https://avatars1.githubusercontent.com/u/1082903?s=400&v=4
+    keywords:
+    - sonarr
+    - usenet
+    - bittorrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://hub.docker.com/r/linuxserver/sonarr/
+    - https://sonarr.tv/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-5.0.0/sonarr-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v1
     appVersion: 2.0.0.5344-ls60
     created: "2020-08-05T17:32:23.293450915Z"
@@ -3662,6 +4423,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/sonarr-3.0.0/sonarr-3.0.0.tgz
     version: 3.0.0
   speedtest:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-08-29T15:24:37.229845594Z"
+    description: periodic speedtest and save the results to InfluxDB
+    digest: 318db3887daa16a871a2c8203f9eb23a06f263914927b7250f0c411931cabecc
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/speedtest
+    icon: https://i.imgur.com/nDYjKk8.png
+    keywords:
+    - speedtest
+    - influxdb
+    - grafana
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: speedtest
+    sources:
+    - https://github.com/k8s-at-home/Speedtest-for-InfluxDB-and-Grafana
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/speedtest-3.0.0/speedtest-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: 1.0.0
     created: "2020-01-10T21:41:12.391170785Z"
@@ -3684,6 +4466,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/speedtest-2.0.0/speedtest-2.0.0.tgz
     version: 2.0.0
   speedtest-prometheus:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2020-08-29T15:24:37.335292424Z"
+    description: Prometheus Exporter for the official Speedtest CLI
+    digest: 2b3f7c9dec322cbc34f18db60fd31cdf4e99d0a8018dfca505db48ff1e75181e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/speedtest-prometheus
+    icon: https://cdn.speedcheck.org/images/reviews/ookla-logo.png
+    keywords:
+    - speedtest
+    - influxdb
+    - grafana
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: speedtest-prometheus
+    sources:
+    - https://github.com/billimek/prometheus-speedtest-exporter
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/speedtest-prometheus-2.0.0/speedtest-prometheus-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 1.1.0
     created: "2020-04-30T10:18:16.900108405Z"
@@ -3727,6 +4530,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/speedtest-prometheus-1.0.0/speedtest-prometheus-1.0.0.tgz
     version: 1.0.0
   tautulli:
+  - apiVersion: v2
+    appVersion: v2.1.44-ls34
+    created: "2020-08-29T15:24:37.497549213Z"
+    description: A Python based monitoring and tracking tool for Plex Media Server.
+    digest: 9e569685b551a1073a3116263de7b938628cd4c66f2daca32b000b7f8c22652e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/tautulli
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/tautulli-icon.png
+    keywords:
+    - tautulli
+    - plex
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: tautulli
+    sources:
+    - https://hub.docker.com/r/linuxserver/tautulli/
+    - https://tautulli.com/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tautulli-3.0.0/tautulli-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: v2.1.44-ls34
     created: "2020-08-05T17:32:23.366184622Z"
@@ -3888,6 +4711,30 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/tautulli-2.0.0/tautulli-2.0.0.tgz
     version: 2.0.0
   teslamate:
+  - apiVersion: v2
+    appVersion: v1.19.3
+    created: "2020-08-29T15:24:37.567766493Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 8.1.0
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: 38f66d4b794958d0ee840fd5ce51af475060fc4026e057fef1c5502f0e97d2dc
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teslamate-3.0.0/teslamate-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: v1.19.3
     created: "2020-05-04T02:01:02.611795972Z"
@@ -3970,6 +4817,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/teslamate-2.0.0/teslamate-2.0.0.tgz
     version: 2.0.0
   unifi-poller:
+  - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2020-08-29T15:24:37.67447483Z"
+    description: Collect ALL UniFi Controller, Site, Device & Client Data - Export
+      to InfluxDB or Prometheus
+    digest: 2b2d2069c32325d221d88a2700db07aeb5b53c0d2a916c6231e3e5be7e64dd61
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/unifi-poller
+    icon: https://raw.githubusercontent.com/wiki/unifi-poller/unifi-poller/images/unifi-poller-logo.png
+    keywords:
+    - unifi
+    - unifi-poller
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: unifi-poller
+    sources:
+    - https://github.com/unifi-poller/unifi-poller
+    - https://hub.docker.com/r/golift/unifi-poller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-poller-2.0.0/unifi-poller-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 2.0.1
     created: "2020-08-18T18:54:54.607940992Z"
@@ -4013,6 +4881,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/unifi-poller-1.0.0/unifi-poller-1.0.0.tgz
     version: 1.0.0
   uptimerobot:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2020-08-29T15:24:37.782249555Z"
+    description: A tool to get statistics from Uptime Robot and log it into InfluxDB
+    digest: 1aed06631b7968e0716622b90626a57d324bcef9834091554351a1f25947d5e9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/uptimerobot
+    icon: https://i.imgur.com/ARSSILk.png
+    keywords:
+    - uptimerobot
+    - influxdb
+    - grafana
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: uptimerobot
+    sources:
+    - https://github.com/trojanc/node-influx-uptimerobot
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/uptimerobot-3.0.0/uptimerobot-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: 1.1.0
     created: "2020-02-23T13:57:19.785476277Z"
@@ -4058,6 +4947,28 @@ entries:
   uptimerobot-prometheus:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2020-08-29T15:24:37.879515501Z"
+    description: Prometheus Exporter for the official uptimerobot CLI
+    digest: 4e824f7f7d5e4689b487e11808a32cd18f04120b9615bb42a2c8d2452145327c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/uptimerobot-prometheus
+    icon: https://cdn.foliovision.com/images/2019/03/icon-uptimerobot-1024.png
+    keywords:
+    - uptimerobot
+    - prometheus
+    - grafana
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: uptimerobot-prometheus
+    sources:
+    - https://github.com/lekpamartin/uptimerobot_exporter
+    - https://github.com/k8s-at-home/charts/tree/master/charts/uptimerobot-prometheus
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/uptimerobot-prometheus-2.0.0/uptimerobot-prometheus-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2020-06-11T01:24:05.090700581Z"
     description: Prometheus Exporter for the official uptimerobot CLI
     digest: eb4107e2dc8936254a04e08bc69357b49e8d9d5fd22117d9492dd241318c8812
@@ -4079,6 +4990,28 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/uptimerobot-prometheus-1.0.0/uptimerobot-prometheus-1.0.0.tgz
     version: 1.0.0
   xteve:
+  - apiVersion: v2
+    appVersion: 2.1.2
+    created: "2020-08-29T15:24:37.976896256Z"
+    description: M3U Proxy for Plex DVR and Emby Live TV.
+    digest: dc6a41a9325de4ca8287022ee4f7e4621acb7e15032514bf04460f7134743522
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/xteve
+    icon: https://raw.githubusercontent.com/xteve-project/xTeVe/master/html/img/logo_b_880x200.jpg
+    keywords:
+    - xteve
+    - iptv
+    - plex
+    - emby
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: xteve
+    sources:
+    - https://xteve.de
+    - https://github.com/xteve-project/xTeVe
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/xteve-2.0.0/xteve-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v1
     appVersion: 2.1.2
     created: "2020-07-25T17:37:02.001958765Z"
@@ -4102,6 +5035,29 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/xteve-1.0.0/xteve-1.0.0.tgz
     version: 1.0.0
   zigbee2mqtt:
+  - apiVersion: v2
+    appVersion: 1.14.1
+    created: "2020-08-29T15:24:38.080363051Z"
+    description: Bridges events and allows you to control your Zigbee devices via
+      MQTT
+    digest: e304affc06f2a84e902a885207581429ff829a28ef7f50fa93872a498b00b444
+    home: https://www.zigbee2mqtt.io
+    icon: https://www.zigbee2mqtt.io/images/logo.png
+    keywords:
+    - zigbee
+    - mqtt
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    - email: miguelangel.santiago@hotmail.com
+      name: masantiago
+    name: zigbee2mqtt
+    sources:
+    - https://github.com/Koenkk/zigbee2mqtt
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/zigbee2mqtt-1.0.0/zigbee2mqtt-1.0.0.tgz
+    version: 1.0.0
   - apiVersion: v2
     appVersion: 1.14.1
     created: "2020-08-09T12:06:51.463143981Z"
@@ -4147,6 +5103,27 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/zigbee2mqtt-0.1.0/zigbee2mqtt-0.1.0.tgz
     version: 0.1.0
   zwave2mqtt:
+  - apiVersion: v2
+    appVersion: 3.0.0
+    created: "2020-08-29T15:24:38.168375932Z"
+    description: Fully configurable Zwave to MQTT gateway and Control Panel using
+      NodeJS and Vue
+    digest: 963876245830515ee392a9c12ee25c0b3e8dd2f766d43b61cfff778fa5439924
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/zwave2mqtt
+    icon: https://github.com/OpenZWave/Zwave2Mqtt/raw/master/docs/OZW_Logo.png
+    keywords:
+    - zwave
+    - mqtt
+    - home-assistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: zwave2mqtt
+    sources:
+    - https://github.com/OpenZWave/Zwave2Mqtt
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/zwave2mqtt-3.0.0/zwave2mqtt-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v1
     appVersion: 3.0.0
     created: "2020-03-19T11:02:19.96726281Z"
