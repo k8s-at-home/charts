@@ -37,10 +37,9 @@ jobs:
       - name: Add dependency chart repos
         run: |
           helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-          helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0
         with:
-          charts_repo_url: https://billimek.com/billimek-charts/
+          charts_repo_url: https://charts.k8s-at-home.com/
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"

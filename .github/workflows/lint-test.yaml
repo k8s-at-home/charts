@@ -21,8 +21,6 @@ jobs:
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.0.0
-        with:
-          install_local_path_provisioner: true
         if: steps.lint.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
