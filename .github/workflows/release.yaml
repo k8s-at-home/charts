@@ -40,6 +40,6 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0
         with:
-          charts_repo_url: https://charts.k8s-at-home.com/
+          charts_repo_url: https://k8s-at-home.com/charts/
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
