@@ -1,4 +1,4 @@
-# Collection of helm charts
+# k8s@Home collection of helm charts
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![](https://github.com/k8s-at-home/charts/workflows/Release%20Charts/badge.svg?branch=master)](https://github.com/k8s-at-home/charts/actions)
