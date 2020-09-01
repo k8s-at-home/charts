@@ -75,6 +75,7 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `persistence.config.enabled`           | Use persistent volume to store configuration data                                            | `true`                |
 | `persistence.config.size`              | Size of persistent volume claim                                                              | `1Gi`                 |
 | `persistence.config.existingClaim`     | Use an existing PVC to persist data                                                          | `nil`                 |
+| `persistence.config.subpath`           | Select a subpath in the PVC                                                          | `nil`                 |
 | `persistence.config.storageClass`      | Type of persistent volume claim                                                              | `-`                   |
 | `persistence.config.accessMode`        | Persistence access mode                                                                      | `ReadWriteOnce`       |
 | `persistence.config.skipuninstall`     | Do not delete the pvc upon helm uninstall                                                    | `false`               |
