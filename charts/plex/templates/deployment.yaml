@@ -188,7 +188,7 @@ spec:
                 name: {{ .Values.certificate.pkcsMangler.pfxPassword.secretName }}
                 key: {{ .Values.certificate.pkcsMangler.pfxPassword.passwordKey }}
           - name: "PKCSMANGLER_CUSTOMCERTDOMAIN"
-            value: "customCertificateDomain={{.Values.certificate.pkcsMangler.plexPreferences.customCertificateDomain}}"
+            value: "customCertificateDomain={{.Values.certificate.pkcsMangler.setPlexPreferences.customCertificateDomain}}"
 {{- end }}
 {{- end }}
           readinessProbe:
