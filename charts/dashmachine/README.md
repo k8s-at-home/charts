@@ -2,8 +2,6 @@ dashmachine
 ===========
 DashMachine is another web application bookmark dashboard, with fun features.
 
-Current chart version is `1.0.0`
-
 ## Chart Values
 
 | Key | Type | Default | Description |
