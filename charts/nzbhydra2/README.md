@@ -47,12 +47,12 @@ The following tables lists the configurable parameters of the Sentry chart and t
 | `probes.startup.initialDelaySeconds`    | Specify startup `initialDelaySeconds` parameter for the deployment    | `5`  |
 | `probes.startup.failureThreshold`      | Specify startup `failureThreshold` parameter for the deployment      | `30` |
 | `probes.startup.periodSeconds`      | Specify startup `periodSeconds` parameter for the deployment      | `10` |
-| `Service.type`          | Kubernetes service type for the nzbhydra2 GUI | `ClusterIP` |
-| `Service.port`          | Kubernetes port where the nzbhydra2 GUI is exposed| `5076` |
-| `Service.annotations`   | Service annotations for the nzbhydra2 GUI | `{}` |
-| `Service.labels`        | Custom labels | `{}` |
-| `Service.loadBalancerIP` | Loadbalance IP for the nzbhydra2 GUI | `{}` |
-| `Service.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
+| `service.type`          | Kubernetes service type for the nzbhydra2 GUI | `ClusterIP` |
+| `service.port`          | Kubernetes port where the nzbhydra2 GUI is exposed| `5076` |
+| `service.annotations`   | Service annotations for the nzbhydra2 GUI | `{}` |
+| `service.labels`        | Custom labels | `{}` |
+| `service.loadBalancerIP` | Loadbalance IP for the nzbhydra2 GUI | `{}` |
+| `service.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
 | `ingress.enabled`              | Enables Ingress | `false` |
 | `ingress.annotations`          | Ingress annotations | `{}` |
 | `ingress.labels`               | Custom labels                       | `{}`
