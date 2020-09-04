@@ -121,6 +121,23 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
+dnsPolicy: ClusterFirst
+
+dnsConfig: {}
+  # dnsConfig may be used with any dnsPolicy, but is required when dnsPolicy: "None"
+  # To use, remove the braces above, and uncomment/modify the following lines.
+  # See https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
+  # for additional information
+  # nameservers:
+  #   - 1.1.1.1
+  # searches:
+  #   - ns1.mysearch.domain
+  # options:
+  #   - name: ndots
+  #     value: "1"
+
+hostNetwork: false
+
 nodeSelector: {}
 
 tolerations: []
