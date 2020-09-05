@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "media-common.fullname" . }}
+  labels:
+  {{- include "media-common.labels" . | nindent 4 }}
+{{- if .Values.env }}
+data:
+  {{- toYaml .Values.env | nindent 2 }}
+{{- end }}
