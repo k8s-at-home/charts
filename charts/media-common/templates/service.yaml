@@ -15,7 +15,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - name: http
-      port: {{ template "media-common.portSelector" . }}
+      port: {{ .Values.service.port }}
       protocol: TCP
       targetPort: http
       {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
