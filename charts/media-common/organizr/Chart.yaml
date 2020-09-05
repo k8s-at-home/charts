@@ -1,0 +1,20 @@
+apiVersion: v2
+name: organizr
+description: Organizr Chart
+type: application
+version: 1.0.0
+appVersion: latest
+keywords:
+  - organizr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common/organizr
+sources:
+  - https://github.com/causefx/Organizr
+  - https://hub.docker.com/r/itscontained/ombi
+maintainers:
+  - name: DirtyCajunRice
+    email: nick@cajun.pro
+dependencies:
+  - name: media-common
+    repository: https://k8s-at-home.com/charts/
+    version: 1.0.0
+    alias: organizr
