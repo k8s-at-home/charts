@@ -40,7 +40,7 @@ spec:
               name: {{ template "media-common.fullname" . }}
           ports:
             - name: http
-              containerPort: {{ template "media-common.portSelector" . }}
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
             tcpSocket:
