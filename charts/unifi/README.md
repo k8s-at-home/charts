@@ -4,13 +4,10 @@ This is a helm chart for [Ubiquiti Network's][ubnt] [Unifi Controller][ubnt 2].
 
 ## TL;DR;
 
-```console
-helm install stable/unifi
+```shell
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/unifi
 ```
-
-## Introduction
-
-This code is adopted from [this original repo][github].
 
 ## Installing the Chart
 
