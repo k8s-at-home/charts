@@ -2,10 +2,9 @@
 
 sonarr:
   image:
-    organization: itscontained
+    organization: linuxserver
     repository: sonarr
     pullPolicy: IfNotPresent
-    tag: 3.0.3.913
+    tag: 3.0.3.913-ls40
   service:
     port: 8989
-  configPath: /var/lib/radarr

@@ -2,10 +2,9 @@
 
 ombi:
   image:
-    organization: itscontained
+    organization: linuxserver
     repository: ombi
     pullPolicy: IfNotPresent
-    tag: 4.0.471
+    tag: v4.0.471-ls10
   service:
-    port: 5000
-  configPath: /var/lib/ombi
+    port: 3579
