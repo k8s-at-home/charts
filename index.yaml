@@ -2411,6 +2411,31 @@ entries:
     version: 1.0.0
   lidarr:
   - apiVersion: v2
+    appVersion: 0.7.1.1785-ls18
+    created: "2020-09-06T22:19:09.190931033Z"
+    dependencies:
+    - alias: lidarr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ~1.0.0
+    description: Looks and smells like Sonarr but made for music
+    digest: 815e9894d41cfb3e59333bf9bbb2aaee5575789baeeba2977f820356942433a7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://hub.docker.com/r/linuxserver/lidarr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-4.0.0/lidarr-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: 0.7.1.1784
     created: "2020-08-31T20:43:38.505138004Z"
     description: Looks and smells like Sonarr but made for music.
@@ -2558,6 +2583,21 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/lidarr-1.0.0/lidarr-1.0.0.tgz
     version: 1.0.0
   media-common:
+  - apiVersion: v2
+    created: "2020-09-06T22:19:09.295356936Z"
+    description: Common dependancy chart for media ecosystem containers
+    digest: 9538e16a1575d093bc721f45dfad3152f130a25f515587309270d7704d1bc5bc
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common
+    keywords:
+    - media-common
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: media-common
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/media-common-1.0.1/media-common-1.0.1.tgz
+    version: 1.0.1
   - apiVersion: v2
     created: "2020-09-06T01:39:16.432663642Z"
     description: Common dependancy chart for media ecosystem containers
@@ -3212,6 +3252,31 @@ entries:
     version: 2.0.1
   ombi:
   - apiVersion: v2
+    appVersion: 4.0.471
+    created: "2020-09-06T22:19:09.401875163Z"
+    dependencies:
+    - alias: ombi
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ~1.0.0
+    description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+    digest: b29be8400f795e4461a5f1a9a91fa61007ec9fbc661f11dbf7139b7c99103e82
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/ombi
+    icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
+    keywords:
+    - ombi
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: ombi
+    sources:
+    - https://github.com/tidusjar/Ombi
+    - https://hub.docker.com/r/linuxserver/ombi
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ombi-4.0.0/ombi-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: v4.0.464
     created: "2020-08-31T20:43:39.018989153Z"
     description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
@@ -3411,6 +3476,32 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/ombi-2.0.1/ombi-2.0.1.tgz
     version: 2.0.1
+  organizr:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2020-09-06T22:19:09.50748148Z"
+    dependencies:
+    - alias: organizr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ~1.0.0
+    description: HTPC/Homelab Services Organizer - Written in PHP
+    digest: d0eb777d7ce68bd1aea2374ce19b73d573143a480b857b02a3a43defdc513b44
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/organizr
+    icon: https://github.com/causefx/Organizr/blob/v2-master/plugins/images/organizr/logo.png?raw=true
+    keywords:
+    - organizr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: organizr
+    sources:
+    - https://github.com/causefx/Organizr
+    - https://hub.docker.com/r/organizr/organizr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/organizr-1.0.0/organizr-1.0.0.tgz
+    version: 1.0.0
   piaware:
   - apiVersion: v2
     appVersion: v3.8.1
@@ -4163,6 +4254,31 @@ entries:
     version: 2.0.1
   radarr:
   - apiVersion: v2
+    appVersion: 3.0.0.3591
+    created: "2020-09-06T22:19:09.599612841Z"
+    dependencies:
+    - alias: radarr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ~1.0.0
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 758772a3bcb5298e2d866d210bcadd939dd57e5f773b87710f0beddc4b9724f0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-6.0.0/radarr-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
     appVersion: 3.0.0.3543
     created: "2020-08-31T20:43:39.659855491Z"
     description: Radarr is a movie downloading client
@@ -4743,6 +4859,31 @@ entries:
     version: 1.0.0
   sonarr:
   - apiVersion: v2
+    appVersion: 3.0.3.913
+    created: "2020-09-06T22:19:09.702494026Z"
+    dependencies:
+    - alias: sonarr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ~1.0.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: 88091ff8269a45546eafbdb22373e62e4ea297c950758e577036542e0614f433
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-6.0.0/sonarr-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
     appVersion: 3.0.3.911
     created: "2020-08-31T20:43:40.081874961Z"
     description: Sonarr is a television show downloading client
@@ -5102,6 +5243,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/speedtest-prometheus-1.0.0/speedtest-prometheus-1.0.0.tgz
     version: 1.0.0
   tautulli:
+  - apiVersion: v2
+    appVersion: v2.5.4
+    created: "2020-09-06T22:19:09.793149971Z"
+    dependencies:
+    - alias: tautulli
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ~1.0.0
+    description: A Python based monitoring and tracking tool for Plex Media Server
+    digest: 32e46edb7b5f1e9a675c936fd0711b1bde038065cf03c8e683e0d5037fa3a9ff
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/tautulli
+    icon: https://github.com/Tautulli/Tautulli/blob/master/data/interfaces/default/images/logo.png?raw=true
+    keywords:
+    - tautulli
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: tautulli
+    sources:
+    - https://github.com/Tautulli/Tautulli
+    - https://hub.docker.com/r/tautulli/tautulli
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tautulli-4.0.0/tautulli-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: v2.5.4
     created: "2020-08-31T20:43:40.227993772Z"
