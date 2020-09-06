@@ -88,9 +88,9 @@ persistence:
   skipuninstall: false
 
 postgres:
-  enabled: true
   type: kubedb
   kubedb:
+    enabled: true
     version: 11.1
     storageType: Durable
     storage:
@@ -99,6 +99,9 @@ postgres:
       resources:
         requests:
           storage: 1Gi
+  posgresql:
+    enabled: false
+    # See https://github.com/bitnami/charts/tree/master/bitnami/postgresql for configuration
 
 externalSecret:
   enabled: false
