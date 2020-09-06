@@ -6,15 +6,15 @@ version: 1.0.0
 appVersion: latest
 keywords:
   - organizr
-home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common/organizr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/organizr
 sources:
   - https://github.com/causefx/Organizr
-  - https://hub.docker.com/r/itscontained/ombi
+  - https://hub.docker.com/r/organizr/organizr
 maintainers:
   - name: DirtyCajunRice
     email: nick@cajun.pro
 dependencies:
   - name: media-common
     repository: https://k8s-at-home.com/charts/
-    version: 1.0.0
+    version: ~1.0.0
     alias: organizr
