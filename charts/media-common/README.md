@@ -15,7 +15,8 @@ repository or tag, and not designed to be deployed directly.
 
 ## Configuration
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml) file.
+It has several commented out suggested values.
 
 These values will normally be nested as it is a dependency, for example:
 ```yaml

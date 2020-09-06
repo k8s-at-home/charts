@@ -28,7 +28,8 @@ helm uninstall tautulli
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
-Read through the media-common [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml) file. It has several commented out suggested values.
+Read through the media-common [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml)
+file. It has several commented out suggested values.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
@@ -36,7 +37,8 @@ helm install tautulli \
   --set tautulli.env.TZ="America/New York" \
     k8s-at-home/tautulli
 ```
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
+For example,
 ```console
 helm install tautulli k8s-at-home/tautulli --values values.yaml 
 ```
