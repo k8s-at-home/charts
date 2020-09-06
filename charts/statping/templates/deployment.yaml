@@ -1,0 +1,145 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "statping.fullname" . }}
+  labels:
+    {{- include "statping.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "statping.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "statping.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "statping.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if .Values.statping.name }}
+            - name: NAME
+              value: {{ .Values.statping.name | quote }}
+            {{- end }}
+            {{- if .Values.statping.description }}
+            - name: DESCRIPTION
+              value: {{ .Values.statping.description | quote }}
+            {{- end }}
+            {{- if .Values.statping.domain }}
+            - name: DOMAIN
+              value: {{ .Values.statping.domain | quote }}
+            {{- end }}
+            - name: ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  {{- if .Values.statping.admin.existingSecret.enabled }}
+                  name: {{ .Values.statping.admin.existingSecret.name | quote }}
+                  key: {{ .Values.statping.admin.existingSecret.userKey | default "admin-user" }}
+                  {{- else }}
+                  name: {{ include "statping.fullname" . }}
+                  key: admin-user
+                  {{- end }}
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  {{- if .Values.statping.admin.existingSecret.enabled }}
+                  name: {{ .Values.statping.admin.existingSecret.name | quote }}
+                  key: {{ .Values.statping.admin.existingSecret.passwordKey | default "admin-password" }}
+                  {{- else }}
+                  name: {{ include "statping.fullname" . }}
+                  key: admin-password
+                  {{- end }}
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  {{- if .Values.statping.admin.existingSecret.enabled }}
+                  name: {{ .Values.statping.admin.existingSecret.name | quote }}
+                  key: {{ .Values.statping.admin.existingSecret.emailKey | default "admin-email" }}
+                  {{- else }}
+                  name: {{ include "statping.fullname" . }}
+                  key: admin-email
+                  {{- end }}
+            {{- if eq .Values.postgres.type "kubedb" }}
+            - name: DB_CONN
+              value: postgres
+            - name: DB_HOST
+              value: postgres-{{ template "statping.fullname" . }}
+            - name: DB_DATABASE
+              value: postgres
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-{{ template "statping.fullname" . }}-auth
+                  key: POSTGRES_USER
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-{{ template "statping.fullname" . }}-auth
+                  key: POSTGRES_PASSWORD
+          {{- end }}
+          {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - mountPath: /app
+              name: config
+              {{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
+          {{- if .Values.additionalVolumeMounts }}
+          {{- toYaml .Values.additionalVolumes | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: config
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "statping.fullname" . }}{{- end }}
+          {{- else }}
+          emptyDir: {}
+        {{- end }}
+        {{- if .Values.additionalVolumes }}
+        {{- toYaml .Values.additionalVolumes | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
