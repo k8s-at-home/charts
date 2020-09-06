@@ -1,0 +1,20 @@
+apiVersion: v2
+name: sonarr
+description: Sonarr Chart
+type: application
+version: 1.0.0
+appVersion: 3.0.3.913
+keywords:
+  - sonarr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common/sonarr
+sources:
+  - https://github.com/Sonarr/Sonarr
+  - https://hub.docker.com/r/itscontained/sonarr
+maintainers:
+  - name: DirtyCajunRice
+    email: nick@cajun.pro
+dependencies:
+  - name: media-common
+    repository: https://k8s-at-home.com/charts/
+    version: 1.0.0
+    alias: sonarr

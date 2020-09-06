@@ -1,0 +1,44 @@
+{{- if and .Values.persistence.config.enabled (not .Values.persistence.config.existingClaim) -}}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "media-common.fullname" . }}
+  {{- if .Values.persistence.config.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+  labels:
+  {{- include "media-common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.config.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.config.size | quote }}
+  {{- if .Values.persistence.config.storageClass }}
+  storageClassName: {{ if (eq "-" .Values.persistence.config.storageClass) }}""{{- else }}{{ .Values.persistence.config.storageClass | quote }}{{- end }}
+  {{- end }}
+{{- end -}}
+{{- if and .Values.persistence.media.enabled (not .Values.persistence.media.existingClaim) }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "media-common.fullname" . }}-media
+  {{- if .Values.persistence.media.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+  labels:
+  {{- include "media-common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.media.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.media.size | quote }}
+  {{- if .Values.persistence.media.storageClass }}
+  storageClassName: {{ if (eq "-" .Values.persistence.media.storageClass) }}""{{- else }}{{ .Values.persistence.media.storageClass | quote}}{{- end }}
+  {{- end }}
+{{- end -}}
