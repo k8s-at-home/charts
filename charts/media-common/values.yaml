@@ -53,6 +53,21 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+  extraIngresses:
+  # - enabled: false
+  #   nameSuffix: "api"
+  #   annotations: {}
+  #   # kubernetes.io/ingress.class: nginx
+  #   # kubernetes.io/tls-acme: "true"
+  #   labels: {}
+  #   hosts:
+  #     - host: chart-example.local
+  #       paths:
+  #         - /api
+  #   tls: []
+  #   #  - secretName: chart-example-tls
+  #   #    hosts:
+  #   #      - chart-example.local
 
 persistence:
   # type: options are statefulset or deployment
