@@ -21,6 +21,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+configPath: /config
+
 env:
   TZ: UTC
 
@@ -74,7 +76,7 @@ persistence:
   type: statefulset
   config:
     enabled: true
-    ## arr configuration data Persistent Volume Storage Class
+    ## media-common configuration data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is
@@ -92,8 +94,8 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     skipuninstall: false
   media:
-    enabled: true
-    ## arr media volume configuration
+    enabled: false
+    ## media-common media volume configuration
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is

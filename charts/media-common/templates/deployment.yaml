@@ -36,8 +36,8 @@ spec:
           image: "{{ .Values.image.organization }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
-          - configMapRef:
-              name: {{ template "media-common.fullname" . }}
+            - configMapRef:
+                name: {{ template "media-common.fullname" . }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -55,7 +55,7 @@ spec:
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
             timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
           volumeMounts:
-            - mountPath: {{ template "media-common.configPathSelector" . }}
+            - mountPath: {{ .Values.configPath }}
               name: config
               {{- if .Values.persistence.config.subPath }}
               subPath: {{ .Values.persistence.config.subPath }}
@@ -68,7 +68,7 @@ spec:
               {{- end }}
             {{- end }}
           {{- if .Values.additionalVolumeMounts }}
-          {{- toYaml .Values.additionalVolumes | nindent 12 }}
+          {{- toYaml .Values.additionalVolumeMounts | nindent 12 }}
           {{- end }}
           {{- with .Values.resources }}
           resources:

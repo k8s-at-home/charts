@@ -50,22 +50,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "media-common.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-{{/*
-Config Path Selector
-*/}}
-{{- define "media-common.configPathSelector" -}}
-  {{- if eq .Values.image.organization "itscontained" -}}
-    {{- if eq .Values.image.repository "radarr" -}}
-/var/lib/radarr
-    {{- else if eq .Values.image.repository "sonarr" -}}
-/var/lib/sonarr
-    {{- else if eq .Values.image.repository "lidarr" -}}
-      {{- fail "lidarr not yet implemented" -}}
-    {{- else -}}
-      {{- fail "Could not establish the service port from the repository and no service port was set" -}}
-    {{- end -}}
-  {{- else -}}
-/config
-  {{- end -}}
-{{- end -}}
