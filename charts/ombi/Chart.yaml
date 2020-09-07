@@ -1,16 +1,21 @@
 apiVersion: v2
-appVersion: v4.0.464
-description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
 name: ombi
-version: 3.0.1
+description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+type: application
+version: 4.0.0
+appVersion: 4.0.471
 keywords:
   - ombi
-  - plex
 home: https://github.com/k8s-at-home/charts/tree/master/charts/ombi
-icon: https://ombi.io/img/logo-orange-small.png
+icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
 sources:
-  - https://hub.docker.com/r/linuxserver/ombi/
-  - https://ombi.io/
+  - https://github.com/tidusjar/Ombi
+  - https://hub.docker.com/r/linuxserver/ombi
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+  - name: DirtyCajunRice
+    email: nick@cajun.pro
+dependencies:
+  - name: media-common
+    repository: https://k8s-at-home.com/charts/
+    version: ~1.0.0
+    alias: ombi
