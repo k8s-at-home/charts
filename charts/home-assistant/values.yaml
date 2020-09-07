@@ -118,9 +118,6 @@ usePodSecurityContext: true
 git:
   enabled: false
 
-  ## we just use the hass-configurator container image
-  ## you can use any image which has git and openssh installed
-  ##
   image:
     repository: k8sathome/git-crypt
     tag: 2020.09.07
