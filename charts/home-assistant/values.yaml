@@ -118,12 +118,9 @@ usePodSecurityContext: true
 git:
   enabled: false
 
-  ## we just use the hass-configurator container image
-  ## you can use any image which has git and openssh installed
-  ##
   image:
-    repository: causticlab/hass-configurator-docker
-    tag: 0.3.5-x86_64
+    repository: k8sathome/git-crypt
+    tag: 2020.09.07
     pullPolicy: IfNotPresent
 
   ## Specify the command that runs in the git-sync container to pull in configuration.
@@ -134,7 +131,7 @@ git:
     name: ""
     email: ""
 
-  # repo:
+  repo: ""
   secret: git-creds
   syncPath: /config
   keyPath: /root/.ssh

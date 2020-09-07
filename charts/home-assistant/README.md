@@ -222,7 +222,18 @@ Much of the home assistant configuration occurs inside the various files persist
 
 ## Git sync secret
 
-In order to sync the home assistant from a git repo, you have to store a ssh key as a kubernetes git secret
+In order to sync the home assistant from a git repo, you can optionally store an ssh key as a kubernetes git secret:
 ```shell
 kubectl create secret generic git-creds --from-file=id_rsa=git/k8s_id_rsa --from-file=known_hosts=git/known_hosts --from-file=id_rsa.pub=git/k8s_id_rsa.pub
+```
+
+## git-crypt support
+
+When using Git sync it is possible to specify a file called `git-crypt-key` in the secret referred to in `git.secret`. When this file is present, `git-crypt unlock` will automatically be executed after the repo has been synced. 
+
+**Note:** `git-crypt` is not installed by default in the other images! If you wish to push changes from the VS Code or Configurator containers, you will have to make sure that it is installed.
+
+The value for this secret can be obtained by running the following command in an unlocked version of your Home Assistant settings repo. It will export the unlock key, base64 encode it and copy it to your clipboard.
+```shell
+git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | pbcopy && rm ./tmp-key
 ```
