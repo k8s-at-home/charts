@@ -48,7 +48,28 @@ spec:
           - {{ . | quote }}
           {{- end }}
         {{- else }}
-        command: ['sh', '-c', '[ "$(ls {{ .Values.git.syncPath }})" ] || git clone {{ .Values.git.repo }} {{ .Values.git.syncPath }}']
+        command: ["/bin/sh", "-c"]
+        args:
+        - set -e;
+          if [ -d "{{ .Values.git.syncPath }}/.git" ];
+          then
+            git -C "{{ .Values.git.syncPath }}" pull || true;
+          else
+            if [ "$(ls -A {{ .Values.git.syncPath }})" ]; 
+            then
+              git clone --depth 2 "{{ .Values.git.repo }}" /tmp/repo;
+              cp -rf /tmp/repo/.git "{{ .Values.git.syncPath }}";
+              cd "{{ .Values.git.syncPath }}";
+              git checkout -f;
+            else
+              git clone --depth 2 "{{ .Values.git.repo }}" "{{ .Values.git.syncPath }}";
+            fi;
+          fi;
+          if [ -f "{{ .Values.git.keyPath }}/git-crypt-key" ];
+          then
+            cd {{ .Values.git.syncPath }};
+            git-crypt unlock "{{ .Values.git.keyPath }}/git-crypt-key";
+          fi;
         {{- end }}
         volumeMounts:
         - mountPath: /config
@@ -396,6 +417,7 @@ spec:
         secret:
           defaultMode: 256
           secretName: {{ .Values.git.secret }}
+          optional: true
       {{ end }}
       {{- if .Values.extraVolumes  }}{{ toYaml .Values.extraVolumes | trim | nindent 6 }}{{ end }}
     {{- with .Values.nodeSelector }}
