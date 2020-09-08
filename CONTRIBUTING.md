@@ -54,4 +54,4 @@ Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to
 
 ### pre-commit
 
-This repo supports the [pre-commit](https://pre-commit.com) framework. By installing the framework (see docs) it is possible to perform the chart linting step before committing your code. This can help prevent linter issues in the pipeline. Note that this requires having Docker running on your development environment.
+This repo supports the [pre-commit](https://pre-commit.com) framework. By installing the framework (see [docs](https://pre-commit.com/#install)) it is possible to perform the chart linting step before committing your code. This can help prevent linter issues in the pipeline. Note that this requires having Docker running on your development environment.
