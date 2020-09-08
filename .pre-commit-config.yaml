@@ -1,0 +1,11 @@
+# See https://pre-commit.com for more information
+repos:
+- repo: local
+  hooks:
+  - id: ct-lint
+    name: "Chart Test: Lint"
+    language: docker_image
+    pass_filenames: false
+    entry: -u 0 quay.io/helmpack/chart-testing:v3.0.0 ct
+    args:
+    - lint
