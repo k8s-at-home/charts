@@ -33,9 +33,9 @@ See `git help commit`:
 
 ### Technical Requirements
 
-* Must follow [Charts best practices](https://helm.sh/docs/topics/chart_best_practices/)
-* Must pass CI jobs for linting and installing changed charts with the [chart-testing](https://github.com/helm/chart-testing) tool
-* Any change to a chart requires a version bump following [semver](https://semver.org/) principles. See [Immutability(#immutability) and [Versioning](#versioning) below
+* Must follow [Charts best practices](https://helm.sh/docs/topics/chart_best_practices/).
+* Must pass CI jobs for linting and installing changed charts with the [chart-testing](https://github.com/helm/chart-testing) tool See [pre-commit](#pre-commit) below.
+* Any change to a chart requires a version bump following [semver](https://semver.org/) principles. See [Immutability](#immutability) and [Versioning](#versioning) below.
 
 Once changes have been merged, the release job will automatically run to package and release changed charts.
 
@@ -51,3 +51,7 @@ Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to
 
 1. Bump the MAJOR version
 2. In the README, under a section called "Upgrading", describe the manual steps necessary to upgrade to the new (specified) MAJOR version
+
+### pre-commit
+
+This repo supports the [pre-commit](https://pre-commit.com) framework. By installing the framework (see [docs](https://pre-commit.com/#install)) it is possible to perform the chart linting step before committing your code. This can help prevent linter issues in the pipeline. Note that this requires having Docker running on your development environment.
