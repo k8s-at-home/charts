@@ -12,6 +12,7 @@ repository or tag, and not designed to be deployed directly.
 * [k8s-at-home/tautulli](https://github.com/k8s-at-home/charts/tree/master/charts/tautulli)
 * [k8s-at-home/ombi](https://github.com/k8s-at-home/charts/tree/master/charts/ombi)
 * [k8s-at-home/organizr](https://github.com/k8s-at-home/charts/tree/master/charts/organizr)
+* [k8s-at-home/autoscan](https://github.com/k8s-at-home/charts/tree/master/charts/autoscan)
 
 ## Configuration
 
