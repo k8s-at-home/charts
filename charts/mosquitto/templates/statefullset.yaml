@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "mosquitto.fullname" . }}
+  labels:
+{{ include "mosquitto.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "mosquitto.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  serviceName: {{ include "mosquitto.name" . }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "mosquitto.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "mosquitto.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ tpl .Values.image.tag . }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: default
+              containerPort: 1883
+              protocol: TCP
+            - name: websocket
+              containerPort: 9001
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: configmap
+              mountPath: /mosquitto/config
+            - name: data
+              mountPath: /mosquitto/data
+      volumes:
+        - name: configmap
+          configMap:
+            name: {{ template "mosquitto.fullname" . }}
+        {{- if not .Values.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+        {{- end }}
+        {{- if and .Values.persistence.enabled .Values.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+  volumeClaimTemplates:
+  {{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+  - metadata:
+      name: data
+      labels:
+        app.kubernetes.io/name: {{ include "mosquitto.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- if .Values.persistence.annotations }}
+      annotations:
+    {{ toYaml .Values.persistence.annotations | indent 4 }}
+    {{- end }}
+    spec:
+      accessModes: [ {{ .Values.persistence.accessMode | quote }} ]
+      resources:
+        requests:
+          storage: {{ .Values.persistence.size | quote }}
+    {{- if .Values.persistence.storageClass }}
+    {{- if (eq "-" .Values.persistence.storageClass) }}
+      storageClassName: ""
+    {{- else }}
+      storageClassName: {{ .Values.persistence.storageClass | quote }}
+    {{- end }}
+    {{- end }}
+  {{- end }}
