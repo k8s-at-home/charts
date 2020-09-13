@@ -25,12 +25,16 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "statping.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
@@ -76,7 +80,7 @@ spec:
                   name: {{ include "statping.fullname" . }}
                   key: admin-email
                   {{- end }}
-            {{- if eq .Values.postgres.type "kubedb" }}
+            {{- if and (eq .Values.postgres.type "kubedb") .Values.postgres.kubedb.enabled }}
             - name: DB_CONN
               value: postgres
             - name: DB_HOST
@@ -94,6 +98,21 @@ spec:
                   name: postgres-{{ template "statping.fullname" . }}-auth
                   key: POSTGRES_PASSWORD
           {{- end }}
+            {{- if and (eq .Values.postgres.type "postgresql") .Values.postgres.posgresql.enabled }}
+            - name: DB_CONN
+              value: postgres
+            - name: DB_HOST
+              value: {{ template "postgresql.fullname" . }}-postgresql
+            - name: DB_DATABASE
+              value: {{ template "postgresql.database" . }}
+            - name: DB_USER
+              value: {{ template "postgresql.username" . }}
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "postgresql.secretName" . }}
+                  key: postgresql-password
+            {{- end }}
           {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -118,8 +137,10 @@ spec:
           {{- if .Values.additionalVolumeMounts }}
           {{- toYaml .Values.additionalVolumes | nindent 12 }}
           {{- end }}
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+      {{- end }}
       volumes:
         - name: config
           {{- if .Values.persistence.enabled }}

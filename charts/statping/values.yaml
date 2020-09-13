@@ -5,6 +5,11 @@ image:
   pullPolicy: IfNotPresent
   tag: ""
 
+global:
+  postgresql:
+    postgresqlDatabase: "postgres"
+    postgresqlUsername: "postgres"
+
 statping:
   name: ""
   description: ""
@@ -88,9 +93,9 @@ persistence:
   skipuninstall: false
 
 postgres:
-  type: kubedb
+  type: postgresql
   kubedb:
-    enabled: true
+    enabled: false
     version: 11.1
     storageType: Durable
     storage:
@@ -100,7 +105,7 @@ postgres:
         requests:
           storage: 1Gi
   posgresql:
-    enabled: false
+    enabled: true
     # See https://github.com/bitnami/charts/tree/master/bitnami/postgresql for configuration
 
 externalSecret:
