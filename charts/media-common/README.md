@@ -23,3 +23,8 @@ These values will normally be nested as it is a dependency, for example:
 radarr:
   <values>
 ```
+
+## Add-ons
+
+### OpenVPN
+It is possible to enable an OpenVPN add-on by setting `openvpn.enabled: true`. For more information refer to [k8s-at-home/media-common-openvpn](https://github.com/k8s-at-home/charts/tree/master/charts/media-common-openvpn)
