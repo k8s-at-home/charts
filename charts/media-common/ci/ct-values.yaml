@@ -20,3 +20,11 @@ openvpn:
 
   networkPolicy:
     enabled: false
+
+  livenessProbe:
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    exec:
+      command:
+        - echo
+        - success
