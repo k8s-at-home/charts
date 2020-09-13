@@ -5299,6 +5299,33 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/speedtest-prometheus-1.0.0/speedtest-prometheus-1.0.0.tgz
     version: 1.0.0
+  statping:
+  - apiVersion: v2
+    appVersion: v0.90.65
+    created: "2020-09-13T12:09:50.281357894Z"
+    dependencies:
+    - condition: postgres.posgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.4.0
+    description: Status page for monitoring your websites and applications
+    digest: f3adb6417630222b2c00b38124ee87721e3d80ae39179447e528d50b0ce8066c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/statping
+    icon: https://github.com/statping/statping/blob/dev/frontend/src/assets/logo.png?raw=true
+    keywords:
+    - statping
+    - status
+    - status-page
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: statping
+    sources:
+    - https://github.com/statping/statping
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/statping-1.0.0/statping-1.0.0.tgz
+    version: 1.0.0
   tautulli:
   - apiVersion: v2
     appVersion: v2.5.4
