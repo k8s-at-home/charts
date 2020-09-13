@@ -1,6 +1,22 @@
+---
 image:
   organization: linuxserver
   repository: radarr
   tag: latest
 service:
   port: 7878
+
+openvpn:
+  enabled: true
+
+  image:
+    repository: dperson/openvpn-client
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  scripts:
+    up:
+    down:
+
+  networkPolicy:
+    enabled: false
