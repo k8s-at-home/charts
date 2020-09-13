@@ -50,3 +50,27 @@ Selector labels
 app.kubernetes.io/name: {{ include "media-common.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Additional Containers
+*/}}
+{{- define "media-common.additionalContainers" -}}
+{{- if .Values.additionalContainers }}
+{{- toYaml .Values.additionalContainers }}
+{{- end }}
+{{- if .Values.openvpn.enabled }}
+{{ include "media-common.openvpn.container" . }}
+{{- end }}
+{{- end -}}
+
+{{/*
+Additional Volumes
+*/}}
+{{- define "media-common.additionalVolumes" -}}
+{{- if .Values.additionalVolumes }}
+{{- toYaml .Values.additionalVolumes }}
+{{- end }}
+{{- if .Values.openvpn.enabled }}
+{{ include "media-common.openvpn.volume" . }}
+{{- end }}
+{{- end -}}
