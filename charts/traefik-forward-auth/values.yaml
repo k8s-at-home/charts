@@ -1,4 +1,6 @@
 # Default values for traefik-forward-auth.
+
+
 replicaCount: 1
 
 image:
@@ -11,64 +13,84 @@ nameOverride: ""
 fullnameOverride: ""
 
 logging:
-  # [trace|debug|info|warn|error|fatal|panic] Log level (default: warn)
+  # logging.level -- [trace|debug|info|warn|error|fatal|panic] Log level (default: warn)
   level: ""
-  # [text|json|pretty] Log format (default: text)
+  # logging.format -- [text|json|pretty] Log format (default: text)
   format: ""
-# Single host to use when returning from 3rd party auth
+# authHost -- Single host to use when returning from 3rd party auth
 authHost: ""
 restrictions:
-  # Only allow given email domains. (Comma delimited)
+  # restrictions.domain -- Only allow given email domains. (Comma delimited)
   domain: ""
-  # Only allow given email addresses. (Comma delimited)
+  # restrictions.whitelist -- Only allow given email addresses. (Comma delimited)
   whitelist: ""
-# Lifetime in seconds (default: 43200)
+# lifetime -- Lifetime in seconds (default: 43200)
 lifetime: ""
 cookie:
-  # Domain(s) to set auth cookie on. (Comma delimited)
+  # cookie.domain -- Domain(s) to set auth cookie on. (Comma delimited)
   domain: ""
-  # Use insecure cookies
+  # cookie.insecure -- Use insecure cookies
   insecure: ""
-  # Cookie Name (default: _forward_auth)
+  # cookie.name -- Cookie Name (default: _forward_auth)
   name: ""
-  # CSRF Cookie Name (default: _forward_auth_csrf)
+  # cookie.csrfName -- CSRF Cookie Name (default: _forward_auth_csrf)
   csrfName: ""
 default:
-  # [auth|allow] Default action (default: auth)
+  # default.action -- [auth|allow] Default action (default: auth)
   action: ""
-  # [google|oidc|generic-oauth] Default provider (default: google)
+  # default.provider -- [google|oidc|generic-oauth] Default provider (default: google)
   provider: ""
-# URL to redirect to following logout
+# logoutRedirect -- URL to redirect to following logout
 logoutRedirect: ""
-# Callback URL Path (default: /_oauth)
+# urlPath -- Callback URL Path (default: /_oauth)
 urlPath: ""
-# Secret used for signing. If empty, one will be generated. If specifying your own in env use "-"
+# secret -- Secret used for signing. If empty, one will be generated. If specifying your own in env use "-"
 secret: ""
 
 middleware:
+  # middleware.enabled -- Enable to deploy a preconfigured middleware
   enabled: false
+  # middleware.name -- Name for the middleware
   name: ""
 providers:
   google:
+    # providers.google.enabled -- Enable the google provider
     enabled: false
+    # providers.google.clientId -- Client ID
     clientId: ""
+    # providers.google.clientSecret -- Client Secret
     clientSecret: ""
+    # providers.google.prompt -- Space separated list of OpenID prompt options
     prompt: ""
   oidc:
+    # providers.oidc.enabled -- Enable the generic OIDC provider
     enabled: false
+    # providers.oidc.issuerUrl -- Issuer URL
     issuerUrl: ""
+    # providers.oidc.clientId -- Client ID
     clientId: ""
+    # providers.oidc.clientSecret -- Client Secret
     clientSecret: ""
+    # providers.oidc.resource -- Optional resource indicator
     resource: ""
   genericOauth:
+    # providers.genericOauth.enabled -- Enable the generic OAUTH2 provider
     enabled: false
+    # providers.genericOauth.authUrl -- Auth/Login URL
     authUrl: ""
+    # providers.genericOauth.tokenUrl -- Token URL
     tokenUrl: ""
+    # providers.genericOauth.userUrl -- URL used to retrieve user info
     userUrl: ""
+    # providers.genericOauth.clientId -- Client ID
     clientId: ""
+    # providers.genericOauth.clientSecret -- Client Secret
     clientSecret: ""
+    # providers.genericOauth.scope -- Scopes (default: profile, email)
     scope: ""
+    # providers.genericOauth.tokenStyle -- How token is presented when querying the User URL
     tokenStyle: ""
+    # providers.genericOauth.resource -- Optional resource indicator
     resource: ""
 
 env: []
