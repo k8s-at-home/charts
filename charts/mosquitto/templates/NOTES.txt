@@ -1,0 +1,38 @@
+** Please be patient while the chart is being deployed **
+
+Mosquitto can be accessed within the cluster on port 1883 at {{ template "mosquitto.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+
+To access for outside the cluster, perform the following steps:
+
+{{- if contains "NodePort" .Values.service.type }}
+
+Obtain the NodePort IP and ports:
+
+    export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+    export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[1].nodePort}" services {{ template "mosquitto.fullname" . }})
+
+To Access the Mosquitto MQTT port:
+
+    echo "URL : amqp://$NODE_IP:$NODE_PORT/"
+
+{{- else if contains "LoadBalancer" .Values.service.type }}
+
+Obtain the LoadBalancer IP:
+
+NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+      Watch the status with: 'kubectl get svc --namespace {{ .Release.Namespace }} -w {{ template "mosquitto.fullname" . }}'
+
+    export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "mosquitto.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+
+To Access the Moquitto port:
+
+    echo "URL : mqtt://$SERVICE_IP:1883/"
+
+{{- else if contains "ClusterIP"  .Values.service.type }}
+
+To Access the Mosquitto MQTT port:
+
+    kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "mosquitto.fullname" . }} 1883:1883
+    echo "URL : mqtt://127.0.0.1:1883/"
+
+{{- end }}
