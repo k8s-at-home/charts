@@ -113,9 +113,16 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     skipuninstall: false
 
+additionalContainers: []
+
 additionalVolumes: []
 
 additionalVolumeMounts: []
+
+# Enable the OpenVPN add-on here
+# See https://github.com/k8s-at-home/charts/tree/master/charts/media-common-openvpn for more details
+openvpn:
+  enabled: false
 
 podSecurityContext: {}
 # fsGroup: 2000
