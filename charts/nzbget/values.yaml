@@ -33,7 +33,7 @@ nzbget:
       emptyDir: {}
       ## When using persistence.downloads.enabled: true, adjust this to:
       # persistentVolumeClaim:
-      # claimName: nzbget-downloads
+      #   claimName: nzbget-downloads
 
   additionalVolumeMounts:
     - name: downloads
