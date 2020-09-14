@@ -1,0 +1,26 @@
+{{ template "chart.header" . }}
+{{ template "chart.typeBadge" . }}{{ template "chart.versionBadge" . }}{{ template "chart.appVersionBadge" . }}{{ template "badge.artifactHub" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "description.multiarch" . }}
+
+Chart that
+* Adds docker image information leveraging the [official image](https://github.com/thomseddon/traefik-forward-auth)
+* Deploys [traefik-forward-auth](https://github.com/thomseddon/traefik-forward-auth)
+
+{{ template "install.tldr" . }}
+
+{{ template "install" . }}
+
+{{ template "uninstall" . }}
+
+{{ template "configuration.header" . }}
+
+{{ template "configuration.readValues" . }}
+
+{{ template "configuration.example.set" .}}
+
+{{ template "configuration.example.file" . }}
+
+{{ template "chart.valuesSection" . }}
