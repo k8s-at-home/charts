@@ -1,0 +1,10 @@
+jackett:
+  image:
+    organization: linuxserver
+    repository: jackett
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 9117
+  ingress:
+    enabled: false
