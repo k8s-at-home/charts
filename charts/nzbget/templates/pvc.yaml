@@ -1,0 +1,22 @@
+{{- if and .Values.nzbget.persistence.downloads.enabled (not .Values.nzbget.persistence.downloads.existingClaim) }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "media-common.fullname" . }}-downloads
+  {{- if .Values.nzbget.persistence.downloads.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+  labels:
+  {{- include "media-common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.nzbget.persistence.downloads.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.nzbget.persistence.downloads.size | quote }}
+  {{- if .Values.nzbget.persistence.downloads.storageClass }}
+  storageClassName: {{ if (eq "-" .Values.nzbget.persistence.downloads.storageClass) }}""{{- else }}{{ .Values.nzbget.persistence.downloads.storageClass | quote}}{{- end }}
+  {{- end }}
+{{- end -}}
