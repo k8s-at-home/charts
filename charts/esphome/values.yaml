@@ -4,7 +4,7 @@
 
 image:
   repository: esphome/esphome
-  tag: 1.14.5
+  tag: 1.15.2
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -152,3 +152,25 @@ extraVolumes: []
 extraVolumeMounts: []
 #   - name: example-name
 #     mountPath: /path/in/container
+
+
+git:
+  enabled: false
+
+  image:
+    repository: k8sathome/git-crypt
+    tag: 2020.09.07
+    pullPolicy: IfNotPresent
+
+  ## Specify the command that runs in the git-sync container to pull in configuration.
+  # command: []
+
+  # Committer settings
+  user:
+    name: ""
+    email: ""
+
+  repo: ""
+  secret: git-creds
+  syncPath: /config
+  keyPath: /root/.ssh
