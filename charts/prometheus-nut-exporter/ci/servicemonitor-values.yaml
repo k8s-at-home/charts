@@ -1,0 +1,12 @@
+---
+serviceMonitor:
+  enabled: true
+  targets:
+    - hostname: nut-server
+      port: 3493
+
+probes:
+  liveness:
+    initialDelaySeconds: 10
+  readiness:
+    initialDelaySeconds: 10
