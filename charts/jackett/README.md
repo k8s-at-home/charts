@@ -34,13 +34,13 @@ file. It has several commented out suggested values.
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install jackett \
-  --set radarr.env.TZ="America/New York" \
+  --set jackett.env.TZ="America/New York" \
     k8s-at-home/jackett
 ```
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
 chart. For example,
 ```console
-helm install radarr k8s-at-home/jackett --values values.yaml 
+helm install jackett k8s-at-home/jackett --values values.yaml 
 ```
 
 These values will be nested as it is a dependency, for example
