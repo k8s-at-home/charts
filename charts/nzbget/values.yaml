@@ -1,179 +1,40 @@
 # Default values for nzbget.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
-image:
-  repository: linuxserver/nzbget
-  tag: v21.0-ls61
-  pullPolicy: IfNotPresent
-
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
-strategyType: Recreate
-
-# Probes configuration
-probes:
-  liveness:
-    initialDelaySeconds: 60
-    failureThreshold: 5
-    timeoutSeconds: 10
-  readiness:
-    initialDelaySeconds: 60
-    failureThreshold: 5
-    timeoutSeconds: 10
-
-nameOverride: ""
-fullnameOverride: ""
-
-timezone: UTC
-puid: 1001
-pgid: 1001
-
-service:
-  type: ClusterIP
-  port: 6789
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
-  loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  labels: {}
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-openvpn:
-  # Enables an openvpn sidecar that when configured properly will provide a
-  # Secure outbound VPN for use by NZBGet.
-  enabled: false
-
+nzbget:
   image:
-    repository: dperson/openvpn-client
-    tag: latest
+    organization: linuxserver
+    repository: nzbget
     pullPolicy: IfNotPresent
+    tag: v21.0-ls61
+  service:
+    port: 6789
 
-  # All variables specified here will be added to the openvpn sidecar container
-  # Ref https://hub.docker.com/r/dperson/openvpn-client for all config values
-  env: []
-  # DNS: "true"
-  # TZ: EST5EDT
-
-  # Provide a customized vpn.conf file to be used by openvpn.
-  vpnConf:  # |-
-    # Some Example Config
-    # remote greatvpnhost.com 8888
-    # auth-user-pass
-    # Cipher AES
-
-  # Credentials to connect to the VPN Service (used with -a)
-  auth:  # "user;password"
-
-  # If set to true, will deploy a network policy that blocks all outbound
-  # traffic except traffic specified as allowed
-  networkPolicy:
+  # Configure the OpenVPN add-on
+  openvpn:
     enabled: false
 
-    # The egress configuration for your network policy, All outbound traffic
-    # From the pod will be blocked unless specified here. Your cluster must
-    # have a CNI that supports network policies (Canal, Calico, etc...)
-    # https://kubernetes.io/docs/concepts/services-networking/network-policies/
-    # https://github.com/ahmetb/kubernetes-network-policy-recipes
-    egress:
-      # - to:
-      #   - ipBlock:
-      #       cidr: 0.0.0.0/0
-      #   ports:
-      #   - port: 53
-      #     protocol: UDP
-      #   - port: 53
-      #     protocol: TCP
+  persistence:
+    downloads:
+      enabled: false
+      ## nzbget downloads Persistent Volume Storage Class
+      ## If defined, storageClassName: <storageClass>
+      ## If set to "-", storageClassName: "", which disables dynamic provisioning
+      ## If undefined (the default) or set to null, no storageClassName spec is
+      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+      ##   GKE, AWS & OpenStack)
+      # storageClass: "-"
+      # accessMode: ReadWriteOnce
+      # size: 1Gi
+      ## Do not delete the pvc upon helm uninstall
+      # skipuninstall: false
 
-persistence:
-  config:
-    enabled: true
-    ## nzbget configuration data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-  downloads:
-    enabled: true
-    ## nzbget torrents downloads volume configuration
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    # subPath: some-subpath
-    accessMode: ReadWriteOnce
-    size: 10Gi
-    ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-  extraMounts: []
-  ## Include additional claims that can be mounted inside the
-  ## pod. This is useful if you wish to use different paths with categories
-  ## Claim will me mounted as /{mountPath} if specified. If no {mountPath} is given,
-  ## mountPath will default to {name}
-  # - name: video
-  #   claimName: video-claim
-  #   mountPath: /mnt/path/in/pod
+  additionalVolumes:
+    - name: downloads
+      emptyDir: {}
+      ## When using persistence.downloads.enabled: true, adjust this to:
+      # persistentVolumeClaim:
+      #   claimName: nzbget-downloads
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-podAnnotations: {}
-
-deploymentAnnotations: {}
+  additionalVolumeMounts:
+    - name: downloads
+      mountPath: /downloads
