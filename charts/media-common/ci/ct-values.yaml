@@ -14,6 +14,11 @@ openvpn:
     tag: latest
     pullPolicy: IfNotPresent
 
+  auth: user;pass
+
+  env:
+    TZ: UTC
+
   scripts:
     up:
     down:
