@@ -1946,6 +1946,31 @@ entries:
   jackett:
   - apiVersion: v2
     appVersion: v0.16.1045
+    created: "2020-09-21T13:37:08.851277808Z"
+    dependencies:
+    - alias: jackett
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: API Support for your favorite torrent trackers
+    digest: 059364355f42d8089c1f1906ef10256c54d836704d7bf0beb8e6bd6e7316dc06
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-4.0.0/jackett-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
+    appVersion: v0.16.1045
     created: "2020-09-05T15:12:38.526456243Z"
     description: API Support for your favorite torrent trackers
     digest: 31d87c460209f0c9fc5f0935132682a83cfab65ec9e8a7c29f4b63edc99e21fa
