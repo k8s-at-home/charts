@@ -1,149 +1,43 @@
 # Default values for Jackett.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
-image:
-  repository: linuxserver/jackett
-  tag: v0.16.1045-ls14
-  pullPolicy: IfNotPresent
+jackett:
+  image:
+    organization: linuxserver
+    repository: jackett
+    pullPolicy: IfNotPresent
+    tag: v0.16.1045-ls14
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
-strategyType: Recreate
+  service:
+    port: 9117
 
-# Probes configuration
-probes:
-  liveness:
-    failureThreshold: 5
-    periodSeconds: 10
-  readiness:
-    failureThreshold: 5
-    periodSeconds: 10
-  startup:
-    initialDelaySeconds: 5
-    failureThreshold: 30
-    periodSeconds: 10
+  env: {}
+    # TZ: UTC
+    # PUID: 1001
+    # PGID: 1001
 
-nameOverride: ""
-fullnameOverride: ""
+  persistence:
+    torrentblackhole:
+      enabled: false
+      ## Jackett torrent torrentblackhole Persistent Volume Storage Class
+      ## If defined, storageClassName: <storageClass>
+      ## If set to "-", storageClassName: "", which disables dynamic provisioning
+      ## If undefined (the default) or set to null, no storageClassName spec is
+      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+      ##   GKE, AWS & OpenStack)
+      # storageClass: "-"
+      # accessMode: ReadWriteOnce
+      # size: 1Gi
+      ## Do not delete the pvc upon helm uninstall
+      # skipuninstall: false
+      # existingClaim: ""
 
-timezone: UTC
-puid: 1001
-pgid: 1001
+  additionalVolumes:
+    - name: torrentblackhole
+      emptyDir: {}
+      ## When using persistence.torrentblackhole.enabled: true, adjust this to:
+      # persistentVolumeClaim:
+      #   claimName: jackett-torrentblackhole
 
-service:
-  type: ClusterIP
-  port: 9117
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
-  loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  labels: {}
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-persistence:
-  config:
-    enabled: true
-    ## Jackett configuration data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    accessMode: ReadWriteOnce
-    size: 1Gi
-
-    ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
-    ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
-    ##
-    subPath: ""
-    ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-  torrentblackhole:
-    enabled: false
-    ## Jackett torrentblackhole directory volume configuration
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    # subPath: some-subpath
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-dnsPolicy: ClusterFirst
-
-dnsConfig: {}
-  # dnsConfig may be used with any dnsPolicy, but is required when dnsPolicy: "None"
-  # To use, remove the braces above, and uncomment/modify the following lines.
-  # See https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
-  # for additional information
-  # nameservers:
-  #   - 1.1.1.1
-  # searches:
-  #   - ns1.mysearch.domain
-  # options:
-  #   - name: ndots
-  #     value: "1"
-
-hostNetwork: false
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-podAnnotations: {}
-
-deploymentAnnotations: {}
+  additionalVolumeMounts:
+    - name: torrentblackhole
+      mountPath: /downloads
