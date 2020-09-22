@@ -42,6 +42,7 @@ The following tables lists the configurable parameters of the Node-RED chart and
 | `image.tag`                        | node-red image tag                                                      | `1.0.6-12-minimal`        |
 | `image.pullPolicy`                 | node-red image pull policy                                              | `IfNotPresent`            |
 | `strategyType`                     | Specifies the strategy used to replace old Pods by new ones             | `Recreate`                |
+| `serviceAccountName`               | Service account to run the pod as                                       | ``                        |
 | `livenessProbePath`                | Default livenessProbe path                                              | `/`                       |
 | `readinessProbePath`               | Default readinessProbe path                                             | `/`                       |
 | `flows`                            | Default flows configuration                                             | `flows.json`              |
