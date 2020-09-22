@@ -74,7 +74,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-          subPath: {{ default "" .Values.git.configSubPath }}
+          subPath: {{ default "" .Values.persistence.configSubPath }}
         - mountPath: {{ .Values.git.keyPath }}
           name: git-secret
         {{- if .Values.extraVolumeMounts }}{{ toYaml .Values.extraVolumeMounts | trim | nindent 8 }}{{ end }}
@@ -149,7 +149,7 @@ spec:
           volumeMounts:
           - mountPath: /config
             name: config
-            subPath: {{ default "" .Values.configSubPath }}
+            subPath: {{ default "" .Values.persistence.configSubPath }}
           {{- if .Values.zwave.enabled }}
           - mountPath: /dev/ttyACM0
             name: ttyacm
@@ -249,7 +249,7 @@ spec:
           volumeMounts:
           - mountPath: /config
             name: config
-            subPath: {{ default "" .Values.configSubPath }}
+            subPath: {{ default "" .Values.persistence.configSubPath }}
           {{- if .Values.git.enabled }}
           - mountPath: {{ .Values.git.keyPath }}
             name: git-secret
@@ -313,7 +313,7 @@ spec:
           volumeMounts:
           - mountPath: /config
             name: config
-            subPath: {{ default "" .Values.configSubPath }}
+            subPath: {{ default "" .Values.persistence.configSubPath }}
           {{- if .Values.git.enabled }}
           - mountPath: {{ .Values.git.keyPath }}
             name: git-secret
@@ -373,7 +373,7 @@ spec:
           volumeMounts:
           - mountPath: /ha-conf
             name: config
-            subPath: {{ default "" .Values.configSubPath }}
+            subPath: {{ default "" .Values.persistence.configSubPath }}
           - mountPath: /conf
             subPath: {{ default "appdaemon" .Values.appdaemon.configSubPath }}
             name: config
