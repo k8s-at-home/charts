@@ -40,10 +40,12 @@ service:
   annotations: {}
   labels: {}
   additionalSpec: {}
+
   ## Specify any additional required (TCP) ports here
   additionalPorts: {}
-    # - name: ""
-    #   port: ""
+  ## Example:
+    # bittorrent:
+    #   port: 6881
     #   nodePort:
 
 ingress:

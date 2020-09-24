@@ -22,13 +22,13 @@ spec:
       {{- if (and (eq $svcType "NodePort") (not (empty .Values.service.nodePort))) }}
       nodePort: {{ .Values.service.nodePort }}
       {{- end }}
-    {{- range .Values.service.additionalPorts }}
-    - name: {{ .name }}
-      port: {{ .port }}
+    {{- range $key, $value := .Values.service.additionalPorts }}
+    - name: {{ $key }}
+      port: {{ $value.port }}
       protocol: TCP
-      targetPort: {{ .name }}
-      {{- if (and (eq $svcType "NodePort") (not (empty .nodePort))) }}
-      nodePort: {{ .nodePort }}
+      targetPort: {{ $key }}
+      {{- if (and (eq $svcType "NodePort") (not (empty $value.nodePort))) }}
+      nodePort: {{ $value.nodePort }}
       {{- end }}
     {{- end }}
   {{- with .Values.service.additionalSpec }}
