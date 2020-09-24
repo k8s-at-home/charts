@@ -1,0 +1,22 @@
+{{- if and .Values.qbittorrent.persistence.downloads.enabled (not .Values.qbittorrent.persistence.downloads.existingClaim) }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "media-common.fullname" . }}-downloads
+  {{- if .Values.qbittorrent.persistence.downloads.skipuninstall }}
+  annotations:
+    "helm.sh/resource-policy": keep
+  {{- end }}
+  labels:
+  {{- include "media-common.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.qbittorrent.persistence.downloads.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.qbittorrent.persistence.downloads.size | quote }}
+  {{- if .Values.qbittorrent.persistence.downloads.storageClass }}
+  storageClassName: {{ if (eq "-" .Values.qbittorrent.persistence.downloads.storageClass) }}""{{- else }}{{ .Values.qbittorrent.persistence.downloads.storageClass | quote}}{{- end }}
+  {{- end }}
+{{- end -}}
