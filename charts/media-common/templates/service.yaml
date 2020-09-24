@@ -1,3 +1,4 @@
+{{- $svcType := .Values.service.type -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,15 +13,24 @@ metadata:
   {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ $svcType }}
   ports:
     - name: http
       port: {{ .Values.service.port }}
       protocol: TCP
       targetPort: http
-      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
+      {{- if (and (eq $svcType "NodePort") (not (empty .Values.service.nodePort))) }}
       nodePort: {{ .Values.service.nodePort }}
       {{- end }}
+    {{- range .Values.service.additionalPorts }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      protocol: TCP
+      targetPort: {{ .name }}
+      {{- if (and (eq $svcType "NodePort") (not (empty .nodePort))) }}
+      nodePort: {{ .nodePort }}
+      {{- end }}
+    {{- end }}
   {{- with .Values.service.additionalSpec }}
   {{- toYaml . | nindent 2 }}
   {{- end }}

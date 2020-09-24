@@ -40,6 +40,11 @@ service:
   annotations: {}
   labels: {}
   additionalSpec: {}
+  ## Specify any additional required (TCP) ports here
+  additionalPorts: {}
+    # - name: ""
+    #   port: ""
+    #   nodePort:
 
 ingress:
   enabled: false
