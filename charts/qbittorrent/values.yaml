@@ -7,17 +7,29 @@ qbittorrent:
     pullPolicy: IfNotPresent
     tag: 14.2.5.99202004250119-7015-2c65b79ubuntu18.04.1-ls91
 
-  env: {}
-    # TZ: UTC
-    # PUID: 1001
-    # PGID: 1001
-    # UMASK: 022
+  env:
+    TZ: UTC
+    PUID: 1001
+    PGID: 1001
+    UMASK: 022
 
   service:
     port: 8080
-    additionalPorts:
-      bittorrent:
-        port: 6881
+
+  btService:
+    type: ClusterIP
+    port: 6881
+    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    ##
+    # nodePort:
+    ## Provide any additional annotations which may be required. This can be used to
+    ## set the LoadBalancer service type to internal only.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+    ##
+    annotations: {}
+    labels: {}
+    additionalSpec: {}
 
   persistence:
     downloads:
