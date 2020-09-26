@@ -27,6 +27,8 @@ spec:
       securityContext:
       {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+      {{- include "media-common.initContainers" . | nindent 8 }}
       containers:
         - name: {{ template "media-common.fullname" . }}
           {{- with .Values.securityContext }}
