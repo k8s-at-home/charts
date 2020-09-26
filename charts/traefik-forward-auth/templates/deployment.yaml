@@ -181,14 +181,18 @@ spec:
             - name: http
               containerPort: 4181
               protocol: TCP
+        {{- $livenessProbe := .Values.livenessProbe }}
+        {{- if $livenessProbe.enabled }}
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+          {{- $livenessProbe := unset $livenessProbe "enabled" }}
+          {{- toYaml $livenessProbe | nindent 12 }}
+        {{- end }}
+        {{- $readinessProbe := .Values.readinessProbe }}
+        {{- if $readinessProbe.enabled }}
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            {{- $readinessProbe := unset $readinessProbe "enabled" }}
+            {{- toYaml $readinessProbe | nindent 12 }}
+        {{- end }}
           {{- with .Values.resources }}
           resources:
       {{- toYaml . | nindent 12 }}
