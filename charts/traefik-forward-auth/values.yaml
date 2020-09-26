@@ -117,6 +117,24 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+# livenessProbe -- Liveness probe configuration
+# @default -- {"periodSeconds":20,"tcpSocket":{"port":"http"}}
+livenessProbe:
+  # livenessProbe.enabled -- Enable liveness probe
+  enabled: true
+  tcpSocket:
+    port: http
+  periodSeconds: 20
+
+# readinessProbe -- Readiness probe configuration
+# @default -- {"periodSeconds":10,"tcpSocket":{"port":"http"}}
+readinessProbe:
+  # readinessProbe.enabled -- Enable readiness probe
+  enabled: true
+  tcpSocket:
+    port: http
+  periodSeconds: 10
+
 service:
   type: ClusterIP
   port: 4181

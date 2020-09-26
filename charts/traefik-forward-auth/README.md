@@ -1,6 +1,6 @@
 # traefik-forward-auth
 
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square) [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/traefik-forward-auth)](https://artifacthub.io/packages/helm/traefik-forward-auth)
+![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square) [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/traefik-forward-auth)](https://artifacthub.io/packages/helm/traefik-forward-auth)
 
 A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
 
@@ -75,6 +75,8 @@ helm install traefik-forward-auth k8s-at-home/traefik-forward-auth --values valu
 | ingress.hosts[0].paths | list | `[]` |  |
 | ingress.tls | list | `[]` |  |
 | lifetime | string | `""` | Lifetime in seconds (default: 43200) |
+| livenessProbe | object | {"periodSeconds":20,"tcpSocket":{"port":"http"}} | Liveness probe configuration |
+| livenessProbe.enabled | bool | `true` | Enable liveness probe |
 | logging.format | string | `""` | [text|json|pretty] Log format (default: text) |
 | logging.level | string | `""` | [trace|debug|info|warn|error|fatal|panic] Log level (default: warn) |
 | logoutRedirect | string | `""` | URL to redirect to following logout |
@@ -102,6 +104,8 @@ helm install traefik-forward-auth k8s-at-home/traefik-forward-auth --values valu
 | providers.oidc.enabled | bool | `false` | Enable the generic OIDC provider |
 | providers.oidc.issuerUrl | string | `""` | Issuer URL |
 | providers.oidc.resource | string | `""` | Optional resource indicator |
+| readinessProbe | object | {"periodSeconds":10,"tcpSocket":{"port":"http"}} | Readiness probe configuration |
+| readinessProbe.enabled | bool | `true` | Enable readiness probe |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | restrictions.domain | string | `""` | Only allow given email domains. (Comma delimited) |
