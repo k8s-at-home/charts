@@ -52,6 +52,15 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Init Containers
+*/}}
+{{- define "media-common.initContainers" -}}
+{{- if .Values.initContainers }}
+{{- toYaml .Values.initContainers }}
+{{- end }}
+{{- end -}}
+
+{{/*
 Additional Containers
 */}}
 {{- define "media-common.additionalContainers" -}}
