@@ -50,7 +50,9 @@ ingress:
   hosts:
     - host: chart-example.local
       paths:
-        - /
+        - path: /
+          # Ignored if not kubeVersion >= 1.14-0
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -65,7 +67,9 @@ ingress:
   #   hosts:
   #     - host: chart-example.local
   #       paths:
-  #         - /api
+  #         - path: /api
+  #          # Ignored if not kubeVersion >= 1.14-0
+  #          pathType: Prefix
   #   tls: []
   #   #  - secretName: chart-example-tls
   #   #    hosts:
