@@ -1,7 +1,10 @@
 {{- if .Values.ingress.enabled -}}
+  {{- $kubeVersion := .Capabilities.KubeVersion.GitVersion -}}
   {{- $fullName := include "media-common.fullname" . -}}
   {{- $svcPort := .Values.service.port -}}
-  {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+  {{- if semverCompare ">= 1.19-0" $kubeVersion -}}
+apiVersion: networking.k8s.io/v1
+  {{- else if semverCompare ">= 1.14-0 < 1.19-0" $kubeVersion -}}
 apiVersion: networking.k8s.io/v1beta1
   {{- else -}}
 apiVersion: extensions/v1beta1
@@ -32,17 +35,29 @@ spec:
       http:
         paths:
           {{- range .paths }}
-          - path: {{ . }}
+          - path: {{ .path }}
+            {{- if semverCompare ">= 1.14-0" $kubeVersion}}
+            pathType: {{ .pathType }}
+            {{- end }}
             backend:
+              {{- if semverCompare ">= 1.19-0" $kubeVersion}}
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
+              {{- else }}
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
+              {{- end }}
           {{- end }}
   {{- end }}
   {{- range $index, $ingress := .Values.ingress.extraIngresses }}
 ---
-    {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+  {{- if semverCompare ">= 1.19-0" $kubeVersion -}}
+apiVersion: networking.k8s.io/v1
+  {{- else if semverCompare ">= 1.14-0 < 1.19-0" $kubeVersion -}}
 apiVersion: networking.k8s.io/v1beta1
-    {{- else -}}
+  {{- else -}}
 apiVersion: extensions/v1beta1
     {{- end }}
 kind: Ingress
@@ -71,11 +86,21 @@ spec:
       http:
         paths:
           {{- range .paths }}
-          - path: {{ . }}
+          - path: {{ .path }}
+            {{- if semverCompare ">= 1.14-0" $kubeVersion}}
+            pathType: {{ .pathType }}
+            {{- end }}
             backend:
+              {{- if semverCompare ">= 1.19-0" $kubeVersion}}
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
+              {{- else }}
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-  {{- end }}
-  {{- end }}
+              {{- end }}
+          {{- end }}
+    {{- end }}
   {{- end }}
 {{- end }}
