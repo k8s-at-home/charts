@@ -35,9 +35,9 @@ Create chart name and version as used by the chart label.
 Create argument list for vscode image.
 */}}
 {{- define "home-assistant.vscode.args" -}}
-{{- if and (ne (typeOf .Values.vscode.args) "string") (ne .Values.vscode.args "-") -}}
-{{ toYaml .Values.vscode.args }}
-{{- else -}}
+{{- if empty .Values.vscode.args -}}
+{{- "" -}}
+{{- else if (eq (typeOf .Values.vscode.args) "string") -}}
 - --port={{ .Values.vscode.service.port }}
 {{- if not (.Values.vscode.password) }}
 - --auth=none
@@ -47,5 +47,7 @@ Create argument list for vscode image.
 - --user-data-dir={{ .Values.vscode.vscodePath }}
 - {{ .Values.vscode.hassConfig }}
 {{- end }}
+{{- else -}}
+{{ toYaml .Values.vscode.args }}
 {{- end -}}
 {{- end -}}
