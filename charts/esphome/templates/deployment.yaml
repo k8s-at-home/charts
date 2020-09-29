@@ -37,6 +37,56 @@ spec:
       hostNetwork: {{ .Values.hostNetwork }}
       dnsPolicy: ClusterFirstWithHostNet
       {{- end }}
+      initContainers:
+      {{- if .Values.git.enabled }}
+      - name: git-sync
+        image: "{{ .Values.git.image.repository }}:{{ .Values.git.image.tag }}"
+        imagePullPolicy: {{ .Values.git.image.pullPolicy }}
+        {{- if .Values.git.command }}
+        command:
+          {{- range .Values.git.command }}
+          - {{ . | quote }}
+          {{- end }}
+        {{- else }}
+        command: ["/bin/sh", "-c"]
+        args:
+        - set -e;
+          if [ -d "{{ .Values.git.syncPath }}/.git" ];
+          then
+            git -C "{{ .Values.git.syncPath }}" pull || true;
+          else
+            if [ "$(ls -A {{ .Values.git.syncPath }})" ]; 
+            then
+              git clone --depth 2 "{{ .Values.git.repo }}" /tmp/repo;
+              cp -rf /tmp/repo/.git "{{ .Values.git.syncPath }}";
+              cd "{{ .Values.git.syncPath }}";
+              git checkout -f;
+            else
+              git clone --depth 2 "{{ .Values.git.repo }}" "{{ .Values.git.syncPath }}";
+            fi;
+          fi;
+          if [ -f "{{ .Values.git.keyPath }}/git-crypt-key" ];
+          then
+            cd {{ .Values.git.syncPath }};
+            git-crypt unlock "{{ .Values.git.keyPath }}/git-crypt-key";
+          fi;
+        {{- end }}
+        volumeMounts:
+        - mountPath: /config
+          name: config
+        - mountPath: {{ .Values.git.keyPath }}
+          name: git-secret
+        {{- if .Values.extraVolumeMounts }}{{ toYaml .Values.extraVolumeMounts | trim | nindent 8 }}{{ end }}
+        {{- if .Values.usePodSecurityContext }}
+        securityContext:
+          runAsUser: {{ default 0 .Values.runAsUser }}
+        {{- if and (.Values.runAsUser) (.Values.fsGroup) }}
+        {{- if not (eq .Values.runAsUser 0.0) }}
+          fsGroup: {{ .Values.fsGroup }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
+      {{- end }}              
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -144,6 +194,13 @@ spec:
           type: {{ .type }}
           {{- end }}
       {{- end }}
+      {{- if .Values.git.enabled }}
+      - name: git-secret
+        secret:
+          defaultMode: 256
+          secretName: {{ .Values.git.secret }}
+          optional: true
+      {{ end }}      
       {{- if .Values.extraVolumes  }}{{ toYaml .Values.extraVolumes | trim | nindent 6 }}{{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
