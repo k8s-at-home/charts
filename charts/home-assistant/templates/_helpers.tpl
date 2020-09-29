@@ -30,3 +30,22 @@ Create chart name and version as used by the chart label.
 {{- define "home-assistant.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Create argument list for vscode image.
+*/}}
+{{- define "home-assistant.vscode.args" -}}
+{{- if and (ne (typeOf .Values.vscode.args) "string") (ne .Values.vscode.args "-") -}}
+{{ toYaml .Values.vscode.args }}
+{{- else -}}
+- --port={{ .Values.vscode.service.port }}
+{{- if not (.Values.vscode.password) }}
+- --auth=none
+{{- end }}
+{{- if .Values.vscode.vscodePath }}
+- --extensions-dir={{ .Values.vscode.vscodePath }}
+- --user-data-dir={{ .Values.vscode.vscodePath }}
+- {{ .Values.vscode.hassConfig }}
+{{- end }}
+{{- end -}}
+{{- end -}}
