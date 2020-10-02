@@ -71,8 +71,10 @@ powerdns:
   dnssec: true
   config: {}
 
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
 mariadb:
-  enabled: true
+  enabled: false
   db:
     name: pdns
     user: pdns
@@ -84,12 +86,20 @@ mariadb:
   master:
     persistence:
       enabled: false
-postgres:
-  enabled: false
+
+# Enabled postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: true
   global:
-    postgresqlUsername: pdns
-    postgresqlPassword: pdnspass
-    postgresqlDatabase: pdns
+    postgresql:
+      postgresqlUsername: pdns
+      postgresqlPassword: pdnspass
+      postgresqlDatabase: pdns
+  persistence:
+    enabled: false
+    # storageClass: ""
+
 
 # Probes configuration
 probes:
