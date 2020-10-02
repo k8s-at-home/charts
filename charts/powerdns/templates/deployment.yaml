@@ -130,7 +130,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                {{- $postgrestmp := printf "%s-%s" .Release.Name "postgres"}}
+                {{- $postgrestmp := printf "%s-%s" .Release.Name "postgresql"}}
                 command: ["/bin/sh", "-c", "a=0;while [ $a -lt 200 ];do sleep 5;a=$[a+1];echo 'stage: '$a;if nc -vz {{ $postgrestmp }} 5432;then (! pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null) && pdnsutil create-zone {{ .Values.powerdns.domain }};echo 'End Stage';a=200;fi;done"]
 {{ end }}
           resources:
