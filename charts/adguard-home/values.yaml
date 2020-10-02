@@ -224,8 +224,10 @@ probes:
 service:
   type: ClusterIP
   # externalTrafficPolicy: Local
+  # externalIPs: []
   # loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -234,8 +236,10 @@ serviceTCP:
   enabled: false
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -244,8 +248,10 @@ serviceUDP:
   enabled: true
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -255,8 +261,10 @@ serviceDNSOverTLS:
   ## Enable if you use AdGuard as a DNS over TLS/HTTPS server
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -266,6 +274,7 @@ serviceDHCP:
   ## Enable if you use AdGuard as a DHCP Server
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
   annotations: {}

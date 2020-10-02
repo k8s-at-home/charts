@@ -17,6 +17,14 @@ spec:
   {{- if .Values.serviceDHCP.loadBalancerIP }}
   loadBalancerIP: {{ .Values.serviceDHCP.loadBalancerIP }}
   {{- end }}
+  {{- if .Values.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{ toYaml .Values.service.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+  {{- if .Values.service.externalIPs }}
+  externalIPs:
+  {{ toYaml .Values.service.externalIPs | indent 4 }}
+  {{- end }}
   externalTrafficPolicy: {{ .Values.serviceDHCP.externalTrafficPolicy }}
   ports:
     - port: 67
