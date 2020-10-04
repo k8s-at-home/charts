@@ -41,6 +41,14 @@ spec:
         - name: DEBUG
           value: {{ .Values.debug }}
         {{- end }}
+        {{- if and .Values.config.frontend .Values.config.experimental }}
+        {{- if and .Values.config.frontend.port .Values.config.experimental.new_api }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.config.frontend.port }}
+          protocol: TCP
+        {{- end }}
+        {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         volumeMounts:
@@ -51,34 +59,6 @@ spec:
           mountPath: /data
         - name: sniffer
           mountPath: {{ .Values.config.serial.port }}
-      {{- if .Values.assistant.enabled }}
-      - name: {{ .Chart.Name }}assistant
-        image: "{{ .Values.assistant.image.repository }}:{{ .Values.assistant.image.tag | default "latest" }}"
-        imagePullPolicy: {{ .Values.assistant.image.pullPolicy }}        
-        ports:
-        - name: http
-          containerPort: 80
-          protocol: TCP
-        livenessProbe:
-          httpGet:
-            path: /
-            port: http
-            scheme: HTTP
-          initialDelaySeconds: {{ .Values.assistant.probes.liveness.initialDelaySeconds }}
-          failureThreshold: {{ .Values.assistant.probes.liveness.failureThreshold }}
-          timeoutSeconds: {{ .Values.assistant.probes.liveness.timeoutSeconds }}
-        readinessProbe:
-          httpGet:
-            path: /
-            port: http
-            scheme: HTTP
-          initialDelaySeconds: {{ .Values.assistant.probes.readiness.initialDelaySeconds }}
-          failureThreshold: {{ .Values.assistant.probes.readiness.failureThreshold }}
-          timeoutSeconds: {{ .Values.assistant.probes.readiness.timeoutSeconds }}
-        envFrom:
-        - configMapRef:
-            name: {{ include "zigbee2mqtt.fullname" . }}assistant
-      {{- end }}
       volumes:
       - name: zigbee2mqtt
         configMap:

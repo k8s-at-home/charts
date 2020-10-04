@@ -7,24 +7,26 @@ WARNING: You have not set a network key, which makes zigbee2mqtt run with a well
 Please read https://www.zigbee2mqtt.io/how_tos/how_to_secure_network.html
   {{- end }}
 {{- end }}
-{{- if .Values.assistant.enabled }}
-Get the Z2MA URL by running these commands:
-{{- if .Values.assistant.ingress.enabled }}
-{{- range .Values.assistant.ingress.hosts }}
-  http{{ if $.Values.assistant.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.assistant.ingress.path }}
+{{- if and .Values.config.frontend .Values.config.experimental }}
+{{- if and .Values.config.frontend.port .Values.config.experimental.new_api }}
+Get the Zigbee2MQTT WebUI URL by running these commands:
+{{- if .Values.ingress.enabled }}
+{{- range .Values.ingress.hosts }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
 {{- end }}
-{{- else if contains "NodePort" .Values.assistant.service.type }}
+{{- else if contains "NodePort" .Values.service.type }}
   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "zigbee2mqtt.fullname" . }})
   export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
   echo http://$NODE_IP:$NODE_PORT
-{{- else if contains "LoadBalancer" .Values.assistant.service.type }}
+{{- else if contains "LoadBalancer" .Values.service.type }}
      NOTE: It may take a few minutes for the LoadBalancer IP to be available.
            You can watch the status of by running 'kubectl get svc -w {{ include "zigbee2mqtt.fullname" . }}'
   export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "zigbee2mqtt.fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-  echo http://$SERVICE_IP:{{ .Values.assistant.service.port }}
-{{- else if contains "ClusterIP" .Values.assistant.service.type }}
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+{{- else if contains "ClusterIP" .Values.service.type }}
   export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "zigbee2mqtt.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
   echo "Visit http://127.0.0.1:5000 to use your application"
   kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 5000:80
+{{- end }}
 {{- end }}
 {{- end }}
