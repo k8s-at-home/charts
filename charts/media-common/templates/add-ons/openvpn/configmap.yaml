@@ -1,7 +1,4 @@
-{{/*
-The OpenVPN configmaps to be inserted
-*/}}
-{{- define "media-common.openvpn.configmap" -}}
+{{- if .Values.openvpn.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:

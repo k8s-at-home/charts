@@ -27,4 +27,4 @@ radarr:
 ## Add-ons
 
 ### OpenVPN
-It is possible to enable an OpenVPN add-on by setting `openvpn.enabled: true`. For more information refer to [k8s-at-home/media-common-openvpn](https://github.com/k8s-at-home/charts/tree/master/charts/media-common-openvpn)
+It is possible to enable an OpenVPN add-on by setting `openvpn.enabled: true`. For more information refer to [values.yaml](https://github.com/k8s-at-home/charts/tree/master/charts/media-common/values.yaml)

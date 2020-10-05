@@ -15,21 +15,3 @@ openvpn:
     pullPolicy: IfNotPresent
 
   auth: user;pass
-
-  env:
-    TZ: UTC
-
-  scripts:
-    up:
-    down:
-
-  networkPolicy:
-    enabled: false
-
-  livenessProbe:
-    initialDelaySeconds: 10
-    periodSeconds: 10
-    exec:
-      command:
-        - echo
-        - success

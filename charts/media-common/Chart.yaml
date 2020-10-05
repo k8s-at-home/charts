@@ -2,16 +2,10 @@ apiVersion: v2
 name: media-common
 description: Common dependancy chart for media ecosystem containers
 type: application
-version: 1.3.0
+version: 1.4.0
 keywords:
   - media-common
 home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common
 maintainers:
   - name: DirtyCajunRice
     email: nick@cajun.pro
-dependencies:
-  - name: media-common-openvpn
-    repository: https://k8s-at-home.com/charts/
-    version: ^1.0.0
-    condition: openvpn.enabled
-    alias: openvpn

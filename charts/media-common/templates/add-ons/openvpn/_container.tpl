@@ -43,6 +43,8 @@ The OpenVPN container(s) to be inserted
   {{- if .Values.openvpn.additionalVolumeMounts }}
   {{- toYaml .Values.openvpn.additionalVolumeMounts | nindent 2 }}
   {{- end }}
+  {{- if .Values.openvpn.livenessProbe }}
   livenessProbe:
     {{- toYaml .Values.openvpn.livenessProbe | nindent 4 }}
+  {{- end }}
 {{- end -}}
