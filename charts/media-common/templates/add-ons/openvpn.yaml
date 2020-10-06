@@ -1,0 +1,8 @@
+{{- if .Values.openvpn.enabled -}}
+---
+{{ include "media-common.openvpn.configmap" . }}
+---
+{{ include "media-common.openvpn.secret" . }}
+---
+{{ include "media-common.openvpn.networkpolicy" . }}
+{{- end -}}

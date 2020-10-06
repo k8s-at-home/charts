@@ -1,4 +1,5 @@
-{{- if and .Values.openvpn.enabled .Values.openvpn.auth -}}
+{{- define "media-common.openvpn.secret" -}}
+{{- if .Values.openvpn.auth -}}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -7,4 +8,5 @@ metadata:
   {{- include "media-common.labels" . | nindent 4 }}
 data:
   VPN_AUTH: {{ .Values.openvpn.auth | b64enc }}
+{{- end -}}
 {{- end -}}

@@ -1,4 +1,5 @@
-{{- if and .Values.openvpn.enabled .Values.openvpn.networkPolicy.enabled -}}
+{{- define "media-common.openvpn.networkpolicy" -}}
+{{- if .Values.openvpn.networkPolicy.enabled -}}
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
@@ -14,4 +15,5 @@ spec:
   {{- if .Values.openvpn.networkPolicy.egress }} 
   {{- .Values.openvpn.networkPolicy.egress | toYaml | nindent 4 }}
   {{- end -}}
+{{- end -}}
 {{- end -}}
