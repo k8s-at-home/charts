@@ -83,6 +83,11 @@ spec:
             - name: config
               mountPath: /opt/adguardhome/conf
               readOnly: false
+            {{- if .Values.tlsSecretName }}
+            - name: certs
+              mountPath: /certs
+              readOnly: false
+            {{- end }}
           ports:
             - name: http
               {{- if .Values.configAsCode.enabled }}
@@ -153,6 +158,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+      {{- if .Values.tlsSecretName }}
+      - name: certs
+        secret:
+          secretName: {{ .Values.tlsSecretName }}
+      {{- end }}
       {{- if .Values.configAsCode.enabled }}
       - name: configmap
         configMap:
