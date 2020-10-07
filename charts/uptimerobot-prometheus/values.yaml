@@ -29,6 +29,10 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 9705
+  # Sometimes you may need to add annotations to the service 
+  # to integrate with external operators
+  # annotations:
+    # prometheus.io/scrape: "true"
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
