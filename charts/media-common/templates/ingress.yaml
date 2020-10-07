@@ -64,7 +64,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}-{{ $ingress.nameSuffix | default $index }}
   labels:
-    {{- include "media-common.labels" . | nindent 4 }}
+    {{- include "media-common.labels" $ | nindent 4 }}
     {{- with $ingress.annotations }}
   annotations:
   {{- toYaml . | nindent 4 }}
