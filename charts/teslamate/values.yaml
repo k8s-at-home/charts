@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: teslamate/teslamate
-  tag: 1.19.3
+  tag: 1.20.0
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -81,54 +81,21 @@ tolerations: []
 
 affinity: {}
 
-## Configuration values for the postgresql dependency.
-## Ref: https://github.com/helm/charts/blob/master/stable/postgresql/README.md
+# Configuration values for the postgresql dependency.
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
+  enabled: true
+  postgresqlUsername: teslamate
+  postgresqlPassword: teslamate
+  postgresqlDatabase: teslamate
   image:
     repository: postgres
     tag: 12.1
   postgresqlDataDir: "/data/pgdata"
-
-  ### PostgreSQL User to create.
-  ##
-  postgresqlUsername: teslamate
-
-  ## PostgreSQL Password for the new user.
-  ## If not set, a random 10 characters password will be used.
-  ##
-  postgresqlPassword: teslamate
-
-  ## PostgreSQL Database to create.
-  ##
-  postgresqlDatabase: teslamate
-
-  ## Persistent Volume Storage configuration for PostgreSQL.
-  ##
-  ## Ref: https://kubernetes.io/docs/user-guide/persistent-volumes
-  ##
   persistence:
-    ## Enable PostgreSQL persistence using Persistent Volume Claims.
-    ##
     enabled: true
-
-    ## Persistent Volume Storage Class to be used by PersistentVolumes created
-    ## for PostgreSQL.
-    ##
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
     storageClass:
-
-    ## Persistent Volume Access Mode.
-    ##
     accessModes:
       - ReadWriteOnce
-
-    ## Persistent Volume Storage Size.
-    ##
     size: 8Gi
-
     mountPath: "/data/"
