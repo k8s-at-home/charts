@@ -85,11 +85,9 @@ affinity: {}
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
   enabled: true
-  global:
-    postgresql:
-      postgresqlUsername: teslamate
-      postgresqlPassword: teslamate
-      postgresqlDatabase: teslamate
+  postgresqlUsername: teslamate
+  postgresqlPassword: teslamate
+  postgresqlDatabase: teslamate
   image:
     repository: postgres
     tag: 12.1
