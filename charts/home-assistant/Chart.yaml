@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 0.116.1
 description: Home Assistant
 name: home-assistant
-version: 2.5.1
+version: 2.5.2
 keywords:
 - home-assistant
 - hass
@@ -22,7 +22,7 @@ maintainers:
 dependencies:
 - name: esphome
   repository: https://k8s-at-home.com/charts/
-  version: ~1.0.0
+  version: ~2.2.0
   condition: esphome.enabled
 - name: postgresql
   version: 9.1.2
