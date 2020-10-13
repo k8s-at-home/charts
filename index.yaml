@@ -1677,6 +1677,48 @@ entries:
   home-assistant:
   - apiVersion: v2
     appVersion: 0.116.1
+    created: "2020-10-13T20:05:38.633540239Z"
+    dependencies:
+    - condition: esphome.enabled
+      name: esphome
+      repository: https://k8s-at-home.com/charts/
+      version: ~2.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.2
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 7.7.1
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 0.6.7
+    description: Home Assistant
+    digest: 9f6cf9203bced33fb2cd180fb78bff626dee13d0c380b0ff4fc74eea36328e25
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: phil@hellmi.de
+      name: runningman84
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/danielperna84/hass-configurator
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-2.5.2/home-assistant-2.5.2.tgz
+    version: 2.5.2
+  - apiVersion: v2
+    appVersion: 0.116.1
     created: "2020-10-09T17:17:16.073264926Z"
     dependencies:
     - condition: esphome.enabled
