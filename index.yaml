@@ -2351,6 +2351,31 @@ entries:
   jackett:
   - apiVersion: v2
     appVersion: v0.16.1045
+    created: "2020-10-13T00:37:37.098511424Z"
+    dependencies:
+    - alias: jackett
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: API Support for your favorite torrent trackers
+    digest: 932682480f141231c583ea8147780ba80461ffd20688603e3f4b7f5e3fd09e86
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-4.0.1/jackett-4.0.1.tgz
+    version: 4.0.1
+  - apiVersion: v2
+    appVersion: v0.16.1045
     created: "2020-09-21T13:37:08.851277808Z"
     dependencies:
     - alias: jackett
@@ -2838,6 +2863,41 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - annotations:
+      artifacthub.io/links: |
+        - name: App Source
+          url: https://github.com/Lidarr/Lidarr
+        - name: Default Docker Image
+          url: https://hub.docker.com/r/linuxserver/lidarr
+      artifacthub.io/maintainers: |
+        - name: Nicholas St. Germain
+          email: nick@cajun.pro
+    apiVersion: v2
+    appVersion: 0.7.1.1785-ls18
+    created: "2020-10-13T00:37:37.195392075Z"
+    dependencies:
+    - alias: lidarr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: Looks and smells like Sonarr but made for music
+    digest: 20ed90db185dd2c4a73ba0476d416dd01d859b91a0c52cf0a6819e6c88c12f07
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+      url: https://github.com/dirtycajunrice
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://hub.docker.com/r/linuxserver/lidarr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-4.0.2/lidarr-4.0.2.tgz
+    version: 4.0.2
   - annotations:
       artifacthub.io/links: |
         - name: App Source
@@ -3435,6 +3495,31 @@ entries:
   nzbget:
   - apiVersion: v2
     appVersion: v21.0
+    created: "2020-10-13T00:37:37.326932788Z"
+    dependencies:
+    - alias: nzbget
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: NZBGet is a Usenet downloader client
+    digest: c7b76f7d402873438f91cb1d63cbed89a27888290908d0bf494df45c2a53aad7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/nzbget
+    icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+    keywords:
+    - nzbget
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbget
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbget/
+    - https://nzbget.net/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbget-5.0.1/nzbget-5.0.1.tgz
+    version: 5.0.1
+  - apiVersion: v2
+    appVersion: v21.0
     created: "2020-09-19T13:03:56.215292512Z"
     dependencies:
     - alias: nzbget
@@ -3931,6 +4016,41 @@ entries:
           email: nick@cajun.pro
     apiVersion: v2
     appVersion: 4.0.471
+    created: "2020-10-13T00:37:37.447215949Z"
+    dependencies:
+    - alias: ombi
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+    digest: 50cd88bafba7f84e20f1ed347ee03b675d2d76b378a66271fe782ac209b3f732
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/ombi
+    icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
+    keywords:
+    - ombi
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+      url: https://github.com/dirtycajunrice
+    name: ombi
+    sources:
+    - https://github.com/tidusjar/Ombi
+    - https://hub.docker.com/r/linuxserver/ombi
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ombi-4.0.2/ombi-4.0.2.tgz
+    version: 4.0.2
+  - annotations:
+      artifacthub.io/links: |
+        - name: App Source
+          url: https://github.com/tidusjar/Ombi
+        - name: Default Docker Image
+          url: https://hub.docker.com/r/linuxserver/ombi
+      artifacthub.io/maintainers: |
+        - name: Nicholas St. Germain
+          email: nick@cajun.pro
+    apiVersion: v2
+    appVersion: 4.0.471
     created: "2020-09-29T02:12:00.307835634Z"
     dependencies:
     - alias: ombi
@@ -4181,6 +4301,41 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/ombi-2.0.1/ombi-2.0.1.tgz
     version: 2.0.1
   organizr:
+  - annotations:
+      artifacthub.io/links: |
+        - name: App Source
+          url: https://github.com/causefx/Organizr
+        - name: Default Docker Image
+          url: https://hub.docker.com/r/organizr/organizr
+      artifacthub.io/maintainers: |
+        - name: Nicholas St. Germain
+          email: nick@cajun.pro
+    apiVersion: v2
+    appVersion: latest
+    created: "2020-10-13T00:37:37.543825899Z"
+    dependencies:
+    - alias: organizr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: HTPC/Homelab Services Organizer - Written in PHP
+    digest: df9d4a4a5c961a1e9b3b3e67d2c6813aee44939a951d25b427c24a951e661353
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/organizr
+    icon: https://github.com/causefx/Organizr/blob/v2-master/plugins/images/organizr/logo.png?raw=true
+    keywords:
+    - organizr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+      url: https://github.com/dirtycajunrice
+    name: organizr
+    sources:
+    - https://github.com/causefx/Organizr
+    - https://hub.docker.com/r/organizr/organizr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/organizr-1.0.2/organizr-1.0.2.tgz
+    version: 1.0.2
   - annotations:
       artifacthub.io/links: |
         - name: App Source
@@ -4901,6 +5056,30 @@ entries:
   qbittorrent:
   - apiVersion: v2
     appVersion: 4.2.5
+    created: "2020-10-13T00:37:37.669198183Z"
+    dependencies:
+    - alias: qbittorrent
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: d5ac5a10ead9d07bf02169d095dc4322ce6c8256bc5a734ac39533574e2ce2ea
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: qbittorrent
+    sources:
+    - https://hub.docker.com/r/linuxserver/qbittorrent/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/qbittorrent-5.0.1/qbittorrent-5.0.1.tgz
+    version: 5.0.1
+  - apiVersion: v2
+    appVersion: 4.2.5
     created: "2020-09-26T06:16:30.501413434Z"
     dependencies:
     - alias: qbittorrent
@@ -5095,6 +5274,41 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - annotations:
+      artifacthub.io/links: |
+        - name: App Source
+          url: https://github.com/Radarr/Radarr
+        - name: Default Docker Image
+          url: https://hub.docker.com/r/linuxserver/radarr
+      artifacthub.io/maintainers: |
+        - name: Nicholas St. Germain
+          email: nick@cajun.pro
+    apiVersion: v2
+    appVersion: 3.0.0.3591
+    created: "2020-10-13T00:37:37.795784673Z"
+    dependencies:
+    - alias: radarr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 11deab9967955f6931a736c8ffaeabdae6bcfe11d0888efe78e0b99d0f0872ae
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+      url: https://github.com/dirtycajunrice
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-6.0.2/radarr-6.0.2.tgz
+    version: 6.0.2
   - annotations:
       artifacthub.io/links: |
         - name: App Source
@@ -5746,6 +5960,41 @@ entries:
           email: nick@cajun.pro
     apiVersion: v2
     appVersion: 3.0.3.913
+    created: "2020-10-13T00:37:37.926884084Z"
+    dependencies:
+    - alias: sonarr
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: f314fd1765c0caecdd3893d37ead6921bc14e3dd454a009f7450dd2679621aaa
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+      url: https://github.com/dirtycajunrice
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-6.0.2/sonarr-6.0.2.tgz
+    version: 6.0.2
+  - annotations:
+      artifacthub.io/links: |
+        - name: App Source
+          url: https://github.com/Sonarr/Sonarr
+        - name: Default Docker Image
+          url: https://hub.docker.com/r/linuxserver/sonarr
+      artifacthub.io/maintainers: |
+        - name: Nicholas St. Germain
+          email: nick@cajun.pro
+    apiVersion: v2
+    appVersion: 3.0.3.913
     created: "2020-09-29T02:12:00.759977491Z"
     dependencies:
     - alias: sonarr
@@ -6208,6 +6457,41 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/statping-1.0.0/statping-1.0.0.tgz
     version: 1.0.0
   tautulli:
+  - annotations:
+      artifacthub.io/links: |
+        - name: App Source
+          url: https://github.com/Tautulli/Tautulli
+        - name: Default Docker Image
+          url: https://hub.docker.com/r/tautulli/tautulli
+      artifacthub.io/maintainers: |
+        - name: Nicholas St. Germain
+          email: nick@cajun.pro
+    apiVersion: v2
+    appVersion: v2.5.4
+    created: "2020-10-13T00:37:38.043743527Z"
+    dependencies:
+    - alias: tautulli
+      name: media-common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.0
+    description: A Python based monitoring and tracking tool for Plex Media Server
+    digest: c2cbb8195f45d44105f496970bc9d387fc2c513dce5d690f6379a776933108f7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/tautulli
+    icon: https://github.com/Tautulli/Tautulli/blob/master/data/interfaces/default/images/logo.png?raw=true
+    keywords:
+    - tautulli
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+      url: https://github.com/dirtycajunrice
+    name: tautulli
+    sources:
+    - https://github.com/Tautulli/Tautulli
+    - https://hub.docker.com/r/tautulli/tautulli
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tautulli-4.0.2/tautulli-4.0.2.tgz
+    version: 4.0.2
   - annotations:
       artifacthub.io/links: |
         - name: App Source
