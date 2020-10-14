@@ -62,3 +62,14 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 helm install --name my-release -f values.yaml stable/zwave2mqtt
 ```
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 2.2.2 -> 3.0.0) indicates that there is an
+incompatible breaking change needing manual actions.
+
+### Upgrading from 3.x.x to 4.x.x
+
+Upgrading to this release it is suggested to enable the flag in Settings > Zwave > Auto update database
+
+In order to use an updated configuration for the devices, you have to send a refreshNodeInfo to that node
