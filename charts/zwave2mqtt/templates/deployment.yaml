@@ -65,9 +65,6 @@ spec:
               name: usb
             - mountPath: /usr/src/app/store
               name: config
-            - mountPath: /usr/local/etc/openzwave
-              name: config
-              subPath: openzwave
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
