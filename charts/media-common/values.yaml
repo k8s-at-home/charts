@@ -41,39 +41,44 @@ service:
   labels: {}
   additionalSpec: {}
 
+# ingress and extraIngresses will build the correct ingress based upon your cluster's api capabilities
 ingress:
   enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   labels: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          # Ignored if not kubeVersion >= 1.14-0
-          pathType: Prefix
+  # requires networking.k8s.io/v1beta1
+  className: ""
+  hosts: []
+  # - host: chart-example.local
+  #   paths:
+  #     - path: /
+  #       # Ignored if not kubeVersion >= 1.14-0
+  #       pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-  extraIngresses:
-  # - enabled: false
-  #   nameSuffix: "api"
-  #   annotations: {}
-  #   # kubernetes.io/ingress.class: nginx
-  #   # kubernetes.io/tls-acme: "true"
-  #   labels: {}
-  #   hosts:
-  #     - host: chart-example.local
-  #       paths:
-  #         - path: /api
-  #          # Ignored if not kubeVersion >= 1.14-0
-  #          pathType: Prefix
-  #   tls: []
-  #   #  - secretName: chart-example-tls
-  #   #    hosts:
-  #   #      - chart-example.local
+extraIngresses: []
+# - enabled: false
+#   nameSuffix: "api"
+#   annotations: {}
+#   # kubernetes.io/ingress.class: nginx
+#   # kubernetes.io/tls-acme: "true"
+#   labels: {}
+#   # requires networking.k8s.io/v1beta1
+#   className: ""
+#   hosts:
+#     - host: chart-example.local
+#       paths:
+#         - path: /api
+#           # Ignored if not kubeVersion >= 1.14-0
+#           pathType: Prefix
+#   tls: []
+#   #  - secretName: chart-example-tls
+#   #    hosts:
+#   #      - chart-example.local
 
 persistence:
   # type: options are statefulset or deployment
