@@ -72,14 +72,14 @@ spec:
               subPath: {{ .Values.persistence.media.subPath }}
               {{- end }}
             {{- end }}
-          {{- if .Values.additionalVolumeMounts }}
-          {{- toYaml .Values.additionalVolumeMounts | nindent 12 }}
+          {{- with .Values.additionalVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-        {{- include "media-common.additionalContainers" . | nindent 8 }}
+        {{- include "media-common.additionalContainers" . }}
       volumes:
         - name: config
           {{- if .Values.persistence.config.enabled }}

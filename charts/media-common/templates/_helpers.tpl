@@ -60,16 +60,14 @@ Init Containers
 {{- end }}
 {{- end -}}
 
-{{/*
-Additional Containers
-*/}}
+{{/* Additional Containers */}}
 {{- define "media-common.additionalContainers" -}}
-{{- if .Values.additionalContainers }}
-{{- toYaml .Values.additionalContainers }}
-{{- end }}
-{{- if .Values.openvpn.enabled }}
-{{ include "media-common.openvpn.container" . }}
-{{- end }}
+  {{- with .Values.additionalContainers -}}
+    {{- toYaml . | nindent 8 }}
+  {{- end -}}
+  {{- if .Values.openvpn.enabled -}}
+    {{- include "media-common.openvpn.container" . | nindent 8 }}
+  {{- end -}}
 {{- end -}}
 
 {{/*
