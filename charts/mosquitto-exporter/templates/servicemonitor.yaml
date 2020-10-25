@@ -1,0 +1,39 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- include "mosquitto-exporter.labels" . | nindent 4 }}
+    {{- with .Values.serviceMonitor.labels }}
+    {{ toYaml . }}
+    {{- end }}    
+  name: {{ template "mosquitto-exporter.fullname" . }}
+{{- if .Values.serviceMonitor.namespace }}
+  namespace: {{ .Values.serviceMonitor.namespace }}
+{{- end }}
+spec:
+  endpoints:
+  - targetPort: prometheus
+    path: /metrics
+{{- if .Values.serviceMonitor.interval }}
+    interval: {{ .Values.serviceMonitor.interval }}
+{{- end }}
+{{- if .Values.serviceMonitor.bearerTokenFile }}
+    bearerTokenFile: {{ .Values.serviceMonitor.bearerTokenFile }}
+{{- end }}
+{{- if .Values.serviceMonitor.bearerTokenSecret }}
+    bearerTokenSecret:
+      name: {{ .Values.serviceMonitor.bearerTokenSecret.name }}
+      key: {{ .Values.serviceMonitor.bearerTokenSecret.key }}
+      {{- if .Values.serviceMonitor.bearerTokenSecret.optional }}
+      optional: {{ .Values.serviceMonitor.bearerTokenSecret.optional }}
+      {{- end }}
+{{- end }}
+  jobLabel: {{ template "mosquitto-exporter.fullname" . }}
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      {{- include "mosquitto-exporter.selectorLabels" . | nindent 6 }}
+{{- end }}
