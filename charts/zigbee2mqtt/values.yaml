@@ -97,6 +97,28 @@ persistence:
   accessMode: ReadWriteOnce
   size: 100Mi
 
+## Additional zigbee2mqtt container environment variable
+## For instance to add a http_proxy
+##
+extraEnv: {}
+
+## Additional zigbee2mqtt container environment variable from k8s secrets
+## For instance to add a password
+extraEnvSecrets:
+  # Example
+  # This will set ${ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD} to the 'password' key from the 'mqtt' secret
+  # ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD:
+  #   secret: mqtt
+  #   key: password
+
+## If you'd like to provide your own Kubernetes Secret object instead of passing your values
+## individually, pass in the name of a created + populated Secret.
+## All secrets will be mounted as environment variables, with each key/value mapping to a
+## corresponding environment variable.
+##
+extraSecretForEnvFrom: []
+# - zigbee2mqtt-secrets
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -141,3 +163,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Any extra volumes to define for the pod
+extraVolumes: []
+  # - name: example-name
+  #   hostPath:
+  #     path: /path/on/host
+  #     type: DirectoryOrCreate
+
+# Any extra volume mounts to define for the containers
+extraVolumeMounts: []
+#   - name: example-name
+#     mountPath: /path/in/container
