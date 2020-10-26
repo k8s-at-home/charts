@@ -191,6 +191,7 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `monitoring.serviceMonitor.labels`              | Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator                                                                                                                                           | `{}`                                   |
 | `monitoring.serviceMonitor.bearerTokenFile`     | Set bearerTokenFile for home-assistant auth (use long lived access tokens)                                                                                                                                                                | `nil`                                  |
 | `monitoring.serviceMonitor.bearerTokenSecret`   | Set bearerTokenSecret for home-assistant auth (use long lived access tokens)                                                                                                                                                              | `nil`                                  |
+| `monitoring.serviceMonitor.metricRelabelings`   | Add metricRelabelings [Documentation](https://coreos.com/operators/prometheus/docs/latest/api.html#relabelconfig)                                                                                                                         | `{}`                                   |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
