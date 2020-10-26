@@ -44,6 +44,7 @@ spec:
               mountPath: /mosquitto/config
             - name: data
               mountPath: /mosquitto/data
+            {{- if .Values.extraVolumeMounts }}{{ toYaml .Values.extraVolumeMounts | trim | nindent 12 }}{{ end }}
       volumes:
         - name: configmap
           configMap:
@@ -57,6 +58,7 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim }}
         {{- end }}
+        {{- if .Values.extraVolumes  }}{{ toYaml .Values.extraVolumes | trim | nindent 8 }}{{ end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -41,6 +41,22 @@ spec:
         - name: DEBUG
           value: {{ .Values.debug }}
         {{- end }}
+        {{- range $key, $value := .Values.extraEnv }}
+        - name: {{ $key | quote }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- range $name, $opts := .Values.extraEnvSecrets }}
+        - name: {{ $name }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ $opts.secret }}
+              key: {{ $opts.key }}
+        {{- end }}
+        envFrom:
+        {{- range .Values.extraSecretForEnvFrom }}
+          - secretRef:
+              name: {{ . }}
+        {{- end }}
         {{- if and .Values.config.frontend .Values.config.experimental }}
         {{- if and .Values.config.frontend.port .Values.config.experimental.new_api }}
         ports:
@@ -59,6 +75,7 @@ spec:
           mountPath: /data
         - name: sniffer
           mountPath: {{ .Values.config.serial.port }}
+        {{- if .Values.extraVolumeMounts }}{{ toYaml .Values.extraVolumeMounts | trim | nindent 8 }}{{ end }}
       volumes:
       - name: zigbee2mqtt
         configMap:
@@ -75,6 +92,7 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Values.persistence.existingClaim }}
       {{- end }}
+      {{- if .Values.extraVolumes  }}{{ toYaml .Values.extraVolumes | trim | nindent 6 }}{{ end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
