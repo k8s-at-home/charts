@@ -27,6 +27,7 @@ spec:
       {{- if .Values.monitoring.serviceMonitor.bearerTokenSecret.optional }}
       optional: {{ .Values.monitoring.serviceMonitor.bearerTokenSecret.optional }}
       {{- end }}
+{{- end }}
 {{- if .Values.monitoring.serviceMonitor.metricRelabelings }}
     metricRelabelings:
 {{ toYaml .Values.monitoring.serviceMonitor.metricRelabelings | indent 4 }}
