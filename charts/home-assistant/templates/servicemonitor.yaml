@@ -28,6 +28,10 @@ spec:
       optional: {{ .Values.monitoring.serviceMonitor.bearerTokenSecret.optional }}
       {{- end }}
 {{- end }}
+{{- if .Values.monitoring.serviceMonitor.metricRelabelings }}
+    metricRelabelings:
+{{ toYaml .Values.monitoring.serviceMonitor.metricRelabelings | indent 4 }}
+{{- end }}
   jobLabel: {{ template "home-assistant.fullname" . }}-prometheus-exporter
   namespaceSelector:
     matchNames:
