@@ -36,7 +36,7 @@ jobs:
           ./get_helm.sh
       - name: Add dependency chart repos
         run: |
-          helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+          helm repo add stable https://charts.helm.sh/stable
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0
         with:
