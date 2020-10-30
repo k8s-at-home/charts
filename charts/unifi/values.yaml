@@ -221,6 +221,17 @@ customCert:
   # you can pass the name of that secret using certSecret variable
   # certSecret: unifi-tls
 
+# Logging configuration
+logging:
+  promtail:
+    enabled: false
+    image:
+      repository: grafana/promtail
+      tag: 1.6.0
+      pullPolicy: IfNotPresent
+    loki:
+      url: http://loki.logs.svc.cluster.local:3100/loki/api/v1/push
+
 # define an external mongoDB instead of using the built-in mongodb
 mongodb:
   enabled: false

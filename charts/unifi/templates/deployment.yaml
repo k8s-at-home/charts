@@ -34,6 +34,21 @@ spec:
       {{- end }}
     spec:
       containers:
+      {{- if .Values.logging.promtail.enabled }}
+        - name: {{ .Chart.Name }}-promtail
+          image: "{{ .Values.logging.promtail.image.repository }}:{{ .Values.logging.promtail.image.tag }}"
+          imagePullPolicy: {{ .Values.logging.promtail.image.pullPolicy }}
+          args:
+          - -config.file=/etc/promtail/promtail.yaml
+          volumeMounts:
+          - name: promtail-config
+            mountPath: /etc/promtail/promtail.yaml
+            subPath: promtail.yaml
+            readOnly: true
+          - mountPath: /unifi/log
+            name: unifi-data
+            subPath: {{ ternary "log" (printf "%s/%s" .Values.persistence.subPath "log") (empty .Values.persistence.subPath) }}
+      {{- end }}      
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -154,6 +169,17 @@ spec:
           secret:
             secretName: "{{ .Values.customCert.certSecret }}"
         {{- end }}
+        {{- if .Values.logging.promtail.enabled }}
+        - name: promtail-config
+          projected:
+            defaultMode: 0444
+            sources:
+            - configMap:
+                name: {{ template "unifi.fullname" . }}-promtail
+                items:
+                  - key: promtail.yaml
+                    path: promtail.yaml
+        {{- end }}        
         {{- if .Values.extraVolumes  }}{{ toYaml .Values.extraVolumes | trim | nindent 8 }}{{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
