@@ -50,6 +50,9 @@ spec:
             - name: stun
               containerPort: 3478
               protocol: UDP
+            - name: syslog
+              containerPort: 5514
+              protocol: UDP
               {{ if .Values.captivePortalService.enabled }}
             - name: captive-http
               containerPort: 8880
