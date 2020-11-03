@@ -95,7 +95,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: api
-              containerPort: {{ .Values.service.port }}
+              containerPort: 8123
               protocol: TCP
           {{- range .Values.service.additionalPorts }}
             - name: {{ .name }}
@@ -190,7 +190,7 @@ spec:
           imagePullPolicy: {{ .Values.configurator.image.pullPolicy }}
           ports:
             - name: configurator
-              containerPort: {{ .Values.configurator.service.port }}
+              containerPort: 3218
               protocol: TCP
           env:
             {{- if .Values.configurator.hassApiPassword }}
@@ -212,13 +212,8 @@ spec:
                   name: {{ template "home-assistant.fullname" . }}-configurator
                   key: password
             {{- end }}
-            {{- if .Values.configurator.hassApiUrl }}
             - name: HC_HASS_API
               value: "{{ .Values.configurator.hassApiUrl }}"
-            {{- else }}
-            - name: HC_HASS_API
-              value: "http://127.0.0.1:8123/api/"
-            {{- end }}
             {{- if .Values.configurator.basepath }}
             - name: HC_BASEPATH
               value: "{{ .Values.configurator.basepath }}"
@@ -279,7 +274,7 @@ spec:
 {{- end }}
           ports:
             - name: vscode
-              containerPort: {{ .Values.vscode.service.port }}
+              containerPort: 8080
               protocol: TCP
           env:
             {{- if .Values.vscode.password }}
@@ -336,7 +331,7 @@ spec:
               protocol: TCP
           env:
             - name: HA_URL
-              value: "http://localhost:{{ .Values.service.port }}"
+              value: "http://localhost:8123"
             {{- if .Values.appdaemon.ingress.enabled }}
             - name: DASH_URL
               #value: http{{ if .Values.appdaemon.ingress.tls }}s{{ end }}://{{ index .Values.appdaemon.ingress.hosts 0 }}

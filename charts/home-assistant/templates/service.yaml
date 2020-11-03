@@ -61,7 +61,7 @@ spec:
     - name: vscode
       port: {{ .Values.vscode.service.port }}
       protocol: TCP
-      targetPort: {{ .Values.vscode.service.port }}
+      targetPort: 8080
 {{ if (and (eq .Values.vscode.service.type "NodePort") (not (empty .Values.vscode.service.nodePort))) }}
       nodePort: {{.Values.vscode.service.nodePort}}
 {{ end }}
