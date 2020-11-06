@@ -3,8 +3,10 @@
 {{- $apiv1beta1 := .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
 {{- $ingressName := include "common.names.fullname" . -}}
 {{- $values := .Values.ingress -}}
-{{- if and (hasKey . "ObjectValues") (hasKey .ObjectValues "ingress") -}}
-  {{- $values = .ObjectValues.ingress -}}
+{{- if hasKey . "ObjectValues" -}}
+  {{- with .ObjectValues.ingress -}}
+    {{- $values = . -}}
+  {{- end -}}
 {{ end -}}
 {{- if hasKey $values "nameSuffix" -}}
   {{- $ingressName = printf "%v-%v" $ingressName $values.nameSuffix -}}
