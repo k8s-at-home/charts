@@ -1,7 +1,9 @@
 {{- define "common.classes.service" -}}
 {{- $values := .Values.service -}}
-{{- if and (hasKey . "ObjectValues") (hasKey .ObjectValues "service") -}}
-  {{- $values = .ObjectValues.service -}}
+{{- if hasKey . "ObjectValues" -}}
+  {{- with .ObjectValues.service -}}
+    {{- $values = . -}}
+  {{- end -}}
 {{ end -}}
 {{- $svcType := $values.type -}}
 apiVersion: v1

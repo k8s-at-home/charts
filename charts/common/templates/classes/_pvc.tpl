@@ -1,7 +1,9 @@
 {{- define "common.classes.pvc" -}}
 {{- $values := .Values.persistence -}}
-{{- if and (hasKey . "ObjectValues") (hasKey .ObjectValues "persistence") -}}
-  {{- $values = .ObjectValues.persistence -}}
+{{- if hasKey . "ObjectValues" -}}
+  {{- with .ObjectValues.persistence -}}
+    {{- $values = . -}}
+  {{- end -}}
 {{ end -}}
 {{- $pvcName := include "common.names.fullname" . -}}
 {{- if hasKey $values "nameSuffix" -}}
