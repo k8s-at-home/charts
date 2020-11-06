@@ -1,5 +1,6 @@
 {{- define "common.classes.ingress" -}}
-{{- $kubeVersion := .Capabilities.KubeVersion.GitVersion -}}
+{{- $apiv1 := .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
+{{- $apiv1beta1 := .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
 {{- $ingressName := include "common.names.fullname" . -}}
 {{- $values := .Values.ingress -}}
 {{- if and (hasKey . "ObjectValues") (hasKey .ObjectValues "ingress") -}}
@@ -9,18 +10,18 @@
   {{- $ingressName = printf "%v-%v" $ingressName $values.nameSuffix -}}
 {{ end -}}
 {{- $svcPort := $values.svcPort -}}
-{{ if semverCompare ">= 1.19-0" $kubeVersion }}
+{{- if $apiv1 -}}
 apiVersion: networking.k8s.io/v1
-{{ else if semverCompare ">= 1.14-0 < 1.19-0" $kubeVersion }}
+{{- else if $apiv1beta1 -}}
 apiVersion: networking.k8s.io/v1beta1
-{{ else }}
+{{- else }}
 apiVersion: extensions/v1beta1
-{{ end -}}
+{{ end }}
 kind: Ingress
 metadata:
   name: {{ $ingressName }}
   labels:
-  {{- include "common.labels" . | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
   {{- with $values.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -43,11 +44,11 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ .path }}
-            {{- if semverCompare ">= 1.14-0" $kubeVersion}}
+            {{- if or $apiv1beta1 $apiv1 }}
             pathType: {{ .pathType }}
             {{- end }}
             backend:
-              {{- if semverCompare ">= 1.19-0" $kubeVersion}}
+              {{- if $apiv1 }}
               service:
                 name: {{ $ingressName }}
                 port:
