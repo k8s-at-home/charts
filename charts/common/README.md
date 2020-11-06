@@ -1,31 +1,30 @@
 # Library chart for k8s@home media charts
+## **THIS CHART IS NOT MEANT TO BE INSTALLED DIRECTLY**
 
-Many containers have no environmentally configurable settings. This chart allows a single maintainable
-library. Since this chart is a library chart, it is not designed to be deployed directly.
+This is a [Helm Library Chart](https://helm.sh/docs/topics/library_charts/#helm) for grouping common logic between k8s@home charts.
 
-## Known Parent Charts
+## Introduction
 
-* [k8s-at-home/radarr](https://github.com/k8s-at-home/charts/tree/master/charts/radarr)
-* [k8s-at-home/sonarr](https://github.com/k8s-at-home/charts/tree/master/charts/sonarr)
-* [k8s-at-home/lidarr](https://github.com/k8s-at-home/charts/tree/master/charts/lidarr)
-* [k8s-at-home/tautulli](https://github.com/k8s-at-home/charts/tree/master/charts/tautulli)
-* [k8s-at-home/ombi](https://github.com/k8s-at-home/charts/tree/master/charts/ombi)
-* [k8s-at-home/organizr](https://github.com/k8s-at-home/charts/tree/master/charts/organizr)
+This chart provides common template helpers which can be used to develop new charts using [Helm](https://helm.sh) package manager.
 
-## Configuration
+## TL;DR
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml) file.
-It has several commented out suggested values.
-
-These values will normally be nested as it is a dependency, for example:
 ```yaml
-radarr:
-  <values>
+dependencies:
+  - name: common
+    version: 0.x.x
+    repository: https://k8s-at-home.com/charts/
 ```
 
-## Add-ons
+```bash
+$ helm dependency update
+```
 
-### VPN
-It is possible to enable a VPN add-on by setting `addons.vpn.enabled: true`. Supported VPN clients are OpenVPN and Wireguard.
-
-For configuration options, please refer to the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml) file.
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.names.fullname" . }}
+data:
+  myvalue: "Hello World"
+```
