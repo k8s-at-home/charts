@@ -26,7 +26,9 @@ probes:
     periodSeconds: 10
 
 service:
+  enabled: true
   type: ClusterIP
+  # Specify the default port information
   port:
     portNumber: ""
     name: http
@@ -46,7 +48,7 @@ service:
   labels: {}
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -81,7 +83,7 @@ ingress:
 
 persistence:
   config:
-    enabled: true
+    enabled: false
     mountPath: /config
     ## configuration data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

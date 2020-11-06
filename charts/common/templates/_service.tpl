@@ -1,3 +1,5 @@
 {{- define "common.service" -}}
-  {{- include "common.classes.service" . }}
+  {{- if .Values.service.enabled -}}
+    {{- include "common.classes.service" . }}
+  {{- end }}
 {{- end }}
