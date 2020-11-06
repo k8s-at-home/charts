@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: v0.16.1045
+description: API Support for your favorite torrent trackers
+name: common_example
+version: 4.0.1
+keywords:
+  - jackett
+  - torrent
+home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+sources:
+  - https://hub.docker.com/r/linuxserver/jackett/
+  - https://github.com/Jackett/Jackett
+maintainers:
+  - name: billimek
+    email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: file://../common/
+    version: ^1.0.0
