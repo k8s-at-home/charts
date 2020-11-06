@@ -26,8 +26,8 @@
   volumeMounts:
   {{- range $index, $PVC := .Values.persistence }}
   {{- if $PVC.enabled }}
-  - mountPath: {{- $PVC.mountPath }}
-    name: {{- $index }}
+  - mountPath: {{ $PVC.mountPath }}
+    name: {{ $index }}
   {{- end }}
   {{- end }}
   {{- if .Values.additionalVolumeMounts }}
