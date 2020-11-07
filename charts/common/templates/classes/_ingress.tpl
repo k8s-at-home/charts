@@ -1,6 +1,4 @@
 {{- define "common.classes.ingress" -}}
-{{- $apiv1 := .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
-{{- $apiv1beta1 := .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
 {{- $ingressName := include "common.names.fullname" . -}}
 {{- $values := .Values.ingress -}}
 {{- if hasKey . "ObjectValues" -}}
@@ -12,13 +10,7 @@
   {{- $ingressName = printf "%v-%v" $ingressName $values.nameSuffix -}}
 {{ end -}}
 {{- $svcPort := $values.svcPort -}}
-{{- if $apiv1 -}}
-apiVersion: networking.k8s.io/v1
-{{- else if $apiv1beta1 -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else }}
-apiVersion: extensions/v1beta1
-{{ end }}
+apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
   name: {{ $ingressName }}
@@ -46,19 +38,9 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ .path }}
-            {{- if or $apiv1beta1 $apiv1 }}
-            pathType: {{ .pathType }}
-            {{- end }}
             backend:
-              {{- if $apiv1 }}
-              service:
-                name: {{ $ingressName }}
-                port:
-                  name: {{ $svcPort }}
-              {{- else }}
               serviceName: {{ $ingressName }}
               servicePort: {{ $svcPort }}
-              {{- end }}
           {{- end }}
   {{- end }}
 {{- end }}
