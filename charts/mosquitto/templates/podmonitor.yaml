@@ -1,0 +1,40 @@
+{{- if .Values.monitoring.podMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  labels:
+{{ include "mosquitto.labels" . | indent 4 }}
+    {{- if .Values.monitoring.podMonitor.labels }}
+    {{ toYaml .Values.monitoring.podMonitor.labels }}
+    {{- end }}
+  name: {{ template "mosquitto.fullname" . }}-prometheus-exporter
+{{- if .Values.monitoring.podMonitor.namespace }}
+  namespace: {{ .Values.monitoring.podMonitor.namespace }}
+{{- end }}
+spec:
+  podMetricsEndpoints:
+  - port: prometheus
+    path: /metrics
+{{- if .Values.monitoring.podMonitor.interval }}
+    interval: {{ .Values.monitoring.podMonitor.interval }}
+{{- end }}
+{{- if .Values.monitoring.podMonitor.bearerTokenFile }}
+    bearerTokenFile: {{ .Values.monitoring.podMonitor.bearerTokenFile }}
+{{- end }}
+{{- if .Values.monitoring.podMonitor.bearerTokenSecret }}
+    bearerTokenSecret:
+      name: {{ .Values.monitoring.podMonitor.bearerTokenSecret.name }}
+      key: {{ .Values.monitoring.podMonitor.bearerTokenSecret.key }}
+      {{- if .Values.monitoring.podMonitor.bearerTokenSecret.optional }}
+      optional: {{ .Values.monitoring.podMonitor.bearerTokenSecret.optional }}
+      {{- end }}
+{{- end }}
+  jobLabel: {{ template "mosquitto.fullname" . }}-prometheus-exporter
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "mosquitto.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
