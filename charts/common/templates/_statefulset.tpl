@@ -1,5 +1,5 @@
 {{- define "common.statefulset" -}}
-apiVersion: apps/v1
+apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
   name: {{ template "common.names.fullname" . }}

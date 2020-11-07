@@ -2,11 +2,11 @@
 Default NOTES.txt content.
 */}}
 {{- define "common.notes.defaultNotes" -}}
-{{- $svcPort := .Values.service.port -}}
+{{- $svcPort := .Values.service.port.port -}}
 1. Get the application URL by running these commands:
 {{- if .Values.ingress.enabled }}
 {{- range .Values.ingress.hosts }}
-  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .host }}{{ (first .paths).path }}
 {{- end }}
 {{- else if contains "NodePort" .Values.service.type }}
   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "common.names.fullname" . }})
