@@ -1,133 +1,54 @@
-# Default values for sabnzbd.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Default values for Sabnzbd.
 
 image:
   repository: linuxserver/sabnzbd
-  tag: 2.3.9-0ubuntu1jcfp218.04-ls67
   pullPolicy: IfNotPresent
-
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
-strategyType: Recreate
-
-# Probes configuration
-probes:
-  liveness:
-    initialDelaySeconds: 60
-    failureThreshold: 5
-    timeoutSeconds: 10
-  readiness:
-    initialDelaySeconds: 60
-    failureThreshold: 5
-    timeoutSeconds: 10
-
-nameOverride: ""
-fullnameOverride: ""
-
-timezone: UTC
-puid: 1001
-pgid: 1001
+  tag: version-3.1.0
 
 service:
-  type: ClusterIP
-  port: 8080
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
-  loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  port:
+    port: 8080
 
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  labels: {}
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
 
 persistence:
   config:
-    enabled: false
-    ## sabnzbd configuration data Persistent Volume Storage Class
+    enabled: true
+    emptyDir: true
+
+  media:
+    enabled: true
+    emptyDir: true
+    mountPath: /media
+    ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
-    ##
     # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
     ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
+    # skipuninstall: false
+    # existingClaim: ""
+
   downloads:
-    enabled: false
-    ## sabnzbd torrents downloads volume configuration
+    enabled: true
+    emptyDir: true
+    mountPath: /downloads
+    ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
-    ##
     # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    # subPath: some-subpath
-    accessMode: ReadWriteOnce
-    size: 10Gi
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
     ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-  extraMounts: []
-  ## Include additional claims that can be mounted inside the
-  ## pod. This is useful if you wish to use different paths with categories
-  ## Claim will me mounted as /{mountPath} if specified. If no {mountPath} is given,
-  ## mountPath will default to {name}
-  # - name: video
-  #   claimName: video-claim
-  #   mountPath: /mnt/path/in/pod
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-podAnnotations: {}
-
-deploymentAnnotations: {}
+    # skipuninstall: false
+    # existingClaim: ""
