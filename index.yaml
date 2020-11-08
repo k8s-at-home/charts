@@ -2533,6 +2533,30 @@ entries:
     version: 1.0.0
   jackett:
   - apiVersion: v2
+    appVersion: v0.16.2106
+    created: "2020-11-08T17:40:14.359120632Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.4
+    description: API Support for your favorite torrent trackers
+    digest: 58e61defed72bf2341e65205bc9bcbca5d77867b4aae8faae9650e9e463aa8ca
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-5.0.2/jackett-5.0.2.tgz
+    version: 5.0.2
+  - apiVersion: v2
     appVersion: v0.16.1045
     created: "2020-11-07T21:40:46.204949391Z"
     dependencies:
@@ -5546,6 +5570,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - apiVersion: v2
+    appVersion: 3.0.0.3989
+    created: "2020-11-08T17:40:14.459118439Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.4
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 8af1683f21ab4505f739875b0aa88b445312f347a7bd83b692ba65135ed04f5c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-7.0.0/radarr-7.0.0.tgz
+    version: 7.0.0
   - annotations:
       artifacthub.io/links: |
         - name: App Source
