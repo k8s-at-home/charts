@@ -1,10 +1,37 @@
-# Default values for lidarr.
+# Default values for Lidarr.
 
-lidarr:
-  image:
-    organization: linuxserver
-    repository: lidarr
-    pullPolicy: IfNotPresent
-    tag: 0.7.1.1785-ls18
-  service:
+image:
+  repository: linuxserver/lidarr
+  pullPolicy: IfNotPresent
+  tag: version-0.8.0.1886
+
+service:
+  port:
     port: 8686
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: true
+    emptyDir: true
+
+  media:
+    enabled: true
+    emptyDir: true
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
