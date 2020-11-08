@@ -35,7 +35,7 @@ Additionally you can take a look at the common library [values.yaml](https://git
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install nzbhydra2 \
-  --set nzbhydra2.env.TZ="America/New York" \
+  --set env.TZ="America/New York" \
     k8s-at-home/nzbhydra2
 ```
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
