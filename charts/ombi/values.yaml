@@ -1,10 +1,20 @@
-# Default values for ombi.
+# Default values for Ombi.
 
-ombi:
-  image:
-    organization: linuxserver
-    repository: ombi
-    pullPolicy: IfNotPresent
-    tag: v4.0.471-ls10
-  service:
+image:
+  repository: linuxserver/ombi
+  pullPolicy: IfNotPresent
+  tag: version-v4.0.681
+
+service:
+  port:
     port: 3579
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: true
+    emptyDir: true
