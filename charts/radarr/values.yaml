@@ -1,10 +1,37 @@
-# Default values for radarr.
+# Default values for Radarr.
 
-radarr:
-  image:
-    organization: linuxserver
-    repository: radarr
-    pullPolicy: IfNotPresent
-    tag: 3.0.0.3624-ls21
-  service:
+image:
+  repository: linuxserver/radarr
+  pullPolicy: IfNotPresent
+  tag: version-3.0.0.3989
+
+service:
+  port:
     port: 7878
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: true
+    emptyDir: true
+
+  media:
+    enabled: true
+    emptyDir: true
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
