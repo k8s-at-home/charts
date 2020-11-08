@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v2.26.0
+appVersion: v3.4.3
 description: Usenet meta search
 name: nzbhydra2
-version: 3.0.2
+version: 4.0.0
 keywords:
   - nzbhydra2
   - usenet
@@ -14,3 +14,7 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: ^1.0.4
