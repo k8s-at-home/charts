@@ -3118,6 +3118,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - apiVersion: v2
+    appVersion: 0.8.0.1886
+    created: "2020-11-08T18:26:34.99697568Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.4
+    description: Looks and smells like Sonarr but made for music
+    digest: 9ce44ee67f7ce62d7047eb92260122b6427cbf33f35df01783c3aa8220741b2f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    - torrent
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://hub.docker.com/r/linuxserver/lidarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-5.0.0/lidarr-5.0.0.tgz
+    version: 5.0.0
   - annotations:
       artifacthub.io/links: |
         - name: App Source
@@ -6291,6 +6316,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/ser2sock-1.0.0/ser2sock-1.0.0.tgz
     version: 1.0.0
   sonarr:
+  - apiVersion: v2
+    appVersion: 3.0.4.993
+    created: "2020-11-08T18:26:35.092641529Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.4
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: 554252e0f046f4adcf462c4844829d681620081c014c147ae669b306bd8a3441
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-7.0.1/sonarr-7.0.1.tgz
+    version: 7.0.1
   - apiVersion: v2
     appVersion: 3.0.4.993
     created: "2020-11-08T18:01:23.264772793Z"
