@@ -3,7 +3,7 @@
 image:
   repository: linuxserver/jackett
   pullPolicy: IfNotPresent
-  tag: v0.16.1045-ls14
+  tag: version-v0.16.2106
 
 service:
   port:
@@ -23,7 +23,7 @@ persistence:
     enabled: true
     emptyDir: true
     mountPath: /downloads
-    ## Jackett torrent torrentblackhole Persistent Volume Storage Class
+    ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is

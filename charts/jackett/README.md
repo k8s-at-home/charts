@@ -1,6 +1,6 @@
 # Jackett
 
-This is a helm chart for [Jackett](https://github.com/Jackett/Jackett) leveraging the [Linuxserver.io image](https://hub.docker.com/r/linuxserver/jackett/)
+This is a helm chart for [Jackett](https://github.com/Jackett/Jackett).
 
 ## TL;DR;
 
