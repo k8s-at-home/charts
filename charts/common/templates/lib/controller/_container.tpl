@@ -38,6 +38,6 @@
 
   {{- with .Values.resources }}
   resources:
-    {{- toYaml . | nindent 12 }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
 {{- end -}}
