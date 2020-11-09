@@ -5,11 +5,18 @@ metadata:
   labels:
     {{- include "common.labels" . | nindent 4 }}
 data:
-  {{- if and .Values.service.bittorrent .Values.service.bittorrent.port }}
+  {{- /* Determine if the bittorrent port is set somewhere */ -}}
+  {{- $bittorrentPort := "" -}}
+  {{- range $extraServices := .Values.service.additionalServices }}
+    {{- if and .enabled (eq "bittorrent" .nameSuffix) -}}
+      {{- $bittorrentPort = .port.port -}}
+    {{- end }}
+  {{- end }}
+  {{- if $bittorrentPort }}
   31-update-port: |-
     #!/bin/bash
     QBITTORRENT_CONFIGFILE="/config/qBittorrent/qBittorrent.conf"
-    INCOMING_PORT={{- .Values.service.bittorrent.port }}
+    INCOMING_PORT={{- $bittorrentPort }}
 
     incoming_port_exist=$(cat ${QBITTORRENT_CONFIGFILE} | grep -m 1 'Connection\\PortRangeMin='${INCOMING_PORT})
     if [[ -z "${incoming_port_exist}" ]]; then
