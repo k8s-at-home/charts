@@ -1,28 +1,28 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "media-common.fullname" . }}-bittorrent
+  name: {{ template "common.names.fullname" . }}-bittorrent
   labels:
-  {{- include "media-common.labels" . | nindent 4 }}
-  {{- if .Values.qbittorrent.btService.labels }}
-  {{ toYaml .Values.qbittorrent.btService.labels | indent 4 }}
-  {{- end }}
-  {{- with .Values.qbittorrent.btService.annotations }}
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.service.bittorrent.labels }}
+      {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.service.bittorrent.annotations }}
   annotations:
-  {{- toYaml . | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  type: {{ .Values.qbittorrent.btService.type }}
+  type: {{ .Values.service.bittorrent.type }}
   ports:
     - name: bittorrent
-      port: {{ .Values.qbittorrent.btService.port }}
+      port: {{ .Values.service.bittorrent.port }}
       protocol: TCP
-      targetPort: {{ .Values.qbittorrent.btService.port }}
-      {{- if (and (eq .Values.qbittorrent.btService.type "NodePort") (not (empty .Values.qbittorrent.btService.nodePort))) }}
-      nodePort: {{ .Values.qbittorrent.btService.nodePort }}
+      targetPort: {{ .Values.service.bittorrent.port }}
+      {{- if (and (eq .Values.service.bittorrent.type "NodePort") (not (empty .Values.service.bittorrent.nodePort))) }}
+      nodePort: {{ .Values.service.bittorrent.nodePort }}
       {{- end }}
-  {{- with .Values.qbittorrent.btService.additionalSpec }}
+  {{- with .Values.service.bittorrent.additionalSpec }}
   {{- toYaml . | nindent 2 }}
   {{- end }}
   selector:
-  {{- include "media-common.selectorLabels" . | nindent 4 }}
+    {{- include "common.labels.selectorLabels" . | nindent 4 }}
