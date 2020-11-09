@@ -15,20 +15,15 @@ service:
   port:
     port: 8080
 
-  bittorrent:
+  additionalServices:
+  - enabled: true
+    nameSuffix: bittorrent
     type: ClusterIP
-    port: 6881
-    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-    ##
-    # nodePort:
-    ## Provide any additional annotations which may be required. This can be used to
-    ## set the LoadBalancer service type to internal only.
-    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-    ##
-    annotations: {}
-    labels: {}
-    additionalSpec: {}
+    port:
+      port: 6881
+      name: bittorrent
+      protocol: TCP
+      targetPort: 6881
 
 persistence:
   config:
