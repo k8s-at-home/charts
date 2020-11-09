@@ -1,6 +1,6 @@
 # Jackett
 
-This is a helm chart for [Jackett](https://github.com/Jackett/Jackett) leveraging the [Linuxserver.io image](https://hub.docker.com/r/linuxserver/jackett/)
+This is a helm chart for [Jackett](https://github.com/Jackett/Jackett).
 
 ## TL;DR;
 
@@ -28,8 +28,9 @@ helm delete my-release --purge
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
-Read through the media-common [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml)
+Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/jackett/values.yaml)
 file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
@@ -43,11 +44,9 @@ chart. For example,
 helm install jackett k8s-at-home/jackett --values values.yaml 
 ```
 
-These values will be nested as it is a dependency, for example
 ```yaml
-jackett:
-  image:
-    tag: ...
+image:
+  tag: ...
 ```
 
 ---
@@ -60,3 +59,18 @@ Error: rendered manifests contain a resource that already exists. Unable to cont
 it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
 
 ---
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 4.x.x to 5.x.x
+
+Due to migrating to a centralized common library some values in `values.yaml` have changed.
+
+Examples:
+
+* `service.port` has been moved to `service.port.port`.
+* `persistence.type` has been moved to `controllerType`.
+
+Refer to the library values.yaml for more configuration options.

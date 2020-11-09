@@ -1,43 +1,37 @@
 # Default values for Jackett.
 
-jackett:
-  image:
-    organization: linuxserver
-    repository: jackett
-    pullPolicy: IfNotPresent
-    tag: v0.16.1045-ls14
+image:
+  repository: linuxserver/jackett
+  pullPolicy: IfNotPresent
+  tag: version-v0.16.2106
 
-  service:
+service:
+  port:
     port: 9117
 
-  env: {}
-    # TZ: UTC
-    # PUID: 1001
-    # PGID: 1001
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
 
-  persistence:
-    torrentblackhole:
-      enabled: false
-      ## Jackett torrent torrentblackhole Persistent Volume Storage Class
-      ## If defined, storageClassName: <storageClass>
-      ## If set to "-", storageClassName: "", which disables dynamic provisioning
-      ## If undefined (the default) or set to null, no storageClassName spec is
-      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-      ##   GKE, AWS & OpenStack)
-      # storageClass: "-"
-      # accessMode: ReadWriteOnce
-      # size: 1Gi
-      ## Do not delete the pvc upon helm uninstall
-      # skipuninstall: false
-      # existingClaim: ""
+persistence:
+  config:
+    enabled: true
+    emptyDir: true
 
-  additionalVolumes:
-    - name: torrentblackhole
-      emptyDir: {}
-      ## When using persistence.torrentblackhole.enabled: true, adjust this to:
-      # persistentVolumeClaim:
-      #   claimName: jackett-torrentblackhole
-
-  additionalVolumeMounts:
-    - name: torrentblackhole
-      mountPath: /downloads
+  torrentblackhole:
+    enabled: true
+    emptyDir: true
+    mountPath: /downloads
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""

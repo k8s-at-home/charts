@@ -25,6 +25,23 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
+        {{- if .Values.monitoring.sidecar.enabled }}
+        - name: exporter
+          image: "{{ .Values.monitoring.sidecar.image.repository }}:{{ .Values.monitoring.sidecar.image.tag }}"
+          imagePullPolicy: {{ .Values.monitoring.sidecar.image.pullPolicy }}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          args: 
+{{ toYaml .Values.monitoring.sidecar.args | indent 12 }}
+          env:
+{{ toYaml .Values.monitoring.sidecar.envs | indent 12 }}
+          resources:
+{{ toYaml .Values.monitoring.sidecar.resources | indent 12 }}
+          ports:
+            - containerPort: {{ .Values.monitoring.sidecar.port }}
+              name: prometheus
+              protocol: TCP
+        {{- end }}      
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}

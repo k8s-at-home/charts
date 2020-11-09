@@ -1,40 +1,49 @@
 # Default values for nzbget.
 
-nzbget:
-  image:
-    organization: linuxserver
-    repository: nzbget
-    pullPolicy: IfNotPresent
-    tag: v21.0-ls61
-  service:
+image:
+  repository: linuxserver/nzbget
+  pullPolicy: IfNotPresent
+  tag: version-v21.0
+
+service:
+  port:
     port: 6789
 
-  # Configure the OpenVPN add-on
-  openvpn:
+persistence:
+  config:
     enabled: false
+    emptyDir: false
 
-  persistence:
-    downloads:
-      enabled: false
-      ## nzbget downloads Persistent Volume Storage Class
-      ## If defined, storageClassName: <storageClass>
-      ## If set to "-", storageClassName: "", which disables dynamic provisioning
-      ## If undefined (the default) or set to null, no storageClassName spec is
-      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-      ##   GKE, AWS & OpenStack)
-      # storageClass: "-"
-      # accessMode: ReadWriteOnce
-      # size: 1Gi
-      ## Do not delete the pvc upon helm uninstall
-      # skipuninstall: false
+  media:
+    enabled: false
+    emptyDir: false
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
 
-  additionalVolumes:
-    - name: downloads
-      emptyDir: {}
-      ## When using persistence.downloads.enabled: true, adjust this to:
-      # persistentVolumeClaim:
-      #   claimName: nzbget-downloads
-
-  additionalVolumeMounts:
-    - name: downloads
-      mountPath: /downloads
+  downloads:
+    enabled: false
+    emptyDir: false
+    mountPath: /downloads
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
