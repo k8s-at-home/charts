@@ -1,10 +1,2 @@
-nzbget:
-  image:
-    organization: linuxserver
-    repository: nzbget
-    tag: latest
-  service:
-    type: ClusterIP
-    port: 6789
-  ingress:
-    enabled: false
+ingress:
+  enabled: true
