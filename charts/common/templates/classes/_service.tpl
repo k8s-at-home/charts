@@ -5,11 +5,15 @@
     {{- $values = . -}}
   {{- end -}}
 {{ end -}}
+{{- $serviceName := include "common.names.fullname" . -}}
+{{- if hasKey $values "nameSuffix" -}}
+  {{- $serviceName = printf "%v-%v" $serviceName $values.nameSuffix -}}
+{{ end -}}
 {{- $svcType := $values.type -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "common.names.fullname" . }}
+  name: {{ $serviceName }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
   {{- if $values.labels }}
