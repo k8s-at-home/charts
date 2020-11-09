@@ -5,6 +5,13 @@ metadata:
   name: {{ template "common.names.fullname" . }}
   labels:
   {{- include "common.labels" . | nindent 4 }}
+  {{- with .Values.controllerLabels }}
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.controllerAnnotations }}
+  annotations:
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   replicas: 1
   selector:

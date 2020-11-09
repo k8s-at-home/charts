@@ -2,12 +2,12 @@
 The OpenVPN shared volume to be inserted
 */}}
 {{- define "common.addon.vpn.volume" -}}
-{{- if or .Values.addons.vpn.vpnConf .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down -}}
+{{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down -}}
 name: vpnconfig
 configMap:
   name: {{ template "common.names.fullname" . }}-vpn
   items:
-    {{- if .Values.addons.vpn.vpnConf }}
+    {{- if .Values.addons.vpn.configFile }}
     - key: vpnConfigfile
       path: vpnConfigfile
     {{- end }}

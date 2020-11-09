@@ -1,5 +1,12 @@
 # type: options are statefulset or deployment
 controllerType: deployment
+# Set annotations on the deployment/statefulset
+controllerAnnotations: {}
+# Set labels on the deployment/statefulset
+controllerLabels: {}
+
+# Set annotations on the pod
+podAnnotations: {}
 
 env: {}
 
@@ -46,6 +53,21 @@ service:
   ##
   annotations: {}
   labels: {}
+
+  additionalServices: []
+  # - enabled: false
+  #   nameSuffix: api
+  #   type: ClusterIP
+  #   # Specify the default port information
+  #   port:
+  #     port: ""
+  #     name: http
+  #     protocol: TCP
+  #     targetPort: http
+  #     # nodePort:
+  #   additionalPorts: []
+  #   annotations: {}
+  #   labels: {}
 
 ingress:
   enabled: false
