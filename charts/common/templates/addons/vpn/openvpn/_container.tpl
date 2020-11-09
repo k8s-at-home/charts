@@ -9,9 +9,9 @@ securityContext:
   capabilities:
     add: 
       - NET_ADMIN
-{{- if .Values.addons.vpn.env }}
+{{- with .Values.addons.vpn.env }}
 env:
-{{- range $k, $v := .Values.addons.vpn.env }}
+{{- range $k, $v := . }}
   - name: {{ $k }}
     value: {{ $v }}
 {{- end }}
@@ -43,15 +43,19 @@ volumeMounts:
     subPath: down.sh
 {{- end }}
 {{- if .Values.persistence.shared.enabled }}
-- mountPath: {{ .Values.persistence.shared.mountPath }}
-  name: shared
+  - mountPath: {{ .Values.persistence.shared.mountPath }}
+    name: shared
 {{- end }}
-{{- if .Values.addons.vpn.additionalVolumeMounts }}
-  {{- toYaml .Values.addons.vpn.additionalVolumeMounts | nindent 2 }}
+{{- with .Values.addons.vpn.additionalVolumeMounts }}
+  {{- toYaml . | nindent 2 }}
 {{- end }}
 {{- end }}
-{{- if .Values.addons.vpn.livenessProbe }}
+{{- with .Values.addons.vpn.livenessProbe }}
 livenessProbe:
-  {{- toYaml .Values.addons.vpn.livenessProbe | nindent 4 }}
+  {{- toYaml . | nindent 4 }}
 {{- end -}}
+{{- with .Values.addons.vpn.resources }}
+resources:
+  {{- toYaml . | nindent 4 }}
+{{- end }}
 {{- end -}}

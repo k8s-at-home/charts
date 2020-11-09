@@ -13,6 +13,6 @@ Template to render OpenVPN addon
   {{- $secret := include "common.addon.openvpn.secret" . -}}
   {{- if $secret -}}
     {{- print "---" | nindent 0 -}}
-    {{- $secret -}}
+    {{- $secret | nindent 0 -}}
   {{- end -}}
 {{- end -}}

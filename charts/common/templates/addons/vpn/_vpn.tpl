@@ -15,7 +15,7 @@ Template to render VPN addon
   {{- $configmap := include "common.addon.vpn.configmap" . -}}
   {{- if $configmap -}}
     {{- print "---" | nindent 0 -}}
-    {{- $configmap -}}
+    {{- $configmap | nindent 0 -}}
   {{- end -}}
 
   {{/* Append the vpn config volume to the additionalVolumes */}}
@@ -29,7 +29,7 @@ Template to render VPN addon
   {{- $networkpolicy := include "common.addon.vpn.networkpolicy" . -}}
   {{- if $networkpolicy -}}
     {{- print "---" | nindent 0 -}}
-    {{- $networkpolicy -}}
+    {{- $networkpolicy | nindent 0 -}}
   {{- end -}}
 {{- end -}}
 {{- end -}}
