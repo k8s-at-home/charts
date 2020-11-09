@@ -1,49 +1,52 @@
-# Organizr | HTPC/Homelab Services Organizer - Written in PHP
-Umbrella chart that
-* Uses [media-common](https://github.com/k8s-at-home/charts/tree/master/charts/media-common) as a base
-* Adds docker image information leveraging the [official image](https://hub.docker.com/r/organizr/organizr/)
-* Deploys [Organizr](https://github.com/causefx/Organizr)
+# Organizr
 
-## TL;DR
-```console
+This is a helm chart for [Organizr](https://github.com/causefx/Organizr).
+
+## TL;DR;
+
+```shell
 $ helm repo add k8s-at-home https://k8s-at-home.com/charts/
 $ helm install k8s-at-home/organizr
 ```
 
 ## Installing the Chart
-To install the chart with the release name `organizr`:
+
+To install the chart with the release name `my-release`:
+
 ```console
-helm install organizr k8s-at-home/organizr
+helm install --name my-release k8s-at-home/organizr
 ```
 
 ## Uninstalling the Chart
-To uninstall the `organizr` deployment:
+
+To uninstall/delete the `my-release` deployment:
+
 ```console
-helm uninstall organizr
+helm delete my-release --purge
 ```
+
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
-Read through the media-common [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/media-common/values.yaml)
+Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/organizr/values.yaml)
 file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install organizr \
-  --set organizr.env.TZ="America/New York" \
+  --set env.TZ="America/New York" \
     k8s-at-home/organizr
 ```
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
-For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
+chart. For example,
 ```console
 helm install organizr k8s-at-home/organizr --values values.yaml 
 ```
 
-These values will be nested as it is a dependency, for example
 ```yaml
-organizr:
-  image:
-    tag: ...
+image:
+  tag: ...
 ```
 
 ---
@@ -56,3 +59,18 @@ Error: rendered manifests contain a resource that already exists. Unable to cont
 it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
 
 ---
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 1.x.x to 2.x.x
+
+Due to migrating to a centralized common library some values in `values.yaml` have changed.
+
+Examples:
+
+* `service.port` has been moved to `service.port.port`.
+* `persistence.type` has been moved to `controllerType`.
+
+Refer to the library values.yaml for more configuration options.
