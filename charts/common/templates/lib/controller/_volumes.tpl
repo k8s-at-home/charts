@@ -2,32 +2,30 @@
 volumes included by the controller
 */}}
 {{- define "common.controller.volumes" -}}
-{{/* Store the context to refer in later scope */}}
-{{- $context := . -}}
-{{/* Determine the PVC name */}}
-{{- range $index, $PVC := .Values.persistence }}
-{{- if $PVC.enabled }}
-
-{{- $claimName := "" -}}
-{{- if $PVC.existingClaim -}}
-  {{- $claimName = $PVC.existingClaim -}}
-{{- else }}
-  {{- if $PVC.nameSuffix -}}
-    {{- $claimName = printf "%s-%s" (include "common.names.fullname" $context) $PVC.nameSuffix -}}
-  {{- else }}
-    {{- $claimName = printf "%s-%s" (include "common.names.fullname" $context) $index -}}
-  {{- end -}}
-{{- end -}}
+{{- range $index, $persistence := .Values.persistence }}
+{{- if $persistence.enabled }}
 - name: {{ $index }}
-  {{- if not $PVC.emptyDir }}
+{{- if $persistence.existingClaim }}
+{{/* Always prefer an existingClaim if that is set */}}
   persistentVolumeClaim:
-    claimName: {{ $claimName }}
-  {{- else }}
+    claimName: {{ $persistence.existingClaim }}
+{{- else -}}
+  {{- if $persistence.emptyDir -}}
+  {{/* Always prefer an emptyDir next if that is set */}}
   emptyDir: {}
+  {{- else -}}
+  {{/* Otherwise refer to the PVC name */}}
+  persistentVolumeClaim:
+    {{- if $persistence.nameSuffix }}
+    claimName: {{ printf "%s-%s" (include "common.names.fullname" $) $persistence.nameSuffix }}
+    {{- else }}
+    claimName: {{ printf "%s-%s" (include "common.names.fullname" $) $index }}
+    {{- end }}
   {{- end }}
-{{ end }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- if .Values.additionalVolumes }}
   {{- toYaml .Values.additionalVolumes | nindent 0 }}
 {{- end }}
-{{- end }}
+{{- end -}}

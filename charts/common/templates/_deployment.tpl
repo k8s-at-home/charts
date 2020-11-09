@@ -38,7 +38,7 @@ spec:
       {{- end }}
 
       volumes:
-      {{- include "common.controller.volumes" . | nindent 6 }}
+      {{- include "common.controller.volumes" . | trim | nindent 6 }}
 
       {{- with .Values.nodeSelector }}
       nodeSelector:

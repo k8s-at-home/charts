@@ -10,17 +10,17 @@ metadata:
   labels:
   {{- include "common.labels" . | nindent 4 }}
 data:
-{{- if .Values.addons.vpn.configFile }}
+{{- with .Values.addons.vpn.configFile }}
   vpnConfigfile: |-
-    {{- .Values.addons.vpn.configFile | nindent 4}}
+    {{- . | nindent 4}}
 {{- end }}
-{{- if .Values.addons.vpn.scripts.up }}
+{{- with .Values.addons.vpn.scripts.up }}
   up.sh: |-
-    {{- .Values.addons.vpn.scripts.up | nindent 4}}
+    {{- . | nindent 4}}
 {{- end }}
-{{- if .Values.addons.vpn.scripts.down }}
+{{- with .Values.addons.vpn.scripts.down }}
   down.sh: |-
-    {{- .Values.addons.vpn.scripts.down | nindent 4}}
+    {{- . | nindent 4}}
 {{- end }}
 {{- end -}}
 {{- end -}}
