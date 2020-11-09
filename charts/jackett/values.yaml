@@ -16,12 +16,12 @@ env: {}
 
 persistence:
   config:
-    enabled: true
-    emptyDir: true
+    enabled: false
+    emptyDir: false
 
   torrentblackhole:
-    enabled: true
-    emptyDir: true
+    enabled: false
+    emptyDir: false
     mountPath: /downloads
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
