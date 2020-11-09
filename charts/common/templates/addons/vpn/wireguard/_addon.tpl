@@ -5,7 +5,7 @@ Template to render Wireguard addon
   {{/* Append the Wireguard container to the additionalContainers */}}
   {{- $container := include "common.addon.wireguard.container" . | fromYaml -}}
   {{- if $container -}}
-    {{- $additionalContainers := append .Values.additionalContainers $container }}
+    {{- $additionalContainers := append .Values.additionalContainers $container -}}
     {{- $_ := set .Values "additionalContainers" $additionalContainers -}}
   {{- end -}}
 {{- end -}}
