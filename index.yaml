@@ -3862,6 +3862,30 @@ entries:
   nzbget:
   - apiVersion: v2
     appVersion: v21.0
+    created: "2020-11-09T13:20:03.706017077Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.0.5
+    description: NZBGet is a Usenet downloader client
+    digest: 62f56b7c2ecaecf59e26ffd3a36ba31362bb7ae290d55538c306bfe6efd8008f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/nzbget
+    icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+    keywords:
+    - nzbget
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbget
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbget/
+    - https://nzbget.net/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbget-6.0.0/nzbget-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
+    appVersion: v21.0
     created: "2020-10-13T00:37:37.326932788Z"
     dependencies:
     - alias: nzbget
