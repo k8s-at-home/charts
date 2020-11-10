@@ -135,7 +135,7 @@ spec:
               subPath: {{ .Values.persistence.subPath }}
               {{- end }}
           {{- if .Values.additionalVolumeMounts }}
-          {{- toYaml .Values.additionalVolumes | nindent 12 }}
+          {{- toYaml .Values.additionalVolumeMounts | nindent 12 }}
           {{- end }}
           {{- with .Values.resources }}
           resources:
