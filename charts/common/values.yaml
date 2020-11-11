@@ -154,13 +154,20 @@ addons:
       # under the VPN_AUTH key
       authSecret:  # my-vpn-secret
 
-    # OpenVPN specific configuration
+    # WireGuard specific configuration
     wireguard:
       image:
-        repository: linuxserver/wireguard
-        tag: version-v1.0.20200827
+        repository: k8sathome/wireguard
+        tag: 1.0.20200827
 
     imagePullPolicy: IfNotPresent
+
+    # Set the VPN container securityContext
+    securityContext:
+      capabilities:
+        add: 
+          - NET_ADMIN
+          - SYS_MODULE
 
     # All variables specified here will be added to the vpn sidecar container
     # See the documentation of the VPN image for all config values

@@ -6,15 +6,15 @@ volumes included by the controller
 {{- if $persistence.enabled }}
 - name: {{ $index }}
 {{- if $persistence.existingClaim }}
-{{/* Always prefer an existingClaim if that is set */}}
+{{- /* Always prefer an existingClaim if that is set */}}
   persistentVolumeClaim:
     claimName: {{ $persistence.existingClaim }}
 {{- else -}}
   {{- if $persistence.emptyDir -}}
-  {{/* Always prefer an emptyDir next if that is set */}}
+  {{- /* Always prefer an emptyDir next if that is set */}}
   emptyDir: {}
   {{- else -}}
-  {{/* Otherwise refer to the PVC name */}}
+  {{- /* Otherwise refer to the PVC name */}}
   persistentVolumeClaim:
     {{- if $persistence.nameSuffix }}
     claimName: {{ printf "%s-%s" (include "common.names.fullname" $) $persistence.nameSuffix }}
