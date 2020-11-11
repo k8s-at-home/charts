@@ -5,6 +5,9 @@ image:
   pullPolicy: IfNotPresent
   tag: version-4.3.0202010181232-7086-1c663adeeubuntu18.04.1
 
+strategy:
+  type: Recreate
+
 env: {}
   # TZ: UTC
   # PUID: 1001
