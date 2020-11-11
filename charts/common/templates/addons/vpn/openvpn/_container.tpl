@@ -5,15 +5,15 @@ The OpenVPN container(s) to be inserted
 name: openvpn
 image: "{{ .Values.addons.vpn.openvpn.image.repository }}:{{ .Values.addons.vpn.openvpn.image.tag }}"
 imagePullPolicy: {{ .Values.addons.vpn.imagePullPolicy }}
+{{- with .Values.addons.vpn.securityContext }}
 securityContext:
-  capabilities:
-    add: 
-      - NET_ADMIN
+  {{- toYaml . | nindent 2 }}
+{{- end }}
 {{- with .Values.addons.vpn.env }}
 env:
 {{- range $k, $v := . }}
   - name: {{ $k }}
-    value: {{ $v }}
+    value: {{ $v | quote }}
 {{- end }}
 {{- end }}  
 {{- if or .Values.addons.vpn.openvpn.auth .Values.addons.vpn.openvpn.authSecret }}
@@ -52,10 +52,10 @@ volumeMounts:
 {{- end }}
 {{- with .Values.addons.vpn.livenessProbe }}
 livenessProbe:
-  {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 2 }}
 {{- end -}}
 {{- with .Values.addons.vpn.resources }}
 resources:
-  {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 2 }}
 {{- end }}
 {{- end -}}
