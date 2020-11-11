@@ -13,7 +13,11 @@ metadata:
   {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
+  {{- with .Values.strategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   selector:
     matchLabels:
     {{- include "common.labels.selectorLabels" . | nindent 6 }}
