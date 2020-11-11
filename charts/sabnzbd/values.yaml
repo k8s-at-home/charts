@@ -16,12 +16,12 @@ env: {}
 
 persistence:
   config:
-    enabled: true
-    emptyDir: true
+    enabled: false
+    emptyDir: false
 
   media:
-    enabled: true
-    emptyDir: true
+    enabled: false
+    emptyDir: false
     mountPath: /media
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -37,8 +37,8 @@ persistence:
     # existingClaim: ""
 
   downloads:
-    enabled: true
-    emptyDir: true
+    enabled: false
+    emptyDir: false
     mountPath: /downloads
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

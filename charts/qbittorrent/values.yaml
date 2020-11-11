@@ -1,66 +1,77 @@
 # Default values for qbittorrent.
 
-qbittorrent:
-  image:
-    organization: linuxserver
-    repository: qbittorrent
-    pullPolicy: IfNotPresent
-    tag: 14.2.5.99202004250119-7015-2c65b79ubuntu18.04.1-ls91
+image:
+  repository: linuxserver/qbittorrent
+  pullPolicy: IfNotPresent
+  tag: version-4.3.0202010181232-7086-1c663adeeubuntu18.04.1
 
-  env:
-    TZ: UTC
-    PUID: "1001"
-    PGID: "1001"
-    UMASK: "022"
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+  # UMASK: 022
 
-  service:
+service:
+  port:
     port: 8080
 
-  btService:
+  additionalServices:
+  - enabled: true
+    nameSuffix: bittorrent
     type: ClusterIP
-    port: 6881
-    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-    ##
-    # nodePort:
-    ## Provide any additional annotations which may be required. This can be used to
-    ## set the LoadBalancer service type to internal only.
-    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-    ##
-    annotations: {}
-    labels: {}
-    additionalSpec: {}
+    port:
+      port: 6881
+      name: bittorrent
+      protocol: TCP
+      targetPort: 6881
 
-  persistence:
-    downloads:
-      enabled: false
-      ## qbittorrent downloads Persistent Volume Storage Class
-      ## If defined, storageClassName: <storageClass>
-      ## If set to "-", storageClassName: "", which disables dynamic provisioning
-      ## If undefined (the default) or set to null, no storageClassName spec is
-      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-      ##   GKE, AWS & OpenStack)
-      # storageClass: "-"
-      # accessMode: ReadWriteOnce
-      # size: 1Gi
-      ## Do not delete the pvc upon helm uninstall
-      # skipuninstall: false
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
 
-  additionalVolumes:
-    - name: qbittorrent-scripts
-      emptyDir: {}
-      ## When you want to enable automatic port configuration at startup, adjust this to:
-      # configMap:
-      #   name: <RELEASENAME>-scripts
-      #   defaultMode: 511
-    - name: downloads
-      emptyDir: {}
-      ## When using persistence.downloads.enabled: true, adjust this to:
-      # persistentVolumeClaim:
-      #   claimName: qbittorrent-downloads
+  media:
+    enabled: false
+    emptyDir: false
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
 
-  additionalVolumeMounts:
-    - mountPath: /config/custom-cont-init.d
-      name: qbittorrent-scripts
-    - name: downloads
-      mountPath: /downloads
+  downloads:
+    enabled: false
+    emptyDir: false
+    mountPath: /downloads
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+additionalVolumes:
+  - name: qbittorrent-scripts
+    emptyDir: {}
+    ## When you want to enable automatic port configuration at startup, adjust this to:
+    # configMap:
+    #   name: <RELEASENAME>-scripts
+    #   defaultMode: 511
+
+additionalVolumeMounts:
+  - mountPath: /config/custom-cont-init.d
+    name: qbittorrent-scripts

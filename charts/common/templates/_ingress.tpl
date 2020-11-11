@@ -17,8 +17,8 @@
         {{- if not $ingressValues.nameSuffix -}}
           {{- $_ := set $ingressValues "nameSuffix" $index -}}
         {{ end -}}
-        {{- $_ := set . "ObjectValues" (dict "ingress" $ingressValues) -}}
-        {{- include "common.classes.ingress" . -}}
+        {{- $_ := set $ "ObjectValues" (dict "ingress" $ingressValues) -}}
+        {{- include "common.classes.ingress" $ -}}
       {{- end }}
     {{- end }}
   {{- end }}
