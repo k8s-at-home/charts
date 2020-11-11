@@ -5,6 +5,12 @@ controllerAnnotations: {}
 # Set labels on the deployment/statefulset
 controllerLabels: {}
 
+replicas: 1
+strategy:
+  ## For Deployments, valid values are Recreate and RollingUpdate
+  ## For StatefulSets, valid values are OnDelete and RollingUpdate
+  type: RollingUpdate
+
 # Set annotations on the pod
 podAnnotations: {}
 
