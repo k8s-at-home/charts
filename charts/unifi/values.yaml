@@ -10,10 +10,10 @@ image:
   tag: 5.12.35
   pullPolicy: IfNotPresent
 
-# If enabled, the controller, discovery, GUI, and STUN services will not be
+# If enabled, the controller, discovery, GUI, STUN and syslog services will not be
 # created.
 # Instead, one service will be created with the port and nodePort settings from
-# controllerService, discoveryService, guiService, and stunService.
+# controllerService, discoveryService, guiService, stunService and syslogService.
 # This is useful if, for example, the ClusterIP network is routable and being
 # accessed directly by access points, and the APs don't have a way to discern
 # different services on different IPs.
@@ -169,6 +169,27 @@ discoveryService:
   ## Set the externalTrafficPolicy in the Service to either Cluster or Local
   # externalTrafficPolicy: Cluster
 
+syslogService:
+  type: NodePort
+  port: 5514  # udp
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  labels: {}
+  ## Use loadBalancerIP to request a specific static IP,
+  ## otherwise leave blank
+  ##
+  loadBalancerIP:
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  # externalTrafficPolicy: Cluster
+
 ingress:
   enabled: false
   annotations: {}
@@ -199,6 +220,17 @@ customCert:
   # If you want to store certificate and its key as a Kubernetes tls secret
   # you can pass the name of that secret using certSecret variable
   # certSecret: unifi-tls
+
+# Logging configuration
+logging:
+  promtail:
+    enabled: false
+    image:
+      repository: grafana/promtail
+      tag: 1.6.0
+      pullPolicy: IfNotPresent
+    loki:
+      url: http://loki.logs.svc.cluster.local:3100/loki/api/v1/push
 
 # define an external mongoDB instead of using the built-in mongodb
 mongodb:
