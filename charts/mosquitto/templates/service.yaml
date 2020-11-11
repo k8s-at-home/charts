@@ -25,6 +25,12 @@ spec:
       targetPort: websocket
       protocol: TCP
       name: websocket
+    {{- if .Values.monitoring.sidecar.enabled }}
+    - port: {{ .Values.monitoring.sidecar.port }}
+      targetPort: prometheus
+      protocol: TCP
+      name: prometheus
+    {{- end }}      
   selector:
     app.kubernetes.io/name: {{ include "mosquitto.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

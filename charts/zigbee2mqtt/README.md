@@ -64,3 +64,21 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 helm install --name my-release -f values.yaml k8s-at-home/zigbee2mqtt
 ```
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 1.0.0 -> 2.0.0) indicates that there is an
+incompatible breaking change needing manual actions.
+
+### Upgrading from 1.x.x to 2.x.x
+
+Zigbee2MQTT has gained a native full-feature WebUI. Because of this, Zigbee2MQTTAssistant was dropped from the chart
+
+You should delete the assistant config from your values.yaml. If you wish to use the new UI, make sure you have
+```
+frontend:
+  port: 8080
+experimental:
+  new_api: true
+```
+in the config section, and enable the ingress in values.yaml. Because of the way this chart works, you'll need to add this section to your configuration.yaml in zigbee2mqtt manually if you want to upgrade in-place

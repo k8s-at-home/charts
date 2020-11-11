@@ -1,10 +1,20 @@
-# Default values for tautulli.
+# Default values for Tautulli.
 
-tautulli:
-  image:
-    organization: tautulli
-    repository: tautulli
-    pullPolicy: IfNotPresent
-    tag: v2.5.4
-  service:
+image:
+  repository: tautulli/tautulli
+  pullPolicy: IfNotPresent
+  tag: v2.5.4
+
+service:
+  port:
     port: 8181
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false

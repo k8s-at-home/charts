@@ -33,8 +33,10 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.device }}
           securityContext:
             privileged: true
+          {{- end }}
           ports:
             - name: http
               containerPort: 8080
@@ -56,15 +58,27 @@ spec:
             - name: FEEDER_ID
               value: "{{ .Values.feederId }}"
             {{- end }}
+            {{- if .Values.beastHost }}
+            - name: BEASTHOST
+              value: "{{ .Values.beastHost }}"
+            {{- end }}
+            {{- if .Values.beastPort }}
+            - name: BEASTPORT
+              value: "{{ .Values.beastPort }}"
+            {{- end }}
+          {{- if .Values.device }}
           volumeMounts:
             - mountPath: {{ .Values.device }}
               name: usb
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.device }}
       volumes:
         - name: usb
           hostPath:
             path: {{ .Values.device }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

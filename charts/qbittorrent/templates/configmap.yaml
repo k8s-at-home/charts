@@ -1,15 +1,22 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "media-common.fullname" . }}-scripts
+  name: {{ template "common.names.fullname" . }}-scripts
   labels:
-  {{- include "media-common.labels" . | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
 data:
-  {{- if and .Values.qbittorrent.btService .Values.qbittorrent.btService.port }}
+  {{- /* Determine if the bittorrent port is set somewhere */ -}}
+  {{- $bittorrentPort := "" -}}
+  {{- range $extraServices := .Values.service.additionalServices }}
+    {{- if and .enabled (eq "bittorrent" .nameSuffix) -}}
+      {{- $bittorrentPort = .port.port -}}
+    {{- end }}
+  {{- end }}
+  {{- if $bittorrentPort }}
   31-update-port: |-
     #!/bin/bash
     QBITTORRENT_CONFIGFILE="/config/qBittorrent/qBittorrent.conf"
-    INCOMING_PORT={{- .Values.qbittorrent.btService.port }}
+    INCOMING_PORT={{- $bittorrentPort }}
 
     incoming_port_exist=$(cat ${QBITTORRENT_CONFIGFILE} | grep -m 1 'Connection\\PortRangeMin='${INCOMING_PORT})
     if [[ -z "${incoming_port_exist}" ]]; then

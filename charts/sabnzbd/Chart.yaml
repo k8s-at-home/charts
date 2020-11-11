@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 2.3.9
+appVersion: 3.1.0
 description: Free and easy binary newsreader
 name: sabnzbd
-version: 2.0.1
+version: 3.0.2
 keywords:
   - sabnzbd
   - usenet
@@ -14,3 +14,7 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: ^1.1.0

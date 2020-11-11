@@ -86,7 +86,14 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `discoveryService.loadBalancerIP`               | `{}`                         | Loadbalance IP for AP discovery                                                                                        |
 | `discoveryService.loadBalancerSourceRanges`     | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
 | `discoveryService.externalTrafficPolicy`        | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, and discovery                                                          |
+| `syslogService.type`                            | `NodePort`                   | Kubernetes service type for remote syslog capture                                                                      |
+| `syslogService.port`                            | `5514`                       | Kubernetes UDP port for remote syslog capture                                                                          |
+| `syslogService.annotations`                     | `{}`                         | Service annotations for remote syslog capture                                                                          |
+| `syslogService.labels`                          | `{}`                         | Custom labels                                                                                                          |
+| `syslogService.loadBalancerIP`                  | `{}`                         | Loadbalancer IP for remote syslog capture                                                                              |
+| `syslogService.loadBalancerSourceRanges`        | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
+| `syslogService.externalTrafficPolicy`           | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
+| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery and syslog                                                   |
 | `unifiedService.type`                           | `ClusterIP`                  | Kubernetes service type for the unified service                                                                        |
 | `unifiedService.annotations`                    | `{}`                         | Annotations for the unified service                                                                                    |
 | `unifiedService.labels`                         | `{}`                         | Custom labels for the unified service                                                                                  |
@@ -108,6 +115,11 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `customCert.certName`                           | `tls.crt`                    | Name of the the certificate file in `<unifi-data>/cert`                                                                |
 | `customCert.keyName`                            | `tls.key`                    | Name of the the private key file in `<unifi-data>/cert`                                                                |
 | `customCert.certSecret`                         | `nil`                        | Name of the the k8s tls secret where the certificate and its key are stored.                                           |
+| `logging.promtail.enabled`                      | `false`                      | Enable a Promtail sidecar to collect controller logs                                                                   |
+| `logging.promtail.image.repository`             | `grafana/promtail`           | Promtail image repository                                                                                              |
+| `logging.promtail.image.tag`                    | `1.6.0`                      | Promtail image tag                                                                                                     |
+| `logging.promtail.image.pullPolicy`             | `IfNotPresent`               | Promtail image pull policy                                                                                             |
+| `logging.promtail.loki.url`                     | `http://loki.logs.svc.cluster.local:3100/loki/api/v1/push` | URL of the Loki push API                                                                 |
 | `mongodb.enabled`                               | `false`                      | Use external MongoDB for data storage                                                                                  |
 | `mongodb.dbUri`                                 | `mongodb://mongo/unifi`      | external MongoDB URI                                                                                                   |
 | `mongodb.statDbUri`                             | `mongodb://mongo/unifi_stat` | external MongoDB statdb URI                                                                                            |
@@ -163,6 +175,9 @@ Read through the [values.yaml](values.yaml) file. It has several commented out s
 - `stunService`: Also used periodically by the unifi devices to communicate
   with the controller using UDP. See [this article][ubnt 3] and [this other
   article][ubnt 4] for more information.
+- `syslogService`: Used to capture syslog from Unifi devices if the feature is 
+  enabled in the site configuration. This needs to be reachable by Unifi devices
+  on port 5514/UDP.
 
 ## Ingress and HTTPS
 

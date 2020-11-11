@@ -1,10 +1,37 @@
-# Default values for sonarr.
+# Default values for Sonarr.
 
-sonarr:
-  image:
-    organization: linuxserver
-    repository: sonarr
-    pullPolicy: IfNotPresent
-    tag: 3.0.3.913-ls40
-  service:
+image:
+  repository: linuxserver/sonarr
+  pullPolicy: IfNotPresent
+  tag: version-3.0.4.993
+
+service:
+  port:
     port: 8989
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+
+  media:
+    enabled: false
+    emptyDir: false
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""

@@ -1,12 +1,2 @@
-qbittorrent:
-  image:
-    organization: linuxserver
-    repository: qbittorrent
-    tag: 14.2.5.99202004250119-7015-2c65b79ubuntu18.04.1-ls91
-
-  service:
-    type: ClusterIP
-    port: 8080
-
-  ingress:
-    enabled: false
+ingress:
+  enabled: true

@@ -4,7 +4,7 @@
 
 image:
   repository: homeassistant/home-assistant
-  tag: 0.115.2
+  tag: 0.116.1
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -224,7 +224,18 @@ monitoring:
     # bearerTokenFile:
     # Set bearerTokenSecret for home assistant auth (use long lived access tokens)
     # bearerTokenSecret:
-
+    # Relabel metrics if needed example removes pod and instance labels from metrics beginning with hass
+    # metricRelabelings: []
+    #  - regex: hass.*
+    #    replacement: ""
+    #    sourceLabels:
+    #     - __name__
+    #    targetLabel: pod
+    #  - regex: hass_.*
+    #    replacement: ""
+    #    sourceLabels:
+    #     - __name__
+    #    targetLabel: instance
 
 vscode:
   enabled: false

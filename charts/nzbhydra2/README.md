@@ -1,6 +1,6 @@
-# nzbhydra2
+# Nzbhydra2
 
-This is a helm chart for [nzbhydra2](https://github.com/theotherp/nzbhydra2) leveraging the [Linuxserver.io image](https://hub.docker.com/r/linuxserver/hydra2/)
+This is a helm chart for [Nzbhydra2](https://github.com/theotherp/nzbhydra2).
 
 ## TL;DR;
 
@@ -28,70 +28,49 @@ helm delete my-release --purge
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
-
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-
-| Parameter                  | Description                         | Default                                                 |
-|----------------------------|-------------------------------------|---------------------------------------------------------|
-| `image.repository`         | Image repository | `linuxserver/hydra2` |
-| `image.tag`                | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/nzbhydra2/tags/).| `v2.22.2-ls9`|
-| `image.pullPolicy`         | Image pull policy | `IfNotPresent` |
-| `strategyType`             | Specifies the strategy used to replace old Pods by new ones | `Recreate` |
-| `timezone`                 | Timezone the nzbhydra2 instance should run as, e.g. 'America/New_York' | `UTC` |
-| `puid`                     | process userID the nzbhydra2 instance should run as | `1001` |
-| `pgid`                     | process groupID the nzbhydra2 instance should run as | `1001` |
-| `probes.liveness.failureThreshold`     | Specify liveness `failureThreshold` parameter for the deployment     | `5`  |
-| `probes.liveness.periodSeconds`       | Specify liveness `periodSeconds` parameter for the deployment       | `10` |
-| `probes.readiness.failureThreshold`    | Specify readiness `failureThreshold` parameter for the deployment    | `5`  |
-| `probes.readiness.periodSeconds`      | Specify readiness `periodSeconds` parameter for the deployment      | `10` |
-| `probes.startup.initialDelaySeconds`    | Specify startup `initialDelaySeconds` parameter for the deployment    | `5`  |
-| `probes.startup.failureThreshold`      | Specify startup `failureThreshold` parameter for the deployment      | `30` |
-| `probes.startup.periodSeconds`      | Specify startup `periodSeconds` parameter for the deployment      | `10` |
-| `service.type`          | Kubernetes service type for the nzbhydra2 GUI | `ClusterIP` |
-| `service.port`          | Kubernetes port where the nzbhydra2 GUI is exposed| `5076` |
-| `service.annotations`   | Service annotations for the nzbhydra2 GUI | `{}` |
-| `service.labels`        | Custom labels | `{}` |
-| `service.loadBalancerIP` | Loadbalance IP for the nzbhydra2 GUI | `{}` |
-| `service.loadBalancerSourceRanges` | List of IP CIDRs allowed access to load balancer (if supported)      | None
-| `ingress.enabled`              | Enables Ingress | `false` |
-| `ingress.annotations`          | Ingress annotations | `{}` |
-| `ingress.labels`               | Custom labels                       | `{}`
-| `ingress.path`                 | Ingress path | `/` |
-| `ingress.hosts`                | Ingress accepted hostnames | `chart-example.local` |
-| `ingress.tls`                  | Ingress TLS configuration | `[]` |
-| `persistence.config.enabled`      | Use persistent volume to store configuration data | `true` |
-| `persistence.config.size`         | Size of persistent volume claim | `1Gi` |
-| `persistence.config.existingClaim`| Use an existing PVC to persist data | `nil` |
-| `persistence.config.subPath`  | Mount a sub directory of the persistent volume if set | `""` |
-| `persistence.config.storageClass` | Type of persistent volume claim | `-` |
-| `persistence.config.accessMode`  | Persistence access mode | `ReadWriteOnce` |
-| `persistence.config.skipuninstall`  | Do not delete the pvc upon helm uninstall | `false` |
-| `resources`                | CPU/Memory resource requests/limits | `{}` |
-| `nodeSelector`             | Node labels for pod assignment | `{}` |
-| `tolerations`              | Toleration labels for pod assignment | `[]` |
-| `affinity`                 | Affinity settings for pod assignment | `{}` |
-| `podAnnotations`           | Key-value pairs to add as pod annotations  | `{}` |
-| `deploymentAnnotations`           | Key-value pairs to add as deployment annotations  | `{}` |
+Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/nzbhydra2/values.yaml)
+file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
 ```console
-helm install --name my-release \
-  --set timezone="America/New York" \
+helm install nzbhydra2 \
+  --set env.TZ="America/New York" \
     k8s-at-home/nzbhydra2
 ```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
+chart. For example,
 ```console
-helm install --name my-release -f values.yaml k8s-at-home/nzbhydra2
+helm install nzbhydra2 k8s-at-home/nzbhydra2 --values values.yaml 
+```
+
+```yaml
+image:
+  tag: ...
 ```
 
 ---
 **NOTE**
 
-If you get `Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...` it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+If you get
+```console
+Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...`
+```
+it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
 
 ---
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/nzbhydra2/values.yaml) file. It has several commented out suggested values.
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 3.x.x to 4.x.x
+
+Due to migrating to a centralized common library some values in `values.yaml` have changed.
+
+Examples:
+
+* `service.port` has been moved to `service.port.port`.
+* `persistence.type` has been moved to `controllerType`.
+
+Refer to the library values.yaml for more configuration options.

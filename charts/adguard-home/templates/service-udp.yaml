@@ -17,6 +17,14 @@ spec:
   {{- if .Values.serviceUDP.loadBalancerIP }}
   loadBalancerIP: {{ .Values.serviceUDP.loadBalancerIP }}
   {{- end }}
+  {{- if .Values.serviceUDP.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{ toYaml .Values.serviceUDP.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+  {{- if .Values.serviceUDP.externalIPs }}
+  externalIPs:
+  {{ toYaml .Values.serviceUDP.externalIPs | indent 4 }}
+  {{- end }}
   externalTrafficPolicy: {{ .Values.serviceUDP.externalTrafficPolicy }}
   ports:
     - port: 53

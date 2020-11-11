@@ -165,6 +165,10 @@ configAsCode:
     verbose: false
     schema_version: 6
 
+tlsSecretName: ""
+# name of the secret that contains the tls cert and key.
+# this secret will be mounted inside the adguard container /certs path. e.g. works with cert-manager
+
 image:
   repository: adguard/adguardhome
   # Image tag is set via charts appVersion. If you want to override the tag, specify it here
@@ -224,8 +228,10 @@ probes:
 service:
   type: ClusterIP
   # externalTrafficPolicy: Local
+  # externalIPs: []
   # loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -234,8 +240,10 @@ serviceTCP:
   enabled: false
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -244,8 +252,10 @@ serviceUDP:
   enabled: true
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -255,8 +265,10 @@ serviceDNSOverTLS:
   ## Enable if you use AdGuard as a DNS over TLS/HTTPS server
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
+  # loadBalancerSourceRanges: []
   annotations: {}
     # metallb.universe.tf/address-pool: network-services
     # metallb.universe.tf/allow-shared-ip: adguard-home-svc
@@ -266,6 +278,7 @@ serviceDHCP:
   ## Enable if you use AdGuard as a DHCP Server
   type: NodePort
   # externalTrafficPolicy: Local
+  # externalIPs: []
   loadBalancerIP: ""
     # a fixed LoadBalancer IP
   annotations: {}

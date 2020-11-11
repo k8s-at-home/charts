@@ -17,6 +17,14 @@ spec:
   {{- if .Values.serviceDNSOverTLS.loadBalancerIP }}
   loadBalancerIP: {{ .Values.serviceDNSOverTLS.loadBalancerIP }}
   {{- end }}
+  {{- if .Values.serviceDNSOverTLS.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{ toYaml .Values.serviceDNSOverTLS.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+  {{- if .Values.serviceDNSOverTLS.externalIPs }}
+  externalIPs:
+  {{ toYaml .Values.serviceDNSOverTLS.externalIPs | indent 4 }}
+  {{- end }}
   externalTrafficPolicy: {{ .Values.serviceDNSOverTLS.externalTrafficPolicy }}
   ports:
     - port: 853

@@ -39,66 +39,45 @@ config:
     log_output:
       - console
 
-assistant:
-  enabled: true
-  image:
-    repository: carldebilly/zigbee2mqttassistant
-    pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is latest.
-    tag: ""
-  # Config values from https://github.com/yllibed/Zigbee2MqttAssistant
-  # MQTT (connection or topic) parameters are retrieved from general config, but they can be overriden.
-  # All of them are case insensitive.
-  config:
-    lowBatteryThreshold: 30
-    allowJoinTimeout: 20
-    autosetLastSeen: false
-    devicesPollingSchedule: "*/12 * * * *"
-    networkScanSchedule: "0 */3 * * *"
+  # Both of these need to be enabled for the webui
+  frontend:
+    port: 8080
+  experimental:
+    new_api: true
 
-  probes:
-    liveness:
-      initialDelaySeconds: 30
-      failureThreshold: 5
-      timeoutSeconds: 10
-    readiness:
-      initialDelaySeconds: 30
-      failureThreshold: 5
-      timeoutSeconds: 10
+service:
+  type: ClusterIP
+  port: 8080
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  labels: {}
+  ## Use loadBalancerIP to request a specific static IP,
+  ## otherwise leave blank
+  ##
+  loadBalancerIP:
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  # externalTrafficPolicy: Cluster
 
-  service:
-    type: ClusterIP
-    port: 8091
-    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-    ##
-    # nodePort:
-    ## Provide any additional annotations which may be required. This can be used to
-    ## set the LoadBalancer service type to internal only.
-    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-    ##
-    annotations: {}
-    labels: {}
-    ## Use loadBalancerIP to request a specific static IP,
-    ## otherwise leave blank
-    ##
-    loadBalancerIP:
-    # loadBalancerSourceRanges: []
-    ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-    # externalTrafficPolicy: Cluster
-
-  ingress:
-    enabled: false
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    path: /
-    hosts:
-      - chart-example.local
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 persistence:
   enabled: false
@@ -117,6 +96,28 @@ persistence:
   # existingClaim: zigbee2mqtt-data
   accessMode: ReadWriteOnce
   size: 100Mi
+
+## Additional zigbee2mqtt container environment variable
+## For instance to add a http_proxy
+##
+extraEnv: {}
+
+## Additional zigbee2mqtt container environment variable from k8s secrets
+## For instance to add a password
+extraEnvSecrets:
+  # Example
+  # This will set ${ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD} to the 'password' key from the 'mqtt' secret
+  # ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD:
+  #   secret: mqtt
+  #   key: password
+
+## If you'd like to provide your own Kubernetes Secret object instead of passing your values
+## individually, pass in the name of a created + populated Secret.
+## All secrets will be mounted as environment variables, with each key/value mapping to a
+## corresponding environment variable.
+##
+extraSecretForEnvFrom: []
+# - zigbee2mqtt-secrets
 
 imagePullSecrets: []
 nameOverride: ""
@@ -162,3 +163,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Any extra volumes to define for the pod
+extraVolumes: []
+  # - name: example-name
+  #   hostPath:
+  #     path: /path/on/host
+  #     type: DirectoryOrCreate
+
+# Any extra volume mounts to define for the containers
+extraVolumeMounts: []
+#   - name: example-name
+#     mountPath: /path/in/container
