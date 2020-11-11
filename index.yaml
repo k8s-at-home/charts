@@ -137,6 +137,35 @@ entries:
   bazarr:
   - apiVersion: v2
     appVersion: v0.9.0.5
+    created: "2020-11-11T21:52:31.558636948Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: Bazarr is a companion application to Sonarr and Radarr. It manages
+      and downloads subtitles based on your requirements
+    digest: c5d97bca1e570410849135cb63a5b1dd80714d3d66d012f4d743e7223db1c8f2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/bazarr
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - torrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: bazarr
+    sources:
+    - https://hub.docker.com/r/linuxserver/bazarr/
+    - https://github.com/morpheus65535/bazarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bazarr-4.2.0/bazarr-4.2.0.tgz
+    version: 4.2.0
+  - apiVersion: v2
+    appVersion: v0.9.0.5
     created: "2020-11-11T19:11:04.040171967Z"
     dependencies:
     - name: common
@@ -2735,6 +2764,30 @@ entries:
   jackett:
   - apiVersion: v2
     appVersion: v0.16.2106
+    created: "2020-11-11T21:52:31.661016023Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: API Support for your favorite torrent trackers
+    digest: 51c0c1e347de32e26c5e9aa55f0b1298743057f7cc9be56e0922219e6b0fe5e3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-5.2.0/jackett-5.2.0.tgz
+    version: 5.2.0
+  - apiVersion: v2
+    appVersion: v0.16.2106
     created: "2020-11-11T19:11:04.147884695Z"
     dependencies:
     - name: common
@@ -3391,6 +3444,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - apiVersion: v2
+    appVersion: 0.8.0.1886
+    created: "2020-11-11T21:52:31.767761657Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: Looks and smells like Sonarr but made for music
+    digest: 952d2e61f7cd92e841a40b5149f8d733962793c545cba75890df8ff40f4da75a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    - torrent
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://hub.docker.com/r/linuxserver/lidarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-5.2.0/lidarr-5.2.0.tgz
+    version: 5.2.0
   - apiVersion: v2
     appVersion: 0.8.0.1886
     created: "2020-11-11T19:11:04.267963089Z"
@@ -4165,6 +4243,30 @@ entries:
   nzbget:
   - apiVersion: v2
     appVersion: v21.0
+    created: "2020-11-11T21:52:31.863794347Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: NZBGet is a Usenet downloader client
+    digest: 86f520faf99cb4f218cb38e27deef8b98f94c59c689651d50201e47bff1b4db0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/nzbget
+    icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+    keywords:
+    - nzbget
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbget
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbget/
+    - https://nzbget.net/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbget-6.2.0/nzbget-6.2.0.tgz
+    version: 6.2.0
+  - apiVersion: v2
+    appVersion: v21.0
     created: "2020-11-11T19:11:04.392665084Z"
     dependencies:
     - name: common
@@ -4528,6 +4630,30 @@ entries:
   nzbhydra2:
   - apiVersion: v2
     appVersion: v3.4.3
+    created: "2020-11-11T21:52:31.947687773Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: Usenet meta search
+    digest: c36684a59c74a72dd726d725565e94974fda7af432f7dcd06e7c554636431c65
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/nzbhydra2
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
+    keywords:
+    - nzbhydra2
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbhydra2
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbhydra2/
+    - https://github.com/theotherp/nzbhydra2
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbhydra2-4.2.0/nzbhydra2-4.2.0.tgz
+    version: 4.2.0
+  - apiVersion: v2
+    appVersion: v3.4.3
     created: "2020-11-11T19:11:04.533811234Z"
     dependencies:
     - name: common
@@ -4843,6 +4969,34 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/nzbhydra2-2.0.1/nzbhydra2-2.0.1.tgz
     version: 2.0.1
   ombi:
+  - apiVersion: v2
+    appVersion: 4.0.681
+    created: "2020-11-11T21:52:32.078882223Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+    digest: cfe0dae9f9948b348b8a89dd9ca376d03398515484a8d12e5e7d96014a607b14
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/ombi
+    icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
+    keywords:
+    - ombi
+    - plex
+    - emby
+    - sonarr
+    - radarr
+    - couchpotato
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ombi
+    sources:
+    - https://github.com/tidusjar/Ombi
+    - https://hub.docker.com/r/linuxserver/ombi
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ombi-5.2.0/ombi-5.2.0.tgz
+    version: 5.2.0
   - apiVersion: v2
     appVersion: 4.0.681
     created: "2020-11-11T19:11:04.714915848Z"
@@ -5251,6 +5405,29 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/ombi-2.0.1/ombi-2.0.1.tgz
     version: 2.0.1
   organizr:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2020-11-11T21:52:32.175464597Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: HTPC/Homelab Services Organizer
+    digest: b271dd64ff2c5aa13f071a97cd62220d71ec24259a974bd40e861d1133295fb7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/organizr
+    icon: https://github.com/causefx/Organizr/blob/v2-master/plugins/images/organizr/logo.png?raw=true
+    keywords:
+    - organizr
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: organizr
+    sources:
+    - https://github.com/causefx/Organizr
+    - https://hub.docker.com/r/organizr/organizr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/organizr-2.2.0/organizr-2.2.0.tgz
+    version: 2.2.0
   - apiVersion: v2
     appVersion: latest
     created: "2020-11-11T19:11:04.924795783Z"
@@ -6118,6 +6295,29 @@ entries:
   qbittorrent:
   - apiVersion: v2
     appVersion: 4.3.0
+    created: "2020-11-11T21:52:32.276422829Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: 0334938ffd22702d6258973e2dec829ba7400ed0613ce3e9656cc554058bf2b2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: qbittorrent
+    sources:
+    - https://hub.docker.com/r/linuxserver/qbittorrent/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/qbittorrent-6.2.0/qbittorrent-6.2.0.tgz
+    version: 6.2.0
+  - apiVersion: v2
+    appVersion: 4.3.0
     created: "2020-11-11T19:11:05.027747707Z"
     dependencies:
     - name: common
@@ -6405,6 +6605,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - apiVersion: v2
+    appVersion: 3.0.0.3989
+    created: "2020-11-11T21:52:32.400240362Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: b20a6c12507d6a13fe6964f625b5f41aea6a37f710bd218777da8605ddf1abf1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-7.2.0/radarr-7.2.0.tgz
+    version: 7.2.0
   - apiVersion: v2
     appVersion: 3.0.0.3989
     created: "2020-11-11T19:11:05.485088298Z"
@@ -6966,6 +7191,30 @@ entries:
   sabnzbd:
   - apiVersion: v2
     appVersion: 3.1.0
+    created: "2020-11-11T21:52:32.503567825Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: Free and easy binary newsreader
+    digest: b939196dc590859f265f234773d636e49a4f0d21cc44c3912222a38207eafdb7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/sabnzbd
+    icon: https://avatars1.githubusercontent.com/u/960698?s=400&v=4
+    keywords:
+    - sabnzbd
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sabnzbd
+    sources:
+    - https://hub.docker.com/r/linuxserver/sabnzbd/
+    - https://sabnzbd.org/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sabnzbd-3.2.0/sabnzbd-3.2.0.tgz
+    version: 3.2.0
+  - apiVersion: v2
+    appVersion: 3.1.0
     created: "2020-11-11T19:11:05.624333049Z"
     dependencies:
     - name: common
@@ -7276,6 +7525,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/ser2sock-1.0.0/ser2sock-1.0.0.tgz
     version: 1.0.0
   sonarr:
+  - apiVersion: v2
+    appVersion: 3.0.4.993
+    created: "2020-11-11T21:52:32.610381834Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: 5e8ed9056e2037423de7f061450dc8de6d723dfee17316cbf033c024601ba624
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/media-common/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-7.2.0/sonarr-7.2.0.tgz
+    version: 7.2.0
   - apiVersion: v2
     appVersion: 3.0.4.993
     created: "2020-11-11T19:11:05.801675007Z"
@@ -7909,6 +8183,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/statping-1.0.0/statping-1.0.0.tgz
     version: 1.0.0
   tautulli:
+  - apiVersion: v2
+    appVersion: v2.6.1
+    created: "2020-11-11T21:52:32.705124783Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.3.0
+    description: A Python based monitoring and tracking tool for Plex Media Server
+    digest: 70777196dc7db7bd5f0a41a469ba7b3a3293356b9d1e77aff85f4f8406345d11
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/tautulli
+    icon: https://github.com/Tautulli/Tautulli/blob/master/data/interfaces/default/images/logo.png?raw=true
+    keywords:
+    - tautulli
+    - plex
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: tautulli
+    sources:
+    - https://github.com/Tautulli/Tautulli
+    - https://hub.docker.com/r/tautulli/tautulli
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tautulli-5.2.0/tautulli-5.2.0.tgz
+    version: 5.2.0
   - apiVersion: v2
     appVersion: v2.6.1
     created: "2020-11-11T19:11:05.922558668Z"
