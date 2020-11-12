@@ -1,8 +1,6 @@
 {{- define "common.all" -}}
   {{- /* Merge the local chart values and the common chart defaults */ -}}
-  {{- $defaultValues := .Values.common -}}
-  {{- $_ := deepCopy $defaultValues | merge .Values -}}
-  {{- $_ := unset .Values "common" -}}
+  {{- include "common.values.setup" . }}
   
   {{- /* Enable OpenVPN VPN add-on if required */ -}}
   {{- if .Values.addons.vpn.enabled }}
