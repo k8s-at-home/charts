@@ -1,6 +1,6 @@
-# zwave2mqtt: Fully configurable Zwave to MQTT Gateway and Control Panel
+# zwave2mqtt
 
-This is a helm chart for [zwave2mqtt](https://github.com/OpenZWave/Zwave2Mqtt)
+This is a helm chart for [zwave2mqtt](https://zwave2mqtt.org/).
 
 ## TL;DR;
 
@@ -17,24 +17,6 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/zwave2mqtt
 ```
 
-**IMPORTANT NOTE:** a zwave controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
-
-A way to achieve this can be with nodeAffinity rules, for example:
-
-```yaml
-affinity:
-  nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: app
-          operator: In
-          values:
-          - zwave-controller
-```
-
-... where a node with an attached zwave controller USB device is labeled with `app: zwave-controller`
-
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
@@ -45,31 +27,49 @@ helm delete my-release --purge
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
-## Configuration
-
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/zwave2mqtt/values.yaml) file. It has several commented out suggested values.
+Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/zwave2mqtt/values.yaml)
+file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
 ```console
-helm install --name my-release \
-  --set rtspPassword="nosecrets" \
+helm install my-release \
+  --set env.TZ="America/New_York" \
     k8s-at-home/zwave2mqtt
 ```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
+chart. For example,
 ```console
-helm install --name my-release -f values.yaml stable/zwave2mqtt
+helm install my-release k8s-at-home/zwave2mqtt --values values.yaml 
 ```
+
+```yaml
+image:
+  tag: ...
+```
+
+---
+**NOTE**
+
+If you get
+```console
+Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...`
+```
+it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+
+---
 
 ## Upgrading an existing Release to a new major version
 
-A major chart version change (like 2.2.2 -> 3.0.0) indicates that there is an
-incompatible breaking change needing manual actions.
+A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
 
-### Upgrading from 3.x.x to 4.x.x
+### Upgrading from 4.x.x to 5.x.x
 
-Upgrading to this release it is suggested to enable the flag in Settings > Zwave > Auto update database
+Due to migrating to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library some values in `values.yaml` have changed.
 
-In order to use an updated configuration for the devices, you have to send a refreshNodeInfo to that node
+Examples:
+
+* `service.port` has been moved to `service.port.port`.
+* `persistence.type` has been moved to `controllerType`.
+
+Refer to the [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library for more configuration options.
