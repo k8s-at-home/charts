@@ -135,6 +135,18 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `extraConfigFiles`                              | `{}`                         | Dictionary containing files mounted to `/configmap` inside the pod (See [values.yaml](values.yaml) for examples)       |
 | `extraJvmOpts`                                  | `[]`                         | List of additional JVM options, e.g. `["-Dlog4j.configurationFile=file:/configmap/log4j2.xml"]`                        |
 | `resources`                                     | `{}`                         | CPU/Memory resource requests/limits                                                                                    |
+| `livenessProbe.enabled`                         | `true`                       | Turn on and off liveness probe                                                                                         |
+| `livenessProbe.initialDelaySeconds`             | `30`                         | Delay before liveness probe is initiated                                                                               |
+| `livenessProbe.periodSeconds`                   | `15`                         | How often to perform the probe                                                                                         |
+| `livenessProbe.timeoutSeconds`                  | `5`                          | When the probe times out                                                                                               |
+| `livenessProbe.failureThreshold`                | `3`                          | Minimum consecutive failures for the probe                                                                             |
+| `livenessProbe.successThreshold`                | `1`                          | Minimum consecutive successes for the probe                                                                            |
+| `readinessProbe.enabled`                        | `true`                       | Turn on and off readiness probe                                                                                        |
+| `readinessProbe.initialDelaySeconds`            | `30`                         | Delay before readiness probe is initiated                                                                              |
+| `readinessProbe.periodSeconds`                  | `15`                         | How often to perform the probe                                                                                         |
+| `readinessProbe.timeoutSeconds`                 | `5`                          | When the probe times out                                                                                               |
+| `readinessProbe.failureThreshold`               | `3`                          | Minimum consecutive failures for the probe                                                                             |
+| `readinessProbe.successThreshold`               | `1`                          | Minimum consecutive successes for the probe                                                                            |
 | `nodeSelector`                                  | `{}`                         | Node labels for pod assignment                                                                                         |
 | `tolerations`                                   | `[]`                         | Toleration labels for pod assignment                                                                                   |
 | `affinity`                                      | `{}`                         | Affinity settings for pod assignment                                                                                   |
