@@ -45,6 +45,7 @@ The following tables lists the configurable parameters of the Node-RED chart and
 | `serviceAccountName`               | Service account to run the pod as                                       | ``                        |
 | `livenessProbePath`                | Default livenessProbe path                                              | `/`                       |
 | `readinessProbePath`               | Default readinessProbe path                                             | `/`                       |
+| `startupProbePath`                 | Default startupProbe path                                               | `/`                       |
 | `flows`                            | Default flows configuration                                             | `flows.json`              |
 | `safeMode`                         | Setting to true starts Node-RED in safe (not running) mode              | `false`                   |
 | `enableProjects`                   | setting to true starts Node-RED with the projects feature enabled       | `false`                   |

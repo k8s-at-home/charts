@@ -52,6 +52,12 @@ spec:
             httpGet:
               path: {{ .Values.readinessProbePath }}
               port: http
+          startupProbe:
+            httpGet:
+              path: {{ .Values.startupProbePath }}
+              port: http
+            failureThreshold: 30
+            periodSeconds: 10
           env:
             - name: FLOWS
               value: "{{ .Values.flows }}"
