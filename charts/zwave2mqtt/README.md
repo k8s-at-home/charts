@@ -17,6 +17,24 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/zwave2mqtt
 ```
 
+**IMPORTANT NOTE:** a zwave controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
+
+A way to achieve this can be with nodeAffinity rules, for example:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: app
+          operator: In
+          values:
+          - zwave-controller
+```
+
+... where a node with an attached zwave controller USB device is labeled with `app: zwave-controller`
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
