@@ -15,8 +15,31 @@ fullnameOverride: ""
 
 serviceAccountName: ""
 
-livenessProbePath: /
-readinessProbePath: /
+# Probes configuration
+# ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+probes:
+  liveness:
+    # Indicates whether the container is running. If the liveness probe fails, the kubelet kills the container
+    # and the container is subjected to its restart policy.
+    enabled: true
+    probePath: /
+    initialDelaySeconds: 60
+    failureThreshold: 5
+    timeoutSeconds: 10
+  readiness:
+    # Indicates whether the container is ready to respond to requests.
+    enabled: true
+    probePath: /
+    initialDelaySeconds: 60
+    failureThreshold: 5
+    timeoutSeconds: 10
+  startup:
+    # Indicates whether the application within the container is started.
+    # All other probes are disabled if a startup probe is provided, until it succeeds.
+    enabled: false
+    probePath: /
+    failureThreshold: 30
+    periodSeconds: 10
 
 flows: "flows.json"
 safeMode: "false"
@@ -45,6 +68,14 @@ service:
   # loadBalancerSourceRanges: []
   ## Set the externalTrafficPolicy in the Service to either Cluster or Local
   # externalTrafficPolicy: Cluster
+
+hostAliases: []
+  # Use hostAliases to add custom entries to /etc/hosts - mapping IP addresses to hostnames.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+  # - ip: "192.168.1.100"
+  #   hostnames:
+  #   - "example.com"
+  #   - "www.example.com"
 
 ingress:
   enabled: false
