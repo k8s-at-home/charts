@@ -68,6 +68,7 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `service.publishNotReadyAddresses`              | Set to true if the editors (vscode or configurator) should be reachable when home assistant does not run                                                                                                                                  | `false`                                |
 | `service.externalTrafficPolicy`                 | Loadbalancer externalTrafficPolicy                                                                                                                                                                                                        | ``                                     |
 | `hostNetwork`                                   | Enable hostNetwork - might be needed for discovery to work                                                                                                                                                                                | `false`                                |
+| `hostAliases`                                   | Define custom entries in /etc/hosts                                                                                                                                                                                                       | `[]`                                   |
 | `service.nodePort`                              | nodePort to listen on for the home-assistant GUI                                                                                                                                                                                          | ``                                     |
 | `ingress.enabled`                               | Enables Ingress                                                                                                                                                                                                                           | `false`                                |
 | `ingress.annotations`                           | Ingress annotations                                                                                                                                                                                                                       | `{}`                                   |
@@ -234,7 +235,7 @@ kubectl create secret generic git-creds --from-file=id_rsa=git/k8s_id_rsa --from
 
 ## git-crypt support
 
-When using Git sync it is possible to specify a file called `git-crypt-key` in the secret referred to in `git.secret`. When this file is present, `git-crypt unlock` will automatically be executed after the repo has been synced. 
+When using Git sync it is possible to specify a file called `git-crypt-key` in the secret referred to in `git.secret`. When this file is present, `git-crypt unlock` will automatically be executed after the repo has been synced.
 
 **Note:** `git-crypt` is not installed by default in the other images! If you wish to push changes from the VS Code or Configurator containers, you will have to make sure that it is installed.
 

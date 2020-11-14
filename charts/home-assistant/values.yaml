@@ -65,6 +65,14 @@ ingress:
 
 hostNetwork: false
 
+hostAliases: []
+  # Use hostAliases to add custom entries to /etc/hosts - mapping IP addresses to hostnames.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+  # - ip: "192.168.1.100"
+  #   hostnames:
+  #   - "example.com"
+  #   - "www.example.com"
+
 persistence:
   enabled: true
   ## home-assistant data Persistent Volume Storage Class
