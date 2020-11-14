@@ -63,17 +63,9 @@ spec:
           volumeMounts:
           - mountPath: /data
             name: datastore
-          - mountPath: /templates/default.tmpl
-            name: config-volume
-            subPath: default.tmpl
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: config-volume
-          configMap:
-            # Provide the name of the ConfigMap containing the files you want
-            # to add to the container
-            name: {{ include "alertmanager-bot.fullname" . }}
       - name: datastore
       {{- if .Values.persistence.enabled }}
         persistentVolumeClaim:
