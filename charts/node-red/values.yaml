@@ -15,8 +15,31 @@ fullnameOverride: ""
 
 serviceAccountName: ""
 
-livenessProbePath: /
-readinessProbePath: /
+# Probes configuration
+# ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+probes:
+  liveness:
+    # Indicates whether the container is running. If the liveness probe fails, the kubelet kills the container
+    # and the container is subjected to its restart policy.
+    enabled: true
+    probePath: /
+    initialDelaySeconds: 60
+    failureThreshold: 5
+    timeoutSeconds: 10
+  readiness:
+    # Indicates whether the container is ready to respond to requests.
+    enabled: true
+    probePath: /
+    initialDelaySeconds: 60
+    failureThreshold: 5
+    timeoutSeconds: 10
+  startup:
+    # Indicates whether the application within the container is started.
+    # All other probes are disabled if a startup probe is provided, until it succeeds.
+    enabled: false
+    probePath: /
+    failureThreshold: 30
+    periodSeconds: 10
 
 flows: "flows.json"
 safeMode: "false"

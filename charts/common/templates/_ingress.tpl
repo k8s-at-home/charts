@@ -4,7 +4,6 @@
 
     {{- /* Generate primary ingress */ -}}
     {{- $ingressValues := .Values.ingress -}}
-    {{- $_ := set $ingressValues "svcPort" $svcPort -}}
     {{- $_ := set . "ObjectValues" (dict "ingress" $ingressValues) -}}
     {{- include "common.classes.ingress" . }}
 
@@ -13,7 +12,6 @@
       {{- if $extraIngress.enabled -}}
         {{- print ("---") | nindent 0 -}}
         {{- $ingressValues := $extraIngress -}}
-        {{- $_ := set $ingressValues "svcPort" $svcPort -}}
         {{- if not $ingressValues.nameSuffix -}}
           {{- $_ := set $ingressValues "nameSuffix" $index -}}
         {{ end -}}
