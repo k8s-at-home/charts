@@ -100,6 +100,10 @@ spec:
         {{- else }}
           emptyDir: {}
         {{ end }}
+    {{- if .Values.hostAliases }}
+      hostAliases:
+{{ toYaml .Values.hostAliases | indent 8 }}
+    {{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
