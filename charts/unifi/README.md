@@ -34,7 +34,7 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | Parameter                                       | Default                      | Description                                                                                                            |
 |-------------------------------------------------|------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | `image.repository`                              | `jacobalberty/unifi`         | Image repository                                                                                                       |
-| `image.tag`                                     | `5.12.35`                    | Image tag. Possible values listed [here][docker].                                                                      |
+| `image.tag`                                     | `5.14.23`                    | Image tag. Possible values listed [here][docker].                                                                      |
 | `image.pullPolicy`                              | `IfNotPresent`               | Image pull policy                                                                                                      |
 | `strategyType`                                  | `Recreate`                   | Specifies the strategy used to replace old Pods by new ones                                                            |
 | `guiService.type`                               | `ClusterIP`                  | Kubernetes service type for the Unifi GUI                                                                              |
@@ -93,7 +93,14 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `syslogService.loadBalancerIP`                  | `{}`                         | Loadbalancer IP for remote syslog capture                                                                              |
 | `syslogService.loadBalancerSourceRanges`        | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
 | `syslogService.externalTrafficPolicy`           | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery and syslog                                                   |
+| `speedtestService.type`                         | `ClusterIP`                  | Kubernetes service type for mobile speedtest                                                                           |
+| `speedtestService.port`                         | `6789`                       | Kubernetes UDP port for mobile speedtest                                                                               |
+| `speedtestService.annotations`                  | `{}`                         | Service annotations for mobile speedtest                                                                               |
+| `speedtestService.labels`                       | `{}`                         | Custom labels                                                                                                          |
+| `speedtestService.loadBalancerIP`               | `{}`                         | Loadbalancer IP for mobile speedtest                                                                                   |
+| `speedtestService.loadBalancerSourceRanges`     | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
+| `speedtestService.externalTrafficPolicy`        | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
+| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery, syslog and speedtest                                        |
 | `unifiedService.type`                           | `ClusterIP`                  | Kubernetes service type for the unified service                                                                        |
 | `unifiedService.annotations`                    | `{}`                         | Annotations for the unified service                                                                                    |
 | `unifiedService.labels`                         | `{}`                         | Custom labels for the unified service                                                                                  |
@@ -135,6 +142,18 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `extraConfigFiles`                              | `{}`                         | Dictionary containing files mounted to `/configmap` inside the pod (See [values.yaml](values.yaml) for examples)       |
 | `extraJvmOpts`                                  | `[]`                         | List of additional JVM options, e.g. `["-Dlog4j.configurationFile=file:/configmap/log4j2.xml"]`                        |
 | `resources`                                     | `{}`                         | CPU/Memory resource requests/limits                                                                                    |
+| `livenessProbe.enabled`                         | `true`                       | Turn on and off liveness probe                                                                                         |
+| `livenessProbe.initialDelaySeconds`             | `30`                         | Delay before liveness probe is initiated                                                                               |
+| `livenessProbe.periodSeconds`                   | `15`                         | How often to perform the probe                                                                                         |
+| `livenessProbe.timeoutSeconds`                  | `5`                          | When the probe times out                                                                                               |
+| `livenessProbe.failureThreshold`                | `3`                          | Minimum consecutive failures for the probe                                                                             |
+| `livenessProbe.successThreshold`                | `1`                          | Minimum consecutive successes for the probe                                                                            |
+| `readinessProbe.enabled`                        | `true`                       | Turn on and off readiness probe                                                                                        |
+| `readinessProbe.initialDelaySeconds`            | `30`                         | Delay before readiness probe is initiated                                                                              |
+| `readinessProbe.periodSeconds`                  | `15`                         | How often to perform the probe                                                                                         |
+| `readinessProbe.timeoutSeconds`                 | `5`                          | When the probe times out                                                                                               |
+| `readinessProbe.failureThreshold`               | `3`                          | Minimum consecutive failures for the probe                                                                             |
+| `readinessProbe.successThreshold`               | `1`                          | Minimum consecutive successes for the probe                                                                            |
 | `nodeSelector`                                  | `{}`                         | Node labels for pod assignment                                                                                         |
 | `tolerations`                                   | `[]`                         | Toleration labels for pod assignment                                                                                   |
 | `affinity`                                      | `{}`                         | Affinity settings for pod assignment                                                                                   |
@@ -178,6 +197,8 @@ Read through the [values.yaml](values.yaml) file. It has several commented out s
 - `syslogService`: Used to capture syslog from Unifi devices if the feature is 
   enabled in the site configuration. This needs to be reachable by Unifi devices
   on port 5514/UDP.
+- `speedtestService`: Used for mobile speedtest inside the UniFi Mobile app.
+  This needs to be reachable by clients connecting to port 6789/TCP.
 
 ## Ingress and HTTPS
 
