@@ -83,7 +83,7 @@ A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an in
 
 ### Upgrading from 4.x.x to 5.x.x
 
-Due to migrating to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library some values in `values.yaml` have changed.
+As of 5.0.0 this chart was migrated to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library, some values in `values.yaml` have changed.
 
 Examples:
 
