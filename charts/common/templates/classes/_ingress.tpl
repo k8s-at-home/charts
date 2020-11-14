@@ -9,7 +9,8 @@
 {{- if hasKey $values "nameSuffix" -}}
   {{- $ingressName = printf "%v-%v" $ingressName $values.nameSuffix -}}
 {{ end -}}
-{{- $svcPort := $values.svcPort -}}
+{{- $svcName := $values.serviceName | default (include "common.names.fullname" .) -}}
+{{- $svcPort := $values.servicePort | default $.Values.service.port.port -}}
 apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -39,7 +40,7 @@ spec:
           {{- range .paths }}
           - path: {{ .path }}
             backend:
-              serviceName: {{ $ingressName }}
+              serviceName: {{ $svcName }}
               servicePort: {{ $svcPort }}
           {{- end }}
   {{- end }}
