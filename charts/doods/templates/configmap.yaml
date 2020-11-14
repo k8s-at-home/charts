@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "doods.fullname" . }}
+  labels:
+    {{- include "doods.labels" . | nindent 4 }}
+data:
+  config.yaml: |-
+    doods:
+      detectors:
+        - name: default
+          type: tflite
+          modelFile: models/mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite
+          labelFile: models/coco_labels.txt
+          numThreads: 4
+          numConcurrent: 4
+          hwAccel: true
+        - name: face
+          type: tflite
+          modelFile: models/mobilenet_ssd_v2_face_quant_postprocess_edgetpu.tflite
+          labelFile: models/coco_labels.txt
+          numThreads: 4
+          numConcurrent: 4
+          hwAccel: true

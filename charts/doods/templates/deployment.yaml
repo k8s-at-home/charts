@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "doods.fullname" . }}
+  labels:
+    {{- include "doods.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "doods.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: {{ .Values.strategyType }}
+  template:
+    metadata:
+      labels:
+        {{- include "doods.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "doods.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: models-download-0
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: busybox
+          command: [ "wget", "-O", "/tmp/coco_labels.txt", "https://dl.google.com/coral/canned_models/coco_labels.txt"]
+          volumeMounts:
+          - name: models-volume
+            mountPath: /tmp
+        - name: models-download-1
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: busybox
+          command: [ "wget", "-O", "/tmp/mobilenet_ssd_v2_face_quant_postprocess_edgetpu.tflite", "https://dl.google.com/coral/canned_models/mobilenet_ssd_v2_face_quant_postprocess_edgetpu.tflite"]
+          volumeMounts:
+          - name: models-volume
+            mountPath: /tmp
+        - name: models-download-2
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: busybox
+          command: [ "wget", "-O", "/tmp/mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite", "https://dl.google.com/coral/canned_models/mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite"]
+          volumeMounts:
+          - name: models-volume
+            mountPath: /tmp
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /detectors
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /detectors
+              port: http
+          volumeMounts:
+          - mountPath: /dev/bus/usb
+            name: usb
+          - mountPath: /opt/doods/config.yaml
+            name: config-volume
+            subPath: config.yaml
+          - mountPath: /opt/doods/models
+            name: models-volume
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: usb
+          hostPath:
+            path: /dev/bus/usb
+        - name: config-volume
+          configMap:
+            # Provide the name of the ConfigMap containing the files you want
+            # to add to the container
+            name: {{ include "doods.fullname" . }}
+        - name: models-volume
+          emptyDir: {}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
