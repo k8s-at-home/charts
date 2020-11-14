@@ -100,7 +100,7 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `speedtestService.loadBalancerIP`               | `{}`                         | Loadbalancer IP for mobile speedtest                                                                                   |
 | `speedtestService.loadBalancerSourceRanges`     | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
 | `speedtestService.externalTrafficPolicy`        | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery and syslog                                                   |
+| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery, syslog and speedtest                                        |
 | `unifiedService.type`                           | `ClusterIP`                  | Kubernetes service type for the unified service                                                                        |
 | `unifiedService.annotations`                    | `{}`                         | Annotations for the unified service                                                                                    |
 | `unifiedService.labels`                         | `{}`                         | Custom labels for the unified service                                                                                  |
