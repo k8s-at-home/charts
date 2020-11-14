@@ -1,6 +1,6 @@
 apiVersion: v2
 name: alertmanager-bot
-description: A Helm chart for Kubernetes
+description: Bot for Prometheus' Alertmanager
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -19,3 +19,16 @@ version: 0.1.0
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: 0.4.2
+
+keywords:
+  - alertmanager
+  - telegram
+  - bot
+  - alerting
+home: https://github.com/k8s-at-home/charts/tree/master/charts/alertmanager-bot
+sources:
+  - https://hub.docker.com/r/metalmatze/alertmanager-bot
+  - https://github.com/metalmatze/alertmanager-bot
+maintainers:
+  - name: runningman84
+    email: phil@hellmi.de
