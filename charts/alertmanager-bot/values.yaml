@@ -25,7 +25,7 @@ podSecurityContext:
 securityContext:
   capabilities:
     drop:
-     - ALL
+      - ALL
   readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 65534
@@ -58,7 +58,6 @@ persistence:
   ##   GKE, AWS & OpenStack)
   ##
   # storageClass: "-"
-  #storageClass: longhorn
   ##
   ## If you want to reuse an existing claim, you can pass the name of the PVC using
   ## the existingClaim variable
