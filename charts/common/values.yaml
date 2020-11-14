@@ -102,8 +102,8 @@ ingress:
   #     - host: chart-example.local
   #       paths:
   #         - path: /api
-  #          # Ignored if not kubeVersion >= 1.14-0
-  #          pathType: Prefix
+  #           # Ignored if not kubeVersion >= 1.14-0
+  #           pathType: Prefix
   #   tls: []
   #   #  - secretName: chart-example-tls
   #   #    hosts:
@@ -140,6 +140,12 @@ persistence:
 additionalVolumes: []
 
 additionalVolumeMounts: []
+
+nodeSelector: {}
+
+affinity: {}
+
+tolerations: []
 
 addons:
   vpn:
