@@ -34,7 +34,7 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | Parameter                                       | Default                      | Description                                                                                                            |
 |-------------------------------------------------|------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | `image.repository`                              | `jacobalberty/unifi`         | Image repository                                                                                                       |
-| `image.tag`                                     | `5.12.35`                    | Image tag. Possible values listed [here][docker].                                                                      |
+| `image.tag`                                     | `5.14.23`                    | Image tag. Possible values listed [here][docker].                                                                      |
 | `image.pullPolicy`                              | `IfNotPresent`               | Image pull policy                                                                                                      |
 | `strategyType`                                  | `Recreate`                   | Specifies the strategy used to replace old Pods by new ones                                                            |
 | `guiService.type`                               | `ClusterIP`                  | Kubernetes service type for the Unifi GUI                                                                              |
@@ -93,7 +93,14 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `syslogService.loadBalancerIP`                  | `{}`                         | Loadbalancer IP for remote syslog capture                                                                              |
 | `syslogService.loadBalancerSourceRanges`        | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
 | `syslogService.externalTrafficPolicy`           | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery and syslog                                                   |
+| `speedtestService.type`                         | `ClusterIP`                  | Kubernetes service type for mobile speedtest                                                                           |
+| `speedtestService.port`                         | `6789`                       | Kubernetes UDP port for mobile speedtest                                                                               |
+| `speedtestService.annotations`                  | `{}`                         | Service annotations for mobile speedtest                                                                               |
+| `speedtestService.labels`                       | `{}`                         | Custom labels                                                                                                          |
+| `speedtestService.loadBalancerIP`               | `{}`                         | Loadbalancer IP for mobile speedtest                                                                                   |
+| `speedtestService.loadBalancerSourceRanges`     | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
+| `speedtestService.externalTrafficPolicy`        | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
+| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery, syslog and speedtest                                        |
 | `unifiedService.type`                           | `ClusterIP`                  | Kubernetes service type for the unified service                                                                        |
 | `unifiedService.annotations`                    | `{}`                         | Annotations for the unified service                                                                                    |
 | `unifiedService.labels`                         | `{}`                         | Custom labels for the unified service                                                                                  |
@@ -190,6 +197,8 @@ Read through the [values.yaml](values.yaml) file. It has several commented out s
 - `syslogService`: Used to capture syslog from Unifi devices if the feature is 
   enabled in the site configuration. This needs to be reachable by Unifi devices
   on port 5514/UDP.
+- `speedtestService`: Used for mobile speedtest inside the UniFi Mobile app.
+  This needs to be reachable by clients connecting to port 6789/TCP.
 
 ## Ingress and HTTPS
 

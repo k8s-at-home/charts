@@ -75,6 +75,9 @@ spec:
             - name: captive-https
               containerPort: 8843
               protocol: TCP
+            - name: speedtest
+              containerPort: 6789
+              protocol: TCP
               {{ end }}
           {{- if not .Values.runAsRoot }}
           securityContext:
