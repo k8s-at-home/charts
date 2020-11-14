@@ -53,14 +53,14 @@ spec:
 
       {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-        {{- toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-        {{- toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
 {{- end }}
