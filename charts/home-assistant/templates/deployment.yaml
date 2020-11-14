@@ -38,6 +38,10 @@ spec:
       hostNetwork: {{ .Values.hostNetwork }}
       dnsPolicy: ClusterFirstWithHostNet
       {{- end }}
+      {{- if .Values.hostAliases }}
+      hostAliases:
+{{ toYaml .Values.hostAliases | indent 8 }}
+      {{- end }}
       initContainers:
       {{- if .Values.git.enabled }}
       - name: git-sync
@@ -56,7 +60,7 @@ spec:
           then
             git -C "{{ .Values.git.syncPath }}" pull || true;
           else
-            if [ "$(ls -A {{ .Values.git.syncPath }})" ]; 
+            if [ "$(ls -A {{ .Values.git.syncPath }})" ];
             then
               git clone --depth 2 "{{ .Values.git.repo }}" /tmp/repo;
               cp -rf /tmp/repo/.git "{{ .Values.git.syncPath }}";
