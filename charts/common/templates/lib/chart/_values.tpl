@@ -3,7 +3,7 @@
   {{- if .Values.common -}}
     {{- $defaultValues := deepCopy .Values.common -}}
     {{- $userValues := deepCopy (omit .Values "common") -}}
-    {{- $mergedValues := mustMerge $userValues $defaultValues -}}
+    {{- $mergedValues := mustMergeOverwrite $defaultValues $userValues -}}
     {{- $_ := set . "Values" (deepCopy $mergedValues) -}}
   {{- end }}  
 {{- end }}
