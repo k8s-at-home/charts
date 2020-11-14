@@ -19,7 +19,20 @@ helm install --name my-release k8s-at-home/zwave2mqtt
 
 **IMPORTANT NOTE:** a zwave controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
 
-A way to achieve this can be with nodeAffinity rules, for example:
+First, you will need to mount your zwave device into the pod, you can do so by adding the following to your values:
+
+```yaml
+additionalVolumeMounts:
+  - name: usb
+    mountPath: /path/to/device
+
+additionalVolumes:
+  - name: usb
+    hostPath:
+      path: /path/to/device
+```
+
+Second you will need to set a nodeAffinity rule, for example:
 
 ```yaml
 affinity:
