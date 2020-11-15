@@ -1,6 +1,6 @@
 # zigbee2mqtt
 
-This is a helm chart for [zigbee2mqtt](https://zigbee2mqtt.org/).
+This is a helm chart for [zigbee2mqtt](https://www.zigbee2mqtt.io).
 
 ## TL;DR;
 
