@@ -1,0 +1,31 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap to the additionalVolumes */}}
+{{- define "ddclient.configmap.volume" -}}
+name: ddclient-settings
+configMap:
+  name: {{ template "common.names.fullname" . }}-settings
+{{- end -}}
+
+{{- $volume := include "ddclient.configmap.volume" . | fromYaml -}}
+{{- if $volume -}}
+    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
+    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the additionalVolumeMounts */}}
+{{- define "ddclient.configmap.volumeMount" -}}
+name: ddclient-settings
+mountPath: /defaults/ddclient.conf
+subPath: ddclient.conf
+{{- end -}}
+
+{{- $volumeMount := include "ddclient.configmap.volumeMount" . | fromYaml -}}
+{{- if $volumeMount -}}
+    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
+    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+{{- end -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
