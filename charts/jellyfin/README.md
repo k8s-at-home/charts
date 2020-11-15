@@ -17,11 +17,6 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/jellyfin
 ```
 
-The default login details (change ASAP) are:
-
-* login:jellyfin
-* password:tegbzn6789
-
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
@@ -46,7 +41,7 @@ helm install jellyfin \
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
 chart. For example,
 ```console
-helm install radarr k8s-at-home/jellyfin --values values.yaml 
+helm install jellyfin k8s-at-home/jellyfin --values values.yaml 
 ```
 
 These values will be nested as it is a dependency, for example
