@@ -1,6 +1,6 @@
-# piaware: Program for forwarding ADS-B data to FlightAware
+# piaware
 
-This is a helm chart for [piaware](https://github.com/flightaware/piaware)
+This is a helm chart for [piaware](https://github.com/flightaware/piaware).
 
 ## TL;DR;
 
@@ -17,18 +17,22 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/piaware
 ```
 
-### Configuration
-There are two main options for this chart, either use a UBB device on the node where the pod runs or use 
-[readsb](https://hub.docker.com/r/mikenye/readsb) with beast
+**IMPORTANT NOTE:** a piaware device must be accessible on the node where this pod runs, in order for this chart to function properly.
 
-#### USB
-Set the value 
+First, you will need to mount your piaware device into the pod, you can do so by adding the following to your values:
 
-    device: "/dev/bus/usb/001/004"
+```yaml
+additionalVolumeMounts:
+  - name: usb
+    mountPath: /path/to/device
 
-**IMPORTANT NOTE:** a flight-aware USB device must be accessible on the node where this pod runs, in order for this chart to function properly.
+additionalVolumes:
+  - name: usb
+    hostPath:
+      path: /path/to/device
+```
 
-A way to achieve this can be with nodeAffinity rules, for example:
+Second you will need to set a nodeAffinity rule, for example:
 
 ```yaml
 affinity:
@@ -39,16 +43,10 @@ affinity:
         - key: app
           operator: In
           values:
-          - flight-aware
+          - piaware
 ```
 
-... where a node with an attached flight-aware USB device is labeled with `app: flight-aware`
-
-#### Beast
-Use this together with the [readsb](https://hub.docker.com/r/mikenye/readsb) 
-Set the value
-
-    beastHost: <host running readsb>
+... where a node with an attached piaware USB device is labeled with `app: piaware`
 
 ## Uninstalling the Chart
 
@@ -60,20 +58,49 @@ helm delete my-release --purge
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
-## Configuration
-
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/piaware/values.yaml) file. It has several commented out suggested values.
+Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/piaware/values.yaml)
+file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
 ```console
-helm install --name my-release \
-  --set feederId="nosecrets" \
+helm install my-release \
+  --set env.TZ="America/New_York" \
     k8s-at-home/piaware
 ```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
+chart. For example,
 ```console
-helm install --name my-release -f values.yaml k8s-at-home/piaware
+helm install my-release k8s-at-home/piaware --values values.yaml 
 ```
+
+```yaml
+image:
+  tag: ...
+```
+
+---
+**NOTE**
+
+If you get
+```console
+Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...`
+```
+it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+
+---
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 2.x.x to 3.x.x
+
+As of 5.0.0 this chart was migrated to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library, some values in `values.yaml` have changed.
+
+Examples:
+
+* `service.port` has been moved to `service.port.port`.
+* `persistence.type` has been moved to `controllerType`.
+
+Refer to the [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library for more configuration options.
