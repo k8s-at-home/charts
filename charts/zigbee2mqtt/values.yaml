@@ -39,13 +39,13 @@ persistence:
 # Path to your zigbee device in the container
 additionalVolumeMounts:
   - name: usb
-    mountPath: /dev/tryACM0
+    mountPath: /dev/ttyACM0
 
 # Path to your zigbee device on the host
 additionalVolumes:
   - name: usb
     hostPath:
-      path: /dev/tryACM0
+      path: /dev/ttyACM0
 
 # affinity:
 #   nodeAffinity:
@@ -80,7 +80,7 @@ config:
   # USB / Serial settings
   serial:
     # Location of your zigbee device
-    port: /dev/tryACM0
+    port: /dev/ttyACM0
 
   advanced:
     network_key: GENERATE
