@@ -18,7 +18,7 @@ configMap:
 {{- define "unifi-poller.configmap.volumeMount" -}}
 name: unifi-poller-settings
 mountPath: /config/unifi-poller.yaml
-subPath: up.yaml
+subPath: unifi-poller.yaml
 {{- end -}}
 
 {{- $volumeMount := include "unifi-poller.configmap.volumeMount" . | fromYaml -}}
