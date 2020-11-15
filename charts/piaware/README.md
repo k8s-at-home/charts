@@ -96,7 +96,7 @@ A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an in
 
 ### Upgrading from 2.x.x to 3.x.x
 
-As of 5.0.0 this chart was migrated to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library, some values in `values.yaml` have changed.
+As of 3.0.0 this chart was migrated to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library, some values in `values.yaml` have changed.
 
 Examples:
 
