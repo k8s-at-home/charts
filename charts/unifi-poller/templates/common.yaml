@@ -17,7 +17,7 @@ configMap:
 {{/* Append the configMap volume to the additionalVolumeMounts */}}
 {{- define "unifi-poller.configmap.volumeMount" -}}
 name: unifi-poller-settings
-mountPath: /config/unifi-poller.conf
+mountPath: /config/unifi-poller.yaml
 subPath: up.yaml
 {{- end -}}
 
