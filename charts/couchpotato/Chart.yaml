@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v3.0.1
-description: couchpotato is a movie downloading client
+appVersion: latest
+description: CouchPotato (CP) is an automatic NZB and torrent downloader.
 name: couchpotato
-version: 2.0.1
+version: 3.0.0
 keywords:
   - couchpotato
   - usenet
@@ -13,5 +13,11 @@ sources:
   - https://hub.docker.com/r/linuxserver/couchpotato/
   - https://github.com/CouchPotato/CouchPotatoServer/
 maintainers:
+  - name: billimek
+    email: jeff@billimek.com
   - name: skaro13
     email: simon.caron@protonmail.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: ^1.5.0
