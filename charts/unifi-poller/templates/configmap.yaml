@@ -6,6 +6,6 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   unifi-poller.yaml: |
-{{- with .Values.config }}
+  {{- with .Values.config }}
     {{- toYaml . | nindent 4 }}
-{{- end }}
+  {{- end }}
