@@ -79,6 +79,7 @@ Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master
 | `persistence.existingClaim`                 | Use an existing PVC to persist data                                                          | `nil`                                          |
 | `persistence.accessMode`                    | Persistence access mode                                                                      | `ReadWriteOnce`                                |
 | `persistence.size`                          | Size of persistent volume claim                                                              | `1Gi`                                          |
+| `persistence.subPath`                       | Mount a sub dir of the persistent volume                                                     | `nil`                                          |
 | `extraVolumes`                              | Optionally add additional Volumes                                                            | `[]`                                           |
 | `resources`                                 | CPU/Memory resource requests/limits                                                          | `{}`                                           |
 | `nodeSelector`                              | Node labels for pod assignment                                                               | `{}`                                           |
