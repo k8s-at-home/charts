@@ -305,6 +305,13 @@ spec:
           claimName: "extradata-{{ .name }}"
 {{- end }}
 {{- end }}
+{{- range .Values.persistence.extraMounts }}
+  {{- if .claimName }}
+      - name: {{ .name }}
+        persistentVolumeClaim:
+          claimName: {{ .claimName }}
+  {{- end }}        
+{{- end }}
       - name: shared
         emptyDir: {}
       - name: shared-logs
