@@ -230,6 +230,9 @@ spec:
           {{ end }}
           {{-  range .Values.persistence.extraData }}
           - mountPath: "/data-{{ .name }}"
+          {{- if .subPath }}
+            subPath: {{ .subPath }}
+          {{ end }}
             name: "extradata-{{ .name }}"
           {{- end }}
           {{-  range .Values.persistence.extraMounts }}
