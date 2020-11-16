@@ -241,6 +241,9 @@ spec:
           {{- else }}
           - mountPath: /{{ .name }}
           {{- end }}
+          {{- if .subPath }}
+            subPath: {{ .subPath }}
+          {{ end }}
             name: {{ .name }}
           {{- end }}
           - name: shared
@@ -303,9 +306,11 @@ spec:
 {{- end }}
 {{- end }}
 {{- range .Values.persistence.extraMounts }}
+  {{- if .claimName }}
       - name: {{ .name }}
         persistentVolumeClaim:
           claimName: {{ .claimName }}
+  {{- end }}        
 {{- end }}
       - name: shared
         emptyDir: {}
