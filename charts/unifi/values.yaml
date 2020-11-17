@@ -300,6 +300,15 @@ extraJvmOpts: []
   # - "-Dlog4j.configurationFile=file:/configmap/log4j2.xml"
   # - "-Dsystem_ip=1.2.3.4"
 
+## Java Virtual Machine (JVM) initial, and minimum, heap size
+## Unset value means there is no lower limit
+jvmInitHeapSize:
+
+## Java Virtual Machine (JVM) maximum heap size
+## For larger installations a larger value is recommended.
+## For memory constrained system this value can be lowered.
+jvmMaxHeapSize: 1024M
+
 extraConfigFiles: {}
   ## Specify additional config files which are mounted to /configmap
   ## Here is an example for a custom log4j config:
