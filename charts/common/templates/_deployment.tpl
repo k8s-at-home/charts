@@ -51,6 +51,10 @@ spec:
       volumes:
       {{- include "common.controller.volumes" . | trim | nindent 6 }}
 
+      {{- with .Values.hostAliases }}
+      hostAliases:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
