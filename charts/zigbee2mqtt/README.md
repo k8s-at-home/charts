@@ -1,6 +1,6 @@
-# zigbee2mqtt: Fully configurable Zigbee to MQTT Gateway
+# zigbee2mqtt
 
-This is a helm chart for [zigbee2mqtt](https://www.zigbee2mqtt.io)
+This is a helm chart for [zigbee2mqtt](https://www.zigbee2mqtt.io).
 
 ## TL;DR;
 
@@ -17,9 +17,22 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/zigbee2mqtt
 ```
 
-**IMPORTANT NOTE:** a [supported Zigbee sniffer](https://www.zigbee2mqtt.io/getting_started/what_do_i_need.html) must be accessible on the node where this pod runs, in order for this chart to function properly.
+**IMPORTANT NOTE:** a zigbee controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
 
-A way to achieve this can be with nodeAffinity rules, for example:
+First, you will need to mount your zigbee device into the pod, you can do so by adding the following to your values:
+
+```yaml
+additionalVolumeMounts:
+  - name: usb
+    mountPath: /path/to/device
+
+additionalVolumes:
+  - name: usb
+    hostPath:
+      path: /path/to/device
+```
+
+Second you will need to set a nodeAffinity rule, for example:
 
 ```yaml
 affinity:
@@ -33,9 +46,7 @@ affinity:
           - zigbee-controller
 ```
 
-... where a node with an attached zigbee sniffer is labeled with `app: zigbee-controller`
-
-Because zigbee2mqtt writes to the config file, it is impossible to manage it through this chart. The configuration options will be set as defaults on first run, and then copied to a writeable directory. It can be found in /data/configuration.yaml afterwards.
+... where a node with an attached zigbee controller USB device is labeled with `app: zigbee-controller`
 
 ## Uninstalling the Chart
 
@@ -47,28 +58,54 @@ helm delete my-release --purge
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
-## Configuration
-
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/zigbee2mqtt/values.yaml) file. It has several commented out suggested values.
+Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/zigbee2mqtt/values.yaml)
+file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
 ```console
-helm install --name my-release \
-  --set config.mqtt.server="mqtt://mymqttbroker" \
+helm install my-release \
+  --set env.TZ="America/New_York" \
     k8s-at-home/zigbee2mqtt
 ```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
+chart. For example,
 ```console
-helm install --name my-release -f values.yaml k8s-at-home/zigbee2mqtt
+helm install my-release k8s-at-home/zigbee2mqtt --values values.yaml 
 ```
+
+```yaml
+image:
+  tag: ...
+```
+
+---
+**NOTE**
+
+If you get
+```console
+Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...`
+```
+it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+
+---
 
 ## Upgrading an existing Release to a new major version
 
-A major chart version change (like 1.0.0 -> 2.0.0) indicates that there is an
-incompatible breaking change needing manual actions.
+A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 2.x.x to 3.x.x
+
+**Note:** _It may be wise to back up your existing data incase something unexpected happens_
+
+As of 3.0.0 this chart was migrated to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library, some values in `values.yaml` have changed.
+
+Examples:
+
+* `service.port` has been moved to `service.port.port`.
+* `persistence.type` has been moved to `controllerType`.
+
+Refer to the [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library for more configuration options.
 
 ### Upgrading from 1.x.x to 2.x.x
 

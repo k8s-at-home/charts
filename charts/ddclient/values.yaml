@@ -1,0 +1,37 @@
+# Default values for ddclient.
+
+image:
+  repository: linuxserver/ddclient
+  pullPolicy: IfNotPresent
+  tag: version-v3.9.1
+
+env: {}
+  # TZ:
+  # PUID:
+  # PGID:
+
+service:
+  enabled: false
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+
+strategy:
+  type: Recreate
+
+config: |
+  # This is the configuration for ddclient
+  # Inorder for it to function you need to set it up
+  # e.g. this is the config for Cloudflare
+  use=web
+  web=dynamicdns.park-your-domain.com/getip
+  protocol=cloudflare
+  ssl=yes
+  ttl=1
+  login=${CF_EMAIL}
+  password=${CF_GLOBAL_APIKEY}
+  zone=${DOMAIN}.${TLD}
+  ${DOMAIN}.${TLD}
