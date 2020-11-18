@@ -17,7 +17,7 @@ configMap:
 {{/* Append the configMap volume to the additionalVolumeMounts */}}
 {{- define "zigbee2mqtt.configmap.volumeMount" -}}
 name: zigbee2mqtt-settings
-mountPath: /app/configuration.yaml
+mountPath: /data/configuration.yaml
 subPath: configuration.yaml
 {{- end -}}
 
