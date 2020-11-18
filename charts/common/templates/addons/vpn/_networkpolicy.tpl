@@ -6,7 +6,7 @@ The OpenVPN networkpolicy to be included
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
 spec:
   podSelector:
     matchLabels:

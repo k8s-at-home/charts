@@ -2,7 +2,7 @@
 The main containter that will be included in the controller 
 */ -}}
 {{- define "common.controller.mainContainer" -}}
-- name: {{ template "common.names.fullname" . }}
+- name: {{ include "common.names.fullname" . }}
   image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   imagePullPolicy: {{ .Values.image.pullPolicy }}
   {{- with .Values.securityContext }}

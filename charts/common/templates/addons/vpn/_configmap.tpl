@@ -6,7 +6,7 @@ The OpenVPN configmaps to be included
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "common.names.fullname" . }}-vpn
+  name: {{ include "common.names.fullname" . }}-vpn
   labels:
   {{- include "common.labels" . | nindent 4 }}
 data:

@@ -22,7 +22,7 @@ envFrom:
     {{- if .Values.addons.vpn.openvpn.authSecret }}
       name: {{ .Values.addons.vpn.openvpn.authSecret }}
     {{- else }}
-      name: {{ template "common.names.fullname" . }}-openvpn
+      name: {{ include "common.names.fullname" . }}-openvpn
     {{- end }}
 {{- end }}
 {{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down .Values.addons.vpn.additionalVolumeMounts .Values.persistence.shared.enabled }}

@@ -5,7 +5,7 @@ The OpenVPN shared volume to be inserted
 {{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down -}}
 name: vpnconfig
 configMap:
-  name: {{ template "common.names.fullname" . }}-vpn
+  name: {{ include "common.names.fullname" . }}-vpn
   items:
     {{- if .Values.addons.vpn.configFile }}
     - key: vpnConfigfile

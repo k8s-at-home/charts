@@ -6,7 +6,7 @@ The OpenVPN secrets to be included
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ template "common.names.fullname" $ }}-openvpn
+  name: {{ include "common.names.fullname" $ }}-openvpn
   labels:
   {{- include "common.labels" $ | nindent 4 }}
 data:

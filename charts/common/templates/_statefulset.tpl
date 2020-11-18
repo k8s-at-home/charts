@@ -2,7 +2,7 @@
 apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
   labels:
   {{- include "common.labels" . | nindent 4 }}
   {{- with .Values.controllerLabels }}
