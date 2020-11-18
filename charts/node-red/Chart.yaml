@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 1.0.6-12
+appVersion: 1.2.5
 description: Node-RED is low-code programming for event-driven applications
 name: node-red
-version: 3.3.0
+version: 4.0.0
 keywords:
   - nodered
   - node-red
@@ -14,5 +14,7 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
-  - name: batazor
-    email: batazor111@gmail.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: ^1.5.1
