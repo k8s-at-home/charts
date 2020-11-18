@@ -2,6 +2,8 @@
 
 This is a helm chart for [Node-Red](https://nodered.org/).
 
+**This chart is not maintained by the Node-RED project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new)**
+
 ## TL;DR;
 
 ```shell
