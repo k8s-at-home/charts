@@ -1,3 +1,6 @@
+{{/*
+The DaemonSet to be included
+*/}}
 {{- define "common.daemonset" -}}
 apiVersion: {{ include "common.capabilities.daemonset.apiVersion" . }}
 kind: DaemonSet
@@ -29,6 +32,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      serviceAccountName: {{ include "common.names.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}

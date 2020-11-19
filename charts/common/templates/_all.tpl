@@ -10,6 +10,10 @@
   {{- /* Build the templates */ -}}
   {{- include "common.pvc" . }}
   {{- print "---" | nindent 0 -}}
+  {{- if .Values.serviceAccount.create -}}
+    {{- include "common.serviceAccount" . }}
+    {{- print "---" | nindent 0 -}}
+  {{- end -}}
   {{- if eq .Values.controllerType "deployment" }}
     {{- include "common.deployment" . | nindent 0 }}
   {{ else if eq .Values.controllerType "daemonset" }}
