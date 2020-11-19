@@ -10,10 +10,12 @@
   {{- /* Build the templates */ -}}
   {{- include "common.pvc" . }}
   {{- print "---" | nindent 0 -}}
-  {{- if eq .Values.controllerType "statefulset" }}
-    {{- include "common.statefulset" . | nindent 0 }}
-  {{ else }}
+  {{- if eq .Values.controllerType "deployment" }}
     {{- include "common.deployment" . | nindent 0 }}
+  {{ else if eq .Values.controllerType "daemonset" }}
+    {{- include "common.daemonset" . | nindent 0 }}
+  {{ else if eq .Values.controllerType "statefulset"  }}
+    {{- include "common.statefulset" . | nindent 0 }}
   {{- end -}}
   {{- print "---" | nindent 0 -}}
   {{ include "common.service" . | nindent 0 }}
