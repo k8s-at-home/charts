@@ -8,8 +8,8 @@ image:
 strategy:
   type: Recreate
 
-env: {}
-  # TZ
+env:
+  ZIGBEE2MQTT_DATA: /data
 
 service:
   port:
