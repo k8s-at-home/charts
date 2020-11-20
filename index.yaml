@@ -1750,6 +1750,32 @@ entries:
   flood:
   - apiVersion: v2
     appVersion: 4.1.1
+    created: "2020-11-20T04:18:53.939827113Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.5.1
+    description: Flood is a monitoring service for various torrent clients
+    digest: 73ad1a656827a19e3ca7a93a7ef3e98e4df19ca40cdeb85d082adb0f0016b78c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/flood
+    icon: https://raw.githubusercontent.com/jesec/flood/master/flood.svg
+    keywords:
+    - flood
+    - rtorrent
+    - qbittorrent
+    - transmission
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: flood
+    sources:
+    - https://github.com/jesec/flood
+    - https://hub.docker.com/r/jesec/flood
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/flood-1.0.1/flood-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 4.1.1
     created: "2020-11-18T23:46:40.175869073Z"
     dependencies:
     - name: common
