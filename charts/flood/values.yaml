@@ -12,8 +12,10 @@ service:
   port:
     port: 3000
 
-env: {}
-  # TZ: UTC
+# Other environment variables that can be configure can be seen at
+# https://github.com/jesec/flood/blob/master/config.cli.js
+env:
+  FLOOD_OPTION_RUNDIR: /data
 
 persistence:
   data:
