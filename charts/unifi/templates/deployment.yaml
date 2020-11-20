@@ -68,17 +68,17 @@ spec:
             - name: syslog
               containerPort: 5514
               protocol: UDP
-              {{ if .Values.captivePortalService.enabled }}
+            {{- if .Values.captivePortalService.enabled }}
             - name: captive-http
               containerPort: 8880
               protocol: TCP
             - name: captive-https
               containerPort: 8843
               protocol: TCP
+            {{- end }}
             - name: speedtest
               containerPort: 6789
               protocol: TCP
-              {{ end }}
           {{- if not .Values.runAsRoot }}
           securityContext:
             capabilities:
