@@ -126,6 +126,14 @@ spec:
             - name: JVM_EXTRA_OPTS
               value: "{{- join " " .Values.extraJvmOpts }}"
             {{- end }}
+            {{- if .Values.jvmInitHeapSize }}
+            - name: JVM_INIT_HEAP_SIZE
+              value: "{{ .Values.jvmInitHeapSize }}"
+            {{- end }}
+            {{- if .Values.jvmMaxHeapSize }}
+            - name: JVM_MAX_HEAP_SIZE
+              value: "{{ .Values.jvmMaxHeapSize }}"
+            {{- end }}
             {{- if .Values.mongodb.enabled }}
             - name: DB_URI
               value: "{{ .Values.mongodb.dbUri }}"
