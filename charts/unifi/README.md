@@ -141,6 +141,8 @@ The following tables lists the configurable parameters of the Unifi chart and th
 | `persistence.accessModes`                       | `[]`                         | Persistence access modes                                                                                               |
 | `extraConfigFiles`                              | `{}`                         | Dictionary containing files mounted to `/configmap` inside the pod (See [values.yaml](values.yaml) for examples)       |
 | `extraJvmOpts`                                  | `[]`                         | List of additional JVM options, e.g. `["-Dlog4j.configurationFile=file:/configmap/log4j2.xml"]`                        |
+| `jvmInitHeapSize`                               | ``                           | Java Virtual Machine (JVM) initial, and minimum, heap size.                                                            |
+| `jvmMaxHeapSize`                                | `1024M`                      | Java Virtual Machine (JVM) maximum heap size.                                                                          |
 | `resources`                                     | `{}`                         | CPU/Memory resource requests/limits                                                                                    |
 | `livenessProbe.enabled`                         | `true`                       | Turn on and off liveness probe                                                                                         |
 | `livenessProbe.initialDelaySeconds`             | `30`                         | Delay before liveness probe is initiated                                                                               |

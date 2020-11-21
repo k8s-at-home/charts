@@ -1,81 +1,26 @@
 # Default values for unifi-poller.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
 
 image:
   repository: golift/unifi-poller
-  tag: 2.0.1
   pullPolicy: IfNotPresent
+  tag: 2.0.1
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+strategy:
+  type: Recreate
 
 service:
-  type: ClusterIP
-  port: 9130
-  annotations: {}
+  port:
+    port: 9130
 
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
-
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-# if using prometheus in the options below
-# wire up a servicemonitor for prometheus-operator
+# enable a prometheus-operator servicemonitor
 prometheus:
   serviceMonitor:
     enabled: false
     interval: 1m
     additionalLabels: {}
 
+# unifi-poller configuration settings
+# https://github.com/unifi-poller/unifi-poller/wiki/Configuration
 config:
   poller:
     # config.poller.debug -- Turns on line numbers, microsecond logging, and a per-device log.

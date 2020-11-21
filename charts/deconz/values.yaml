@@ -79,6 +79,8 @@ persistence:
   # existingClaim: deconz-data
   accessMode: ReadWriteOnce
   size: 1Gi
+  ## When mounting the data volume you may specify a subPath
+  # subPath: /configs/deconz
 
 # Any extra volumes to define for the pod
 # Volumes will be mounted to the folder specified under mountPath
