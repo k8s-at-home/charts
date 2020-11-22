@@ -1,5 +1,5 @@
 {{/*
-The OpenVPN shared volume to be inserted
+The volume (referencing VPN config and scripts) to be inserted into additionalVolumes.
 */}}
 {{- define "common.addon.vpn.volume" -}}
 {{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down -}}

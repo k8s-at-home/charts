@@ -1,5 +1,5 @@
 {{/*
-The OpenVPN networkpolicy to be included
+Blueprint for the NetworkPolicy object that can be included in the addon.
 */}}
 {{- define "common.addon.vpn.networkpolicy" -}}
 {{- if .Values.addons.vpn.networkPolicy.enabled -}}

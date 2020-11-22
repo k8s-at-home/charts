@@ -1,5 +1,5 @@
 {{/*
-The OpenVPN container(s) to be inserted
+The OpenVPN sidecar container to be inserted.
 */}}
 {{- define "common.addon.openvpn.container" -}}
 name: openvpn

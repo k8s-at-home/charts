@@ -1,5 +1,6 @@
 {{/*
-Template to render Wireguard addon
+Template to render Wireguard addon. It will add the container to the list of additionalContainers.
+*/}}
 */}}
 {{- define "common.addon.wireguard" -}}
   {{/* Append the Wireguard container to the additionalContainers */}}

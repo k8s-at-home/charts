@@ -1,5 +1,5 @@
 {{/*
-The OpenVPN configmaps to be included
+The VPN config and scripts to be included.
 */}}
 {{- define "common.addon.vpn.configmap" -}}
 {{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down }}

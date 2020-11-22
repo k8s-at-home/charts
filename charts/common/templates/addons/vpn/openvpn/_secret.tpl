@@ -1,5 +1,5 @@
 {{/*
-The OpenVPN secrets to be included
+The OpenVPN credentials secrets to be included.
 */}}
 {{- define "common.addon.openvpn.secret" -}}
 {{- with .Values.addons.vpn.openvpn.auth -}}
