@@ -1,3 +1,7 @@
+{{/*
+This template serves as the blueprint for the Deployment objects that are created 
+within the common library.
+*/}}
 {{- define "common.deployment" -}}
 apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
 kind: Deployment

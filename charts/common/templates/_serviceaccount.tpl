@@ -1,5 +1,5 @@
 {{/*
-The serviceAccount to be included
+The ServiceAccount object to be created.
 */}}
 {{- define "common.serviceAccount" -}}
 apiVersion: v1

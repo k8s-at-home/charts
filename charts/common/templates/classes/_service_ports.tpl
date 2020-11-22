@@ -1,5 +1,5 @@
 {{/*
-logic that lists the ports and additionalPorts for a service
+Render all the ports and additionalPorts for a Service object.
 */}}
 {{- define "common.classes.service.ports" -}}
   {{- $ports := list -}}

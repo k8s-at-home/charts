@@ -1,5 +1,5 @@
 {{/*
-Return the appropriate apiVersion for daemonset.
+Return the appropriate apiVersion for DaemonSet objects.
 */}}
 {{- define "common.capabilities.daemonset.apiVersion" -}}
 {{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -10,7 +10,7 @@ Return the appropriate apiVersion for daemonset.
 {{- end -}}
 
 {{/*
-Return the appropriate apiVersion for deployment.
+Return the appropriate apiVersion for Deployment objects.
 */}}
 {{- define "common.capabilities.deployment.apiVersion" -}}
 {{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -21,7 +21,7 @@ Return the appropriate apiVersion for deployment.
 {{- end -}}
 
 {{/*
-Return the appropriate apiVersion for statefulset.
+Return the appropriate apiVersion for StatefulSet objects.
 */}}
 {{- define "common.capabilities.statefulset.apiVersion" -}}
 {{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -32,7 +32,7 @@ Return the appropriate apiVersion for statefulset.
 {{- end -}}
 
 {{/*
-Return the appropriate apiVersion for ingress.
+Return the appropriate apiVersion for Ingress objects.
 */}}
 {{- define "common.capabilities.ingress.apiVersion" -}}
 {{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}

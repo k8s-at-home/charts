@@ -1,5 +1,5 @@
 {{- /*
-The main containter that will be included in the controller 
+The main container included in the controller.
 */ -}}
 {{- define "common.controller.mainContainer" -}}
 - name: {{ include "common.names.fullname" . }}

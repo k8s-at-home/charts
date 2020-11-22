@@ -1,5 +1,5 @@
 {{/*
-ports included by the controller
+Ports included by the controller.
 */}}
 {{- define "common.controller.ports" -}}
   {{- $ports := list -}}
