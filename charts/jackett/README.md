@@ -2,6 +2,8 @@
 
 This is a helm chart for [Jackett](https://github.com/Jackett/Jackett).
 
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/onedr0p/home-cluster/issues/new/choose)**
+
 ## TL;DR;
 
 ```shell
@@ -35,7 +37,7 @@ Additionally you can take a look at the common library [values.yaml](https://git
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install jackett \
-  --set env.TZ="America/New York" \
+  --set env.TZ="America/New_York" \
     k8s-at-home/jackett
 ```
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
