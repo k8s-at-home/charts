@@ -11,7 +11,7 @@ assignees: ''
 
 **Helm chart name and version:**
 
-<!-- Note: This should be the helm chart version you have deployed. e.g. jackett 5.4.0 -->
+<!-- Note: This should be the helm chart name and version you have deployed. e.g. jackett 5.4.0 -->
 
 **Container name and tag:**
 
