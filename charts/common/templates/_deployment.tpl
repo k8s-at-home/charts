@@ -58,10 +58,10 @@ spec:
       {{- with .Values.additionalContainers }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
-
+      {{- with (include "common.controller.volumes" . | trim) }}
       volumes:
-      {{- include "common.controller.volumes" . | trim | nindent 6 }}
-
+        {{- . | nindent 6 }}
+      {{- end }}
       {{- with .Values.hostAliases }}
       hostAliases:
         {{- toYaml . | nindent 8 }}
