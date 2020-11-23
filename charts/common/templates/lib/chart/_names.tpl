@@ -31,12 +31,12 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Create the name of the service account to use
+Create the name of the ServiceAccount to use.
 */}}
 {{- define "common.names.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "k8s-at-home.fullname" .) .Values.serviceAccount.name }}
+    {{- default (include "common.names.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+    {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}

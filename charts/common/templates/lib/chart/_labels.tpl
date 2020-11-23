@@ -1,5 +1,5 @@
 {{/*
-Common labels
+Common labels shared across objects.
 */}}
 {{- define "common.labels" -}}
 helm.sh/chart: {{ include "common.names.chart" . }}
@@ -11,7 +11,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Selector labels
+Selector labels shared across objects.
 */}}
 {{- define "common.labels.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "common.names.name" . }}

@@ -1,31 +1,25 @@
 {{/*
-This template serves as the blueprint for the StatefulSet objects that are created 
+This template serves as the blueprint for the DaemonSet objects that are created 
 within the common library.
 */}}
-{{- define "common.statefulset" -}}
-apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
-kind: StatefulSet
+{{- define "common.daemonset" -}}
+apiVersion: {{ include "common.capabilities.daemonset.apiVersion" . }}
+kind: DaemonSet
 metadata:
   name: {{ include "common.names.fullname" . }}
   labels:
-  {{- include "common.labels" . | nindent 4 }}
-  {{- with .Values.controllerLabels }}
-  {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.controllerLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   {{- with .Values.controllerAnnotations }}
   annotations:
-  {{- toYaml . | nindent 4 }}
-  {{- end }}
-spec:
-  replicas: {{ .Values.replicas }}
-  {{- with .Values.strategy }}
-  updateStrategy:
     {{- toYaml . | nindent 4 }}
   {{- end }}
+spec:
   selector:
     matchLabels:
     {{- include "common.labels.selectorLabels" . | nindent 6 }}
-  serviceName: {{ include "common.names.fullname" . }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -44,6 +38,12 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.hostNetwork }}
+      hostNetwork: {{ . }}
+      {{- end }}
+      {{- with .Values.dnsPolicy }}
+      dnsPolicy: {{ . }}
+      {{- end }}
       {{- with .Values.initContainers }}
       initContainers:
         {{- toYaml . | nindent 8 }}
@@ -53,10 +53,12 @@ spec:
       {{- with .Values.additionalContainers }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
-
       volumes:
       {{- include "common.controller.volumes" . | trim | nindent 6 }}
-
+      {{- with .Values.hostAliases }}
+      hostAliases:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

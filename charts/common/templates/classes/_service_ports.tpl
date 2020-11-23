@@ -1,5 +1,5 @@
 {{/*
-logic that lists the ports and additionalPorts for a service
+Render all the ports and additionalPorts for a Service object.
 */}}
 {{- define "common.classes.service.ports" -}}
   {{- $ports := list -}}
@@ -12,9 +12,9 @@ logic that lists the ports and additionalPorts for a service
   ports:
   {{- range $_ := $ports }}
   - port: {{ .port }}
-    targetPort: {{ .targetPort | default .name }}
+    targetPort: {{ .targetPort | default "http" }}
     protocol: {{ .protocol | default "TCP" }}
-    name: {{ .name }}
+    name: {{ .name | default "http" }}
     {{- if (and (eq $.svcType "NodePort") (not (empty .nodePort))) }}
     nodePort: {{ .nodePort }}
     {{ end }}

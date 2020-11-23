@@ -1,5 +1,5 @@
 {{/*
-volumes included by the controller
+Volumes included by the controller.
 */}}
 {{- define "common.controller.volumes" -}}
 {{- range $index, $persistence := .Values.persistence }}
