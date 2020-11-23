@@ -1,10 +1,11 @@
-
 name: Release Charts
 
 on:
   push:
     branches:
       - master
+    paths:
+      - "charts/**"
 
 jobs:
   release:
@@ -13,33 +14,51 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Turnstyle
         uses: softprops/turnstyle@v1
         with:
           continue-after-seconds: 180
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Fetch history
-        run: git fetch --prune --unshallow
+          GITHUB_TOKEN: ${{ secrets.CR_TOKEN }}
 
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      # See https://github.com/helm/chart-releaser-action/issues/6
       - name: Install Helm
-        run: |
-          curl -fsSLo get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-          chmod 700 get_helm.sh
-          ./get_helm.sh
-      - name: Add dependency chart repos
-        run: |
-          helm repo add stable https://charts.helm.sh/stable
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.4.0
+
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.0.0
+        uses: helm/chart-releaser-action@v1.1.0
         with:
           charts_repo_url: https://k8s-at-home.com/charts/
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_TOKEN: "${{ secrets.CR_TOKEN }}"
+  
+  # Update the generated timestamp in the index.yaml
+  # needed until https://github.com/helm/chart-releaser/issues/90
+  # or helm/chart-releaser-action supports this
+  post-release:
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: "gh-pages"
+          fetch-depth: 0
+
+      - name: Commit and push timestamp updates
+        run: |
+          git config --global user.email "$GITHUB_ACTOR"
+          git config --global user.name "$GITHUB_ACTOR@users.noreply.github.com"
+          export generated_date=$(date --utc +%FT%T.%9NZ)
+          sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
+          git add index.yaml
+          git commit -sm "Update generated timestamp [ci-skip]" || exit 0
+          git push
