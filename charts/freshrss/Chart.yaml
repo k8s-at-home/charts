@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: 1.17.0
+description: FreshRSS is a self-hosted RSS feed aggregator
+name: freshrss
+version: 1.0.0
+keywords:
+  - freshrss
+  - rss
+home: https://github.com/k8s-at-home/charts/tree/master/charts/freshrss
+icon: https://github.com/FreshRSS/FreshRSS/blob/master/docs/img/FreshRSS-logo.png?raw=true
+sources:
+  - https://github.com/FreshRSS/FreshRSS
+  - https://hub.docker.com/r/linuxserver/freshrss
+maintainers:
+  - name: npawelek
+    email: nathan@nathanpawelek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 1.6.1
