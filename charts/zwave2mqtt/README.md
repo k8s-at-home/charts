@@ -2,6 +2,8 @@
 
 This is a helm chart for [zwave2mqtt](https://zwave2mqtt.org/).
 
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
 ## TL;DR;
 
 ```shell
