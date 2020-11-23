@@ -1,3 +1,7 @@
+{{/*
+Renders the Ingress objects required by the chart by returning a concatinated list
+of the main Ingress and any additionalIngresses.
+*/}}
 {{- define "common.ingress" -}}
   {{- if .Values.ingress.enabled -}}
     {{- $svcPort := .Values.service.port.port -}}

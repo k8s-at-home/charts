@@ -1,5 +1,5 @@
 {{/*
-Default liveness/readiness/startup probes
+Liveness/readiness/startup probes based on tcpSocket checks.
 */}}
 {{- define "common.controller.probes.tcpSocket" -}}
 {{- if .Values.probes.liveness.enabled -}}

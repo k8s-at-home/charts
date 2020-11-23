@@ -1,12 +1,12 @@
 {{/*
-The OpenVPN networkpolicy to be included
+Blueprint for the NetworkPolicy object that can be included in the addon.
 */}}
 {{- define "common.addon.vpn.networkpolicy" -}}
 {{- if .Values.addons.vpn.networkPolicy.enabled -}}
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
 spec:
   podSelector:
     matchLabels:
