@@ -5585,6 +5585,38 @@ entries:
   ombi:
   - apiVersion: v2
     appVersion: 4.0.681
+    created: "2020-11-23T14:30:18.004547261Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: ^1.6.1
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.0.1
+    description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+    digest: 3185bf5d77ab88599f7e8a8e084a0abf826db9fff6e3c9bb37ebcee23a9d8477
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/ombi
+    icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
+    keywords:
+    - ombi
+    - plex
+    - emby
+    - sonarr
+    - radarr
+    - couchpotato
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ombi
+    sources:
+    - https://github.com/tidusjar/Ombi
+    - https://hub.docker.com/r/linuxserver/ombi
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ombi-5.5.0/ombi-5.5.0.tgz
+    version: 5.5.0
+  - apiVersion: v2
+    appVersion: 4.0.681
     created: "2020-11-14T14:44:38.915747608Z"
     dependencies:
     - name: common
