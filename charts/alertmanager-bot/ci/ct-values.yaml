@@ -1,4 +1,7 @@
-persistence:
-  data:
-    enabled: true
-    emptyDir: true
+service:
+  enabled: false
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
