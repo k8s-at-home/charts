@@ -20,12 +20,8 @@ maintainers:
 - name: runningman84
   email: phil@hellmi.de
 dependencies:
-- name: esphome
-  repository: https://k8s-at-home.com/charts/
-  version: ~2.2.0
-  condition: esphome.enabled
 - name: postgresql
-  version: 9.1.2
+  version: 10.1.0
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: mariadb

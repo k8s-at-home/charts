@@ -350,18 +350,6 @@ appdaemon:
     loadBalancerSourceRanges: []
     # nodePort: 30000
 
-esphome:
-  enabled: false
-  # Mount home-assistant's secrets.yaml into the esphome container.
-  extraVolumes:
-    - name: ha-config
-      persistentVolumeClaim:
-        claimName: home-assistant
-  extraVolumeMounts:
-    - name: ha-config
-      mountPath: /config/secrets.yaml
-      subPath: secrets.yaml
-
 # Enabled mariadb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
 mariadb:

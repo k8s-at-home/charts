@@ -9,6 +9,10 @@ helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm install k8s-at-home/home-assistant
 ```
 
+## :star2: Changelog
+
+Please refer to [CHANGELOG.md](CHANGELOG.md) for an overview of notable changes to the chart. **This is especially important for major version updates!**
+
 ## Introduction
 
 This code is adapted for [the official home assistant docker image](https://hub.docker.com/r/homeassistant/home-assistant/)
@@ -174,7 +178,6 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `appdaemon.service.externalIPs`                 | External IPs for the AppDaemon UI                                                                                                                                                                                                         | `[]`                                   |
 | `appdaemon.service.loadBalancerIP`              | Loadbalancer IP for the AppDaemon UI                                                                                                                                                                                                      | ``                                     |
 | `appdaemon.service.loadBalancerSourceRanges`    | Loadbalancer client IP restriction range for the VS Code UI                                                                                                                                                                               | `[]`                                   |
-| `esphome.enabled`                               | Enable the optional [ESPHome](https://esphome.io) deployment                                                                                                                                                                              | `false`                                |
 | `mariadb.enabled`                               | Enable the optional [Mariadb](https://github.com/bitnami/charts) deployment                                                                                                                                                               | `false`                                |
 | `postgresql.enabled`                            | Enable the optional [Postgres](https://github.com/bitnami/charts) deployment                                                                                                                                                              | `false`                                |
 | `influxdb.enabled`                              | Enable the optional [Influxdb](https://github.com/bitnami/charts) deployment                                                                                                                                                              | `false`                                |
