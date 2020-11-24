@@ -2,7 +2,7 @@ apiVersion: v2
 name: statping
 description: Status page for monitoring your websites and applications
 type: application
-version: 1.1.0
+version: 1.1.1
 appVersion: v0.90.65
 keywords:
   - statping
@@ -18,5 +18,5 @@ icon: https://github.com/statping/statping/blob/dev/frontend/src/assets/logo.png
 dependencies:
   - name: postgresql
     repository: https://charts.bitnami.com/bitnami
-    version: 9.8.12
+    version: 10.1.0
     condition: postgres.posgresql.enabled
