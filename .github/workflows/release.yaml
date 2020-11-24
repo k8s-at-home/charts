@@ -22,7 +22,7 @@ jobs:
         with:
           continue-after-seconds: 180
         env:
-          GITHUB_TOKEN: ${{ secrets.CR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
         run: |
@@ -38,7 +38,7 @@ jobs:
         with:
           charts_repo_url: https://k8s-at-home.com/charts/
         env:
-          CR_TOKEN: "${{ secrets.CR_TOKEN }}"
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   
   # Update the generated timestamp in the index.yaml
   # needed until https://github.com/helm/chart-releaser/issues/90
