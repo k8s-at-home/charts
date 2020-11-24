@@ -28,6 +28,7 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
@@ -53,12 +54,17 @@ jobs:
           ref: "gh-pages"
           fetch-depth: 0
 
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Commit and push timestamp updates
         run: |
-          git config --global user.email "$GITHUB_ACTOR"
-          git config --global user.name "$GITHUB_ACTOR@users.noreply.github.com"
-          export generated_date=$(date --utc +%FT%T.%9NZ)
-          sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
-          git add index.yaml
-          git commit -sm "Update generated timestamp [ci-skip]" || exit 0
-          git push
+          if [[ -f index.yaml ]]; then
+            export generated_date=$(date --utc +%FT%T.%9NZ)
+            sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
+            git add index.yaml
+            git commit -sm "Update generated timestamp [ci-skip]" || exit 0
+            git push
+          fi
