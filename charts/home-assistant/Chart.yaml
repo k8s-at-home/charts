@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 0.116.1
+appVersion: 0.118.3
 description: Home Assistant
 name: home-assistant
-version: 2.7.0
+version: 3.0.0
 keywords:
 - home-assistant
 - hass
@@ -20,19 +20,15 @@ maintainers:
 - name: runningman84
   email: phil@hellmi.de
 dependencies:
-- name: esphome
-  repository: https://k8s-at-home.com/charts/
-  version: ~2.2.0
-  condition: esphome.enabled
 - name: postgresql
-  version: 9.1.2
+  version: 10.1.0
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: mariadb
-  version: 7.7.1
+  version: 9.0.1
   repository: https://charts.bitnami.com/bitnami
   condition: mariadb.enabled
 - name: influxdb
-  version: 0.6.7
+  version: 1.0.0
   repository: https://charts.bitnami.com/bitnami
   condition: influxdb.enabled
