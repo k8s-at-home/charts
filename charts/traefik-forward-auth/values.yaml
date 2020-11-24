@@ -35,6 +35,8 @@ cookie:
   name: ""
   # cookie.csrfName -- CSRF Cookie Name (default: _forward_auth_csrf)
   csrfName: ""
+  # cookie.secret -- Cookie Secret used for authentication across multiple instances / clusters (default: randomly generated)
+  secret: ""
 default:
   # default.action -- [auth|allow] Default action (default: auth)
   action: ""
