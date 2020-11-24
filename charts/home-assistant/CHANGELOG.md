@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The default `home-assistant` image has been updated to v0.118.3.
+- The default `vscode` image has been updated to 3.7.2
 - :warning: Upgraded `postgresql` subchart from version 9.1.2 to version 10.1.0. 
   This is a major version update, [requiring changes](https://github.com/bitnami/charts/tree/master/bitnami/postgresql#to-1000) in your `values.yaml` if you use it!
 - :warning: Upgraded `mariadb` subchart from version 7.7.1 to version 9.0.1. 
