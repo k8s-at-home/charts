@@ -1,3 +1,7 @@
+{{/*
+This template serves as a blueprint for all Service objects that are created 
+within the common library.
+*/}}
 {{- define "common.classes.service" -}}
 {{- $values := .Values.service -}}
 {{- if hasKey . "ObjectValues" -}}
@@ -9,7 +13,7 @@
 {{- if hasKey $values "nameSuffix" -}}
   {{- $serviceName = printf "%v-%v" $serviceName $values.nameSuffix -}}
 {{ end -}}
-{{- $svcType := $values.type -}}
+{{- $svcType := $values.type | default "" -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -58,17 +62,7 @@ spec:
   {{- if $values.publishNotReadyAddresses }}
   publishNotReadyAddresses: {{ $values.publishNotReadyAddresses }}
   {{- end }}
-  ports:
-    - port: {{ $values.port.port }}
-      targetPort: {{ $values.port.targetPort }}
-      protocol: {{ $values.port.protocol }}
-      name: {{ $values.port.name }}
-      {{- if (and (eq $svcType "NodePort") (not (empty $values.port.nodePort))) }}
-      nodePort: {{ $values.port.nodePort }}
-      {{ end }}
-    {{- with $values.additionalPorts }}
-    {{ toYaml . | nindent 4 }}
-    {{- end }}
+  {{- include "common.classes.service.ports" (dict "svcType" $svcType "values" $values ) | trim | nindent 2 }}
   selector:
     {{- include "common.labels.selectorLabels" . | nindent 4 }}
 {{- end }}

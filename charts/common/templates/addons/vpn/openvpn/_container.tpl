@@ -1,19 +1,19 @@
 {{/*
-The OpenVPN container(s) to be inserted
+The OpenVPN sidecar container to be inserted.
 */}}
 {{- define "common.addon.openvpn.container" -}}
 name: openvpn
 image: "{{ .Values.addons.vpn.openvpn.image.repository }}:{{ .Values.addons.vpn.openvpn.image.tag }}"
 imagePullPolicy: {{ .Values.addons.vpn.imagePullPolicy }}
+{{- with .Values.addons.vpn.securityContext }}
 securityContext:
-  capabilities:
-    add: 
-      - NET_ADMIN
+  {{- toYaml . | nindent 2 }}
+{{- end }}
 {{- with .Values.addons.vpn.env }}
 env:
 {{- range $k, $v := . }}
   - name: {{ $k }}
-    value: {{ $v }}
+    value: {{ $v | quote }}
 {{- end }}
 {{- end }}  
 {{- if or .Values.addons.vpn.openvpn.auth .Values.addons.vpn.openvpn.authSecret }}
@@ -22,7 +22,7 @@ envFrom:
     {{- if .Values.addons.vpn.openvpn.authSecret }}
       name: {{ .Values.addons.vpn.openvpn.authSecret }}
     {{- else }}
-      name: {{ template "common.names.fullname" . }}-openvpn
+      name: {{ include "common.names.fullname" . }}-openvpn
     {{- end }}
 {{- end }}
 {{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down .Values.addons.vpn.additionalVolumeMounts .Values.persistence.shared.enabled }}
@@ -52,10 +52,10 @@ volumeMounts:
 {{- end }}
 {{- with .Values.addons.vpn.livenessProbe }}
 livenessProbe:
-  {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 2 }}
 {{- end -}}
 {{- with .Values.addons.vpn.resources }}
 resources:
-  {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 2 }}
 {{- end }}
 {{- end -}}

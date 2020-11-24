@@ -2,12 +2,18 @@
 
 This is a helm chart for [Home Assistant](https://www.home-assistant.io/)
 
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
 ## TL;DR;
 
 ```shell
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm install k8s-at-home/home-assistant
 ```
+
+## :star2: Changelog
+
+Please refer to [CHANGELOG.md](CHANGELOG.md) for an overview of notable changes to the chart. **This is especially important for major version updates!**
 
 ## Introduction
 
@@ -38,7 +44,7 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | Parameter                                       | Description                                                                                                                                                                                                                               | Default                                |
 |-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
 | `image.repository`                              | Image repository                                                                                                                                                                                                                          | `homeassistant/home-assistant`         |
-| `image.tag`                                     | Image tag. Possible values listed [here](https://hub.docker.com/r/homeassistant/home-assistant/tags/).                                                                                                                                    | `0.114.0`                              |
+| `image.tag`                                     | Image tag. Possible values listed [here](https://hub.docker.com/r/homeassistant/home-assistant/tags/).                                                                                                                                    | `0.118.3`                              |
 | `image.pullPolicy`                              | Image pull policy                                                                                                                                                                                                                         | `IfNotPresent`                         |
 | `image.pullSecrets`                             | Secrets to use when pulling the image                                                                                                                                                                                                     | `[]`                                   |
 | `strategyType`                                  | Specifies the strategy used to replace old Pods by new ones                                                                                                                                                                               | `Recreate`                             |
@@ -68,6 +74,7 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `service.publishNotReadyAddresses`              | Set to true if the editors (vscode or configurator) should be reachable when home assistant does not run                                                                                                                                  | `false`                                |
 | `service.externalTrafficPolicy`                 | Loadbalancer externalTrafficPolicy                                                                                                                                                                                                        | ``                                     |
 | `hostNetwork`                                   | Enable hostNetwork - might be needed for discovery to work                                                                                                                                                                                | `false`                                |
+| `hostAliases`                                   | Define custom entries in /etc/hosts                                                                                                                                                                                                       | `[]`                                   |
 | `service.nodePort`                              | nodePort to listen on for the home-assistant GUI                                                                                                                                                                                          | ``                                     |
 | `ingress.enabled`                               | Enables Ingress                                                                                                                                                                                                                           | `false`                                |
 | `ingress.annotations`                           | Ingress annotations                                                                                                                                                                                                                       | `{}`                                   |
@@ -129,7 +136,7 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `configurator.service.loadBalancerSourceRanges` | Loadbalancer client IP restriction range for the configurator UI                                                                                                                                                                          | `[]`                                   |
 | `vscode.enabled`                                | Enable the optional [VS Code Server Sidecar](https://github.com/cdr/code-server)                                                                                                                                                          | `false`                                |
 | `vscode.image.repository`                       | Image repository                                                                                                                                                                                                                          | `codercom/code-server`                 |
-| `vscode.image.tag`                              | Image tag                                                                                                                                                                                                                                 | `3.4.1`                                |
+| `vscode.image.tag`                              | Image tag                                                                                                                                                                                                                                 | `3.7.2`                                |
 | `vscode.image.pullPolicy`                       | Image pull policy                                                                                                                                                                                                                         | `IfNotPresent`                         |
 | `vscode.hassConfig`                             | Base path of the home assistant configuration files                                                                                                                                                                                       | `/config`                              |
 | `vscode.vscodePath`                             | Base path of the VS Code configuration files                                                                                                                                                                                              | `/config/.vscode`                      |
@@ -173,7 +180,6 @@ The following tables lists the configurable parameters of the Home Assistant cha
 | `appdaemon.service.externalIPs`                 | External IPs for the AppDaemon UI                                                                                                                                                                                                         | `[]`                                   |
 | `appdaemon.service.loadBalancerIP`              | Loadbalancer IP for the AppDaemon UI                                                                                                                                                                                                      | ``                                     |
 | `appdaemon.service.loadBalancerSourceRanges`    | Loadbalancer client IP restriction range for the VS Code UI                                                                                                                                                                               | `[]`                                   |
-| `esphome.enabled`                               | Enable the optional [ESPHome](https://esphome.io) deployment                                                                                                                                                                              | `false`                                |
 | `mariadb.enabled`                               | Enable the optional [Mariadb](https://github.com/bitnami/charts) deployment                                                                                                                                                               | `false`                                |
 | `postgresql.enabled`                            | Enable the optional [Postgres](https://github.com/bitnami/charts) deployment                                                                                                                                                              | `false`                                |
 | `influxdb.enabled`                              | Enable the optional [Influxdb](https://github.com/bitnami/charts) deployment                                                                                                                                                              | `false`                                |
@@ -234,7 +240,7 @@ kubectl create secret generic git-creds --from-file=id_rsa=git/k8s_id_rsa --from
 
 ## git-crypt support
 
-When using Git sync it is possible to specify a file called `git-crypt-key` in the secret referred to in `git.secret`. When this file is present, `git-crypt unlock` will automatically be executed after the repo has been synced. 
+When using Git sync it is possible to specify a file called `git-crypt-key` in the secret referred to in `git.secret`. When this file is present, `git-crypt unlock` will automatically be executed after the repo has been synced.
 
 **Note:** `git-crypt` is not installed by default in the other images! If you wish to push changes from the VS Code or Configurator containers, you will have to make sure that it is installed.
 

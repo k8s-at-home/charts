@@ -1,3 +1,7 @@
+{{/*
+This template serves as a blueprint for all Ingress objects that are created 
+within the common library.
+*/}}
 {{- define "common.classes.ingress" -}}
 {{- $ingressName := include "common.names.fullname" . -}}
 {{- $values := .Values.ingress -}}
@@ -9,7 +13,8 @@
 {{- if hasKey $values "nameSuffix" -}}
   {{- $ingressName = printf "%v-%v" $ingressName $values.nameSuffix -}}
 {{ end -}}
-{{- $svcPort := $values.svcPort -}}
+{{- $svcName := $values.serviceName | default (include "common.names.fullname" .) -}}
+{{- $svcPort := $values.servicePort | default $.Values.service.port.port -}}
 apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -39,7 +44,7 @@ spec:
           {{- range .paths }}
           - path: {{ .path }}
             backend:
-              serviceName: {{ $ingressName }}
+              serviceName: {{ $svcName }}
               servicePort: {{ $svcPort }}
           {{- end }}
   {{- end }}

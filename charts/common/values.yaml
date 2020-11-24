@@ -1,14 +1,35 @@
-# type: options are statefulset or deployment
+# type: options are deployment, daemonset or statefulset
 controllerType: deployment
-# Set annotations on the deployment/statefulset
+# Set annotations on the deployment/statefulset/daemonset
 controllerAnnotations: {}
-# Set labels on the deployment/statefulset
+# Set labels on the deployment/statefulset/daemonset
 controllerLabels: {}
+
+replicas: 1
+strategy:
+  ## For Deployments, valid values are Recreate and RollingUpdate
+  ## For StatefulSets, valid values are OnDelete and RollingUpdate
+  ## DaemonSets ignore this
+  type: RollingUpdate
 
 # Set annotations on the pod
 podAnnotations: {}
 
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
 env: {}
+
+# When using hostNetwork make sure you set dnsPolicy to ClusterFirstWithHostNet
+hostNetwork: false
+
+dnsPolicy: Default
 
 initContainers: []
 
@@ -37,10 +58,12 @@ service:
   type: ClusterIP
   # Specify the default port information
   port:
-    port: ""
-    name: http
+    port:
+    # name defaults to http
+    name:
     protocol: TCP
-    targetPort: http
+    # targetPort defaults to http
+    targetPort:
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
@@ -60,10 +83,12 @@ service:
   #   type: ClusterIP
   #   # Specify the default port information
   #   port:
-  #     port: ""
-  #     name: http
+  #     port: 
+  #     # name defaults to http
+  #     name:
   #     protocol: TCP
-  #     targetPort: http
+  #     # targetPort defaults to http
+  #     targetPort:
   #     # nodePort:
   #   additionalPorts: []
   #   annotations: {}
@@ -96,8 +121,8 @@ ingress:
   #     - host: chart-example.local
   #       paths:
   #         - path: /api
-  #          # Ignored if not kubeVersion >= 1.14-0
-  #          pathType: Prefix
+  #           # Ignored if not kubeVersion >= 1.14-0
+  #           pathType: Prefix
   #   tls: []
   #   #  - secretName: chart-example-tls
   #   #    hosts:
@@ -135,6 +160,20 @@ additionalVolumes: []
 
 additionalVolumeMounts: []
 
+nodeSelector: {}
+
+affinity: {}
+
+tolerations: []
+
+hostAliases: []
+# Use hostAliases to add custom entries to /etc/hosts - mapping IP addresses to hostnames.
+# ref: https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+# - ip: "192.168.1.100"
+#   hostnames:
+#   - "example.com"
+#   - "www.example.com"
+
 addons:
   vpn:
     enabled: false
@@ -154,13 +193,20 @@ addons:
       # under the VPN_AUTH key
       authSecret:  # my-vpn-secret
 
-    # OpenVPN specific configuration
+    # WireGuard specific configuration
     wireguard:
       image:
-        repository: linuxserver/wireguard
-        tag: version-v1.0.20200827
+        repository: k8sathome/wireguard
+        tag: 1.0.20200827
 
     imagePullPolicy: IfNotPresent
+
+    # Set the VPN container securityContext
+    securityContext:
+      capabilities:
+        add: 
+          - NET_ADMIN
+          - SYS_MODULE
 
     # All variables specified here will be added to the vpn sidecar container
     # See the documentation of the VPN image for all config values

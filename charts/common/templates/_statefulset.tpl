@@ -1,8 +1,12 @@
+{{/*
+This template serves as the blueprint for the StatefulSet objects that are created 
+within the common library.
+*/}}
 {{- define "common.statefulset" -}}
 apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
   labels:
   {{- include "common.labels" . | nindent 4 }}
   {{- with .Values.controllerLabels }}
@@ -13,7 +17,11 @@ metadata:
   {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
+  {{- with .Values.strategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   selector:
     matchLabels:
     {{- include "common.labels.selectorLabels" . | nindent 6 }}
@@ -31,6 +39,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      serviceAccountName: {{ include "common.names.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -44,20 +53,20 @@ spec:
       {{- with .Values.additionalContainers }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
-
+      {{- with (include "common.controller.volumes" . | trim) }}
       volumes:
-      {{- include "common.controller.volumes" . | trim | nindent 6 }}
-
+        {{- . | nindent 6 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-        {{- toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-        {{- toYaml . | indent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
 {{- end }}

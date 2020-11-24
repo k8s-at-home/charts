@@ -1,6 +1,8 @@
-{{- /* The main containter that will be included in the controller */ -}}
+{{- /*
+The main container included in the controller.
+*/ -}}
 {{- define "common.controller.mainContainer" -}}
-- name: {{ template "common.names.fullname" . }}
+- name: {{ include "common.names.fullname" . }}
   image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   imagePullPolicy: {{ .Values.image.pullPolicy }}
   {{- with .Values.securityContext }}
@@ -14,15 +16,7 @@
     value: {{ $value | quote }}
   {{- end }}
   {{- end }}
-  ports:
-  - name: {{ .Values.service.port.name }}
-    containerPort: {{ .Values.service.port.port }}
-    protocol: {{ .Values.service.port.protocol }}
-  {{- range $port := .Values.service.additionalPorts }}
-  - name: {{ $port.name }}
-    containerPort: {{ $port.port }}
-    protocol: {{ $port.protocol }}
-  {{- end }}
+  {{- include "common.controller.ports" . | trim | nindent 2 }}
   volumeMounts:
   {{- range $index, $PVC := .Values.persistence }}
   {{- if $PVC.enabled }}

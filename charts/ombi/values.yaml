@@ -5,6 +5,9 @@ image:
   pullPolicy: IfNotPresent
   tag: version-v4.0.681
 
+strategy:
+  type: Recreate
+
 service:
   port:
     port: 3579
@@ -18,3 +21,16 @@ persistence:
   config:
     enabled: false
     emptyDir: false
+
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: ombi
+    username: ombi
+    password: ombi
+  primary:
+    persistence:
+      enabled: false

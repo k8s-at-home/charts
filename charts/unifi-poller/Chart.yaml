@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 2.0.1
 description: Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus
 name: unifi-poller
-version: 2.0.1
+version: 3.1.1
 keywords:
   - unifi
   - unifi-poller
@@ -14,3 +14,7 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 1.6.1

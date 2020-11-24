@@ -1,3 +1,7 @@
+{{/*
+This template serves as a blueprint for all PersistentVolumeClaim objects that are created 
+within the common library.
+*/}}
 {{- define "common.classes.pvc" -}}
 {{- $values := .Values.persistence -}}
 {{- if hasKey . "ObjectValues" -}}
