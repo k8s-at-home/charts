@@ -1,28 +1,45 @@
 name: Lint and Test Charts
+
 on: pull_request
+
 jobs:
   lint-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Fetch history
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.4.0
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.0.1
+
+      - name: Run chart-testing (list-changed)
+        id: list-changed
         run: |
-          git fetch --prune --unshallow;
-          echo "commitmsg=$(git log --format=%B -n 1 ${{ github.event.after }})" >> $GITHUB_ENV
+          changed=$(ct list-changed --config .github/ct.yaml)
+          if [[ -n "$changed" ]]; then
+            echo "::set-output name=changed::true"
+          fi
+
       - name: Run chart-testing (lint)
         id: lint
-        uses: helm/chart-testing-action@v1.0.0
-        if: "! contains(env.commitmsg, '[skip lint]')"
-        with:
-          command: lint
-          config: ct.yaml
+        run: ct lint --config .github/ct.yaml
+        if: steps.list-changed.outputs.changed == 'true'
+
       - name: Create kind cluster
-        uses: helm/kind-action@v1.0.0
-        if: "steps.lint.outputs.changed == 'true' && ! contains(env.commitmsg, '[skip install]')"
+        uses: helm/kind-action@v1.1.0
+        if: steps.list-changed.outputs.changed == 'true'
+
       - name: Run chart-testing (install)
-        uses: helm/chart-testing-action@v1.0.0
-        if: "steps.lint.outputs.changed == 'true' && ! contains(env.commitmsg, '[skip install]')"
-        with:
-          command: install
-          config: ct.yaml
+        run: ct install --config .github/ct.yaml
+        if: steps.list-changed.outputs.changed == 'true'
