@@ -354,15 +354,13 @@ appdaemon:
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
 mariadb:
   enabled: false
-  db:
-    name: home-assistant
-    user: home-assistant
+  architecture: standalone
+  auth:
+    database: home-assistant
+    username: home-assistant
     password: home-assistant-pass
-  replication:
-    enabled: false
-  rootUser:
-    password: home-assistantrootpass
-  master:
+    rootPassword: home-assistantrootpass
+  primary:
     persistence:
       enabled: false
       # storageClass: ""
