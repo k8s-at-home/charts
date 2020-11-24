@@ -61,8 +61,8 @@ affinity: {}
 powerdns:
   domain: mydomain.local
   postgres:
-    username: postgres
-    password: postgrespass
+    username: pdns
+    password: pdnspass
     database: pdns
   mysql:
     username: pdns
@@ -91,11 +91,9 @@ mariadb:
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
   enabled: true
-  global:
-    postgresql:
-      postgresqlUsername: postgres
-      postgresqlPassword: postgrespass
-      postgresqlDatabase: pdns
+  postgresqlUsername: pdns
+  postgresqlPassword: pdnspass
+  postgresqlDatabase: pdns
   persistence:
     enabled: false
     # storageClass: ""
