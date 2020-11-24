@@ -61,8 +61,8 @@ affinity: {}
 powerdns:
   domain: mydomain.local
   postgres:
-    username: pdns
-    password: pdnspass
+    username: postgres
+    password: postgrespass
     database: pdns
   mysql:
     username: pdns
@@ -93,8 +93,8 @@ postgresql:
   enabled: true
   global:
     postgresql:
-      postgresqlUsername: pdns
-      postgresqlPassword: pdnspass
+      postgresqlUsername: postgres
+      postgresqlPassword: postgrespass
       postgresqlDatabase: pdns
   persistence:
     enabled: false
