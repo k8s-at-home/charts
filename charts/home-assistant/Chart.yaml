@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 0.116.1
 description: Home Assistant
 name: home-assistant
-version: 2.7.0
+version: 3.0.0
 keywords:
 - home-assistant
 - hass
@@ -29,7 +29,7 @@ dependencies:
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: mariadb
-  version: 7.7.1
+  version: 9.0.1
   repository: https://charts.bitnami.com/bitnami
   condition: mariadb.enabled
 - name: influxdb
