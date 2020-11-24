@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Subchart support for `esphome` was removed as it is really a separate application and integration was only limited to sharing a secrets file.
 
+### Fixed
+
+- Fixed some formatting errors that were causing the pipeline to fail.
+
 ## [2.7.0]
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
