@@ -95,6 +95,13 @@ spec:
             - name: URL_PATH
               value: {{ .Values.urlPath | quote }}
             {{- end }}
+            {{- if .Values.cookie.secret }}
+            - name: COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}
+                  key: cookie-secret
+            {{- end }}
             {{- if ne .Values.secret "-" }}
             - name: SECRET
               {{- if .Values.secret }}

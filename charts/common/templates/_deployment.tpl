@@ -1,8 +1,12 @@
+{{/*
+This template serves as the blueprint for the Deployment objects that are created 
+within the common library.
+*/}}
 {{- define "common.deployment" -}}
 apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
     {{- with .Values.controllerLabels }}
@@ -34,9 +38,16 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      serviceAccountName: {{ include "common.names.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.hostNetwork }}
+      hostNetwork: {{ . }}
+      {{- end }}
+      {{- with .Values.dnsPolicy }}
+      dnsPolicy: {{ . }}
       {{- end }}
       {{- with .Values.initContainers }}
       initContainers:
@@ -47,10 +58,14 @@ spec:
       {{- with .Values.additionalContainers }}
         {{- toYaml . | nindent 6 }}
       {{- end }}
-
+      {{- with (include "common.controller.volumes" . | trim) }}
       volumes:
-      {{- include "common.controller.volumes" . | trim | nindent 6 }}
-
+        {{- . | nindent 6 }}
+      {{- end }}
+      {{- with .Values.hostAliases }}
+      hostAliases:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

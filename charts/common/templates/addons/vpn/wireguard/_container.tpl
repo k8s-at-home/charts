@@ -1,5 +1,5 @@
 {{/*
-The Wireguard container(s) to be inserted
+The Wireguard sidecar container to be inserted.
 */}}
 {{- define "common.addon.wireguard.container" -}}
 name: wireguard
