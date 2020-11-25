@@ -3533,6 +3533,30 @@ entries:
   jackett:
   - apiVersion: v2
     appVersion: v0.16.2106
+    created: "2020-11-25T21:17:33.788197328Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.6.2
+    description: API Support for your favorite torrent trackers
+    digest: 85c3e0cb4182be4cf1138a763250fd80aa29934146d7ae0904560ff34492f4e8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-5.6.0/jackett-5.6.0.tgz
+    version: 5.6.0
+  - apiVersion: v2
+    appVersion: v0.16.2106
     created: "2020-11-23T21:35:44.157261997Z"
     dependencies:
     - name: common
@@ -8495,31 +8519,6 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
-  - apiVersion: v2
-    appVersion: 3.0.0.3989
-    created: "2020-11-25T21:17:16.602608549Z"
-    dependencies:
-    - name: common
-      repository: https://k8s-at-home.com/charts/
-      version: 1.6.2
-    description: A fork of Sonarr to work with movies à la Couchpotato
-    digest: 849693def6480c8d6e86815e4a1b3aef8e154a916ce541134ee17e7e7c957d22
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
-    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
-    keywords:
-    - radarr
-    - torrent
-    - usenet
-    maintainers:
-    - email: jeff@billimek.com
-      name: billimek
-    name: radarr
-    sources:
-    - https://github.com/Radarr/Radarr
-    - https://hub.docker.com/r/linuxserver/radarr
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/radarr-7.6.0/radarr-7.6.0.tgz
-    version: 7.6.0
   - apiVersion: v2
     appVersion: 3.0.0.3989
     created: "2020-11-23T21:35:45.818748835Z"
