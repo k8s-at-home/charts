@@ -134,6 +134,32 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/adguard-home-1.0.0/adguard-home-1.0.0.tgz
     version: 1.0.0
+  alertmanager-bot:
+  - apiVersion: v2
+    appVersion: 0.4.2
+    created: "2020-11-25T00:05:37.625316036Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.6.1
+    description: Bot for Prometheus Alertmanager
+    digest: 82e27f23d1db06c653324b95e888c0885b3ed29a50e08b8ad35b435160281a53
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/alertmanager-bot
+    keywords:
+    - alertmanager
+    - telegram
+    - bot
+    - alerting
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: alertmanager-bot
+    sources:
+    - https://hub.docker.com/r/metalmatze/alertmanager-bot
+    - https://github.com/metalmatze/alertmanager-bot
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/alertmanager-bot-1.0.0/alertmanager-bot-1.0.0.tgz
+    version: 1.0.0
   bazarr:
   - apiVersion: v2
     appVersion: v0.9.0.5
