@@ -7884,6 +7884,30 @@ entries:
   plex-media-server:
   - apiVersion: v2
     appVersion: 1.20.4.3517-ab5e1197c
+    created: "2020-11-25T21:21:54.550729389Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.6.2
+    description: Plex Media Server
+    digest: 531cfee7174149f6ec54e6e4af9dd397589a2015ea694616bfdbe607193f3700
+    home: https://plex.tv/
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    - plex-media-server
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: plex-media-server
+    sources:
+    - https://github.com/k8s-at-home/charts/tree/master/charts/plex
+    - https://hub.docker.com/r/plexinc/pms-docker/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/plex-media-server-0.1.0/plex-media-server-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
+    appVersion: 1.20.4.3517-ab5e1197c
     created: "2020-11-23T21:35:45.537114239Z"
     dependencies:
     - name: common
@@ -8147,29 +8171,6 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-1.0.0/prometheus-nut-exporter-1.0.0.tgz
     version: 1.0.0
   qbittorrent:
-  - apiVersion: v2
-    appVersion: 4.3.0
-    created: "2020-11-25T21:21:47.36919849Z"
-    dependencies:
-    - name: common
-      repository: https://k8s-at-home.com/charts/
-      version: 1.6.2
-    description: qBittorrent is a cross-platform free and open-source BitTorrent client
-    digest: aa2cbb4738f87aeabe302734dac34d85ea39ef11f788fd2bffc7269c21d3c497
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/qbittorrent
-    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
-    keywords:
-    - qbittorrent
-    - torrrent
-    maintainers:
-    - email: jeff@billimek.com
-      name: billimek
-    name: qbittorrent
-    sources:
-    - https://hub.docker.com/r/linuxserver/qbittorrent/
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/qbittorrent-6.6.0/qbittorrent-6.6.0.tgz
-    version: 6.6.0
   - apiVersion: v2
     appVersion: 4.3.0
     created: "2020-11-23T21:35:45.687331854Z"
