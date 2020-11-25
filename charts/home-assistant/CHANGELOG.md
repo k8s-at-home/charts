@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.0.0]
 
+Any pre-existing StatefulSet will have to be removed before upgrading due to a name change in the chart.
+
 ### Changed
 
 - The default `home-assistant` image has been updated to v0.118.3.
