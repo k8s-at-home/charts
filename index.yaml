@@ -1403,6 +1403,31 @@ entries:
   couchpotato:
   - apiVersion: v2
     appVersion: latest
+    created: "2020-11-25T20:45:38.719156148Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.6.2
+    description: CouchPotato (CP) is an automatic NZB and torrent downloader.
+    digest: d4f3abebbf515776e8f529f6eefd254249bc41acfc7425e557c70ab80153cf00
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/couchpotato
+    icon: https://github.com/CouchPotato/CouchPotatoServer/raw/master/couchpotato/static/images/icons/android.png
+    keywords:
+    - couchpotato
+    - usenet
+    - bittorrent
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: couchpotato
+    sources:
+    - https://hub.docker.com/r/linuxserver/couchpotato/
+    - https://github.com/CouchPotato/CouchPotatoServer/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/couchpotato-3.2.0/couchpotato-3.2.0.tgz
+    version: 3.2.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2020-11-23T21:35:43.638206105Z"
     dependencies:
     - name: common
@@ -12178,4 +12203,4 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/zwave2mqtt-1.0.0/zwave2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2020-11-25T20:11:07.676177260Z"
+generated: "2020-11-25T20:11:07.67617726Z"
