@@ -7279,6 +7279,30 @@ entries:
   piaware:
   - apiVersion: v2
     appVersion: v4.0
+    created: "2020-11-25T21:22:03.98614744Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.6.2
+    description: Program for forwarding ADS-B data to FlightAware
+    digest: 422b155ea60f3cf8694de17d96f7205593d728b211ba305ba561bb64b1337250
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/piaware
+    icon: https://pbs.twimg.com/profile_images/964269455483088897/mr2UgvfG_400x400.jpg
+    keywords:
+    - piaware
+    - flight-aware
+    - flight-tracker
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: piaware
+    sources:
+    - https://github.com/flightaware/piaware
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/piaware-3.2.0/piaware-3.2.0.tgz
+    version: 3.2.0
+  - apiVersion: v2
+    appVersion: v4.0
     created: "2020-11-23T21:35:45.408455598Z"
     dependencies:
     - name: common
@@ -7882,30 +7906,6 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/plex-1.0.0/plex-1.0.0.tgz
     version: 1.0.0
   plex-media-server:
-  - apiVersion: v2
-    appVersion: 1.20.4.3517-ab5e1197c
-    created: "2020-11-25T21:21:54.550729389Z"
-    dependencies:
-    - name: common
-      repository: https://k8s-at-home.com/charts/
-      version: 1.6.2
-    description: Plex Media Server
-    digest: 531cfee7174149f6ec54e6e4af9dd397589a2015ea694616bfdbe607193f3700
-    home: https://plex.tv/
-    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
-    keywords:
-    - plex
-    - plex-media-server
-    maintainers:
-    - email: jeff@billimek.com
-      name: billimek
-    name: plex-media-server
-    sources:
-    - https://github.com/k8s-at-home/charts/tree/master/charts/plex
-    - https://hub.docker.com/r/plexinc/pms-docker/
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/plex-media-server-0.1.0/plex-media-server-0.1.0.tgz
-    version: 0.1.0
   - apiVersion: v2
     appVersion: 1.20.4.3517-ab5e1197c
     created: "2020-11-23T21:35:45.537114239Z"
