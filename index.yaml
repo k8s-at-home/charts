@@ -2313,32 +2313,6 @@ entries:
   flood:
   - apiVersion: v2
     appVersion: 4.1.1
-    created: "2020-11-26T14:03:06.185025264Z"
-    dependencies:
-    - name: common
-      repository: https://k8s-at-home.com/charts/
-      version: 1.7.0
-    description: Flood is a monitoring service for various torrent clients
-    digest: 65d989adcc3f817610d4e8b391eca61081d6097526b6035de5ca202e7332f45b
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/flood
-    icon: https://raw.githubusercontent.com/jesec/flood/master/flood.svg
-    keywords:
-    - flood
-    - rtorrent
-    - qbittorrent
-    - transmission
-    maintainers:
-    - email: jeff@billimek.com
-      name: billimek
-    name: flood
-    sources:
-    - https://github.com/jesec/flood
-    - https://hub.docker.com/r/jesec/flood
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/flood-1.3.0/flood-1.3.0.tgz
-    version: 1.3.0
-  - apiVersion: v2
-    appVersion: 4.1.1
     created: "2020-11-26T00:41:54.214957067Z"
     dependencies:
     - name: common
@@ -2494,6 +2468,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/flood-1.0.0/flood-1.0.0.tgz
     version: 1.0.0
   freshrss:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2020-11-26T14:03:15.35121746Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    description: FreshRSS is a self-hosted RSS feed aggregator
+    digest: 2d0b9e6fe5ffbb2082e54430b530bb0b76f055ec743e84ce34eec789b72c6655
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/freshrss
+    icon: https://github.com/FreshRSS/FreshRSS/blob/master/docs/img/FreshRSS-logo.png?raw=true
+    keywords:
+    - freshrss
+    - rss
+    maintainers:
+    - email: nathan@nathanpawelek.com
+      name: npawelek
+    name: freshrss
+    sources:
+    - https://github.com/FreshRSS/FreshRSS
+    - https://hub.docker.com/r/linuxserver/freshrss
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/freshrss-1.2.0/freshrss-1.2.0.tgz
+    version: 1.2.0
   - apiVersion: v2
     appVersion: 1.17.0
     created: "2020-11-26T00:41:54.526533108Z"
