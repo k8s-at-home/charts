@@ -137,6 +137,31 @@ entries:
   alertmanager-bot:
   - apiVersion: v2
     appVersion: 0.4.2
+    created: "2020-11-26T13:51:44.836823516Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    description: Bot for Prometheus Alertmanager
+    digest: cb95525240e321373c097b0835470745873da94decee79b02853f637aa43cf7b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/alertmanager-bot
+    keywords:
+    - alertmanager
+    - telegram
+    - bot
+    - alerting
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: alertmanager-bot
+    sources:
+    - https://hub.docker.com/r/metalmatze/alertmanager-bot
+    - https://github.com/metalmatze/alertmanager-bot
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/alertmanager-bot-1.2.0/alertmanager-bot-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: 0.4.2
     created: "2020-11-26T00:41:52.763246749Z"
     dependencies:
     - name: common
