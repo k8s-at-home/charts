@@ -1553,31 +1553,6 @@ entries:
   couchpotato:
   - apiVersion: v2
     appVersion: latest
-    created: "2020-11-26T13:56:54.496998801Z"
-    dependencies:
-    - name: common
-      repository: https://k8s-at-home.com/charts/
-      version: 1.7.0
-    description: CouchPotato (CP) is an automatic NZB and torrent downloader.
-    digest: 8abf9e630b94d88e6eb832e029c85916dc55e9301a57afea2c9e1d3695d2acb8
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/couchpotato
-    icon: https://github.com/CouchPotato/CouchPotatoServer/raw/master/couchpotato/static/images/icons/android.png
-    keywords:
-    - couchpotato
-    - usenet
-    - bittorrent
-    maintainers:
-    - email: jeff@billimek.com
-      name: billimek
-    name: couchpotato
-    sources:
-    - https://hub.docker.com/r/linuxserver/couchpotato/
-    - https://github.com/CouchPotato/CouchPotatoServer/
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/couchpotato-3.3.0/couchpotato-3.3.0.tgz
-    version: 3.3.0
-  - apiVersion: v2
-    appVersion: latest
     created: "2020-11-26T00:41:53.354343916Z"
     dependencies:
     - name: common
@@ -1782,6 +1757,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/couchpotato-1.0.0/couchpotato-1.0.0.tgz
     version: 1.0.0
   dashmachine:
+  - apiVersion: v2
+    appVersion: v0.5-4
+    created: "2020-11-26T13:57:01.565312051Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    description: DashMachine is another web application bookmark dashboard, with fun features.
+    digest: 352f406634352d9b427ec1668764899550ab53155ac168c7da7d59a9fb70a183
+    home: https://github.com/rmountjoy92/DashMachine
+    icon: https://github.com/rmountjoy92/DashMachine/raw/master/dashmachine/static/images/logo/logo.png
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: dashmachine
+    sources:
+    - https://github.com/rmountjoy92/DashMachine
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dashmachine-2.2.0/dashmachine-2.2.0.tgz
+    version: 2.2.0
   - apiVersion: v2
     appVersion: v0.5-4
     created: "2020-11-26T00:41:53.628859064Z"
