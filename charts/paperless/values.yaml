@@ -1,0 +1,75 @@
+# Default values for Paperless.
+
+image:
+  repository: thepaperlessproject/paperless
+  pullPolicy: IfNotPresent
+  tag: latest
+  args: "['gunicorn', '-b', '0.0.0.0:8000']"
+
+strategy:
+  type: Recreate
+
+# See the following files for supported environment variables
+# https://github.com/the-paperless-project/paperless/blob/master/docker-compose.env.example
+# https://github.com/the-paperless-project/paperless/blob/master/paperless.conf.example
+# Be sure to set PAPERLESS_OCR_LANGUAGES as a minimum (See https://github.com/the-paperless-project/paperless/blob/master/docker-compose.yml.example)
+env: {}
+  # TZ: Europe/London
+  # PAPERLESS_OCR_LANGUAGES: eng
+  # PAPERLESS_FORGIVING_OCR: true
+  # PAPERLESS_DISABLE_LOGIN: true
+  # PAPERLESS_INLINE_DOC: true
+  # PAPERLESS_OCR_THREADS:
+  # PAPERLESS_CONVERT_DENSITY:
+
+service:
+  port:
+    port: 8000
+
+persistence:
+  data:
+    enabled: true
+    mountPath: /usr/src/paperless/data
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    skipuninstall: true
+  media:
+    enabled: true
+    mountPath: /usr/src/paperless/media
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    skipuninstall: true
+  consume:
+    enabled: true
+    mountPath: /consume
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    skipuninstall: true
+  export:
+    enabled: true
+    mountPath: /export
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    skipuninstall: true
+
+additionalContainers:
+  - name: consumer
+    image: thepaperlessproject/paperless
+    imagePullPolicy: IfNotPresent
+    args: ['document_consumer']
+    volumeMounts:
+    - mountPath: /usr/src/paperless/data
+      name: data
+    - mountPath: /usr/src/paperless/media
+      name: media
+    - mountPath: /consume
+      name: consume
+    - mountPath: /export
+      name: export
+
+ingress:
+  enabled: false
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
