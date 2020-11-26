@@ -12,6 +12,9 @@ strategy:
   ## DaemonSets ignore this
   type: RollingUpdate
 
+# Override the default command for the mainContainer image
+args: []
+
 # Set annotations on the pod
 podAnnotations: {}
 
