@@ -4509,6 +4509,31 @@ entries:
   jellyfin:
   - apiVersion: v2
     appVersion: 10.6.4
+    created: "2020-11-26T14:29:43.711469426Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    description: Jellyfin is a Free Software Media System
+    digest: 87be9cd36673dd7d875ac8839154f131f90bb2d7371f8a8b9f1c7f6983f56b71
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/Jellyfin
+    icon: https://github.com/jellyfin/jellyfin-ux/blob/master/branding/SVG/icon-solid-black.svg
+    keywords:
+    - jellyfin
+    - plex
+    - emby
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jellyfin
+    sources:
+    - https://hub.docker.com/r/linuxserver/Jellyfin/
+    - https://github.com/jellyfin/jellyfin
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jellyfin-3.3.0/jellyfin-3.3.0.tgz
+    version: 3.3.0
+  - apiVersion: v2
+    appVersion: 10.6.4
     created: "2020-11-26T00:41:55.399301889Z"
     dependencies:
     - name: common
