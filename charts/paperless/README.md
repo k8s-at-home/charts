@@ -46,5 +46,5 @@ helm install paperless k8s-at-home/paperless --values values.yaml
 ## Backup & Restore
 A more elegant solution will be added, but until then your document can be exported and re-imported by running the following commands directly on the pod. [More info](https://paperless.readthedocs.io/en/latest/migrating.html).
 
-Backup: `/usr/src/paperless/src/manage.py document_exporter /path/to/somewhere/`
+Backup: `/usr/src/paperless/src/manage.py document_exporter /path/to/somewhere/`  
 Restore: `/usr/src/paperless/src/manage.py document_importer /path/to/somewhere/`
