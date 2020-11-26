@@ -4,7 +4,8 @@ image:
   repository: thepaperlessproject/paperless
   pullPolicy: IfNotPresent
   tag: latest
-  args: "['gunicorn', '-b', '0.0.0.0:8000']"
+
+args: "['gunicorn', '-b', '0.0.0.0:8000']"
 
 strategy:
   type: Recreate
@@ -12,10 +13,9 @@ strategy:
 # See the following files for supported environment variables
 # https://github.com/the-paperless-project/paperless/blob/master/docker-compose.env.example
 # https://github.com/the-paperless-project/paperless/blob/master/paperless.conf.example
-# Be sure to set PAPERLESS_OCR_LANGUAGES as a minimum (See https://github.com/the-paperless-project/paperless/blob/master/docker-compose.yml.example)
-env: {}
+env:
   # TZ: Europe/London
-  # PAPERLESS_OCR_LANGUAGES: eng
+  PAPERLESS_OCR_LANGUAGES: eng
   # PAPERLESS_FORGIVING_OCR: true
   # PAPERLESS_DISABLE_LOGIN: true
   # PAPERLESS_INLINE_DOC: true
@@ -28,29 +28,17 @@ service:
 
 persistence:
   data:
-    enabled: true
+    enabled: false
     mountPath: /usr/src/paperless/data
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    skipuninstall: true
   media:
-    enabled: true
+    enabled: false
     mountPath: /usr/src/paperless/media
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    skipuninstall: true
   consume:
-    enabled: true
+    enabled: false
     mountPath: /consume
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    skipuninstall: true
   export:
-    enabled: true
+    enabled: false
     mountPath: /export
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    skipuninstall: true
 
 additionalContainers:
   - name: consumer
@@ -67,9 +55,3 @@ additionalContainers:
     - mountPath: /export
       name: export
 
-ingress:
-  enabled: false
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
