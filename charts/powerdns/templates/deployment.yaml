@@ -127,13 +127,13 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", "a=0;while [ $a -lt 200 ];do sleep 5;a=$[a+1];echo 'stage: '$a;if nc -vz {{ .Values.powerdns.mysql.host }} 3306;then (! pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null) && pdnsutil create-zone {{ .Values.powerdns.domain }};echo 'End Stage';a=200;fi;done"]
+                command: ["/bin/sh", "-c", "a=0;while [ $a -lt 200 ];do sleep 5;a=$[a+1];echo 'stage: '$a;if nc -vz {{- printf "%s-%s" .Release.Name "mariadb"}} 3306;then (! pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null) && pdnsutil create-zone {{ .Values.powerdns.domain }};echo 'End Stage';a=200;fi;done"]
 {{ end }}
 {{- if .Values.postgresql.enabled }}
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", "a=0;while [ $a -lt 200 ];do sleep 5;a=$[a+1];echo 'stage: '$a;if nc -vz {{ .Values.powerdns.postgres.host }} 5432;then (! pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null) && pdnsutil create-zone {{ .Values.powerdns.domain }};echo 'End Stage';a=200;fi;done"]
+                command: ["/bin/sh", "-c", "a=0;while [ $a -lt 200 ];do sleep 5;a=$[a+1];echo 'stage: '$a;if nc -vz {{- printf "%s-%s" .Release.Name "postgresql"}} 5432;then (! pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null) && pdnsutil create-zone {{ .Values.powerdns.domain }};echo 'End Stage';a=200;fi;done"]
 {{ end }}
           resources:
 {{- toYaml .Values.resources | nindent 12 }}
