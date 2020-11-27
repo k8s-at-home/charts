@@ -94,32 +94,26 @@ spec:
             - name: dns-udp
               containerPort: 53
               protocol: UDP
-            - name: dns-webserver
-              containerPort: 8081
-              protocol: TCP
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
-            httpGet:
-              path: /
-              port: dns-webserver
+            tcpSocket:
+              port: dns-tcp
             initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
             timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
           {{ end }}
           {{- if .Values.probes.readiness.enabled }}
           readinessProbe:
-            httpGet:
-              path: /
-              port: dns-webserver
+            tcpSocket:
+              port: dns-tcp
             initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
             timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
           {{ end }}
           {{- if .Values.probes.startup.enabled }}
           startupProbe:
-            httpGet:
-              path: /
-              port: dns-webserver
+            tcpSocket:
+              port: dns-tcp
             failureThreshold: {{ .Values.probes.startup.failureThreshold }}
             periodSeconds: {{ .Values.probes.startup.periodSeconds }}
           {{ end }}
