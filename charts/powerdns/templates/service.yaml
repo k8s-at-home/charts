@@ -58,24 +58,3 @@ spec:
     app.kubernetes.io/name: {{ include "powerdns.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 {{ if (.Values.powerdns.api_key) }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "powerdns.fullname" . }}-webserver
-{{- if .Values.service.annotations }}
-  annotations:
-{{ toYaml .Values.service.annotations | indent 4 }}
-{{- end }}
-  labels:
-{{ include "powerdns.labels" . | indent 4 }}
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8081
-      targetPort: dns-webserver
-      protocol: TCP
-  selector:
-    app.kubernetes.io/name: {{ include "powerdns.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
