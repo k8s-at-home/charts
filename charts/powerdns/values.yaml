@@ -74,7 +74,7 @@ powerdns:
 # Enabled mariadb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
 mariadb:
-  enabled: true
+  enabled: false
   db:
     name: pdns
     user: pdns
@@ -90,7 +90,7 @@ mariadb:
 # Enabled postgres
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
-  enabled: false
+  enabled: true
   postgresqlUsername: pdns
   postgresqlPassword: pdnspass
   postgresqlPostgresPassword: pdnsadminpass
