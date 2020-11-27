@@ -42,7 +42,7 @@ persistence:
 
 additionalContainers:
   - name: consumer
-    image: thepaperlessproject/paperless
+    image: thepaperlessproject/paperless:latest
     imagePullPolicy: IfNotPresent
     args: ['document_consumer']
     volumeMounts:
