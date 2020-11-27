@@ -369,11 +369,9 @@ mariadb:
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
   enabled: false
-  global:
-    postgresql:
-      postgresqlUsername: home-assistant
-      postgresqlPassword: home-assistant-pass
-      postgresqlDatabase: home-assistant
+  postgresqlUsername: home-assistant
+  postgresqlPassword: home-assistant-pass
+  postgresqlDatabase: home-assistant
   persistence:
     enabled: false
     # storageClass: ""

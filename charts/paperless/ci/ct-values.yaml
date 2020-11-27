@@ -1,0 +1,17 @@
+persistence:
+  data:
+    enabled: true
+    emptyDir: true
+    mountPath: /usr/src/paperless/data
+  media:
+    enabled: true
+    emptyDir: true
+    mountPath: /usr/src/paperless/media
+  consume:
+    enabled: true
+    emptyDir: true
+    mountPath: /consume
+  export:
+    enabled: true
+    emptyDir: true
+    mountPath: /export
