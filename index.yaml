@@ -8877,6 +8877,31 @@ entries:
   powerdns:
   - apiVersion: v2
     appVersion: v4.3.0
+    created: "2020-11-28T23:37:46.382523219Z"
+    dependencies:
+    - condition: postgres.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.1.1
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 7.10.4
+    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
+    digest: 546ebeee5c869a39f82649eafffa7462b45cad15fabb42cad12676418d9acf9f
+    home: https://www.powerdns.com/
+    icon: https://www.powerdns.com/img/pDNS_logo_positive_claim_down_screen_xsmall.png
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: powerdns
+    sources:
+    - http://www.github.com/PowerDNS/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/powerdns-2.4.0/powerdns-2.4.0.tgz
+    version: 2.4.0
+  - apiVersion: v2
+    appVersion: v4.3.0
     created: "2020-11-28T21:44:43.341944243Z"
     dependencies:
     - condition: postgres.enabled
