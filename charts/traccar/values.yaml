@@ -1,0 +1,39 @@
+# Default values for Ombi.
+
+image:
+  repository: traccar/traccar
+  pullPolicy: IfNotPresent
+  tag: 4.11
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8082
+
+# See more environment varaibles in the traccar documentation
+# https://www.traccar.org/configuration-file/
+# Note: replace . with _ and uppercase the key name
+env:
+  CONFIG_USE_ENVIRONMENT_VARIABLES: true
+  LOGGER_CONSOLE: true
+
+persistence:
+  data:
+    enabled: false
+    emptyDir: false
+    mountPath: /opt/traccar/data
+
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: traccar
+    username: traccar
+    password: traccar
+  primary:
+    persistence:
+      enabled: false
