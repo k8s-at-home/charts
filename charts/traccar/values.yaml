@@ -25,6 +25,10 @@ persistence:
     emptyDir: false
     mountPath: /opt/traccar/data
 
+probes:
+  startup:
+    enabled: true
+
 # Enabled mariadb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
 mariadb:
