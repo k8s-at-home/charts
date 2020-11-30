@@ -47,15 +47,15 @@ env: {}
   # UMASK: 0000
 
 persistence:
-  storage:
+  config:
     enabled: false
     emptyDir: false
     mountPath: /photoprism/storage
 
-  originals:
-    enabled: false
-    emptyDir: false
-    mountPath: /photoprism/originals
+  # originals:
+  #   enabled: false
+  #   emptyDir: false
+  #   mountPath: /photoprism/originals
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
