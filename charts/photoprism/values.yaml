@@ -1,0 +1,24 @@
+# Default values for PhotoPrism.
+
+image:
+  repository: photoprism/photoprism
+  pullPolicy: IfNotPresent
+  tag: "20201122"
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 2342
+
+env: {}
+  # PHOTOPRISM_SITE_URL: https://photos.mydomain.com
+  # PHOTOPRISM_SITE_TITLE: My Photos
+  # PHOTOPRISM_SITE_CAPTION: My Awesome Photos!
+  # PHOTOPRISM_SITE_DESCRIPTION: This Page hosts pictures for my friends and family!
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
