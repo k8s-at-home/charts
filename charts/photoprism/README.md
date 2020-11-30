@@ -4,6 +4,8 @@ This is a helm chart for [PhotoPrism](https://github.com/photoprism/photoprism).
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
+This chart requires heavy customization of the `env: {}` block within values.yaml to configure the service to operate properly. See the PhotoPrism [documentation](https://docs.photoprism.org/getting-started/config-options/) for available config options.
+
 ## TL;DR;
 
 ```shell
