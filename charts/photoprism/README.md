@@ -10,7 +10,7 @@ This chart requires heavy customization of the `env: {}` block within values.yam
 
 ```shell
 $ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/sonarr
+$ helm install k8s-at-home/photoprism
 ```
 
 ## Installing the Chart
@@ -40,12 +40,12 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install photoprism \
   --set env.TZ="America/New_York" \
-    k8s-at-home/sonarr
+    k8s-at-home/photoprism
 ```
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
 chart. For example,
 ```console
-helm install sonarr k8s-at-home/photoprism --values values.yaml 
+helm install photoprism k8s-at-home/photoprism --values values.yaml 
 ```
 
 ```yaml
@@ -67,14 +67,3 @@ it may be because you uninstalled the chart with `skipuninstall` enabled, you ne
 ## Upgrading an existing Release to a new major version
 
 A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
-
-### Upgrading from 6.x.x to 7.x.x
-
-Due to migrating to a centralized common library some values in `values.yaml` have changed.
-
-Examples:
-
-* `service.port` has been moved to `service.port.port`.
-* `persistence.type` has been moved to `controllerType`.
-
-Refer to the library values.yaml for more configuration options.
