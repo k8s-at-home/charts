@@ -12,7 +12,9 @@ service:
   port:
     port: 2342
 
-env: {}
+env:
+  PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+  PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
   ## See other config options from PhotoPrism documentation: https://docs.photoprism.org/getting-started/config-options/
   # PHOTOPRISM_ADMIN_PASSWORD: "please-change"     # Initial admin password: PLEASE CHANGE!
   # PHOTOPRISM_DEBUG: "false"                      # Run in debug mode (shows additional log messages)
