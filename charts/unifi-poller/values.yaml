@@ -12,9 +12,15 @@ service:
   port:
     port: 9130
 
-args:
-- "-c"
-- "/etc/unifi-poller/up.yaml"
+# unifi-poller configuration settings
+# https://github.com/unifi-poller/unifi-poller/wiki/Configuration
+env: {}
+  # TZ: UTC
+  UP_UNIFI_DEFAULT_URL: "https://127.0.0.1:8443"
+  UP_UNIFI_DEFAULT_USER: "unifipoller"
+  # UP_UNIFI_DEFAULT_PASS: ""
+  UP_PROMETHEUS_DISABLE: true
+  UP_INFLUXDB_DISABLE: true
 
 # enable a prometheus-operator servicemonitor
 prometheus:
@@ -22,93 +28,3 @@ prometheus:
     enabled: false
     interval: 1m
     additionalLabels: {}
-
-# unifi-poller configuration settings
-# https://github.com/unifi-poller/unifi-poller/wiki/Configuration
-config:
-  poller:
-    # config.poller.debug -- Turns on line numbers, microsecond logging, and a per-device log.
-    # The default is false, but I personally leave this on at home (four devices).
-    # This may be noisy if you have a lot of devices. It adds one line per device.
-    debug: false
-    # config.poller.quiet -- Turns off per-interval logs. Only startup and error logs will be emitted.
-    # Recommend enabling debug with this setting for better error logging.
-    quiet: false
-    # config.poller.plugins -- Load dynamic plugins. Advanced use; only sample mysql plugin provided by default.
-    plugins: []
-
-  #### OUTPUTS
-  prometheus:
-    # config.prometheus.disable -- Disable prometheus output
-    disable: false
-    # config.prometheus.http_listen -- This controls on which ip and port /metrics is exported when mode is "prometheus".
-    # This has no effect in other modes. Must contain a colon and port.
-    http_listen: "0.0.0.0:9130"
-    # config.prometheus.requests --
-    report_errors: false
-
-  influxdb:
-    # config.influxdb.disable -- Disable prometheus output
-    disable: true
-    # config.influxdb.interval --
-    interval: "30s"
-    # config.influxdb.url -- InfluxDB does not require auth by default, so the user/password are probably unimportant.
-    url: "http://127.0.0.1:8086"
-    # config.influxdb.user --
-    user: "unifipoller"
-    # config.influxdb.pass --
-    pass: "unifipoller"
-    # config.influxdb.pass -- Be sure to create this database.
-    db: "unifi"
-    # config.influxdb.verify_ssl --  The UniFi Controller only updates traffic stats about every 30 seconds.
-    # Setting this to something lower may lead to "zeros" in your data.
-    # If you're getting zeros now, set this to "1m"
-    verify_ssl: false
-
-  #### Inputs
-  unifi:
-    # config.unifi.dynamic -- Setting this to true and providing default credentials allows you to skip
-    # configuring controllers in this config file. Instead you configure them in
-    # your prometheus.yml config. Prometheus then sends the controller URL to
-    # unifi-poller when it performs the scrape. This is useful if you have many,
-    # or changing controllers. Most people can leave this off. See wiki for more.
-    dynamic: false
-    # config.unifi.defaults -- The following section contains the default credentials/configuration for any
-    # dynamic controller (see above section), or the primary controller if you do not
-    # provide one and dynamic is disabled. In other words, you can just add your
-    # controller here and delete the following section.
-    defaults:
-      # config.unifi.defaults.role -- Friendly name used in dashboards. Uses URL if left empty; which is fine.
-      # Avoid changing this later because it will live forever in your database.
-      # Multiple controllers may share a role. This allows grouping during scrapes.
-      role: "main controller"
-      # config.unifi.defaults.role -- Username to talk to unifi
-      user: "unifipoller"
-      # config.unifi.defaults.pass -- Password to talk to unifi
-      pass: "unifipoller"
-      # config.unifi.defaults.url -- Url to talk to unifi
-      url: "https://127.0.0.1:8443"
-      # config.unifi.defaults.sites -- If the controller has more than one site, specify which sites to poll here.
-      # Set this to ["default"] to poll only the first site on the controller.
-      # A setting of ["all"] will poll all sites; this works if you only have 1 site too.
-      sites:
-        - all
-      # config.unifi.defaults.verify_ssl -- If your UniFi controller has a valid SSL certificate (like lets encrypt),
-      # you can enable this option to validate it. Otherwise, any SSL certificate is
-      # valid. If you don't know if you have a valid SSL cert, then you don't have one
-      verify_ssl: false
-      # config.unifi.defaults.save_ids -- Enable collection of Intrusion Detection System Data (InfluxDB only).
-      # Only useful if IDS or IPS are enabled on one of the sites.
-      save_ids: false
-      # config.unifi.defaults.save_dpi -- Enable collection of Deep Packet Inspection data. This data breaks down traffic
-      # types for each client and site, it powers a dedicated DPI dashboard.
-      # Enabling this adds roughly 150 data points per client.  That's 6000 metrics for
-      # 40 clients.  This adds a little bit of poller run time per interval and causes
-      # more API requests to your controller(s). Don't let these "cons" sway you:
-      # it's cool data. Please provide feedback on your experience with this feature.
-      save_dpi: false
-      # config.unifi.defaults.save_sites -- Enable collection of site data. This data powers the Network Sites dashboard.
-      # It's not valuable to everyone and setting this to false will save resources.
-      save_sites: true
-    # config.unifi.controllers -- Repeat any controllers like default above
-    controllers: []
