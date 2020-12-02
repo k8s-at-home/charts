@@ -18,7 +18,7 @@ dependencies:
   - name: common
     repository: https://k8s-at-home.com/charts/
     version: 1.7.0
-- name: influxdb
-  version: 1.0.0
-  repository: https://charts.bitnami.com/bitnami
-  condition: influxdb.enabled
+  - name: influxdb
+    version: 1.0.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: influxdb.enabled
