@@ -28,3 +28,15 @@ prometheus:
     enabled: false
     interval: 1m
     additionalLabels: {}
+
+# Enable influxdb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/influxdb
+influxdb:
+  enabled: false
+  architecture: standalone
+  database: unifi_poller
+  authEnabled: false
+  persistence:
+    enabled: false
+    # storageClass: ""
+    # size: 8Gi
