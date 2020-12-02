@@ -12,6 +12,10 @@ service:
   port:
     port: 9130
 
+args:
+- "-c"
+- "/etc/unifi-poller/up.yaml"
+
 # enable a prometheus-operator servicemonitor
 prometheus:
   serviceMonitor:

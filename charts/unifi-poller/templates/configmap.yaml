@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "common.names.fullname" . }}-settings
+  name: {{ template "common.names.fullname" . }}-conf
   labels:
     {{- include "common.labels" . | nindent 4 }}
 data:
-  unifi-poller.yaml: |
+  up.yaml: |
   {{- with .Values.config }}
     {{- toYaml . | nindent 4 }}
   {{- end }}

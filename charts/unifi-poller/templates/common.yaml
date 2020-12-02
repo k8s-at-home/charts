@@ -3,9 +3,9 @@
 
 {{/* Append the configMap to the additionalVolumes */}}
 {{- define "unifi-poller.configmap.volume" -}}
-name: unifi-poller-settings
+name: unifi-poller-conf
 configMap:
-  name: {{ template "common.names.fullname" . }}-settings
+  name: {{ template "common.names.fullname" . }}-conf
 {{- end -}}
 
 {{- $volume := include "unifi-poller.configmap.volume" . | fromYaml -}}
@@ -16,9 +16,9 @@ configMap:
 
 {{/* Append the configMap volume to the additionalVolumeMounts */}}
 {{- define "unifi-poller.configmap.volumeMount" -}}
-name: unifi-poller-settings
-mountPath: /config/unifi-poller.yaml
-subPath: unifi-poller.yaml
+name: unifi-poller-conf
+mountPath: /etc/unifi-poller/up.yaml
+subPath: up.yaml
 {{- end -}}
 
 {{- $volumeMount := include "unifi-poller.configmap.volumeMount" . | fromYaml -}}
