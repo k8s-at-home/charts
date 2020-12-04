@@ -1,0 +1,44 @@
+# Default values for PhotoPrism.
+
+image:
+  repository: monica
+  pullPolicy: IfNotPresent
+  tag: 2.19.1-apache
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 80
+
+env:
+  # See the Monica documentation for all available options for environment variables: https://raw.githubusercontent.com/monicahq/monica/master/.env.example
+  APP_ENV: production
+  APP_KEY: pG335ncsoY7z18CLdpXOp0JXGYKMtFa1 # Generate a different key with `pwgen -s 32 1`
+  APP_URL: https://monica.k8s-at-home.com
+  DB_HOST: monica-mariadb
+  DB_DATABASE: monica
+  DB_USERNAME: monica
+  DB_PASSWORD: monicapass
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /var/www/html/storage
+
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: true
+  architecture: standalone
+  auth:
+    database: monica
+    username: monica
+    password: monicapass
+    rootPassword: monicarootpass
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
