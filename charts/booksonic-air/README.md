@@ -15,6 +15,12 @@ $ helm repo add k8s-at-home https://k8s-at-home.com/charts/
 $ helm install k8s-at-home/booksonic-air
 ```
 
+## Storage
+
+If you plan to use networked storage to store your media or config for Booksonic, (NFS, etc.) please take a look at the
+Fast Access option in the Booksonic settings. This will help improve the perfomance of the application
+by not constantly monitoring media folders. 
+
 ## Installing the Chart
 
 To install the chart with the release name `my-release`:
