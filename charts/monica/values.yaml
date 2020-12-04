@@ -15,7 +15,8 @@ service:
 env:
   # See the Monica documentation for all available options for environment variables: https://raw.githubusercontent.com/monicahq/monica/master/.env.example
   APP_ENV: production
-  APP_KEY: pG335ncsoY7z18CLdpXOp0JXGYKMtFa1 # Generate a different key with `pwgen -s 32 1`
+  # Generate a different APP_KEY with `pwgen -s 32 1`
+  APP_KEY: pG335ncsoY7z18CLdpXOp0JXGYKMtFa1
   APP_URL: https://monica.k8s-at-home.com
   DB_HOST: monica-mariadb
   DB_DATABASE: monica
