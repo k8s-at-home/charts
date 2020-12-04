@@ -1,0 +1,17 @@
+env:
+  APP_ENV: production
+  APP_KEY: pG335ncsoY7z18CLdpXOp0JXGYKMtFa1
+  APP_URL: https://crm.k8s-at-home.com
+  DB_HOST: monica-mariadb
+  DB_DATABASE: monica
+  DB_USERNAME: monica
+  DB_PASSWORD: monicapass
+
+ingress:
+  enabled: true
+
+fullnameOverride: monica
+
+mariadb:
+  enabled: true
+  fullnameOverride: monica-mariadb
