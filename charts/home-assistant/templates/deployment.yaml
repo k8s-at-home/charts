@@ -338,7 +338,14 @@ spec:
             - name: appdaemon
               containerPort: {{ .Values.appdaemon.service.port }}
               protocol: TCP
+          {{- with .Values.appdaemon.envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.env }}
           env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
             - name: HA_URL
               value: "http://localhost:{{ .Values.service.port }}"
             {{- if .Values.appdaemon.ingress.enabled }}
@@ -365,10 +372,6 @@ spec:
             - name: GIT_COMMITTER_EMAIL
               value: {{ .Values.git.user.email }}
             {{ end }}
-            {{- range $key, $value := .Values.vscode.extraEnv }}
-            - name: {{ $key }}
-              value: {{ $value | quote }}
-            {{- end }}
           volumeMounts:
           - mountPath: /ha-conf
             name: config
