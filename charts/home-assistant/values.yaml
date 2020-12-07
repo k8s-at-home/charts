@@ -313,10 +313,26 @@ appdaemon:
   ## Home Assistant API token
   # haToken:
 
-  ## Additional hass-vscode container environment variable
-  ## For instance to add a http_proxy
-  ##
-  extraEnv: {}
+  # Environment variables to be passed to appdaemon comtainer
+  env: []
+  # - name: SOME_VAR
+  #   value: some-var-value
+  # - name: SOME_VAR_FROM_CONFIG_MAP
+  #   valueFrom:
+  #     configMapRef:
+  #       name: configmap-name
+  #       key: config-key
+  # - name: SOME_SECRET
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: secret-name
+  #       key: secret-key
+
+  envFrom: []
+  # - configMapRef:
+  #     name: config-map-name
+  # - secretRef:
+  #     name: secret-name
 
   # If you use an existingClaim for the config volume then it is sometimes useful to specify a subPath
   # within the volume to mount instead of mounting the root.
