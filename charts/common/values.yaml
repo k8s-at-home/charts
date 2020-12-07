@@ -31,6 +31,13 @@ serviceAccount:
   name: ""
 
 env: {}
+# TZ: UTC
+
+envFrom: []
+# - configMapRef:
+#     name: config-map-name
+# - secretRef:
+#     name: secret-name
 
 # When using hostNetwork make sure you set dnsPolicy to ClusterFirstWithHostNet
 hostNetwork: false
