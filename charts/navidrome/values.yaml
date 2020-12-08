@@ -1,4 +1,4 @@
-# Default values for FreshRSS.
+# Default values for Navidrome.
 
 image:
   repository: deluan/navidrome
@@ -13,11 +13,11 @@ service:
     port: 4533
 
 env:
-   ND_SCANINTERVAL: 15m
-   ND_LOGLEVEL: info
-   ND_SESSIONTIMEOUT: 24h
-   ND_ENABLETRANSCODINGCONFIG: "true"
-   ND_MUSICFOLDER: /music
+  ND_SCANINTERVAL: 15m
+  ND_LOGLEVEL: info
+  ND_SESSIONTIMEOUT: 24h
+  ND_ENABLETRANSCODINGCONFIG: "true"
+  ND_MUSICFOLDER: /music
 
 persistence:
   config:
@@ -37,7 +37,6 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     # skipuninstall: false
     # existingClaim: ""
-
   music:
     enabled: false
     emptyDir: false
