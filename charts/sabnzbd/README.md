@@ -19,6 +19,13 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/sabnzbd
 ```
 
+**IMPORTANT NOTE:** when installing this chart for the first time you will get the follow message in your browser `Access denied - Hostname verification failed: sabnzbd.org/hostname-check`
+
+You can do one of two things to solve this issue:
+
+1. Update the `sabnzbd.ini` config file to your `ingress` name and/or `loadBalancerIP` to the `host_whitelist` field and restart the pod, or
+2. Forward the service to your local machine with `kubectl port-forward service/sabnzbd -n default 8080:8080` and update the settings in the Sabnzbd Settings UI
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
