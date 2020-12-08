@@ -2,33 +2,20 @@
 Probes selection logic.
 */}}
 {{- define "common.controller.probes" -}}
-{{- if .Values.probes.liveness.enabled -}}
-  {{- include "common.controller.probeTemplate" (dict "context" . "probe" "liveness") | nindent 0 }}
-{{- end }}
-{{- if .Values.probes.readiness.enabled -}}
-  {{- include "common.controller.probeTemplate" (dict "context" . "probe" "readiness") | nindent 0 }}
-{{- end }}
-{{- if .Values.probes.startup.enabled -}}
-  {{- include "common.controller.probeTemplate" (dict "context" . "probe" "startup") | nindent 0  }}
-{{- end }}
-{{- end }}
-
-{{/*
-Probes template definition. Will default to tcpSocket type probe
-*/}}
-{{- define "common.controller.probeTemplate" -}}
-{{- $svcPort := .context.Values.service.port.name -}}
-{{- $probe := get .context.Values.probes .probe -}}
-{{- if and $probe $probe.enabled -}}
-{{ .probe }}Probe:
-{{- if eq $probe.type "custom" -}}
-  {{ $probe.spec | toYaml | nindent 2 }}
-{{- else }}
-  tcpSocket:
-    port: {{ $svcPort }}
-  initialDelaySeconds: {{ $probe.spec.initialDelaySeconds }}
-  failureThreshold: {{ $probe.spec.failureThreshold }}
-  timeoutSeconds: {{ $probe.spec.timeoutSeconds }}
-{{- end }}
+{{- $svcPort := .Values.service.port.name -}}
+{{- range $probeName, $probe := .Values.probes }}
+  {{- if $probe.enabled -}}
+    {{- "" | nindent 0 }}
+    {{- $probeName }}Probe:
+    {{- if $probe.custom -}}
+      {{- $probe.spec | toYaml | nindent 2 }}  
+    {{- else }}
+      {{- "tcpSocket:" | nindent 2 }}
+        {{- printf "port: %v" $svcPort  | nindent 4 }}
+      {{- printf "initialDelaySeconds: %v" $probe.spec.initialDelaySeconds  | nindent 2 }}
+      {{- printf "failureThreshold: %v" $probe.spec.failureThreshold  | nindent 2 }}
+      {{- printf "timeoutSeconds: %v" $probe.spec.timeoutSeconds  | nindent 2 }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 {{- end }}
