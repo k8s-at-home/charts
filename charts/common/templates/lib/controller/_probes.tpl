@@ -1,29 +1,34 @@
 {{/*
-Liveness/readiness/startup probes based on tcpSocket checks.
+Probes selection logic.
 */}}
-{{- define "common.controller.probes.tcpSocket" -}}
+{{- define "common.controller.probes" -}}
 {{- if .Values.probes.liveness.enabled -}}
-livenessProbe:
-  tcpSocket:
-    port: {{ .Values.service.port.name }}
-  initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
-  failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
-  timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+  {{- include "common.controller.probeTemplate" (dict "context" . "probe" "liveness") | nindent 0 }}
 {{- end }}
-{{- if .Values.probes.readiness.enabled }}
-readinessProbe:
-  tcpSocket:
-    port: {{ .Values.service.port.name }}
-  initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
-  failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-  timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
+{{- if .Values.probes.readiness.enabled -}}
+  {{- include "common.controller.probeTemplate" (dict "context" . "probe" "readiness") | nindent 0 }}
 {{- end }}
-{{- if .Values.probes.startup.enabled }}
-startupProbe:
+{{- if .Values.probes.startup.enabled -}}
+  {{- include "common.controller.probeTemplate" (dict "context" . "probe" "startup") | nindent 0  }}
+{{- end }}
+{{- end }}
+
+{{/*
+Probes template definition. Will default to tcpSocket type probe
+*/}}
+{{- define "common.controller.probeTemplate" -}}
+{{- $svcPort := .context.Values.service.port.name -}}
+{{- $probe := get .context.Values.probes .probe -}}
+{{- if and $probe $probe.enabled -}}
+{{ .probe }}Probe:
+{{- if eq $probe.type "custom" -}}
+  {{ $probe.spec | toYaml | nindent 2 }}
+{{- else }}
   tcpSocket:
-    port: {{ .Values.service.port.name }}
-  initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
-  failureThreshold: {{ .Values.probes.startup.failureThreshold }}
-  periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+    port: {{ $svcPort }}
+  initialDelaySeconds: {{ $probe.spec.initialDelaySeconds }}
+  failureThreshold: {{ $probe.spec.failureThreshold }}
+  timeoutSeconds: {{ $probe.spec.timeoutSeconds }}
+{{- end }}
 {{- end }}
 {{- end }}

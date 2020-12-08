@@ -34,9 +34,7 @@ The main container included in the controller.
   {{- if .Values.additionalVolumeMounts }}
     {{- toYaml .Values.additionalVolumeMounts | nindent 2 }}
   {{- end }}
-
-  {{- include "common.controller.probes.tcpSocket" . | nindent 2 }}
-
+  {{- include "common.controller.probes" . | nindent 2 }}
   {{- with .Values.resources }}
   resources:
     {{- toYaml . | nindent 4 }}
