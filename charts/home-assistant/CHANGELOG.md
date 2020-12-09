@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.0.0]
 
+### Changed
+
+- Bumped bitnami/mariadb to 9.1.2 in chart deps
+
 ### Removed
 
 - Appdaemon sidecar was removed and replaced by it's own chart at [charts/appdaemon](https://github.com/k8s-at-home/charts/tree/master/charts/appdaemon)
@@ -44,7 +48,7 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
-[4.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.1.0/charts/home-assistant
+[4.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-4.0.0/charts/home-assistant
 
 [3.1.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.1.0/charts/home-assistant
 
