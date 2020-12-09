@@ -1,9 +1,11 @@
 # Default values for Appdaemon.
 
+# Use our own image at https://github.com/k8s-at-home/container-images/tree/main/appdaemon
+# until https://github.com/AppDaemon/appdaemon/pull/1002 is merged
 image:
-  repository: acockburn/appdaemon
+  repository: k8s-at-home/appdaemon
   pullPolicy: IfNotPresent
-  tag: 3.0.5
+  tag: 4.0.5
 
 strategy:
   type: Recreate
@@ -25,6 +27,10 @@ service:
 # Environment variables that can be configure can be seen at
 # https://appdaemon.readthedocs.io/en/latest/DOCKER_TUTORIAL.html
 env: {}
+  # TZ:
+  # LAT:
+  # LONG:
+  # ELEVATION:
   # HA_URL:
   # DASH_URL:
   # TOKEN:
