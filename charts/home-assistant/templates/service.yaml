@@ -48,15 +48,6 @@ spec:
 {{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
       nodePort: {{.Values.service.nodePort}}
 {{ end }}
-{{- if .Values.configurator.enabled }}
-    - name: configurator
-      port: {{ .Values.configurator.service.port }}
-      protocol: TCP
-      targetPort: 3218
-{{ if (and (eq .Values.configurator.service.type "NodePort") (not (empty .Values.configurator.service.nodePort))) }}
-      nodePort: {{.Values.configurator.service.nodePort}}
-{{ end }}
-{{- end }}
 {{- if .Values.vscode.enabled }}
     - name: vscode
       port: {{ .Values.vscode.service.port }}
@@ -64,15 +55,6 @@ spec:
       targetPort: {{ .Values.vscode.service.port }}
 {{ if (and (eq .Values.vscode.service.type "NodePort") (not (empty .Values.vscode.service.nodePort))) }}
       nodePort: {{.Values.vscode.service.nodePort}}
-{{ end }}
-{{- end }}
-{{- if .Values.appdaemon.enabled }}
-    - name: appdaemon
-      port: {{ .Values.appdaemon.service.port }}
-      protocol: TCP
-      targetPort: 5050
-{{ if (and (eq .Values.appdaemon.service.type "NodePort") (not (empty .Values.appdaemon.service.nodePort))) }}
-      nodePort: {{.Values.appdaemon.service.nodePort}}
 {{ end }}
 {{- end }}
 {{- if .Values.service.additionalPorts }}
