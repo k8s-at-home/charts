@@ -210,6 +210,31 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/alertmanager-bot-1.0.0/alertmanager-bot-1.0.0.tgz
     version: 1.0.0
+  appdaemon:
+  - apiVersion: v2
+    appVersion: 4.0.5
+    created: "2020-12-09T20:55:54.54172066Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    description: AppDaemon is a loosely coupled, multi-threaded, sandboxed python execution environment for writing automation apps for various types of Home Automation Software including Home Assistant and MQTT.
+    digest: 782b14c449748b853439d560c9ad4eedf096de2cee78231af72cf8639aef773a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/appdaemon
+    keywords:
+    - appdaemon
+    - home-automation
+    - home-assistant
+    - mqtt
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: appdaemon
+    sources:
+    - https://github.com/AppDaemon/appdaemon
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/appdaemon-1.0.0/appdaemon-1.0.0.tgz
+    version: 1.0.0
   bazarr:
   - apiVersion: v2
     appVersion: v0.9.0.5
@@ -1173,6 +1198,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/booksonic-air-1.0.0/booksonic-air-1.0.0.tgz
     version: 1.0.0
   calibre-web:
+  - apiVersion: v2
+    appVersion: 0.6.9
+    created: "2020-12-09T20:55:54.783054127Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    description: Calibre-Web is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database.
+    digest: 11274da9f7bfbcc1965465f15f13f5869e813244aa5e8f1c73df865fd0bc430c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/calibre-web
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-web-icon.png
+    keywords:
+    - calibre
+    - ebook
+    maintainers:
+    - email: wojoinc@pm.me
+      name: wojoinc
+    name: calibre-web
+    sources:
+    - https://hub.docker.com/r/linuxserver/calibre-web/
+    - https://github.com/janeczku/calibre-web
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/calibre-web-3.0.0/calibre-web-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v2
     appVersion: 0.6.8
     created: "2020-08-31T20:43:37.449151591Z"
