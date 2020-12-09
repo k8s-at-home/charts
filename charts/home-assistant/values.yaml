@@ -30,6 +30,7 @@ probes:
     scheme: HTTP
     failureThreshold: 30
     periodSeconds: 10
+
 service:
   type: ClusterIP
   port: 8123
@@ -157,63 +158,6 @@ hostMounts: []
   # - name: zha
   #   hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_6120245D-if01-port0
 
-configurator:
-  enabled: false
-
-  ## hass-configurator container image
-  ##
-  image:
-    repository: causticlab/hass-configurator-docker
-    tag: 0.3.5-x86_64
-    pullPolicy: IfNotPresent
-
-  ## URL for the home assistant API endpoint
-  # hassApiUrl: http://home-assistant:8123/api/
-  ## home assistant API password
-  # hassApiPassword:
-  ## path where the home assistant configuration is stored
-  basepath: /config
-  ## don't allow switching out of the base path
-  enforceBasepath: true
-  ## username for basic auth for accessing the configurator
-  # username:
-  ## password (sha256-hash) for basic auth for accessing the configurator
-  ## For example "test" would be "{sha256}9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
-  # password:
-
-  ## Additional hass-configurator container environment variable
-  ## For instance to add a http_proxy
-  ##
-  extraEnv: {}
-
-  ingress:
-    enabled: false
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    path: /
-    hosts:
-      - home-assistant.local
-    tls: []
-    #  - secretName: home-assistant-tls
-    #    hosts:
-    #      - home-assistant.local
-
-  service:
-    type: ClusterIP
-    port: 3218
-    annotations: {}
-    labels: {}
-    clusterIP: ""
-    ## List of IP addresses at which the hass-configurator service is available
-    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-    ##
-    externalIPs: []
-    loadBalancerIP: ""
-    loadBalancerSourceRanges: []
-    # externalTrafficPolicy: Local
-    # nodePort: 30000
-
 ## Add support for Prometheus
 # settings has to be enabled in configuration.yaml
 # https://www.home-assistant.io/components/prometheus/
@@ -300,71 +244,37 @@ vscode:
     loadBalancerSourceRanges: []
     # nodePort: 30000
 
-appdaemon:
-  enabled: false
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
 
-  ## code-server container image
-  ##
-  image:
-    repository: acockburn/appdaemon
-    tag: 3.0.5
-    pullPolicy: IfNotPresent
+nodeSelector: {}
 
-  ## Home Assistant API token
-  # haToken:
+tolerations: []
 
-  # Environment variables to be passed to appdaemon container
-  env: []
-  # - name: SOME_VAR
-  #   value: some-var-value
-  # - name: SOME_VAR_FROM_CONFIG_MAP
-  #   valueFrom:
-  #     configMapRef:
-  #       name: configmap-name
-  #       key: config-key
-  # - name: SOME_SECRET
-  #   valueFrom:
-  #     secretKeyRef:
-  #       name: secret-name
-  #       key: secret-key
+affinity: {}
 
-  envFrom: []
-  # - configMapRef:
-  #     name: config-map-name
-  # - secretRef:
-  #     name: secret-name
+podAnnotations: {}
 
-  # If you use an existingClaim for the config volume then it is sometimes useful to specify a subPath
-  # within the volume to mount instead of mounting the root.
-  # This allows several charts to share a common volume. For example for configurations.
-  # configSubPath: configs/hass/appdaemon
+# Any extra volumes to define for the pod
+extraVolumes: []
+  # - name: example-name
+  #   hostPath:
+  #     path: /path/on/host
+  #     type: DirectoryOrCreate
 
-  ingress:
-    enabled: false
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    path: /
-    hosts:
-      - appdaemon.local
-    tls: []
-    #  - secretName: appdaemon-tls
-    #    hosts:
-    #      - appdaemon.local
-
-  service:
-    type: ClusterIP
-    port: 5050
-    annotations: {}
-    labels: {}
-    clusterIP: ""
-    ## List of IP addresses at which the hass-appdaemon service is available
-    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-    ##
-    externalIPs: []
-    loadBalancerIP: ""
-    loadBalancerSourceRanges: []
-    # nodePort: 30000
+# Any extra volume mounts to define for the containers
+extraVolumeMounts: []
+#   - name: example-name
+#     mountPath: /path/in/container
 
 # Enabled mariadb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
@@ -403,36 +313,3 @@ influxdb:
     enabled: false
     # storageClass: ""
     # size: 8Gi
-
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-podAnnotations: {}
-
-# Any extra volumes to define for the pod
-extraVolumes: []
-  # - name: example-name
-  #   hostPath:
-  #     path: /path/on/host
-  #     type: DirectoryOrCreate
-
-# Any extra volume mounts to define for the containers
-extraVolumeMounts: []
-#   - name: example-name
-#     mountPath: /path/in/container
