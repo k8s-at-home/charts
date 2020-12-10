@@ -72,12 +72,12 @@ ingress:
 # securityContext:
 #   privileged: true
 
-# # Enable a prometheus-operator servicemonitor
-# prometheus:
-#   serviceMonitor:
-#     enabled: false
-#     interval: 1m
-#     additionalLabels: {}
+# Enable a prometheus-operator servicemonitor
+prometheus:
+  serviceMonitor:
+    enabled: false
+    interval: 1m
+    additionalLabels: {}
 
 persistence:
   config:
