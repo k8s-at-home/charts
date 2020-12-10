@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0]
+
+### Changed
+
+- Migrated chart over to our common library, this version introduces breaking changes. Be sure to back up your config volume incase something goes wrong.
+
 ## [4.0.0]
 
 ### Changed
@@ -47,6 +53,8 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 ## [2.7.0]
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
+
+[5.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-5.0.0/charts/home-assistant
 
 [4.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-4.0.0/charts/home-assistant
 

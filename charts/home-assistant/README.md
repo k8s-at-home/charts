@@ -1,189 +1,114 @@
-# Home Assistant
+# home-assistant
 
-This is a helm chart for [Home Assistant](https://www.home-assistant.io/)
+This is a helm chart for [Home Assistant](https://www.home-assistant.io/).
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## TL;DR;
 
 ```shell
-helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm install k8s-at-home/home-assistant
+$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
+$ helm install k8s-at-home/home-assistant
 ```
 
 ## :star2: Changelog
 
 Please refer to [CHANGELOG.md](CHANGELOG.md) for an overview of notable changes to the chart. **This is especially important for major version updates!**
 
-## Introduction
-
-This code is adapted for [the official home assistant docker image](https://hub.docker.com/r/homeassistant/home-assistant/)
-
 ## Installing the Chart
 
 To install the chart with the release name `my-release`:
 
-```shell
+```console
 helm install --name my-release k8s-at-home/home-assistant
 ```
+
+### zwave / zigbee
+
+A zwave and/or zigbee controller device could be used with Home Assistant if passed thru from the host to the pod. Skip this section if you are using zwave2mqtt and/or zigbee2mqtt or plan to.
+
+First you will need to mount your zwave and/or zigbee device into the pod, you can do so by adding the following to your values:
+
+```yaml
+additionalVolumeMounts:
+  - name: zwave-usb
+    mountPath: /path/to/device
+
+additionalVolumes:
+  - name: zwave-usb
+    hostPath:
+      path: /path/to/device
+```
+
+Second you will need to set a nodeAffinity rule, for example:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: app
+          operator: In
+          values:
+          - zwave-controller
+```
+
+... where a node with an attached zwave and/or zigbee controller USB device is labeled with `app: zwave-controller`
 
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
 
-```shell
+```console
 helm delete my-release --purge
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
-## Configuration
-
-The following tables lists the configurable parameters of the Home Assistant chart and their default values.
-
-| Parameter                                       | Description                                                                                                                                                                                                                               | Default                                |
-|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
-| `image.repository`                              | Image repository                                                                                                                                                                                                                          | `homeassistant/home-assistant`         |
-| `image.tag`                                     | Image tag. Possible values listed [here](https://hub.docker.com/r/homeassistant/home-assistant/tags/).                                                                                                                                    | `0.118.3`                              |
-| `image.pullPolicy`                              | Image pull policy                                                                                                                                                                                                                         | `IfNotPresent`                         |
-| `image.pullSecrets`                             | Secrets to use when pulling the image                                                                                                                                                                                                     | `[]`                                   |
-| `strategyType`                                  | Specifies the strategy used to replace old Pods by new ones                                                                                                                                                                               | `Recreate`                             |
-| `probes.liveness.enabled`                       | Use the livenessProbe?                                                                                                                                                                                                                    | `true`                                 |
-| `probes.liveness.scheme`                        | Specify liveness `scheme` parameter for the deployment                                                                                                                                                                                    | `HTTP`                                 |
-| `probes.liveness.initialDelaySeconds`           | Specify liveness `initialDelaySeconds` parameter for the deployment                                                                                                                                                                       | `60`                                   |
-| `probes.liveness.failureThreshold`              | Specify liveness `failureThreshold` parameter for the deployment                                                                                                                                                                          | `5`                                    |
-| `probes.liveness.timeoutSeconds`                | Specify liveness `timeoutSeconds` parameter for the deployment                                                                                                                                                                            | `10`                                   |
-| `probes.readiness.enabled`                      | Use the readinessProbe?                                                                                                                                                                                                                   | `true`                                 |
-| `probes.readiness.scheme`                       | Specify readiness `scheme` parameter for the deployment                                                                                                                                                                                   | `HTTP`                                 |
-| `probes.readiness.initialDelaySeconds`          | Specify readiness `initialDelaySeconds` parameter for the deployment                                                                                                                                                                      | `60`                                   |
-| `probes.readiness.failureThreshold`             | Specify readiness `failureThreshold` parameter for the deployment                                                                                                                                                                         | `5`                                    |
-| `probes.readiness.timeoutSeconds`               | Specify readiness `timeoutSeconds` parameter for the deployment                                                                                                                                                                           | `10`                                   |
-| `probes.startup.enabled`                        | Use the startupProbe? (new in kubernetes 1.16)                                                                                                                                                                                            | `false`                                |
-| `probes.startup.scheme`                         | Specify startup `scheme` parameter for the deployment                                                                                                                                                                                     | `HTTP`                                 |
-| `probes.startup.failureThreshold`               | Specify startup `failureThreshold` parameter for the deployment                                                                                                                                                                           | `5`                                    |
-| `probes.startup.periodSeconds`                  | Specify startup `periodSeconds` parameter for the deployment                                                                                                                                                                              | `10`                                   |
-| `service.type`                                  | Kubernetes service type for the home-assistant GUI                                                                                                                                                                                        | `ClusterIP`                            |
-| `service.port`                                  | Kubernetes port where the home-assistant GUI is exposed                                                                                                                                                                                   | `8123`                                 |
-| `service.portName`                              | Kubernetes port name where the home-assistant GUI is exposed                                                                                                                                                                              | `api`                                  |
-| `service.additionalPorts`                       | Add additional ports exposed by the home assistant container integrations. Example homematic needs to expose a proxy port                                                                                                                 | `{}`                                   |
-| `service.annotations`                           | Service annotations for the home-assistant GUI                                                                                                                                                                                            | `{}`                                   |
-| `service.clusterIP`                             | Cluster IP for the home-assistant GUI                                                                                                                                                                                                     | ``                                     |
-| `service.externalIPs`                           | External IPs for the home-assistant GUI                                                                                                                                                                                                   | `[]`                                   |
-| `service.loadBalancerIP`                        | Loadbalancer IP for the home-assistant GUI                                                                                                                                                                                                | ``                                     |
-| `service.loadBalancerSourceRanges`              | Loadbalancer client IP restriction range for the home-assistant GUI                                                                                                                                                                       | `[]`                                   |
-| `service.publishNotReadyAddresses`              | Set to true if the editors (vscode or configurator) should be reachable when home assistant does not run                                                                                                                                  | `false`                                |
-| `service.externalTrafficPolicy`                 | Loadbalancer externalTrafficPolicy                                                                                                                                                                                                        | ``                                     |
-| `hostNetwork`                                   | Enable hostNetwork - might be needed for discovery to work                                                                                                                                                                                | `false`                                |
-| `hostAliases`                                   | Define custom entries in /etc/hosts                                                                                                                                                                                                       | `[]`                                   |
-| `service.nodePort`                              | nodePort to listen on for the home-assistant GUI                                                                                                                                                                                          | ``                                     |
-| `ingress.enabled`                               | Enables Ingress                                                                                                                                                                                                                           | `false`                                |
-| `ingress.annotations`                           | Ingress annotations                                                                                                                                                                                                                       | `{}`                                   |
-| `ingress.path`                                  | Ingress path                                                                                                                                                                                                                              | `/`                                    |
-| `ingress.hosts`                                 | Ingress accepted hostnames                                                                                                                                                                                                                | `chart-example.local`                  |
-| `ingress.tls`                                   | Ingress TLS configuration                                                                                                                                                                                                                 | `[]`                                   |
-| `persistence.enabled`                           | Use persistent volume to store data                                                                                                                                                                                                       | `true`                                 |
-| `persistence.size`                              | Size of persistent volume claim                                                                                                                                                                                                           | `5Gi`                                  |
-| `persistence.existingClaim`                     | Use an existing PVC to persist data                                                                                                                                                                                                       | `nil`                                  |
-| `persistence.hostPath`                          | The path to the config directory on the host, instead of a PVC                                                                                                                                                                            | `nil`                                  |
-| `persistence.storageClass`                      | Type of persistent volume claim                                                                                                                                                                                                           | `-`                                    |
-| `persistence.accessMode`                        | Persistence access modes                                                                                                                                                                                                                  | `ReadWriteMany`                        |
-| `persistence.configSubPath`                     | An optional subPath for the config volumeMount                                                                                                                                                                                            | ``                                     |
-| `git.enabled`                                   | Use git-sync in init container                                                                                                                                                                                                            | `false`                                |
-| `git.secret`                                    | Git secret to use for git-sync                                                                                                                                                                                                            | `git-creds`                            |
-| `git.syncPath`                                  | Git sync path                                                                                                                                                                                                                             | `/config`                              |
-| `git.keyPath`                                   | Git ssh key path                                                                                                                                                                                                                          | `/root/.ssh`                           |
-| `git.user.name`                                 | Human-readable name in the “committer” and “author” fields                                                                                                                                                                                | ``                                     |
-| `git.user.email`                                | Email address for the “committer” and “author” fields                                                                                                                                                                                     | ``                                     |
-| `zwave.enabled`                                 | Enable zwave host device passthrough. Also enables privileged container mode.                                                                                                                                                             | `false`                                |
-| `zwave.device`                                  | Device to passthrough to guest                                                                                                                                                                                                            | `ttyACM0`                              |
-| `hostMounts`                                    | Array of host directories to mount; can be used for devices                                                                                                                                                                               | []                                     |
-| `hostMounts.name`                               | Name of the volume                                                                                                                                                                                                                        | `nil`                                  |
-| `hostMounts.hostPath`                           | The path on the host machine                                                                                                                                                                                                              | `nil`                                  |
-| `hostMounts.mountPath`                          | The path at which to mount (optional; assumed same as hostPath)                                                                                                                                                                           | `nil`                                  |
-| `hostMounts.type`                               | The type to mount (optional, i.e., `Directory`)                                                                                                                                                                                           | `nil`                                  |
-| `extraEnv`                                      | Extra ENV vars to pass to the home-assistant container                                                                                                                                                                                    | `{}`                                   |
-| `extraEnvSecrets`                               | Extra env vars to pass to the home-assistant container from k8s secrets - see `values.yaml` for an example                                                                                                                                | `{}`                                   |
-| `vscode.enabled`                                | Enable the optional [VS Code Server Sidecar](https://github.com/cdr/code-server)                                                                                                                                                          | `false`                                |
-| `vscode.image.repository`                       | Image repository                                                                                                                                                                                                                          | `codercom/code-server`                 |
-| `vscode.image.tag`                              | Image tag                                                                                                                                                                                                                                 | `3.7.2`                                |
-| `vscode.image.pullPolicy`                       | Image pull policy                                                                                                                                                                                                                         | `IfNotPresent`                         |
-| `vscode.hassConfig`                             | Base path of the home assistant configuration files                                                                                                                                                                                       | `/config`                              |
-| `vscode.vscodePath`                             | Base path of the VS Code configuration files                                                                                                                                                                                              | `/config/.vscode`                      |
-| `vscode.password`                               | If this is set, will require a password to access the VS Code Server UI                                                                                                                                                                   | ``                                     |
-| `vscode.extraEnv`                               | Extra ENV vars to pass to the configuration UI                                                                                                                                                                                            | `{}`                                   |
-| `vscode.args`                                   | Optional arguments to pass into vscode image. Defaulting to "-" uses default arguments.                                                                                                                                                   | `-`                                    |
-| `vscode.ingress.enabled`                        | Enables Ingress for the VS Code UI                                                                                                                                                                                                        | `false`                                |
-| `vscode.ingress.annotations`                    | Ingress annotations for the VS Code UI                                                                                                                                                                                                    | `{}`                                   |
-| `vscode.ingress.hosts`                          | Ingress accepted hostnames for the VS Code UI                                                                                                                                                                                             | `chart-example.local`                  |
-| `vscode.ingress.tls`                            | Ingress TLS configuration for the VS Code UI                                                                                                                                                                                              | `[]`                                   |
-| `vscode.resources`                              | CPU/Memory resource requests/limits for the VS Code UI                                                                                                                                                                                    | `{}`                                   |
-| `vscode.securityContext`                        | Security context to be added to hass-vscode pods for the VS Code UI                                                                                                                                                                       | `{}`                                   |
-| `vscode.service.type`                           | Kubernetes service type for the VS Code UI                                                                                                                                                                                                | `ClusterIP`                            |
-| `vscode.service.port`                           | Kubernetes port where the vscode UI is exposed                                                                                                                                                                                            | `80`                                   |
-| `vscode.service.nodePort`                       | nodePort to listen on for the VS Code UI                                                                                                                                                                                                  | ``                                     |
-| `vscode.service.annotations`                    | Service annotations for the VS Code UI                                                                                                                                                                                                    | `{}`                                   |
-| `vscode.service.labels`                         | Service labels to use for the VS Code UI                                                                                                                                                                                                  | `{}`                                   |
-| `vscode.service.clusterIP`                      | Cluster IP for the VS Code UI                                                                                                                                                                                                             | ``                                     |
-| `vscode.service.externalIPs`                    | External IPs for the VS Code UI                                                                                                                                                                                                           | `[]`                                   |
-| `vscode.service.loadBalancerIP`                 | Loadbalancer IP for the VS Code UI                                                                                                                                                                                                        | ``                                     |
-| `vscode.service.loadBalancerSourceRanges`       | Loadbalancer client IP restriction range for the VS Code UI                                                                                                                                                                               | `[]`                                   |
-| `mariadb.enabled`                               | Enable the optional [Mariadb](https://github.com/bitnami/charts) deployment                                                                                                                                                               | `false`                                |
-| `postgresql.enabled`                            | Enable the optional [Postgres](https://github.com/bitnami/charts) deployment                                                                                                                                                              | `false`                                |
-| `influxdb.enabled`                              | Enable the optional [Influxdb](https://github.com/bitnami/charts) deployment                                                                                                                                                              | `false`                                |
-| `resources`                                     | CPU/Memory resource requests/limits or the home-assistant GUI                                                                                                                                                                             | `{}`                                   |
-| `nodeSelector`                                  | Node labels for pod assignment or the home-assistant GUI                                                                                                                                                                                  | `{}`                                   |
-| `tolerations`                                   | Toleration labels for pod assignment or the home-assistant GUI                                                                                                                                                                            | `[]`                                   |
-| `affinity`                                      | Affinity settings for pod assignment or the home-assistant GUI                                                                                                                                                                            | `{}`                                   |
-| `podAnnotations`                                | Key-value pairs to add as pod annotations                                                                                                                                                                                                 | `{}`                                   |
-| `extraVolumes`                                  | Any extra volumes to define for the pod                                                                                                                                                                                                   | `{}`                                   |
-| `extraVolumeMounts`                             | Any extra volumes mounts to define for each container of the pod                                                                                                                                                                          | `{}`                                   |
-| `monitoring.enabled`                            | Enables Monitoring support                                                                                                                                                                                                                | `false`                                |
-| `monitoring.serviceMonitor.enabled`             | Setup a ServiceMonitor to configure scraping                                                                                                                                                                                              | `false`                                |
-| `monitoring.serviceMonitor.namespace`           | Set the namespace the ServiceMonitor should be deployed                                                                                                                                                                                   | `false`                                |
-| `monitoring.serviceMonitor.interval`            | Set how frequently Prometheus should scrape                                                                                                                                                                                               | `30`                                   |
-| `monitoring.serviceMonitor.labels`              | Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator                                                                                                                                           | `{}`                                   |
-| `monitoring.serviceMonitor.bearerTokenFile`     | Set bearerTokenFile for home-assistant auth (use long lived access tokens)                                                                                                                                                                | `nil`                                  |
-| `monitoring.serviceMonitor.bearerTokenSecret`   | Set bearerTokenSecret for home-assistant auth (use long lived access tokens)                                                                                                                                                              | `nil`                                  |
-| `monitoring.serviceMonitor.metricRelabelings`   | Add metricRelabelings [Documentation](https://coreos.com/operators/prometheus/docs/latest/api.html#relabelconfig)                                                                                                                         | `{}`                                   |
+Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/home-assistant/values.yaml)
+file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```shell
-helm install --name my-release \
-  --set configurator.hassApiPassword="$HASS_API_PASSWORD" \
+```console
+helm install my-release \
+  --set env.TZ="America/New_York" \
     k8s-at-home/home-assistant
 ```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
-```shell
-helm install --name my-release -f values.yaml k8s-at-home/home-assistant
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
+chart. For example,
+```console
+helm install my-release k8s-at-home/home-assistant --values values.yaml 
 ```
 
-Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
-
-## Configuring home assistant
-
-Much of the home assistant configuration occurs inside the various files persisted to the `/config` directory.  This will require external access to the persistent storage location where the home assistant configuration data is stored.  Because this may be a limitation, there are two options built-in to this chart:
-
-### VS Code Server
-
-[VS Code Server](https://github.com/cdr/code-server) is added as an optional sidecar container to Home Assistant with access to the home assistant configuration for easy in-browser editing and manipulation of Home Assistant.  If using this, it is possible to manually install the [Home Assistant Config Helper Extension](https://github.com/keesschollaart81/vscode-home-assistant) in order to have a deeper integration with Home Assistant within VS Code while editing the configuration files.
-
-## Git sync secret
-
-In order to sync the home assistant from a git repo, you can optionally store an ssh key as a kubernetes git secret:
-```shell
-kubectl create secret generic git-creds --from-file=id_rsa=git/k8s_id_rsa --from-file=known_hosts=git/known_hosts --from-file=id_rsa.pub=git/k8s_id_rsa.pub
+```yaml
+image:
+  tag: ...
 ```
 
-## git-crypt support
+---
+**NOTE**
 
-When using Git sync it is possible to specify a file called `git-crypt-key` in the secret referred to in `git.secret`. When this file is present, `git-crypt unlock` will automatically be executed after the repo has been synced.
-
-**Note:** `git-crypt` is not installed by default in the other images! If you wish to push changes from the VS Code or Configurator containers, you will have to make sure that it is installed.
-
-The value for this secret can be obtained by running the following command in an unlocked version of your Home Assistant settings repo. It will export the unlock key, base64 encode it and copy it to your clipboard.
-```shell
-git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | pbcopy && rm ./tmp-key
+If you get
+```console
+Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...`
 ```
+it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+
+---
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 4.x.x to 5.x.x
+
+As of 5.0.0 this chart was migrated to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library, some values in `values.yaml` have changed.
+
+Examples:
+
+* `service.port` has been moved to `service.port.port`.
+* `persistence.type` has been moved to `controllerType`.
+
+Refer to the [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library for more configuration options.

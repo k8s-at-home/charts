@@ -1,43 +1,32 @@
-{{- if and ( .Values.monitoring.serviceMonitor.enabled ) ( .Values.monitoring.enabled ) }}
+{{- if .Values.prometheus.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-{{- if .Values.monitoring.serviceMonitor.labels }}
+  name: {{ template "common.names.fullname" . }}
   labels:
-{{ toYaml .Values.monitoring.serviceMonitor.labels | indent 4}}
-{{- end }}
-  name: {{ template "home-assistant.fullname" . }}-prometheus-exporter
-{{- if .Values.monitoring.serviceMonitor.namespace }}
-  namespace: {{ .Values.monitoring.serviceMonitor.namespace }}
-{{- end }}
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.prometheus.serviceMonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
-  endpoints:
-  - targetPort: {{ .Values.service.portName }}
-    path: /api/prometheus
-{{- if .Values.monitoring.serviceMonitor.interval }}
-    interval: {{ .Values.monitoring.serviceMonitor.interval }}
-{{- end }}
-{{- if .Values.monitoring.serviceMonitor.bearerTokenFile }}
-    bearerTokenFile: {{ .Values.monitoring.serviceMonitor.bearerTokenFile }}
-{{- end }}
-{{- if .Values.monitoring.serviceMonitor.bearerTokenSecret }}
-    bearerTokenSecret:
-      name: {{ .Values.monitoring.serviceMonitor.bearerTokenSecret.name }}
-      key: {{ .Values.monitoring.serviceMonitor.bearerTokenSecret.key }}
-      {{- if .Values.monitoring.serviceMonitor.bearerTokenSecret.optional }}
-      optional: {{ .Values.monitoring.serviceMonitor.bearerTokenSecret.optional }}
-      {{- end }}
-{{- end }}
-{{- if .Values.monitoring.serviceMonitor.metricRelabelings }}
-    metricRelabelings:
-{{ toYaml .Values.monitoring.serviceMonitor.metricRelabelings | indent 4 }}
-{{- end }}
-  jobLabel: {{ template "home-assistant.fullname" . }}-prometheus-exporter
-  namespaceSelector:
-    matchNames:
-    - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "home-assistant.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "common.labels.selectorLabels" . | nindent 6 }}
+  endpoints:
+  - port: http
+    {{- with .Values.prometheus.serviceMonitor.interval }}
+    interval: {{ . }}
+    {{- end }}
+    {{- with .Values.prometheus.serviceMonitor.bearerTokenFile }}
+    bearerTokenFile: {{ . }}
+    {{- end }}
+    {{- with .Values.prometheus.serviceMonitor.bearerTokenSecret }}
+    bearerTokenSecret:
+      name: {{ .name }}
+      key: {{ .key }}
+      {{- with .optional }}
+      optional: {{ . }}
+      {{- end }}
+    {{- end }}
+    path: /api/prometheus
 {{- end }}
