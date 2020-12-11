@@ -22,6 +22,11 @@ ingress:
       paths:
       - path: /
 
+persistence:
+  config:
+    enabled: true
+    emptyDir: true
+
 additionalContainers:
 - name: vscode
   image: codercom/code-server:3.7.2
