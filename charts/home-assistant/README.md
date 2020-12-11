@@ -23,7 +23,7 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/home-assistant
 ```
 
-### zwave / zigbee
+### Z-Wave / Zigbee
 
 A Z-Wave and/or Zigbee controller device could be used with Home Assistant if passed through from the host to the pod. Skip this section if you are using zwave2mqtt and/or zigbee2mqtt or plan to.
 
