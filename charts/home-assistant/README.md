@@ -1,4 +1,4 @@
-# home-assistant
+# Home Assistant
 
 This is a helm chart for [Home Assistant](https://www.home-assistant.io/).
 

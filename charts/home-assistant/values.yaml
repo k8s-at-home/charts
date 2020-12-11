@@ -30,7 +30,7 @@ service:
 # - name: vscode
 #   image: codercom/code-server:3.7.2
 #   imagePullPolicy: IfNotPresent
-#   workingDir: /www/assets
+#   workingDir: /config
 #   args:
 #   - "--port"
 #   - "12321"
@@ -42,7 +42,7 @@ service:
 #     protocol: TCP
 #   volumeMounts:
 #   - name: config
-#     mountPath: /www/assets
+#     mountPath: /config
 #   securityContext:
 #     runAsUser: 0
 
@@ -106,3 +106,41 @@ persistence:
 #   - name: zwave-usb
 #     hostPath:
 #       path: /dev/serial/by-id/usb-0658_0200-if00
+
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: home-assistant
+    username: home-assistant
+    password: home-assistant-pass
+    rootPassword: home-assistantrootpass
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
+
+# Enabled postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: false
+  postgresqlUsername: home-assistant
+  postgresqlPassword: home-assistant-pass
+  postgresqlDatabase: home-assistant
+  persistence:
+    enabled: false
+    # storageClass: ""
+
+# Enable influxdb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/influxdb
+influxdb:
+  enabled: false
+  architecture: standalone
+  database: home_assistant
+  authEnabled: false
+  persistence:
+    enabled: false
+    # storageClass: ""
+    # size: 8Gi
