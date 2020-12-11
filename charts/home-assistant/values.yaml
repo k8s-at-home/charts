@@ -43,6 +43,9 @@ service:
 #   volumeMounts:
 #   - name: config
 #     mountPath: /config
+#   - name: deploykey
+#     mountPath: /root/.ssh/id_rsa
+#     subPath: id_rsa
 #   securityContext:
 #     runAsUser: 0
 
@@ -71,6 +74,9 @@ ingress:
 # # Enable passing thru a USB device to Home Assistant
 # securityContext:
 #   privileged: true
+
+git:
+  deployKey: ""
 
 # Enable a prometheus-operator servicemonitor
 prometheus:

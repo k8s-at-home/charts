@@ -1,0 +1,43 @@
+service:
+  additionalServices:
+  - enabled: true
+    nameSuffix: vscode
+    type: ClusterIP
+    port:
+      port: 12321
+      name: vscode
+      protocol: TCP
+      targetPort: 12321
+
+ingress:
+  enabled: true
+
+  additionalIngresses:
+  - enabled: true
+    nameSuffix: "vscode"
+    serviceName: home-assistant-vscode
+    servicePort: 12321
+    hosts:
+    - host: home-assistant-editor.local
+      paths:
+      - path: /
+
+additionalContainers:
+- name: vscode
+  image: codercom/code-server:3.7.2
+  imagePullPolicy: IfNotPresent
+  workingDir: /config
+  args:
+  - "--port"
+  - "12321"
+  - "--auth"
+  - "none"
+  ports:
+  - name: vscode
+    containerPort: 12321
+    protocol: TCP
+  volumeMounts:
+  - name: config
+    mountPath: /config
+  securityContext:
+    runAsUser: 0
