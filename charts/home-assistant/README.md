@@ -27,7 +27,7 @@ helm install --name my-release k8s-at-home/home-assistant
 
 A zwave and/or zigbee controller device could be used with Home Assistant if passed thru from the host to the pod. Skip this section if you are using zwave2mqtt and/or zigbee2mqtt or plan to.
 
-First you will need to mount your zwave and/or zigbee device into the pod, you can do so by adding the following to your values:
+First you will need to mount your Z-Wave and/or Zigbee device into the pod, you can do so by adding the following to your values:
 
 ```yaml
 additionalVolumeMounts:
