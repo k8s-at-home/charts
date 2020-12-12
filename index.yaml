@@ -13091,6 +13091,30 @@ entries:
   teslamate:
   - apiVersion: v2
     appVersion: v1.20.0
+    created: "2020-12-12T15:20:04.302644726Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.1.4
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: 511bc8581daa15433e6bacf80b4304bd9c3aad81b78c24b73f6a488740ac9457
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teslamate-3.4.0/teslamate-3.4.0.tgz
+    version: 3.4.0
+  - apiVersion: v2
+    appVersion: v1.20.0
     created: "2020-12-08T12:53:01.325352601Z"
     dependencies:
     - condition: postgresql.enabled
