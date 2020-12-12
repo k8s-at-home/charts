@@ -55,11 +55,11 @@ spec:
                   {{- else }}
                   name: {{ $fullName }}
                   key: admin-token
-                {{- end }}
-                {{- end }}
-                {{- end }}
-                {{- with .Values.bitwardenrs.smtp }}
-                {{- if eq .enabled true }}
+                  {{- end }}
+            {{- end }}
+            {{- end }}
+            {{- with .Values.bitwardenrs.smtp }}
+            {{- if eq .enabled true }}
             {{- if and .existingSecret.enabled (not .user) }}
             - name: SMTP_USERNAME
               valueFrom:
@@ -71,9 +71,23 @@ spec:
                 secretKeyRef:
                   name: {{ .existingSecret.name | quote }}
                   key: {{ .existingSecret.passwordKey | quote }}
-              {{- end }}
-          {{- end }}
-          {{- end }}
+            {{- end }}
+            {{- end }}
+            {{- end }}
+            {{- with .Values.bitwardenrs.yubico }}
+            {{- if and .enabled .existingSecret.enabled }}
+            - name: YUBICO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .existingSecret.name | quote }}
+                  key: {{ .existingSecret.clientIdKey | quote }}
+            - name: YUBICO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .existingSecret.name | quote }}
+                  key: {{ .existingSecret.secretKeyKey | quote }}
+            {{- end }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.bitwardenrs.gui.port }}

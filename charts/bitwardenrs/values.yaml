@@ -50,6 +50,21 @@ bitwardenrs:
       name: ""
       userKey: ""
       passwordKey: ""
+  # Enable Yubikey 2FA: https://github.com/dani-garcia/bitwarden_rs/wiki/Enabling-Yubikey-OTP-authentication
+  yubico:
+    enabled: false
+    # OTP verification server. Will use the default YubiCloud servers if not specified
+    server: ""
+    # API Client ID for OTP server. Ignored if existingSecret is provided.
+    clientId: ""
+    # API Secret Key for OTP server. Required if clientId is specified, ignored when using existingSecret.
+    secretKey: ""
+    # Use existing secret for API keys
+    existingSecret:
+      enabled: false
+      name: ""
+      clientIdKey: ""
+      secretKeyKey: ""
 
 env: {}
 # If you plan to run the WebUI on a port other than port 80, specify that here:
