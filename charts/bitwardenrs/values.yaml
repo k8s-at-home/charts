@@ -27,6 +27,31 @@ bitwardenrs:
       enabled: false
       name: ""
       tokenKey: ""
+  # External database configuration.
+  # Requires bitwardenrs/server >= 1.17.0 or bitwardenrs/server-{mysql,postgres} images
+  # ref: https://github.com/dani-garcia/bitwarden_rs/wiki/Using-the-MySQL-Backend
+  #      https://github.com/dani-garcia/bitwarden_rs/wiki/Using-the-PostgreSQL-Backend
+  externalDatabase:
+    enabled: false
+    # Supported values: 'mysql', 'postgresql'.
+    type: ""
+    # Database host. Required if external database is enabled.
+    host: ""
+    # Database port. Optional, default value is specific to the database backend.
+    port: ""
+    # Database name.
+    database: ""
+    # Database user.
+    user: ""
+    # Database password. Special characters must be escaped with percent encoding.
+    password: ""
+    # Use existing secret for database credentials.
+    existingSecret:
+      enabled: false
+      name: ""
+      userKey: ""
+      # Special characters in the password value must be escaped with percent encoding.
+      passwordKey: ""
   # Enable SMTP. https://github.com/dani-garcia/bitwarden_rs/wiki/SMTP-configuration
   smtp:
     enabled: false

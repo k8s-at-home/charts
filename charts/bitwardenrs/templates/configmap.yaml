@@ -44,6 +44,7 @@ data:
   {{- end }}
   {{- end }}
   {{- end }}
+  {{- include "bitwardenrs.externalDatabaseConfigMap" . | nindent 2 }}
   {{- if .Values.env }}
   {{- toYaml .Values.env | nindent 2 }}
   {{- end }}

@@ -88,6 +88,7 @@ spec:
                   key: {{ .existingSecret.secretKeyKey | quote }}
             {{- end }}
             {{- end }}
+            {{- include "bitwardenrs.externalDatabaseEnv" . | nindent 12 }}
           ports:
             - name: http
               containerPort: {{ .Values.bitwardenrs.gui.port }}
