@@ -35,9 +35,11 @@ Return the appropriate apiVersion for StatefulSet objects.
 Return the appropriate apiVersion for Ingress objects.
 */}}
 {{- define "common.capabilities.ingress.apiVersion" -}}
-{{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "extensions/v1beta1" -}}
-{{- else -}}
+{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" -}}
+{{- print "networking.k8s.io/v1" -}}
+{{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress" -}}
 {{- print "networking.k8s.io/v1beta1" -}}
-{{- end -}}
+{{- else -}}
+{{- print "extensions/v1beta1" -}}
+{{- end }}
 {{- end -}}
