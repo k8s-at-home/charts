@@ -20,6 +20,7 @@ It will include / inject the required templates based on the given values.
     {{ end -}}
     {{- $_ := set $ "ObjectValues" (dict "service" $serviceValues) -}}
     {{- include "common.classes.service" $ -}}
+    {{- $_ := unset $ "ObjectValues" -}}
   {{- end -}}
 
   {{/* Add the code-server ingress */}}
@@ -37,6 +38,7 @@ It will include / inject the required templates based on the given values.
 
     {{- $_ := set $ "ObjectValues" (dict "ingress" $ingressValues) -}}
     {{- include "common.classes.ingress" $ -}}
+    {{- $_ := unset $ "ObjectValues" -}}
   {{- end -}}
 
 {{- end -}}

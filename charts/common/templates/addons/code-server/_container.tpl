@@ -25,6 +25,9 @@ args:
 - "{{ .Values.addons.codeserver.service.port.port }}"
 - "--auth"
 - "none"
+{{- with .Values.addons.codeserver.workingDir }}
+- {{ . }}
+{{- end }}
 {{- with .Values.addons.codeserver.volumeMounts }}
 volumeMounts:
   {{- toYaml . | nindent 2 }}

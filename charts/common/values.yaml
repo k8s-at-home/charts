@@ -307,8 +307,11 @@ addons:
     # Specify a list of volumes that get mounted in the code-server container
     volumeMounts: []
     # - name: config
-    #   persistentVolumeClaim:
-    #     claimName: my-release-config
+    #   mountPath: /data/config
+
+    # Specify the working dir that will be opened when code-server starts
+    # If not specified, the app will default to /home/coder/
+    workingDir: ""
 
     service:
       enabled: true
