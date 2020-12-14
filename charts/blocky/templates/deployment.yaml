@@ -45,6 +45,13 @@ spec:
               subPath: {{ $name }}
               readOnly: true
             {{- end }}
+            {{- if .Values.config.queryLog }}
+            - name: data
+              mountPath: {{ .Values.config.queryLog.dir }}
+              {{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
+            {{- end }}
           ports:
             - name: api
               containerPort: 4000
@@ -89,6 +96,15 @@ spec:
                     - key: {{ $name }}
                       path: {{ $name }}
                   {{- end }}
+        {{- if .Values.config.queryLog }}
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "blocky.fullname" . }}{{- end }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
