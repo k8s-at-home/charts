@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Migrated chart over to our common library, this version introduces breaking changes. Be sure to back up your config volume incase something goes wrong.
-- Upgraded `postgresql` subchart from version 10.1.3 to version 10.1.4. 
+- Upgraded `postgresql` subchart from version 10.1.3 to version 10.2.0. 
 - Upgraded `influxdb` subchart from version 1.1.2 to version 1.1.4. 
 
 ## [4.0.0]
