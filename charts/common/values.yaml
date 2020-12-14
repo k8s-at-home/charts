@@ -304,13 +304,14 @@ addons:
       pullPolicy: IfNotPresent
       tag: 3.7.4
 
-    # Specify a list of volumes that get mounted in the code-server container
+    # Specify a list of volumes that get mounted in the code-server container.
+    # At least 1 volumeMount is required!
     volumeMounts: []
     # - name: config
     #   mountPath: /data/config
 
     # Specify the working dir that will be opened when code-server starts
-    # If not specified, the app will default to /home/coder/
+    # If not given, the app will default to the mountpah of the first specified volumeMount
     workingDir: ""
 
     service:

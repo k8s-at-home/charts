@@ -2,6 +2,9 @@
 The code-server sidecar container to be inserted.
 */}}
 {{- define "common.addon.codeserver.container" -}}
+{{- if lt (len .Values.addons.codeserver.volumeMounts) 1 }}
+{{- fail "At least 1 volumeMount is required for codeserver container" }}
+{{- end -}}
 name: codeserver
 image: "{{ .Values.addons.codeserver.image.repository }}:{{ .Values.addons.codeserver.image.tag }}"
 imagePullPolicy: {{ .Values.addons.codeserver.pullPolicy }}
@@ -25,9 +28,7 @@ args:
 - "{{ .Values.addons.codeserver.service.port.port }}"
 - "--auth"
 - "none"
-{{- with .Values.addons.codeserver.workingDir }}
-- {{ . }}
-{{- end }}
+- {{ .Values.addons.codeserver.workingDir | default (first .Values.addons.codeserver.volumeMounts).mountPath }}
 {{- with .Values.addons.codeserver.volumeMounts }}
 volumeMounts:
   {{- toYaml . | nindent 2 }}
