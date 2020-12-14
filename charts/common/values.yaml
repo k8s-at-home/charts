@@ -177,7 +177,7 @@ persistence:
     # subPath: some-subpath
     accessMode: ReadWriteOnce
     size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
+    ## Set to true to retain the PVC upon helm uninstall
     skipuninstall: false
 
   # Create an emptyDir volume to share between all containers
@@ -205,6 +205,8 @@ hostAliases: []
 #   - "www.example.com"
 
 addons:
+
+  # Enable running a VPN in the pod to route traffic through a VPN
   vpn:
     enabled: false
 
@@ -215,6 +217,7 @@ addons:
     openvpn:
       image:
         repository: dperson/openvpn-client
+        pullPolicy: IfNotPresent
         tag: latest
 
       # Credentials to connect to the VPN Service (used with -a)
@@ -227,9 +230,8 @@ addons:
     wireguard:
       image:
         repository: k8sathome/wireguard
+        pullPolicy: IfNotPresent
         tag: 1.0.20200827
-
-    imagePullPolicy: IfNotPresent
 
     # Set the VPN container securityContext
     securityContext:

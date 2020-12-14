@@ -4,7 +4,7 @@ The Wireguard sidecar container to be inserted.
 {{- define "common.addon.wireguard.container" -}}
 name: wireguard
 image: "{{ .Values.addons.vpn.wireguard.image.repository }}:{{ .Values.addons.vpn.wireguard.image.tag }}"
-imagePullPolicy: {{ .Values.addons.vpn.imagePullPolicy }}
+imagePullPolicy: {{ .Values.addons.vpn.wireguard.pullPolicy }}
 {{- with .Values.addons.vpn.securityContext }}
 securityContext:
   {{- toYaml . | nindent 2 }}

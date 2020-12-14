@@ -4,7 +4,7 @@ The OpenVPN sidecar container to be inserted.
 {{- define "common.addon.openvpn.container" -}}
 name: openvpn
 image: "{{ .Values.addons.vpn.openvpn.image.repository }}:{{ .Values.addons.vpn.openvpn.image.tag }}"
-imagePullPolicy: {{ .Values.addons.vpn.imagePullPolicy }}
+imagePullPolicy: {{ .Values.addons.vpn.openvpn.pullPolicy }}
 {{- with .Values.addons.vpn.securityContext }}
 securityContext:
   {{- toYaml . | nindent 2 }}
