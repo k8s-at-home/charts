@@ -26,10 +26,11 @@ jobs:
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          changed=$(ct list-changed --config .github/ct.yaml --excluded-charts "")
+          changed=$(ct list-changed --config .github/ct.yaml)
+          changed_unfiltered=$(ct list-changed --config .github/ct.yaml --excluded-charts "")
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
-            echo "::set-output name=list::$changed"
+            echo "::set-output name=list::$changed_unfiltered"
           fi
 
       - name: Run chart-testing (lint)
