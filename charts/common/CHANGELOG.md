@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - :warning: Updated `probes` logic to support custom probes, it is now possible to set your own custom probes by setting the `probes.[liveness|readiness|startup].custom` value to `true` and configuring them. Default is `false`.
 - :warning: `addon.vpn.imagePullPolicy` is now `addon.vpn.[openvpn|wireguard].image.pullPolicy`. Default is `IfNotPresent`
-- [code-server](https://github.com/cdr/code-server) is now a `addon` like `vpn`, it enables a code-server container inside the pod which allows you to modify a configuration in a volume attached to the pod. Default for `addon.codeServer.enabled` is `false`
+- [code-server](https://github.com/cdr/code-server) is now an `addon` like `vpn`. This enables a code-server container inside the pod which allows you to modify a configuration in a volume attached to the pod. Default for `addon.codeServer.enabled` is `false`
 - Added `envFrom` for more configuration with environment variables
 - Added support for 1.19+ ingress spec
 - Added this [CHANGELOG.md](CHANGELOG.md)
