@@ -6,11 +6,11 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   settings.yml: |-
-{{ .Values.searx.config | indent 4 }}
+{{ .Values.searx.config | nindent 4 }}
   Caddyfile: |-
-{{ .Values.caddy.caddyfile | indent 4 }}
+{{ .Values.caddy.caddyfile | nindent 4 }}
   rules.json: |-
-{{ .Values.filtron.rules | indent 4 }}
+{{ .Values.filtron.rules | nindent 4 }}
   uwsgi.ini: |-
     [uwsgi]
     # Who will run the code
