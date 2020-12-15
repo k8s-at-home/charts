@@ -26,73 +26,62 @@ persistence:
     emptyDir: false
 
 additionalContainers:
-- name: caddy
-  image: caddy:2.2.1-alpine
-  imagePullPolicy: Always
-  ports:
-    - containerPort: 80
-      name: http
-  volumeMounts:
-    - name: searx-config
-      mountPath: /etc/caddy/Caddyfile
-      subPath: Caddyfile
-    - name: searx-checker
-      mountPath: /srv/searx-checker
-- image: dalf/filtron:latest
-  imagePullPolicy: Always
-  name: filtron
-  args:
-    [
-      "-listen",
-      "0.0.0.0:4040",
-      "-api",
-      "0.0.0.0:4041",
-      "-target",
-      "localhost:8080",
-    ]
-  ports:
-    - containerPort: 4040
-      name: filtron
-    - containerPort: 4041
-      name: api
-  volumeMounts:
-    - name: searx-config
-      mountPath: /etc/filtron/rules.json
-      subPath: rules.json
-- image: dalf/morty:latest
-  imagePullPolicy: Always
-  name: morty
-  env:
-    - name: MORTY_KEY
-      # use the same MORTY_KEY that have be defined l.20
-      value: "ReplaceWithARealKey!"
-  args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
-  ports:
-    - containerPort: 3000
-      name: morty
-- name: searx-checker
-  image: searx/searx-checker:latest
-  args:
-    ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
-  volumeMounts:
-    - name: searx-checker
-      mountPath: /usr/local/searx-checker/html/data
+  - name: caddy
+    image: caddy:2.2.1-alpine
+    imagePullPolicy: Always
+    ports:
+      - containerPort: 80
+        name: http
+    volumeMounts:
+      - name: searx-config
+        mountPath: /etc/caddy/Caddyfile
+        subPath: Caddyfile
+      - name: searx-checker
+        mountPath: /srv/searx-checker
+  - image: dalf/filtron:latest
+    imagePullPolicy: Always
+    name: filtron
+    args: ["-listen", "0.0.0.0:4040", "-api", "0.0.0.0:4041", "-target", "localhost:8080"]
+    ports:
+      - containerPort: 4040
+        name: filtron
+      - containerPort: 4041
+        name: api
+    volumeMounts:
+      - name: searx-config
+        mountPath: /etc/filtron/rules.json
+        subPath: rules.json
+  - image: dalf/morty:latest
+    imagePullPolicy: Always
+    name: morty
+    env:
+      - name: MORTY_KEY
+        # use the same MORTY_KEY that have be defined l.20
+        value: "ReplaceWithARealKey!"
+    args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
+    ports:
+      - containerPort: 3000
+        name: morty
+  - name: searx-checker
+    image: searx/searx-checker:latest
+    args: ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
+    volumeMounts:
+      - name: searx-checker
+        mountPath: /usr/local/searx-checker/html/data
 additionalVolumes:
-- name: searx-config
-  configMap:
-    name: searx-config
-- name: searx-checker
-  emptyDir: {}
+  - name: searx-config
+    configMap:
+      name: searx-config
+  - name: searx-checker
+    emptyDir: {}
 
 searx:
   config: |-
 # config file content, example from here : https://github.com/searx/searx/blob/master/searx/settings.yml
-
 filtron:
   rules.json: |-
 # filtron rules, example from here : https://github.com/searx/searx-docker/blob/master/rules.json
-
 caddy:
   caddyfile: |-
-# caddy reverse proxy definition, example from here : https://github.com/searx/searx-docker/blob/master/Caddyfile
 
+# caddy reverse proxy definition, example from here : https://github.com/searx/searx-docker/blob/master/Caddyfile
