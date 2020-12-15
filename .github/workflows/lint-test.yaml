@@ -32,7 +32,7 @@ jobs:
           fi
 
           changed_unfiltered=$(ct list-changed --config .github/ct.yaml --excluded-charts "")
-          if [[ "$changed_unfiltered" == *"charts/common"* ]]; then
+          if [[ $(grep -i "^charts/common$" <<< "$changed_unfiltered") ]]; then
             echo "::set-output name=common::true"
           fi
 
@@ -50,5 +50,8 @@ jobs:
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Run chart-testing (common-test)
-        run: ct install --config .github/ct.yaml --charts 'charts/common-test'
+        run: |
+          mkdir -p charts/common-test/charts
+          ln -s charts/common charts/common-test/charts/
+          ct install --config .github/ct.yaml --charts 'charts/common-test'
         if: steps.list-changed.outputs.common == 'true'
