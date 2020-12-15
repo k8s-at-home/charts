@@ -51,7 +51,5 @@ jobs:
 
       - name: Run chart-testing (common-test)
         run: |
-          mkdir -p charts/common-test/charts
-          ln -s ../../common charts/common-test/charts/common
           ct install --config .github/ct.yaml --charts 'charts/common-test'
         if: steps.list-changed.outputs.common == 'true'
