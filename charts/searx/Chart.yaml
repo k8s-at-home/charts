@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: 0.17.0-346-78655663
+description: Searx is a privacy-respecting, hackable metasearch engine
+name: searx
+version: 1.0.0
+keywords:
+  - searx
+  - search engine
+  - privacy
+home: https://github.com/k8s-at-home/charts/tree/master/charts/searx
+icon: https://github.com/searx/searx/blob/master/searx/static/themes/simple/img/logo_searx_a.png?raw=true
+sources:
+  - https://github.com/searx/searx
+  - https://searx.github.io/searx/
+  - https://hub.docker.com/r/searx/searx
+maintainers:
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 1.7.0
