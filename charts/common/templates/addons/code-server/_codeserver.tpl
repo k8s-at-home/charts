@@ -40,6 +40,5 @@ It will include / inject the required templates based on the given values.
     {{- include "common.classes.ingress" $ -}}
     {{- $_ := unset $ "ObjectValues" -}}
   {{- end -}}
-
 {{- end -}}
 {{- end -}}
