@@ -6,6 +6,7 @@
   "reviewersFromCodeOwners": true,
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
+  "prConcurrentLimit": 5,
   "helm-values": {
     "enabled": false
   },
@@ -44,17 +45,15 @@
       ]
     },
     //
-    // Other chart deps
+    // Other library deps
     //
     {
       "datasources": ["helmv3"],
       "updateTypes": ["major"],
       "bumpVersion": "major",
       "labels": ["dependency/major"],
-      "packageNames": [
-        "influxdb",
-        "postgresql",
-        "mariadb"
+      "excludePackageNames": [
+        "common"
       ],
       "schedule": [
         "every 3 months on the first day of the month"
@@ -65,10 +64,8 @@
       "updateTypes": ["minor"],
       "bumpVersion": "minor",
       "labels": ["dependency/minor"],
-      "packageNames": [
-        "influxdb",
-        "postgresql",
-        "mariadb"
+      "excludePackageNames": [
+        "common"
       ],
       "schedule": [
         "every 2 months on the first day of the month"
@@ -79,10 +76,8 @@
       "updateTypes": ["patch"],
       "bumpVersion": "patch",
       "labels": ["dependency/patch"],
-      "packageNames": [
-        "influxdb",
-        "postgresql",
-        "mariadb"
+      "excludePackageNames": [
+        "common"
       ],
       "schedule": [
         "every 1 months on the first day of the month"
