@@ -26,9 +26,10 @@ jobs:
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          changed=$(ct list-changed --config .github/ct.yaml)
+          changed=$(ct list-changed --config .github/ct.yaml --excluded-charts "")
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
+            echo "::set-output name=list::$changed"
           fi
 
       - name: Run chart-testing (lint)
@@ -43,3 +44,7 @@ jobs:
       - name: Run chart-testing (install)
         run: ct install --config .github/ct.yaml
         if: steps.list-changed.outputs.changed == 'true'
+
+      - name: Run chart-testing (common-test)
+        run: ct install --config .github/ct.yaml --charts 'charts/common-test'
+        if: contains(steps.list-changed.outputs.list, 'charts/common')
