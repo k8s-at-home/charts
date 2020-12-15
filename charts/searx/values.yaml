@@ -1,0 +1,86 @@
+# Default values for Searx.
+
+image:
+  repository: searx/searx
+  pullPolicy: IfNotPresent
+  tag: 0.18.0
+
+searx:
+  # external URL
+  baseUrl: "https://searx.DOMAIN"
+  # generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service)
+  # example : `openssl rand -base64 24` 
+  mortyKey: "changeme"
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8080
+
+envFrom:
+  - secretRef:
+      name: searx-config
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+
+additionalContainers:
+- name: caddy
+  image: caddy:2.2.0-alpine
+  ports:
+    - containerPort: 80
+      name: http
+  volumeMounts:
+    - name: searx-config
+      mountPath: /etc/caddy/Caddyfile
+      subPath: Caddyfile
+    - name: searx-checker
+      mountPath: /srv/searx-checker
+- image: dalf/filtron:latest
+  imagePullPolicy: Always
+  name: filtron
+  args:
+    [
+      "-listen",
+      "0.0.0.0:4040",
+      "-api",
+      "0.0.0.0:4041",
+      "-target",
+      "localhost:8080",
+    ]
+  ports:
+    - containerPort: 4040
+      name: filtron
+    - containerPort: 4041
+      name: api
+  volumeMounts:
+    - name: searx-config
+      mountPath: /etc/filtron/rules.json
+      subPath: rules.json
+- image: dalf/morty:latest
+  imagePullPolicy: Always
+  name: morty
+  env:
+    - secretRef:
+      name: searx-config
+  args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
+  ports:
+    - containerPort: 3000
+      name: morty
+- name: searx-checker
+  image: searx/searx-checker:latest
+  args:
+    ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
+  volumeMounts:
+    - name: searx-checker
+      mountPath: /usr/local/searx-checker/html/data
+additionalVolumes:
+- name: searx-config
+  configMap:
+    name: searx-config
+- name: searx-checker
+  emptyDir: {}
