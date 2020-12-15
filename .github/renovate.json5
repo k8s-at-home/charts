@@ -1,0 +1,92 @@
+{
+  "enabled": true,
+  "commitMessagePrefix": "[{{{parentDir}}}]",
+  "branchTopic": "{{{parentDir}}}-{{{depNameSanitized}}}-{{{newMajor}}}{{#if isPatch}}.{{{newMinor}}}{{/if}}.x{{#if isLockfileUpdate}}-lockfile{{/if}}",
+  "assigneesFromCodeOwners": true,
+  "reviewersFromCodeOwners": true,
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "helm-values": {
+    "enabled": false
+  },
+  "helmv3": {
+    "fileMatch": ["charts/.+/Chart\\.yaml$"]
+  },
+  "packageRules": [
+    //
+    // Common library dep
+    //
+    {
+      "datasources": ["helmv3"],
+      "updateTypes": ["major"],
+      "bumpVersion": "major",
+      "labels": ["dependency/major"],
+      "packageNames": [
+        "common"
+      ]
+    },
+    {
+      "datasources": ["helmv3"],
+      "updateTypes": ["minor"],
+      "bumpVersion": "minor",
+      "labels": ["dependency/minor"],
+      "packageNames": [
+        "common"
+      ]
+    },
+    {
+      "datasources": ["helmv3"],
+      "updateTypes": ["patch"],
+      "bumpVersion": "patch",
+      "labels": ["dependency/patch"],
+      "packageNames": [
+        "common"
+      ]
+    },
+    //
+    // Other chart deps
+    //
+    {
+      "datasources": ["helmv3"],
+      "updateTypes": ["major"],
+      "bumpVersion": "major",
+      "labels": ["dependency/major"],
+      "packageNames": [
+        "influxdb",
+        "postgresql",
+        "mariadb"
+      ],
+      "schedule": [
+        "every 3 months on the first day of the month"
+      ]
+    },
+    {
+      "datasources": ["helmv3"],
+      "updateTypes": ["minor"],
+      "bumpVersion": "minor",
+      "labels": ["dependency/minor"],
+      "packageNames": [
+        "influxdb",
+        "postgresql",
+        "mariadb"
+      ],
+      "schedule": [
+        "every 2 months on the first day of the month"
+      ]
+    },
+    {
+      "datasources": ["helmv3"],
+      "updateTypes": ["patch"],
+      "bumpVersion": "patch",
+      "labels": ["dependency/patch"],
+      "packageNames": [
+        "influxdb",
+        "postgresql",
+        "mariadb"
+      ],
+      "schedule": [
+        "every 1 months on the first day of the month"
+      ]
+    }
+  ]
+}
