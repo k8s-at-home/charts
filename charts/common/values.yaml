@@ -66,6 +66,7 @@ probes:
     spec:
       initialDelaySeconds: 30
       failureThreshold: 5
+      periodSeconds: 10
       timeoutSeconds: 10
 
   readiness:
@@ -77,6 +78,7 @@ probes:
     spec:
       initialDelaySeconds: 30
       failureThreshold: 5
+      periodSeconds: 10
       timeoutSeconds: 10
 
   startup:
@@ -89,6 +91,7 @@ probes:
       initialDelaySeconds: 5
       failureThreshold: 30
       periodSeconds: 10
+      timeoutSeconds: 10
 
 service:
   enabled: true
