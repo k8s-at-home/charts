@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Block concurrent releases
+      - name: Block concurrent jobs
         uses: softprops/turnstyle@v1
         with:
           continue-after-seconds: 180
@@ -23,6 +23,13 @@ jobs:
     needs: pre-release
     runs-on: ubuntu-latest
     steps:
+      - name: Block concurrent jobs
+        uses: softprops/turnstyle@v1
+        with:
+          continue-after-seconds: 180
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -52,6 +59,13 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
+      - name: Block concurrent jobs
+        uses: softprops/turnstyle@v1
+        with:
+          continue-after-seconds: 180
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -66,6 +80,7 @@ jobs:
       - name: Commit and push timestamp updates
         run: |
           if [[ -f index.yaml ]]; then
+            git pull
             export generated_date=$(date --utc +%FT%T.%9NZ)
             sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
             git add index.yaml

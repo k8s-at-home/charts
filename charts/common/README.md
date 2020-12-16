@@ -10,6 +10,10 @@ Since a lot of charts follow the same pattern this library was built to reduce m
 
 This chart provides common template helpers which can be used to develop new charts using [Helm](https://helm.sh) package manager.
 
+## :star2: Changelog
+
+Please refer to [CHANGELOG.md](CHANGELOG.md) for an overview of notable changes to the chart. **This is especially important for major version updates!**
+
 ## TL;DR
 
 When using one of the many charts that uses this library be sure to view this [values.yaml](./values.yaml) for configuration options. Any setting here can be used to define what values your helm deployment will use.
