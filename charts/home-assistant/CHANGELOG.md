@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgraded `home-assistant` container image to `2020.12.0`
 - Upgraded `postgresql` subchart from version 10.1.3 to version 10.2.0. 
 - Upgraded `influxdb` subchart from version 1.1.2 to version 1.1.4. 
+- Upgraded `mariadb` subchart from version 9.1.2 to version 9.1.4
 
 ## [4.0.0]
 
