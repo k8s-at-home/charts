@@ -43,11 +43,11 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ .path }}
-            {{- if eq (include "common.capabilities.ingress.apiVersion") "networking.k8s.io/v1/Ingress" }}
+            {{- if eq (include "common.capabilities.ingress.apiVersion" .) "networking.k8s.io/v1/Ingress" }}
             pathType: Prefix
             {{- end }}
             backend:
-            {{- if eq (include "common.capabilities.ingress.apiVersion") "networking.k8s.io/v1/Ingress" }}
+            {{- if eq (include "common.capabilities.ingress.apiVersion" .) "networking.k8s.io/v1/Ingress" }}
               service:
                 name: {{ $svcName }}
                 port:
