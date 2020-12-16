@@ -1,4 +1,4 @@
-# Default values for zwave2mqtt.
+# Default values for plex-media-server.
 
 image:
   repository: k8sathome/plex-media-server
@@ -14,9 +14,6 @@ env: {}
 service:
   port:
     port: 32400
-
-# securityContext:
-#   privileged: true
 
 persistence:
   config:
@@ -52,24 +49,3 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     # skipuninstall: false
     # existingClaim: ""
-
-# # Path to your intel gpu device in the container
-# additionalVolumeMounts:
-#   - name: intel-gpu
-#     mountPath: /dev/dri
-
-# # Path to yourintel gpu device on the host
-# additionalVolumes:
-#   - name: intel-gpu
-#     hostPath:
-#       path: /dev/dri
-
-# affinity:
-#   nodeAffinity:
-#     requiredDuringSchedulingIgnoredDuringExecution:
-#       nodeSelectorTerms:
-#       - matchExpressions:
-#         - key: kubernetes.io/hostname
-#           operator: In
-#           values:
-#           - k8s-worker-a
