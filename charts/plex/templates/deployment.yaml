@@ -175,7 +175,7 @@ spec:
 # Extra ENV Values supplied by user
 {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
-            value: {{ $value }}
+            value: "{{ $value }}"
 {{- end }}
 # This is part of pkcsMangler
 {{- if .Values.certificate.pkcsMangler.enabled }}
@@ -310,7 +310,7 @@ spec:
       - name: {{ .name }}
         persistentVolumeClaim:
           claimName: {{ .claimName }}
-  {{- end }}        
+  {{- end }}
 {{- end }}
       - name: shared
         emptyDir: {}
