@@ -6050,6 +6050,33 @@ entries:
   monica:
   - apiVersion: v2
     appVersion: v2.19.1
+    created: "2020-12-16T13:04:47.272863785Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.4
+    description: A Personal Relationship Management tool to help you organize your social life
+    digest: 64147baf29ab80d8340ae1620bde981fdfa94dda9e1e306f2249a425c6d7ac36
+    home: https://www.monicahq.com/
+    icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
+    keywords:
+    - crm
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: monica
+    sources:
+    - https://github.com/monicahq/monica
+    - https://hub.docker.com/_/monica
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/monica-1.2.0/monica-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: v2.19.1
     created: "2020-12-09T21:16:22.838949672Z"
     dependencies:
     - name: common
