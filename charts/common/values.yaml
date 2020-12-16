@@ -15,6 +15,9 @@ strategy:
 # Override the default args
 args: []
 
+nameOverride: ""
+fullnameOverride: ""
+
 # Set annotations on the pod
 podAnnotations: {}
 
@@ -28,33 +31,64 @@ serviceAccount:
   name: ""
 
 env: {}
+# TZ: UTC
+
+envFrom: []
+# - configMapRef:
+#     name: config-map-name
+# - secretRef:
+#     name: secret-name
 
 # When using hostNetwork make sure you set dnsPolicy to ClusterFirstWithHostNet
 hostNetwork: false
 
 dnsPolicy: ClusterFirst
 
+# Optional DNS settings, configuring the ndots option may resolve
+# nslookup issues on some Kubernetes setups.
+# dnsConfig:
+#   options:
+#     - name: ndots
+#       value: "1"
+
 initContainers: []
 
 additionalContainers: []
 
-# Probes configuration
+## Probes configuration
 probes:
   liveness:
     enabled: true
-    initialDelaySeconds: 30
-    failureThreshold: 5
-    timeoutSeconds: 10
+    ## Set this to true if you wish to specify your own livenessProbe
+    custom: false
+    ## The spec field contains the values for the default livenessProbe. 
+    ## If you selected custom: true, this field holds the definition of the livenessProbe.
+    spec:
+      initialDelaySeconds: 30
+      failureThreshold: 5
+      timeoutSeconds: 10
+
   readiness:
     enabled: true
-    initialDelaySeconds: 30
-    failureThreshold: 5
-    timeoutSeconds: 10
+    ## Set this to true if you wish to specify your own readinessProbe
+    custom: false
+    ## The spec field contains the values for the default readinessProbe. 
+    ## If you selected custom: true, this field holds the definition of the readinessProbe.
+    spec:
+      initialDelaySeconds: 30
+      failureThreshold: 5
+      timeoutSeconds: 10
+
   startup:
     enabled: false
-    initialDelaySeconds: 5
-    failureThreshold: 30
-    periodSeconds: 10
+    ## Set this to true if you wish to specify your own startupProbe
+    custom: false
+    ## The spec field contains the values for the default startupProbe. 
+    ## If you selected custom: true, this field holds the definition of the startupProbe.
+    spec:
+      initialDelaySeconds: 5
+      failureThreshold: 30
+      periodSeconds: 10
 
 service:
   enabled: true
@@ -150,7 +184,7 @@ persistence:
     # subPath: some-subpath
     accessMode: ReadWriteOnce
     size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
+    ## Set to true to retain the PVC upon helm uninstall
     skipuninstall: false
 
   # Create an emptyDir volume to share between all containers
@@ -178,6 +212,8 @@ hostAliases: []
 #   - "www.example.com"
 
 addons:
+
+  # Enable running a VPN in the pod to route traffic through a VPN
   vpn:
     enabled: false
 
@@ -188,6 +224,7 @@ addons:
     openvpn:
       image:
         repository: dperson/openvpn-client
+        pullPolicy: IfNotPresent
         tag: latest
 
       # Credentials to connect to the VPN Service (used with -a)
@@ -200,9 +237,8 @@ addons:
     wireguard:
       image:
         repository: k8sathome/wireguard
+        pullPolicy: IfNotPresent
         tag: 1.0.20200827
-
-    imagePullPolicy: IfNotPresent
 
     # Set the VPN container securityContext
     securityContext:
@@ -265,3 +301,64 @@ addons:
         #     protocol: UDP
         #   - port: 53
         #     protocol: TCP
+
+  # Enable running a code-server container in the pod to access files
+  codeserver:
+    enabled: false
+
+    image:
+      repository: codercom/code-server
+      pullPolicy: IfNotPresent
+      tag: 3.7.4
+
+    # Specify a list of volumes that get mounted in the code-server container.
+    # At least 1 volumeMount is required!
+    volumeMounts: []
+    # - name: config
+    #   mountPath: /data/config
+
+    # Specify the working dir that will be opened when code-server starts
+    # If not given, the app will default to the mountpah of the first specified volumeMount
+    workingDir: ""
+
+    service:
+      enabled: true
+      type: ClusterIP
+      # Specify the default port information
+      port:
+        port: 12321
+        name: codeserver
+        protocol: TCP
+        targetPort: codeserver
+        ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+        ##
+        # nodePort:
+
+      ## Provide any additional annotations which may be required. This can be used to
+      ## set the LoadBalancer service type to internal only.
+      ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+      ##
+      annotations: {}
+      labels: {}
+
+    ingress:
+      enabled: false
+      nameSuffix: codeserver
+      annotations: {}
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+      labels: {}
+      hosts:
+        - host: code.chart-example.local
+          paths:
+            - path: /
+              # Ignored if not kubeVersion >= 1.14-0
+              pathType: Prefix
+      tls: []
+      #  - secretName: chart-example-tls
+      #    hosts:
+      #      - code.chart-example.local
+
+    securityContext:
+      runAsUser: 0
