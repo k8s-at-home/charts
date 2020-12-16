@@ -41,6 +41,11 @@ jobs:
         run: ct lint --config .github/ct.yaml
         if: steps.list-changed.outputs.changed == 'true'
 
+      - name: Run chart-testing (lint common-test)
+        run: |
+          ct lint --config .github/ct.yaml --charts 'charts/common-test'
+        if: steps.list-changed.outputs.common == 'true'
+
       - name: Create kind cluster
         uses: helm/kind-action@v1.1.0
         if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
