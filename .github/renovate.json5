@@ -29,13 +29,15 @@
       "updateTypes": ["minor"],
       "bumpVersion": "minor",
       "labels": ["dependency/minor"],
-      "packageNames": ["common"]
+      "packageNames": ["common"],
+      "groupName": ["internal minor dep"]
     },
     {
       "updateTypes": ["patch"],
       "bumpVersion": "patch",
       "labels": ["dependency/patch"],
-      "packageNames": ["common"]
+      "packageNames": ["common"],
+      "groupName": ["internal patch dep"]
     },
     //
     // Other library deps
@@ -54,6 +56,7 @@
       "bumpVersion": "minor",
       "labels": ["dependency/minor"],
       "excludePackageNames": ["common"],
+      "groupName": ["external minor dep"],
       "schedule": [
         "every 2 months on the first day of the month"
       ]
@@ -63,6 +66,7 @@
       "bumpVersion": "patch",
       "labels": ["dependency/patch"],
       "excludePackageNames": ["common"],
+      "groupName": ["external patch dep"],
       "schedule": [
         "every 1 months on the first day of the month"
       ]
