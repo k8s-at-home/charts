@@ -1,0 +1,93 @@
+# Default values for Appdaemon.
+
+# Use our own image at https://github.com/k8s-at-home/container-images/tree/main/appdaemon
+# until https://github.com/AppDaemon/appdaemon/pull/1002 is merged
+image:
+  repository: k8sathome/appdaemon
+  pullPolicy: IfNotPresent
+  tag: v4.0.5
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 5050
+  # # Boilerplate config for code-server functionality, be sure to make changes to suit your environment
+  # additionalServices:
+  # - enabled: true
+  #   nameSuffix: vscode
+  #   type: ClusterIP
+  #   port:
+  #     port: 12321
+  #     name: vscode
+  #     protocol: TCP
+  #     targetPort: 12321
+
+# Environment variables that can be configure can be seen at
+# https://appdaemon.readthedocs.io/en/latest/DOCKER_TUTORIAL.html
+env: {}
+  # TZ:
+  # LATITUDE:
+  # LONGITUDE:
+  # ELEVATION:
+  # HA_URL:
+  # DASH_URL:
+  # TOKEN:
+
+# # Boilerplate config for code-server functionality, be sure to make changes to suit your environment
+# additionalContainers:
+# - name: vscode
+#   image: codercom/code-server:3.7.2
+#   imagePullPolicy: IfNotPresent
+#   workingDir: /www/assets
+#   args:
+#   - "--port"
+#   - "12321"
+#   - "--auth"
+#   - "none"
+#   ports:
+#   - name: vscode
+#     containerPort: 12321
+#     protocol: TCP
+#   volumeMounts:
+#   - name: config
+#     mountPath: /www/assets
+#   securityContext:
+#     runAsUser: 0
+
+ingress:
+  enabled: false
+  # # Boilerplate config for code-server functionality, be sure to make changes to suit your environment
+  # additionalIngresses:
+  # - enabled: true
+  #   nameSuffix: "vscode"
+  #   serviceName: appdaemon-vscode
+  #   servicePort: 12321
+  #   annotations:
+  #     kubernetes.io/ingress.class: "nginx"
+  #   hosts:
+  #   - host: appdaemon-editor.k8s-at-home.com
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #   tls:
+  #   - hosts:
+  #     - appdaemon-editor.k8s-at-home.com
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Set to true to retain the PVC upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""

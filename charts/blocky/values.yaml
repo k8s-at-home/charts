@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: spx01/blocky
-  tag: v0.10
+  tag: v0.11
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -106,11 +106,33 @@ config:
     # url path, optional (default '/metrics')
     path: /metrics
 
+  # optional: write query information (question, answer, client, duration etc) to daily csv file
+  # queryLog:
+  #     # directory (will be mounted as volume in the pod)
+  #     dir: /logs
+  #     # if true, write one file per client. Writes all queries to single file otherwise
+  #     perClient: true
+  #     # if > 0, deletes log files which are older than ... days
+  #     logRetentionDays: 7
+
   # optional: HTTP listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, ...
   httpPort: 4000
   # optional: Log level (one from debug, info, warn, error). Default: info
   logLevel: info
 
+## Add persistence for query logs (if enabled)
+persistence:
+  enabled: false
+  # storageClassName: default
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+  # annotations: {}
+  finalizers:
+    - kubernetes.io/pvc-protection
+  # selectorLabels: {}
+  # subPath: ""
+  # existingClaim:
 
 # Probes configuration
 probes:
