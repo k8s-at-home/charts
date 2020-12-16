@@ -1459,6 +1459,22 @@ entries:
     version: 2.0.0
   common:
   - apiVersion: v2
+    created: "2020-12-16T15:04:10.433471075Z"
+    description: Function library for k8s-at-home charts
+    digest: 2b891bae2c35f3ac5a3b07d5025c7163847031680f98bbdf005fc3e09561a503
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/common
+    keywords:
+    - k8s-at-home
+    - common
+    maintainers:
+    - email: me@juggels.online
+      name: BJW-S
+    name: common
+    type: library
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/common-2.0.0/common-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     created: "2020-11-26T13:11:32.861408658Z"
     description: Function library for k8s-at-home charts
     digest: 77bcb0034797312744e140571480128281f7221e97fe2d9bb0174c0023a700e8
@@ -1713,6 +1729,25 @@ entries:
     type: library
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/common-1.0.0/common-1.0.0.tgz
+    version: 1.0.0
+  common-test:
+  - apiVersion: v2
+    created: "2020-12-16T15:04:10.678619841Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+    description: Helper chart to test different use cases of the common library
+    digest: 9748403732a244333b2b3327ea00b2eb8e11ce37a3b89f4014e66fc5aa5dc965
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/common-test
+    keywords:
+    - k8s-at-home
+    - common
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: common-test
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/common-test-1.0.0/common-test-1.0.0.tgz
     version: 1.0.0
   couchpotato:
   - apiVersion: v2
