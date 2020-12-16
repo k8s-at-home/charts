@@ -13486,6 +13486,33 @@ entries:
   traccar:
   - apiVersion: v2
     appVersion: v4.11
+    created: "2020-12-16T13:06:52.131711178Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 1.7.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.4
+    description: Traccar is an open source GPS tracking system.
+    digest: f66ef53ee5508a5381bf5b1a9888a24680a81960c48b5b5e14890607dc5dec2f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/traccar
+    keywords:
+    - traccar
+    - gps
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: traccar
+    sources:
+    - https://github.com/traccar/traccar
+    - https://hub.docker.com/r/traccar/traccar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traccar-1.2.0/traccar-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: v4.11
     created: "2020-12-09T21:15:36.653364737Z"
     dependencies:
     - name: common
