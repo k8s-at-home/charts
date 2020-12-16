@@ -2163,6 +2163,30 @@ entries:
   ddclient:
   - apiVersion: v2
     appVersion: 3.9.1
+    created: "2020-12-16T18:01:02.646716403Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.0.3
+    description: Perl client used to update dynamic DNS entries for accounts on Dynamic DNS Network Service Providers
+    digest: 542d0086baccdbb7fc4bbc7e8442e7a5bfdaa6eac567484ba5b3028b0eddbe63
+    home: https://github.com/ddclient/ddclient
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ddclient-logo.png
+    keywords:
+    - ddclient
+    - dns
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ddclient
+    sources:
+    - https://github.com/ddclient/ddclient
+    - https://hub.docker.com/r/linuxserver/ddclient
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ddclient-2.0.0/ddclient-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 3.9.1
     created: "2020-11-26T13:58:10.65289099Z"
     dependencies:
     - name: common
