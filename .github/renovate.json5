@@ -20,67 +20,49 @@
     // Common library dep
     //
     {
-      "datasources": ["helmv3"],
       "updateTypes": ["major"],
       "bumpVersion": "major",
       "labels": ["dependency/major"],
-      "packagePatterns": [
-        "common"
-      ]
+      "packageNames": ["common"]
     },
     {
-      "datasources": ["helmv3"],
       "updateTypes": ["minor"],
       "bumpVersion": "minor",
       "labels": ["dependency/minor"],
-      "packagePatterns": [
-        "common"
-      ]
+      "packageNames": ["common"]
     },
     {
-      "datasources": ["helmv3"],
       "updateTypes": ["patch"],
       "bumpVersion": "patch",
       "labels": ["dependency/patch"],
-      "packagePatterns": [
-        "common"
-      ]
+      "packageNames": ["common"]
     },
     //
     // Other library deps
     //
     {
-      "datasources": ["helmv3"],
       "updateTypes": ["major"],
       "bumpVersion": "major",
       "labels": ["dependency/major"],
-      "excludePackagePatterns": [
-        "common"
-      ],
+      "excludePackageNames": ["common"],
       "schedule": [
         "every 3 months on the first day of the month"
       ]
     },
     {
-      "datasources": ["helmv3"],
       "updateTypes": ["minor"],
       "bumpVersion": "minor",
       "labels": ["dependency/minor"],
-      "excludePackagePatterns": [
-        "common"
-      ],
+      "excludePackageNames": ["common"],
       "schedule": [
         "every 2 months on the first day of the month"
       ]
     },
     {
-      "datasources": ["helmv3"],
       "updateTypes": ["patch"],
       "bumpVersion": "patch",
       "labels": ["dependency/patch"],
-      "excludePackagePatterns": [
-        "common"
-      ],
+      "excludePackageNames": ["common"],
       "schedule": [
         "every 1 months on the first day of the month"
       ]
