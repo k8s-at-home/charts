@@ -39,7 +39,7 @@ jobs:
       - name: Run chart-testing (lint)
         id: lint
         run: ct lint --config .github/ct.yaml --excluded-charts ""
-        if: steps.list-changed.outputs.common == 'true' || steps.list-changed.outputs.common == 'true'
+        if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.1.0
