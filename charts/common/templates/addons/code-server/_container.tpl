@@ -28,6 +28,9 @@ args:
 - "{{ .Values.addons.codeserver.service.port.port }}"
 - "--auth"
 - "none"
+{{- with .Values.addons.codeserver.args }}
+{{ . }}
+{{- end }}
 - {{ .Values.addons.codeserver.workingDir | default (first .Values.addons.codeserver.volumeMounts).mountPath }}
 {{- with .Values.addons.codeserver.volumeMounts }}
 volumeMounts:
