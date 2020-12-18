@@ -30,7 +30,6 @@ args:
 - "--port"
 - "{{ .Values.addons.codeserver.service.port.port }}"
 - {{ .Values.addons.codeserver.workingDir | default (first .Values.addons.codeserver.volumeMounts).mountPath }}
-- {{ .Values.addons.codeserver.workingDir | default (first .Values.addons.codeserver.volumeMounts).mountPath }}
 {{- with .Values.addons.codeserver.volumeMounts }}
 volumeMounts:
   {{- toYaml . | nindent 2 }}
