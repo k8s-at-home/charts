@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Allow for additional arguments to be added to code-server runtime vis `addons.codeserver.args`
+- Allow for additional arguments to be added to code-server runtime via `addons.codeserver.args`
 
 ## [2.0.4]
 
