@@ -314,8 +314,10 @@ addons:
       pullPolicy: IfNotPresent
       tag: 3.7.4
 
-    # Add additional args
-    args: []
+    # Set codeserver command line arguments
+    args:
+      - --auth
+      - none
 
     # Specify a list of volumes that get mounted in the code-server container.
     # At least 1 volumeMount is required!
