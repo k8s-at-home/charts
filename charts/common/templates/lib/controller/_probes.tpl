@@ -1,29 +1,22 @@
 {{/*
-Liveness/readiness/startup probes based on tcpSocket checks.
+Probes selection logic.
 */}}
-{{- define "common.controller.probes.tcpSocket" -}}
-{{- if .Values.probes.liveness.enabled -}}
-livenessProbe:
-  tcpSocket:
-    port: {{ .Values.service.port.name }}
-  initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
-  failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
-  timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
-{{- end }}
-{{- if .Values.probes.readiness.enabled }}
-readinessProbe:
-  tcpSocket:
-    port: {{ .Values.service.port.name }}
-  initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
-  failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-  timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
-{{- end }}
-{{- if .Values.probes.startup.enabled }}
-startupProbe:
-  tcpSocket:
-    port: {{ .Values.service.port.name }}
-  initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
-  failureThreshold: {{ .Values.probes.startup.failureThreshold }}
-  periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+{{- define "common.controller.probes" -}}
+{{- $svcPort := .Values.service.port.name -}}
+{{- range $probeName, $probe := .Values.probes }}
+  {{- if $probe.enabled -}}
+    {{- "" | nindent 0 }}
+    {{- $probeName }}Probe:
+    {{- if $probe.custom -}}
+      {{- $probe.spec | toYaml | nindent 2 }}  
+    {{- else }}
+      {{- "tcpSocket:" | nindent 2 }}
+        {{- printf "port: %v" $svcPort  | nindent 4 }}
+      {{- printf "initialDelaySeconds: %v" $probe.spec.initialDelaySeconds  | nindent 2 }}
+      {{- printf "failureThreshold: %v" $probe.spec.failureThreshold  | nindent 2 }}
+      {{- printf "timeoutSeconds: %v" $probe.spec.timeoutSeconds  | nindent 2 }}
+      {{- printf "periodSeconds: %v" $probe.spec.periodSeconds | nindent 2 }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 {{- end }}

@@ -1,4 +1,4 @@
-# Default values for Jackett.
+# Default values for nzbhydra2.
 
 image:
   repository: linuxserver/nzbhydra2
@@ -17,11 +17,11 @@ env: {}
   # PUID: 1001
   # PGID: 1001
 
+probes:
+  startup:
+    enabled: true
+
 persistence:
   config:
     enabled: false
     emptyDir: false
-
-probes:
-  startup:
-    enabled: true

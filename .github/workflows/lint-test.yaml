@@ -31,15 +31,25 @@ jobs:
             echo "::set-output name=changed::true"
           fi
 
+          changed_unfiltered=$(ct list-changed --config .github/ct.yaml --excluded-charts "")
+          if [[ $(grep -E "^charts/common(-test)?$" <<< "$changed_unfiltered") ]]; then
+            echo "::set-output name=common::true"
+          fi
+
       - name: Run chart-testing (lint)
         id: lint
-        run: ct lint --config .github/ct.yaml
-        if: steps.list-changed.outputs.changed == 'true'
+        run: ct lint --config .github/ct.yaml --excluded-charts ""
+        if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.1.0
-        if: steps.list-changed.outputs.changed == 'true'
+        if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
 
       - name: Run chart-testing (install)
         run: ct install --config .github/ct.yaml
         if: steps.list-changed.outputs.changed == 'true'
+
+      - name: Run chart-testing (common-test)
+        run: |
+          ct install --config .github/ct.yaml --charts 'charts/common-test'
+        if: steps.list-changed.outputs.common == 'true'
