@@ -1,0 +1,94 @@
+# Default values for resilio-sync.
+
+image:
+  repository: ghcr.io/linuxserver/resilio-sync
+  pullPolicy: IfNotPresent
+  tag: 2.7.2.1375-ls75
+
+strategy:
+  type: Recreate
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+  # UMASK: 022
+
+service:
+  port:
+    port: 8888
+
+  additionalServices:
+  - enabled: true
+    nameSuffix: bt
+    type: ClusterIP
+    port:
+      port: 55555
+      name: bt
+      protocol: TCP
+      targetPort: 55555
+  - enabled: true
+    nameSuffix: utp
+    type: ClusterIP
+    port:
+      port: 55555
+      name: utp
+      protocol: UDP
+      targetPort: 55555
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /config
+
+  media:
+    enabled: false
+    emptyDir: false
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+  downloads:
+    enabled: false
+    emptyDir: false
+    mountPath: /downloads
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+  sync:
+    enabled: false
+    emptyDir: false
+    mountPath: /sync
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
