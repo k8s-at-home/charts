@@ -3388,6 +3388,35 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/digitalocean-dyndns-1.0.1/digitalocean-dyndns-1.0.1.tgz
     version: 1.0.1
+  dsmr-reader:
+  - apiVersion: v2
+    appVersion: v4.9.0
+    created: "2020-12-21T13:10:32.992783463Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.1.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    description: DSMR-protocol reader, telegram data storage and energy consumption visualizer.
+    digest: 26057b50c9ae7ee6f2657c428d2a96b665afe0dcd13aa96eed4b71963313ba3f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/dsmr-reader
+    icon: https://avatars2.githubusercontent.com/u/57727360?s=400&v=4
+    keywords:
+    - dsmr-reader
+    - energy
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dsmr-reader
+    sources:
+    - https://github.com/dsmrreader/dsmr-reader
+    - https://github.com/xirixiz/dsmr-reader-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dsmr-reader-1.0.0/dsmr-reader-1.0.0.tgz
+    version: 1.0.0
   duplicati:
   - apiVersion: v2
     appVersion: v2.0.5.1
