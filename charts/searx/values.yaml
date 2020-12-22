@@ -17,7 +17,7 @@ strategy:
 
 service:
   port:
-    port: 8080
+    port: 80
 
 envFrom:
   - secretRef:
@@ -64,9 +64,9 @@ additionalContainers:
 - image: dalf/morty:latest
   imagePullPolicy: Always
   name: morty
-  env:
+  envFrom:
     - secretRef:
-      name: searx-config
+        name: searx-config
   args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
   ports:
     - containerPort: 3000
@@ -77,7 +77,7 @@ additionalContainers:
     ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
   volumeMounts:
     - name: searx-checker
-      mountPath: /usr/local/searx-checker/html/data
+      mountPath: /usr/local/searx-checker/html/data      
 additionalVolumes:
 - name: searx-config
   configMap:
