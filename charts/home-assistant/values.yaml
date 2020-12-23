@@ -18,12 +18,19 @@ service:
 # # Enable devices to be discoverable
 # hostNetwork: true
 
+# # When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet
+# dnsPolicy: ClusterFirstWithHostNet
+
 # # Enable passing thru a USB device to Home Assistant
 # securityContext:
 #   privileged: true
 
-git:
-  deployKey: ""
+# Allow access a Git repository by passing in a private SSH key
+# git:
+#   # Raw SSH private key
+#   deployKey: ""
+#   # Base64-encoded SSH private key
+#   deployKeyBase64: ""
 
 # Enable a prometheus-operator servicemonitor
 prometheus:
