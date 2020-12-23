@@ -10,7 +10,7 @@ secret:
   optional: true
 {{- end -}}
 
-{{- if .Values.git.deployKey -}}
+{{- if or .Values.git.deployKey .Values.git.deployKeyBase64 -}}
   {{- $volume := include "home-assistant.gitSecret.volume" . | fromYaml -}}
   {{- if $volume -}}
       {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
