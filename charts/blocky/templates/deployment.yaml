@@ -63,19 +63,19 @@ spec:
               protocol: UDP
           livenessProbe:
             httpGet:
-              path: /metrics
+              path: /
               port: api
             failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
             periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
           readinessProbe:
             httpGet:
-              path: /metrics
+              path: /
               port: api
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
             periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
           startupProbe:
             httpGet:
-              path: /metrics
+              path: /
               port: api
             initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
             failureThreshold: {{ .Values.probes.startup.failureThreshold }}
