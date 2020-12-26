@@ -2,7 +2,7 @@
 
 This is a helm chart for [Neolink](https://github.com/thirtythreeforty/neolink).
 
-**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose).**
 
 ## TL;DR;
 
