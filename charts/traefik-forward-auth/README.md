@@ -65,6 +65,7 @@ helm install traefik-forward-auth k8s-at-home/traefik-forward-auth --values valu
 | default.action | string | `""` | [auth|allow] Default action (default: auth) |
 | default.provider | string | `""` | [google|oidc|generic-oauth] Default provider (default: google) |
 | env | list | `[]` |  |
+| envFrom | list | `[]` | Load environment variables from secrets or configmaps |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"thomseddon/traefik-forward-auth"` |  |

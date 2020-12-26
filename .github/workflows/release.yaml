@@ -8,21 +8,32 @@ on:
       - "charts/**"
 
 jobs:
-  release:
-    timeout-minutes: 5
+  pre-release:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Turnstyle
+      - name: Block concurrent jobs
         uses: softprops/turnstyle@v1
         with:
           continue-after-seconds: 180
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    needs: pre-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Block concurrent jobs
+        uses: softprops/turnstyle@v1
+        with:
+          continue-after-seconds: 180
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Configure Git
         run: |
@@ -45,9 +56,16 @@ jobs:
   # needed until https://github.com/helm/chart-releaser/issues/90
   # or helm/chart-releaser-action supports this
   post-release:
-    runs-on: ubuntu-latest
     needs: release
+    runs-on: ubuntu-latest
     steps:
+      - name: Block concurrent jobs
+        uses: softprops/turnstyle@v1
+        with:
+          continue-after-seconds: 180
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -62,6 +80,7 @@ jobs:
       - name: Commit and push timestamp updates
         run: |
           if [[ -f index.yaml ]]; then
+            git pull
             export generated_date=$(date --utc +%FT%T.%9NZ)
             sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
             git add index.yaml

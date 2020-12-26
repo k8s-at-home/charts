@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: v2.7.4-2061-g46c7da76
+description: Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware.
+name: network-ups-tools
+version: 1.0.0
+keywords:
+  - nut
+  - network-ups-tools
+  - ups
+home: https://github.com/k8s-at-home/charts/tree/master/charts/network-ups-tools
+icon: https://avatars0.githubusercontent.com/u/3526263?s=400&v=4
+sources:
+  - https://github.com/networkupstools/nut
+maintainers:
+  - name: billimek
+    email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.1.1

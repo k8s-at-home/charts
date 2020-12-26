@@ -1,0 +1,46 @@
+# Default values for Appdaemon.
+
+# Use our own image at https://github.com/k8s-at-home/container-images/tree/main/appdaemon
+# until https://github.com/AppDaemon/appdaemon/pull/1002 is merged
+image:
+  repository: k8sathome/appdaemon
+  pullPolicy: IfNotPresent
+  tag: v4.0.5
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 5050
+
+# Environment variables that can be configure can be seen at
+# https://appdaemon.readthedocs.io/en/latest/DOCKER_TUTORIAL.html
+env: {}
+  # TZ:
+  # LATITUDE:
+  # LONGITUDE:
+  # ELEVATION:
+  # HA_URL:
+  # DASH_URL:
+  # TOKEN:
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Set to true to retain the PVC upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""

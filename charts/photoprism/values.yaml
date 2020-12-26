@@ -1,0 +1,53 @@
+# Default values for PhotoPrism.
+
+image:
+  repository: photoprism/photoprism
+  pullPolicy: IfNotPresent
+  tag: "20201122"
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 2342
+
+env:
+  PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+  PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
+  ## See other config options from PhotoPrism documentation: https://docs.photoprism.org/getting-started/config-options/
+  # PHOTOPRISM_ADMIN_PASSWORD: "please-change"     # Initial admin password: PLEASE CHANGE!
+  # PHOTOPRISM_DEBUG: "false"                      # Run in debug mode (shows additional log messages)
+  # PHOTOPRISM_PUBLIC: "false"                     # No authentication required (disables password protection)
+  # PHOTOPRISM_READONLY: "false"                   # Don't modify originals directory (reduced functionality)
+  # PHOTOPRISM_EXPERIMENTAL: "false"               # Enable experimental features
+  # PHOTOPRISM_SITE_URL: "http://localhost:2342/"  # Canonical / public site URL
+  # PHOTOPRISM_SITE_TITLE: "PhotoPrism"
+  # PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
+  # PHOTOPRISM_SITE_DESCRIPTION: ""
+  # PHOTOPRISM_SITE_AUTHOR: ""
+  # # You may optionally set user, group and/or file permissions using environment variables:
+  # UID: 1000
+  # GID: 1000
+  # UMASK: 0000
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /photoprism/storage
+
+  originals:
+    enabled: false
+    emptyDir: false
+    mountPath: "/photoprism/originals"
+    # readOnly: true
+
+  # additionalVolumeMounts:
+  # - name: originals
+  #   mountPath: "/photoprism/originals"
+  #   readOnly: true
+  # additionalVolumes:
+  # - name: originals
+  #   persistentVolumeClaim:
+  #     claimName: nfs-pictures-pvc

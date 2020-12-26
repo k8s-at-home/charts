@@ -1,0 +1,27 @@
+image:
+  repository: b4bz/homer
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port:
+    port: 8080
+
+ingress:
+  enabled: true
+
+persistence:
+  config:
+    enabled: true
+    emptyDir: true
+    mountPath: /www/assets
+
+addons:
+  codeserver:
+    enabled: true
+    workingDir: "/www/assets"
+    ingress:
+      enabled: true
+    volumeMounts:
+    - name: config
+      mountPath: /www/assets

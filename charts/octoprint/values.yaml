@@ -1,0 +1,38 @@
+# Default values for Octoprint.
+
+image:
+  repository: octoprint/octoprint
+  pullPolicy: IfNotPresent
+  tag: 1.4.2
+
+strategy:
+  type: Recreate
+
+securityContext:
+  privileged: true
+
+service:
+  port:
+    port: 5000
+
+env:
+  OCTOPRINT_PORT: "5000"
+  # TZ: UTC
+  # CAMERA_DEV: /dev/video0
+
+persistence:
+  data:
+    enabled: false
+    emptyDir: false
+    mountPath: /octoprint
+
+# Paths to your 3D printer and/or camera in the container
+additionalVolumeMounts:
+  - name: printer
+    mountPath: /dev/ttyACM0
+
+# Paths to your 3D printer and/or camera on the host
+additionalVolumes:
+  - name: printer
+    hostPath:
+      path: /dev/ttyACM0

@@ -6,8 +6,8 @@ replicaCount: 1
 strategyType: Recreate
 
 image:
-  repository: psitrax/powerdns
-  tag: v4.3.0
+  repository: naps/powerdns
+  tag: 4.3.1
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -71,8 +71,10 @@ powerdns:
   dnssec: true
   config: {}
 
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
 mariadb:
-  enabled: true
+  enabled: false
   db:
     name: pdns
     user: pdns
@@ -84,12 +86,19 @@ mariadb:
   master:
     persistence:
       enabled: false
-postgres:
-  enabled: false
-  global:
-    postgresqlUsername: pdns
-    postgresqlPassword: pdnspass
-    postgresqlDatabase: pdns
+
+# Enabled postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: true
+  postgresqlUsername: pdns
+  postgresqlPassword: pdnspass
+  postgresqlPostgresPassword: pdnsadminpass
+  postgresqlDatabase: pdns
+  persistence:
+    enabled: false
+    # storageClass: ""
+
 
 # Probes configuration
 probes:
