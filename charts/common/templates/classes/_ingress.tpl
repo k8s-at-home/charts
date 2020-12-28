@@ -26,6 +26,11 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+  {{- if or (.Capabilities.APIVersions.Has "networking.k8s.io/v1/IngressClass") (.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/IngressClass") }}
+  {{- if $values.ingressClassName }}
+  ingressClassName: {{ $values.ingressClassName }}
+  {{- end }}
+  {{- end }}
   {{- if $values.tls }}
   tls:
     {{- range $values.tls }}
