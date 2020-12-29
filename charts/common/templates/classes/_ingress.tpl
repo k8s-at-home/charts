@@ -26,7 +26,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if or (.Capabilities.APIVersions.Has "networking.k8s.io/v1/IngressClass") (.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/IngressClass") }}
+  {{- if eq (include "common.capabilities.ingress.apiVersion" $) "networking.k8s.io/v1" }}
   {{- if $values.ingressClassName }}
   ingressClassName: {{ $values.ingressClassName }}
   {{- end }}
