@@ -56,6 +56,21 @@ affinity:
 
 ... where a node with an attached zwave and/or zigbee controller USB device is labeled with `app: zwave-controller`
 
+### Websockets
+
+If an ingress controller is being used with home assistant, web sockets must be enabled using annotations to enable support of web sockets.
+
+Using NGINX as an example the following will need to be added to your values:
+
+```yaml
+ingress:
+  enabled: true
+  annotations:
+    nginx.org/websocket-services: home-assistant
+```
+
+The value derived is the name of the kubernetes service object for home-assistant 
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `my-release` deployment:
