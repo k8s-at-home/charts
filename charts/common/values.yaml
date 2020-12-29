@@ -314,6 +314,10 @@ addons:
       pullPolicy: IfNotPresent
       tag: 3.7.4
 
+    # Set any environment variables for code-server here
+    env: {}
+      # TZ: UTC
+
     # Set codeserver command line arguments
     # consider setting --user-data-dir to a persistent location to preserve code-server setting changes
     args:
