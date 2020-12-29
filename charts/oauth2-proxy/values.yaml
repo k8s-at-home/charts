@@ -169,6 +169,10 @@ podDisruptionBudget:
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 podSecurityContext: {}
 
+# Configure init containers for pod
+# REF: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+initContainers: []
+
 # whether to use http or https
 httpScheme: http
 
