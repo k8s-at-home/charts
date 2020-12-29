@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: v2.0.3-2201906121747
+description: Deluge is a torrent download client
+name: deluge
+version: 1.0.0
+keywords:
+  - deluge
+  - torrent
+home: https://github.com/k8s-at-home/charts/tree/master/charts/deluge
+icon: https://avatars2.githubusercontent.com/u/6733935?v=3&s=200
+sources:
+  - https://hub.docker.com/r/linuxserver/deluge/
+  - https://deluge-torrent.org/
+maintainers:
+  - name: mcmarkj
+    email: mark@markmcw.uk
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.1.1
