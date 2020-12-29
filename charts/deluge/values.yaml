@@ -1,0 +1,45 @@
+# Default values for deluge.
+
+image:
+  repository: linuxserver/deluge
+  pullPolicy: IfNotPresent
+  tag: version-2.0.3-2201906121747ubuntu18.04.1
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8112
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /config
+
+  downloads:
+    enabled: false
+    emptyDir: false
+    mountPath: /downloads
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+env: {}
+  ## Optional ENV Vars that can be set.
+  ## All values below are the current default values.
+  #PUID: "1000"
+  #PGID: "1000"
+  #TZ: "Europe/London"
+  #UMASK_SET: "022"
+  #DELUGE_LOGLEVEL: "error"
