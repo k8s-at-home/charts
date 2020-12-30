@@ -3,7 +3,7 @@
 image:
   repository: linuxserver/nzbhydra2
   pullPolicy: IfNotPresent
-  tag: version-v3.4.3
+  tag: version-v3.8.1
 
 strategy:
   type: Recreate
@@ -18,8 +18,42 @@ env: {}
   # PGID: 1001
 
 probes:
-  startup:
+  liveness:
     enabled: true
+    custom: true
+    spec:
+      initialDelaySeconds: 30
+      failureThreshold: 5
+      periodSeconds: 10
+      timeoutSeconds: 10
+      httpGet:
+        path: /actuator/health/livenessState
+        port: http
+
+  readiness:
+      enabled: true
+      custom: true
+      spec:
+        initialDelaySeconds: 30
+        failureThreshold: 5
+        periodSeconds: 10
+        timeoutSeconds: 10
+        httpGet:
+          path: /actuator/health/readinessState
+          port: http
+
+  startup:
+      enabled: true
+      custom: true
+      spec:
+        initialDelaySeconds: 30
+        failureThreshold: 5
+        periodSeconds: 10
+        timeoutSeconds: 10
+        httpGet:
+          path: /actuator/health/readinessState
+          port: http
+
 
 persistence:
   config:
