@@ -19,40 +19,39 @@ env: {}
 
 probes:
   liveness:
-    enabled: true
     custom: true
+    enabled: true
     spec:
-      initialDelaySeconds: 30
       failureThreshold: 5
-      periodSeconds: 10
-      timeoutSeconds: 10
       httpGet:
         path: /actuator/health/livenessState
         port: http
-
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
   readiness:
-      enabled: true
-      custom: true
-      spec:
-        initialDelaySeconds: 30
-        failureThreshold: 5
-        periodSeconds: 10
-        timeoutSeconds: 10
-        httpGet:
-          path: /actuator/health/readinessState
-          port: http
-
+    custom: true
+    enabled: true
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /actuator/health/readinessState
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
   startup:
-      enabled: true
-      custom: true
-      spec:
-        initialDelaySeconds: 30
-        failureThreshold: 5
-        periodSeconds: 10
-        timeoutSeconds: 10
-        httpGet:
-          path: /actuator/health/readinessState
-          port: http
+    custom: true
+    enabled: true
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /actuator/health/readinessState
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
+
 
 
 persistence:
