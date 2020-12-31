@@ -92,6 +92,7 @@ Parameter | Description | Default
 `ingress.annotations` | Ingress annotations | `nil`
 `ingress.hosts` | Ingress accepted hostnames | `nil`
 `ingress.tls` | Ingress TLS configuration | `nil`
+`initContainers` | pod init containers | `[]`
 `livenessProbe.enabled`  | enable Kubernetes livenessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
