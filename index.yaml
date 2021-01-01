@@ -18479,6 +18479,34 @@ entries:
   unifi-poller:
   - apiVersion: v2
     appVersion: 2.0.1
+    created: "2021-01-01T09:23:18.130447332Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.1.1
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.6
+    description: Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus
+    digest: 93518e6ec8331f56188a692dcfed0a2dda78966bb6837694b02691ee0fd94738
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/unifi-poller
+    icon: https://raw.githubusercontent.com/wiki/unifi-poller/unifi-poller/images/unifi-poller-logo.png
+    keywords:
+    - unifi
+    - unifi-poller
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: unifi-poller
+    sources:
+    - https://github.com/unifi-poller/unifi-poller
+    - https://hub.docker.com/r/golift/unifi-poller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-poller-5.1.2/unifi-poller-5.1.2.tgz
+    version: 5.1.2
+  - apiVersion: v2
+    appVersion: 2.0.1
     created: "2020-12-19T06:51:11.648275863Z"
     dependencies:
     - name: common
