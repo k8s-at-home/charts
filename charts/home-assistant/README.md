@@ -69,7 +69,67 @@ ingress:
     nginx.org/websocket-services: home-assistant
 ```
 
-The value derived is the name of the kubernetes service object for home-assistant
+Note, the Traefik ingress controller supports web sockets and does not need additional annotation settings.
+
+The value derived is the name of the kubernetes service object for home-assistant.
+
+### Configuration Editor
+
+To install codeserver to edit home-assistant configuration files the following should be added to your `values.yaml` file under the `addons` section:
+
+```yaml
+addons:
+
+  codeserver:
+    enabled: true
+
+    image:
+      repository: codercom/code-server
+      pullPolicy: IfNotPresent
+      tag: 3.8.0
+
+    # Set codeserver command line arguments
+    # consider setting --user-data-dir to a persistent location to preserve code-server setting changes
+    args:
+      - --auth
+      - none
+    #  - --user-data-dir
+    #  - "/data/config/.vscode"
+
+    # The default directory mount where home-assistance configuration files reside. container.
+    volumeMounts:
+    - name: config
+      mountPath: /data/config
+
+    # The working dir that will be opened when code-server starts
+    workingDir: ""
+
+    service:
+      enabled: true
+      type: ClusterIP
+      # Specify the default port information
+      port:
+        port: 12321
+        name: codeserver
+        protocol: TCP
+        targetPort: codeserver
+
+    ingress:
+      enabled: true
+      nameSuffix: codeserver
+      annotations:
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+      hosts:
+      - host: haconfiguration.chart-example.local
+        paths:
+        - path: /
+          pathType: Prefix
+      tls:
+      - hosts:
+        - haconfiguration.chart-example.local
+        secretName: haconfiguration-chart-example-tls
+```
 
 ## Uninstalling the Chart
 
