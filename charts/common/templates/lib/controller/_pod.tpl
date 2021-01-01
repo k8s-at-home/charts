@@ -21,6 +21,7 @@ dnsPolicy: {{ . }}
 dnsConfig:
   {{- toYaml . | nindent 2 }}
 {{- end }}
+enableServiceLinks: {{ .Values.enableServiceLinks }}
 {{- with .Values.initContainers }}
 initContainers:
   {{- toYaml . | nindent 2 }}

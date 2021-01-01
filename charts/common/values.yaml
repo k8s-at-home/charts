@@ -51,6 +51,11 @@ dnsPolicy: ClusterFirst
 #     - name: ndots
 #       value: "1"
 
+# Enable/disable the generation of environment variables for services.
+# See https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service
+# for more information.
+enableServiceLinks: true
+
 initContainers: []
 
 additionalContainers: []
