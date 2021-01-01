@@ -3,7 +3,7 @@
 image:
   repository: nodered/node-red
   pullPolicy: IfNotPresent
-  tag: 1.2.5
+  tag: 1.2.6
 
 strategy:
   type: Recreate
@@ -18,8 +18,27 @@ env: {}
   # FLOWS:
 
 service:
+  enabled: true
+  type: ClusterIP
   port:
     port: 1880
+    protocol: TCP
+
+# Ingress to allow web browser access to node-red using the 'host' domain specified.
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+  - host: nr.chart-example.local
+    paths:
+    - path: /
+      pathType: Prefix
+  tls: []
+  #  - secretName: nr-chart-example-tls
+  #    hosts:
+  #      - nr.chart-example.local
 
 persistence:
   data:
