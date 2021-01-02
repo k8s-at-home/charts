@@ -31,9 +31,6 @@ The command removes all the Kubernetes components associated with the chart and 
 ## Configuration
 The chart's [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/tvheadend/values.yaml) file contains a set of suggested values for a minimal deployment. Further configuration options are found in the [common library](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml).
 
-The configuration for the application itself is set as a configmap and mounted in the container as /etc/tvheadend.toml. Refer to the sample config [here.](https://github.com/thirtythreeforty/tvheadend/blob/master/sample_config.toml)
-
-
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install tvheadend \
