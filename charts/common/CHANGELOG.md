@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Document setting environment variables for code-server add-on in `values.yaml` (Fixes https://github.com/k8s-at-home/charts/issues/436).
+- Document setting environment variables for code-server add-on in `values.yaml` (Fixes [#436](https://github.com/k8s-at-home/charts/issues/436)).
 
 ## [2.1.0]
 
