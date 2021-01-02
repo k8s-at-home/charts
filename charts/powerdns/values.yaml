@@ -75,17 +75,16 @@ powerdns:
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
 mariadb:
   enabled: false
-  db:
-    name: pdns
-    user: pdns
-    password: pdnspass
-  replication:
-    enabled: false
-  rootUser:
-    password: pdnsrootpass
-  master:
+  architecture: standalone
+  auth:
+    database: pdns
+    username: pdns
+    password: pdns-pass
+    rootPassword: pdnsrootpass
+  primary:
     persistence:
       enabled: false
+      # storageClass: ""
 
 # Enabled postgres
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
