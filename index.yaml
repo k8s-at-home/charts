@@ -13546,6 +13546,31 @@ entries:
     version: 0.0.1
   powerdns:
   - apiVersion: v2
+    appVersion: v4.3.1
+    created: "2021-01-03T13:25:44.836724069Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.2.0
+    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
+    digest: 38e27a85bd98b3a3852fa619545e57bf7613b98af7031ecea8bfa958d9f46052
+    home: https://www.powerdns.com/
+    icon: https://www.powerdns.com/img/pDNS_logo_positive_claim_down_screen_xsmall.png
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: powerdns
+    sources:
+    - http://www.github.com/PowerDNS/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/powerdns-3.0.1/powerdns-3.0.1.tgz
+    version: 3.0.1
+  - apiVersion: v2
     appVersion: v4.3.0
     created: "2021-01-01T09:01:50.772923913Z"
     dependencies:
@@ -20219,4 +20244,4 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/zwave2mqtt-1.0.0/zwave2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-01-03T00:19:00.426224070Z"
+generated: "2021-01-03T00:19:00.42622407Z"
