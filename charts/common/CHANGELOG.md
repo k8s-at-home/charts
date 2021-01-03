@@ -11,10 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Allow serviceLinks to be enabled/disabled.
 - Support for ingressClassName on apiVersion `networking.k8s.io/v1` by setting `ingress.ingressClassName`.
 
+### Changed
+
+- `service.port.targetPort` is now used in the container spec instead of `service.port.port` if specified. This allows for different service and container ports. (Implements [#465](https://github.com/k8s-at-home/charts/issues/465)).
+
 ### Fixed
 
 - Document setting environment variables for code-server add-on in `values.yaml` (Fixes [#436](https://github.com/k8s-at-home/charts/issues/436)).
-- Set service targetPort to the service port name first if no `targetPort` value is given. 
+- Set service targetPort to the service port name first if no `targetPort` value is given.
 
 ## [2.1.0]
 

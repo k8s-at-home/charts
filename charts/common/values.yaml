@@ -101,13 +101,14 @@ probes:
 service:
   enabled: true
   type: ClusterIP
-  # Specify the default port information
+  ## Specify the default port information
   port:
     port:
-    # name defaults to http
+    ## name defaults to http
     name:
     protocol: TCP
-    # targetPort defaults to http
+    ## targetPort defaults to the service name. If targetPort is specified, this port number 
+    ## is used in the container definition instead of service.port.port.
     targetPort:
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
