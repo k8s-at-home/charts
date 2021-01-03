@@ -12,7 +12,7 @@ Render all the ports and additionalPorts for a Service object.
   ports:
   {{- range $_ := $ports }}
   - port: {{ .port }}
-    targetPort: {{ .targetPort | default "http" }}
+    targetPort: {{ .targetPort | default .name | default "http" }}
     protocol: {{ .protocol | default "TCP" }}
     name: {{ .name | default "http" }}
     {{- if (and (eq $.svcType "NodePort") (not (empty .nodePort))) }}
