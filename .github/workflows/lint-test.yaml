@@ -3,6 +3,36 @@ name: Lint and Test Charts
 on: pull_request
 
 jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Dev tools
+        run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.4.0
+
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7            
+  
+      - name: Install dependencies
+        run: |
+          export RUBYJQ_USE_SYSTEM_LIBRARIES=1
+          bundle install
+      
+      - name: Run tests
+        run: |
+          bundle exec m -r test/charts
+
   lint-test:
     runs-on: ubuntu-latest
     steps:
