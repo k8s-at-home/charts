@@ -30,11 +30,13 @@ jobs:
         id: list-changed
         run: |
           changed=$(ct list-changed --config .github/ct.yaml)
+          echo "Changed: $changed"
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
 
           changed_unfiltered=$(ct list-changed --config .github/ct.yaml --excluded-charts "")
+          echo "Changed unfiltered: $changed_unfiltered"
           if [[ $(grep -E "^charts/common(-test)?$" <<< "$changed_unfiltered") ]]; then
             echo "::set-output name=common::true"
           fi
