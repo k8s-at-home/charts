@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Allow serviceLinks to be enabled/disabled.
 - Support for ingressClassName on apiVersion `networking.k8s.io/v1` by setting `ingress.ingressClassName`.
+- Added some initial proper unit tests for the `common` chart.
 
 ### Changed
 
