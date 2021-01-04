@@ -21,6 +21,10 @@ class Chart
     @path = File.expand_path(chart)
 
     @values = default_values
+
+    command = "helm dep update '#{path}'"
+    stdout, stderr, status = Open3.capture3(command)
+    raise HelmCompileError, stderr if status != 0
   end
 
   def reset!
