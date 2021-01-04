@@ -87,12 +87,19 @@ class Chart
   end
 end
 
-class Minitest::Spec
-  before { chart.reset! }
+class ExtendedMinitest < Minitest::Test
+  extend MiniTest::Spec::DSL
+end
+
+class ChartTest < ExtendedMinitest
   Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
+  before do
+    chart.reset!
+  end
+
   def chart
-    subject
+    self.class.class_variable_get('@@chart')
   end
 
   def resource(name)
