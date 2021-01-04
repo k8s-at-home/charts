@@ -6,10 +6,14 @@ require 'open3'
 
 require 'jq/extend'
 require 'minitest-implicit-subject'
+require "minitest/reporters"
 require 'minitest/autorun'
 require 'minitest/pride'
 
 class HelmCompileError < StandardError
+end
+
+class HelmDepsError < StandardError
 end
 
 class Chart
@@ -22,9 +26,13 @@ class Chart
 
     @values = default_values
 
+    update_deps!
+  end
+
+  def update_deps!
     command = "helm dep update '#{path}'"
     stdout, stderr, status = Open3.capture3(command)
-    raise HelmCompileError, stderr if status != 0
+    raise HelmDepsError, stderr if status != 0
   end
 
   def reset!
@@ -75,29 +83,30 @@ class Chart
 
   def default_values
     {
-      image: {
-        repository: 'helm-test',
-        tag: '122344'
-      }
     }
   end
 end
 
-module Minitest
-  class Spec
-    before { chart.reset! }
+class Minitest::Spec
+  before { chart.reset! }
+  Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-    def chart
-      subject
-    end
+  def chart
+    subject
+  end
 
-    def resource(name)
-      chart.resources(kind: name).first
-    end
+  def resource(name)
+    chart.resources(kind: name).first
+  end
 
-    def jq(matcher, object)
-      value(object.jq(matcher)[0])
-    end
+  def jq(matcher, object)
+    value(object.jq(matcher)[0])
   end
 end
 
+class Minitest::Result
+  def name
+    test_name = defined?(@name) ? @name : super
+    test_name.to_s.gsub /\Atest_\d{4,}_/, ""
+  end
+end

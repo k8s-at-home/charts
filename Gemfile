@@ -6,8 +6,7 @@ group :test do
   gem 'm'
   gem 'minitest'
   gem 'minitest-implicit-subject'
+  gem 'minitest-reporters'
   gem 'pry'
-  gem 'rubocop'
-  gem 'rubocop-rspec'
   gem 'ruby-jq'
 end
