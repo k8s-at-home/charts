@@ -32,7 +32,7 @@ Ports included by the controller.
 ports:
 {{- range $_ := $ports }}
 - name: {{ .name }}
-  containerPort: {{ .port }}
+  containerPort: {{ .targetPort | default .port }}
   protocol: {{ .protocol | default "TCP" }}
 {{- end -}}
 {{- end -}}
