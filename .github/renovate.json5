@@ -20,6 +20,32 @@
       "commitMessageTopic": "Helm chart {{depName}}",
       "separateMinorPatch": true
     },
+    // Setup package groups (to prevent huge PR's
+    {
+      "datasources": ["helm"],
+      "packagePatterns": ["^[0-9a-e]"],
+      "groupName": "0-9 a-e"
+    },
+    {
+      "datasources": ["helm"],
+      "packagePatterns": ["^[f-j]"],
+      "groupName": "f-j"
+    },
+    {
+      "datasources": ["helm"],
+      "packagePatterns": ["^[k-o]"],
+      "groupName": "k-o"
+    },
+    {
+      "datasources": ["helm"],
+      "packagePatterns": ["^[p-t]"],
+      "groupName": "p-t"
+    },
+    {
+      "datasources": ["helm"],
+      "packagePatterns": ["^[u-z]"],
+      "groupName": "u-z"
+    },
     //
     // Common library dep
     //
