@@ -21,7 +21,7 @@ You can then run `helm search repo k8s-at-home` to see the charts.
 
 ## Charts
 
-See [artifact hub](https://artifacthub.io/packages/search?org=k8s-at-home) or [charts](./charts/) for a complete list.
+See [Artifact Hub](https://artifacthub.io/packages/search?org=k8s-at-home) or [charts](./charts/) for a complete list.
 
 ## Common Library
 
