@@ -17,11 +17,11 @@ spec:
   loadBalancerIP: {{ .Values.service.loadBalancerIP }}
   {{- end }}
   ports:
-    - port: 1883
+    - port: {{ .Values.service.port }}
       targetPort: default
       protocol: TCP
       name: default
-    - port: 9001
+    - port: {{ .Values.service.websocketPort }}
       targetPort: websocket
       protocol: TCP
       name: websocket
