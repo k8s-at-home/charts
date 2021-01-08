@@ -16400,6 +16400,30 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/readarr-1.0.0/readarr-1.0.0.tgz
     version: 1.0.0
+  recipes:
+  - apiVersion: v2
+    appVersion: 0.13.0
+    created: "2021-01-08T14:00:43.201084427Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.2.0
+    description: Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
+    digest: 8aafa304216befe55b76013c0e1f1096a3f74ca037cd77f2f1e92027c9513f55
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/recipes
+    keywords:
+    - recipes
+    - cooking
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: recipes
+    sources:
+    - https://github.com/vabene1111/recipes
+    - https://hub.docker.com/r/vabene1111/recipes
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/recipes-2.2.1/recipes-2.2.1.tgz
+    version: 2.2.1
   resilio-sync:
   - apiVersion: v2
     appVersion: 2.7.2
