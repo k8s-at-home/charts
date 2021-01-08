@@ -81,6 +81,21 @@ class Test < ChartTest
         jq('.spec.template.spec.containers[0].ports[0].containerPort', resource('Deployment')).must_equal values[:service][:port][:targetPort]
         jq('.spec.template.spec.containers[0].ports[0].name', resource('Deployment')).must_equal default_name
       end
+
+      it 'targetPort cannot be a named port' do
+        values = {
+          service: {
+            port: {
+              targetPort: 'test'
+            }
+          }
+        }
+        chart.value values
+        exception = assert_raises HelmCompileError do
+          chart.execute_helm_template!
+        end
+        assert_match("Our charts do not support named ports for targetPort. (port name #{default_name}, targetPort #{values[:service][:port][:targetPort]})", exception.message)
+      end
     end
   end
 end
