@@ -1,0 +1,104 @@
+# Default values for zwavejs2mqtt.
+
+image:
+  repository: zwavejs/zwavejs2mqtt
+  pullPolicy: IfNotPresent
+  tag: 1.0.0-alpha.2
+
+strategy:
+  type: Recreate
+
+# # See more environment varaibles in the zwavejs2mqtt documentation
+# https://zwave-js.github.io/zwavejs2mqtt/#/guide/env-vars
+env:
+  # OZW_NETWORK_KEY:
+
+probes:
+  liveness:
+    enabled: true
+    # custom: true
+    # spec:
+    #   failureThreshold: 5
+    #   httpGet:
+    #     path: /health
+    #     port: http
+    #     httpHeaders:
+    #       - name: Accept
+    #         value: text/plain
+    #   initialDelaySeconds: 30
+    #   periodSeconds: 10
+    #   timeoutSeconds: 10
+  readiness:
+    enabled: true
+    # custom: true
+    # spec:
+    #   failureThreshold: 5
+    #   httpGet:
+    #     path: /health
+    #     port: http
+    #     httpHeaders:
+    #       - name: Accept
+    #         value: text/plain
+    #   initialDelaySeconds: 30
+    #   periodSeconds: 10
+    #   timeoutSeconds: 10
+  startup:
+    enabled: false
+    # custom: true
+    # spec:
+    #   failureThreshold: 5
+    #   httpGet:
+    #     path: /health
+    #     port: http
+    #     httpHeaders:
+    #       - name: Accept
+    #         value: text/plain
+    #   initialDelaySeconds: 30
+    #   periodSeconds: 10
+    #   timeoutSeconds: 10
+
+service:
+  port:
+    port: 8091
+
+securityContext:
+  privileged: true
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /usr/src/app/store
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+# Path to your zwave device in the container
+additionalVolumeMounts:
+  - name: usb
+    mountPath: /dev/serial/by-id/usb-0658_0200-if00
+
+# Path to your zwave device on the host
+additionalVolumes:
+  - name: usb
+    hostPath:
+      path: /dev/serial/by-id/usb-0658_0200-if00
+
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: app
+#           operator: In
+#           values:
+#           - zwave-controller
