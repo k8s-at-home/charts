@@ -11,6 +11,50 @@ strategy:
 env:
   OZW_AUTO_UPDATE_CONFIG: true
 
+probes:
+  liveness:
+    custom: true
+    enabled: true
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /health
+        port: http
+        httpHeaders:
+          - name: Accept
+            value: text/plain
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
+  readiness:
+    custom: true
+    enabled: true
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /health
+        port: http
+        httpHeaders:
+          - name: Accept
+            value: text/plain
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
+  startup:
+    custom: true
+    enabled: false
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /health
+        port: http
+        httpHeaders:
+          - name: Accept
+            value: text/plain
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
+
 service:
   port:
     port: 8091
