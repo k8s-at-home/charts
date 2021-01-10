@@ -1,6 +1,10 @@
-name: Lint and Test Charts
+name: "Charts: Lint and test"
 
-on: pull_request
+on: 
+  pull_request:
+    paths:
+    - 'charts/**'
+    - '!charts/**/README.md'
 
 jobs:
   lint:
