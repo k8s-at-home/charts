@@ -402,6 +402,9 @@ data:
     # Note that writing of the persistence database can be forced by
     # sending mosquitto a SIGUSR1 signal.
     #autosave_interval 1800
+    {{- if .Values.persistence.enabled }}
+    autosave_interval 1800
+    {{- end }}
 
     # If true, mosquitto will count the number of subscription changes, retained
     # messages received and queued messages and if the total exceeds
@@ -416,6 +419,9 @@ data:
     # messages.
     # retained_persistence is a synonym for this option.
     #persistence false
+    {{- if .Values.persistence.enabled }}
+    persistence true
+    {{- end }}
 
     # The filename to use for the persistent database, not including
     # the path.
@@ -426,6 +432,9 @@ data:
     # Set to e.g. /var/lib/mosquitto if running as a proper service on Linux or
     # similar.
     #persistence_location
+    {{- if .Values.persistence.enabled }}
+    persistence_location /mosquitto/data/
+    {{- end }}
 
 
     # =================================================================
