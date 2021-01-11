@@ -1,11 +1,12 @@
-name: Release Charts
+name: "Charts: Release"
 
 on:
   push:
     branches:
       - master
     paths:
-      - "charts/**"
+      - 'charts/**'
+      - '!charts/**/README.md'
 
 jobs:
   pre-release:
