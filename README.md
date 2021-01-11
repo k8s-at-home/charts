@@ -1,6 +1,6 @@
 # k8s@Home collection of helm charts
 
-[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg)](https://discord.gg/stmx7vh)
+[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg)](https://discord.com/invite/7PbmHRK)
 [![](https://github.com/k8s-at-home/charts/workflows/Release%20Charts/badge.svg?branch=master)](https://github.com/k8s-at-home/charts/actions)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/k8s-at-home)](https://artifacthub.io/packages/search?repo=k8s-at-home)
