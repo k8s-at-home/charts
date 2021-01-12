@@ -12,6 +12,12 @@ strategy:
 # https://zwave-js.github.io/zwavejs2mqtt/#/guide/env-vars
 env: {}
   # OZW_NETWORK_KEY:
+  # TZ: Europe/Helsinki
+
+# Get environment from a secret:
+#envFrom:
+#  - secretRef:
+#      name: zwavejs2mqtt-network-key
 
 probes:
   liveness:
@@ -60,9 +66,26 @@ probes:
 service:
   port:
     port: 8091
+    
+ingress:
+  enabled: false
+#  annotations:
+#    kubernetes.io/ingress.class: nginx
+#    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#    cert-manager.io/cluster-issuer: some-smart-ca-issuer
+#  tls:
+#    - hosts:
+#        - zwave.home.some
+#      secretName: elveli-zwavejs2mqtt
+#  hosts:
+#    - host: zwave.home.some
+#      paths:
+#        - path: /
+#          pathType: Prefix
 
-securityContext:
-  privileged: true
+# Privileged may be required if USB controller is accessed directly through the host machine
+# securityContext:
+#  privileged: true
 
 persistence:
   config:
@@ -83,15 +106,15 @@ persistence:
     # existingClaim: ""
 
 # Path to your zwave device in the container
-additionalVolumeMounts:
-  - name: usb
-    mountPath: /dev/serial/by-id/usb-0658_0200-if00
+additionalVolumeMounts: []
+#  - name: usb
+#    mountPath: /dev/serial/by-id/usb-0658_0200-if00
 
 # Path to your zwave device on the host
-additionalVolumes:
-  - name: usb
-    hostPath:
-      path: /dev/serial/by-id/usb-0658_0200-if00
+additionalVolumes: []
+#  - name: usb
+#    hostPath:
+#      path: /dev/serial/by-id/usb-0658_0200-if00
 
 # affinity:
 #   nodeAffinity:
