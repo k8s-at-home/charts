@@ -1,5 +1,7 @@
 # Default values for zigbee2mqtt.
-
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common
+#
 image:
   repository: koenkk/zigbee2mqtt
   pullPolicy: IfNotPresent
@@ -15,8 +17,9 @@ service:
   port:
     port: 8080
 
-securityContext:
-  privileged: true
+# Privileged may be required if USB controller is accessed directly through the host machine
+# securityContext:
+#   privileged: true
 
 persistence:
   data:
@@ -37,15 +40,15 @@ persistence:
     # existingClaim: ""
 
 # Path to your zigbee device in the container
-additionalVolumeMounts:
-  - name: usb
-    mountPath: /dev/ttyACM0
+additionalVolumeMounts: []
+#  - name: usb
+#    mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2400981-if00
 
 # Path to your zigbee device on the host
-additionalVolumes:
-  - name: usb
-    hostPath:
-      path: /dev/ttyACM0
+additionalVolumes: []
+#  - name: usb
+#    hostPath:
+#      path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2400981-if00
 
 # affinity:
 #   nodeAffinity:
