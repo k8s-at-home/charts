@@ -1,5 +1,7 @@
 # Default values for zwavejs2mqtt.
-
+#
+# Please also consider possible values for the `common` library chart.
+# 
 image:
   repository: zwavejs/zwavejs2mqtt
   pullPolicy: IfNotPresent
@@ -12,12 +14,6 @@ strategy:
 # https://zwave-js.github.io/zwavejs2mqtt/#/guide/env-vars
 env: {}
   # OZW_NETWORK_KEY:
-  # TZ: Europe/Helsinki
-
-# Get environment from a secret:
-# envFrom:
-#   - secretRef:
-#       name: zwavejs2mqtt-network-key
 
 probes:
   liveness:
@@ -66,22 +62,6 @@ probes:
 service:
   port:
     port: 8091
-
-ingress:
-  enabled: false
-#  annotations:
-#    kubernetes.io/ingress.class: nginx
-#    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#    cert-manager.io/cluster-issuer: some-smart-ca-issuer
-#  tls:
-#    - hosts:
-#        - zwave.home.some
-#      secretName: elveli-zwavejs2mqtt
-#  hosts:
-#    - host: zwave.home.some
-#      paths:
-#        - path: /
-#          pathType: Prefix
 
 # Privileged may be required if USB controller is accessed directly through the host machine
 # securityContext:
