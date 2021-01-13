@@ -1,6 +1,7 @@
 # Default values for zigbee2mqtt.
 # This chart inherits from our common library chart. You can check the default values/options here:
 # https://github.com/k8s-at-home/charts/tree/master/charts/common
+
 image:
   repository: koenkk/zigbee2mqtt
   pullPolicy: IfNotPresent
@@ -90,7 +91,6 @@ config:
   # USB / Serial settings
   serial:
     # Location of your zigbee device
-    port: /dev/ttyACM0
     # port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2400981-if00
 
     # Optional: adapter type, not needed unless you are experiencing problems (options: zstack, deconz)
