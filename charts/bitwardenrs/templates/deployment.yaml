@@ -75,7 +75,7 @@ spec:
           {{- end }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.bitwardenrs.gui.port }}
               protocol: TCP
             {{- if .Values.bitwardenrs.websockets.enabled }}
             - name: websocket
