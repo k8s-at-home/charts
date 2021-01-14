@@ -186,3 +186,13 @@ htpasswdFile:
   # example:
   # entries:
   #  - testuser:{SHA}EWhzdhgoYJWy0z2gyzhRYlN9DSiv
+
+## Configure Pod Topology Spread Constraints
+## See https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+## Requires Kubernetes >= v1.16
+topologySpreadConstraints:
+  enabled: false
+  maxSkew: 1
+  # See https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/
+  topologyKey: topology.kubernetes.io/zone
+  whenUnsatisfiable: DoNotSchedule
