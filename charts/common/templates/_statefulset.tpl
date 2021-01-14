@@ -1,8 +1,12 @@
+{{/*
+This template serves as the blueprint for the StatefulSet objects that are created 
+within the common library.
+*/}}
 {{- define "common.statefulset" -}}
 apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
   labels:
   {{- include "common.labels" . | nindent 4 }}
   {{- with .Values.controllerLabels }}
@@ -31,37 +35,5 @@ spec:
       labels:
       {{- include "common.labels.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.podSecurityContext }}
-      securityContext:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.initContainers }}
-      initContainers:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      containers:
-      {{- include "common.controller.mainContainer" . | nindent 6 }}
-      {{- with .Values.additionalContainers }}
-        {{- toYaml . | nindent 6 }}
-      {{- end }}
-
-      volumes:
-      {{- include "common.controller.volumes" . | trim | nindent 6 }}
-
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | indent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | indent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | indent 8 }}
-      {{- end }}
+      {{- include "common.controller.pod" . | nindent 6 }}
 {{- end }}

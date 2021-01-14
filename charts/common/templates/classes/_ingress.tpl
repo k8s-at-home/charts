@@ -1,3 +1,7 @@
+{{/*
+This template serves as a blueprint for all Ingress objects that are created 
+within the common library.
+*/}}
 {{- define "common.classes.ingress" -}}
 {{- $ingressName := include "common.names.fullname" . -}}
 {{- $values := .Values.ingress -}}
@@ -9,7 +13,8 @@
 {{- if hasKey $values "nameSuffix" -}}
   {{- $ingressName = printf "%v-%v" $ingressName $values.nameSuffix -}}
 {{ end -}}
-{{- $svcPort := $values.svcPort -}}
+{{- $svcName := $values.serviceName | default (include "common.names.fullname" .) -}}
+{{- $svcPort := $values.servicePort | default $.Values.service.port.port -}}
 apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
 kind: Ingress
 metadata:
@@ -21,6 +26,11 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+  {{- if eq (include "common.capabilities.ingress.apiVersion" $) "networking.k8s.io/v1" }}
+  {{- if $values.ingressClassName }}
+  ingressClassName: {{ $values.ingressClassName }}
+  {{- end }}
+  {{- end }}
   {{- if $values.tls }}
   tls:
     {{- range $values.tls }}
@@ -38,9 +48,19 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ .path }}
+            {{- if eq (include "common.capabilities.ingress.apiVersion" $) "networking.k8s.io/v1" }}
+            pathType: Prefix
+            {{- end }}
             backend:
-              serviceName: {{ $ingressName }}
+            {{- if eq (include "common.capabilities.ingress.apiVersion" $) "networking.k8s.io/v1" }}
+              service:
+                name: {{ $svcName }}
+                port:
+                  number: {{ $svcPort }}
+            {{- else }}
+              serviceName: {{ $svcName }}
               servicePort: {{ $svcPort }}
+            {{- end }}
           {{- end }}
   {{- end }}
 {{- end }}

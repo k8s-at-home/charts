@@ -1,6 +1,6 @@
 ** Please be patient while the chart is being deployed **
 
-Mosquitto can be accessed within the cluster on port 1883 at {{ template "mosquitto.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+Mosquitto can be accessed within the cluster on port {{ .Values.service.port }} at {{ template "mosquitto.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
 
 To access for outside the cluster, perform the following steps:
 
@@ -26,13 +26,13 @@ NOTE: It may take a few minutes for the LoadBalancer IP to be available.
 
 To Access the Moquitto port:
 
-    echo "URL : mqtt://$SERVICE_IP:1883/"
+    echo "URL : mqtt://$SERVICE_IP:{{ .Values.service.port }}/"
 
 {{- else if contains "ClusterIP"  .Values.service.type }}
 
 To Access the Mosquitto MQTT port:
 
-    kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "mosquitto.fullname" . }} 1883:1883
-    echo "URL : mqtt://127.0.0.1:1883/"
+    kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ template "mosquitto.fullname" . }} {{ .Values.service.port }}:{{ .Values.service.port }}
+    echo "URL : mqtt://127.0.0.1:{{ .Values.service.port }}/"
 
 {{- end }}

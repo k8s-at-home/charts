@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 4.0.681
 description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
 name: ombi
-version: 5.3.0
+version: 6.4.1
 keywords:
   - ombi
   - plex
@@ -21,4 +21,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://k8s-at-home.com/charts/
-    version: ^1.4.0
+    version: 2.2.1
+  - name: mariadb
+    version: 9.2.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled

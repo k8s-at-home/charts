@@ -2,6 +2,8 @@
 
 This is a helm chart for [Sabnzbd](https://github.com/sabnzbd/sabnzbd).
 
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
 ## TL;DR;
 
 ```shell
@@ -16,6 +18,13 @@ To install the chart with the release name `my-release`:
 ```console
 helm install --name my-release k8s-at-home/sabnzbd
 ```
+
+**IMPORTANT NOTE:** when installing this chart for the first time you will get the follow message in your browser when trying to access Sabnzbd: `Access denied - Hostname verification failed: sabnzbd.org/hostname-check`
+
+You can do one of two things to solve this issue:
+
+1. Update the `sabnzbd.ini` config file to your `ingress` name and/or `loadBalancerIP` to the `host_whitelist` field and restart the pod, or
+2. Forward the service to your local machine with `kubectl port-forward service/sabnzbd -n default 8080:8080` and update the `host_whitelist` in the Sabnzbd Settings UI
 
 ## Uninstalling the Chart
 
@@ -35,7 +44,7 @@ Additionally you can take a look at the common library [values.yaml](https://git
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install sabnzbd \
-  --set env.TZ="America/New York" \
+  --set env.TZ="America/New_York" \
     k8s-at-home/sabnzbd
 ```
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the

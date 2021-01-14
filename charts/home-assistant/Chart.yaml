@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 0.116.1
+appVersion: 2020.12.1
 description: Home Assistant
 name: home-assistant
-version: 2.6.0
+version: 5.4.1
 keywords:
 - home-assistant
 - hass
@@ -11,28 +11,24 @@ home: https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
 icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
 sources:
 - https://github.com/home-assistant/home-assistant
-- https://github.com/danielperna84/hass-configurator
 - https://github.com/cdr/code-server
 - https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
 maintainers:
 - name: billimek
   email: jeff@billimek.com
-- name: runningman84
-  email: phil@hellmi.de
 dependencies:
-- name: esphome
+- name: common
   repository: https://k8s-at-home.com/charts/
-  version: ~2.2.0
-  condition: esphome.enabled
+  version: 2.2.1
 - name: postgresql
-  version: 9.1.2
+  version: 10.2.0
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: mariadb
-  version: 7.7.1
+  version: 9.2.0
   repository: https://charts.bitnami.com/bitnami
   condition: mariadb.enabled
 - name: influxdb
-  version: 0.6.7
+  version: 1.1.6
   repository: https://charts.bitnami.com/bitnami
   condition: influxdb.enabled

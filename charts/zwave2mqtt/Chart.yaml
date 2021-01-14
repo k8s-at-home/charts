@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 4.0.3
+appVersion: 4.0.6
 description: Fully configurable Zwave to MQTT gateway and Control Panel using NodeJS and Vue
 name: zwave2mqtt
-version: 4.0.0
+version: 6.3.0
 keywords:
   - zwave
   - mqtt
@@ -14,3 +14,7 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.2.1

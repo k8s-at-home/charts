@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 1.4.2
+description: OctoPrint is the snappy web interface for your 3D printer
+name: octoprint
+version: 2.3.1
+keywords:
+  - octoprint
+  - 3d
+  - printer
+home: https://github.com/k8s-at-home/charts/tree/master/charts/octoprint
+icon: https://avatars3.githubusercontent.com/u/5982294?s=400&v=4
+sources:
+  - https://github.com/OctoPrint/OctoPrint
+  - https://hub.docker.com/r/octoprint/octoprint
+maintainers:
+  - name: billimek
+    email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.2.1

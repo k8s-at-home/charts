@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ include "unifi-poller.fullname" . }}
-  labels:
-{{ include "unifi-poller.labels" . | indent 4 }}
-data:
-  up.yaml: {{ .Values.config | toYaml | quote }}
-

@@ -1,0 +1,37 @@
+# Default values for hyperion-ng.
+
+image:
+  repository: sirfragalot/hyperion.ng
+  pullPolicy: IfNotPresent
+  tag: 2.0.0-alpha.9-x86_64
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8090
+  additionalPorts:
+  - port: 19444
+    name: jsonservice
+    protocol: TCP
+    targetPort: 19444
+  - port: 19445
+    name: protobufservice
+    protocol: TCP
+    targetPort: 19445
+  - port: 19333
+    name: boblightservice
+    protocol: TCP
+    targetPort: 19333
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /root/.hyperion

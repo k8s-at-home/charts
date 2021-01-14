@@ -1,0 +1,56 @@
+# Default values for Paperless.
+
+image:
+  repository: thepaperlessproject/paperless
+  pullPolicy: IfNotPresent
+  tag: latest
+
+args: "['gunicorn', '-b', '0.0.0.0:8000']"
+
+strategy:
+  type: Recreate
+
+# See the following files for supported environment variables
+# https://github.com/the-paperless-project/paperless/blob/master/docker-compose.env.example
+# https://github.com/the-paperless-project/paperless/blob/master/paperless.conf.example
+env:
+  # TZ: Europe/London
+  PAPERLESS_OCR_LANGUAGES: eng
+  # PAPERLESS_FORGIVING_OCR: true
+  # PAPERLESS_DISABLE_LOGIN: true
+  # PAPERLESS_INLINE_DOC: true
+  # PAPERLESS_OCR_THREADS:
+  # PAPERLESS_CONVERT_DENSITY:
+
+service:
+  port:
+    port: 8000
+
+persistence:
+  data:
+    enabled: false
+    mountPath: /usr/src/paperless/data
+  media:
+    enabled: false
+    mountPath: /usr/src/paperless/media
+  consume:
+    enabled: false
+    mountPath: /consume
+  export:
+    enabled: false
+    mountPath: /export
+
+additionalContainers:
+  - name: consumer
+    image: thepaperlessproject/paperless:latest
+    imagePullPolicy: IfNotPresent
+    args: ['document_consumer']
+    volumeMounts:
+    - mountPath: /usr/src/paperless/data
+      name: data
+    - mountPath: /usr/src/paperless/media
+      name: media
+    - mountPath: /consume
+      name: consume
+    - mountPath: /export
+      name: export

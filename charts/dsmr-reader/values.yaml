@@ -1,0 +1,47 @@
+# Default values for dsmr-reader.
+
+image:
+  repository: xirixiz/dsmr-reader-docker
+  pullPolicy: IfNotPresent
+  tag: latest-v4.9.0-amd64
+
+securityContext:
+  privileged: true
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 80
+
+# For all options see https://github.com/xirixiz/dsmr-reader-docker#dsmr-reader---environment-variables
+env:
+  # TZ: UTC
+  # DJANGO_TIME_ZONE: UTC
+  DJANGO_DATABASE_USER: dsmr-reader
+  DJANGO_DATABASE_PASSWORD: dsmr-reader-pass
+  DJANGO_DATABASE_PORT: 5432
+  DJANGO_DATABASE_NAME: dsmr-reader
+
+# Path to your p1 reader device in the container
+# additionalVolumeMounts:
+# - name: p1reader
+#   mountPath: /dev/ttyUSB0
+
+# Path to your p1 reader device on the host
+# additionalVolumes:
+# - name: p1reader
+#   hostPath:
+#     path: /dev/ttyUSB0
+
+# Enable postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: false
+  postgresqlUsername: dsmr-reader
+  postgresqlPassword: dsmr-reader-pass
+  postgresqlDatabase: dsmr-reader
+  persistence:
+    enabled: false
+    # storageClass: ""

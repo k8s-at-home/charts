@@ -61,9 +61,11 @@ helm install traefik-forward-auth k8s-at-home/traefik-forward-auth --values valu
 | cookie.domain | string | `""` | Domain(s) to set auth cookie on. (Comma delimited) |
 | cookie.insecure | string | `""` | Use insecure cookies |
 | cookie.name | string | `""` | Cookie Name (default: _forward_auth) |
+| cookie.secret | string| `""` | Cookie Secret - useful when running multiple instances |
 | default.action | string | `""` | [auth|allow] Default action (default: auth) |
 | default.provider | string | `""` | [google|oidc|generic-oauth] Default provider (default: google) |
 | env | list | `[]` |  |
+| envFrom | list | `[]` | Load environment variables from secrets or configmaps |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"thomseddon/traefik-forward-auth"` |  |

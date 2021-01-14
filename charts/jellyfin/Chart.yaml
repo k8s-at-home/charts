@@ -1,16 +1,21 @@
 apiVersion: v2
-appVersion: 10.6.3
+appVersion: 10.6.4
 description: Jellyfin is a Free Software Media System
 name: jellyfin
-version: 2.0.1
+version: 4.3.1
 keywords:
-  - Jellyfin
-  - mediaplayer
+  - jellyfin
+  - plex
+  - emby
 home: https://github.com/k8s-at-home/charts/tree/master/charts/Jellyfin
 icon: https://github.com/jellyfin/jellyfin-ux/blob/master/branding/SVG/icon-solid-black.svg
 sources:
   - https://hub.docker.com/r/linuxserver/Jellyfin/
-  - https://github.com/Jellyfin/Jellyfin
+  - https://github.com/jellyfin/jellyfin
 maintainers:
-  - name: skaro13
-    email: simon.caron@protonmail.com
+  - name: billimek
+    email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.2.1

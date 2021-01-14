@@ -1,0 +1,23 @@
+# Default values for homer.
+
+image:
+  repository: b4bz/homer
+  tag: 20.09.1
+  pullPolicy: IfNotPresent
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8080
+
+env: {}
+  # UID:
+  # GID:
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /www/assets

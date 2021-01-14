@@ -91,6 +91,13 @@ spec:
 {{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.captivePortalService.https))) }}
       nodePort: {{.Values.captivePortalService.https}}
 {{ end }}
+    - port: {{ .Values.speedtestService.port }}
+      targetPort: speedtest
+      protocol: TCP
+      name: speedtest
+{{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.speedtestService.nodePort))) }}
+      nodePort: {{.Values.speedtestService.nodePort}}
+{{ end }}
 {{ end }}
 
   selector:
