@@ -208,3 +208,15 @@ spec:
     {{- end }}
       tolerations:
 {{ toYaml .Values.tolerations | indent 8 }}
+{{- if semverCompare ">=1.16-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if .Values.topologySpreadConstraints.enabled }}
+      topologySpreadConstraints:
+      - labelSelector:
+          matchLabels:
+            app: {{ template "oauth2-proxy.name" . }}
+            release: "{{ .Release.Name }}"
+        maxSkew: {{ .Values.topologySpreadConstraints.maxSkew }}
+        topologyKey: {{ .Values.topologySpreadConstraints.topologyKey }}
+        whenUnsatisfiable: {{ .Values.topologySpreadConstraints.whenUnsatisfiable }}
+{{- end }}
+{{- end }}
