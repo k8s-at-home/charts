@@ -46,3 +46,13 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 helm install bitwarden k8s-at-home/bitwardenrs  --values values.yaml 
 ```
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 1.1.1 -> 2.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 1.x.x to 2.x.x
+
+Chart version 2.0.0 introduces external database support.
+ * No actions required to continue with the default sqlite backend.
+ * Refer to the `bitwardenrs.externalDatabase` section of [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/bitwardenrs/values.yaml) to configure MySQL or PostgreSQL database backends.
