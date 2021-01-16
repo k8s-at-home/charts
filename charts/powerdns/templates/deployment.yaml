@@ -94,6 +94,9 @@ spec:
             - name: dns-udp
               containerPort: 53
               protocol: UDP
+            - name: dns-webserver
+              containerPort: 8081
+              protocol: TCP
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
             tcpSocket:
