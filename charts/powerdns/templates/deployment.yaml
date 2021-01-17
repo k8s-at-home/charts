@@ -124,13 +124,13 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", "let a=0; while [ $a -lt 200 ]; do sleep 5; let a=a+1; echo 'Attempt: '$a; if nc -vz {{ printf "%s-%s" .Release.Name "mariadb"}} 3306; then (! pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null) && pdnsutil create-zone {{ .Values.powerdns.domain }} && break; fi; echo 'End attempt'; done"]
+                command: ["/bin/sh", "-c", "let a=0; while [ $a -lt 200 ]; do sleep 5; let a=a+1; echo 'Attempt: '$a; if nc -vz {{ printf "%s-%s" .Release.Name "mariadb"}} 3306; then pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null && break; pdnsutil create-zone {{ .Values.powerdns.domain }}; fi; done"]
 {{ end }}
 {{- if .Values.postgresql.enabled }}
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", "let a=0; while [ $a -lt 200 ]; do sleep 5; let a=a+1; echo 'Attempt: '$a; if nc -vz {{ printf "%s-%s" .Release.Name "postgresql"}} 5432; then (! pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null) && pdnsutil create-zone {{ .Values.powerdns.domain }} && break; fi; echo 'End attempt'; done"]
+                command: ["/bin/sh", "-c", "let a=0; while [ $a -lt 200 ]; do sleep 5; let a=a+1; echo 'Attempt: '$a; if nc -vz {{ printf "%s-%s" .Release.Name "postgresql"}} 5432; then pdnsutil list-zone {{ .Values.powerdns.domain }} 2>/dev/null && break; pdnsutil create-zone {{ .Values.powerdns.domain }}; fi; done"]
 {{ end }}
           resources:
 {{- toYaml .Values.resources | nindent 12 }}
