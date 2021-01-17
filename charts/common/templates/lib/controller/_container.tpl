@@ -5,6 +5,9 @@ The main container included in the controller.
 - name: {{ include "common.names.fullname" . }}
   image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   imagePullPolicy: {{ .Values.image.pullPolicy }}
+  {{- with .Values.command }}
+  command: {{ . }}
+  {{- end }}
   {{- with .Values.args }}
   args: {{ . }}
   {{- end }}
