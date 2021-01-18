@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "bitwardenrs.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $websockets := .Values.bitwardenrs.websockets -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -36,6 +37,16 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
+          {{- if $websockets.enabled }}
+          - path: {{ . | trimSuffix "/" }}/notifications/hub
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $websockets.port }}
+          - path: {{ . | trimSuffix "/" }}/notifications/hub/negotiate
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort}}
+          {{- end }}
           {{- end }}
     {{- end }}
   {{- end }}

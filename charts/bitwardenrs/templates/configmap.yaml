@@ -12,8 +12,8 @@ data:
   WEBSOCKET_ENABLED: {{ .Values.bitwardenrs.websockets.enabled | quote }}
   {{- if and .Values.bitwardenrs.admin.enabled .Values.bitwardenrs.admin.disableAdminToken }}
   DISABLE_ADMIN_TOKEN: "true"
-    {{- end }}
-    {{- with .Values.bitwardenrs.smtp }}
+  {{- end }}
+  {{- with .Values.bitwardenrs.smtp }}
   {{- if .enabled }}
   SMTP_HOST: {{ required "SMTP host is required to enable SMTP" .host | quote }}
   SMTP_FROM: {{ required "SMTP sender address ('from') is required to enable SMTP" .from | quote }}
@@ -31,6 +31,20 @@ data:
   {{- end }}
   {{- end }}
   {{- end }}
+  {{- with .Values.bitwardenrs.yubico }}
+  {{- if .enabled }}
+  {{- if .server }}
+  YUBICO_SERVER: {{ .server | quote }}
+  {{- end }}
+  {{- if and (not .existingSecret.enabled) .clientId }}
+  YUBICO_CLIENT_ID: {{ .clientId | quote }}
+  {{- end }}
+  {{- if and (not .existingSecret.enabled) .secretKey }}
+  YUBICO_SECRET_KEY: {{ .secretKey | quote }}
+  {{- end }}
+  {{- end }}
+  {{- end }}
+  {{- include "bitwardenrs.externalDatabaseConfigMap" . | nindent 2 }}
   {{- if .Values.env }}
   {{- toYaml .Values.env | nindent 2 }}
   {{- end }}
