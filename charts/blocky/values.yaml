@@ -124,10 +124,10 @@ config:
   # optional: HTTP listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH ...
   httpPort: 4000
   # optional: HTTPS listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH...
-  #httpsPort: 443
+  # httpsPort: 443
   # mandatory, if https port > 0: path to cert and key file for SSL encryption
-  #httpsCertFile: server.crt
-  #httpsKeyFile: server.key
+  # httpsCertFile: server.crt
+  # httpsKeyFile: server.key
   # optional: use this DNS server to resolve blacklist urls and upstream DNS servers (DOH). Useful if no DNS resolver is configured and blocky needs to resolve a host name. Format net:IP:port, net must be udp or tcp
   bootstrapDns: tcp:1.1.1.1
   # optional: Log level (one from debug, info, warn, error). Default: info
