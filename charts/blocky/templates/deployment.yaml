@@ -45,7 +45,7 @@ spec:
               subPath: {{ $name }}
               readOnly: true
             {{- end }}
-            {{- with .Values.config | toYaml }}
+            {{- with .Values.config | fromYaml }}
             {{- if .queryLog }}
             - name: data
               mountPath: {{ .queryLog.dir }}
