@@ -1,0 +1,16 @@
+# Default values for FlareSolverr.
+
+image:
+  repository: flaresolverr/flaresolverr
+  pullPolicy: IfNotPresent
+  tag: v1.2.3
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8191
+
+env: {}
+  # LOG_LEVEL: UTC
