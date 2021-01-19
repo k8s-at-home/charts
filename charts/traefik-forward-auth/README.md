@@ -1,6 +1,6 @@
 # traefik-forward-auth
 
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.4-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square) [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/traefik-forward-auth)](https://artifacthub.io/packages/helm/k8s-at-home/traefik-forward-auth)
+![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square) [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/traefik-forward-auth)](https://artifacthub.io/packages/helm/k8s-at-home/traefik-forward-auth)
 
 A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
 
