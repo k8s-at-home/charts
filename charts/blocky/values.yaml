@@ -10,8 +10,9 @@ replicas: 1
 
 timeZone: "UTC"
 
-# blocky configuration - will translate to config.yml file inside the pod
-config:
+# Blocky configuration, for a full list of options see
+# https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
+config: |
   upstream:
     # these external DNS resolvers will be used. Blocky picks 2 random resolvers from the list for each query
     # format for resolver: [net:]host:[port][/path]. net could be empty (default, shortcut for tcp+udp), tcp+udp, tcp, udp, tcp-tls or https (DoH). If port is empty, default port will be used (53 for udp and tcp, 853 for tcp-tls, 443 for https (Doh))
@@ -124,10 +125,10 @@ config:
   # optional: HTTP listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH ...
   httpPort: 4000
   # optional: HTTPS listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH...
-  # httpsPort: 443
+  #httpsPort: 443
   # mandatory, if https port > 0: path to cert and key file for SSL encryption
-  # httpsCertFile: server.crt
-  # httpsKeyFile: server.key
+  #httpsCertFile: server.crt
+  #httpsKeyFile: server.key
   # optional: use this DNS server to resolve blacklist urls and upstream DNS servers (DOH). Useful if no DNS resolver is configured and blocky needs to resolve a host name. Format net:IP:port, net must be udp or tcp
   bootstrapDns: tcp:1.1.1.1
   # optional: Log level (one from debug, info, warn, error). Default: info
