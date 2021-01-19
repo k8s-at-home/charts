@@ -45,12 +45,14 @@ spec:
               subPath: {{ $name }}
               readOnly: true
             {{- end }}
-            {{- if .Values.config.queryLog }}
+            {{- with .Values.config | toYaml }}
+            {{- if .queryLog }}
             - name: data
-              mountPath: {{ .Values.config.queryLog.dir }}
+              mountPath: {{ .queryLog.dir }}
               {{- if .Values.persistence.subPath }}
               subPath: {{ .Values.persistence.subPath }}
               {{- end }}
+            {{- end }}
             {{- end }}
           ports:
             - name: api
