@@ -104,21 +104,22 @@ config: |
     clients:
       laptop:
         - 192.168.178.29
+
   # optional: configuration for prometheus metrics endpoint
-  prometheus:
-    # enabled if true
-    enable: true
-    # url path, optional (default '/metrics')
-    path: /metrics
+  # prometheus:
+  #   # enabled if true
+  #   enable: true
+  #   # url path, optional (default '/metrics')
+  #   path: /metrics
 
   # optional: write query information (question, answer, client, duration etc) to daily csv file
-  queryLog:
-    # directory (should be mounted as volume in docker)
-    dir: /logs
-    # if true, write one file per client. Writes all queries to single file otherwise
-    perClient: true
-    # if > 0, deletes log files which are older than ... days
-    logRetentionDays: 7
+  # queryLog:
+  #   # directory (should be mounted as volume in docker)
+  #   dir: /logs
+  #   # if true, write one file per client. Writes all queries to single file otherwise
+  #   perClient: true
+  #   # if > 0, deletes log files which are older than ... days
+  #   logRetentionDays: 7
 
   # optional: DNS listener port and bind ip address, default 53 (UDP and TCP). Example: 53, :53, 127.0.0.1:53
   port: 53
