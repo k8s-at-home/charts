@@ -319,12 +319,24 @@ logging:
 # Probes configuration
 probes:
   liveness:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
     failureThreshold: 5
     periodSeconds: 10
   readiness:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
     failureThreshold: 5
     periodSeconds: 10
   startup:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
     initialDelaySeconds: 5
     failureThreshold: 30
     periodSeconds: 10

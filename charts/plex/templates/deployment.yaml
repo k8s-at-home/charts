@@ -191,25 +191,18 @@ spec:
             value: "customCertificateDomain={{.Values.certificate.pkcsMangler.setPlexPreferences.customCertificateDomain}}"
 {{- end }}
 {{- end }}
+          {{- if .Values.probes.readiness.enabled }}
           readinessProbe:
-            httpGet:
-              path: /identity
-              port: 32400
-            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+            {{- omit .Values.probes.readiness "enabled" | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
-            httpGet:
-              path: /identity
-              port: 32400
-            failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
-            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+            {{- omit .Values.probes.liveness "enabled" | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if .Values.probes.startup.enabled }}
           startupProbe:
-            httpGet:
-              path: /identity
-              port: 32400
-            initialDelaySeconds: {{ .Values.probes.startup.initialDelaySeconds }}
-            failureThreshold: {{ .Values.probes.startup.failureThreshold }}
-            periodSeconds: {{ .Values.probes.startup.periodSeconds }}
+            {{- omit .Values.probes.startup "enabled" | toYaml | nindent 12 }}
+          {{- end }}
           volumeMounts:
           {{- if .Values.persistence.data.enabled }}
           - name: data
