@@ -1,3 +1,4 @@
+{{- $blockyConfig := .Values.config | fromYaml }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -45,9 +46,9 @@ spec:
               subPath: {{ $name }}
               readOnly: true
             {{- end }}
-            {{- if .Values.config.queryLog }}
+            {{- if hasKey $blockyConfig "queryLog" }}
             - name: data
-              mountPath: {{ .Values.config.queryLog.dir }}
+              mountPath: {{ $blockyConfig.queryLog.dir }}
               {{- if .Values.persistence.subPath }}
               subPath: {{ .Values.persistence.subPath }}
               {{- end }}
@@ -96,7 +97,7 @@ spec:
                     - key: {{ $name }}
                       path: {{ $name }}
                   {{- end }}
-        {{- if .Values.config.queryLog }}
+        {{- if hasKey $blockyConfig "queryLog" }}
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
