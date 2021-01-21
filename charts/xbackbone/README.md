@@ -1,4 +1,4 @@
-# Overseerr
+# XBackBone
 
 This is a helm chart for [XBackBone](https://github.com/SergiX44/XBackBone).
 
