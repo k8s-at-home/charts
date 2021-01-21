@@ -223,6 +223,16 @@ persistence:
   #   claimName: optional-claim
   #   mountPath: /mnt/path/in/pod
   #   subPath: optional/sub/path
+  #
+  ## Example using an existing NFS filer directly. Below the 'volume' key all volume types are allowed (eg. nfs, iscsi, hostPath).
+  ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core for further information
+  # - name: example2
+  #   mountPath: mnt/example2
+  #   volume:
+  #     nfs:
+  #       server: <nfs server fqdn or ip>
+  #       path: <nfs export path>
+  #       readOnly: true
 
   config:
     # Optionally specify claimName to manually override the PVC to be used for
