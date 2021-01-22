@@ -1,0 +1,12 @@
+---
+version: '3'
+
+includes:
+  dev:deps: .taskfiles/Taskfile_{{OS}}.yml
+  dev:chart: .taskfiles/Taskfile_chart.yml
+
+tasks:
+  default:
+    cmds:
+    - task -l
+    silent: true

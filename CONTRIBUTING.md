@@ -39,6 +39,23 @@ See `git help commit`:
 
 Once changes have been merged, the release job will automatically run to package and release changed charts.
 
+### Create new chart
+```
+# Clone
+git clone
+cd charts
+sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b .bin
+
+# Create chart
+source .envrc
+task dev:chart:create CHART=chart_name
+
+# Lint & Test
+cd charts/chart_name
+task dev:chart:lint CHART=chart_name
+task dev:chart:test CHART=chart_name
+```
+
 ### Immutability
 
 Chart releases must be immutable. Any change to a chart warrants a chart version bump even if it is only changed to the documentation.
