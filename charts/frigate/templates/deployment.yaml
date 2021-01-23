@@ -43,6 +43,9 @@ spec:
             - mountPath: /config
               name: config
               readOnly: false
+            - mountPath: /media
+              name: media
+              readOnly: false
           command: ['sh', '-c']
           args:
             - cp /frigate-config/* /config;
@@ -59,6 +62,9 @@ spec:
           ports:
             - name: http
               containerPort: 5000
+              protocol: TCP
+            - name: rtmp
+              containerPort: 1935
               protocol: TCP
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
@@ -108,8 +114,10 @@ spec:
             {{- end }}
             - mountPath: /config
               name: config
-            - name: dshm
-              mountPath: /dev/shm
+            - mountPath: /data
+              name: data
+            - mountPath: /dev/shm
+              name: dshm
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
@@ -130,6 +138,13 @@ spec:
         - name: usb
           hostPath:
             path: {{ .Values.coral.hostPath }}
+        {{- end }}
+        - name: data
+        {{- if .Values.persistence.data.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ if .Values.persistence.data.existingClaim }}{{ .Values.persistence.data.existingClaim }}{{- else }}{{ template "frigate.fullname" . }}-data{{- end }}
+        {{- else }}
+          emptyDir: {}
         {{- end }}
         - name: dshm
           emptyDir:
