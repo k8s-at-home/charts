@@ -5738,6 +5738,44 @@ entries:
     version: 1.0.1
   home-assistant:
   - apiVersion: v2
+    appVersion: 2021.1.5
+    created: "2021-01-25T23:52:34.60877395Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.2.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.2.0
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.6
+    description: Home Assistant
+    digest: 5311a9218017ab05bbbcab7e2c518d8b3f6b1284cef4f6265864cc955ecc7061
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-5.4.2/home-assistant-5.4.2.tgz
+    version: 5.4.2
+  - apiVersion: v2
     appVersion: 2020.12.1
     created: "2021-01-08T14:41:09.154422084Z"
     dependencies:
