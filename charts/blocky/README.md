@@ -47,6 +47,8 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install --name blocky -f values.yaml k8s-at-home/blocky
 ```
 
+---
+
 ## Upgrading an existing Release to a new major version
 
 A major chart version change (like 2.2.2 -> 3.0.0) indicates that there is an
@@ -72,3 +74,6 @@ kubectl delete svc/blocky
 
 This is the 'easiest' approach, but will incur downtime which can be problematic if you rely on blocky for DNS
 
+### Upgrading from 4.x.x to 5.x.x
+
+Configuration inside `config` is no longer a yaml object, it is now a multiline string

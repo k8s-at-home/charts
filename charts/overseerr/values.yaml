@@ -1,23 +1,23 @@
-# Default values for Ombi.
+# Default values for Overseerr.
 
 image:
-  repository: linuxserver/ombi
+  repository: sctx/overseerr
   pullPolicy: IfNotPresent
-  tag: version-v4.0.681
+  tag: 1.16.0
 
 strategy:
   type: Recreate
 
 service:
   port:
-    port: 3579
+    port: 5055
 
 env: {}
   # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
+  # LOG_LEVEL: info
 
 persistence:
   config:
     enabled: false
     emptyDir: false
+    mountPath: /app/config
