@@ -1,19 +1,15 @@
 ---
 version: '3'
 
-vars:
-  GIT_ROOT:
-    sh: git rev-parse --show-toplevel
-
 tasks:
 
-  # TODO: Use true gotemplate tools
   create:
     desc: create new chart
     cmds:
     - cp -r {{.GIT_ROOT}}/charts/.template {{.GIT_ROOT}}/charts/{{.CHART}}
-    - go-replace -s '${CHARTNAME}' -r "{{.CHART}}" --path={{.GIT_ROOT}}/charts/{{.CHART}} --path-pattern='*.*'
+    - ./.bin/go-replace -s '${CHARTNAME}' -r "{{.CHART}}" --path={{.GIT_ROOT}}/charts/{{.CHART}} --path-pattern='*.*'
     - task: dependency
+    - echo "Congratulations, charts/{{.CHART}} successfully generated, you can now edit chart informations ( Chart.yaml and values.yaml )"
     status:
     - test -d {{.GIT_ROOT}}/charts/{{.CHART}}
     deps:

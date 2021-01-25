@@ -66,14 +66,3 @@ it may be because you uninstalled the chart with `skipuninstall` enabled, you ne
 ## Upgrading an existing Release to a new major version
 
 A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
-
-### Upgrading from 3.x.x to 4.x.x
-
-Due to migrating to a centralized common library some values in `values.yaml` have changed.
-
-Examples:
-
-* `service.port` has been moved to `service.port.port`.
-* `persistence.type` has been moved to `controllerType`.
-
-Refer to the library values.yaml for more configuration options.

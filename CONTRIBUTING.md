@@ -47,13 +47,13 @@ cd charts
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b .bin
 
 # Create chart
-source .envrc
-task dev:chart:create CHART=chart_name
+PATH=$PATH:$PWD/.bin
+task chart:create CHART=chart_name
+# Don't forgot edit some chart informations in charts/char_name/Chart.yaml and charts/char_name/values.yaml
 
 # Lint & Test
-cd charts/chart_name
-task dev:chart:lint CHART=chart_name
-task dev:chart:test CHART=chart_name
+task chart:lint CHART=chart_name
+task chart:test CHART=chart_name
 ```
 
 ### Immutability

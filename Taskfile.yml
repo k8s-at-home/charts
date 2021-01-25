@@ -1,9 +1,13 @@
 ---
 version: '3'
 
+vars:
+  GIT_ROOT:
+    sh: git rev-parse --show-toplevel
+
 includes:
-  dev:deps: .taskfiles/Taskfile_{{OS}}.yml
-  dev:chart: .taskfiles/Taskfile_chart.yml
+  deps: .taskfiles/Taskfile_{{OS}}.yml
+  chart: .taskfiles/Taskfile_chart.yml
 
 tasks:
   default:

@@ -18,9 +18,9 @@ tasks:
   distrib-requirements:
     desc: Check needed distribution packages
     cmds:
-    - task dev:deps:need BIN=wget
-    - task dev:deps:need BIN=python3
-    - task dev:deps:need BIN=docker
+    - task deps:need BIN=wget
+    - task deps:need BIN=python3
+    - task deps:need BIN=docker
     silent: true
 
   need:
