@@ -1,10 +1,41 @@
 ---
 version: '3'
 
-# Todo: add darwin requirements
+# Todo: add all darwin requirements
+
+env:
+  URL_GOREPLACE: https://github.com/webdevops/go-replace/releases/download/1.1.2/gr-64-osx
 
 tasks:
-  default:
+
+  install:
+    desc: Install all developer dependencies
+    deps:
+    - distrib-requirements
+    - go-replace
+
+  distrib-requirements:
+    desc: Check needed distribution packages
     cmds:
-    - task -l
+    - task deps:need BIN=wget
+    - task deps:need BIN=python3
+    - task deps:need BIN=docker
+    silent: true
+
+  need:
+    desc: Check needed binary is present
+    cmds:
+    - type {{.BIN}} 2>&1 >/dev/null || (echo "Please install {{.BIN}}"; exit 1)
+    silent: true
+
+  go-replace:
+    desc: Install go-replace
+    cmds:
+    - echo "Installing go-replace"
+    - mkdir -p ".bin"
+    - wget -q "https://github.com/webdevops/go-replace/releases/download/1.1.2/gr-64-osx" -O .bin/go-replace && chmod +x .bin/go-replace
+    status:
+    - test -e .bin/go-replace
+    deps:
+    - distrib-requirements
     silent: true

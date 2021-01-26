@@ -6,7 +6,7 @@ tasks:
   create:
     desc: create new chart
     cmds:
-    - cp -r {{.GIT_ROOT}}/charts/.template {{.GIT_ROOT}}/charts/{{.CHART}}
+    - cp -r {{.GIT_ROOT}}/templates/chart {{.GIT_ROOT}}/charts/{{.CHART}}
     - ./.bin/go-replace -s '${CHARTNAME}' -r "{{.CHART}}" --path={{.GIT_ROOT}}/charts/{{.CHART}} --path-pattern='*.*'
     - task: dependency
     - echo "Congratulations, charts/{{.CHART}} successfully generated, you can now edit chart informations ( Chart.yaml and values.yaml )"
@@ -14,6 +14,7 @@ tasks:
     - test -d {{.GIT_ROOT}}/charts/{{.CHART}}
     deps:
     - check-chart
+    silent: true
 
 
   dependency:
