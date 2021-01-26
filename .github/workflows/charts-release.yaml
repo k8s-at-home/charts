@@ -50,7 +50,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.1.0
         with:
           charts_repo_url: https://k8s-at-home.com/charts/
-          charts_dir: /charts
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   
