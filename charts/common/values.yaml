@@ -51,6 +51,11 @@ dnsPolicy: ClusterFirst
 #     - name: ndots
 #       value: "1"
 
+# Enable/disable the generation of environment variables for services.
+# See https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service
+# for more information.
+enableServiceLinks: true
+
 initContainers: []
 
 additionalContainers: []
@@ -96,13 +101,15 @@ probes:
 service:
   enabled: true
   type: ClusterIP
-  # Specify the default port information
+  ## Specify the default port information
   port:
     port:
-    # name defaults to http
+    ## name defaults to http
     name:
     protocol: TCP
-    # targetPort defaults to http
+    ## Specify a service targetPort if you wish to differ the service port from the application port.
+    ## If targetPort is specified, this port number is used in the container definition instead of
+    ## service.port.port. Therefore named ports are not supported for this field.
     targetPort:
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
@@ -313,6 +320,18 @@ addons:
       repository: codercom/code-server
       pullPolicy: IfNotPresent
       tag: 3.7.4
+
+    # Set any environment variables for code-server here
+    env: {}
+      # TZ: UTC
+
+    # Set codeserver command line arguments
+    # consider setting --user-data-dir to a persistent location to preserve code-server setting changes
+    args:
+      - --auth
+      - none
+      # - --user-data-dir
+      # - "/config/.vscode"
 
     # Specify a list of volumes that get mounted in the code-server container.
     # At least 1 volumeMount is required!

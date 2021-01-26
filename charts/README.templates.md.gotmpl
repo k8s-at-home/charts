@@ -14,7 +14,7 @@
     {{ template "repository.organization" . }}/{{ template "chart.name" . }}
 {{- end -}}
 {{- define "badge.artifactHub" -}}
-  [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/{{ template "chart.name" . }})](https://artifacthub.io/packages/helm/{{ template "chart.name" . }})
+  [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/{{ template "chart.name" . }})](https://artifacthub.io/packages/helm/k8s-at-home/{{ template "chart.name" . }})
 {{- end -}}
 {{- define "description.multiarch" -}}
 The default values and container images used in this chart will allow for running in a multi-arch cluster (amd64, arm, arm64)

@@ -1,0 +1,19 @@
+{{- if eq .Values.config.mode "values" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-config
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  {{- range $file, $content := .Values.config.files }}
+  {{ $file }}: |-
+    {{- $content | nindent 4}}
+  {{- end }}
+
+  {{- /* upsd.users is a required file, but can be empty */}}
+  {{- if not (hasKey .Values.config.files "upsd.users") }}
+  upsd.users: |-
+    # Required file, empty by default
+  {{- end }}
+{{- end }}

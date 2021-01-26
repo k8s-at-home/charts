@@ -1,0 +1,23 @@
+# Default values for XBackbone.
+
+image:
+  repository: pe46dro/xbackbone-docker
+  pullPolicy: IfNotPresent
+  tag: 3.3.3
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 80
+
+env: {}
+  # TZ: UTC
+  # LOG_LEVEL: info
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /app/config

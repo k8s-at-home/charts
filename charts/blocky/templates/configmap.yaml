@@ -9,12 +9,5 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
-{{- if .Values.config }}
-{{ $root := . }}
   config.yml: |
-{{ tpl (toYaml .Values.config | indent 4) $root }}
-{{- end }}
-{{- range $name, $value := .Values.extraLists }}
-  {{ $name }}: |-
-{{ $value | indent 4}}
-{{- end }}
+{{ .Values.config | indent 4 }}

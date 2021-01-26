@@ -29,6 +29,9 @@ The main container included in the controller.
   {{- if $PVC.enabled }}
   - mountPath: {{ $PVC.mountPath }}
     name: {{ $index }}
+  {{- if $PVC.subPath }}
+    subPath: {{ $PVC.subPath }}
+  {{- end }}
   {{- end }}
   {{- end }}
   {{- if .Values.additionalVolumeMounts }}

@@ -13,11 +13,15 @@ securityContext:
 
 service:
   port:
-    port: 5000
+    port: 80
 
 env:
-  OCTOPRINT_PORT: "5000"
   # TZ: UTC
+
+  ## uncomment the environment variables below to ensure camera streaming is enabled when
+  ## you add a video device
+  # ENABLE_MJPG_STREAMER: "true"
+  # MJPG_STREAMER_INPUT: "-y -n -r 640x480"
   # CAMERA_DEV: /dev/video0
 
 persistence:

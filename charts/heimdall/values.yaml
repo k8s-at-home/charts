@@ -1,4 +1,4 @@
-# Default values for grocy.
+# Default values for heimdall.
 
 image:
   repository: linuxserver/heimdall
@@ -16,6 +16,10 @@ env: {}
   # TZ:
   # PUID:
   # PGID:
+
+probes:
+  startup:
+    enabled: true
 
 persistence:
   config:

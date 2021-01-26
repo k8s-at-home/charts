@@ -1,0 +1,23 @@
+# Default values for Overseerr.
+
+image:
+  repository: sctx/overseerr
+  pullPolicy: IfNotPresent
+  tag: 1.16.0
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 5055
+
+env: {}
+  # TZ: UTC
+  # LOG_LEVEL: info
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /app/config

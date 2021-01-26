@@ -32,7 +32,10 @@ Ports included by the controller.
 ports:
 {{- range $_ := $ports }}
 - name: {{ .name }}
-  containerPort: {{ .port }}
+  {{- if and .targetPort (kindIs "string" .targetPort) }}
+  {{- fail (printf "Our charts do not support named ports for targetPort. (port name %s, targetPort %s)" .name .targetPort) }}
+  {{- end }}
+  containerPort: {{ .targetPort | default .port }}
   protocol: {{ .protocol | default "TCP" }}
 {{- end -}}
 {{- end -}}

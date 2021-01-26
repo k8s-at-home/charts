@@ -1,0 +1,40 @@
+# Default values for Gonic.
+
+image:
+  repository: sentriz/gonic
+  pullPolicy: IfNotPresent
+  tag: latest
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 80
+
+# # See more environment variables in the gonic documentation
+# https://github.com/sentriz/gonic#configuration-options
+env: {}
+  # TZ: UTC
+
+persistence:
+  data:
+    enabled: false
+    emptyDir: false
+
+  music:
+    enabled: false
+    emptyDir: false
+    mountPath: /music
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""

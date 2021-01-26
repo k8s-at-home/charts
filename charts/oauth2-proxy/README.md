@@ -92,6 +92,7 @@ Parameter | Description | Default
 `ingress.annotations` | Ingress annotations | `nil`
 `ingress.hosts` | Ingress accepted hostnames | `nil`
 `ingress.tls` | Ingress TLS configuration | `nil`
+`initContainers` | pod init containers | `[]`
 `livenessProbe.enabled`  | enable Kubernetes livenessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
@@ -118,6 +119,10 @@ Parameter | Description | Default
 `serviceAccount.name` | the service account name | ``
 `serviceAccount.annotations` | (optional) annotations for the service account | `{}`
 `tolerations` | list of node taints to tolerate | `[]`
+`topologySpreadConstraints.enabled` | enable Kubernetes [topologySpreadConstraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) | `false`
+`topologySpreadConstraints.maxSkew` | the degree to which Pods may be unevenly distributed | `1`
+`topologySpreadConstraints.topologyKey` | the key of node labels | `topology.kubernetes.io/zone`
+`topologySpreadConstraints.whenUnsatisfiable` | how to deal with a Pod if it doesn't satisfy the spread constraint (`DoNotSchedule`, `ScheduleAnyway`) | `DoNotSchedule`
 `securityContext.enabled` | enable Kubernetes security context on container | `false`
 `securityContext.runAsNonRoot` | make sure that the container runs as a non-root user | `true`
 `proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
