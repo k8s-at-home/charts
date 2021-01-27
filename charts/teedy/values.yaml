@@ -1,0 +1,46 @@
+# Default values for teedy.
+
+image:
+  repository: sismics/docs
+  pullPolicy: IfNotPresent
+  tag: v1.9
+
+strategy:
+  type: Recreate
+
+# See more environment varaibles in the teedy documentation
+# https://github.com/sismics/docs
+env: {}
+  # DOCS_DEFAULT_LANGUAGE: eng
+  # DOCS_BASE_URL:
+  # DOCS_ADMIN_EMAIL_INIT:
+  # DOCS_ADMIN_PASSWORD_INIT:
+  # DATABASE_URL: 'jdbc:postgresql://teedy-postgresql:5432/teedydb"
+  # DATABASE_USER: teedyuser
+  # DATABASE_PASSWORD: "$2y$12$/MehlbYmXDq8sz1xdqOupOOHNUdsVrBLakdev6y5qqTUeHZqicYA6" # teedypassword
+  # DOCS_SMTP_HOSTNAME:
+  # DOCS_SMTP_PORT:
+  # DOCS_SMTP_USERNAME:
+  # DOCS_SMTP_PASSWORD:
+  # TZ:
+
+service:
+  port:
+    port: 8080
+
+persistence:
+  data:
+    enabled: false
+    emptyDir: false
+    mountPath: /data
+
+# Enabled postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: false
+  postgresqlUsername: teedyuser
+  postgresqlPassword: teedypassword
+  postgresqlDatabase: teedydb
+  persistence:
+    enabled: false
+    # storageClass: ""
