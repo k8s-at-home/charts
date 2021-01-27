@@ -20548,6 +20548,35 @@ entries:
   teedy:
   - apiVersion: v2
     appVersion: v1.9
+    created: "2021-01-27T15:34:03.150361268Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.2.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.5
+    description: Teedy is an open source, lightweight document management system for individuals and businesses.
+    digest: aa5f220de6d3cb4ee27b770c0add1041f616e0ea0cb0aea46cbe91754006a205
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    icon: https://camo.githubusercontent.com/529d95bcf95198a51c7176ed59068238a6099ee6828aa47a3aac697d6c5ee5f4/68747470733a2f2f74656564792e696f2f696d672f6769746875622d7469746c652e706e67
+    keywords:
+    - teedy
+    - documents
+    - management
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: teedy
+    sources:
+    - https://github.com/sismics/docs
+    - https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teedy-1.0.1/teedy-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: v1.9
     created: "2021-01-27T15:14:52.990903799Z"
     dependencies:
     - name: common
