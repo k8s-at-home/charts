@@ -42,3 +42,16 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 helm install paperless k8s-at-home/paperless --values values.yaml
 ```
+---
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 1.0.1 -> 2.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 2.x.x to 3.x.x
+
+Version 3.0.0 of this chart has been adapted for [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) (currently a fork of the main project). The default `values.yaml` has been updated accordingly. Changes include:
+
+* A new set of [environment variables](https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example)
+* New mouthPath defaults for the consume and export volumes
+* Seperate consumer pod no longer required.
