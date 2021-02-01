@@ -1,0 +1,36 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap to the additionalVolumes and additionalVolumeMounts */}}
+{{- define "smarter-device-manager.configmap.volume" -}}
+name: configuration
+configMap:
+  name: {{ template "common.names.fullname" . }}
+{{- end -}}
+
+{{- $volume := include "smarter-device-manager.configmap.volume" . | fromYaml -}}
+{{- if $volume -}}
+    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
+    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+{{- end -}}
+
+{{- define "smarter-device-manager.configmap.volumeMount" -}}
+name: configuration
+mountPath: /root/config/conf.yaml
+subPath: conf.yaml
+{{- end -}}
+
+{{- $volumeMount := include "smarter-device-manager.configmap.volumeMount" . | fromYaml -}}
+{{- if $volumeMount -}}
+    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
+    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+{{- end -}}
+
+{{/* DaemonSet controller */}}
+{{- $_ := set .Values "controllerType" "daemonset" }}
+
+{{/* Host paths */}}
+
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}

@@ -1,0 +1,16 @@
+image:
+  repository: registry.gitlab.com/arm-research/smarter/smarter-device-manager
+  tag: "v{{ .Chart.AppVersion }}"
+  pullPolicy: IfNotPresent
+
+devicePluginPath: "/var/lib/kubelet/device-plugins"
+
+#
+# Override default configuration
+#
+# config:
+#   - devicematch: ^snd$
+#     nummaxdevices: 20
+#   - devicematch: ^ttyUSB.*$
+#     nummaxdevices: 1
+
