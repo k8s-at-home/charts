@@ -30,6 +30,14 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+hostname: smarter-device-management        
+
+priorityClassName: system-node-critical
+
+# DaemonSet labels
+labels: 
+  role: agent
+
 # DaemonSet annotations
 annotations: {}
 

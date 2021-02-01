@@ -5,6 +5,9 @@ metadata:
   name: {{ include "smarter-device-manager.fullname" . }}
   labels:
     {{- include "smarter-device-manager.labels" . | nindent 4 }}
+  {{- with .Values.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- with .Values.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -27,8 +30,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "smarter-device-manager.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.hostNetwork }}
       hostNetwork: {{ . }}
       {{- end }}
@@ -39,6 +40,14 @@ spec:
       dnsConfig:
         {{- toYaml . | nindent 2 }}
       {{- end }}
+      {{- with .Values.hostname }}
+      hostname: {{ . }}
+      {{- end }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
