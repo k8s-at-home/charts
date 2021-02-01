@@ -36,4 +36,18 @@ spec:
       {{- include "common.labels.selectorLabels" . | nindent 8 }}
     spec:
       {{- include "common.controller.pod" . | nindent 6 }}
+  volumeClaimTemplates:
+  {{- range $index, $vct := .Values.volumeClaimTemplates }}
+  - metadata:
+      name: {{ $vct.name }}
+    spec:
+      accessModes: 
+        - {{ required (printf "accessMode is required for vCT %v" $vct.name) $vct.accessMode  | quote }}
+      resources:
+        requests:
+          storage: {{ required (printf "size is required for PVC %v" $vct.name) $vct.size | quote }}
+      {{- if $vct.storageClass }}
+      storageClassName: {{ if (eq "-" $vct.storageClass) }}""{{- else }}{{ $vct.storageClass | quote }}{{- end }}
+      {{- end }}
+{{- end }}
 {{- end }}
