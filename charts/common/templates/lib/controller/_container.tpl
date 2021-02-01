@@ -22,6 +22,10 @@ The main container included in the controller.
     value: {{ $value | quote }}
   {{- end }}
   {{- end }}
+  {{- range $key, $value := .Values.envTpl }}
+  - name: {{ $key }}
+    value: {{ tpl $value $ | quote }}
+  {{- end }}
   {{- with .Values.envFrom }}
   envFrom:
     {{- toYaml . | nindent 12 }}
