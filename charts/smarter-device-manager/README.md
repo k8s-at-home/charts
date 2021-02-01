@@ -24,8 +24,8 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/smarter-device-manager
 ```
 
-Please consider overrading the default configuration through `values` file. 
-Foe example: 
+Please consider overrading the default configuration through `values.yaml` file. 
+For example: 
 ```yaml
 config:
   - devicematch: ^snd$
@@ -40,7 +40,7 @@ config:
 The above configuration allows up to twenty pods to make use of `/dev/snd`, `/dev/rtc0` and each of `/dev/video[0-9]*` devices. 
 Only one pod at a time can use any of the discovered host `/dev/ttyACM[0-9]*` devices. This means that if a pod has reserved a dongle at `/dev/ttyACM0`, another pod requesting the same device will stay pending.
 
-Please note that only the root of the host `/dev` directory is considered for discovery.
+Please note that only the root of the host `/dev` directory is considered for discovery. Therefore, `by-id` paths will not work and some `udev` rules may be necessary.
 
 The hardware are requested by pods through `resources`, e.g.:
 ```yaml
