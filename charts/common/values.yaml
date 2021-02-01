@@ -209,6 +209,19 @@ additionalVolumes: []
 
 additionalVolumeMounts: []
 
+volumeClaimTemplates: #[]
+# Used in statefulset to create individual disks for each instance
+# - name: data
+#   mountPath: /data
+#   accessMode: "ReadWriteOnce"
+#   size: 1Gi
+# - name: backup
+#   mountPath: /backup
+#   subPath: theSubPath
+#   accessMode: "ReadWriteOnce"
+#   size: 2Gi
+#  storageClass: cheap-storage-class
+
 nodeSelector: {}
 
 affinity: {}

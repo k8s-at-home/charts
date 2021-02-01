@@ -40,6 +40,15 @@ The main container included in the controller.
   {{- if .Values.additionalVolumeMounts }}
     {{- toYaml .Values.additionalVolumeMounts | nindent 2 }}
   {{- end }}
+  {{- if eq .Values.controllerType "statefulset"  }}
+  {{- range $index, $vct := .Values.volumeClaimTemplates }}
+  - mountPath: {{ $vct.mountPath }}
+    name: {{ $vct.name }}
+  {{- if $vct.subPath }}
+    subPath: {{ $vct.subPath }}
+  {{- end }}
+  {{- end }}
+  {{- end }}
   {{- include "common.controller.probes" . | nindent 2 }}
   {{- with .Values.resources }}
   resources:
