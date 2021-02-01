@@ -35,6 +35,11 @@ serviceAccount:
 env: {}
 # TZ: UTC
 
+envTpl: {}
+# Variable with values set from templates, example
+# TEMPLATE_VALUE: "{{ .Release.Name }}-admin"
+# With a release name of: demo, the env value will be: demo-admin
+
 envFrom: []
 # - configMapRef:
 #     name: config-map-name
