@@ -40,6 +40,20 @@ config:
 The above configuration allows up to twenty pods to make use of `/dev/snd`, `/dev/rtc0` and each of `/dev/video[0-9]*` devices. 
 Only one pod at a time can use any of the discovered host `/dev/ttyACM[0-9]*` devices. This means that if a pod has reserved a dongle at `/dev/ttyACM0`, another pod requesting the same device will stay pending.
 
+Once the devices are discovered, they will be added as allocatable resources to the nodes:
+```
+ $ kubectl describe nodes
+...
+Capacity:
+  cpu:                                  4
+  memory:                               16104560Ki
+  pods:                                 110
+  smarter-devices/gpiochip0:            0
+  smarter-devices/i2c-0:                0
+  smarter-devices/snd:                  20
+  smarter-devices/ttyUSB-Z-Stick-Gen5:  1
+```
+
 ## Usage
 
 ### Important limitation
@@ -58,8 +72,6 @@ The hardware is requested by pods through `resources`, e.g.:
 ```
 
 In this case host device `/dev/ttyUSB-Conbee-2` will be given at the same path, and the pod will only be created when this device is available.
-
-Common considerations about node affinity apply. 
 
 ## Uninstalling the Chart
 
