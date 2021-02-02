@@ -24,7 +24,7 @@ To install the chart with the release name `my-release`:
 helm install --name my-release k8s-at-home/smarter-device-manager
 ```
 
-Please consider overrading the default configuration through `values.yaml` file. 
+Please consider overriding the default configuration through `values.yaml` file. 
 For example: 
 ```yaml
 config:
