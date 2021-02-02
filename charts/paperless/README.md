@@ -1,6 +1,6 @@
 # Paperless
 
-This is a helm chart for [Paperless](https://github.com/the-paperless-project/paperless). The documentation can be found [here](https://paperless.readthedocs.io/en/latest/index.html).
+This is a helm chart for [Paperless-ng](https://github.com/jonaswinkler/paperless-ng). The documentation can be found [here](https://paperless-ng.readthedocs.io/en/latest/).
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose).**
 
@@ -35,16 +35,23 @@ The chart's [values.yaml](https://github.com/k8s-at-home/charts/blob/master/char
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install paperless \
-  --set env.TZ="America/New_York" \
+  --set env.PAPERLESS_TIME_ZONE="America/New_York" \
     k8s-at-home/paperless
 ```
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 ```console
 helm install paperless k8s-at-home/paperless --values values.yaml
 ```
+---
 
-## Backup & Restore
-Documents can be exported and re-imported by running the following commands directly on the pod. [More info](https://paperless.readthedocs.io/en/latest/migrating.html).
+## Upgrading an existing Release to a new major version
 
-Backup: `/usr/src/paperless/src/manage.py document_exporter /path/to/somewhere/`
-Restore: `/usr/src/paperless/src/manage.py document_importer /path/to/somewhere/`
+A major chart version change (like 1.0.1 -> 2.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 2.x.x to 3.x.x
+
+Version 3.0.0 of this chart has been adapted for [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) (currently a fork of the main project). The default `values.yaml` has been updated accordingly. Changes include:
+
+* A new set of [environment variables](https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example)
+* New mouthPath defaults for the consume and export volumes
+* Seperate consumer pod no longer required.
