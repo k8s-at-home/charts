@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: 1.5.7-1
+description: Container for protonmail bridge to work on the network.
+name: protonmail-bridge
+version: 1.0.0
+keywords:
+  - protonmail
+  - protonmail-bridge
+sources:
+  - https://github.com/shenxn/protonmail-bridge-docker
+  - https://hub.docker.com/r/shenxn/protonmail-bridge
+maintainers:
+  - name: Eagleman7
+    email: my@email.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.2.1
