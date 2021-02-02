@@ -40,7 +40,13 @@ config:
 The above configuration allows up to twenty pods to make use of `/dev/snd`, `/dev/rtc0` and each of `/dev/video[0-9]*` devices. 
 Only one pod at a time can use any of the discovered host `/dev/ttyACM[0-9]*` devices. This means that if a pod has reserved a dongle at `/dev/ttyACM0`, another pod requesting the same device will stay pending.
 
-Please note that only the root of the host `/dev` directory is considered for discovery. Therefore, `by-id` paths will not work and some `udev` rules may be necessary.
+## Usage
+
+### Important limitation
+
+Please note that only the root of the host `/dev` directory is considered for discovery. _Therefore, `by-id` paths will not work and some `udev` rules may be necessary._
+
+### Resource allocation
 
 The hardware are requested by pods through `resources`, e.g.:
 ```yaml
@@ -50,6 +56,8 @@ The hardware are requested by pods through `resources`, e.g.:
     requests:
       smarter-devices/ttyUSB-Conbee-2: 1
 ```
+
+In this case host device `/dev/ttyUSB-Conbee-2` will be given at the same path, and the pod will only be created when this device is available.
 
 Common considerations about node affinity apply. 
 
