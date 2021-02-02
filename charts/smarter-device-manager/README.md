@@ -85,6 +85,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/smarter-device-manager/values.yaml)
 file. It has several commented out suggested values.
+Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console

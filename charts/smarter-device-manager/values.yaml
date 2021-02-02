@@ -1,12 +1,7 @@
 image:
   repository: registry.gitlab.com/arm-research/smarter/smarter-device-manager
-  tag: "v{{ .Chart.AppVersion }}"
+  tag: 1.1.2
   pullPolicy: IfNotPresent
-
-hostNetwork: true
-dnsPolicy: ClusterFirstWithHostNet
-
-devicePluginPath: "/var/lib/kubelet/device-plugins"
 
 # Override default configuration
 # config:
@@ -15,29 +10,23 @@ devicePluginPath: "/var/lib/kubelet/device-plugins"
 #   - devicematch: ^ttyUSB.*$
 #     nummaxdevices: 1
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: false
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+devicePluginPath: "/var/lib/kubelet/device-plugins"
+# devPath: "/special-dev/"
+# sysPath: "/special-sys/"
 
 hostname: smarter-device-management
 
 priorityClassName: system-node-critical
 
 # DaemonSet labels
-labels:
+controllerLabels:
   role: agent
 
 # DaemonSet annotations
-annotations: {}
+controllerAnnotations: {}
 
 # Pod annotations
 podAnnotations:
@@ -62,10 +51,10 @@ resources: {}
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
   #   cpu: 100m
-  #   memory: 128Mi
+  #   memory: 64Mi
   # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  #   cpu: 10m
+  #   memory: 16Mi
 
 
 nodeSelector: {}
