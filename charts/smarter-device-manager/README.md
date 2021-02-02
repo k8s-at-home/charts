@@ -48,7 +48,7 @@ Please note that only the root of the host `/dev` directory is considered for di
 
 ### Resource allocation
 
-The hardware are requested by pods through `resources`, e.g.:
+The hardware is requested by pods through `resources`, e.g.:
 ```yaml
   resources:
     limits:
@@ -96,4 +96,3 @@ image:
 ## Upgrading an existing Release to a new major version
 
 A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
-
