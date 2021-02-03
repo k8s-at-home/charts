@@ -31,13 +31,13 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 Once installed do the following to configure the application within the pod:
-1. Get the name of your deployed pod kubectl get pods
-2. Run interactively on the pod (setup only) kubectl exec --stdin --tty protonmail-bridge-deployment-6c79fd7f84-ftwcw -- /bin/bash
-3. Once logged in, execute the init command bash /protonmail/entrypoint.sh init
+1. Get the name of your deployed pod `kubectl get pods`
+2. Run interactively on the pod (setup only) `kubectl exec --stdin --tty protonmail-bridge-deployment-6c79fd7f84-ftwcw -- /bin/bash`
+3. Once logged in, execute the init command `bash /protonmail/entrypoint.sh init`
 4. You should now see the CLI for protonmail-bridge, authenticate with login
-5. (optional) if you're like me and use split address mode, change mode and info are good for printing the details.
+5. (optional) If you use split address mode, change mode and info are good for printing the details.
 6. Copy your SMTP server info (or IMAP, your choice)
-7. delete the active pod so a new one gets created (which will properly fire up with your persisted settings)
+7. Delete the active pod so a new one gets created (which will properly fire up with your persisted settings)
 
 Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/protonmail-bridge/values.yaml)
 file. It has several commented out suggested values.
