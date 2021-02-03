@@ -45,6 +45,15 @@ envFrom: []
 # - secretRef:
 #     name: secret-name
 
+# Custom priority class for different treatment by the scheduler
+# priorityClassName: system-node-critical
+
+# Allow specifying a custom scheduler name
+# schedulerName: awkward-dangerous-scheduler
+
+# Allow specifying explicit hostname setting
+# hostname:
+
 # When using hostNetwork make sure you set dnsPolicy to ClusterFirstWithHostNet
 hostNetwork: false
 
