@@ -1,0 +1,17 @@
+image:
+  repository: b4bz/homer
+  tag: latest
+  pullPolicy: IfNotPresent
+
+controllerType: statefulset
+
+volumeClaimTemplates:
+  - name: data
+    mountPath: /data
+    accessMode: "ReadWriteOnce"
+    size: 1Gi
+  - name: backup
+    mountPath: /backup
+    subPath: theSubPath
+    accessMode: "ReadWriteOnce"
+    size: 2Gi
