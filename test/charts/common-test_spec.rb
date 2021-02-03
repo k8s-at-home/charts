@@ -97,5 +97,33 @@ class Test < ChartTest
         assert_match("Our charts do not support named ports for targetPort. (port name #{default_name}, targetPort #{values[:service][:port][:targetPort]})", exception.message)
       end
     end
+
+    describe 'statefulset volumeClaimTemplates' do
+
+      it 'volumeClaimTemplates should be empty by default' do
+        chart.value controllerType: 'statefulset'
+        assert_nil(resource('StatefulSet')['spec']['volumeClaimTemplates'])
+      end
+
+      it 'can set values for volumeClaimTemplates' do
+        values = {
+          controllerType: 'statefulset',
+          volumeClaimTemplates: [
+            {
+              name: 'storage',
+              accessMode: 'ReadWriteOnce',
+              size: '10Gi',
+              storageClass: 'storage'
+            }
+          ]
+        }
+
+        chart.value values
+        jq('.spec.volumeClaimTemplates[0].metadata.name', resource('StatefulSet')).must_equal values[:volumeClaimTemplates][0][:name]
+        jq('.spec.volumeClaimTemplates[0].spec.accessModes[0]', resource('StatefulSet')).must_equal values[:volumeClaimTemplates][0][:accessMode]
+        jq('.spec.volumeClaimTemplates[0].spec.resources.requests.storage', resource('StatefulSet')).must_equal values[:volumeClaimTemplates][0][:size]
+        jq('.spec.volumeClaimTemplates[0].spec.storageClassName', resource('StatefulSet')).must_equal values[:volumeClaimTemplates][0][:storageClass]
+      end
+    end
   end
 end
