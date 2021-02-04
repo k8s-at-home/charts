@@ -3,7 +3,7 @@
 image:
   repository: sentriz/gonic
   pullPolicy: IfNotPresent
-  tag: latest
+  tag: v0.12.0
 
 strategy:
   type: Recreate
@@ -15,10 +15,21 @@ service:
 # # See more environment variables in the gonic documentation
 # https://github.com/sentriz/gonic#configuration-options
 env: {}
-  # TZ: UTC
+  # TZ:
+  # GONIC_MUSIC_PATH:
+  # GONIC_PODCAST_PATH:
+  # GONIC_CACHE_PATH:
 
 persistence:
   data:
+    enabled: false
+    emptyDir: false
+
+  podcasts:
+    enabled: false
+    emptyDir: false
+
+  cache:
     enabled: false
     emptyDir: false
 
