@@ -71,6 +71,12 @@ dnsPolicy: ClusterFirst
 # for more information.
 enableServiceLinks: true
 
+# Configure the Security Context for the Pod
+podSecurityContext: {}
+
+# Configure the Security Context for the main container
+securityContext: {}
+
 initContainers: []
 
 additionalContainers: []

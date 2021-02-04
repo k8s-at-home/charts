@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Allow overriding the main container command.
+- Allow setting Helm templates as environment variables via `envTpl`. The given value is parsed through Helm's `tpl` function, allowing for powerful variable substitution.
+- Support for defining volumeClaimTemplates for StatefulSet.
+- Allow the following Pod spec fields to be configurable:
+  - `priorityClassName`
+  - `schedulerName`
+  - `hostname`
+
+### Fixed
+
+- `values.yaml` now contains the following sections, these were already functional but were previously undocumented:
+  - `podSecurityContext`
+  - `securityContext`
+  - `resources`
 
 ## [2.2.1]
 
