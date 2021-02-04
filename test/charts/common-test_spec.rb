@@ -38,6 +38,53 @@ class Test < ChartTest
       end
     end
 
+    describe 'Environment settings' do
+      it 'Check no environment variables' do
+        values = {}
+        chart.value values        
+        assert_nil(resource('Deployment')['spec']['template']['spec']['containers'][0]['env'])
+      end
+
+      it 'set "static" environment variables' do
+        values = {
+          env: {
+            STATIC_ENV: 'value_of_env'
+          }
+        }
+        chart.value values
+        jq('.spec.template.spec.containers[0].env[0].name', resource('Deployment')).must_equal values[:env].keys[0].to_s
+        jq('.spec.template.spec.containers[0].env[0].value', resource('Deployment')).must_equal values[:env].values[0].to_s
+      end
+  
+
+      it 'set "static" and "Dynamic/Tpl" environment variables' do
+        values = {
+          env: {
+            STATIC_ENV: 'value_of_env'
+          },
+          envTpl: {
+            DYN_ENV: "{{ .Release.Name }}-admin"
+          }
+        }
+        chart.value values
+        jq('.spec.template.spec.containers[0].env[0].name', resource('Deployment')).must_equal values[:env].keys[0].to_s
+        jq('.spec.template.spec.containers[0].env[0].value', resource('Deployment')).must_equal values[:env].values[0].to_s
+        jq('.spec.template.spec.containers[0].env[1].name', resource('Deployment')).must_equal values[:envTpl].keys[0].to_s
+        jq('.spec.template.spec.containers[0].env[1].value', resource('Deployment')).must_equal 'common-test-admin'
+      end
+      
+      it 'set "Dynamic/Tpl" environment variables' do
+        values = {
+          envTpl: {
+            DYN_ENV: "{{ .Release.Name }}-admin"
+          }
+        }
+        chart.value values
+        jq('.spec.template.spec.containers[0].env[0].name', resource('Deployment')).must_equal values[:envTpl].keys[0].to_s
+        jq('.spec.template.spec.containers[0].env[0].value', resource('Deployment')).must_equal 'common-test-admin'
+      end
+    end
+
     describe 'ports settings' do
       default_name = 'http'
       default_port = 8080

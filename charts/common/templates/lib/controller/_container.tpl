@@ -15,7 +15,7 @@ The main container included in the controller.
   securityContext:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  {{- if .Values.env }}
+  {{- if or .Values.env .Values.envTpl }}
   env:
   {{- range $key, $value := .Values.env }}
   - name: {{ $key }}
