@@ -1,0 +1,17 @@
+env:
+  GONIC_MUSIC_PATH: "/music"
+  GONIC_PODCAST_PATH: "/podcasts"
+  GONIC_CACHE_PATH: "/cache"
+persistence:
+  data:
+    enabled: true
+    emptyDir: true
+  podcasts:
+    enabled: true
+    emptyDir: true
+  cache:
+    enabled: true
+    emptyDir: true
+  music:
+    enabled: true
+    emptyDir: true
