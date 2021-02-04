@@ -1,0 +1,24 @@
+# Default values for ${CHARTNAME}.
+
+image:
+  repository: ${CHARTNAME}/${CHARTNAME}
+  pullPolicy: IfNotPresent
+  tag: 1.2.5
+
+strategy:
+  type: Recreate
+
+# See more environment varaibles in the ${CHARTNAME} documentation
+# https://${CHARTNAME}.org/docs
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 1880
+
+# persistence:
+#   data:
+#     enabled: false
+#     emptyDir: false
+#     mountPath: /data

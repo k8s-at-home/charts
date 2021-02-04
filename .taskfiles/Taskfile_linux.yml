@@ -1,0 +1,64 @@
+---
+version: '3'
+
+env:
+  URL_GOREPLACE: https://github.com/webdevops/go-replace/releases/download/1.1.2/gr-64-linux
+  URL_HELM: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+
+tasks:
+
+  install:
+    desc: Install all developer dependencies
+    deps:
+    - distrib-requirements
+    - helm
+    - pre-commit
+    - go-replace
+
+  distrib-requirements:
+    desc: Check needed distribution packages
+    cmds:
+    - task deps:need BIN=wget
+    - task deps:need BIN=python3
+    - task deps:need BIN=docker
+    silent: true
+
+  need:
+    desc: Check needed binary is present
+    cmds:
+    - type {{.BIN}} 2>&1 >/dev/null || (echo "Please install {{.BIN}}"; exit 1)
+    silent: true
+
+  helm:
+    desc: Install helm client
+    cmds:
+    - echo "Installing helm"
+    - wget -q -O - "$URL_HELM" | USE_SUDO=false HELM_INSTALL_DIR=.bin bash
+    status:
+    - test -e .bin/helm
+    deps:
+    - distrib-requirements
+    silent: true
+
+  pre-commit:
+    desc: Install a precommit pip package
+    cmds:
+    - echo "Installing pre-commit"
+    - python3 -m pip install --user pre-commit
+    status:
+    - type pre-commit
+    deps:
+    - distrib-requirements
+    silent: true
+
+  go-replace:
+    desc: Install go-replace
+    cmds:
+    - echo "Installing go-replace"
+    - mkdir -p ".bin"
+    - wget -q "$URL_GOREPLACE" -O .bin/go-replace && chmod +x .bin/go-replace
+    status:
+    - test -e .bin/go-replace
+    deps:
+    - distrib-requirements
+    silent: true

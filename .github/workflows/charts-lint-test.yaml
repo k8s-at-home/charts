@@ -1,6 +1,6 @@
 name: "Charts: Lint and test"
 
-on: 
+on:
   pull_request:
     paths:
     - 'charts/**'
@@ -68,13 +68,13 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7            
-  
+          ruby-version: 2.7
+
       - name: Install dependencies
         run: |
           export RUBYJQ_USE_SYSTEM_LIBRARIES=1
           bundle install
-      
+
       - name: Run tests
         run: |
           bundle exec m -r test/charts
@@ -105,7 +105,7 @@ jobs:
         if: needs.lint.outputs.changed == 'true' || needs.lint.outputs.common == 'true'
 
       - name: Run chart-testing (install)
-        run: ct install --config .github/ct.yaml
+        run: ct install --config .github/ct.yaml --excluded-charts ""
         if: needs.lint.outputs.changed == 'true'
 
       - name: Run chart-testing (common-test)

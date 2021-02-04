@@ -1,7 +1,7 @@
 apiVersion: v2
 name: lazylibrarian
 description: A Helm chart for deploying LazyLibrarian
-version: 2.0.1
+version: 3.0.0
 appVersion: 1.7.2
 keywords:
   - lazylibrarian
@@ -14,3 +14,7 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.2.1
