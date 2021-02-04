@@ -21,10 +21,10 @@ The main container included in the controller.
   - name: {{ $key }}
     value: {{ $value | quote }}
   {{- end }}
-  {{- end }}
   {{- range $key, $value := .Values.envTpl }}
   - name: {{ $key }}
     value: {{ tpl $value $ | quote }}
+  {{- end }}
   {{- end }}
   {{- with .Values.envFrom }}
   envFrom:
