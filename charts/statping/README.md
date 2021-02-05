@@ -32,6 +32,5 @@ helm install statping \
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
 chart. For example,
 ```console
-helm install statping k8s-at-home/statping --values values.yaml 
+helm install statping k8s-at-home/statping --values values.yaml
 ```
-

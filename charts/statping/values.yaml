@@ -108,6 +108,10 @@ postgres:
     enabled: true
     # See https://github.com/bitnami/charts/tree/master/bitnami/postgresql for configuration
 
+# This is required for postgresql to render its fullname template
+replication:
+  enabled: false
+
 externalSecret:
   enabled: false
   type: kubernetes-external-secrets

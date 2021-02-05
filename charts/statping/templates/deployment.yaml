@@ -102,7 +102,7 @@ spec:
             - name: DB_CONN
               value: postgres
             - name: DB_HOST
-              value: {{ template "postgresql.fullname" . }}-postgresql
+              value: {{ template "common.names.fullname" . }}-postgresql
             - name: DB_DATABASE
               value: {{ template "postgresql.database" . }}
             - name: DB_USER
