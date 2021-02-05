@@ -1,5 +1,10 @@
 # See https://pre-commit.com for more information
 repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v3.4.0
+  hooks:
+  - id: trailing-whitespace
+
 - repo: local
   hooks:
   - id: ct-lint
