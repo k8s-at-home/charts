@@ -18,7 +18,7 @@ devicePluginPath: "/var/lib/kubelet/device-plugins"
 # sysPath: "/special-sys/"
 
 envValueFrom:
-  NODE_NAME: 
+  NODE_NAME:
     fieldRef:
       apiVersion: v1
       fieldPath: spec.nodeName
