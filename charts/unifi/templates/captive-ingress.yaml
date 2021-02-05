@@ -34,6 +34,10 @@ spec:
           - path: {{ $ingressPath }}
             backend:
               serviceName: {{ $fullName }}-captiveportalservice
+              {{- if .Values.captivePortalService.https }}
+              servicePort: captive-https
+              {{- else }}
               servicePort: captive-http
+              {{- end }}
   {{- end }}
 {{- end }}

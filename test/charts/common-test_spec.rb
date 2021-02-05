@@ -55,7 +55,21 @@ class Test < ChartTest
         jq('.spec.template.spec.containers[0].env[0].name', resource('Deployment')).must_equal values[:env].keys[0].to_s
         jq('.spec.template.spec.containers[0].env[0].value', resource('Deployment')).must_equal values[:env].values[0].to_s
       end
-  
+
+      it 'set "valueFrom" environment variables' do
+        values = {
+          envValueFrom: {
+            NODE_NAME: {
+              fieldRef: {
+                fieldPath: "spec.nodeName"
+              }
+            }
+          }
+        }
+        chart.value values
+        jq('.spec.template.spec.containers[0].env[0].name', resource('Deployment')).must_equal values[:envValueFrom].keys[0].to_s
+        jq('.spec.template.spec.containers[0].env[0].valueFrom | keys[0]', resource('Deployment')).must_equal values[:envValueFrom].values[0].keys[0].to_s
+      end
 
       it 'set "static" and "Dynamic/Tpl" environment variables' do
         values = {
