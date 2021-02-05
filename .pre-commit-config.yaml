@@ -4,6 +4,9 @@ repos:
   rev: v3.4.0
   hooks:
   - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: fix-byte-order-marker
+  - id: mixed-line-ending
 
 - repo: local
   hooks:
