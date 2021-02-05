@@ -33,12 +33,20 @@ serviceAccount:
   name: ""
 
 env: {}
-# TZ: UTC
+  # TZ: UTC
 
 ## Variables with values set from templates, example
 ## With a release name of: demo, the example env value will be: demo-admin
 envTpl: {}
-# TEMPLATE_VALUE: "{{ .Release.Name }}-admin"
+  # TEMPLATE_VALUE: "{{ .Release.Name }}-admin"
+
+## Variables with values from (for example) the Downward API
+## See https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/
+envValueFrom: {}
+  # NODE_NAME:
+  #   fieldRef:
+  #     fieldPath: spec.nodeName
+
 envFrom: []
 # - configMapRef:
 #     name: config-map-name
