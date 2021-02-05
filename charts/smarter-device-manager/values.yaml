@@ -17,12 +17,11 @@ devicePluginPath: "/var/lib/kubelet/device-plugins"
 # devPath: "/special-dev/"
 # sysPath: "/special-sys/"
 
-envFrom:
-  - name: NODE_NAME
-    valueFrom:
-      fieldRef:
-        apiVersion: v1
-        fieldPath: spec.nodeName
+envValueFrom:
+  NODE_NAME: 
+    fieldRef:
+      apiVersion: v1
+      fieldPath: spec.nodeName
 
 hostname: smarter-device-management
 
