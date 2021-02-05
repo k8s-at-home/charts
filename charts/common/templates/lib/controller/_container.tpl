@@ -5,6 +5,9 @@ The main container included in the controller.
 - name: {{ include "common.names.fullname" . }}
   image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   imagePullPolicy: {{ .Values.image.pullPolicy }}
+  {{- with .Values.command }}
+  command: {{ . }}
+  {{- end }}
   {{- with .Values.args }}
   args: {{ . }}
   {{- end }}
@@ -12,11 +15,20 @@ The main container included in the controller.
   securityContext:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  {{- if .Values.env }}
+  {{- if or .Values.env .Values.envTpl .Values.envValueFrom }}
   env:
   {{- range $key, $value := .Values.env }}
   - name: {{ $key }}
     value: {{ $value | quote }}
+  {{- end }}
+  {{- range $key, $value := .Values.envTpl }}
+  - name: {{ $key }}
+    value: {{ tpl $value $ | quote }}
+  {{- end }}
+  {{- range $key, $value := .Values.envValueFrom }}
+  - name: {{ $key }}
+    valueFrom: 
+      {{- $value | toYaml | nindent 6 }}
   {{- end }}
   {{- end }}
   {{- with .Values.envFrom }}
@@ -36,6 +48,15 @@ The main container included in the controller.
   {{- end }}
   {{- if .Values.additionalVolumeMounts }}
     {{- toYaml .Values.additionalVolumeMounts | nindent 2 }}
+  {{- end }}
+  {{- if eq .Values.controllerType "statefulset"  }}
+  {{- range $index, $vct := .Values.volumeClaimTemplates }}
+  - mountPath: {{ $vct.mountPath }}
+    name: {{ $vct.name }}
+  {{- if $vct.subPath }}
+    subPath: {{ $vct.subPath }}
+  {{- end }}
+  {{- end }}
   {{- end }}
   {{- include "common.controller.probes" . | nindent 2 }}
   {{- with .Values.resources }}
