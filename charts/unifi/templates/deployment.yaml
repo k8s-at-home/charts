@@ -149,6 +149,8 @@ spec:
               value: "{{ .Values.customCert.certName }}"
             - name: CERT_PRIVATE_NAME
               value: "{{ .Values.customCert.keyName }}"
+            - name: UNIFI_STDOUT
+              value: "true"
             {{- end }}
           volumeMounts:
             - mountPath: /unifi/data
