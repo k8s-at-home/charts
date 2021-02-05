@@ -4176,6 +4176,34 @@ entries:
   dsmr-reader:
   - apiVersion: v2
     appVersion: v4.9.0
+    created: "2021-02-05T14:22:27.272949499Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.4.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.7
+    description: DSMR-protocol reader, telegram data storage and energy consumption visualizer.
+    digest: cf14eb8c9d9ce9b0057e7f6ffa893d89cdee1ba1a45f1bfa0a0c9aa9bc401011
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/dsmr-reader
+    icon: https://avatars2.githubusercontent.com/u/57727360?s=400&v=4
+    keywords:
+    - dsmr-reader
+    - energy
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dsmr-reader
+    sources:
+    - https://github.com/dsmrreader/dsmr-reader
+    - https://github.com/xirixiz/dsmr-reader-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dsmr-reader-1.2.1/dsmr-reader-1.2.1.tgz
+    version: 1.2.1
+  - apiVersion: v2
+    appVersion: v4.9.0
     created: "2021-02-05T14:04:17.888207779Z"
     dependencies:
     - name: common
@@ -6243,6 +6271,44 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/heimdall-1.0.1/heimdall-1.0.1.tgz
     version: 1.0.1
   home-assistant:
+  - apiVersion: v2
+    appVersion: 2021.1.5
+    created: "2021-02-05T14:22:27.375018003Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.4.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.7
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.2.5
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Home Assistant
+    digest: 093e9a4ac07983973c1b5282318948a98678863fae15993e53ab3596da2dfd69
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-5.5.1/home-assistant-5.5.1.tgz
+    version: 5.5.1
   - apiVersion: v2
     appVersion: 2021.1.5
     created: "2021-02-05T14:04:19.980504962Z"
@@ -10615,6 +10681,33 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/modem-stats-2.0.0/modem-stats-2.0.0.tgz
     version: 2.0.0
   monica:
+  - apiVersion: v2
+    appVersion: v2.19.1
+    created: "2021-02-05T14:22:27.48376002Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.4.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.2.5
+    description: A Personal Relationship Management tool to help you organize your social life
+    digest: 03869331b9f3813a6b512223d98cd9a6f62a2ce7085504dc62c2c8db93889f61
+    home: https://www.monicahq.com/
+    icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
+    keywords:
+    - crm
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: monica
+    sources:
+    - https://github.com/monicahq/monica
+    - https://hub.docker.com/_/monica
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/monica-2.5.1/monica-2.5.1.tgz
+    version: 2.5.1
   - apiVersion: v2
     appVersion: v2.19.1
     created: "2021-02-05T14:04:21.851432519Z"
@@ -16881,6 +16974,31 @@ entries:
   powerdns:
   - apiVersion: v2
     appVersion: v4.3.1
+    created: "2021-02-05T14:22:27.577735708Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.7
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.2.5
+    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
+    digest: ea28c9d8b44f855299221792acffab7952080e80b97fa0998b1438fca3826952
+    home: https://www.powerdns.com/
+    icon: https://www.powerdns.com/img/pDNS_logo_positive_claim_down_screen_xsmall.png
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: powerdns
+    sources:
+    - http://www.github.com/PowerDNS/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/powerdns-3.0.3/powerdns-3.0.3.tgz
+    version: 3.0.3
+  - apiVersion: v2
+    appVersion: v4.3.1
     created: "2021-01-18T00:25:01.46791087Z"
     dependencies:
     - condition: postgresql.enabled
@@ -22047,6 +22165,35 @@ entries:
   teedy:
   - apiVersion: v2
     appVersion: v1.9
+    created: "2021-02-05T14:22:27.665684283Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.4.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.7
+    description: Teedy is an open source, lightweight document management system for individuals and businesses.
+    digest: abe7d4711c72742311297094c84b7e45c482c9184868d7e773ca7e03a446aed7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    icon: https://camo.githubusercontent.com/529d95bcf95198a51c7176ed59068238a6099ee6828aa47a3aac697d6c5ee5f4/68747470733a2f2f74656564792e696f2f696d672f6769746875622d7469746c652e706e67
+    keywords:
+    - teedy
+    - documents
+    - management
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: teedy
+    sources:
+    - https://github.com/sismics/docs
+    - https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teedy-1.1.1/teedy-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
+    appVersion: v1.9
     created: "2021-02-05T14:04:28.308632171Z"
     dependencies:
     - name: common
@@ -22133,6 +22280,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/teedy-1.0.0/teedy-1.0.0.tgz
     version: 1.0.0
   teslamate:
+  - apiVersion: v2
+    appVersion: v1.20.0
+    created: "2021-02-05T14:22:27.762399576Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.7
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: 082f871ca75107021429180b72331ff33a54108b238480812bf3713b32c00e58
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teslamate-3.5.1/teslamate-3.5.1.tgz
+    version: 3.5.1
   - apiVersion: v2
     appVersion: v1.20.0
     created: "2020-12-14T13:00:36.981437967Z"
@@ -22431,6 +22602,33 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/teslamate-2.0.0/teslamate-2.0.0.tgz
     version: 2.0.0
   traccar:
+  - apiVersion: v2
+    appVersion: v4.11
+    created: "2021-02-05T14:22:27.874373Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.4.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.2.5
+    description: Traccar is an open source GPS tracking system.
+    digest: 583e88ae7f7c9f18e9bfbedc2820f053112ff3347a76fe74ec4ce685b53abb70
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/traccar
+    keywords:
+    - traccar
+    - gps
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: traccar
+    sources:
+    - https://github.com/traccar/traccar
+    - https://hub.docker.com/r/traccar/traccar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traccar-2.4.1/traccar-2.4.1.tgz
+    version: 2.4.1
   - apiVersion: v2
     appVersion: v4.11
     created: "2021-02-05T14:04:28.533313479Z"
@@ -23107,6 +23305,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/unifi-1.0.0/unifi-1.0.0.tgz
     version: 1.0.0
   unifi-poller:
+  - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2021-02-05T14:22:27.963213377Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 2.4.0
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus
+    digest: 8ab74bafec764d040380dc1263eb064d4392c89246fec7c310e074fa353b0188
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/unifi-poller
+    icon: https://raw.githubusercontent.com/wiki/unifi-poller/unifi-poller/images/unifi-poller-logo.png
+    keywords:
+    - unifi
+    - unifi-poller
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: unifi-poller
+    sources:
+    - https://github.com/unifi-poller/unifi-poller
+    - https://hub.docker.com/r/golift/unifi-poller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-poller-5.3.1/unifi-poller-5.3.1.tgz
+    version: 5.3.1
   - apiVersion: v2
     appVersion: 2.0.1
     created: "2021-02-05T14:04:29.133832018Z"
