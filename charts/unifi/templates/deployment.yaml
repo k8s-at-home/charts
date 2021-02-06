@@ -70,10 +70,10 @@ spec:
               protocol: UDP
             {{- if .Values.captivePortalService.enabled }}
             - name: captive-http
-              containerPort: 8880
+              containerPort: {{ .Values.captivePortalService.http }}
               protocol: TCP
             - name: captive-https
-              containerPort: 8843
+              containerPort: {{ .Values.captivePortalService.https }}
               protocol: TCP
             {{- end }}
             - name: speedtest
