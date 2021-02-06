@@ -2,6 +2,7 @@
 {{- $fullName := include "unifi.fullname" . -}}
 {{- $ingressPath := .Values.captivePortalService.ingress.path -}}
 {{- $unifiedServiceEnabled := .Values.unifiedService.enabled -}}
+{{- $captivePortalHttps := .Values.captivePortalService.https -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -34,7 +35,7 @@ spec:
           - path: {{ $ingressPath }}
             backend:
               serviceName: {{ $fullName }}-captiveportalservice
-              {{- if .Values.captivePortalService.https }}
+              {{- if $captivePortalHttps }}
               servicePort: captive-https
               {{- else }}
               servicePort: captive-http
