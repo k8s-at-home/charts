@@ -1,3 +1,7 @@
+{{/*
+Renders the PersistentVolumeClaim objects required by the chart by returning a concatinated list
+of all the entries of the persistence key.
+*/}}
 {{- define "common.pvc" -}}
   {{- /* Generate pvc as required */ -}}
   {{- range $index, $PVC := .Values.persistence }}

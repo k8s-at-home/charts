@@ -5,6 +5,9 @@ image:
   pullPolicy: IfNotPresent
   tag: version-3.1.0
 
+strategy:
+  type: Recreate
+
 service:
   port:
     port: 8080

@@ -1,0 +1,47 @@
+# Default values for Paperless.
+
+image:
+  repository: jonaswinkler/paperless-ng
+  pullPolicy: IfNotPresent
+  tag: latest
+
+strategy:
+  type: Recreate
+
+# See the following files for additional environment variables
+# https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/
+# https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example
+env:
+  COMPOSE_PROJECT_NAME: paperless
+  PAPERLESS_REDIS: redis://localhost:6379
+  PAPERLESS_OCR_LANGUAGE: eng
+  # USERMAP_UID: 1000
+  # USERMAP_GID: 1000
+  # PAPERLESS_TIME_ZONE: Europe/London
+
+service:
+  port:
+    port: 8000
+
+persistence:
+  data:
+    enabled: false
+    mountPath: /usr/src/paperless/data
+    emptyDir: false
+  media:
+    enabled: false
+    mountPath: /usr/src/paperless/media
+    emptyDir: false
+  consume:
+    enabled: false
+    mountPath: /usr/src/paperless/consume
+    emptyDir: false
+  export:
+    enabled: false
+    mountPath: /usr/src/paperless/export
+    emptyDir: false
+
+additionalContainers:
+  - name: broker
+    image: redis:6.0
+    imagePullPolicy: IfNotPresent

@@ -1,12 +1,12 @@
 {{/*
-The OpenVPN configmaps to be included
+The VPN config and scripts to be included.
 */}}
 {{- define "common.addon.vpn.configmap" -}}
 {{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "common.names.fullname" . }}-vpn
+  name: {{ include "common.names.fullname" . }}-vpn
   labels:
   {{- include "common.labels" . | nindent 4 }}
 data:

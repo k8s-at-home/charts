@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 0.13.0
+description: Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
+name: recipes
+version: 2.3.0
+keywords:
+  - recipes
+  - cooking
+home: https://github.com/k8s-at-home/charts/tree/master/charts/recipes
+sources:
+  - https://github.com/vabene1111/recipes
+  - https://hub.docker.com/r/vabene1111/recipes
+maintainers:
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.4.0

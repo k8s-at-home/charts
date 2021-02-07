@@ -1,0 +1,51 @@
+# Default values for plex-media-server.
+
+image:
+  repository: k8sathome/plex-media-server
+  pullPolicy: IfNotPresent
+  tag: v1.20.4.3517-ab5e1197c
+
+strategy:
+  type: Recreate
+
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 32400
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /config
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+  transcode:
+    enabled: false
+    emptyDir: false
+    mountPath: /transcode
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""

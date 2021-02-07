@@ -1,9 +1,12 @@
-# Default values for Jackett.
+# Default values for nzbhydra2.
 
 image:
   repository: linuxserver/nzbhydra2
   pullPolicy: IfNotPresent
-  tag: version-v3.4.3
+  tag: version-v3.8.1
+
+strategy:
+  type: Recreate
 
 service:
   port:
@@ -13,6 +16,42 @@ env: {}
   # TZ: UTC
   # PUID: 1001
   # PGID: 1001
+
+probes:
+  liveness:
+    custom: true
+    enabled: true
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /actuator/health/livenessState
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
+  readiness:
+    custom: true
+    enabled: true
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /actuator/health/readinessState
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
+  startup:
+    custom: true
+    enabled: true
+    spec:
+      failureThreshold: 5
+      httpGet:
+        path: /actuator/health/readinessState
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 10
+
 
 persistence:
   config:

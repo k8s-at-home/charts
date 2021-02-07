@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.middleware.name | default "traefik-forward-auth" }}
 spec:
   forwardAuth:
-    address: "http://{{ include "traefik-forward-auth.fullname" . }}:{{ .Values.service.port }}"
+    address: "http://{{ include "traefik-forward-auth.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.port }}"
     authResponseHeaders:
       - X-Forwarded-User
   {{- end }}

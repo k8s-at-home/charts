@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: latest
+description: TVheadend - a TV streaming server and digital video recorder
+name: tvheadend
+version: 1.2.0
+keywords:
+  - tv
+  - streaming
+  - dvb
+home: https://github.com/k8s-at-home/charts/tree/master/charts/tvheadend
+sources:
+  - https://github.com/tvheadend/tvheadend
+maintainers:
+  - name: mr-onion-2
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.4.0

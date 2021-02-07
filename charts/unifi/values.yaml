@@ -7,13 +7,13 @@ strategyType: Recreate
 
 image:
   repository: jacobalberty/unifi
-  tag: 5.12.35
+  tag: 5.14.23
   pullPolicy: IfNotPresent
 
-# If enabled, the controller, discovery, GUI, and STUN services will not be
+# If enabled, the controller, discovery, GUI, STUN and syslog services will not be
 # created.
 # Instead, one service will be created with the port and nodePort settings from
-# controllerService, discoveryService, guiService, and stunService.
+# controllerService, discoveryService, guiService, stunService and syslogService.
 # This is useful if, for example, the ClusterIP network is routable and being
 # accessed directly by access points, and the APs don't have a way to discern
 # different services on different IPs.
@@ -169,6 +169,48 @@ discoveryService:
   ## Set the externalTrafficPolicy in the Service to either Cluster or Local
   # externalTrafficPolicy: Cluster
 
+syslogService:
+  type: NodePort
+  port: 5514  # udp
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  labels: {}
+  ## Use loadBalancerIP to request a specific static IP,
+  ## otherwise leave blank
+  ##
+  loadBalancerIP:
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  # externalTrafficPolicy: Cluster
+
+speedtestService:
+  type: ClusterIP
+  port: 6789
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  labels: {}
+  ## Use loadBalancerIP to request a specific static IP,
+  ## otherwise leave blank
+  ##
+  loadBalancerIP:
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  # externalTrafficPolicy: Cluster
+
 ingress:
   enabled: false
   annotations: {}
@@ -199,6 +241,17 @@ customCert:
   # If you want to store certificate and its key as a Kubernetes tls secret
   # you can pass the name of that secret using certSecret variable
   # certSecret: unifi-tls
+
+# Logging configuration
+logging:
+  promtail:
+    enabled: false
+    image:
+      repository: grafana/promtail
+      tag: 1.6.0
+      pullPolicy: IfNotPresent
+    loki:
+      url: http://loki.logs.svc.cluster.local:3100/loki/api/v1/push
 
 # define an external mongoDB instead of using the built-in mongodb
 mongodb:
@@ -247,6 +300,15 @@ extraJvmOpts: []
   # - "-Dlog4j.configurationFile=file:/configmap/log4j2.xml"
   # - "-Dsystem_ip=1.2.3.4"
 
+## Java Virtual Machine (JVM) initial, and minimum, heap size
+## Unset value means there is no lower limit
+jvmInitHeapSize:
+
+## Java Virtual Machine (JVM) maximum heap size
+## For larger installations a larger value is recommended.
+## For memory constrained system this value can be lowered.
+jvmMaxHeapSize: 1024M
+
 extraConfigFiles: {}
   ## Specify additional config files which are mounted to /configmap
   ## Here is an example for a custom log4j config:
@@ -287,6 +349,24 @@ resources: {}
   # requests:
   #  cpu: 100m
   #  memory: 128Mi
+
+## Liveness and readiness probe values
+## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+##
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 1
+  failureThreshold: 3
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 1
+  failureThreshold: 3
+  successThreshold: 1
 
 nodeSelector: {}
 

@@ -62,6 +62,13 @@ spec:
 {{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.stunService.nodePort))) }}
       nodePort: {{.Values.stunService.nodePort}}
 {{ end }}
+    - port: {{ .Values.syslogService.port }}
+      targetPort: syslog
+      protocol: UDP
+      name: syslog
+{{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.syslogService.nodePort))) }}
+      nodePort: {{.Values.syslogService.nodePort}}
+{{ end }}
     - name: https-gui
       port: {{ .Values.guiService.port }}
       protocol: TCP
@@ -83,6 +90,13 @@ spec:
       targetPort: captive-https
 {{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.captivePortalService.https))) }}
       nodePort: {{.Values.captivePortalService.https}}
+{{ end }}
+    - port: {{ .Values.speedtestService.port }}
+      targetPort: speedtest
+      protocol: TCP
+      name: speedtest
+{{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.speedtestService.nodePort))) }}
+      nodePort: {{.Values.speedtestService.nodePort}}
 {{ end }}
 {{ end }}
 

@@ -210,6 +210,7 @@ persistence:
     # with the additional field 'name'
     # - claimName: "special-tv"
     #   name: 'foo'
+    #   subPath: optional/sub/path
 
   extraMounts: []
   ## Include additional claims that can be mounted inside the
@@ -217,8 +218,21 @@ persistence:
   ## Claim will me mounted as /{mountPath} if specified. If no {mountPath} is given,
   ## mountPath will default to {name}
   # - name: video
-  #   claimName: video-claim
+  #   # if claimName is specified the a new volume will mounted, if omitted the mount will be considered to be associated with one of the standard volumes (e.g data, config, transcode).
+  #   # This useful to mount data to a different subPath
+  #   claimName: optional-claim
   #   mountPath: /mnt/path/in/pod
+  #   subPath: optional/sub/path
+  #
+  ## Example using an existing NFS filer directly. Below the 'volume' key all volume types are allowed (eg. nfs, iscsi, hostPath).
+  ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core for further information
+  # - name: example2
+  #   mountPath: mnt/example2
+  #   volume:
+  #     nfs:
+  #       server: <nfs server fqdn or ip>
+  #       path: <nfs export path>
+  #       readOnly: true
 
   config:
     # Optionally specify claimName to manually override the PVC to be used for
@@ -305,12 +319,24 @@ logging:
 # Probes configuration
 probes:
   liveness:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
     failureThreshold: 5
     periodSeconds: 10
   readiness:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
     failureThreshold: 5
     periodSeconds: 10
   startup:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
     initialDelaySeconds: 5
     failureThreshold: 30
     periodSeconds: 10

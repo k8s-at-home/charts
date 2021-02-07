@@ -1,6 +1,6 @@
 # traefik-forward-auth
 
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square) [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/traefik-forward-auth)](https://artifacthub.io/packages/helm/traefik-forward-auth)
+![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square) [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/traefik-forward-auth)](https://artifacthub.io/packages/helm/k8s-at-home/traefik-forward-auth)
 
 A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
 
@@ -61,9 +61,11 @@ helm install traefik-forward-auth k8s-at-home/traefik-forward-auth --values valu
 | cookie.domain | string | `""` | Domain(s) to set auth cookie on. (Comma delimited) |
 | cookie.insecure | string | `""` | Use insecure cookies |
 | cookie.name | string | `""` | Cookie Name (default: _forward_auth) |
+| cookie.secret | string | `""` | Cookie Secret used for authentication across multiple instances / clusters (default: randomly generated) |
 | default.action | string | `""` | [auth|allow] Default action (default: auth) |
 | default.provider | string | `""` | [google|oidc|generic-oauth] Default provider (default: google) |
 | env | list | `[]` |  |
+| envFrom | string | `nil` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"thomseddon/traefik-forward-auth"` |  |

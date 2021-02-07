@@ -1,8 +1,12 @@
+{{/*
+This template serves as the blueprint for the StatefulSet objects that are created 
+within the common library.
+*/}}
 {{- define "common.statefulset" -}}
 apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
 kind: StatefulSet
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
   labels:
   {{- include "common.labels" . | nindent 4 }}
   {{- with .Values.controllerLabels }}
@@ -13,7 +17,11 @@ metadata:
   {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
+  {{- with .Values.strategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   selector:
     matchLabels:
     {{- include "common.labels.selectorLabels" . | nindent 6 }}
@@ -27,37 +35,19 @@ spec:
       labels:
       {{- include "common.labels.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+      {{- include "common.controller.pod" . | nindent 6 }}
+  volumeClaimTemplates:
+  {{- range $index, $vct := .Values.volumeClaimTemplates }}
+  - metadata:
+      name: {{ $vct.name }}
+    spec:
+      accessModes: 
+        - {{ required (printf "accessMode is required for vCT %v" $vct.name) $vct.accessMode  | quote }}
+      resources:
+        requests:
+          storage: {{ required (printf "size is required for PVC %v" $vct.name) $vct.size | quote }}
+      {{- if $vct.storageClass }}
+      storageClassName: {{ if (eq "-" $vct.storageClass) }}""{{- else }}{{ $vct.storageClass | quote }}{{- end }}
       {{- end }}
-      {{- with .Values.podSecurityContext }}
-      securityContext:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.initContainers }}
-      initContainers:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      containers:
-      {{- include "common.controller.mainContainer" . | nindent 6 }}
-      {{- with .Values.additionalContainers }}
-        {{- toYaml . | nindent 6 }}
-      {{- end }}
-
-      volumes:
-      {{- include "common.controller.volumes" . | trim | nindent 6 }}
-
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | indent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | indent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | indent 8 }}
-      {{- end }}
+{{- end }}
 {{- end }}

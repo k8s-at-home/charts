@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: 2.0.0-alpha9
+description: Hyperion is an opensource Bias or Ambient Lighting implementation
+name: hyperion-ng
+version: 1.2.0
+keywords:
+  - hyperion-ng
+  - hyperion
+home: https://github.com/k8s-at-home/charts/tree/master/charts/hyperion-ng
+icon: https://raw.githubusercontent.com/hyperion-project/hyperion.ng/master/assets/webconfig/img/hyperion/hyperionlogo.png?raw=true
+sources:
+  - https://github.com/hyperion-project/hyperion.ng
+  - https://hub.docker.com/r/sirfragalot/hyperion.ng
+maintainers:
+  - name: billimek
+    email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.4.0

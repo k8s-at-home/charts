@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 0.7.2
+description: This application runs as a daemon on your download host. It checks for completed downloads and extracts them so Radarr, Lidarr, Sonarr, and Readarr may import them.
+name: unpackerr
+version: 1.1.0
+keywords:
+  - unpackerr
+  - sonarr
+  - radarr
+  - lidarr
+  - readarr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/unpackerr
+icon: https://raw.githubusercontent.com/wiki/davidnewhall/unpackerr/images/unpackerr-logo-text.png
+sources:
+  - https://github.com/davidnewhall/unpackerr
+  - https://hub.docker.com/r/golift/unpackerr
+maintainers:
+  - name: billimek
+    email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.4.0

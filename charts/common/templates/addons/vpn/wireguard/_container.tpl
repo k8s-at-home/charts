@@ -1,28 +1,26 @@
 {{/*
-The Wireguard container(s) to be inserted
+The Wireguard sidecar container to be inserted.
 */}}
 {{- define "common.addon.wireguard.container" -}}
 name: wireguard
 image: "{{ .Values.addons.vpn.wireguard.image.repository }}:{{ .Values.addons.vpn.wireguard.image.tag }}"
-imagePullPolicy: {{ .Values.addons.vpn.imagePullPolicy }}
+imagePullPolicy: {{ .Values.addons.vpn.wireguard.pullPolicy }}
+{{- with .Values.addons.vpn.securityContext }}
 securityContext:
-  privileged: true
-  capabilities:
-    add: 
-      - NET_ADMIN
-      - SYS_MODULE
+  {{- toYaml . | nindent 2 }}
+{{- end }}
 {{- with .Values.addons.vpn.env }}
 env:
 {{- range $k, $v := . }}
   - name: {{ $k }}
-    value: {{ $v }}
+    value: {{ $v | quote }}
 {{- end }}
 {{- end }}
 {{- if or .Values.addons.vpn.configFile .Values.addons.vpn.scripts.up .Values.addons.vpn.scripts.down .Values.addons.vpn.additionalVolumeMounts .Values.persistence.shared.enabled }}
 volumeMounts:
 {{- if .Values.addons.vpn.configFile }}
   - name: vpnconfig
-    mountPath: /config/wg0.conf
+    mountPath: /etc/wireguard/wg0.conf
     subPath: vpnConfigfile
 {{- end }}
 {{- if .Values.addons.vpn.scripts.up }}
@@ -45,10 +43,10 @@ volumeMounts:
 {{- end }}
 {{- with .Values.addons.vpn.livenessProbe }}
 livenessProbe:
-  {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 2 }}
 {{- end -}}
 {{- with .Values.addons.vpn.resources }}
 resources:
-  {{- toYaml . | nindent 4 }}
+  {{- toYaml . | nindent 2 }}
 {{- end }}
 {{- end -}}

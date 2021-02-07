@@ -34,6 +34,21 @@ spec:
       {{- end }}
     spec:
       containers:
+      {{- if .Values.logging.promtail.enabled }}
+        - name: {{ .Chart.Name }}-promtail
+          image: "{{ .Values.logging.promtail.image.repository }}:{{ .Values.logging.promtail.image.tag }}"
+          imagePullPolicy: {{ .Values.logging.promtail.image.pullPolicy }}
+          args:
+          - -config.file=/etc/promtail/promtail.yaml
+          volumeMounts:
+          - name: promtail-config
+            mountPath: /etc/promtail/promtail.yaml
+            subPath: promtail.yaml
+            readOnly: true
+          - mountPath: /unifi/log
+            name: unifi-data
+            subPath: {{ ternary "log" (printf "%s/%s" .Values.persistence.subPath "log") (empty .Values.persistence.subPath) }}
+      {{- end }}      
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -50,32 +65,50 @@ spec:
             - name: stun
               containerPort: 3478
               protocol: UDP
-              {{ if .Values.captivePortalService.enabled }}
+            - name: syslog
+              containerPort: 5514
+              protocol: UDP
+            {{- if .Values.captivePortalService.enabled }}
             - name: captive-http
-              containerPort: 8880
+              containerPort: {{ .Values.captivePortalService.http }}
               protocol: TCP
             - name: captive-https
-              containerPort: 8843
+              containerPort: {{ .Values.captivePortalService.https }}
               protocol: TCP
-              {{ end }}
+            {{- end }}
+            - name: speedtest
+              containerPort: 6789
+              protocol: TCP
           {{- if not .Values.runAsRoot }}
           securityContext:
             capabilities:
               add:
                 - SETFCAP
           {{- end }}
+          {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
               path: /status
               port: https-gui
               scheme: HTTPS
-            initialDelaySeconds: 30
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.livenessProbe.successThreshold }}
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+          {{- end }}
+          {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path: /status
               port: https-gui
               scheme: HTTPS
-            initialDelaySeconds: 15
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          {{- end }}
           env:
             - name: UNIFI_HTTP_PORT
               value: "{{ .Values.controllerService.port }}"
@@ -93,6 +126,14 @@ spec:
             - name: JVM_EXTRA_OPTS
               value: "{{- join " " .Values.extraJvmOpts }}"
             {{- end }}
+            {{- if .Values.jvmInitHeapSize }}
+            - name: JVM_INIT_HEAP_SIZE
+              value: "{{ .Values.jvmInitHeapSize }}"
+            {{- end }}
+            {{- if .Values.jvmMaxHeapSize }}
+            - name: JVM_MAX_HEAP_SIZE
+              value: "{{ .Values.jvmMaxHeapSize }}"
+            {{- end }}
             {{- if .Values.mongodb.enabled }}
             - name: DB_URI
               value: "{{ .Values.mongodb.dbUri }}"
@@ -108,6 +149,8 @@ spec:
               value: "{{ .Values.customCert.certName }}"
             - name: CERT_PRIVATE_NAME
               value: "{{ .Values.customCert.keyName }}"
+            - name: UNIFI_STDOUT
+              value: "true"
             {{- end }}
           volumeMounts:
             - mountPath: /unifi/data
@@ -151,6 +194,17 @@ spec:
           secret:
             secretName: "{{ .Values.customCert.certSecret }}"
         {{- end }}
+        {{- if .Values.logging.promtail.enabled }}
+        - name: promtail-config
+          projected:
+            defaultMode: 0444
+            sources:
+            - configMap:
+                name: {{ template "unifi.fullname" . }}-promtail
+                items:
+                  - key: promtail.yaml
+                    path: promtail.yaml
+        {{- end }}        
         {{- if .Values.extraVolumes  }}{{ toYaml .Values.extraVolumes | trim | nindent 8 }}{{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:

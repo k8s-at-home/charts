@@ -38,6 +38,10 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.envFrom }}
+          envFrom:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             {{- if .Values.logging.level }}
             - name: LOG_LEVEL
@@ -94,6 +98,13 @@ spec:
             {{- if .Values.urlPath }}
             - name: URL_PATH
               value: {{ .Values.urlPath | quote }}
+            {{- end }}
+            {{- if .Values.cookie.secret }}
+            - name: COOKIE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}
+                  key: cookie-secret
             {{- end }}
             {{- if ne .Values.secret "-" }}
             - name: SECRET

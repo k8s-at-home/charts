@@ -1,6 +1,6 @@
 # I can't belive it's not Valetudo
 
-Map generation companion service for [Valetudo](valetudo.cloud)
+Map generation companion service for [Valetudo](https://valetudo.cloud/)
 
 ## TL;DR;
 

@@ -1,0 +1,22 @@
+# Default values for Gaps.
+
+image:
+  repository: housewrecker/gaps
+  pullPolicy: IfNotPresent
+  tag: latest
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8484
+
+env: {}
+  # TZ: UTC
+
+persistence:
+  data:
+    enabled: false
+    emptyDir: false
+    mountPath: /usr/data

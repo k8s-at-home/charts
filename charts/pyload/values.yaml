@@ -1,0 +1,23 @@
+# Default values for pyLoad.
+
+image:
+  repository: linuxserver/pyload
+  pullPolicy: IfNotPresent
+  tag: version-5f5aaf56
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8000
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false

@@ -1,3 +1,7 @@
+{{/*
+Renders the Service objects required by the chart by returning a concatinated list
+of the main Service and any additionalServices.
+*/}}
 {{- define "common.service" -}}
   {{- if .Values.service.enabled -}}
     {{- /* Generate primary service */ -}}
