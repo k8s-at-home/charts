@@ -122,6 +122,8 @@ spec:
               value: "{{ .Values.UID }}"
             - name: UNIFI_GID
               value: "{{ .Values.GID }}"
+            - name: UNIFI_STDOUT
+              value: "true"
             {{- if .Values.extraJvmOpts }}
             - name: JVM_EXTRA_OPTS
               value: "{{- join " " .Values.extraJvmOpts }}"
@@ -149,8 +151,6 @@ spec:
               value: "{{ .Values.customCert.certName }}"
             - name: CERT_PRIVATE_NAME
               value: "{{ .Values.customCert.keyName }}"
-            - name: UNIFI_STDOUT
-              value: "true"
             {{- end }}
           volumeMounts:
             - mountPath: /unifi/data
