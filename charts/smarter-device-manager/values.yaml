@@ -17,14 +17,8 @@ devicePluginPath: "/var/lib/kubelet/device-plugins"
 # devPath: "/special-dev/"
 # sysPath: "/special-sys/"
 
-envValueFrom:
-  NODE_NAME:
-    fieldRef:
-      apiVersion: v1
-      fieldPath: spec.nodeName
-
-hostname: smarter-device-management
-
+# Setting priority class is not necessary, but is recommended.
+# Ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
 priorityClassName: system-node-critical
 
 # DaemonSet labels
