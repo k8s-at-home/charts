@@ -23,15 +23,15 @@ You can then run `helm search repo k8s-at-home` to see the charts.
 
 See [Artifact Hub](https://artifacthub.io/packages/search?org=k8s-at-home) or [charts](./charts/) for a complete list.
 
-## Common Library
+## Common library
 
 The majority of the charts in this repository are using a common library we built. The reason we went with this pattern is a lot of applications are pretty similar in their requirements for Helm charts. Using a library makes maintaining much easier and keeps charts consistent in features. If contributing a new chart first try to make it using the library we built.
 
-More information can be found [here](https://github.com/k8s-at-home/charts/tree/master/charts/common).
+More information can be found in our [wiki](https://github.com/k8s-at-home/charts/wiki) and in the common chart directory [here](https://github.com/k8s-at-home/charts/tree/master/charts/common).
 
 ## Support
 
-- Having problems with a chart or have a feature request? Open a new [issue](https://github.com/k8s-at-home/charts/issues/new/choose).
+- Having problems with a chart? Open a new [issue](https://github.com/k8s-at-home/charts/issues/new/choose) or discuss in our [Discord](https://discord.gg/sTMX7Vh) in the `#support` channel.
 - New idea? Discuss [here](https://github.com/k8s-at-home/charts/discussions) or in our [Discord](https://discord.gg/sTMX7Vh) in the `#charts` channel.
 
 ## Contributing
