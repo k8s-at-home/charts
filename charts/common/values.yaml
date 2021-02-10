@@ -178,14 +178,21 @@ ingress:
   labels: {}
   hosts:
     - host: chart-example.local
+      #or a tpl that is evaluated
+      #hostTpl: '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
       paths:
         - path: /
           # Ignored if not kubeVersion >= 1.14-0
           pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
+  # Or if you need a dynamic secretname
+  #  - secretNameTpl: '{{ include "common.names.fullname" . }}-ingress'
   #    hosts:
   #      - chart-example.local
+  # Or a tpl that is evaluated
+  #    hostTpl: 
+  #      - '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
   additionalIngresses: []
   # - enabled: false
   #   nameSuffix: "api"
