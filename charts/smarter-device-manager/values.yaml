@@ -28,15 +28,10 @@ hostname: smarter-device-management
 priorityClassName: system-node-critical
 
 # DaemonSet labels
-controllerLabels:
-  role: agent
+controllerLabels: {}
 
 # DaemonSet annotations
 controllerAnnotations: {}
-
-# Pod annotations
-podAnnotations:
-  node.kubernetes.io/bootstrap-checkpoint: "true"
 
 podSecurityContext: {}
   # fsGroup: 2000
