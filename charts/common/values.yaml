@@ -12,6 +12,8 @@ strategy:
   ## DaemonSets ignore this
   type: RollingUpdate
 
+# Override the default command
+command: []
 # Override the default args
 args: []
 
@@ -31,13 +33,34 @@ serviceAccount:
   name: ""
 
 env: {}
-# TZ: UTC
+  # TZ: UTC
+
+## Variables with values set from templates, example
+## With a release name of: demo, the example env value will be: demo-admin
+envTpl: {}
+  # TEMPLATE_VALUE: "{{ .Release.Name }}-admin"
+
+## Variables with values from (for example) the Downward API
+## See https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/
+envValueFrom: {}
+  # NODE_NAME:
+  #   fieldRef:
+  #     fieldPath: spec.nodeName
 
 envFrom: []
 # - configMapRef:
 #     name: config-map-name
 # - secretRef:
 #     name: secret-name
+
+# Custom priority class for different treatment by the scheduler
+# priorityClassName: system-node-critical
+
+# Allow specifying a custom scheduler name
+# schedulerName: awkward-dangerous-scheduler
+
+# Allow specifying explicit hostname setting
+# hostname:
 
 # When using hostNetwork make sure you set dnsPolicy to ClusterFirstWithHostNet
 hostNetwork: false
@@ -55,6 +78,12 @@ dnsPolicy: ClusterFirst
 # See https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service
 # for more information.
 enableServiceLinks: true
+
+# Configure the Security Context for the Pod
+podSecurityContext: {}
+
+# Configure the Security Context for the main container
+securityContext: {}
 
 initContainers: []
 
@@ -207,6 +236,19 @@ additionalVolumes: []
 
 additionalVolumeMounts: []
 
+volumeClaimTemplates: []
+# Used in statefulset to create individual disks for each instance
+# - name: data
+#   mountPath: /data
+#   accessMode: "ReadWriteOnce"
+#   size: 1Gi
+# - name: backup
+#   mountPath: /backup
+#   subPath: theSubPath
+#   accessMode: "ReadWriteOnce"
+#   size: 2Gi
+#   storageClass: cheap-storage-class
+
 nodeSelector: {}
 
 affinity: {}
@@ -220,6 +262,18 @@ hostAliases: []
 #   hostnames:
 #   - "example.com"
 #   - "www.example.com"
+
+resources: {}
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+# limits:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
 
 addons:
 

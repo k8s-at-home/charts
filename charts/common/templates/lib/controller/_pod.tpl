@@ -11,8 +11,17 @@ serviceAccountName: {{ include "common.names.serviceAccountName" . }}
 securityContext:
   {{- toYaml . | nindent 2 }}
 {{- end }}
+{{- with .Values.priorityClassName }}
+priorityClassName: {{ . }}
+{{- end }}
+{{- with .Values.schedulerName }}
+schedulerName: {{ . }}
+{{- end }}
 {{- with .Values.hostNetwork }}
 hostNetwork: {{ . }}
+{{- end }}
+{{- with .Values.hostname }}
+hostname: {{ . }}
 {{- end }}
 {{- with .Values.dnsPolicy }}
 dnsPolicy: {{ . }}

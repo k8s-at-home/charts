@@ -21,6 +21,10 @@ assignees: ''
 
 <!-- Note: This should be a clear and concise description of what the bug is. -->
 
+**Relevant Helm values:**
+
+<!-- Note: Please include a snippet of the relevant values in (or a Pastebin/similar link to) your values.yaml. -->
+
 **What did you expect to happen:**
 
 **Anything else you would like to add:**

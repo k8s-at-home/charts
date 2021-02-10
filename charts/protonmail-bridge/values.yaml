@@ -1,0 +1,19 @@
+# Default values for Protonmail-bridge.
+
+image:
+  repository: shenxn/protonmail-bridge
+  tag: 1.5.7-1
+  pullPolicy: IfNotPresent
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 25
+    name: smtp-service
+
+persistence:
+  config:
+    enabled: true
+    mountPath: /root

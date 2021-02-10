@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0]
+
+### Added
+
+- Allow setting environment variables from Downward API via `envValueFrom`. See [the Kubernetes docs](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/) for more information.
+
+## [2.3.0]
+
+### Added
+
+- Allow overriding the main container command.
+- Allow setting Helm templates as environment variables via `envTpl`. The given value is parsed through Helm's `tpl` function, allowing for powerful variable substitution.
+- Support for defining volumeClaimTemplates for StatefulSet.
+- Allow the following Pod spec fields to be configurable:
+  - `priorityClassName`
+  - `schedulerName`
+  - `hostname`
+
+### Fixed
+
+- `values.yaml` now contains the following sections, these were already functional but were previously undocumented:
+  - `podSecurityContext`
+  - `securityContext`
+  - `resources`
+
 ## [2.2.1]
 
 ### Fixed
@@ -58,6 +83,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.7.0]
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
+
+[2.4.0]: https://github.com/k8s-at-home/charts/tree/common-2.4.0/charts/common
+
+[2.3.0]: https://github.com/k8s-at-home/charts/tree/common-2.3.0/charts/common
 
 [2.2.1]: https://github.com/k8s-at-home/charts/tree/common-2.2.1/charts/common
 
