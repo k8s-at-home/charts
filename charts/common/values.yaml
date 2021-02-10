@@ -178,8 +178,8 @@ ingress:
   labels: {}
   hosts:
     - host: chart-example.local
-      #or a tpl that is evaluated
-      #hostTpl: '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
+      # Or a tpl that is evaluated
+      # hostTpl: '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
       paths:
         - path: /
           # Ignored if not kubeVersion >= 1.14-0
