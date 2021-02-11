@@ -178,7 +178,7 @@ ingress:
   labels: {}
   hosts:
     - host: chart-example.local
-      # Or a tpl that is evaluated
+      ## Or a tpl that is evaluated
       # hostTpl: '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
       paths:
         - path: /
@@ -186,11 +186,11 @@ ingress:
           pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
-  # Or if you need a dynamic secretname
+  ## Or if you need a dynamic secretname
   #  - secretNameTpl: '{{ include "common.names.fullname" . }}-ingress'
   #    hosts:
   #      - chart-example.local
-  # Or a tpl that is evaluated
+  ## Or a tpl that is evaluated
   #    hostTpl:
   #      - '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
   additionalIngresses: []
