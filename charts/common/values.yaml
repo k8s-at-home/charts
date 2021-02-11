@@ -191,7 +191,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
   ## Or a tpl that is evaluated
-  #    hostTpl:
+  #    hostsTpl:
   #      - '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
   additionalIngresses: []
   # - enabled: false
