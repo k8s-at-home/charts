@@ -38,12 +38,23 @@ spec:
         {{- range .hosts }}
         - {{ . | quote }}
         {{- end }}
+        {{- range .hostsTpl }}
+        - {{ tpl . $ | quote }}
+        {{- end }}
+      {{- if .secretNameTpl }}
+      secretName: {{ tpl .secretNameTpl $ | quote}}
+      {{- else }}
       secretName: {{ .secretName }}
+      {{- end }}
     {{- end }}
   {{- end }}
   rules:
   {{- range $values.hosts }}
+  {{- if .hostTpl }}
+    - host: {{ tpl .hostTpl $ | quote }} 
+  {{- else }}
     - host: {{ .host | quote }}
+  {{- end }}
       http:
         paths:
           {{- range .paths }}
