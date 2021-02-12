@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: 2.4.1
+description: a self hostable application for saving web pages, freely.
+name: wallabag
+version: 1.0.0
+keywords:
+  - wallabag
+home: https://github.com/k8s-at-home/charts/tree/master/charts/wallabag
+icon: https://wallabag.org/icon
+sources:
+  - https://github.com/wallabag/docker
+  - https://hub.docker.com/wallabag/wallabag
+  - https://github.com/k8s-at-home/charts/tree/master/charts/wallabag
+maintainers:
+  - name: Patricol
+    url: https://patricol.co/
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.4.0

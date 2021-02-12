@@ -1,0 +1,77 @@
+# Default values for wallabag.
+
+image:
+  repository: wallabag/wallabag
+  pullPolicy: IfNotPresent
+  tag: 2.4.1
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the wallabag documentation
+# https://wallabag.org/docs
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 80
+
+# TODO run as 65534:65534
+config:
+  # For parameters' documentation, visit https://doc.wallabag.org/en/admin/parameters.html
+  # redis, rabbitmq, and mailer are optional. database is not optional.
+  parameters:
+    database_driver: pdo_mysql
+    database_driver_class: ~
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: wallabag
+    database_user: root
+    database_password: ~
+    database_path: ~
+    database_table_prefix: wallabag_
+    database_socket: ~
+    database_charset: utf8mb4
+    domain_name: https://your-wallabag-url-instance.com
+    mailer_transport: smtp
+    mailer_user: ~
+    mailer_password: ~
+    mailer_host: 127.0.0.1
+    mailer_port: false
+    mailer_encryption: ~
+    mailer_auth_mode: ~
+    locale: en
+    secret: ovmpmAWXRCabNlMgzlzFXDYmCFfzGv  # This is a string that should be unique to your application.
+    twofactor_auth: true
+    twofactor_sender: no-reply@wallabag.org
+    fosuser_registration: true
+    fosuser_confirmation: true
+    fos_oauth_server_access_token_lifetime: 3600
+    fos_oauth_server_refresh_token_lifetime: 1209600
+    from_email: no-reply@wallabag.org
+    rss_limit: 50
+    rabbitmq_host: localhost
+    rabbitmq_port: 5672
+    rabbitmq_user: guest
+    rabbitmq_password: guest
+    redis_scheme: tcp
+    redis_host: localhost
+    redis_port: 6379
+    redis_path: ~
+    redis_password: ~
+    sentry_dsn: ~  # TODO says null as default in docs but tilde in default, unlike others
+    server_name: "Your wallabag instance"
+
+persistence:
+  images:
+    enabled: false
+    emptyDir: false
+    mountPath: /var/www/wallabag/web/assets/images
+  cache:
+    # Note that if you make cache persistent, you will need to clear it (with `bin/console cache:clear --env=prod`) to apply any changes you make to wallabag's parameters.
+    enabled: false
+    emptyDir: false
+    mountPath: /var/www/wallabag/var/cache
+
+controllerType: "statefulset"  # Guarantees that only one copy runs at a time. Otherwise, deployments might have two instances connect to the database simultaneously during RollingUpdates. The "Recreate" strategy is not a strong enough guarantee; direct deletion of the pod will circumvent it and the replacement will be created immediately; likely before the original is terminated.
