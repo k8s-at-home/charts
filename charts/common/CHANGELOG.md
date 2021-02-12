@@ -8,11 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `probes.startupProbe` is now enabled by default. This will allow for quicker `Ready` states on Pods. It will precede the liveness and readiness Probes.
+- `probes.startupProbe` is now enabled by default. This will allow for quicker `Ready` states on Pods. It will precede the liveness and readiness Probes. *Note:* This requires that you are running [Kubernetes 1.16](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/)
 - Aligned our default values for liveness and readiness Probes with the Kubernetes defaults:
-  - `initialDelaySeconds` is now 0
-  - `timeoutSeconds` is now 1
-  - `failureThreshold` is now 3
+  - `initialDelaySeconds` is now `0`
+  - `timeoutSeconds` is now `1`
+  - `failureThreshold` is now `3`
 
 ## [2.5.1]
 
