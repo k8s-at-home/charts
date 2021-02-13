@@ -1,4 +1,9 @@
-# Default values for XBackbone.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: pe46dro/xbackbone-docker
@@ -8,13 +13,16 @@ image:
 strategy:
   type: Recreate
 
+env: {}
+  # TZ: UTC
+  # LOG_LEVEL: info
+
 service:
   port:
     port: 80
 
-env: {}
-  # TZ: UTC
-  # LOG_LEVEL: info
+ingress:
+  enabled: false
 
 persistence:
   config:

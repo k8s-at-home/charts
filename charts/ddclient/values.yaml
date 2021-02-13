@@ -1,9 +1,17 @@
-# Default values for ddclient.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: linuxserver/ddclient
   pullPolicy: IfNotPresent
   tag: version-v3.9.1
+
+strategy:
+  type: Recreate
 
 env: {}
   # TZ:
@@ -13,6 +21,9 @@ env: {}
 service:
   enabled: false
 
+ingress:
+  enabled: false
+
 probes:
   liveness:
     enabled: false
@@ -20,9 +31,6 @@ probes:
     enabled: false
   startup:
     enabled: false
-
-strategy:
-  type: Recreate
 
 config: |
   # This is the configuration for ddclient

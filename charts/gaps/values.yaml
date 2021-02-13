@@ -1,4 +1,9 @@
-# Default values for Gaps.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: housewrecker/gaps
@@ -8,12 +13,15 @@ image:
 strategy:
   type: Recreate
 
+env: {}
+  # TZ: UTC
+
 service:
   port:
     port: 8484
 
-env: {}
-  # TZ: UTC
+ingress:
+  enabled: false
 
 persistence:
   data:

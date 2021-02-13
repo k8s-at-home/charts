@@ -1,20 +1,21 @@
 apiVersion: v2
-appVersion: v2.6.1
+appVersion: v2.6.6
 description: A Python based monitoring and tracking tool for Plex Media Server
 name: tautulli
-version: 6.3.0
+version: 7.0.0
+kubeVersion: ">=1.16.0"
 keywords:
-  - tautulli
-  - plex
+- tautulli
+- plex
 home: https://github.com/k8s-at-home/charts/tree/master/charts/tautulli
 icon: https://github.com/Tautulli/Tautulli/blob/master/data/interfaces/default/images/logo.png?raw=true
 sources:
-  - https://github.com/Tautulli/Tautulli
-  - https://hub.docker.com/r/tautulli/tautulli
+- https://github.com/Tautulli/Tautulli
+- https://hub.docker.com/r/tautulli/tautulli
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.0

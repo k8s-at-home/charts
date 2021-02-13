@@ -1,9 +1,14 @@
-# Default values for ${CHARTNAME}.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: ${CHARTNAME}/${CHARTNAME}
   pullPolicy: IfNotPresent
-  tag: 1.2.5
+  tag: 1.0.0
 
 strategy:
   type: Recreate
@@ -16,6 +21,9 @@ env: {}
 service:
   port:
     port: 1880
+
+ingress:
+  enabled: false
 
 # persistence:
 #   data:

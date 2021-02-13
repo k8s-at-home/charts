@@ -2,18 +2,19 @@ apiVersion: v2
 appVersion: 2.2.2
 description: An Application dashboard and launcher
 name: heimdall
-version: 4.3.0
+version: 5.0.0
+kubeVersion: ">=1.16.0"
 keywords:
-  - heimdall
+- heimdall
 home: https://github.com/k8s-at-home/charts/tree/master/charts/heimdall
 icon: https://i.imgur.com/mM4tcO5.png
 sources:
-  - https://hub.docker.com/r/linuxserver/heimdall/
-  - https://github.com/linuxserver/heimdall
+- https://hub.docker.com/r/linuxserver/heimdall/
+- https://github.com/linuxserver/heimdall
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    version: 2.4.0
-    repository: https://k8s-at-home.com/charts/
+- name: common
+  version: 3.0.0
+  repository: https://k8s-at-home.com/charts/

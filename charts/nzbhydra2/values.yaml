@@ -1,4 +1,9 @@
-# Default values for nzbhydra2.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: linuxserver/nzbhydra2
@@ -8,14 +13,17 @@ image:
 strategy:
   type: Recreate
 
-service:
-  port:
-    port: 5076
-
 env: {}
   # TZ: UTC
   # PUID: 1001
   # PGID: 1001
+
+service:
+  port:
+    port: 5076
+
+ingress:
+  enabled: false
 
 probes:
   liveness:
@@ -51,7 +59,6 @@ probes:
       initialDelaySeconds: 30
       periodSeconds: 10
       timeoutSeconds: 10
-
 
 persistence:
   config:

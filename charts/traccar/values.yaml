@@ -1,4 +1,9 @@
-# Default values for Ombi.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: traccar/traccar
@@ -8,10 +13,6 @@ image:
 strategy:
   type: Recreate
 
-service:
-  port:
-    port: 8082
-
 # See more environment varaibles in the traccar documentation
 # https://www.traccar.org/configuration-file/
 # Note: replace . with _ and uppercase the key name
@@ -19,15 +20,22 @@ env:
   CONFIG_USE_ENVIRONMENT_VARIABLES: true
   LOGGER_CONSOLE: true
 
+service:
+  port:
+    port: 8082
+
+ingress:
+  enabled: false
+
+probes:
+  startup:
+    enabled: true
+
 persistence:
   data:
     enabled: false
     emptyDir: false
     mountPath: /opt/traccar/data
-
-probes:
-  startup:
-    enabled: true
 
 # Enabled mariadb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
