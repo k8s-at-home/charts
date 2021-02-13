@@ -1,4 +1,9 @@
-# Default values for samba.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: dperson/samba
@@ -8,11 +13,12 @@ image:
 strategy:
   type: Recreate
 
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
+## For all available environment variables and configuration options, please see:
+## https://github.com/dperson/samba/blob/master/README.md
+env: {}
+  # TZ: UTC
+  # SHARE1: share1;/share/samba/share1
+  # SHARE2: share2;/share/samba/share2
 
 service:
   port:
@@ -22,12 +28,14 @@ service:
     - name: netbios
       port: 139
 
-## For all available environment variables and configuration options, please see:
-## https://github.com/dperson/samba/blob/master/README.md
-env: {}
-  # TZ: UTC
-  # SHARE1: share1;/share/samba/share1
-  # SHARE2: share2;/share/samba/share2
+ingress:
+  enabled: false
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
 
 ## Configure the volume mounts for your shared folders here.
 additionalVolumeMounts: []

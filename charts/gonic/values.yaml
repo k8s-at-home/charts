@@ -1,4 +1,9 @@
-# Default values for Gonic.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: sentriz/gonic
@@ -8,10 +13,6 @@ image:
 strategy:
   type: Recreate
 
-service:
-  port:
-    port: 80
-
 # # See more environment variables in the gonic documentation
 # https://github.com/sentriz/gonic#configuration-options
 env: {}
@@ -19,6 +20,13 @@ env: {}
   # GONIC_MUSIC_PATH:
   # GONIC_PODCAST_PATH:
   # GONIC_CACHE_PATH:
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
 
 persistence:
   data:

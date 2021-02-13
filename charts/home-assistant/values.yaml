@@ -1,4 +1,9 @@
-# Default values for home-assistant.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: homeassistant/home-assistant
@@ -14,6 +19,9 @@ env: {}
 service:
   port:
     port: 8123
+
+ingress:
+  enabled: false
 
 # # Enable devices to be discoverable
 # hostNetwork: true

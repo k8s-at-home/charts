@@ -1,4 +1,9 @@
-# Default values for Paperless.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: jonaswinkler/paperless-ng
@@ -22,6 +27,9 @@ env:
 service:
   port:
     port: 8000
+
+ingress:
+  enabled: false
 
 persistence:
   data:

@@ -2,18 +2,19 @@ apiVersion: v2
 appVersion: v1.2.3
 description: FlareSolverr is a proxy server to bypass Cloudflare protection
 name: flaresolverr
-version: 1.1.0
+version: 2.0.0
+kubeVersion: ">=1.16.0"
 keywords:
-  - flaresolverr
-  - jackett
+- flaresolverr
+- jackett
 home: https://github.com/k8s-at-home/charts/tree/master/charts/flaresolverr
 sources:
-  - https://github.com/FlareSolverr/FlareSolverr
-  - https://hub.docker.com/r/flaresolverr/flaresolverr
+- https://github.com/FlareSolverr/FlareSolverr
+- https://hub.docker.com/r/flaresolverr/flaresolverr
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.0

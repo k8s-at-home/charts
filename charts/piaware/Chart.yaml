@@ -2,19 +2,20 @@ apiVersion: v2
 appVersion: v4.0
 description: Program for forwarding ADS-B data to FlightAware
 name: piaware
-version: 4.4.0
+version: 5.0.0
+kubeVersion: ">=1.16.0"
 keywords:
-  - piaware
-  - flight-aware
-  - flight-tracker
+- piaware
+- flight-aware
+- flight-tracker
 home: https://github.com/k8s-at-home/charts/tree/master/charts/piaware
 icon: https://pbs.twimg.com/profile_images/964269455483088897/mr2UgvfG_400x400.jpg
 sources:
-  - https://github.com/flightaware/piaware
+- https://github.com/flightaware/piaware
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.0

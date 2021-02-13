@@ -1,4 +1,9 @@
-# Default values for FlareSolverr.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: flaresolverr/flaresolverr
@@ -8,9 +13,12 @@ image:
 strategy:
   type: Recreate
 
+env: {}
+  # LOG_LEVEL: UTC
+
 service:
   port:
     port: 8191
 
-env: {}
-  # LOG_LEVEL: UTC
+ingress:
+  enabled: false

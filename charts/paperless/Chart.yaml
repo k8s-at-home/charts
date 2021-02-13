@@ -2,16 +2,17 @@ apiVersion: v2
 appVersion: 1.0.0
 description: Paperless - Index and archive all of your scanned paper documents
 name: paperless
-version: 3.1.0
+version: 4.0.0
+kubeVersion: ">=1.16.0"
 keywords:
-  - paperless
+- paperless
 home: https://github.com/k8s-at-home/charts/tree/master/charts/paperless
 icon: https://raw.githubusercontent.com/the-paperless-project/paperless/master/src/paperless/static/paperless/img/logo-dark.png
 sources:
-  - https://github.com/jonaswinkler/paperless-ng
+- https://github.com/jonaswinkler/paperless-ng
 maintainers:
-  - name: mr-onion-2
+- name: mr-onion-2
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.0

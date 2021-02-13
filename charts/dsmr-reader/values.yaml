@@ -1,19 +1,17 @@
-# Default values for dsmr-reader.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: xirixiz/dsmr-reader-docker
   pullPolicy: IfNotPresent
   tag: latest-v4.9.0-amd64
 
-securityContext:
-  privileged: true
-
 strategy:
   type: Recreate
-
-service:
-  port:
-    port: 80
 
 # For all options see https://github.com/xirixiz/dsmr-reader-docker#dsmr-reader---environment-variables
 env:
@@ -23,6 +21,16 @@ env:
   DJANGO_DATABASE_PASSWORD: dsmr-reader-pass
   DJANGO_DATABASE_PORT: 5432
   DJANGO_DATABASE_NAME: dsmr-reader
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
+
+securityContext:
+  privileged: true
 
 # Path to your p1 reader device in the container
 # additionalVolumeMounts:

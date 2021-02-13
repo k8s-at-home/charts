@@ -2,19 +2,20 @@ apiVersion: v2
 appVersion: 1.2.5
 description: Node-RED is low-code programming for event-driven applications
 name: node-red
-version: 5.4.0
+version: 6.0.0
+kubeVersion: ">=1.16.0"
 keywords:
-  - nodered
-  - node-red
+- nodered
+- node-red
 home: https://github.com/k8s-at-home/charts/tree/master/charts/node-red
 icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 sources:
-  - https://github.com/node-red/node-red-docker
-  - https://github.com/k8s-at-home/charts/tree/master/charts/node-red
+- https://github.com/node-red/node-red-docker
+- https://github.com/k8s-at-home/charts/tree/master/charts/node-red
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.0

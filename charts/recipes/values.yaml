@@ -1,4 +1,9 @@
-# Default values for Recipes.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: vabene1111/recipes
@@ -7,10 +12,6 @@ image:
 
 strategy:
   type: Recreate
-
-service:
-  port:
-    port: 80
 
 env:
   DEBUG: "0"
@@ -27,6 +28,13 @@ env:
   FRACTION_PREF_DEFAULT: "0"
   COMMENT_PREF_DEFAULT: "1"
   SHOPPING_MIN_AUTOSYNC_INTERVAL: "5"
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
 
 persistence:
   config:
@@ -64,6 +72,11 @@ persistence:
     # skipuninstall: false
     # existingClaim: ""
 
+additionalVolumes:
+- name: recipes-config
+  configMap:
+    name: recipes-config
+
 additionalContainers:
 - name: nginx
   image: nginx:1.19.6
@@ -82,8 +95,3 @@ additionalContainers:
     mountPath: /etc/nginx/nginx.conf
     subPath: nginx-config
     readOnly: true
-
-additionalVolumes:
-- name: recipes-config
-  configMap:
-    name: recipes-config

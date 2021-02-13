@@ -1,4 +1,9 @@
-# Default values for homer.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: b4bz/homer
@@ -8,13 +13,16 @@ image:
 strategy:
   type: Recreate
 
+env: {}
+  # UID:
+  # GID:
+
 service:
   port:
     port: 8080
 
-env: {}
-  # UID:
-  # GID:
+ingress:
+  enabled: false
 
 persistence:
   config:
