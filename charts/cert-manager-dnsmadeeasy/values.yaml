@@ -46,6 +46,7 @@ probes:
         scheme: HTTPS
         path: /healthz
         port: https
+    initialDelaySeconds: 5
   readiness:
     enabled: true
     ## Set this to true if you wish to specify your own readinessProbe
@@ -57,7 +58,9 @@ probes:
         scheme: HTTPS
         path: /healthz
         port: https
+    initialDelaySeconds: 5
 
 service:
   port:
+    name: https
     port: 443
