@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Cert-Manager Webhook for DNSMadeEasy
+name: cert-manager-dnsmadeeasy
+version: 1.0.0
+keywords:
+- cert-manage
+- dnsmadeeasy
+- letsencrypt
+home: https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+icon: https://pbs.twimg.com/profile_images/1759911243/dnsmeavatar_400x400.png
+sources:
+- https://github.com/home-assistant/home-assistant
+- https://github.com/cdr/code-server
+- https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+maintainers:
+- name: angelnu
+  email: git@angelnu.com
+dependencies:
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 2.4.0
