@@ -1,0 +1,64 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: {{ include "postgres-cluster.db" . }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+spec:
+  teamId: {{ include "common.names.fullname" . }}
+  volume:
+    size: {{ .Values.replicaSize }}
+  numberOfInstances: {{ .Values.replicaCount }}
+  users:
+    # database owner
+    {{ .Values.superuser }}:
+    - superuser
+    - createdb
+
+  #databases: name->owner
+  databases:
+    postgres: postgres
+  postgresql:
+    version: "11"
+  volume:
+    storageClass: {{ include "postgres-cluster.storageClass" . }}
+    size: {{ .Values.replicaSize }}
+
+
+  {{- if .Values.resources -}}
+  resources:
+    {{ .Values.resources | toYaml | nindent 4}}
+  {{- end }}
+  tolerations: {{ .Values.tolerations | toYaml }}
+  #nodeSelector: {{ .Values.nodeSelector | toYaml }}
+  #affinity:
+  #  podAntiAffinity:
+  #    requiredDuringSchedulingIgnoredDuringExecution:
+  #    - topologyKey: kubernetes.io/hostname
+  #      labelSelector:
+  #        matchLabels:
+  #          app: "{{ include "common.names.fullname" . }}"
+    {{- if .Values.replicaNodes }}
+  nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            {{- range $.Values.replicaNodes }}
+            - {{ . }}
+            {{- end }}
+      preferredDuringSchedulingIgnoredDuringExecution:
+      {{- range $i, $e := $.Values.replicaNodes }}
+      {{- if ne $e "" }}
+      - weight: {{ mul (sub 2 $i) 50 }}
+        preference:
+          matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - {{ $e }}
+      {{- end }}
+      {{- end }}
+    {{- end }}

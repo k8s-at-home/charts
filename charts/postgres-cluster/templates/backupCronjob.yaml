@@ -1,0 +1,58 @@
+{{- if ne (include "postgres-cluster.backupPVC" .) "" -}}
+# ------------------- CronJob ------------------- #
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "common.names.fullname" . }}-backup
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+spec:
+  schedule: {{ include ".Values.backup_schedule" . | quote }}
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: {{ include "common.names.fullname" . }}-backup
+          labels:
+            {{- include "postgres-cluster.selectorLabels" $ | nindent 12 }}
+        spec:
+          containers:
+            - name: backup
+              image: postgres #TBD
+              imagePullPolicy: Always #TBD
+              command:
+              - /bin/sh
+              - -ce
+              - |
+                echo "$(date) - Start dump"
+                pg_dumpall > /backup/new && mv /backup/new /backup/backup
+                echo "$(date) - End dump"
+                ls -lh /backup
+              resources: #TBD
+                requests:
+                  memory: "10Mi"
+                  cpu: "5m"
+              env:
+              - name: PGHOST
+                value: {{ include "postgres-cluster.db" . }}
+              - name: PGUSER
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ include "postgres-cluster.superuser_secret" . }}
+                    key: username
+              - name: PGPASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ include "postgres-cluster.superuser_secret" . }}
+                    key: password
+              volumeMounts:
+              - mountPath: /backup
+                name: backup-volume
+                subPath: {{ include "postgres-cluster.backupPVCSubpath" . }}
+          restartPolicy: OnFailure
+          volumes:
+            - name: backup-volume
+              persistentVolumeClaim:
+                claimName: {{ include "postgres-cluster.backupPVC" . }}
+{{- end -}}

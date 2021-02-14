@@ -1,0 +1,47 @@
+{{- range $i:= untilStep 0 (int .Values.replicaCount) 1 -}}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "postgres-cluster.pvName" $ }}-{{ $i }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+    #openebs.io/cas-type: local-hostpath
+  annotations:
+    #pv.kubernetes.io/provisioned-by: openebs.io/local
+  finalizers:
+    - kubernetes.io/pv-protection
+spec:
+  storageClassName: {{ include "postgres-cluster.storageClass" $ }}
+  volumeMode: Filesystem
+  capacity:
+    storage: "{{ $.Values.replicaSize }}"
+  accessModes:
+    {{- $.Values.accessModes | toYaml | nindent 4 }}
+  #local:
+  #  path: {{ include "postgres-cluster.localPath" $ }}
+  #  fsType: ''
+  hostPath:
+  {{- if lt (len $.Values.replicaNodes) ($.Values.replicaCount | int) }}
+    path: {{ include "postgres-cluster.localPath" $ }}-{{ $i }}
+  {{- else }}
+    path: {{ include "postgres-cluster.localPath" $ }}
+  {{- end }}
+  #Since it is created directly this does not delete it from cluster
+  persistentVolumeReclaimPolicy: {{ include "postgres-cluster.persistentVolumeReclaimPolicy" $ }}
+
+  {{ if lt $i (len $.Values.replicaNodes ) -}}
+  {{- $e := index $.Values.replicaNodes $i -}}
+  {{- if ne $e "" }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {{ $e }}
+  {{ end }}
+  {{ end }}
+{{ end }}
+

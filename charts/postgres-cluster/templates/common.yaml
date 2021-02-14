@@ -1,0 +1,44 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{- define "postgres-cluster.db" -}}
+{{- include "common.names.fullname" .|lower -}}-postgres
+{{- end -}}
+
+{{- define "postgres-cluster.superuser_secret" -}}
+{{ .Values.superuser }}.{{ include "postgres-cluster.db" . }}.credentials
+{{- end -}}
+
+{{- define "postgres-cluster.pvName" -}}
+{{- include "common.names.fullname" .|lower -}}
+{{- end -}}
+
+{{- define "postgres-cluster.storageClass" -}}
+{{- include "common.names.fullname" .|lower -}}
+{{- end -}}
+
+{{- define "postgres-cluster.persistentVolumeReclaimPolicy" -}}
+{{- if .Values.persistent -}}
+Retain
+{{- else -}}
+Recycle
+{{- end -}}
+{{- end -}}
+
+{{- define "postgres-cluster.localPath" -}}
+{{- default (printf "%s/%s" .Values.localPrefix (include "common.names.fullname" .)) .Values.localPath -}}
+{{- end -}}
+
+{{- define "postgres-cluster.backupPVCSubpath" -}}
+{{- default (printf "%s/%s" .Values.backupPVCPrefix (include "common.names.fullname" .)) .Values.backupPVCSubpath -}}
+{{- end -}}
+
+{{- define "postgres-cluster.backupPVC" -}}
+{{- if .Values.persistent -}}
+{{- required "A PVC for backups is required when persistent is enabled" .Values.backupPVC -}}
+{{- end -}}
+{{- end -}}
+
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}

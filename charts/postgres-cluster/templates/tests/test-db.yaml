@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "common.names.fullname" .|lower }}-test-db"
+  labels:
+{{ include "common.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  template:
+    metadata:
+      name: "{{ include "common.names.fullname" .|lower }}-test-db"
+      labels:
+        {{ include "common.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: psql
+        image: postgres:alpine
+        command: ['sh']
+        args:
+        - "-ecx"
+        - |
+          echo ";"|psql
+
+        env:
+        - name: PGHOST
+          value: {{ include "postgres-cluster.db" . | quote }}
+        - name: PGSSLMODE
+          value: require
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "postgres-cluster.superuser_secret" . }}
+              key: username
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "postgres-cluster.superuser_secret" . }}
+              key: password
+      restartPolicy: Never
+
