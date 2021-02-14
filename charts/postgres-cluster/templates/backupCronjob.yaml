@@ -15,7 +15,7 @@ spec:
         metadata:
           name: {{ include "common.names.fullname" . }}-backup
           labels:
-            {{- include "postgres-cluster.selectorLabels" $ | nindent 12 }}
+            {{- include "common.labels.selectorLabels" $ | nindent 12 }}
         spec:
           containers:
             - name: backup
