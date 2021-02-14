@@ -1,4 +1,4 @@
-# Home Assistant
+# Postgres Cluster
 
 This is a helm chart extending the [Zalando Postgres operator](https://github.com/zalando/postgres-operator). You have to install the original chart or this one will not work.
 
