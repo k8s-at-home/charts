@@ -1,0 +1,32 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: mbentley/omada-controller
+  pullPolicy: IfNotPresent
+  tag: 4.2
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the omada-controller documentation
+# https://github.com/mbentley/docker-omada-controller
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 8043
+
+ingress:
+  enabled: false
+
+# persistence:
+#   data:
+#     enabled: false
+#     emptyDir: false
+#     mountPath: /data

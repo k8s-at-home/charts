@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: 4.2.11
+description: omada-controller helm package
+name: omada-controller
+version: 1.0.0
+kubeVersion: ">=1.16.0"
+keywords:
+- omada-controller
+home: https://github.com/k8s-at-home/charts/tree/master/charts/omada-controller
+icon: https://omada-controller.org/icon
+sources:
+- https://github.com/omada-controller/omada-controller-docker
+- https://github.com/k8s-at-home/charts/tree/master/charts/omada-controller
+maintainers:
+- name: omada-controller
+  email: omada-controller@omada-controller.com
+dependencies:
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.0
