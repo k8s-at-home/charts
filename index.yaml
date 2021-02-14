@@ -21671,6 +21671,32 @@ entries:
   sonarr:
   - apiVersion: v2
     appVersion: 3.0.4.993
+    created: "2021-02-14T00:29:59.126224068Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: dae4bc9a52d119f5acdbf359c1799958bc5bd37365f3b50c6bd19ea7a6bc21c7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-9.0.1/sonarr-9.0.1.tgz
+    version: 9.0.1
+  - apiVersion: v2
+    appVersion: 3.0.4.993
     created: "2021-02-13T23:49:51.384506911Z"
     dependencies:
     - name: common
