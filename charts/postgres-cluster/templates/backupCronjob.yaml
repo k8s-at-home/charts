@@ -1,13 +1,13 @@
-{{- if ne (include "postgres-cluster.backupPVC" .) "" -}}
+{{- if .Values.backupPVC -}}
 # ------------------- CronJob ------------------- #
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ include "common.names.fullname" . }}-backup
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.backup_schedule }}
+  schedule: {{ .Values.backup_schedule | quote }}
   concurrencyPolicy: Replace
   jobTemplate:
     spec:
@@ -54,5 +54,5 @@ spec:
           volumes:
             - name: backup-volume
               persistentVolumeClaim:
-                claimName: {{ include "postgres-cluster.backupPVC" . }}
+                claimName: {{ .Values.backupPVC }}
 {{- end -}}

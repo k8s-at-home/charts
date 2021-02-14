@@ -33,12 +33,6 @@ Recycle
 {{- default (printf "%s/%s" .Values.backupPVCPrefix (include "common.names.fullname" .)) .Values.backupPVCSubpath -}}
 {{- end -}}
 
-{{- define "postgres-cluster.backupPVC" -}}
-{{- if .Values.persistent -}}
-{{- required "A PVC for backups is required when persistent is enabled" .Values.backupPVC -}}
-{{- end -}}
-{{- end -}}
-
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
