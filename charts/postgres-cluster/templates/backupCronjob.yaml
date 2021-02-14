@@ -7,7 +7,7 @@ metadata:
   labels:
     {{- include "common.labels" $ | nindent 4 }}
 spec:
-  schedule: {{ include ".Values.backup_schedule" . | quote }}
+  schedule: {{ .Values.backup_schedule }}
   concurrencyPolicy: Replace
   jobTemplate:
     spec:
