@@ -25,8 +25,8 @@ env:
   TTRSS_REPO_URL: "https://git.tt-rss.org/fox/tt-rss.git"
   DB_HOST: postgres.example.com
   DB_PORT: ""
-  DB_NAME: postgres
-  name: postgres
+  DB_NAME: tt-rss
+  DB_USER: postgres
   DB_PASS: REPLACEME
   DB_ENV_USER: postgres
   DB_ENV_PASS: REPLACEME
@@ -46,10 +46,12 @@ initContainers:
 
 service:
   port:
-    port: 443
+    port: 4443
 
 ingress:
   enabled: false
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 
 probes:
   startup:
