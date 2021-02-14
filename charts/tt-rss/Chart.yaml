@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Tiny Tiny RSS
+name: tt-rss
+version: 1.0.0
+kubeVersion: ">=1.16.0"
+keywords:
+- tt-rss
+home: https://github.com/angelnu/charts/tree/master/charts/tt-rss
+icon: https://community.tt-rss.org/uploads/default/original/1X/18a2e96275d1fffb21cce225d30a87be4544db60.png
+sources:
+- https://git.tt-rss.org
+maintainers:
+- name: angelnu
+  email: git@angelnu.com
+dependencies:
+- name: common
+  version: 3.0.0
+  repository: https://k8s-at-home.com/charts/

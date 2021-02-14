@@ -1,0 +1,56 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: angelnu/ttrss
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nodeSelector:
+  #TBD - make multi-arch
+  kubernetes.io/arch: amd64
+
+strategy:
+  type: Recreate
+
+env:
+  TTRSS_WITH_SELFSIGNED_CERT: "1"
+  TTRSS_PROTO: https
+  TTRSS_URL: example.com
+  TTRSS_PORT: ""
+  TTRSS_REPO_URL: "https://git.tt-rss.org/fox/tt-rss.git"
+  DB_HOST: postgres.example.com
+  DB_PORT: ""
+  DB_NAME: postgres
+  name: postgres
+  DB_PASS: REPLACEME
+  DB_ENV_USER: postgres
+  DB_ENV_PASS: REPLACEME
+
+initContainers:
+- image: postgres:alpine
+  name: waitforpostgres
+  env:
+  - name: DB_HOST
+    value: postgres.example.com
+  command:
+  - "pg_isready"
+  - "-h"
+  - "$DB_HOST"
+  - "-p"
+  - "5432"
+
+service:
+  port:
+    port: 443
+
+ingress:
+  enabled: false
+
+probes:
+  startup:
+    enabled: true
