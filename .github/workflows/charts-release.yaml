@@ -52,39 +52,3 @@ jobs:
           charts_repo_url: https://k8s-at-home.com/charts/
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-  
-  # Update the generated timestamp in the index.yaml
-  # needed until https://github.com/helm/chart-releaser/issues/90
-  # or helm/chart-releaser-action supports this
-  post-release:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Block concurrent jobs
-        uses: softprops/turnstyle@v1
-        with:
-          continue-after-seconds: 180
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: "gh-pages"
-          fetch-depth: 0
-
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Commit and push timestamp updates
-        run: |
-          if [[ -f index.yaml ]]; then
-            git pull
-            export generated_date=$(date --utc +%FT%T.%9NZ)
-            sed -i -e "s/^generated:.*/generated: \"$generated_date\"/" index.yaml
-            git add index.yaml
-            git commit -sm "Update generated timestamp [ci-skip]" || exit 0
-            git push
-          fi
