@@ -32,7 +32,6 @@ spec:
 
   {{ if lt $i (len $.Values.replicaNodes ) -}}
   {{- $e := index $.Values.replicaNodes $i -}}
-  {{- if ne $e "" }}
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -41,7 +40,6 @@ spec:
           operator: In
           values:
           - {{ $e }}
-  {{ end }}
   {{ end }}
 {{ end }}
 
