@@ -3,7 +3,7 @@ kind: postgresql
 metadata:
   name: {{ include "postgres-cluster.db" . }}
   labels:
-    {{- include "common.labels" $ | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
 spec:
   teamId: {{ include "common.names.fullname" . }}
   volume:
@@ -46,11 +46,11 @@ spec:
           - key: kubernetes.io/hostname
             operator: In
             values:
-            {{- range $.Values.replicaNodes }}
+            {{- range .Values.replicaNodes }}
             - {{ . }}
             {{- end }}
       preferredDuringSchedulingIgnoredDuringExecution:
-      {{- range $i, $e := $.Values.replicaNodes }}
+      {{- range $i, $e := .Values.replicaNodes }}
       {{- if ne $e "" }}
       - weight: {{ mul (sub 2 $i) 50 }}
         preference:

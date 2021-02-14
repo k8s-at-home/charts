@@ -5,7 +5,7 @@ kind: CronJob
 metadata:
   name: {{ include "common.names.fullname" . }}-backup
   labels:
-    {{- include "common.labels" $ | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.backup_schedule }}
   concurrencyPolicy: Replace
@@ -15,7 +15,7 @@ spec:
         metadata:
           name: {{ include "common.names.fullname" . }}-backup
           labels:
-            {{- include "common.labels.selectorLabels" $ | nindent 12 }}
+            {{- include "common.labels.selectorLabels" . | nindent 12 }}
         spec:
           containers:
             - name: backup
