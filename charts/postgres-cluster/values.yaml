@@ -13,9 +13,9 @@ replicaSize: "1Gi"
 team: team
 accessModes:
 - ReadWriteOnce
-replicaNodes: []
-#  - node1.example.com
-#  - node2.example.com
+replicaNodes: 
+  - node1.example.com
+  - node2.example.com
 
 #If you change this after creating the DB then use psql to set the password manually
 superuser: postgres

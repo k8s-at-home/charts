@@ -51,14 +51,12 @@ spec:
             {{- end }}
       preferredDuringSchedulingIgnoredDuringExecution:
       {{- range $i, $e := .Values.replicaNodes }}
-      {{- if ne $e "" }}
-      - weight: {{ mul (sub 2 $i) 50 }}
+      - weight: {{ mul (sub $.Values.replicaCount $i) 50 }}
         preference:
           matchExpressions:
           - key: kubernetes.io/hostname
             operator: In
             values:
             - {{ $e }}
-      {{- end }}
       {{- end }}
     {{- end }}
