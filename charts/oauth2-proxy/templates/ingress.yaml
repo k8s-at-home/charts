@@ -22,8 +22,8 @@ metadata:
 {{- end }}
 spec:
   {{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
-  {{- if $values.ingressClassName }}
-  ingressClassName: {{ $values.ingressClassName }}
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{- end }}
   {{- end }}
   rules:
