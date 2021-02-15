@@ -25,8 +25,8 @@ service:
 ingress:
   enabled: false
 
-# persistence:
-#   data:
-#     enabled: false
-#     emptyDir: false
-#     mountPath: /data
+persistence:
+  data:
+    enabled: true
+    emptyDir: false
+    mountPath: /data
