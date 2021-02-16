@@ -3,54 +3,56 @@ name: "Charts: Release"
 on:
   push:
     branches:
-      - master
+    - master
     paths:
-      - 'charts/**'
-      - '!charts/**/README.md'
+    - 'charts/**'
+    - '!charts/**/CHANGELOG.md'
+    - '!charts/**/README.md'
+    - '!charts/**/README.md.gotmpl'
 
 jobs:
   pre-release:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Block concurrent jobs
-        uses: softprops/turnstyle@v1
-        with:
-          continue-after-seconds: 180
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Block concurrent jobs
+      uses: softprops/turnstyle@v1
+      with:
+        continue-after-seconds: 180
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release:
     needs: pre-release
     runs-on: ubuntu-latest
     steps:
-      - name: Block concurrent jobs
-        uses: softprops/turnstyle@v1
-        with:
-          continue-after-seconds: 180
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Block concurrent jobs
+      uses: softprops/turnstyle@v1
+      with:
+        continue-after-seconds: 180
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+    - name: Configure Git
+      run: |
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Install Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.4.0
-     
-      # Waiting on new version to be released that supports updating the genereated timestamp field
-      # https://github.com/helm/chart-releaser/issues/103 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.1.0
-        with:
-          charts_repo_url: https://k8s-at-home.com/charts/
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.4.0
+    
+    # Waiting on new version to be released that supports updating the genereated timestamp field
+    # https://github.com/helm/chart-releaser/issues/103 
+    - name: Run chart-releaser
+      uses: helm/chart-releaser-action@v1.1.0
+      with:
+        charts_repo_url: https://k8s-at-home.com/charts/
+      env:
+        CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
