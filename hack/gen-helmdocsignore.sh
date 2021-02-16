@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -eu
 
+#
+# Generate .helmdocsignore for excluding non-common based helm charts
+#
+
 # shellcheck disable=SC2155
 export REPO_ROOT=$(git rev-parse --show-toplevel)
 
