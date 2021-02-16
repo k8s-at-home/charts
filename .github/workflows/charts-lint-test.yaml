@@ -4,7 +4,9 @@ on:
   pull_request:
     paths:
     - 'charts/**'
+    - '!charts/**/CHANGELOG.md'
     - '!charts/**/README.md'
+    - '!charts/**/README.md.gotmpl'
 
 jobs:
   lint:
