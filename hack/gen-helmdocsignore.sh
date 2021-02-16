@@ -8,3 +8,5 @@ grep -L -r "\- name\: common" ./charts/**/Chart.yaml \
     | sed 's|\.\/\(.*\)/Chart.yaml|\1|' \
     | grep -v "common" \
     > .helmdocsignore
+
+echo "charts/common-test" >> .helmdocsignore
