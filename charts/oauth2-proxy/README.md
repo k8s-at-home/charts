@@ -87,6 +87,7 @@ Parameter | Description | Default
 `image.tag` | Image tag | `v5.1.0`
 `imagePullSecrets` | Specify image pull secrets | `nil` (does not add image pull secrets to deployed pods)
 `ingress.enabled` | Enable Ingress | `false`
+`ingress.ingressClassName` | Set ingressClassName | `nil`
 `ingress.path` | Ingress accepted path | `/`
 `ingress.extraPaths` | Ingress extra paths to prepend to every host configuration. Useful when configuring [custom actions with AWS ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#actions). | `[]`
 `ingress.annotations` | Ingress annotations | `nil`
