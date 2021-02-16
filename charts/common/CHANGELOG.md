@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.0.1]
 
-### Changed
+### Fixed
 
 - Fixed `kubeVersion` in `Chart.yaml` not working with people running k8s pre-releases
 - Added `ingressClassName` to `values.yaml`
