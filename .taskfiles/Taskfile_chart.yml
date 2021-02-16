@@ -17,7 +17,6 @@ tasks:
     - check-chart
     silent: true
 
-
   dependency:
     cmds:
     - test -d {{.GIT_ROOT}}/charts/{{.CHART}}/Chart.lock && rm {{.GIT_ROOT}}/charts/{{.CHART}}/Chart.lock || exit 0
