@@ -13,7 +13,7 @@ readme_template="${repository}/hack/templates/README.md.gotmpl"
 custom_config_template="${repository}/hack/templates/CUSTOM_CONFIG.md.gotmpl"
 changelog_template="${repository}/hack/templates/CHANGELOG.md.gotmpl"
 
-# Gather all charts using the common library, excluding common and common-test
+# Gather all charts using the common library, excluding common-test
 charts=$(find "${repository}" -name "Chart.yaml" -exec grep --exclude="*common-test*"  -l "\- name\: common" {} \;)
 
 for chart in ${charts}; do
