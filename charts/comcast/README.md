@@ -1,84 +1,41 @@
-# Comcast Data Cap Usage Collector For InfluxDB and Grafana
+# comcast
 
-![Screenshot](https://github.com/billimek/comcastUsage-for-influxdb/raw/master/images/comcast_grafana_example.png)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-This tool allows you to run periodic comcast data usage checks and save the results to Influxdb
+periodic comcast data usage checks and save the results to InfluxDB
 
-## TL;DR;
+**Homepage:** <https://github.com/k8s-at-home/charts/tree/master/charts/comcast>
 
-```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/comcast
-```
+## Maintainers
 
-## Introduction
+| Name | Email | Url |
+| ---- | ------ | --- |
+| billimek | jeff@billimek.com |  |
 
-This code is adopted from the work done by [barrycarey](https://github.com/barrycarey) in the [similar thing for capturing speedtest data](https://github.com/barrycarey/Speedtest-for-InfluxDB-and-Grafana) as well as [jantman's](https://github.com/jantman) [xfinity-usage python example](https://github.com/jantman/xfinity-usage)
+## Source Code
 
-## Installing the Chart
+* <https://github.com/billimek/comcastUsage-for-influxdb>
+* <https://github.com/k8s-at-home/charts>
 
-To install the chart with the release name `my-release`:
+## Values
 
-```console
-$ helm install --name my-release k8s-at-home/comcast
-```
-## Uninstalling the Chart
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.comcast.password | string | `"somepassword"` |  |
+| config.comcast.username | string | `"someuser"` |  |
+| config.delay | int | `3600` |  |
+| config.influxdb.database | string | `"comcast"` |  |
+| config.influxdb.host | string | `"influxdb-influxdb"` |  |
+| config.influxdb.port | int | `8086` |  |
+| config.influxdb.ssl | bool | `false` |  |
+| debug | bool | `false` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"billimek/comcastusage-for-influxdb"` |  |
+| image.tag | string | `"latest"` |  |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` |  |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
 
-To uninstall/delete the `my-release` deployment:
-
-```console
-$ helm delete my-release --purge
-```
-
-The command removes all the Kubernetes components associated with the chart and deletes the release.
-
-## Configuration
-
-The configuration is set as a block of text through a configmap and mounted as a file in /src/config.ini Any value in this text block should match the defined Comcast configuration. There are several values here that will have to match our kubernetes configuration.
-
-## Configuration
-
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-
-| Parameter                            | Description                                | Default                                                    |
-| -------------------------------      | -------------------------------            | ---------------------------------------------------------- |
-| `image.repository`                   | Comcast image                                | `billimek/comcastusage-for-influxdb`                     |
-| `image.tag`                          | Comcast image tag                            | `latest`                                                 |
-| `image.pullPolicy`                   | Comcast image pull policy                    | `IfNotPresent`                                           |
-| `debug`                              | Display debugging output                     | `false`                                                  |
-| `config.delay`                       | how many seconds to wait between checks      | `3600`                                                   |
-| `config.influxdb.host`               | InfluxDB hostname                            | `influxdb-influxdb`                                      |
-| `config.influxdb.port`               | InfluxDB port                                | `8086`                                                   |
-| `config.influxdb.database`           | InfluxDB database                            | `comcast`                                                |
-| `config.influxdb.username`           | InfluxDB username                            | ``                                                       |
-| `config.influxdb.password`           | InfluxDB password                            | ``                                                       |
-| `config.influxdb.ssl`                | InfluxDB connection using SSL                | `false`                                                  |
-| `config.comcast.username`            | Comcast website login usernma                | `someuser`                                               |
-| `config.comcast.password`            | Comcast website login password               | `somepassword`                                           |
-| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```console
-helm install --name my-release \
-  --set config.comcast.username=tonystark,config.comcast.password=mypassword \
-    k8s-at-home/comcast
-```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
-```console
-helm install --name my-release -f values.yaml k8s-at-home/comcast
-```
-
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/comcast/values.yaml) file. It has several commented out suggested values.
-
-## InfluxDB metrics
-```
-'measurement': 'comcast_data_usage',
-'fields': {
-		'used',
-		'total',
-		'unit'
-}
-```
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

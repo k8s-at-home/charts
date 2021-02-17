@@ -32,5 +32,4 @@ helm-docs \
     --template-files="$(basename "${readme_template}")" \
     --template-files="$(basename "${custom_config_template}")" \
     --template-files="$(basename "${changelog_template}")" \
-    --chart-search-root="${repository}" \
-    --dry-run
+    --chart-search-root="${repository}"
