@@ -1,156 +1,113 @@
-{{- define "repository.organization" -}}
-  k8s-at-home
+{{- define "custom.repository.organization" -}}
+k8s-at-home
 {{- end -}}
 
-{{- define "repository.url" -}}
-  https://github.com/k8s-at-home/charts
+{{- define "custom.repository.url" -}}
+https://github.com/k8s-at-home/charts
 {{- end -}}
 
-{{- define "helm.url" -}}
-  https://k8s-at-home.com/charts/
+{{- define "custom.helm.url" -}}
+https://k8s-at-home.com/charts/
 {{- end -}}
 
-{{- define "helm.path" -}}
-    {{ template "repository.organization" . }}/{{ template "chart.name" . }}
+{{- define "custom.helm.path" -}}
+{{ template "custom.repository.organization" . }}/{{ template "chart.name" . }}
 {{- end -}}
 
-{{- define "requirements" -}}
+{{- define "custom.notes" -}}
+**WARNING: THIS CHART IS NOT MEANT TO BE INSTALLED DIRECTLY**
+
+This is a [Helm Library Chart](https://helm.sh/docs/topics/library_charts/#helm). It's purpose is for grouping common logic between the k8s@home charts. 
+
+Since a lot of charts follow the same pattern this library was built to reduce maintenance cost between the charts that use it and try achieve a goal of being DRY.
+{{- end -}}
+
+{{- define "custom.requirements" -}}
 ## Requirements
 
 {{ template "chart.kubeVersionLine" . }}
 {{- end -}}
 
-{{- define "changelog" -}}
-## :star2: Changelog
+{{- define "custom.dependencies" -}}
+## Dependencies
 
-**This is especially important for major version updates!**
-
-Please refer to [CHANGELOG.md](CHANGELOG.md) for an overview of notable changes to the chart.
+{{ template "chart.requirementsTable" . }}
 {{- end -}}
 
-{{- define "install.tldr" -}}
+{{- define "custom.install.tldr" -}}
 ## TL;DR
 
 ```console
-helm repo add {{ template "repository.organization" . }} {{ template "helm.url" . }}
+helm repo add {{ template "custom.repository.organization" . }} {{ template "custom.helm.url" . }}
 helm repo update
+helm install {{ template "chart.name" . }} {{ template "custom.helm.path" . }}
 ```
 {{- end -}}
 
-{{- define "install" -}}
-## Creating a new chart
+{{- define "custom.install" -}}
+## Installing the Chart
 
-First be sure to checkout the many charts that already use this like [qBittorrent](../qbittorrent/), [node-red](../node-red/) or the many others in this repository.
+To install the chart with the release name `{{ template "chart.name" . }}`
 
-Include this chart as a dependency in your `Chart.yaml` e.g.
-
-```yaml
-# Chart.yaml
-dependencies:
-- name: common
-  version: {{ template "chart.version" . }}
-  repository: {{ template "helm.url" . }}
-```
-Write a `values.yaml` with some basic defaults you want to present to the user e.g.
-
-```yaml
-#
-# IMPORTANT NOTE
-#
-# This chart inherits from our common library chart. You can check the default values/options here:
-# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
-#
-
-image:
-  repository: nodered/node-red
-  pullPolicy: IfNotPresent
-  tag: 1.2.5
-
-strategy:
-  type: Recreate
-
-# See more environment variables in the node-red documentation
-# https://nodered.org/docs/getting-started/docker
-env: {}
-  # TZ:
-  # NODE_OPTIONS:
-  # NODE_RED_ENABLE_PROJECTS:
-  # NODE_RED_ENABLE_SAFE_MODE:
-  # FLOWS:
-
-service:
-  port:
-    port: 1880
-
-ingress:
-  enabled: false
-
-persistence:
-  data:
-    enabled: false
-    emptyDir: false
-    mountPath: /data
-```
-
-If not using a service, set the `service.enabled` to `false`.
-```yaml
-...
-service:
-  enabled: false
-...
-```
-
-Add files to the `templates` folder.
-```yaml
-# templates/common.yaml
-{{"{{"}} include "common.all . {{"}}"}}
-
-# templates/NOTES.txt
-{{"{{"}} include "common.notes.defaultNotes" . {{"}}"}}
-```
-
-If testing locally make sure you update the dependencies with:
-
-```bash
-helm dependency update
+```console
+helm install {{ template "chart.name" . }} {{ template "custom.helm.path" . }}
 ```
 {{- end -}}
 
-{{- define "uninstall" -}}
+{{- define "custom.uninstall" -}}
 ## Uninstalling the Chart
 
-To uninstall the `{{ template "chart.name" . }}` deployment:
+To uninstall the `{{ template "chart.name" . }}` deployment
+
 ```console
 helm uninstall {{ template "chart.name" . }}
 ```
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 {{- end -}}
 
-{{- define "configuration.header" -}}
+{{- define "custom.configuration.header" -}}
 ## Configuration
 {{- end -}}
 
-{{- define "configuration.readValues" -}}
-Read through the [values.yaml]({{ template "repository.url" . }}/blob/master/charts/{{ template "chart.name" . }}/values.yaml)
-file. It has several commented out suggested values.
+{{- define "custom.configuration.readValues" -}}
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 {{- end -}}
 
-{{- define "configuration.example.set" -}}
+{{- define "custom.configuration.example.set" -}}
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
 helm install {{ template "chart.name" . }} \
   --set env.TZ="America/New York" \
-    {{ template "helm.path" . }}
+    {{ template "custom.helm.path" . }}
 ```
 {{- end -}}
 
-{{- define "configuration.example.file" -}}
+{{- define "custom.configuration.example.file" -}}
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install {{ template "chart.name" . }} {{ template "helm.path" . }} -f values.yaml
+helm install {{ template "chart.name" . }} {{ template "custom.helm.path" . }} -f values.yaml
 ```
+{{- end -}}
+
+{{- define "custom.valuesSection" -}}
+## Values
+
+**Important**: When deploying an application Helm chart you add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+{{ template "chart.valuesTable" . }}
+{{- end -}}
+
+{{- define "custom.support" -}}
+## Support
+
+- See the [Wiki](https://github.com/k8s-at-home/charts/wiki).
+- Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/charts/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
 {{- end -}}
 
 {{ template "chart.header" . }}
@@ -159,18 +116,32 @@ helm install {{ template "chart.name" . }} {{ template "helm.path" . }} -f value
 
 {{ template "chart.description" . }}
 
-**WARNING: THIS CHART IS NOT MEANT TO BE INSTALLED DIRECTLY**
+{{ template "custom.notes" . }}
 
-This is a [Helm Library Chart](https://helm.sh/docs/topics/library_charts/#helm). It's purpose is for grouping common logic between the k8s@home charts. 
+{{ template "custom.requirements" . }}
 
-Since a lot of charts follow the same pattern this library was built to reduce maintenance cost between the charts that use it and try achieve a goal of being DRY.
+{{ template "custom.dependencies" . }}
 
-{{ template "requirements" . }}
+{{ template "custom.install.tldr" . }}
 
-{{ template "changelog" . }}
+{{ template "custom.install" . }}
 
-{{ template "install.tldr" . }}
+{{ template "custom.uninstall" . }}
 
-{{ template "install" . }}
+{{ template "custom.configuration.header" . }}
+
+{{ template "custom.configuration.readValues" . }}
+
+{{ template "custom.configuration.example.set" . }}
+
+{{ template "custom.configuration.example.file" . }}
+
+{{ template "custom.custom.configuration" . }}
+
+{{ template "custom.valuesSection" . }}
+
+{{ template "custom.changelog" . }}
+
+{{ template "custom.support" . }}
 
 {{ template "helm-docs.versionFooter" . }}

@@ -14,7 +14,7 @@ custom_config_template="${repository}/hack/templates/CUSTOM_CONFIG.md.gotmpl"
 changelog_template="${repository}/hack/templates/CHANGELOG.md.gotmpl"
 
 # Gather all charts using the common library, excluding common and common-test
-charts=$(find "${repository}" -name "Chart.yaml" -exec grep --exclude="*common*"  -l "\- name\: common" {} \;)
+charts=$(find "${repository}" -name "Chart.yaml" -exec grep --exclude="*common-test*"  -l "\- name\: common" {} \;)
 
 for chart in ${charts}; do
     chart_directory="$(dirname "${chart}")"
@@ -26,7 +26,7 @@ for chart in ${charts}; do
     cp -n "${changelog_template}" "${chart_directory}" || true
 done
 
-# Run helm-docs
+# Run helm-docs for charts using the common library and the common library itself
 helm-docs \
     --ignore-file="${repository}/.helmdocsignore" \
     --template-files="$(basename "${readme_template}")" \

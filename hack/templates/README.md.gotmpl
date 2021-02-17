@@ -14,7 +14,7 @@ https://k8s-at-home.com/charts/
 {{ template "custom.repository.organization" . }}/{{ template "chart.name" . }}
 {{- end -}}
 
-{{- define "custom.maintainer.note" -}}
+{{- define "custom.notes" -}}
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 {{- end -}}
 
@@ -89,6 +89,14 @@ helm install {{ template "chart.name" . }} {{ template "custom.helm.path" . }} -
 ```
 {{- end -}}
 
+{{- define "custom.valuesSection" -}}
+## Values
+
+**Important**: When deploying an application Helm chart you add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+{{ template "chart.valuesTable" . }}
+{{- end -}}
+
 {{- define "custom.support" -}}
 ## Support
 
@@ -104,7 +112,7 @@ helm install {{ template "chart.name" . }} {{ template "custom.helm.path" . }} -
 
 {{ template "chart.description" . }}
 
-{{ template "custom.maintainer.note" . }}
+{{ template "custom.notes" . }}
 
 {{ template "custom.requirements" . }}
 
@@ -125,6 +133,8 @@ helm install {{ template "chart.name" . }} {{ template "custom.helm.path" . }} -
 {{ template "custom.configuration.example.file" . }}
 
 {{ template "custom.custom.configuration" . }}
+
+{{ template "custom.valuesSection" . }}
 
 {{ template "custom.changelog" . }}
 

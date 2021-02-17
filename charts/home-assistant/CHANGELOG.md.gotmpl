@@ -1,4 +1,10 @@
-# Changelog
+{{- define "custom.changelog.header" -}}
+## Changelog
+{{- end -}}
+
+{{- define "custom.changelog" -}}
+{{ template "custom.changelog.header" . }}
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -67,3 +73,4 @@ This is the last version before starting this changelog. All sorts of cool stuff
 [3.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.0.0/charts/home-assistant
 
 [2.7.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-2.7.0/charts/home-assistant
+{{- end -}}
