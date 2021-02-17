@@ -4,10 +4,10 @@ on:
   pull_request:
     paths:
     - 'charts/**'
-    - '!charts/**/CHANGELOG.md.gotmpl'
-    - '!charts/**/CUSTOM_CONFIG.md.gotmpl'
     - '!charts/**/README.md'
     - '!charts/**/README.md.gotmpl'
+    - '!charts/**/README_CHANGELOG.md.gotmpl'
+    - '!charts/**/README_CONFIG.md.gotmpl'
 
 jobs:
   lint:
