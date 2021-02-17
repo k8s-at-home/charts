@@ -21,9 +21,9 @@ for chart in ${charts}; do
     # Copy README template into each Chart directory, overwrite if exists
     cp "${readme_template}" "${chart_directory}"
     # Copy CUSTOM_CONFIG template to each Chart directory, do not overwrite if exists
-    cp "${custom_config_template}" "${chart_directory}"
+    cp -n "${custom_config_template}" "${chart_directory}" || true
     # Copy CHANGELOG template to each Chart directory, do not overwrite if exists
-    cp "${changelog_template}" "${chart_directory}" || true
+    cp -n "${changelog_template}" "${chart_directory}" || true
 done
 
 # Run helm-docs
