@@ -27,13 +27,19 @@ The main container included in the controller.
   {{- end }}
   {{- range $key, $value := .Values.envValueFrom }}
   - name: {{ $key }}
-    valueFrom: 
+    valueFrom:
       {{- $value | toYaml | nindent 6 }}
   {{- end }}
   {{- end }}
-  {{- with .Values.envFrom }}
+  {{- if or .Values.envFrom .Values.secret }}
   envFrom:
-    {{- toYaml . | nindent 12 }}
+  {{- with .Values.envFrom }}
+    {{- toYaml . | nindent 2 }}
+  {{- end }}
+  {{- if or .Values.secret }}
+  - secretRef:
+      name: {{ include "common.names.fullname" . }}
+  {{- end }}
   {{- end }}
   {{- include "common.controller.ports" . | trim | nindent 2 }}
   volumeMounts:
