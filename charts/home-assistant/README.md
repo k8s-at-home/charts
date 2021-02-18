@@ -123,6 +123,7 @@ The value derived is the name of the kubernetes service object for home-assistan
 | env | object | `{}` |  |
 | git.deployKey | string | `""` |  |
 | git.deployKeyBase64 | string | `""` |  |
+| git.keyType | string | `"rsa"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"homeassistant/home-assistant"` |  |
 | image.tag | string | `"2021.1.5"` |  |
