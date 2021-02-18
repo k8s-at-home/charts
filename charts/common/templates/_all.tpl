@@ -4,7 +4,7 @@ Main entrypoint for the common library chart. It will render all underlying temp
 {{- define "common.all" -}}
   {{- /* Merge the local chart values and the common chart defaults */ -}}
   {{- include "common.values.setup" . }}
-  
+
   {{- /* Enable code-server add-on if required */ -}}
   {{- if .Values.addons.codeserver.enabled }}
     {{- include "common.addon.codeserver" . }}
@@ -33,4 +33,8 @@ Main entrypoint for the common library chart. It will render all underlying temp
   {{ include "common.service" . | nindent 0 }}
   {{- print "---" | nindent 0 -}}
   {{ include "common.ingress" .  | nindent 0 }}
+  {{- if .Values.secret -}}
+    {{- print "---" | nindent 0 -}}
+    {{ include "common.secret" .  | nindent 0 }}
+  {{- end -}}
 {{- end -}}
