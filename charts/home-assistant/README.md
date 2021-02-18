@@ -6,6 +6,12 @@ Home Assistant
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
+## Source Code
+
+* <https://github.com/home-assistant/home-assistant>
+* <https://github.com/cdr/code-server>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant>
+
 ## Requirements
 
 Kubernetes: `>=1.16.0-0`
@@ -224,7 +230,7 @@ This is the last version before starting this changelog. All sorts of cool stuff
 
 ## Support
 
-- See the [Wiki](https://github.com/k8s-at-home/charts/wiki).
+- See the [Wiki](https://github.com/k8s-at-home/charts/wiki)
 - Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/charts/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
