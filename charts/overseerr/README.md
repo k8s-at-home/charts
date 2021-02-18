@@ -6,6 +6,11 @@ Overseerr is a free and open source software application for managing requests f
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
+## Source Code
+
+* <https://github.com/sct/overseerr>
+* <https://hub.docker.com/r/sctx/overseerr>
+
 ## Requirements
 
 Kubernetes: `>=1.16.0-0`
@@ -106,7 +111,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Support
 
-- See the [Wiki](https://github.com/k8s-at-home/charts/wiki).
+- See the [Wiki](https://github.com/k8s-at-home/charts/wiki)
 - Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/charts/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
