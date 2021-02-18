@@ -396,6 +396,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[3.1.0]: #3.1.0
+
 [3.0.1]: #3.0.1
 
 [3.0.0]: #3.0.0
