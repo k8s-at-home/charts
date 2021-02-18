@@ -48,11 +48,9 @@ jobs:
       uses: azure/setup-helm@v1
       with:
         version: v3.4.0
-    
-    # Waiting on new version to be released that supports updating the genereated timestamp field
-    # https://github.com/helm/chart-releaser/issues/103 
+
     - name: Run chart-releaser
-      uses: helm/chart-releaser-action@v1.1.0
+      uses: helm/chart-releaser-action@v1.2.0
       with:
         charts_repo_url: https://k8s-at-home.com/charts/
       env:
