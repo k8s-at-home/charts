@@ -6,14 +6,19 @@ FROM mcr.microsoft.com/vscode/devcontainers/ruby:0-${VARIANT}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+COPY Gemfile /tmp/Gemfile
+
 RUN \
   apt-get update \
   && \
   apt-get -y install --no-install-recommends \
     jq \
     libjq-dev \
+    libonig-dev \
     gnupg2 \
   && \
   sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin \
   && \
-  curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | /bin/bash -
+  curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | /bin/bash - \
+  && \
+  bundle install --gemfile /tmp/Gemfile
