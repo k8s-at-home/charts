@@ -97,6 +97,20 @@ class Test < ChartTest
         jq('.spec.template.spec.containers[0].env[0].name', resource('Deployment')).must_equal values[:envTpl].keys[0].to_s
         jq('.spec.template.spec.containers[0].env[0].value', resource('Deployment')).must_equal 'common-test-admin'
       end
+      
+      it 'set "static" secret variables' do
+        expectedSecretName = 'common-test'
+        values = {
+          secret: {
+            STATIC_SECRET: 'value_of_secret'
+          }
+        }
+        chart.value values
+        puts jq('.metadata', resource('Secret'))
+        jq('.spec.template.spec.containers[0].envFrom[0].secretRef.name', resource('Deployment')).must_equal expectedSecretName
+        jq('.metadata.name', resource('Secret')).must_equal expectedSecretName
+        jq('.stringData.STATIC_SECRET', resource('Secret')).must_equal values[:secret].values[0].to_s
+      end
     end
 
     describe 'ports settings' do
