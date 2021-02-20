@@ -21,4 +21,6 @@ RUN \
   && \
   curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | /bin/bash - \
   && \
-  bundle install --gemfile /tmp/Gemfile
+  bundle config set system 'true' \
+  && bundle install --gemfile /tmp/Gemfile \
+  && rm /tmp/Gemfile
