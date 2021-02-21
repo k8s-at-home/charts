@@ -1,0 +1,64 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: lloesche/valheim-server
+  pullPolicy: IfNotPresent
+  tag: latest
+
+strategy:
+  type: Recreate
+
+env: {}
+  # SERVER_NAME: My Server
+  # SERVER_PORT: 2456
+  # WORLD_NAME: Dedicated
+  # SERVER_PASS: secret
+  # SERVER_PUBLIC: 1
+  # UPDATE_INTERVAL: 10800 # every 3 hours
+  # BACKUPS: true
+  # BACKUPS_INTERVAL: 43200 # every 12 hours
+  # BACKUPS_DIRECTORY: /config/backups
+  # BACKUPS_MAX_AGE: 3
+  # BACKUPS_DIRECTORY_PERMISSIONS: 755
+  # BACKUPS_FILE_PERMISSIONS: 644
+  # CONFIG_DIRECTORY_PERMISSIONS: 755
+  # WORLDS_DIRECTORY_PERMISSIONS: 755
+  # WORLDS_FILE_PERMISSIONS: 644
+  # STEAMCMD_ARGS: validate
+  # DNS_1: 8.8.8.8
+  # DNS_2: 8.8.4.4
+
+service:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  loadBalancerIP: 
+  port: 
+    port: 2456
+    protocol: UDP
+  additionalPorts:
+  - name: valheim-2
+    port: 2457
+    protocol: UDP
+    targetPort: 2457
+  - name: valheim-3
+    port: 2458
+    protocol: UDP
+    targetPort: 2458
+
+persistence:
+  config:
+    enabled: false
+    mountPath: /config
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
