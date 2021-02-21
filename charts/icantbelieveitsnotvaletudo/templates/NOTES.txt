@@ -1,6 +1,0 @@
-{{- if .Values.ingress.enabled }}
-You can get the map data under this URL:
-{{- range .Values.ingress.hosts }}
-  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}api/map/image
-{{- end }}
-{{- end }}

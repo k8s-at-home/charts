@@ -30,12 +30,6 @@ spec:
           {{- toYaml .Values.securityContext | nindent 12 }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        {{- if .Values.config.webserver.enabled }}
-        ports:
-        - name: http
-          containerPort: {{ .Values.config.webserver.port }}
-          protocol: TCP
-        {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         volumeMounts:
