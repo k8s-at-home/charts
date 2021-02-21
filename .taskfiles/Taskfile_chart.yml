@@ -18,30 +18,40 @@ tasks:
     silent: true
 
   dependency:
+    dir: "{{.GIT_ROOT}}/charts/{{.CHART}}"
     cmds:
-    - test -d {{.GIT_ROOT}}/charts/{{.CHART}}/Chart.lock && rm {{.GIT_ROOT}}/charts/{{.CHART}}/Chart.lock || exit 0
-    - test -d {{.GIT_ROOT}}/charts/{{.CHART}}/tmpcharts && rm -rf {{.GIT_ROOT}}/charts/{{.CHART}}/tmpcharts || exit 0
-    - cd {{.GIT_ROOT}}/charts/{{.CHART}} && helm dependency update
+    - test -d Chart.lock && rm Chart.lock || exit 0
+    - test -d tmpcharts && rm -rf tmpcharts || exit 0
+    - helm dependency update
     silent: true
 
   lint:
     desc: lint your chart code
+    dir: "{{.GIT_ROOT}}/charts/{{.CHART}}"
     cmds:
-    - cd {{.GIT_ROOT}}/charts/{{.CHART}} && helm lint
+    - helm lint
     deps:
     - dependency
     - check-chart
 
   ct-lint:
-    desc: Run `ct lint` on your chart code
+    desc: run `ct lint` on your chart code
     cmds:
     - docker run --rm -it --user $(id -u):$(id -g) -e "HELM_CONFIG_HOME=/tmp/helm" -e "HELM_CACHE_HOME=/tmp/helm" -v {{.GIT_ROOT}}:/ci -w /ci quay.io/helmpack/chart-testing:latest ct lint --charts charts/{{.CHART}} --config /ci/.github/ct.yaml
     deps:
     - check-chart
     - lint
+  
+  helm-docs:
+    desc: generate helm-docs
+    dir: "{{.GIT_ROOT}}/hack"
+    cmds:
+    - ./gen-helm-docs.sh "{{.CHART}}"
+    deps:
+    - check-chart
 
   # Checks Parameters
   check-chart:
     cmds:
-    - cmd: test ! -z "{{.CHART}}" || (echo "Please define CHART parameter"; exit 1)
+    - test ! -z "{{.CHART}}" || (echo "Please define CHART parameter"; exit 1)
     silent: true

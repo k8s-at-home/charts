@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 set -eu
 
-#
-# Generate helm-docs for Helm charts using the common library
-#
+# Generate helm-docs for Helm charts
+# Usage ./gen-helm-docs.sh [chart]
+
+# require helm-docs
+command -v helm-docs >/dev/null 2>&1 || {
+    echo >&2 "helm-docs is not installed. Aborting."
+    exit 1
+}
 
 # Absolute path of repository
 repository=$(git rev-parse --show-toplevel)
@@ -16,11 +21,24 @@ readme_changelog_template="${repository}/hack/templates/README_CHANGELOG.md.gotm
 # Gather all charts using the common library, excluding common-test
 charts=$(find "${repository}" -name "Chart.yaml" -exec grep --exclude="*common-test*"  -l "\- name\: common" {} \;)
 
+# Allow for a specific chart to be passed in as a argument
+if [ $# -ge 1 ] && [ -n "$1" ]; then
+    charts="${repository}/charts/$1/Chart.yaml"
+    root="$(dirname "${charts}")"
+    if [ ! -f "$charts" ]; then
+        echo "File ${charts} does not exist." 
+        exit 1
+    fi
+else
+    root="${repository}"
+fi
+
 for chart in ${charts}; do
     chart_directory="$(dirname "${chart}")"
+    echo "-] Copying templates to ${chart_directory}"
     # Copy README template into each Chart directory, overwrite if exists
     cp "${readme_template}" "${chart_directory}"
-    # Copy CUSTOM_CONFIG template to each Chart directory, do not overwrite if exists
+    # Copy CONFIG template to each Chart directory, do not overwrite if exists
     cp -n "${readme_config_template}" "${chart_directory}" || true
     # Copy CHANGELOG template to each Chart directory, do not overwrite if exists
     cp -n "${readme_changelog_template}" "${chart_directory}" || true
@@ -32,4 +50,4 @@ helm-docs \
     --template-files="$(basename "${readme_template}")" \
     --template-files="$(basename "${readme_config_template}")" \
     --template-files="$(basename "${readme_changelog_template}")" \
-    --chart-search-root="${repository}"
+    --chart-search-root="${root}"
