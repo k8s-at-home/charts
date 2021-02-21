@@ -1,0 +1,11 @@
+{{- if .Values.customConfig.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-config
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  settings.json: |
+    {{- .Values.customconfig.config | mustToPrettyJson | nindent 4 }}
+{{- end }}
