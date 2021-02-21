@@ -27758,6 +27758,32 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/uptimerobot-prometheus-1.0.0/uptimerobot-prometheus-1.0.0.tgz
     version: 1.0.0
+  valheim:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2021-02-21T23:49:31.328925874Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: Valheim dedicated gameserver with automatic update and world backup
+      support
+    digest: 70c9def2ba99f28f1ea9c2de3558db558b5fc40fa8064f1f66b9b89bdded5bad
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/valheim
+    icon: https://raw.githubusercontent.com/lloesche/valheim-server-docker/main/misc/Logo_valheim.png
+    keywords:
+    - valheim
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: owner@russellhall.co.uk
+      name: rust84
+    name: valheim
+    sources:
+    - https://github.com/lloesche/valheim-server-docker
+    - https://hub.docker.com/r/lloesche/valheim-server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/valheim-1.0.0/valheim-1.0.0.tgz
+    version: 1.0.0
   xbackbone:
   - apiVersion: v2
     appVersion: 3.3.3
@@ -29624,4 +29650,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-21T22:26:12.203787515Z"
+generated: "2021-02-21T23:49:31.334148564Z"
