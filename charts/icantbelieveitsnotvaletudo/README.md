@@ -1,6 +1,6 @@
 # icantbelieveitsnotvaletudo
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
 
 Create live map data from Valetudo powered robots
 
@@ -32,18 +32,11 @@ Create live map data from Valetudo powered robots
 | config.mqtt.minMillisecondsBetweenMapUpdates | int | `10000` |  |
 | config.mqtt.publishMapImage | bool | `true` |  |
 | config.mqtt.topicPrefix | string | `"valetudo"` |  |
-| config.webserver.enabled | bool | `false` |  |
-| config.webserver.port | int | `3000` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"pmaksymiuk/icantbelieveitsnotvaletudo"` |  |
 | image.tag | string | `nil` |  |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations | object | `{}` |  |
-| ingress.enabled | bool | `false` |  |
-| ingress.hosts[0].host | string | `"chart-example.local"` |  |
-| ingress.hosts[0].paths | list | `[]` |  |
-| ingress.tls | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
@@ -51,11 +44,6 @@ Create live map data from Valetudo powered robots
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
-| service.port | int | `80` |  |
-| service.type | string | `"ClusterIP"` |  |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------
