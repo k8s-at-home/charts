@@ -26435,6 +26435,32 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/traefik-forward-auth-1.0.0/traefik-forward-auth-1.0.0.tgz
     version: 1.0.0
+  transmission:
+  - apiVersion: v2
+    appVersion: 3.0.0
+    created: "2021-02-21T22:26:12.198563431Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: Transmission is a cross-platform BitTorrent client
+    digest: f689d8c7c9d5ab7e03480f5962c443e1aace7eb281a5d11ba57273d1812c637b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/transmission
+    icon: https://github.com/transmission/transmission/raw/master/extras/transmission-1920.jpg
+    keywords:
+    - transmission
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    name: transmission
+    sources:
+    - https://hub.docker.com/r/linuxserver/transmission
+    - https://github.com/k8s-at-home/charts/tree/master/charts/transmission
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/transmission-1.0.0/transmission-1.0.0.tgz
+    version: 1.0.0
   tvheadend:
   - apiVersion: v2
     appVersion: latest
@@ -29598,4 +29624,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-19T13:01:17.145145013Z"
+generated: "2021-02-21T22:26:12.203787515Z"
