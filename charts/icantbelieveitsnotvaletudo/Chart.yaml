@@ -1,16 +1,23 @@
 apiVersion: v2
-appVersion: 0.3.0
-version: 1.0.0
-name: icantbelieveitsnotvaletudo
+appVersion: 2021.2.0
 description: Create live map data from Valetudo powered robots
-type: application
+name: icantbelieveitsnotvaletudo
+version: 2.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - MQTT
-  - valetudo
-  - iot
-home: https://valetudo.cloud
+- icantbelieveitsnotvaletudo
+- MQTT
+- valetudo
+- iot
+home: https://github.com/k8s-at-home/charts/tree/master/charts/icantbelieveitsnotvaletudo
+icon: https://icantbelieveitsnotvaletudo.org/icon
 sources:
-  - https://github.com/Hypfer/ICantBelieveItsNotValetudo
+- https://github.com/Hypfer/ICantBelieveItsNotValetudo
+- https://github.com/k8s-at-home/charts/tree/master/charts/icantbelieveitsnotvaletudo
 maintainers:
-  - name: ishioni
-    email: helm@movishell.pl
+- name: ishioni
+  email: helm@movishell.pl
+dependencies:
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1

@@ -1,15 +1,16 @@
-# icantbelieveitsnotvaletudo
+# mylar
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 2021.2.0](https://img.shields.io/badge/AppVersion-2021.2.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.4.9.5](https://img.shields.io/badge/AppVersion-0.4.9.5-informational?style=flat-square)
 
-Create live map data from Valetudo powered robots
+Mylar is the automated Comic Book downloader (cbr/cbz) for use with various download clients.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/Hypfer/ICantBelieveItsNotValetudo>
-* <https://github.com/k8s-at-home/charts/tree/master/charts/icantbelieveitsnotvaletudo>
+* <https://github.com/mylar3/mylar3>
+* <https://github.com/linuxserver/docker-mylar3>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/mylar>
 
 ## Requirements
 
@@ -26,23 +27,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install icantbelieveitsnotvaletudo k8s-at-home/icantbelieveitsnotvaletudo
+helm install mylar k8s-at-home/mylar
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `icantbelieveitsnotvaletudo`
+To install the chart with the release name `mylar`
 
 ```console
-helm install icantbelieveitsnotvaletudo k8s-at-home/icantbelieveitsnotvaletudo
+helm install mylar k8s-at-home/mylar
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `icantbelieveitsnotvaletudo` deployment
+To uninstall the `mylar` deployment
 
 ```console
-helm uninstall icantbelieveitsnotvaletudo
+helm uninstall mylar
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +56,15 @@ Other values may be used from the [values.yaml](../common/values.yaml) from the 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install icantbelieveitsnotvaletudo \
+helm install mylar \
   --set env.TZ="America/New York" \
-    k8s-at-home/icantbelieveitsnotvaletudo
+    k8s-at-home/mylar
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install icantbelieveitsnotvaletudo k8s-at-home/icantbelieveitsnotvaletudo -f values.yaml
+helm install mylar k8s-at-home/mylar -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,25 +77,21 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.mapsettings.drawCharger | bool | `true` |  |
-| config.mapsettings.drawPath | bool | `true` |  |
-| config.mapsettings.drawRobot | bool | `true` |  |
-| config.mapsettings.scale | int | `2` |  |
-| config.mqtt.autoconfPrefix | string | `"homeassistant"` |  |
-| config.mqtt.broker_url | string | `"mqtt://user:pass@example.com:port"` |  |
-| config.mqtt.identifier | string | `"rockrobo"` |  |
-| config.mqtt.mapDataTopic | string | `"valetudo/rockrobo/map_data"` |  |
-| config.mqtt.minMillisecondsBetweenMapUpdates | int | `10000` |  |
-| config.mqtt.publishMapImage | bool | `true` |  |
-| config.mqtt.topicPrefix | string | `"valetudo"` |  |
+| env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"pmaksymiuk/icantbelieveitsnotvaletudo"` |  |
-| image.tag | string | `"2021.2.0"` |  |
-| probes.liveness.enabled | bool | `false` |  |
-| probes.readiness.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `false` |  |
-| service.enabled | bool | `false` |  |
-| strategy.type | string | `"RollingUpdate"` |  |
+| image.repository | string | `"linuxserver/mylar3"` |  |
+| image.tag | string | `"v0.4.9.5-ls14"` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.comics.emptyDir | bool | `false` |  |
+| persistence.comics.enabled | bool | `false` |  |
+| persistence.comics.mountPath | string | `"/comics"` |  |
+| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.downloads.emptyDir | bool | `false` |  |
+| persistence.downloads.enabled | bool | `false` |  |
+| persistence.downloads.mountPath | string | `"/downloads"` |  |
+| service.port.port | int | `8090` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -102,7 +99,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.0.0]
+### [1.0.0]
 
 #### Added
 
@@ -110,19 +107,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Ported to common
-- Update from upstream
-- Changed default scale
+- N/A
 
 #### Removed
 
-- Service and Ingress as it's no longer used
+- N/A
 
-### [1.0.0]
-
-#### Added
-
-- Initial commit
+[1.0.0]: #1.0.0
 
 ## Support
 
@@ -131,5 +122,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Ask a [question](https://github.com/k8s-at-home/charts/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
-----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

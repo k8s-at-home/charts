@@ -1,0 +1,30 @@
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap to the additionalVolumes */}}
+{{- define "icantbelieveitsnotvaletudo.configmap.volume" -}}
+name: settings
+configMap:
+  name: {{ template "common.names.fullname" . }}
+{{- end -}}
+
+{{- $volume := include "icantbelieveitsnotvaletudo.configmap.volume" . | fromYaml -}}
+{{- if $volume -}}
+    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
+    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the additionalVolumeMounts */}}
+{{- define "icantbelieveitsnotvaletudo.configmap.volumeMount" -}}
+name: settings
+mountPath: /app/config.json
+subPath: config.json
+{{- end -}}
+
+{{- $volumeMount := include "icantbelieveitsnotvaletudo.configmap.volumeMount" . | fromYaml -}}
+{{- if $volumeMount -}}
+    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
+    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+{{- end -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}

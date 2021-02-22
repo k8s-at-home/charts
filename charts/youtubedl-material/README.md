@@ -1,15 +1,15 @@
-# icantbelieveitsnotvaletudo
+# youtubedl-material
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 2021.2.0](https://img.shields.io/badge/AppVersion-2021.2.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 4.2](https://img.shields.io/badge/AppVersion-4.2-informational?style=flat-square)
 
-Create live map data from Valetudo powered robots
+Self-hosted YouTube downloader built on Material Design
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/Hypfer/ICantBelieveItsNotValetudo>
-* <https://github.com/k8s-at-home/charts/tree/master/charts/icantbelieveitsnotvaletudo>
+* <https://github.com/Tzahi12345/YoutubeDL-Material>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/youtubedl-material>
 
 ## Requirements
 
@@ -26,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install icantbelieveitsnotvaletudo k8s-at-home/icantbelieveitsnotvaletudo
+helm install youtubedl-material k8s-at-home/youtubedl-material
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `icantbelieveitsnotvaletudo`
+To install the chart with the release name `youtubedl-material`
 
 ```console
-helm install icantbelieveitsnotvaletudo k8s-at-home/icantbelieveitsnotvaletudo
+helm install youtubedl-material k8s-at-home/youtubedl-material
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `icantbelieveitsnotvaletudo` deployment
+To uninstall the `youtubedl-material` deployment
 
 ```console
-helm uninstall icantbelieveitsnotvaletudo
+helm uninstall youtubedl-material
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +55,15 @@ Other values may be used from the [values.yaml](../common/values.yaml) from the 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install icantbelieveitsnotvaletudo \
+helm install youtubedl-material \
   --set env.TZ="America/New York" \
-    k8s-at-home/icantbelieveitsnotvaletudo
+    k8s-at-home/youtubedl-material
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install icantbelieveitsnotvaletudo k8s-at-home/icantbelieveitsnotvaletudo -f values.yaml
+helm install youtubedl-material k8s-at-home/youtubedl-material -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,25 +76,28 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.mapsettings.drawCharger | bool | `true` |  |
-| config.mapsettings.drawPath | bool | `true` |  |
-| config.mapsettings.drawRobot | bool | `true` |  |
-| config.mapsettings.scale | int | `2` |  |
-| config.mqtt.autoconfPrefix | string | `"homeassistant"` |  |
-| config.mqtt.broker_url | string | `"mqtt://user:pass@example.com:port"` |  |
-| config.mqtt.identifier | string | `"rockrobo"` |  |
-| config.mqtt.mapDataTopic | string | `"valetudo/rockrobo/map_data"` |  |
-| config.mqtt.minMillisecondsBetweenMapUpdates | int | `10000` |  |
-| config.mqtt.publishMapImage | bool | `true` |  |
-| config.mqtt.topicPrefix | string | `"valetudo"` |  |
+| env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"pmaksymiuk/icantbelieveitsnotvaletudo"` |  |
-| image.tag | string | `"2021.2.0"` |  |
-| probes.liveness.enabled | bool | `false` |  |
-| probes.readiness.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `false` |  |
-| service.enabled | bool | `false` |  |
-| strategy.type | string | `"RollingUpdate"` |  |
+| image.repository | string | `"tzahi12345/youtubedl-material"` |  |
+| image.tag | float | `4.2` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.audio.emptyDir | bool | `false` |  |
+| persistence.audio.enabled | bool | `false` |  |
+| persistence.audio.mountPath | string | `"/app/audio"` |  |
+| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/app/appdata"` |  |
+| persistence.subscriptions.emptyDir | bool | `false` |  |
+| persistence.subscriptions.enabled | bool | `false` |  |
+| persistence.subscriptions.mountPath | string | `"/subscriptions"` |  |
+| persistence.users.emptyDir | bool | `false` |  |
+| persistence.users.enabled | bool | `false` |  |
+| persistence.users.mountPath | string | `"/users"` |  |
+| persistence.video.emptyDir | bool | `false` |  |
+| persistence.video.enabled | bool | `false` |  |
+| persistence.video.mountPath | string | `"/video"` |  |
+| service.port.port | int | `17442` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -102,7 +105,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.0.0]
+### [1.0.0]
 
 #### Added
 
@@ -110,19 +113,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Ported to common
-- Update from upstream
-- Changed default scale
+- N/A
 
 #### Removed
 
-- Service and Ingress as it's no longer used
+- N/A
 
-### [1.0.0]
-
-#### Added
-
-- Initial commit
+[1.0.0]: #1.0.0
 
 ## Support
 
@@ -131,5 +128,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Ask a [question](https://github.com/k8s-at-home/charts/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
-----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
