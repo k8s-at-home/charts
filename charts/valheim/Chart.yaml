@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: latest
+description: Valheim dedicated gameserver with automatic update and world backup support
+name: valheim
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- valheim
+home: https://github.com/k8s-at-home/charts/tree/master/charts/valheim
+icon: https://raw.githubusercontent.com/lloesche/valheim-server-docker/main/misc/Logo_valheim.png
+sources:
+- https://github.com/lloesche/valheim-server-docker
+- https://hub.docker.com/r/lloesche/valheim-server
+maintainers:
+- name: rust84
+  email: owner@russellhall.co.uk
+dependencies:
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1
