@@ -1,79 +1,67 @@
-# DNS proxy as ad-blocker for local network
+# blocky
 
-This is an opinionated helm chart for [blocky](https://github.com/0xERR0R/blocky) 
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v0.12](https://img.shields.io/badge/AppVersion-v0.12-informational?style=flat-square)
 
-The default values and container images used in this chart will allow for running in a multi-arch cluster (amd64, arm, arm64)
+DNS proxy as ad-blocker for local network
 
-## TL;DR
+**Homepage:** <https://github.com/k8s-at-home/charts/tree/master/charts/blocky>
 
-```shell
-helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm install k8s-at-home/blocky
-```
+## Maintainers
 
-## Installing the Chart
+| Name | Email | Url |
+| ---- | ------ | --- |
+| billimek | jeff@billimek.com |  |
 
-To install the chart with the release name `my-release`:
+## Source Code
 
-```console
-helm install --name blocky k8s-at-home/blocky
-```
+* <https://github.com/0xERR0R/blocky>
 
-## Uninstalling the Chart
+## Values
 
-To uninstall/delete the `blocky` deployment:
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| config | string | `"upstream:\n  # these external DNS resolvers will be used. Blocky picks 2 random resolvers from the list for each query\n  # format for resolver: [net:]host:[port][/path]. net could be empty (default, shortcut for tcp+udp), tcp+udp, tcp, udp, tcp-tls or https (DoH). If port is empty, default port will be used (53 for udp and tcp, 853 for tcp-tls, 443 for https (Doh))\n  externalResolvers:\n    - 46.182.19.48\n    - 80.241.218.68\n    - tcp-tls:fdns1.dismail.de:853\n    - https://dns.digitale-gesellschaft.ch/dns-query\n\n# optional: custom IP address for domain name (with all sub-domains)\n# example: query \"printer.lan\" or \"my.printer.lan\" will return 192.168.178.3\ncustomDNS:\n  mapping:\n    printer.lan: 192.168.178.3\n\n# optional: definition, which DNS resolver(s) should be used for queries to the domain (with all sub-domains). Multiple resolvers must be separated by comma\n# Example: Query client.fritz.box will ask DNS server 192.168.178.1. This is necessary for local network, to resolve clients by host name\nconditional:\n  mapping:\n    fritz.box: udp:192.168.178.1\n    lan.net: udp:192.168.178.1,udp:192.168.178.2\n\n# optional: use black and white lists to block queries (for example ads, trackers, adult pages etc.)\nblocking:\n  # definition of blacklist groups. Can be external link (http/https) or local file\n  blackLists:\n    ads:\n      - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt\n      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n      - https://mirror1.malwaredomains.com/files/justdomains\n      - http://sysctl.org/cameleon/hosts\n      - https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist\n      - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt\n    special:\n      - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts\n  # definition of whitelist groups. Attention: if the same group has black and whitelists, whitelists will be used to disable particular blacklist entries. If a group has only whitelist entries -> this means only domains from this list are allowed, all other domains will be blocked\n  whiteLists:\n    ads:\n      - whitelist.txt\n  # definition: which groups should be applied for which client\n  clientGroupsBlock:\n    # default will be used, if no special definition for a client name exists\n    default:\n      - ads\n      - special\n    # use client name (with wildcard support: * - sequence of any characters, [0-9] - range)\n    # or single ip address / client subnet as CIDR notation\n    laptop*:\n      - ads\n    192.168.178.1/24:\n      - special\n  # which response will be sent, if query is blocked:\n  # zeroIp: 0.0.0.0 will be returned (default)\n  # nxDomain: return NXDOMAIN as return code\n  # comma separated list of destination IP adresses (for example: 192.100.100.15, 2001:0db8:85a3:08d3:1319:8a2e:0370:7344). Should contain ipv4 and ipv6 to cover all query types. Useful with running web server on this address to display the \"blocked\" page.\n  blockType: zeroIp\n  # optional: automatically list refresh period in minutes. Default: 4h.\n  # Negative value -> deactivate automatically refresh.\n  # 0 value -> use default\n  refreshPeriod: 0\n\n# optional: configuration for caching of DNS responses\ncaching:\n  # amount in minutes, how long a response must be cached (min value).\n  # If <=0, use response's TTL, if >0 use this value, if TTL is smaller\n  # Default: 0\n  minTime: 5\n  # amount in minutes, how long a response must be cached (max value).\n  # If <0, do not cache responses\n  # If 0, use TTL\n  # If > 0, use this value, if TTL is greater\n  # Default: 0\n  maxTime: -1\n  # if true, will preload DNS results for often used queries (names queried more than 5 times in a 2 hour time window)\n  # this improves the response time for often used queries, but significantly increases external traffic\n  # default: false\n  prefetching: true\n\n# optional: configuration of client name resolution\nclientLookup:\n  # optional: this DNS resolver will be used to perform reverse DNS lookup (typically local router)\n  upstream: udp:192.168.178.1\n  # optional: some routers return multiple names for client (host name and user defined name). Define which single name should be used.\n  # Example: take second name if present, if not take first name\n  singleNameOrder:\n    - 2\n    - 1\n  # optional: custom mapping of client name to IP addresses. Useful if reverse DNS does not work properly or just to have custom client names.\n  clients:\n    laptop:\n      - 192.168.178.29\n\n# optional: configuration for prometheus metrics endpoint\n# prometheus:\n#   # enabled if true\n#   enable: true\n#   # url path, optional (default '/metrics')\n#   path: /metrics\n\n# optional: write query information (question, answer, client, duration etc) to daily csv file\n# queryLog:\n#   # directory (should be mounted as volume in docker)\n#   dir: /logs\n#   # if true, write one file per client. Writes all queries to single file otherwise\n#   perClient: true\n#   # if > 0, deletes log files which are older than ... days\n#   logRetentionDays: 7\n\n# optional: DNS listener port and bind ip address, default 53 (UDP and TCP). Example: 53, :53, 127.0.0.1:53\nport: 53\n# optional: HTTP listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH ...\nhttpPort: 4000\n# optional: HTTPS listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH...\n#httpsPort: 443\n# mandatory, if https port > 0: path to cert and key file for SSL encryption\n#httpsCertFile: server.crt\n#httpsKeyFile: server.key\n# optional: use this DNS server to resolve blacklist urls and upstream DNS servers (DOH). Useful if no DNS resolver is configured and blocky needs to resolve a host name. Format net:IP:port, net must be udp or tcp\nbootstrapDns: tcp:1.1.1.1\n# optional: Log level (one from debug, info, warn, error). Default: info\nlogLevel: info\n# optional: Log format (text or json). Default: text\nlogFormat: text\n"` |  |
+| extraLists | object | `{}` |  |
+| fullnameOverride | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"spx01/blocky"` |  |
+| image.tag | string | `"v0.12"` |  |
+| nameOverride | string | `""` |  |
+| nodeSelector | object | `{}` |  |
+| persistence.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| persistence.enabled | bool | `false` |  |
+| persistence.finalizers[0] | string | `"kubernetes.io/pvc-protection"` |  |
+| persistence.size | string | `"10Gi"` |  |
+| podAnnotations."prometheus.io/port" | string | `"api"` |  |
+| podAnnotations."prometheus.io/scrape" | string | `"true"` |  |
+| probes.liveness.failureThreshold | int | `5` |  |
+| probes.liveness.periodSeconds | int | `10` |  |
+| probes.readiness.failureThreshold | int | `5` |  |
+| probes.readiness.periodSeconds | int | `10` |  |
+| probes.startup.failureThreshold | int | `30` |  |
+| probes.startup.initialDelaySeconds | int | `5` |  |
+| probes.startup.periodSeconds | int | `10` |  |
+| replicas | int | `1` |  |
+| resources | object | `{}` |  |
+| service.annotations | object | `{}` |  |
+| service.type | string | `"ClusterIP"` |  |
+| serviceMonitor.additionalLabels | object | `{}` |  |
+| serviceMonitor.enabled | bool | `false` |  |
+| serviceTCP.annotations | object | `{}` |  |
+| serviceTCP.enabled | bool | `false` |  |
+| serviceTCP.externalIPs | list | `[]` |  |
+| serviceTCP.externalTrafficPolicy | string | `"Local"` |  |
+| serviceTCP.loadBalancerIP | string | `""` |  |
+| serviceTCP.type | string | `"NodePort"` |  |
+| serviceUDP.annotations | object | `{}` |  |
+| serviceUDP.enabled | bool | `true` |  |
+| serviceUDP.externalIPs | list | `[]` |  |
+| serviceUDP.externalTrafficPolicy | string | `"Local"` |  |
+| serviceUDP.loadBalancerIP | string | `""` |  |
+| serviceUDP.type | string | `"NodePort"` |  |
+| timeZone | string | `"UTC"` |  |
+| tolerations | list | `[]` |  |
 
-```console
-helm delete blocky --purge
-```
-
-The command removes all the Kubernetes components associated with the chart and deletes the release.
-
-## Configuration
-
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/blocky/values.yaml) file. It has several commented out suggested values.
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```console
-helm install --name blocky \
-  --set timeZone="America/New York" \
-    k8s-at-home/blocky
-```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
-```console
-helm install --name blocky -f values.yaml k8s-at-home/blocky
-```
-
----
-
-## Upgrading an existing Release to a new major version
-
-A major chart version change (like 2.2.2 -> 3.0.0) indicates that there is an
-incompatible breaking change needing manual actions.
-
-### Upgrading from 2.x.x to 3.x.x
-
-Due to the renaming of the service port, an upgrade-in-place will not work.  The following are possible approaches to solve this:
-
-#### Helm force upgrade
-
-```sh
-helm upgrade --force
-```
-
-#### Delete the existing `blocky` service prior to upgrading
-
-```sh
-kubectl delete svc/blocky
-```
-
-#### Remove the existing blocky chart first
-
-This is the 'easiest' approach, but will incur downtime which can be problematic if you rely on blocky for DNS
-
-### Upgrading from 4.x.x to 5.x.x
-
-Configuration inside `config` is no longer a yaml object, it is now a multiline string
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

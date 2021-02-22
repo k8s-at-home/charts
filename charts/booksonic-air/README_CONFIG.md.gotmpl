@@ -1,0 +1,11 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+If you plan to use networked storage to store your media or config for Booksonic, (NFS, etc.) please take a look at the
+Fast Access option in the Booksonic settings. This will help improve the performance of the application
+by not constantly monitoring media folders. 
+{{- end -}}

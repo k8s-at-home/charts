@@ -1,4 +1,9 @@
-# Default values for Neolink.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: thirtythreeforty/neolink
@@ -11,6 +16,9 @@ strategy:
 service:
   port:
     port: 8554
+
+ingress:
+  enabled: false
 
 # Neolink configuration settings
 # https://github.com/thirtythreeforty/neolink/blob/master/sample_config.toml

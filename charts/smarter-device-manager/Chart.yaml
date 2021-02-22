@@ -1,22 +1,23 @@
 apiVersion: v2
-name: smarter-device-manager
-version: 1.0.0
 appVersion: 1.1.2
 description: Manage hardware resource allocation without a need for privileged containers
+name: smarter-device-manager
+version: 2.0.1
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - kubernetes
-  - cluster
-  - hardware
+- kubernetes
+- cluster
+- hardware
 home: https://gitlab.com/arm-research/smarter/smarter-device-manager/
 sources:
-  - https://gitlab.com/arm-research/smarter/smarter-device-manager/
-  - https://github.com/k8s-at-home/charts
-dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- https://gitlab.com/arm-research/smarter/smarter-device-manager/
+- https://github.com/k8s-at-home/charts
 maintainers:
-  - name: bjw-s
-    email: me@bjw-s.dev
-  - name: lazyoldbear
-    email: 19270832+lazyoldbear@users.noreply.github.com
+- name: bjw-s
+  email: me@bjw-s.dev
+- name: lazyoldbear
+  email: 19270832+lazyoldbear@users.noreply.github.com
+dependencies:
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1

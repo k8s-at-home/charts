@@ -1,20 +1,21 @@
 apiVersion: v2
+appVersion: 1.7.2
 name: lazylibrarian
 description: A Helm chart for deploying LazyLibrarian
-version: 3.1.0
-appVersion: 1.7.2
+version: 4.0.1
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - lazylibrarian
-  - ebooks
+- lazylibrarian
+- ebooks
 home: https://github.com/k8s-at-home/charts/lazylibrarian
 icon: https://lazylibrarian.gitlab.io/logo.svg
 sources:
-  - https://gitlab.com/LazyLibrarian/LazyLibrarian.git
-  - https://lazylibrarian.gitlab.io
+- https://gitlab.com/LazyLibrarian/LazyLibrarian.git
+- https://lazylibrarian.gitlab.io
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1

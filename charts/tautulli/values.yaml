@@ -1,21 +1,29 @@
-# Default values for Tautulli.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: tautulli/tautulli
   pullPolicy: IfNotPresent
-  tag: v2.5.4
+  tag: v2.6.6
 
 strategy:
   type: Recreate
-
-service:
-  port:
-    port: 8181
 
 env: {}
   # TZ: UTC
   # PUID: 1001
   # PGID: 1001
+
+service:
+  port:
+    port: 8181
+
+ingress:
+  enabled: false
 
 persistence:
   config:

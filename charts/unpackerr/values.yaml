@@ -1,4 +1,9 @@
-# Default values for Unpackerr.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: golift/unpackerr
@@ -8,7 +13,15 @@ image:
 strategy:
   type: Recreate
 
+# # See more environment variables in the unpackerr documentation
+# https://github.com/davidnewhall/unpackerr#docker-env-variables
+env: {}
+  # TZ: UTC
+
 service:
+  enabled: false
+
+ingress:
   enabled: false
 
 probes:
@@ -18,11 +31,6 @@ probes:
     enabled: false
   startup:
     enabled: false
-
-# # See more environment variables in the unpackerr documentation
-# https://github.com/davidnewhall/unpackerr#docker-env-variables
-env: {}
-  # TZ: UTC
 
 persistence:
   downloads:

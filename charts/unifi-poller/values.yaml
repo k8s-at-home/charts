@@ -1,4 +1,9 @@
-# Default values for unifi-poller.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: golift/unifi-poller
@@ -7,10 +12,6 @@ image:
 
 strategy:
   type: Recreate
-
-service:
-  port:
-    port: 9130
 
 # # See more environment varaibles in the unifi-poller documentation
 # https://github.com/unifi-poller/unifi-poller/wiki/Configuration
@@ -21,6 +22,13 @@ env: {}
   # UP_UNIFI_DEFAULT_PASS: "unifipoller"
   # UP_PROMETHEUS_DISABLE: true
   # UP_INFLUXDB_DISABLE: true
+
+service:
+  port:
+    port: 9130
+
+ingress:
+  enabled: false
 
 # enable a prometheus-operator servicemonitor
 prometheus:

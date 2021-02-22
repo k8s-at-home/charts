@@ -1,4 +1,9 @@
-# Default values for Monica.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: monica
@@ -7,10 +12,6 @@ image:
 
 strategy:
   type: Recreate
-
-service:
-  port:
-    port: 80
 
 env: {}
   # See the Monica documentation for all available options for environment variables: https://raw.githubusercontent.com/monicahq/monica/master/.env.example
@@ -22,6 +23,13 @@ env: {}
   # DB_DATABASE: monica
   # DB_USERNAME: monica
   # DB_PASSWORD: monicapass
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
 
 persistence:
   config:
