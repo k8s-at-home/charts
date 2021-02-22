@@ -1,0 +1,11 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+**Readarr is still in early development, and this chart will install a nightly build of Readarr.
+[See the project readme for more information](https://github.com/Readarr/Readarr#readarr-is-in-early-stages-of-development-alphabeta-binary-builds-are-not-yet-available-use-of-any-test-builds-isnt-recommend-and-may-have-detrimental-effects-on-your-library). Take back-up's if you decide to use this on an existing library as the project is considered unstable**
+
+{{- end -}}

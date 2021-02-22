@@ -1,9 +1,14 @@
-# Default values for plex-media-server.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
-  repository: k8sathome/plex-media-server
+  repository: ghcr.io/k8s-at-home/plex-media-server
   pullPolicy: IfNotPresent
-  tag: v1.20.4.3517-ab5e1197c
+  tag: v1.21.3.4021-5a0a3e4b2
 
 strategy:
   type: Recreate
@@ -14,6 +19,9 @@ env: {}
 service:
   port:
     port: 32400
+
+ingress:
+  enabled: false
 
 persistence:
   config:

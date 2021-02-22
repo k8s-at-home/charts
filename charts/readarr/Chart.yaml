@@ -2,22 +2,23 @@ apiVersion: v2
 appVersion: 0.1.0.351
 description: A fork of Radarr to work with Books & AudioBooks
 name: readarr
-version: 1.2.0
+version: 2.0.1
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - readarr
-  - torrent
-  - usenet
-  - AudioBooks
-  - ebooks
+- readarr
+- torrent
+- usenet
+- AudioBooks
+- ebooks
 home: https://github.com/k8s-at-home/charts/tree/master/charts/readarr
 icon: https://readarr.com/img/logo.png
 sources:
-  - https://github.com/Readarr/Readarr
-  - https://readarr.com
+- https://github.com/Readarr/Readarr
+- https://readarr.com
 maintainers:
-  - name: mcmarkj
-    email: mark@markmcw.uk
+- name: mcmarkj
+  email: mark@markmcw.uk
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1

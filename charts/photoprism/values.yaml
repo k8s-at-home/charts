@@ -1,4 +1,9 @@
-# Default values for PhotoPrism.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: photoprism/photoprism
@@ -7,10 +12,6 @@ image:
 
 strategy:
   type: Recreate
-
-service:
-  port:
-    port: 2342
 
 env:
   PHOTOPRISM_STORAGE_PATH: /photoprism/storage
@@ -30,6 +31,13 @@ env:
   # UID: 1000
   # GID: 1000
   # UMASK: 0000
+
+service:
+  port:
+    port: 2342
+
+ingress:
+  enabled: false
 
 persistence:
   config:

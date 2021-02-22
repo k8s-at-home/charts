@@ -1,20 +1,21 @@
 apiVersion: v2
-appVersion: 1.20.4.3517-ab5e1197c
+appVersion: v1.21.3.4021-5a0a3e4b2
 description: Plex Media Server
 name: plex-media-server
-version: 1.4.0
+version: 2.0.1
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - plex
-  - plex-media-server
+- plex
+- plex-media-server
 home: https://plex.tv/
 icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
 sources:
-  - https://github.com/k8s-at-home/charts/tree/master/charts/plex
-  - https://hub.docker.com/r/plexinc/pms-docker/
+- https://github.com/k8s-at-home/charts/tree/master/charts/plex
+- https://hub.docker.com/r/plexinc/pms-docker/
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1

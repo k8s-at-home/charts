@@ -2,18 +2,19 @@ apiVersion: v2
 appVersion: 4.3.0
 description: qBittorrent is a cross-platform free and open-source BitTorrent client
 name: qbittorrent
-version: 7.3.0
+version: 8.0.1
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - qbittorrent
-  - torrrent
+- qbittorrent
+- torrrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/qbittorrent
 icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
 sources:
-  - https://hub.docker.com/r/linuxserver/qbittorrent/
+- https://hub.docker.com/r/linuxserver/qbittorrent/
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1

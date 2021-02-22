@@ -1,4 +1,9 @@
-# Default values for resilio-sync.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: ghcr.io/linuxserver/resilio-sync
@@ -17,7 +22,6 @@ env: {}
 service:
   port:
     port: 8888
-
   additionalServices:
   - enabled: true
     nameSuffix: bt
@@ -35,6 +39,9 @@ service:
       name: utp
       protocol: UDP
       targetPort: 55555
+
+ingress:
+  enabled: false
 
 persistence:
   config:

@@ -2,19 +2,20 @@ apiVersion: v2
 appVersion: v3.8.1
 description: Usenet meta search
 name: nzbhydra2
-version: 5.4.0
+version: 6.0.1
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - nzbhydra2
-  - usenet
+- nzbhydra2
+- usenet
 home: https://github.com/k8s-at-home/charts/tree/master/charts/nzbhydra2
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
 sources:
-  - https://hub.docker.com/r/linuxserver/nzbhydra2
-  - https://github.com/theotherp/nzbhydra2
+- https://hub.docker.com/r/linuxserver/nzbhydra2
+- https://github.com/theotherp/nzbhydra2
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.0.1

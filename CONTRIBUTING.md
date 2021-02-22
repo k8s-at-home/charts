@@ -48,12 +48,13 @@ sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b .bin
 
 # Create chart
 PATH=$PATH:$PWD/.bin
+task deps:install
 task chart:create CHART=chart_name
 # Don't forgot edit some chart informations in charts/char_name/Chart.yaml and charts/char_name/values.yaml
 
-# Lint & Test
+# Linting
 task chart:lint CHART=chart_name
-task chart:test CHART=chart_name
+task chart:ct-lint CHART=chart_name
 ```
 
 ### Immutability

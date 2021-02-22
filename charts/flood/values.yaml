@@ -1,4 +1,9 @@
-# Default values for flood.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: jesec/flood
@@ -8,14 +13,17 @@ image:
 strategy:
   type: Recreate
 
-service:
-  port:
-    port: 3000
-
 # Other environment variables that can be configure can be seen at
 # https://github.com/jesec/flood/blob/master/config.cli.js
 env:
   FLOOD_OPTION_RUNDIR: /data
+
+service:
+  port:
+    port: 3000
+
+ingress:
+  enabled: false
 
 persistence:
   data:

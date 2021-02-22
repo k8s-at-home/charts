@@ -1,89 +1,147 @@
-# Recipes
+# recipes
 
-This is a helm chart for [Recipes](https://github.com/vabene1111/recipes).
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 0.13.0](https://img.shields.io/badge/AppVersion-0.13.0-informational?style=flat-square)
+
+Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
-## TL;DR;
+## Source Code
 
-```shell
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/recipes
+* <https://github.com/vabene1111/recipes>
+* <https://hub.docker.com/r/vabene1111/recipes>
+
+## Requirements
+
+Kubernetes: `>=1.16.0-0`
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+
+## TL;DR
+
+```console
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install recipes k8s-at-home/recipes
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `recipes`
 
 ```console
-helm install --name my-release k8s-at-home/recipes
+helm install recipes k8s-at-home/recipes
 ```
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `recipes` deployment
 
 ```console
-helm delete my-release --purge
+helm uninstall recipes
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The following table lists the configurable parameters of the recipes chart and their default values that have to be overriden.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-| Parameter                            | Description                                                                                 | Default                                     |
-| -------------------------------------| ------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| `env.DEBUG`                          | Only set this to true when testing/debugging                                                | `0`                                         |
-| `env.ALLOWED_HOSTS`                  | Hosts the application can run under e.g. recipes.mydomain.com,cooking.mydomain.com,...      | `*`                                         |
-| `env.SECRET_KEY`                     | Random secret key, use for example `openssl rand -base64 24` to generate one                | `changeme`                                  |
-| `env.TIMEZONE`                       | Your default timezone                                                                       | `America/New_York`                          |
-| `env.DB_ENGINE`                      | Database connector                                                                          | `django.db.backends.postgresql_psycopg2`    |
-| `env.POSTGRES_HOST`                  | External PostreSQL hostname                                                                 |                                             |
-| `env.POSTGRES_PORT`                  | External PostreSQL port                                                                     |                                             |
-| `env.POSTGRES_USER`                  | External PostreSQL user                                                                     |                                             |
-| `env.POSTGRES_DB`                    | External PostreSQL database name                                                            |                                             |
-| `env.POSTGRES_PASSWORD`              | External PostreSQL database password                                                        |                                             |
-| `env.GUNICORN_MEDIA`                 | Serve mediafiles directly using gunicorn. Basically everyone recommends not doing this.     | `0`                                         |
-| `env.FRACTION_PREF_DEFAULT`          | Enable/disable fraction support                                                             | `0`                                         |
-| `env.COMMENT_PREF_DEFAULT`           | Enable/disable commenting system                                                            | `1`                                         |
-| `env.SHOPPING_MIN_AUTOSYNC_INTERVAL` | Amount of time after which the shopping list is refreshed when they are in viewing mode     | `5`                                         |
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
-You can add more environment variables, read through Recipes [.env.template](https://github.com/vabene1111/recipes/blob/master/.env.template)
-
-Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/recipes/values.yaml)
-file.
-Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 ```console
 helm install recipes \
-  --set env.POSTGRES_HOST="postgresql.domain" \
+  --set env.TZ="America/New York" \
     k8s-at-home/recipes
 ```
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
-chart. For example,
+
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
+
 ```console
-helm install recipes k8s-at-home/recipes --values values.yaml
+helm install recipes k8s-at-home/recipes -f values.yaml
 ```
 
-```yaml
-image:
-  tag: ...
-```
+## Custom configuration
 
----
-**NOTE**
+N/A
 
-If you get
-```console
-Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...`
-```
-it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+## Values
 
----
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
-## Upgrading an existing Release to a new major version
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| additionalContainers[0].image | string | `"nginx:1.19.6"` |  |
+| additionalContainers[0].name | string | `"nginx"` |  |
+| additionalContainers[0].ports[0].containerPort | int | `80` |  |
+| additionalContainers[0].ports[0].name | string | `"http"` |  |
+| additionalContainers[0].volumeMounts[0].mountPath | string | `"/etc/nginx/nginx.conf"` |  |
+| additionalContainers[0].volumeMounts[0].name | string | `"recipes-config"` |  |
+| additionalContainers[0].volumeMounts[0].readOnly | bool | `true` |  |
+| additionalContainers[0].volumeMounts[0].subPath | string | `"nginx-config"` |  |
+| additionalVolumes[0].configMap.name | string | `"recipes-config"` |  |
+| additionalVolumes[0].name | string | `"recipes-config"` |  |
+| env.ALLOWED_HOSTS | string | `"*"` |  |
+| env.COMMENT_PREF_DEFAULT | string | `"1"` |  |
+| env.DB_ENGINE | string | `"django.db.backends.sqlite3"` |  |
+| env.DEBUG | string | `"0"` |  |
+| env.FRACTION_PREF_DEFAULT | string | `"0"` |  |
+| env.GUNICORN_MEDIA | string | `"0"` |  |
+| env.POSTGRES_DB | string | `nil` |  |
+| env.POSTGRES_HOST | string | `nil` |  |
+| env.POSTGRES_PASSWORD | string | `nil` |  |
+| env.POSTGRES_PORT | string | `nil` |  |
+| env.POSTGRES_USER | string | `nil` |  |
+| env.SECRET_KEY | string | `"changeme"` |  |
+| env.SHOPPING_MIN_AUTOSYNC_INTERVAL | string | `"5"` |  |
+| env.TIMEZONE | string | `"America/New_York"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"vabene1111/recipes"` |  |
+| image.tag | string | `"0.13.0"` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.enabled | bool | `false` |  |
+| persistence.media.mountPath | string | `"/opt/recipes/mediafiles"` |  |
+| persistence.static.emptyDir | bool | `false` |  |
+| persistence.static.enabled | bool | `false` |  |
+| persistence.static.mountPath | string | `"/opt/recipes/staticfiles"` |  |
+| service.port.port | int | `80` |  |
+| strategy.type | string | `"Recreate"` |  |
 
-A major chart version change (like 1.0.1 -> 2.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
+
+## Support
+
+- See the [Wiki](https://github.com/k8s-at-home/charts/wiki)
+- Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/charts/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
