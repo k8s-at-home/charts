@@ -1,0 +1,48 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: tzahi12345/youtubedl-material
+  pullPolicy: IfNotPresent
+  tag: 4.2
+
+strategy:
+  type: Recreate
+
+env: {}
+  # TZ:
+  # UID:
+  # GID:
+
+service:
+  port:
+    port: 17442
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /app/appdata
+  audio:
+    enabled: false
+    emptyDir: false
+    mountPath: /app/audio
+  subscriptions:
+    enabled: false
+    emptyDir: false
+    mountPath: /subscriptions
+  users:
+    enabled: false
+    emptyDir: false
+    mountPath: /users
+  video:
+    enabled: false
+    emptyDir: false
+    mountPath: /video
