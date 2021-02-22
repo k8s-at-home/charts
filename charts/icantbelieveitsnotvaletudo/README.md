@@ -1,14 +1,14 @@
 # icantbelieveitsnotvaletudo
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 2021.2.0](https://img.shields.io/badge/AppVersion-2021.2.0-informational?style=flat-square)
 
-icantbelieveitsnotvaletudo helm package
+Create live map data from Valetudo powered robots
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/icantbelieveitsnotvaletudo/icantbelieveitsnotvaletudo-docker>
+* <https://github.com/Hypfer/ICantBelieveItsNotValetudo>
 * <https://github.com/k8s-at-home/charts/tree/master/charts/icantbelieveitsnotvaletudo>
 
 ## Requirements
@@ -76,13 +76,25 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| config.mapsettings.drawCharger | bool | `true` |  |
+| config.mapsettings.drawPath | bool | `true` |  |
+| config.mapsettings.drawRobot | bool | `true` |  |
+| config.mapsettings.scale | int | `2` |  |
+| config.mqtt.autoconfPrefix | string | `"homeassistant"` |  |
+| config.mqtt.broker_url | string | `"mqtt://user:pass@example.com:port"` |  |
+| config.mqtt.identifier | string | `"rockrobo"` |  |
+| config.mqtt.mapDataTopic | string | `"valetudo/rockrobo/map_data"` |  |
+| config.mqtt.minMillisecondsBetweenMapUpdates | int | `10000` |  |
+| config.mqtt.publishMapImage | bool | `true` |  |
+| config.mqtt.topicPrefix | string | `"valetudo"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"icantbelieveitsnotvaletudo/icantbelieveitsnotvaletudo"` |  |
-| image.tag | string | `"1.0.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| service.port.port | int | `1880` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.repository | string | `"pmaksymiuk/icantbelieveitsnotvaletudo"` |  |
+| image.tag | string | `"2021.2.0"` |  |
+| probes.liveness.enabled | bool | `false` |  |
+| probes.readiness.enabled | bool | `false` |  |
+| probes.startup.enabled | bool | `false` |  |
+| service.enabled | bool | `false` |  |
+| strategy.type | string | `"RollingUpdate"` |  |
 
 ## Changelog
 
@@ -90,7 +102,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [2.0.0]
 
 #### Added
 
@@ -98,13 +110,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- Ported to common
+- Update from upstream
+- Changed default scale
 
 #### Removed
 
-- N/A
+- Service and Ingress as it's no longer used
 
-[1.0.0]: #1.0.0
+### [1.0.0]
+
+#### Added
+
+- Initial commit
 
 ## Support
 
