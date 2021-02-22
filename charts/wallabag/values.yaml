@@ -9,59 +9,60 @@ strategy:
   type: Recreate
 
 # See more environment variables in the wallabag documentation
-# https://wallabag.org/docs
+# https://github.com/wallabag/docker
 env: {}
-  # TZ:
+  # MYSQL_ROOT_PASSWORD:
+  # POSTGRES_PASSWORD:
+  # POSTGRES_USER:
+  # POPULATE_DATABASE:
+# For SYMFONY__ENV__ parameters' documentation, visit https://doc.wallabag.org/en/admin/parameters.html
+# redis, rabbitmq, and mailer are optional. database is not optional.
+  # SYMFONY__ENV__DATABASE_DRIVER:
+  # SYMFONY__ENV__DATABASE_DRIVER_CLASS:
+  # SYMFONY__ENV__DATABASE_HOST:
+  # SYMFONY__ENV__DATABASE_PORT:
+  # SYMFONY__ENV__DATABASE_NAME:
+  # SYMFONY__ENV__DATABASE_USER:
+  # SYMFONY__ENV__DATABASE_PASSWORD:
+  # SYMFONY__ENV__DATABASE_PATH:
+  # SYMFONY__ENV__DATABASE_TABLE_PREFIX:
+  # SYMFONY__ENV__DATABASE_SOCKET:
+  # SYMFONY__ENV__DATABASE_CHARSET:
+  # SYMFONY__ENV__DOMAIN_NAME:
+  # SYMFONY__ENV__MAILER_TRANSPORT:
+  # SYMFONY__ENV__MAILER_USER:
+  # SYMFONY__ENV__MAILER_PASSWORD:
+  # SYMFONY__ENV__MAILER_HOST:
+  # SYMFONY__ENV__MAILER_PORT:
+  # SYMFONY__ENV__MAILER_ENCRYPTION:
+  # SYMFONY__ENV__MAILER_AUTH_MODE:
+  # SYMFONY__ENV__LOCALE:
+  # SYMFONY__ENV__SECRET:
+  # SYMFONY__ENV__TWOFACTOR_AUTH:
+  # SYMFONY__ENV__TWOFACTOR_SENDER:
+  # SYMFONY__ENV__FOSUSER_REGISTRATION:
+  # SYMFONY__ENV__FOSUSER_CONFIRMATION:
+  # SYMFONY__ENV__FOS_OAUTH_SERVER_ACCESS_TOKEN_LIFETIME:
+  # SYMFONY__ENV__FOS_OAUTH_SERVER_REFRESH_TOKEN_LIFETIME:
+  # SYMFONY__ENV__FROM_EMAIL:
+  # SYMFONY__ENV__RSS_LIMIT:
+  # SYMFONY__ENV__RABBITMQ_HOST:
+  # SYMFONY__ENV__RABBITMQ_PORT:
+  # SYMFONY__ENV__RABBITMQ_USER:
+  # SYMFONY__ENV__RABBITMQ_PASSWORD:
+  # SYMFONY__ENV__REDIS_SCHEME:
+  # SYMFONY__ENV__REDIS_HOST:
+  # SYMFONY__ENV__REDIS_PORT:
+  # SYMFONY__ENV__REDIS_PATH:
+  # SYMFONY__ENV__REDIS_PASSWORD:
+  # SYMFONY__ENV__SENTRY_DSN:
+  # SYMFONY__ENV__SERVER_NAME:
 
 service:
   port:
     port: 80
 
 # TODO run as 65534:65534
-config:
-  # For parameters' documentation, visit https://doc.wallabag.org/en/admin/parameters.html
-  # redis, rabbitmq, and mailer are optional. database is not optional.
-  parameters:
-    database_driver: pdo_mysql
-    database_driver_class: ~
-    database_host: 127.0.0.1
-    database_port: ~
-    database_name: wallabag
-    database_user: root
-    database_password: ~
-    database_path: ~
-    database_table_prefix: wallabag_
-    database_socket: ~
-    database_charset: utf8mb4
-    domain_name: https://your-wallabag-url-instance.com
-    mailer_transport: smtp
-    mailer_user: ~
-    mailer_password: ~
-    mailer_host: 127.0.0.1
-    mailer_port: false
-    mailer_encryption: ~
-    mailer_auth_mode: ~
-    locale: en
-    secret: ovmpmAWXRCabNlMgzlzFXDYmCFfzGv  # This is a string that should be unique to your application.
-    twofactor_auth: true
-    twofactor_sender: no-reply@wallabag.org
-    fosuser_registration: true
-    fosuser_confirmation: true
-    fos_oauth_server_access_token_lifetime: 3600
-    fos_oauth_server_refresh_token_lifetime: 1209600
-    from_email: no-reply@wallabag.org
-    rss_limit: 50
-    rabbitmq_host: localhost
-    rabbitmq_port: 5672
-    rabbitmq_user: guest
-    rabbitmq_password: guest
-    redis_scheme: tcp
-    redis_host: localhost
-    redis_port: 6379
-    redis_path: ~
-    redis_password: ~
-    sentry_dsn: ~  # TODO says null as default in docs but tilde in default, unlike others
-    server_name: "Your wallabag instance"
 
 persistence:
   images:
