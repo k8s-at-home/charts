@@ -1,100 +1,75 @@
-# Homebridge
+# homebridge
 
-This is a helm chart for [Homebridge](https://homebridge.io) based on [Docker Homebridge](https://github.com/oznu/docker-homebridge).
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0](https://img.shields.io/badge/AppVersion-3.1.0-informational?style=flat-square)
 
-## TL;DR;
+A lightweight NodeJS server that emulates the iOS HomeKit API
 
-```shell
-helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm install k8s-at-home/homebridge
-```
+**Homepage:** <https://github.com/k8s-at-home/charts/tree/master/charts/homebridge>
 
-## Installing the Chart
+## Maintainers
 
-To install the chart with the release name `my-release`:
+| Name | Email | Url |
+| ---- | ------ | --- |
+| bjw-s | bjw-s@users.noreply.github.com |  |
 
-```shell
-helm install --name my-release k8s-at-home/homebridge
-```
+## Source Code
 
-## Uninstalling the Chart
+* <https://homebridge.io/>
+* <https://github.com/oznu/docker-homebridge>
 
-To uninstall/delete the `my-release` deployment:
+## Values
 
-```shell
-helm delete my-release --purge
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| config.additionalPackages | list | `[]` |  |
+| config.enableUI | bool | `true` |  |
+| config.plugins | list | `[]` |  |
+| extraEnvs | list | `[]` |  |
+| fullnameOverride | string | `""` |  |
+| hostNetwork | bool | `false` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"oznu/homebridge"` |  |
+| image.tag | string | `"3.1.0"` |  |
+| imagePullSecrets | list | `[]` |  |
+| ingress.annotations | object | `{}` |  |
+| ingress.enabled | bool | `false` |  |
+| ingress.hosts[0] | string | `"chart-example.local"` |  |
+| ingress.path | string | `"/"` |  |
+| ingress.tls | list | `[]` |  |
+| nameOverride | string | `""` |  |
+| nodeSelector | object | `{}` |  |
+| persistence.accessMode | string | `"ReadWriteOnce"` |  |
+| persistence.enabled | bool | `true` |  |
+| persistence.size | string | `"1Gi"` |  |
+| persistence.skipuninstall | bool | `false` |  |
+| pgid | int | `1000` |  |
+| podAnnotations | object | `{}` |  |
+| podSecurityContext | object | `{}` |  |
+| probes.liveness.enabled | bool | `true` |  |
+| probes.liveness.failureThreshold | int | `5` |  |
+| probes.liveness.initialDelaySeconds | int | `60` |  |
+| probes.liveness.timeoutSeconds | int | `10` |  |
+| probes.readiness.enabled | bool | `true` |  |
+| probes.readiness.failureThreshold | int | `5` |  |
+| probes.readiness.initialDelaySeconds | int | `60` |  |
+| probes.readiness.timeoutSeconds | int | `10` |  |
+| probes.startup.enabled | bool | `false` |  |
+| probes.startup.failureThreshold | int | `30` |  |
+| probes.startup.periodSeconds | int | `10` |  |
+| puid | int | `1000` |  |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+| securityContext | object | `{}` |  |
+| service.homebridgePort | int | `51826` |  |
+| service.httpPort | int | `8080` |  |
+| service.type | string | `"ClusterIP"` |  |
+| serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.create | bool | `true` |  |
+| serviceAccount.name | string | `""` |  |
+| strategyType | string | `"Recreate"` |  |
+| timezone | string | `"UTC"` |  |
+| tolerations | list | `[]` |  |
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
-
-## Configuration
-
-The following tables lists the configurable parameters of the Home Assistant chart and their default values.
-
-| Parameter                                       | Description                                                                                                                       | Default                             |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| `image.repository`                              | Image repository                                                                                                                  | `oznu/homebridge`                   |
-| `image.tag`                                     | Image tag. Possible values listed [here](https://hub.docker.com/r/oznu/homebridge/tags).                                          | `3.1.0`                             |
-| `image.pullPolicy`                              | Image pull policy                                                                                                                 | `IfNotPresent`                      |
-| `image.pullSecrets`                             | Secrets to use when pulling the image                                                                                             | `[]`                                |
-| `strategyType`                                  | Specifies the strategy used to replace old Pods by new ones                                                                       | `Recreate`                          |
-| `timezone`                                      | Specify the container timezone                                                                                                    | `UTC`                               |
-| `puid`                                          | process userID the instance should run as                                                                                         | `1000`                              |
-| `pgid`                                          | process groupID the instance should run as                                                                                        | `1000`                              |
-| `config.enableUI`                               | Enable the Homebridge UI plugin                                                                                                   | `true`                              |
-| `config.plugins`                                | Additional Homebridge plugins to install at container startup                                                                     | `[]`                                |
-| `config.additionalPackages`                     | Additional Alpine packages to install at container statup                                                                         | `[]  `                              |
-| `probes.liveness.enabled`                       | Use the livenessProbe?                                                                                                            | `true`                              |
-| `probes.liveness.initialDelaySeconds`           | Specify liveness `initialDelaySeconds` parameter for the deployment                                                               | `60`                                |
-| `probes.liveness.failureThreshold`              | Specify liveness `failureThreshold` parameter for the deployment                                                                  | `5`                                 |
-| `probes.liveness.timeoutSeconds`                | Specify liveness `timeoutSeconds` parameter for the deployment                                                                    | `10`                                |
-| `probes.readiness.enabled`                      | Use the readinessProbe?                                                                                                           | `true`                              |
-| `probes.readiness.initialDelaySeconds`          | Specify readiness `initialDelaySeconds` parameter for the deployment                                                              | `60`                                |
-| `probes.readiness.failureThreshold`             | Specify readiness `failureThreshold` parameter for the deployment                                                                 | `5`                                 |
-| `probes.readiness.timeoutSeconds`               | Specify readiness `timeoutSeconds` parameter for the deployment                                                                   | `10`                                |
-| `probes.startup.enabled`                        | Use the startupProbe? (new in kubernetes 1.16)                                                                                    | `false`                             |
-| `probes.startup.failureThreshold`               | Specify startup `failureThreshold` parameter for the deployment                                                                   | `5`                                 |
-| `probes.startup.periodSeconds`                  | Specify startup `periodSeconds` parameter for the deployment                                                                      | `10`                                |
-| `service.type`                                  | Kubernetes service type for the homebridge GUI                                                                                    | `ClusterIP`                         |
-| `service.httpPort`                              | Kubernetes port where the homebridge GUI is exposed                                                                               | `8123`                              |
-| `service.annotations`                           | Service annotations for the homebridge GUI                                                                                        | `{}`                                |
-| `service.clusterIP`                             | Cluster IP for the homebridge GUI                                                                                                 | ``                                  |
-| `service.externalIPs`                           | External IPs for the homebridge GUI                                                                                               | `[]`                                |
-| `service.loadBalancerIP`                        | Loadbalancer IP for the homebridge GUI                                                                                            | ``                                  |
-| `service.loadBalancerSourceRanges`              | Loadbalancer client IP restriction range for the homebridge GUI                                                                   | `[]`                                |
-| `service.externalTrafficPolicy`                 | Loadbalancer externalTrafficPolicy                                                                                                | ``                                  |
-| `hostNetwork`                                   | Enable hostNetwork - needed for discovery to work                                                                                 | `false`                             |
-| `service.nodePort`                              | nodePort to listen on for the homebridge GUI                                                                                      | ``                                  |
-| `ingress.enabled`                               | Enables Ingress                                                                                                                   | `false`                             |
-| `ingress.annotations`                           | Ingress annotations                                                                                                               | `{}`                                |
-| `ingress.path`                                  | Ingress path                                                                                                                      | `/`                                 |
-| `ingress.hosts`                                 | Ingress accepted hostnames                                                                                                        | `chart-example.local`               |
-| `ingress.tls`                                   | Ingress TLS configuration                                                                                                         | `[]`                                |
-| `persistence.enabled`                           | Use persistent volume to store data                                                                                               | `true`                              |
-| `persistence.size`                              | Size of persistent volume claim                                                                                                   | `1Gi`                               |
-| `persistence.existingClaim`                     | Use an existing PVC to persist data                                                                                               | `nil`                               |
-| `persistence.storageClass`                      | Type of persistent volume claim                                                                                                   | `-`                                 |
-| `persistence.accessMode`                        | Persistence access modes                                                                                                          | `ReadWriteMany`                     |
-| `persistence.skipuninstall`                     | Do not delete the pvc upon helm uninstall                                                                                         | `false`                             |
-| `extraEnvs`                                     | Extra ENV vars to pass to the homebridge container                                                                                | `[]`                                |
-| `resources`                                     | CPU/Memory resource requests/limits or the homebridge GUI                                                                         | `{}`                                |
-| `nodeSelector`                                  | Node labels for pod assignment or the homebridge GUI                                                                              | `{}`                                |
-| `tolerations`                                   | Toleration labels for pod assignment or the homebridge GUI                                                                        | `[]`                                |
-| `affinity`                                      | Affinity settings for pod assignment or the homebridge GUI                                                                        | `{}`                                |
-| `podAnnotations`                                | Key-value pairs to add as pod annotations                                                                                         | `{}`                                |
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```shell
-helm install --name my-release \
-  --set timezone="UTC" \
-    k8s-at-home/homebridge
-```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
-```shell
-helm install --name my-release -f values.yaml k8s-at-home/homebridge
-```
-
-Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

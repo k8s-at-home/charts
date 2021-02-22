@@ -1,27 +1,76 @@
-# Home Assistant
+# home-assistant
 
-This is a helm chart for [Home Assistant](https://www.home-assistant.io/).
+![Version: 6.0.1](https://img.shields.io/badge/Version-6.0.1-informational?style=flat-square) ![AppVersion: 2021.1.5](https://img.shields.io/badge/AppVersion-2021.1.5-informational?style=flat-square)
+
+Home Assistant
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
-## TL;DR;
+## Source Code
 
-```shell
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/home-assistant
+* <https://github.com/home-assistant/home-assistant>
+* <https://github.com/cdr/code-server>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant>
+
+## Requirements
+
+Kubernetes: `>=1.16.0-0`
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.2.5 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.2.7 |
+| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+
+## TL;DR
+
+```console
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install home-assistant k8s-at-home/home-assistant
 ```
-
-## :star2: Changelog
-
-Please refer to [CHANGELOG.md](CHANGELOG.md) for an overview of notable changes to the chart. **This is especially important for major version updates!**
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `home-assistant`
 
 ```console
-helm install --name my-release k8s-at-home/home-assistant
+helm install home-assistant k8s-at-home/home-assistant
 ```
+
+## Uninstalling the Chart
+
+To uninstall the `home-assistant` deployment
+
+```console
+helm uninstall home-assistant
+```
+
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
+
+## Configuration
+
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
+
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+
+```console
+helm install home-assistant \
+  --set env.TZ="America/New York" \
+    k8s-at-home/home-assistant
+```
+
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
+
+```console
+helm install home-assistant k8s-at-home/home-assistant -f values.yaml
+```
+
+## Custom configuration
 
 ### Z-Wave / Zigbee
 
@@ -71,59 +120,119 @@ ingress:
 
 The value derived is the name of the kubernetes service object for home-assistant
 
-## Uninstalling the Chart
+## Values
 
-To uninstall/delete the `my-release` deployment:
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
-```console
-helm delete my-release --purge
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| env | object | `{}` |  |
+| git.deployKey | string | `""` |  |
+| git.deployKeyBase64 | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"homeassistant/home-assistant"` |  |
+| image.tag | string | `"2021.1.5"` |  |
+| influxdb.architecture | string | `"standalone"` |  |
+| influxdb.authEnabled | bool | `false` |  |
+| influxdb.database | string | `"home_assistant"` |  |
+| influxdb.enabled | bool | `false` |  |
+| influxdb.persistence.enabled | bool | `false` |  |
+| ingress.enabled | bool | `false` |  |
+| mariadb.architecture | string | `"standalone"` |  |
+| mariadb.auth.database | string | `"home-assistant"` |  |
+| mariadb.auth.password | string | `"home-assistant-pass"` |  |
+| mariadb.auth.rootPassword | string | `"home-assistantrootpass"` |  |
+| mariadb.auth.username | string | `"home-assistant"` |  |
+| mariadb.enabled | bool | `false` |  |
+| mariadb.primary.persistence.enabled | bool | `false` |  |
+| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| postgresql.enabled | bool | `false` |  |
+| postgresql.persistence.enabled | bool | `false` |  |
+| postgresql.postgresqlDatabase | string | `"home-assistant"` |  |
+| postgresql.postgresqlPassword | string | `"home-assistant-pass"` |  |
+| postgresql.postgresqlUsername | string | `"home-assistant"` |  |
+| prometheus.serviceMonitor.enabled | bool | `false` |  |
+| service.port.port | int | `8123` |  |
+| strategy.type | string | `"Recreate"` |  |
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+## Changelog
 
-Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/home-assistant/values.yaml)
-file. It has several commented out suggested values.
-Additionally you can take a look at the common library [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/common/values.yaml) for more (advanced) configuration options.
+All notable changes to this project will be documented in this file.
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-```console
-helm install my-release \
-  --set env.TZ="America/New_York" \
-    k8s-at-home/home-assistant
-```
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the
-chart. For example,
-```console
-helm install my-release k8s-at-home/home-assistant --values values.yaml 
-```
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-```yaml
-image:
-  tag: ...
-```
+## [5.0.0]
 
----
-**NOTE**
+### Changed
 
-If you get
-```console
-Error: rendered manifests contain a resource that already exists. Unable to continue with install: existing resource conflict: ...`
-```
-it may be because you uninstalled the chart with `skipuninstall` enabled, you need to manually delete the pvc or use `existingClaim`.
+- Migrated chart over to our common library, this version introduces breaking changes. Be sure to back up your config volume incase something goes wrong.
+- Upgraded `home-assistant` container image to `2020.12.1`
+- Upgraded `postgresql` subchart from version 10.1.3 to version 10.2.0.
+- Upgraded `influxdb` subchart from version 1.1.2 to version 1.1.4.
+- Upgraded `mariadb` subchart from version 9.1.2 to version 9.1.4
 
----
+## [4.0.0]
 
-## Upgrading an existing Release to a new major version
+### Changed
 
-A major chart version change (like 4.0.1 -> 5.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+- Bumped bitnami/mariadb to 9.1.2 in chart deps
 
-### Upgrading from 4.x.x to 5.x.x
+### Removed
 
-As of 5.0.0 this chart was migrated to a centralized [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library, some values in `values.yaml` have changed.
+- Appdaemon sidecar was removed and replaced by it's own chart at [charts/appdaemon](https://github.com/k8s-at-home/charts/tree/master/charts/appdaemon)
+- Configurator sidecar was removed in favor of the `code-server` sidecar. One configure sidecar to rule them all!
 
-Examples:
+## [3.1.0]
 
-* `service.port` has been moved to `service.port.port`.
-* `persistence.type` has been moved to `controllerType`.
+### Changed
 
-Refer to the [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library for more configuration options.
+- Fixed issue in default postgresql configuration.
+- Bumped bitnami/postgresql to 10.1.1 in chart deps
+
+## [3.0.0]
+
+Any pre-existing StatefulSet will have to be removed before upgrading due to a name change in the chart.
+
+### Changed
+
+- The default `home-assistant` image has been updated to v0.118.3.
+- The default `vscode` image has been updated to 3.7.2
+- :warning: Upgraded `influxdb` subchart from version 0.6.7 to version 1.0.0.
+- :warning: Upgraded `postgresql` subchart from version 9.1.2 to version 10.1.0.
+  This is a major version update, [requiring changes](https://github.com/bitnami/charts/tree/master/bitnami/postgresql#to-1000) in your `values.yaml` if you use it!
+- :warning: Upgraded `mariadb` subchart from version 7.7.1 to version 9.0.1.
+  This is a major version update, [requiring changes](https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-900) in your `values.yaml` if you use it!
+
+### Removed
+
+- Subchart support for `esphome` was removed as it is really a separate application and integration was only limited to sharing a secrets file.
+
+### Fixed
+
+- Fixed some formatting errors that were causing the pipeline to fail.
+
+## [2.7.0]
+
+This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
+
+[5.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-5.0.0/charts/home-assistant
+
+[4.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-4.0.0/charts/home-assistant
+
+[3.1.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.1.0/charts/home-assistant
+
+[3.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.0.0/charts/home-assistant
+
+[2.7.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-2.7.0/charts/home-assistant
+
+## Support
+
+- See the [Wiki](https://github.com/k8s-at-home/charts/wiki)
+- Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/charts/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

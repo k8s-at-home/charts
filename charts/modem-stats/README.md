@@ -1,69 +1,40 @@
-# cable modem (sb6183) signal and stats collection agent for influxdb
+# modem-stats
 
-![Screenshot](https://camo.githubusercontent.com/939e044c0491abf790d91bd1d7f909b187e4098c/68747470733a2f2f692e696d6775722e636f6d2f70705a6a6e6b502e706e67)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-This tool allows you to run periodic scanning of the sb6183 cable modem and save the results to Influxdb
+periodic cable modem data collection and save the results to InfluxDB
 
-## TL;DR;
+**Homepage:** <https://github.com/k8s-at-home/charts/tree/master/charts/modem-stats>
 
-```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/modem-stats
-```
+## Maintainers
 
-## Installing the Chart
+| Name | Email | Url |
+| ---- | ------ | --- |
+| billimek | jeff@billimek.com |  |
 
-To install the chart with the release name `my-release`:
+## Source Code
 
-```console
-$ helm install --name my-release k8s-at-home/modem-stats
-```
-## Uninstalling the Chart
+* <https://github.com/k8s-at-home/SB6183-stats-for-influxdb>
+* <https://github.com/k8s-at-home/charts>
 
-To uninstall/delete the `my-release` deployment:
+## Values
 
-```console
-$ helm delete my-release --purge
-```
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.delay | int | `3600` |  |
+| config.influxdb.database | string | `"cable_modem_stats"` |  |
+| config.influxdb.host | string | `"influxdb-influxdb"` |  |
+| config.influxdb.port | int | `8086` |  |
+| config.influxdb.ssl | bool | `false` |  |
+| config.modem.url | string | `"http://192.168.100.1/RgConnect.asp"` |  |
+| debug | bool | `false` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"billimek/sb6183-for-influxdb"` |  |
+| image.tag | string | `"latest"` |  |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` |  |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
-
-## Configuration
-
-The configuration is set as a block of text through a configmap and mouted as a file in /src/config.ini Any value in this text block should match the defined sb6183 configuration. There are several values here that will have to match our kubernetes configuration.
-
-## Configuration
-
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-
-| Parameter                            | Description                                  | Default                                                    |
-| -------------------------------      | -------------------------------              | ---------------------------------------------------------- |
-| `image.repository`                   | modem-stats image                            | `billimek/sb6183-for-influxdb`                             |
-| `image.tag`                          | modem-stats image tag                        | `latest`                                                   |
-| `image.pullPolicy`                   | modem-stats image pull policy                | `IfNotPresent`                                             |
-| `debug`                              | Display debugging output                     | `false`                                                    |
-| `config.delay`                       | how many seconds to wait between checks      | `3600`                                                     |
-| `config.influxdb.host`               | InfluxDB hostname                            | `influxdb-influxdb`                                        |
-| `config.influxdb.port`               | InfluxDB port                                | `8086`                                                     |
-| `config.influxdb.database`           | InfluxDB database                            | `sb6183`                                                   |
-| `config.influxdb.username`           | InfluxDB username                            | ``                                                         |
-| `config.influxdb.password`           | InfluxDB password                            | ``                                                         |
-| `config.influxdb.ssl`                | InfluxDB connection using SSL                | `false`                                                    |
-| `config.modem.url`                   | sb6183 stats URL page                        | `http://192.168.100.1/RgConnect.asp`                       |
-| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```console
-$ helm install --name my-release \
-  --set onfig.influxdb.host=some-influx-host \
-    k8s-at-home/modem-stats
-```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
-
-```console
-$ helm install --name my-release -f values.yaml k8s-at-home/modem-stats
-```
-
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/modem-stats/values.yaml) file. It has several commented out suggested values.
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
