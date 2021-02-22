@@ -3,6 +3,7 @@
 image:
   repository: wallabag/wallabag
   pullPolicy: IfNotPresent
+  # Upgrading the wallabag version generally requires a migration. https://doc.wallabag.org/en/admin/upgrade.html
   tag: 2.4.1
 
 strategy:
@@ -70,9 +71,9 @@ persistence:
     emptyDir: false
     mountPath: /var/www/wallabag/web/assets/images
   cache:
-    # Note that if you make cache persistent, you will need to clear it (with `bin/console cache:clear --env=prod`) to apply any changes you make to wallabag's parameters.
+    # Note that if you make cache persistent, you may need to clear it (with `bin/console cache:clear --env=prod`) to apply any changes you make to wallabag's parameters.
     enabled: false
     emptyDir: false
     mountPath: /var/www/wallabag/var/cache
 
-controllerType: "statefulset"  # Guarantees that only one copy runs at a time. Otherwise, deployments might have two instances connect to the database simultaneously during RollingUpdates. The "Recreate" strategy is not a strong enough guarantee; direct deletion of the pod will circumvent it and the replacement will be created immediately; likely before the original is terminated.
+controllerType: "statefulset"

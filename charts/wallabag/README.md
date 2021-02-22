@@ -4,6 +4,8 @@ This is a helm chart for [wallabag](https://wallabag.org/).
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
+Default login is `wallabag:wallabag`.
+
 ## TL;DR;
 
 ```shell
