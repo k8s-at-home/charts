@@ -26438,6 +26438,31 @@ entries:
   transmission:
   - apiVersion: v2
     appVersion: 3.0.0
+    created: "2021-02-22T11:54:26.968782457Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: Transmission is a cross-platform BitTorrent client
+    digest: c2d23add080c4cbea26d92a9f3642d0aa783e2e590a7e89781c6043edbd3f50f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/transmission
+    icon: https://github.com/transmission/transmission/raw/master/extras/transmission-1920.jpg
+    keywords:
+    - transmission
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    name: transmission
+    sources:
+    - https://hub.docker.com/r/linuxserver/transmission
+    - https://github.com/k8s-at-home/charts/tree/master/charts/transmission
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/transmission-2.0.0/transmission-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 3.0.0
     created: "2021-02-21T22:26:12.198563431Z"
     dependencies:
     - name: common
@@ -29650,4 +29675,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-21T23:49:31.334148564Z"
+generated: "2021-02-22T11:54:26.97445302Z"
