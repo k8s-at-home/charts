@@ -11052,6 +11052,32 @@ entries:
   lidarr:
   - apiVersion: v2
     appVersion: 0.8.0.1886
+    created: "2021-02-22T22:11:37.572755644Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: Looks and smells like Sonarr but made for music
+    digest: 74d3c896432185d2bdbecd6ead02e506601b20b16d242afdc910499632907a38
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://hub.docker.com/r/linuxserver/lidarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-7.1.0/lidarr-7.1.0.tgz
+    version: 7.1.0
+  - apiVersion: v2
+    appVersion: 0.8.0.1886
     created: "2021-02-16T10:08:20.265879416Z"
     dependencies:
     - name: common
@@ -21031,6 +21057,32 @@ entries:
   radarr:
   - apiVersion: v2
     appVersion: 3.0.0.3989
+    created: "2021-02-22T22:11:37.678454683Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 18c45ce482e5d3954115583084318ae8bb935a079b2bdf09f87e4fadcec50ffb
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-9.1.0/radarr-9.1.0.tgz
+    version: 9.1.0
+  - apiVersion: v2
+    appVersion: 3.0.0.3989
     created: "2021-02-16T10:08:25.945362509Z"
     dependencies:
     - name: common
@@ -21879,6 +21931,34 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/radarr-3.0.0/radarr-3.0.0.tgz
     version: 3.0.0
   readarr:
+  - apiVersion: v2
+    appVersion: 0.1.0.351
+    created: "2021-02-22T22:11:37.787707133Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: A fork of Radarr to work with Books & AudioBooks
+    digest: db2cf74f9eef6573b58791fecf773ec73c6b749167501ed8ebf91f9dd181de11
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/readarr
+    icon: https://readarr.com/img/logo.png
+    keywords:
+    - readarr
+    - torrent
+    - usenet
+    - AudioBooks
+    - ebooks
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark@markmcw.uk
+      name: mcmarkj
+    name: readarr
+    sources:
+    - https://github.com/Readarr/Readarr
+    - https://readarr.com
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/readarr-2.1.0/readarr-2.1.0.tgz
+    version: 2.1.0
   - apiVersion: v2
     appVersion: 0.1.0.351
     created: "2021-02-16T10:08:26.212277472Z"
@@ -23520,6 +23600,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/smarter-device-manager-1.0.0/smarter-device-manager-1.0.0.tgz
     version: 1.0.0
   sonarr:
+  - apiVersion: v2
+    appVersion: 3.0.4.993
+    created: "2021-02-22T22:11:37.897578484Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: 407857d3aa898c1478479ce0d0314fb6c5617e9e78be8b9f14e4e93724afce79
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-9.1.0/sonarr-9.1.0.tgz
+    version: 9.1.0
   - apiVersion: v2
     appVersion: 3.0.4.993
     created: "2021-02-16T10:08:28.095603033Z"
@@ -29827,4 +29933,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-22T18:05:49.823548828Z"
+generated: "2021-02-22T22:11:37.91193723Z"
