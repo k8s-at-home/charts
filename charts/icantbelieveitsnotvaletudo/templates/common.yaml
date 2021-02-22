@@ -4,7 +4,7 @@
 {{- define "icantbelieveitsnotvaletudo.configmap.volume" -}}
 name: settings
 configMap:
-  name: {{ template "common.names.fullname" . }}-settings
+  name: {{ template "common.names.fullname" . }}
 {{- end -}}
 
 {{- $volume := include "icantbelieveitsnotvaletudo.configmap.volume" . | fromYaml -}}
