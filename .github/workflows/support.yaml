@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: dessant/support-requests@v2
       with:
-        github-token: ${{ github.token }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         support-label: 'support'
         issue-comment: >
           :wave: @{issue-author}, we use the issue tracker exclusively
