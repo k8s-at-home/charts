@@ -132,6 +132,7 @@ N/A
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
+| searx.existingSecret.enabled | bool | `false` |  |
 | searx.baseUrl | string | `"https://searx.DOMAIN"` |  |
 | searx.mortyKey | string | `"changeme"` |  |
 | service.port.port | int | `80` |  |
