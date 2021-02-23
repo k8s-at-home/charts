@@ -55,6 +55,10 @@ Version 3.0.0 introduces support for [EKS IAM roles for service accounts](https:
 
 This is a breaking change as the chart was moved to k8s-at-home. No other change on top of the 3.x.x branch.
 
+## To 5.0.0
+
+Not many breaking changes. See the [changelog](https://github.com/oauth2-proxy/oauth2-proxy/releases/tag/v7.0.0) for oauth2-proxy, specifically the section "Breaking Changes" for a few configuration changes, particularly to do with the Azure provider.
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
