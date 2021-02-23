@@ -1,4 +1,9 @@
-# Default values for wallabag.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: wallabag/wallabag
@@ -6,6 +11,7 @@ image:
   # Upgrading the wallabag version generally requires a migration. https://doc.wallabag.org/en/admin/upgrade.html
   tag: 2.4.1
 
+controllerType: "statefulset"
 strategy:
   type: RollingUpdate
 
@@ -63,6 +69,9 @@ service:
   port:
     port: 80
 
+ingress:
+  enabled: false
+
 persistence:
   images:
     enabled: false
@@ -73,5 +82,3 @@ persistence:
     enabled: false
     emptyDir: false
     mountPath: /var/www/wallabag/var/cache
-
-controllerType: "statefulset"
