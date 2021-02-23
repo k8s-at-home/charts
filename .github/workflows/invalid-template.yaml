@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: dessant/support-requests@v2
       with:
-        github-token: ${{ github.token }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         support-label: 'invalid:template-incomplete'
         issue-comment: >
           :wave: @{issue-author}, please follow the template provided.
