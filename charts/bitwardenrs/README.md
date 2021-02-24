@@ -1,102 +1,58 @@
-# bitwardenrs
+# Unofficial Bitwarden compatible server written in Rust
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.18.0](https://img.shields.io/badge/AppVersion-1.18.0-informational?style=flat-square)
+This is an opinionated helm chart for [bitwarden_rs](https://github.com/dani-garcia/bitwarden_rs) 
 
-Unofficial Bitwarden compatible server written in Rust
+The default values and container images used in this chart will allow for running in a multi-arch cluster (amd64, arm, arm64)
 
-**Homepage:** <https://github.com/k8s-at-home/charts/tree/master/charts/bitwardenrs>
+## TL;DR
 
-## Maintainers
+```console
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm install k8s-at-home/bitwardenrs
+```
 
-| Name | Email | Url |
-| ---- | ------ | --- |
-| DirtyCajunRice | nick@cajun.pro |  |
+## Installing the Chart
 
-## Source Code
+To install the chart with the release name `bitwarden`:
 
-* <https://github.com/dani-garcia/bitwarden_rs>
+```console
+helm install bitwarden k8s-at-home/bitwardenrs
+```
 
-## Values
+## Uninstalling the Chart
 
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| affinity | object | `{}` |  |
-| autoscaling.enabled | bool | `false` |  |
-| autoscaling.maxReplicas | int | `100` |  |
-| autoscaling.minReplicas | int | `1` |  |
-| autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| bitwardenrs.admin.disableAdminToken | bool | `false` |  |
-| bitwardenrs.admin.enabled | bool | `true` |  |
-| bitwardenrs.admin.existingSecret.enabled | bool | `false` |  |
-| bitwardenrs.admin.existingSecret.name | string | `""` |  |
-| bitwardenrs.admin.existingSecret.tokenKey | string | `""` |  |
-| bitwardenrs.domain | string | `""` |  |
-| bitwardenrs.externalDatabase.database | string | `""` |  |
-| bitwardenrs.externalDatabase.enabled | bool | `false` |  |
-| bitwardenrs.externalDatabase.existingSecret.enabled | bool | `false` |  |
-| bitwardenrs.externalDatabase.existingSecret.name | string | `""` |  |
-| bitwardenrs.externalDatabase.existingSecret.passwordKey | string | `""` |  |
-| bitwardenrs.externalDatabase.existingSecret.userKey | string | `""` |  |
-| bitwardenrs.externalDatabase.host | string | `""` |  |
-| bitwardenrs.externalDatabase.password | string | `""` |  |
-| bitwardenrs.externalDatabase.port | string | `""` |  |
-| bitwardenrs.externalDatabase.type | string | `""` |  |
-| bitwardenrs.externalDatabase.user | string | `""` |  |
-| bitwardenrs.gui.port | int | `80` |  |
-| bitwardenrs.signupsAllowed | bool | `false` |  |
-| bitwardenrs.smtp.enabled | bool | `false` |  |
-| bitwardenrs.smtp.existingSecret.enabled | bool | `false` |  |
-| bitwardenrs.smtp.existingSecret.name | string | `""` |  |
-| bitwardenrs.smtp.existingSecret.passwordKey | string | `""` |  |
-| bitwardenrs.smtp.existingSecret.userKey | string | `""` |  |
-| bitwardenrs.smtp.from | string | `""` |  |
-| bitwardenrs.smtp.fromName | string | `""` |  |
-| bitwardenrs.smtp.host | string | `""` |  |
-| bitwardenrs.smtp.password | string | `""` |  |
-| bitwardenrs.smtp.port | int | `587` |  |
-| bitwardenrs.smtp.ssl | bool | `true` |  |
-| bitwardenrs.smtp.user | string | `""` |  |
-| bitwardenrs.websockets.enabled | bool | `true` |  |
-| bitwardenrs.websockets.port | int | `3012` |  |
-| bitwardenrs.yubico.clientId | string | `""` |  |
-| bitwardenrs.yubico.enabled | bool | `false` |  |
-| bitwardenrs.yubico.existingSecret.clientIdKey | string | `""` |  |
-| bitwardenrs.yubico.existingSecret.enabled | bool | `false` |  |
-| bitwardenrs.yubico.existingSecret.name | string | `""` |  |
-| bitwardenrs.yubico.existingSecret.secretKeyKey | string | `""` |  |
-| bitwardenrs.yubico.secretKey | string | `""` |  |
-| bitwardenrs.yubico.server | string | `""` |  |
-| env | object | `{}` |  |
-| fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"bitwardenrs/server"` |  |
-| image.tag | string | `""` |  |
-| imagePullSecrets | list | `[]` |  |
-| ingress.annotations | object | `{}` |  |
-| ingress.enabled | bool | `false` |  |
-| ingress.hosts[0].host | string | `"chart-example.local"` |  |
-| ingress.hosts[0].paths | list | `[]` |  |
-| ingress.tls | list | `[]` |  |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
-| persistence.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.enabled | bool | `false` |  |
-| persistence.size | string | `"1Gi"` |  |
-| persistence.type | string | `"statefulset"` |  |
-| podAnnotations | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
-| replicaCount | int | `1` |  |
-| resources | object | `{}` |  |
-| securityContext | object | `{}` |  |
-| service.additionalSpec | object | `{}` |  |
-| service.annotations | object | `{}` |  |
-| service.labels | object | `{}` |  |
-| service.port | int | `80` |  |
-| service.type | string | `"ClusterIP"` |  |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
-| tolerations | list | `[]` |  |
+To uninstall/delete the `bitwarden` deployment:
 
-----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
+```console
+helm uninstall bitwarden
+```
+
+The command removes all the Kubernetes components associated with the chart and deletes the release.
+
+## Configuration
+
+Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/bitwardenrs/values.yaml) file. It has several commented out suggested values.
+
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+
+```console
+helm install bitwarden \
+  --set timeZone="America/New York" \
+    k8s-at-home/bitwardenrs
+```
+
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+
+```console
+helm install bitwarden k8s-at-home/bitwardenrs  --values values.yaml 
+```
+
+## Upgrading an existing Release to a new major version
+
+A major chart version change (like 1.1.1 -> 2.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+
+### Upgrading from 1.x.x to 2.x.x
+
+Chart version 2.0.0 introduces external database support.
+ * No actions required to continue with the default sqlite backend.
+ * Refer to the `bitwardenrs.externalDatabase` section of [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/bitwardenrs/values.yaml) to configure MySQL or PostgreSQL database backends.

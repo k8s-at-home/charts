@@ -14,6 +14,8 @@ strategy:
   type: Recreate
 
 searx:
+  existingSecret:
+    enabled: false
   # external URL
   baseUrl: "https://searx.DOMAIN"
   # generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service)
