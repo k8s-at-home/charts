@@ -102,7 +102,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- N/A
+- Initial version of the chart
 
 #### Changed
 
@@ -120,4 +120,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/charts/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
-
