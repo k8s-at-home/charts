@@ -78,7 +78,7 @@ persistence:
     emptyDir: false
     mountPath: /var/www/wallabag/web/assets/images
   cache:
-    # Note that if you make cache persistent, you may need to clear it (with `bin/console cache:clear --env=prod`) to apply any changes you make to wallabag's parameters.
+    ## Note that if you make cache persistent, you may need to clear it (with `bin/console cache:clear --env=prod`) to apply any changes you make to wallabag's parameters.
     enabled: false
     emptyDir: false
     mountPath: /var/www/wallabag/var/cache
