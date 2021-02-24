@@ -2,7 +2,7 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
 
-a self hostable application for saving web pages, freely.
+A self hostable application for saving web pages, freely.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -10,7 +10,6 @@ a self hostable application for saving web pages, freely.
 
 * <https://github.com/wallabag/docker>
 * <https://hub.docker.com/wallabag/wallabag>
-* <https://github.com/k8s-at-home/charts/tree/master/charts/wallabag>
 
 ## Requirements
 
@@ -120,3 +119,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/charts/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
+
