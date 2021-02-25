@@ -1,0 +1,84 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: wallabag/wallabag
+  pullPolicy: IfNotPresent
+  # Upgrading the wallabag version generally requires a migration. https://doc.wallabag.org/en/admin/upgrade.html
+  tag: 2.4.1
+
+controllerType: "statefulset"
+strategy:
+  type: RollingUpdate
+
+# See more environment variables in the wallabag documentation
+# https://github.com/wallabag/docker
+env: {}
+  # MYSQL_ROOT_PASSWORD:
+  # POSTGRES_PASSWORD:
+  # POSTGRES_USER:
+  # POPULATE_DATABASE:
+  ## For SYMFONY__ENV__ parameters' documentation, visit https://doc.wallabag.org/en/admin/parameters.html
+  ## redis, rabbitmq, and mailer are optional. database is not optional.
+  # SYMFONY__ENV__DATABASE_DRIVER:
+  # SYMFONY__ENV__DATABASE_DRIVER_CLASS:
+  # SYMFONY__ENV__DATABASE_HOST:
+  # SYMFONY__ENV__DATABASE_PORT:
+  # SYMFONY__ENV__DATABASE_NAME:
+  # SYMFONY__ENV__DATABASE_USER:
+  # SYMFONY__ENV__DATABASE_PASSWORD:
+  # SYMFONY__ENV__DATABASE_PATH:
+  # SYMFONY__ENV__DATABASE_TABLE_PREFIX:
+  # SYMFONY__ENV__DATABASE_SOCKET:
+  # SYMFONY__ENV__DATABASE_CHARSET:
+  # SYMFONY__ENV__DOMAIN_NAME:
+  # SYMFONY__ENV__MAILER_TRANSPORT:
+  # SYMFONY__ENV__MAILER_USER:
+  # SYMFONY__ENV__MAILER_PASSWORD:
+  # SYMFONY__ENV__MAILER_HOST:
+  # SYMFONY__ENV__MAILER_PORT:
+  # SYMFONY__ENV__MAILER_ENCRYPTION:
+  # SYMFONY__ENV__MAILER_AUTH_MODE:
+  # SYMFONY__ENV__LOCALE:
+  # SYMFONY__ENV__SECRET:
+  # SYMFONY__ENV__TWOFACTOR_AUTH:
+  # SYMFONY__ENV__TWOFACTOR_SENDER:
+  # SYMFONY__ENV__FOSUSER_REGISTRATION:
+  # SYMFONY__ENV__FOSUSER_CONFIRMATION:
+  # SYMFONY__ENV__FOS_OAUTH_SERVER_ACCESS_TOKEN_LIFETIME:
+  # SYMFONY__ENV__FOS_OAUTH_SERVER_REFRESH_TOKEN_LIFETIME:
+  # SYMFONY__ENV__FROM_EMAIL:
+  # SYMFONY__ENV__RSS_LIMIT:
+  # SYMFONY__ENV__RABBITMQ_HOST:
+  # SYMFONY__ENV__RABBITMQ_PORT:
+  # SYMFONY__ENV__RABBITMQ_USER:
+  # SYMFONY__ENV__RABBITMQ_PASSWORD:
+  # SYMFONY__ENV__REDIS_SCHEME:
+  # SYMFONY__ENV__REDIS_HOST:
+  # SYMFONY__ENV__REDIS_PORT:
+  # SYMFONY__ENV__REDIS_PATH:
+  # SYMFONY__ENV__REDIS_PASSWORD:
+  # SYMFONY__ENV__SENTRY_DSN:
+  # SYMFONY__ENV__SERVER_NAME:
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
+
+persistence:
+  images:
+    enabled: false
+    emptyDir: false
+    mountPath: /var/www/wallabag/web/assets/images
+  cache:
+    ## Note that if you make cache persistent, you may need to clear it (with `bin/console cache:clear --env=prod`) to apply any changes you make to wallabag's parameters.
+    enabled: false
+    emptyDir: false
+    mountPath: /var/www/wallabag/var/cache

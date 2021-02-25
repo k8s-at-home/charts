@@ -13,7 +13,8 @@ on:
 
 jobs:
   pre-release:
-    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+    runs-on: ubuntu-20.04
     timeout-minutes: 5
     steps:
     - name: Block concurrent jobs
@@ -24,8 +25,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release:
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     needs: pre-release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - name: Block concurrent jobs
       uses: softprops/turnstyle@v1

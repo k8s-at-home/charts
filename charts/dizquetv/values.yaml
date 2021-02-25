@@ -1,0 +1,32 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: vexorian/dizquetv
+  pullPolicy: IfNotPresent
+  tag: 1.3.0
+
+strategy:
+  type: Recreate
+
+env: {}
+  # TZ: UTC
+  # PUID: 1001
+  # PGID: 1001
+
+service:
+  port:
+    port: 8000
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    mountPath: /home/node/app/.dizquetv
