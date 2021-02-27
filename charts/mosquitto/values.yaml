@@ -1,117 +1,40 @@
-# Default values for mosquitto.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: eclipse-mosquitto
-  tag: "{{ .Chart.AppVersion }}"
   pullPolicy: IfNotPresent
+  tag: 2.0.7
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+strategy:
+  type: Recreate
 
 service:
-  annotations: {}
   type: ClusterIP
-  port: 1883
-  websocketPort: 9001
-  # externalTrafficPolicy:
-  # loadBalancerIP:
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+  # LoadBalancerIP:
+  annotations: {}
+  port:
+    port: 1883
+    name: mqtt
 
 persistence:
-  enabled: False
-  annotations: {}
-  ## mosquitto data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-  ##
-  ## If you want to reuse an existing claim, you can pass the name of the PVC using
-  ## the existingClaim variable
-  # existingClaim: mosquitto-data
-  accessMode: ReadWriteOnce
-  size: 5Gi
-
-# customConfig:
-
-# Any extra volumes to define for the pod
-extraVolumes: []
-  # - name: example-name
-  #   hostPath:
-  #     path: /path/on/host
-  #     type: DirectoryOrCreate
-
-# Any extra volume mounts to define for the containers
-extraVolumeMounts: []
-#   - name: example-name
-#     mountPath: /path/in/container
-
-monitoring:
-  podMonitor:
-    enabled: false
-  sidecar:
-    enabled: false
-    port: 9234
-    args:
-      - "--use-splitted-config"
-    envs:
-      - name: MQTT_CLIENT_ID
-        value: exporter
-      - name: BROKER_HOST
-        valueFrom:
-          fieldRef:
-            fieldPath: status.podIP
-    image:
-      repository: nolte/mosquitto-exporter
-      tag: v0.6.3
-      pullPolicy: IfNotPresent
-    resources:
-      limits:
-        cpu: 300m
-        memory: 128Mi
-      requests:
-        cpu: 100m
-        memory: 64Mi
+  data:
+    enabled: true
+    emptyDir: false
+    mountPath: /data
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    accessMode: ReadWriteOnce
+    size: 100Mi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
