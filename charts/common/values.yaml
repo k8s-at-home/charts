@@ -32,6 +32,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+## Use this to populate a secret with the values you specify.
+## Be aware that these values are not encrypted by default, and could therefore visible
+## to anybody with access to the values.yaml file.
 secret: {}
   # PASSWORD: my-password
 
