@@ -1,15 +1,14 @@
 # tt-rss
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-tt-rss helm package
+Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/tt-rss/tt-rss-docker>
-* <https://github.com/k8s-at-home/charts/tree/master/charts/tt-rss>
+* <https://git.tt-rss.org/fox/tt-rss>
 
 ## Requirements
 
@@ -19,6 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | postgresql | 10.2.7 |
 | https://k8s-at-home.com/charts/ | common | 3.0.1 |
 
 ## TL;DR
@@ -76,12 +76,24 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env.TTRSS_DB_HOST | string | internal postgresql URL | Postgres database hostname |
+| env.TTRSS_DB_NAME | string | postgresql.postgresqlDatabase value | Postgres database password |
+| env.TTRSS_DB_PASS | string | postgresql.postgresqlPassword value | Postgres database password |
+| env.TTRSS_DB_PORT | string | `"5432"` | Postgres database port. |
+| env.TTRSS_DB_USER | string | postgresql.postgresqlUsername value | Postgres database user name |
+| env.TTRSS_SELF_URL_PATH | string | `""` | External URL you use to connect to the RSS (the one you enter in your browser) |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"tt-rss/tt-rss"` |  |
-| image.tag | string | `"1.0.0"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/tt-rss"` |  |
+| image.tag | string | `"v1.8723.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| service.port.port | int | `1880` |  |
+| postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
+| postgresql.enabled | bool | `true` | By default uses an internal postgress. Dissable if you use your own Postgres. |
+| postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
+| postgresql.postgresqlDatabase | string | `"tt-rss"` | Postgres database password |
+| postgresql.postgresqlPassword | string | `"changeme"` | Postgres database password |
+| postgresql.postgresqlUsername | string | `"postgres"` | Postgres database user name |
+| probes.startup.enabled | bool | `true` |  |
+| service.port.port | int | `8080` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -90,7 +102,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [1.0.5]
 
 #### Added
 
@@ -98,13 +110,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- Use generated template
+- Use k8s-at-home repository
 
 #### Removed
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.5]: #1.0.5
 
 ## Support
 

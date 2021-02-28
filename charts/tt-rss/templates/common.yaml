@@ -2,11 +2,20 @@
 {{- include "common.values.setup" . }}
 
 {{/* if TTRSS_DB_HOST is not set use internal postgres chart */}}
-{{- if not (hasKey .Values.env "TTRSS_DB_HOST") -}}
+{{- if eq .Values.env.TTRSS_DB_HOST "" -}}
   {{- $_ := set .Values.env "TTRSS_DB_HOST" (printf "%s-postgresql" .Release.Name) -}}
-  {{- $_ := set .Values.env "TTRSS_DB_USER" (.Values.env.TTRSS_DB_USER | default .Values.postgresql.postgresqlUsername ) -}}
-  {{- $_ := set .Values.env "TTRSS_DB_PASS" (.Values.env.TTRSS_DB_PASS | default .Values.postgresql.postgresqlPassword ) -}}
-  {{- $_ := set .Values.env "TTRSS_DB_NAME" (.Values.env.TTRSS_DB_NAME | default .Values.postgresql.postgresqlDatabase ) -}}
+{{- end -}}
+{{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
+{{- if eq .Values.env.TTRSS_DB_USER "" -}}
+  {{- $_ := set .Values.env "TTRSS_DB_USER" .Values.postgresql.postgresqlUsername -}}
+{{- end -}}
+{{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
+{{- if eq .Values.env.TTRSS_DB_PASS "" -}}
+  {{- $_ := set .Values.env "TTRSS_DB_PASS" .Values.postgresql.postgresqlPassword -}}
+{{- end -}}
+{{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
+{{- if eq .Values.env.TTRSS_DB_NAME "" -}}
+  {{- $_ := set .Values.env "TTRSS_DB_NAME" .Values.postgresql.postgresqlDatabase -}}
 {{- end -}}
 
 {{/* Render the templates */}}
