@@ -26800,6 +26800,35 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/transmission-1.0.0/transmission-1.0.0.tgz
     version: 1.0.0
+  tt-rss:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-02-28T15:47:57.831901045Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.7
+    description: Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom)
+      reader and aggregator
+    digest: 3c10fbd09bed5d47e49e11a88c8dd59dd9662aaae8f7797d58ed1dcf5eae9f36
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/tt-rss
+    icon: https://git.tt-rss.org/fox/tt-rss/raw/branch/master/images/favicon-72px.png
+    keywords:
+    - tt-rss
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: tt-rss
+    sources:
+    - https://git.tt-rss.org/fox/tt-rss
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tt-rss-1.0.6/tt-rss-1.0.6.tgz
+    version: 1.0.6
   tvheadend:
   - apiVersion: v2
     appVersion: latest
@@ -30059,4 +30088,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-28T09:08:02.362042238Z"
+generated: "2021-02-28T15:47:57.837263213Z"
