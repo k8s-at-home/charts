@@ -21080,6 +21080,32 @@ entries:
     version: 2.0.1
   radarr:
   - apiVersion: v2
+    appVersion: 3.0.2.4552
+    created: "2021-02-28T08:47:54.304103276Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.0.1
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 8362cd0cfe42a66b0894300fa2f4c6a1f33ece00f9cacea73a8099e067b87502
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-9.1.1/radarr-9.1.1.tgz
+    version: 9.1.1
+  - apiVersion: v2
     appVersion: 3.0.0.3989
     created: "2021-02-22T22:11:37.678454683Z"
     dependencies:
@@ -30008,4 +30034,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-02-24T05:11:41.532301082Z"
+generated: "2021-02-28T08:47:54.311585373Z"
