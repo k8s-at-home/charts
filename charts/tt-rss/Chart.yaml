@@ -1,18 +1,23 @@
 apiVersion: v2
 appVersion: 1.0.0
-description: Tiny Tiny RSS
+description: Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 name: tt-rss
-version: 1.0.2
+version: 1.0.3
+kubeVersion: ">=1.16.0-0"
 keywords:
 - tt-rss
-home: https://github.com/angelnu/charts/tree/master/charts/tt-rss
-icon: https://community.tt-rss.org/uploads/default/original/1X/18a2e96275d1fffb21cce225d30a87be4544db60.png
+home: https://github.com/k8s-at-home/charts/tree/master/charts/tt-rss
+icon: https://git.tt-rss.org/fox/tt-rss/raw/branch/master/images/favicon-72px.png
 sources:
-- https://git.tt-rss.org
+- https://git.tt-rss.org/fox/tt-rss
 maintainers:
 - name: angelnu
   email: git@angelnu.com
 dependencies:
 - name: common
-  version: 3.0.0
   repository: https://k8s-at-home.com/charts/
+  version: 3.0.1
+- name: postgresql
+  version: 10.2.7
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled

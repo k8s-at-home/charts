@@ -1,1 +1,13 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* if TTRSS_DB_HOST is not set use internal postgres chart */}}
+{{- if not (hasKey .Values.env "TTRSS_DB_HOST") -}}
+  {{- $_ := set .Values.env "TTRSS_DB_HOST" (printf "%s-postgresql" .Release.Name) -}}
+  {{- $_ := set .Values.env "TTRSS_DB_USER" (.Values.env.TTRSS_DB_USER | default .Values.postgresql.postgresqlUsername ) -}}
+  {{- $_ := set .Values.env "TTRSS_DB_PASS" (.Values.env.TTRSS_DB_PASS | default .Values.postgresql.postgresqlPassword ) -}}
+  {{- $_ := set .Values.env "TTRSS_DB_NAME" (.Values.env.TTRSS_DB_NAME | default .Values.postgresql.postgresqlDatabase ) -}}
+{{- end -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}

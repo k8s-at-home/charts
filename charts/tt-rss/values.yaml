@@ -6,53 +6,41 @@
 #
 
 image:
-  repository: angelnu/ttrss
-  tag: latest
+  repository: ghcr.io/angelnu/tt-rss
   pullPolicy: IfNotPresent
-
-nodeSelector:
-  #TBD - make multi-arch
-  kubernetes.io/arch: amd64
+  tag: v1.8723.0
 
 strategy:
   type: Recreate
 
+# See more environment variables in the tt-rss documentation
+# https://git.tt-rss.org/fox/tt-rss/src/branch/master/classes/config.php#L9
 env:
-  TTRSS_WITH_SELFSIGNED_CERT: "1"
-  TTRSS_PROTO: https
-  TTRSS_URL: example.com
-  TTRSS_PORT: ""
-  TTRSS_REPO_URL: "https://git.tt-rss.org/fox/tt-rss.git"
-  DB_HOST: postgres.example.com
-  DB_PORT: ""
-  DB_NAME: tt-rss
-  DB_USER: postgres
-  DB_PASS: REPLACEME
-  DB_ENV_USER: postgres
-  DB_ENV_PASS: REPLACEME
-
-initContainers:
-- image: postgres:alpine
-  name: waitforpostgres
-  env:
-  - name: DB_HOST
-    value: postgres.example.com
-  command:
-  - "pg_isready"
-  - "-h"
-  - "$DB_HOST"
-  - "-p"
-  - "5432"
+  TTRSS_SELF_URL_PATH: ""
+  # TTRSS_DB_HOST: "" If not set the internal postgresql will be used
+  TTRSS_DB_PORT: "5432"
+  # TTRSS_DB_USER: by default equal to postgresql.postgresqlUsername
+  # TTRSS_DB_PASS: by default equal to postgresql.postgresqlPassword
+  # TTRSS_DB_NAME: by default equal to postgresql.postgresqlDatabase
 
 service:
   port:
-    port: 4443
+    port: 8080
 
 ingress:
   enabled: false
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 
 probes:
   startup:
     enabled: true
+
+# Enabled postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: true
+  postgresqlUsername: postgres
+  postgresqlPassword: "changeme"
+  postgresqlDatabase: tt-rss
+  persistence:
+    enabled: false
+    # storageClass: ""
