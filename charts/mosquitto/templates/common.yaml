@@ -3,7 +3,7 @@
 
 {{/* Append the configMap to the additionalVolumes */}}
 {{- define "mosquitto.configmap.volume" -}}
-name: mosquitto-settings
+name: mosquitto-config
 configMap:
   name: {{ template "common.names.fullname" . }}-config
 {{- end -}}
@@ -16,7 +16,7 @@ configMap:
 
 {{/* Append the configMap volume to the additionalVolumeMounts */}}
 {{- define "mosquitto.configmap.volumeMount" -}}
-name: mosquitto-settings
+name: mosquitto-config
 mountPath: /mosquitto/config/mosquitto.conf
 subPath: mosquitto.conf
 {{- end -}}
