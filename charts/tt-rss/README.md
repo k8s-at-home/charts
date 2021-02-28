@@ -1,14 +1,14 @@
-# mosquitto
+# tt-rss
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.0.7](https://img.shields.io/badge/AppVersion-2.0.7-informational?style=flat-square)
+![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-Eclipse Mosquitto - An open source MQTT broker
+Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/eclipse/mosquitto>
+* <https://git.tt-rss.org/fox/tt-rss>
 
 ## Requirements
 
@@ -18,6 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | postgresql | 10.2.7 |
 | https://k8s-at-home.com/charts/ | common | 3.0.1 |
 
 ## TL;DR
@@ -25,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install mosquitto k8s-at-home/mosquitto
+helm install tt-rss k8s-at-home/tt-rss
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `mosquitto`
+To install the chart with the release name `tt-rss`
 
 ```console
-helm install mosquitto k8s-at-home/mosquitto
+helm install tt-rss k8s-at-home/tt-rss
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `mosquitto` deployment
+To uninstall the `tt-rss` deployment
 
 ```console
-helm uninstall mosquitto
+helm uninstall tt-rss
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +55,15 @@ Other values may be used from the [values.yaml](../common/values.yaml) from the 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install mosquitto \
+helm install tt-rss \
   --set env.TZ="America/New York" \
-    k8s-at-home/mosquitto
+    k8s-at-home/tt-rss
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install mosquitto k8s-at-home/mosquitto -f values.yaml
+helm install tt-rss k8s-at-home/tt-rss -f values.yaml
 ```
 
 ## Custom configuration
@@ -75,18 +76,24 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| env.TTRSS_DB_HOST | string | internal postgresql URL | Postgres database hostname |
+| env.TTRSS_DB_NAME | string | postgresql.postgresqlDatabase value | Postgres database password |
+| env.TTRSS_DB_PASS | string | postgresql.postgresqlPassword value | Postgres database password |
+| env.TTRSS_DB_PORT | string | `"5432"` | Postgres database port. |
+| env.TTRSS_DB_USER | string | postgresql.postgresqlUsername value | Postgres database user name |
+| env.TTRSS_SELF_URL_PATH | string | `""` | External URL you use to connect to the RSS (the one you enter in your browser) |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"eclipse-mosquitto"` |  |
-| image.tag | string | `"2.0.7"` |  |
-| persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.data.emptyDir | bool | `false` |  |
-| persistence.data.enabled | bool | `true` |  |
-| persistence.data.mountPath | string | `"/data"` |  |
-| persistence.data.size | string | `"100Mi"` |  |
-| service.annotations | object | `{}` |  |
-| service.port.name | string | `"mqtt"` |  |
-| service.port.port | int | `1883` |  |
-| service.type | string | `"ClusterIP"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/tt-rss"` |  |
+| image.tag | string | `"v1.8723.0"` |  |
+| ingress.enabled | bool | `false` |  |
+| postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
+| postgresql.enabled | bool | `true` | By default uses an internal postgress. Dissable if you use your own Postgres. |
+| postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
+| postgresql.postgresqlDatabase | string | `"tt-rss"` | Postgres database password |
+| postgresql.postgresqlPassword | string | `"changeme"` | Postgres database password |
+| postgresql.postgresqlUsername | string | `"postgres"` | Postgres database user name |
+| probes.startup.enabled | bool | `true` |  |
+| service.port.port | int | `8080` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -95,21 +102,22 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [1.0.5]
 
 #### Added
 
-- Initial release
+- N/A
 
 #### Changed
 
-- N/A
+- Use generated template
+- Use k8s-at-home repository
 
 #### Removed
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.5]: #1.0.5
 
 ## Support
 

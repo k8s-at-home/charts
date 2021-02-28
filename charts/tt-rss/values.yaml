@@ -1,0 +1,61 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/k8s-at-home/tt-rss
+  pullPolicy: IfNotPresent
+  tag: v1.8723.0
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the tt-rss documentation
+# https://git.tt-rss.org/fox/tt-rss/src/branch/master/classes/config.php#L9
+env:
+  # -- External URL you use to connect to the RSS (the one you enter in your browser)
+  TTRSS_SELF_URL_PATH: ""
+  # -- Postgres database hostname
+  # @default -- internal postgresql URL
+  TTRSS_DB_HOST: ""
+  # -- Postgres database port.
+  TTRSS_DB_PORT: "5432"
+  # -- Postgres database user name
+  # @default -- postgresql.postgresqlUsername value
+  TTRSS_DB_USER: ""
+  # -- Postgres database password
+  # @default -- postgresql.postgresqlPassword value
+  TTRSS_DB_PASS: ""
+  # -- Postgres database password
+  # @default -- postgresql.postgresqlDatabase value
+  TTRSS_DB_NAME: ""
+
+service:
+  port:
+    port: 8080
+
+ingress:
+  enabled: false
+
+probes:
+  startup:
+    enabled: true
+
+# -- Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# @default -- see bellow
+postgresql:
+  # -- By default uses an internal postgress. Dissable if you use your own Postgres.
+  enabled: true
+  # -- Postgres database user name
+  postgresqlUsername: postgres
+  # -- Postgres database password
+  postgresqlPassword: "changeme"
+  # -- Postgres database password
+  postgresqlDatabase: tt-rss
+  persistence:
+    # -- if database is stored to a PVC. Set to true when you are done testing.
+    enabled: false
+    # storageClass: ""
