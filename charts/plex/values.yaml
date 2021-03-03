@@ -150,8 +150,8 @@ plexPreferences:
     name: 41-plex-preferences
     defaultMode: 493  # 0755 in octal permission notation
     # Using mountPath & SubPath allow you to volume mount a configMap AS A FILE
-    # Unfortunately this also means that updates to the configMap are not automtically
-    # propagated to the file contents. But it's better then replacing the entire
+    # Unfortunately this also means that updates to the configMap are not automatically
+    # propagated to the file contents. But it's better than replacing the entire
     # /etc/cont-init.d/ directory which is the "normal" behavior when doing volume
     # mounts.
     mountPath: /etc/cont-init.d/41-plex-preferences
