@@ -39,14 +39,14 @@ spec:
             {{- if .Values.config.influxdb.username }}
             - name: INFLUX_USERNAME
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: {{ template "uptimerobot.fullname" . }}
                   key: influxdb-username
             {{- end }}
             {{- if .Values.config.influxdb.password }}
             - name: INFLUX_PASSWORD
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: {{ template "uptimerobot.fullname" . }}
                   key: influxdb-password
             {{- end }}
