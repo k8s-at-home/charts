@@ -87,7 +87,7 @@ N/A
 | env.DESCRIPTION | string | `"This is a Statping instance deployed as Helm chart"` | Description of the Statping instance |
 | env.DISABLE_LOGS | bool | `false` | Disable logs from appearing and writing to disk |
 | env.NAME | string | `"Statping Example"` | Name of the Statping instance |
-| env.POSTGRES_SSLMODE | bool | `false` | Enable ssl_mode for postgres (To enable use require) |
+| env.POSTGRES_SSLMODE | string | `"disable"` | Enable ssl_mode for postgres (To enable use require) |
 | env.USE_CDN | bool | `false` | Use CDN for static context from third-parties |
 | env.VIRTUAL_HOST | string | `""` | External URL you use to connect to the statping (the one you enter in your browser) |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -96,7 +96,7 @@ N/A
 | ingress.enabled | bool | `false` |  |
 | persistence | object | see bellow | Generated application config.yaml and logs are written here. Usually does not need to be persisted. |
 | postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
-| postgresql.enabled | bool | `true` | By default uses an internal postgress. Dissable if you use your own Postgres. |
+| postgresql.enabled | bool | `true` | By default uses an internal postgress. Disable if you use your own Postgres. |
 | postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
 | postgresql.postgresqlDatabase | string | `"postgres"` | Postgres database password |
 | postgresql.postgresqlPassword | string | `"changeme"` | Postgres database password |
@@ -118,7 +118,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Redone based on common chart
+- Migrated to common library chart
+- Moved `service.port` to `service.port.port`
 
 #### Removed
 

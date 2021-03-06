@@ -8,15 +8,15 @@
 {{- if eq .Values.env.DB_HOST "" -}}
   {{- $_ := set .Values.env "DB_HOST" (printf "%s-postgresql" .Release.Name) -}}
 {{- end -}}
-{{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
+{{/* if DB_USER is not set use internal postgres chart */}}
 {{- if eq .Values.env.DB_USER "" -}}
   {{- $_ := set .Values.env "DB_USER" .Values.postgresql.postgresqlUsername -}}
 {{- end -}}
-{{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
+{{/* if DB_PASS is not set use internal postgres chart */}}
 {{- if eq .Values.env.DB_PASS "" -}}
   {{- $_ := set .Values.env "DB_PASS" .Values.postgresql.postgresqlPassword -}}
 {{- end -}}
-{{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
+{{/* if DB_DATABASE is not set use internal postgres chart */}}
 {{- if eq .Values.env.DB_DATABASE "" -}}
   {{- $_ := set .Values.env "DB_DATABASE" .Values.postgresql.postgresqlDatabase -}}
 {{- end -}}
