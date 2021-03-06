@@ -71,6 +71,9 @@ spec:
             {{- if .Values.persistence.source.subPath }}
               subPath: {{ .Values.persistence.source.subPath }}
             {{- end }}
+            {{- if .Values.additionalVolumeMounts }} 
+            {{ toYaml .Values.additionalVolumeMounts | indent 12}} 
+            {{- end }} 
             - mountPath: /backups
               name: backups
             {{- if .Values.persistence.backups.subPath }}
@@ -98,6 +101,9 @@ spec:
       {{- else }}
         emptyDir: {}
       {{- end }}
+      {{- if .Values.additionalVolumes }} 
+      {{ toYaml .Values.additionalVolumes | indent 6}} 
+      {{- end }} 
       - name: backups
       {{- if .Values.persistence.backups.enabled }}
         persistentVolumeClaim:
