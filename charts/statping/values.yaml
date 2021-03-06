@@ -1,171 +1,83 @@
-# Default values for statping.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: statping/statping
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: "v0.90.65"
 
-global:
-  postgresql:
-    postgresqlDatabase: "postgres"
-    postgresqlUsername: "postgres"
+strategy:
+  type: Recreate
 
-statping:
-  name: ""
-  description: ""
-  domain: ""
-  admin:
-    user: ""
-    password: ""
-    email: ""
-    existingSecret:
-      enabled: false
-      name: ""
-      userKey: ""
-      passwordKey: ""
-      emailKey: ""
+# See more environment variables in the statping documentation
+# https://github.com/statping/statping/wiki/Config-with-.env-File
+env:
+  # -- Name of the Statping instance
+  NAME: Statping Example
+  # -- Description of the Statping instance
+  DESCRIPTION: This is a Statping instance deployed as Helm chart
+  # -- External URL you use to connect to the statping (the one you enter in your browser)
+  VIRTUAL_HOST: ""
+  # -- Type of database to use
+  DB_CONN: postgres
+  # -- Postgres database hostname
+  # @default -- internal postgresql URL
+  DB_HOST: ""
+  # -- Enable ssl_mode for postgres (To enable use require)
+  POSTGRES_SSLMODE: "disable"
+  # -- Postgres database user name
+  # @default -- postgresql.postgresqlUsername value
+  DB_USER: ""
+  # -- Postgres database password
+  # @default -- postgresql.postgresqlPassword value
+  DB_PASS: ""
+  # -- Postgres database password
+  # @default -- postgresql.postgresqlDatabase value
+  DB_DATABASE: ""
+  # -- dashboard admin user (needed to edit)
+  ADMIN_USER: admin
+  # -- dashboard admin password (needed to edit)
+  ADMIN_PASSWORD: admin
+  # -- dashboard admin email
+  ADMIN_EMAIL: info@example.com
+  # -- Use CDN for static context from third-parties
+  USE_CDN: false
+  # -- Disable logs from appearing and writing to disk
+  DISABLE_LOGS: false
 
-# Probes configuration
-probes:
-  liveness:
-    initialDelaySeconds: 60
-    failureThreshold: 5
-    timeoutSeconds: 10
-  readiness:
-    initialDelaySeconds: 60
-    failureThreshold: 5
-    timeoutSeconds: 10
-
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
-env: []
 
 service:
-  type: ClusterIP
-  port: 8080
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  additionalSpec: {}
+  port:
+    port: 8080
 
 ingress:
   enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-  # kubernetes.io/tls-acme: "true"
-  labels: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - /
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
+# -- Generated application config.yaml and logs are written here.
+# Usually does not need to be persisted.
+# @default -- see bellow
 persistence:
-  enabled: true
-  ## statping configuration data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-  ##
-  ## If you want to reuse an existing claim, you can pass the name of the PVC using
-  ## the existingClaim variable
-  # existingClaim: your-claim
-  # subPath: some-subpath
-  accessMode: ReadWriteOnce
-  size: 1Gi
-  ## Do not delete the pvc upon helm uninstall
-  skipuninstall: false
-
-postgres:
-  type: postgresql
-  kubedb:
+  data:
     enabled: false
-    version: 11.1
-    storageType: Durable
-    storage:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 1Gi
-  posgresql:
-    enabled: true
-    # See https://github.com/bitnami/charts/tree/master/bitnami/postgresql for configuration
+    emptyDir: false
+    mountPath: /app
 
-# This is required for postgresql to render its fullname template
-replication:
-  enabled: false
-
-externalSecret:
-  enabled: false
-  type: kubernetes-external-secrets
-  kubernetesExternalSecrets:
-    spec: {}
-    data: []
-
-additionalVolumes: []
-
-additionalVolumeMounts: []
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 3
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-podSecurityContext: {}
-# fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-# runAsNonRoot: true
-# runAsUser: 1000
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-podAnnotations: {}
+# -- Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# @default -- see bellow
+postgresql:
+  # -- By default uses an internal postgress. Dissable if you use your own Postgres.
+  enabled: true
+  # -- Postgres database user name
+  postgresqlUsername: postgres
+  # -- Postgres database password
+  postgresqlPassword: "changeme"
+  # -- Postgres database password
+  postgresqlDatabase: postgres
+  persistence:
+    # -- if database is stored to a PVC. Set to true when you are done testing.
+    enabled: false
+    # storageClass: ""
