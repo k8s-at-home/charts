@@ -34,7 +34,7 @@ timezone: "UTC"
 
 # Specify the Zigbee device that should be passed through to the deCONZ container
 zigbeeDevice:
-  # -- Enables passing through a Zigbee device 
+  # -- Enables passing through a Zigbee device
   enabled: false
   # -- HostPath of the Zigbee device that should be passed through
   hostPath: /dev/ttyUSB1
@@ -75,7 +75,7 @@ securityContext:
 persistence:
   # -- Use persistent volume to store configuration data
   enabled: false
-  # -- Key-value pairs to add as persistent volume claim annotations 
+  # -- Key-value pairs to add as persistent volume claim annotations
   annotations: {}
   ## deconz data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
@@ -171,7 +171,7 @@ resources: {}
 
 probes:
   liveness:
-    # -- Enables liveness probe for the Pod   
+    # -- Enables liveness probe for the Pod
     enabled: true
     # -- Specify liveness `initialDelaySeconds` parameter for the Pod
     initialDelaySeconds: 30
@@ -180,7 +180,7 @@ probes:
     # -- Specify liveness `timeoutSeconds` parameter for the Pod
     timeoutSeconds: 10
   readiness:
-    # -- Enables readiness probe for the Pod   
+    # -- Enables readiness probe for the Pod
     enabled: true
     # -- Specify readiness `initialDelaySeconds` parameter for the Pod
     initialDelaySeconds: 30
@@ -190,9 +190,9 @@ probes:
   startup:
     # -- Enables startup probe for the Pod
     enabled: false
-    # -- Specify startup `failureThreshold` parameter for the Pod 
+    # -- Specify startup `failureThreshold` parameter for the Pod
     failureThreshold: 30
-    # -- Specify startup `periodSeconds` parameter for the Pod 
+    # -- Specify startup `periodSeconds` parameter for the Pod
     periodSeconds: 10
 
 # -- Node labels for pod assignment

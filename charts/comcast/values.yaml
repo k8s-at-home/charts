@@ -5,9 +5,9 @@ replicaCount: 1
 image:
   # -- Comcast image
   repository: billimek/comcastusage-for-influxdb
-  # -- Comcast image tag 
+  # -- Comcast image tag
   tag: latest
-  # -- Comcast image pull policy 
+  # -- Comcast image pull policy
   pullPolicy: IfNotPresent
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -29,19 +29,19 @@ config:
   influxdb:
     # -- InfluxDB hostname
     host: influxdb-influxdb
-    # -- InfluxDB port 
+    # -- InfluxDB port
     port: 8086
     # -- InfluxDB database
     database: comcast
     # username:
     # password:
 
-    # -- InfluxDB connection using SSL 
+    # -- InfluxDB connection using SSL
     ssl: false
   comcast:
     # -- Comcast website login username
     username: someuser
-    # -- Comcast website login password 
+    # -- Comcast website login password
     password: somepassword
 
 # -- Key-value pairs to add as pod annotations
