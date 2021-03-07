@@ -26423,6 +26423,37 @@ entries:
   statping:
   - apiVersion: v2
     appVersion: v0.90.65
+    created: "2021-03-07T20:43:10.131004476Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: Status page for monitoring your websites and applications
+    digest: a5f47639fa98f0444d657e677a739e88882a3dec736f326270fbe7cb80591409
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/statping
+    icon: https://github.com/statping/statping/blob/dev/frontend/src/assets/logo.png?raw=true
+    keywords:
+    - statping
+    - status
+    - status-page
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    - email: git@angelnu.com
+      name: angelnu
+    name: statping
+    sources:
+    - https://github.com/statping/statping
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/statping-2.0.0/statping-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: v0.90.65
     created: "2021-03-01T08:00:48.050014864Z"
     dependencies:
     - condition: postgres.posgresql.enabled
@@ -32337,4 +32368,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-06T19:57:16.466331781Z"
+generated: "2021-03-07T20:43:10.137228001Z"
