@@ -2,10 +2,6 @@ name: "Charts: helm-docs"
 
 on:
   workflow_dispatch:
-    inputs:
-      chart:
-        description: 'Chart name'     
-        required: false
   push:
     paths:
     - 'charts/**/README.md.gotmpl'
