@@ -1,6 +1,6 @@
 # mosquitto
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.0.7](https://img.shields.io/badge/AppVersion-2.0.7-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 2.0.7](https://img.shields.io/badge/AppVersion-2.0.7-informational?style=flat-square)
 
 Eclipse Mosquitto - An open source MQTT broker
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+| https://k8s-at-home.com/charts/ | common | 3.1.0 |
 
 ## TL;DR
 
@@ -80,8 +80,8 @@ N/A
 | image.tag | string | `"2.0.7"` |  |
 | persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.data.emptyDir | bool | `false` |  |
-| persistence.data.enabled | bool | `true` |  |
-| persistence.data.mountPath | string | `"/data"` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/mosquitto/data"` |  |
 | persistence.data.size | string | `"100Mi"` |  |
 | service.annotations | object | `{}` |  |
 | service.port.name | string | `"mqtt"` |  |
@@ -99,11 +99,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- Initial release
+- N/A
 
 #### Changed
 
-- N/A
+- Migrated the chart to the [k8s-at-home common library chart](https://github.com/k8s-at-home/charts/tree/master/charts/common).
 
 #### Removed
 
