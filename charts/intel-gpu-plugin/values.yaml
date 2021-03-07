@@ -1,9 +1,15 @@
 # Default values for intel-gpu-plugin.
 
 image:
+  # -- Image repository
   repository: intel/intel-gpu-plugin
+  # -- Image pull policy
   pullPolicy: IfNotPresent
+  # -- Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags)
   tag: 0.18.1
+
+# -- Specifies the strategy used to replace old Pods by new ones
+strategyType: Recreate
 
 imagePullSecrets: []
 nameOverride: ""
@@ -18,6 +24,7 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
 
 podSecurityContext: {}
