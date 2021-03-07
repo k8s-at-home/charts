@@ -3,8 +3,11 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
+  # -- Comcast image
   repository: billimek/comcastusage-for-influxdb
+  # -- Comcast image tag 
   tag: latest
+  # -- Comcast image pull policy 
   pullPolicy: IfNotPresent
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -18,21 +21,28 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 nodeSelector: {}
+# -- Display debugging output
 debug: false
 config:
-  # how many seconds to wait between checks
+  # -- how many seconds to wait between checks
   delay: 3600
   influxdb:
-    # host/port/database are mandatory - change as needed
+    # -- InfluxDB hostname
     host: influxdb-influxdb
+    # -- InfluxDB port 
     port: 8086
+    # -- InfluxDB database
     database: comcast
     # username:
     # password:
+
+    # -- InfluxDB connection using SSL 
     ssl: false
   comcast:
-    # username/password are mandatory and must be populated
+    # -- Comcast website login username
     username: someuser
+    # -- Comcast website login password 
     password: somepassword
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
