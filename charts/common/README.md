@@ -424,9 +424,9 @@ This is the last version before starting this changelog. All sorts of cool stuff
 
 ## Support
 
-- See the [Wiki](https://github.com/k8s-at-home/charts/wiki).
-- Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
-- Ask a [question](https://github.com/k8s-at-home/charts/discussions)
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/).
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
 ----------------------------------------------
