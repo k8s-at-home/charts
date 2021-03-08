@@ -1,0 +1,12 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+![Screenshot](https://camo.githubusercontent.com/939e044c0491abf790d91bd1d7f909b187e4098c/68747470733a2f2f692e696d6775722e636f6d2f70705a6a6e6b502e706e67)
+
+The configuration is set as a block of text through a configmap and mouted as a file in /src/config.ini Any value in this text block should match the defined sb6183 configuration. There are several values here that will have to match our kubernetes configuration.
+
+{{- end -}}
