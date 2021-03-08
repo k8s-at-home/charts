@@ -1,43 +1,135 @@
-# DnsMadeEasy webhook for cert-manager
+# cert-manager-dnsmadeeasy
 
-This is a helm chart adding a webhook to the [Certificate Manager](https://cert-manager.io/) for [DnsMadeEasy](https://dnsmadeeasy.com/). You have to install the original chart or this one will not work.
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-The code implementing the webhook is [here](https://github.com/angelnu/cert-manager-webhook-dnsmadeeasy).
+Cert-Manager Webhook for DNSMadeEasy
 
-**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/angelnu/charts/issues/new/choose)**
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
-## TL;DR;
+## Source Code
 
-```shell
-$ helm repo add k8s-at-home https://angelnu.com/charts/
-$ helm install k8s-at-home/cert-manager-dnsmadeeasy
+* <https://github.com/angelnu/cert-manager-webhook-dnsmadeeasy>
+* <https://cert-manager.io>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://k8s-at-home.com/charts/ | common | 3.1.0 |
+
+## TL;DR
+
+```console
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install cert-manager-dnsmadeeasy k8s-at-home/cert-manager-dnsmadeeasy
 ```
-
-## :star2: Changelog
-
-Please refer to [CHANGELOG.md](CHANGELOG.md) for an overview of notable changes to the chart. **This is especially important for major version updates!**
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `cert-manager-dnsmadeeasy`
 
 ```console
-helm install --name my-release angelnu/cert-manager-dnsmadeeasy
+helm install cert-manager-dnsmadeeasy k8s-at-home/cert-manager-dnsmadeeasy
 ```
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `cert-manager-dnsmadeeasy` deployment
 
 ```console
-helm delete my-release --purge
+helm uninstall cert-manager-dnsmadeeasy
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
-Read through the charts [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/cert-manager-dnsmadeeasy/values.yaml)
-file. It has several commented out suggested values.
+## Configuration
 
-## Upgrading an existing Release to a new major version
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-A major chart version change (like 1.0.1 -> 2.0.0) indicates that there is an incompatible breaking change potentially needing manual actions.
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+
+```console
+helm install cert-manager-dnsmadeeasy \
+  --set env.TZ="America/New York" \
+    k8s-at-home/cert-manager-dnsmadeeasy
+```
+
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
+
+```console
+helm install cert-manager-dnsmadeeasy k8s-at-home/cert-manager-dnsmadeeasy -f values.yaml
+```
+
+## Custom configuration
+
+N/A
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| additionalVolumeMounts[0].mountPath | string | `"/tls"` |  |
+| additionalVolumeMounts[0].name | string | `"certs"` |  |
+| additionalVolumeMounts[0].readOnly | bool | `true` |  |
+| args | string | `"[\"--tls-cert-file=/tls/tls.crt\",\"--tls-private-key-file=/tls/tls.key\"]"` |  |
+| certManager.namespace | string | `"cert-manager"` | Namespace where the cert-manager operator was installed to |
+| certManager.serviceAccountName | string | `"cert-manager"` | Service account used by the cert-manager |
+| groupName | string | `"acme.mycompany.com"` | The GroupName here is used to identify your company or business unit that created this webhook. This name will need to be referenced in each Issuer's `webhook` stanza to inform cert-manager of where to send ChallengePayload resources in order to solve the DNS01 challenge. This group name should be **unique**, hence using your own company's domain here is recommended. |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"ghcr.io/k8s-at-home/cert-manager-dnsmadeeasy"` | Image repository |
+| image.tag | string | `"v1.0.0"` | Image tag |
+| probes.liveness.custom | bool | `true` |  |
+| probes.liveness.enabled | bool | `true` |  |
+| probes.liveness.spec.httpGet.path | string | `"/healthz"` |  |
+| probes.liveness.spec.httpGet.port | string | `"https"` |  |
+| probes.liveness.spec.httpGet.scheme | string | `"HTTPS"` |  |
+| probes.readiness.custom | bool | `true` |  |
+| probes.readiness.enabled | bool | `true` |  |
+| probes.readiness.spec.httpGet.path | string | `"/healthz"` |  |
+| probes.readiness.spec.httpGet.port | string | `"https"` |  |
+| probes.readiness.spec.httpGet.scheme | string | `"HTTPS"` |  |
+| probes.startup.custom | bool | `true` |  |
+| probes.startup.enabled | bool | `true` |  |
+| probes.startup.spec.httpGet.path | string | `"/healthz"` |  |
+| probes.startup.spec.httpGet.port | string | `"https"` |  |
+| probes.startup.spec.httpGet.scheme | string | `"HTTPS"` |  |
+| service.port.name | string | `"https"` |  |
+| service.port.port | int | `443` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Moved chart to k8s-at-home
+
+#### Removed
+
+- N/A
+
+[2.0.0]: #2.0.0
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
