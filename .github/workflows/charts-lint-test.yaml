@@ -111,7 +111,7 @@ jobs:
       if: needs.lint.outputs.changed == 'true' || needs.lint.outputs.common == 'true'
 
     - name: Run chart-testing (install)
-      run: ct install --config .github/ct.yaml --excluded-charts ""
+      run: ct install --config .github/ct.yaml --excluded-charts "dnsmadeeasy-webhook"
       if: needs.lint.outputs.changed == 'true'
 
     - name: Run chart-testing (common-test)
