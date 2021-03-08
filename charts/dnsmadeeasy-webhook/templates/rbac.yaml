@@ -44,7 +44,7 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ include "common.names.fullname" . }}:webhook-authentication-reader
+  name: {{ include "common.names.fullname" . }}-webhook-authentication-reader
   namespace: kube-system
   labels:
     {{- include "common.labels" . | nindent 4 }}
@@ -63,7 +63,7 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ include "common.names.fullname" . }}:auth-delegator
+  name: {{ include "common.names.fullname" . }}-auth-delegator
   labels:
     {{- include "common.labels" . | nindent 4 }}
 roleRef:
@@ -80,7 +80,7 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ include "common.names.fullname" . }}:domain-solver
+  name: {{ include "common.names.fullname" . }}-domain-solver
   labels:
     {{- include "common.labels" . | nindent 4 }}
 rules:
@@ -94,13 +94,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ include "common.names.fullname" . }}:domain-solver
+  name: {{ include "common.names.fullname" . }}-domain-solver
   labels:
     {{- include "common.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ include "common.names.fullname" . }}:domain-solver
+  name: {{ include "common.names.fullname" . }}-domain-solver
 subjects:
   - apiGroup: ""
     kind: ServiceAccount
