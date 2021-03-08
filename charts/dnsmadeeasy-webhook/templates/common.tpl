@@ -1,19 +1,19 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{- define "cert-manager-dnsmadeeasy.selfSignedIssuer" -}}
+{{- define "dnsmadeeasy-webhook.selfSignedIssuer" -}}
 {{ printf "%s-selfsign" (include "common.names.fullname" .) }}
 {{- end -}}
 
-{{- define "cert-manager-dnsmadeeasy.rootCAIssuer" -}}
+{{- define "dnsmadeeasy-webhook.rootCAIssuer" -}}
 {{ printf "%s-ca" (include "common.names.fullname" .) }}
 {{- end -}}
 
-{{- define "cert-manager-dnsmadeeasy.rootCACertificate" -}}
+{{- define "dnsmadeeasy-webhook.rootCACertificate" -}}
 {{ printf "%s-ca" (include "common.names.fullname" .) }}
 {{- end -}}
 
-{{- define "cert-manager-dnsmadeeasy.servingCertificate" -}}
+{{- define "dnsmadeeasy-webhook.servingCertificate" -}}
 {{ printf "%s-webhook-tls" (include "common.names.fullname" .) }}
 {{- end -}}
 
@@ -22,13 +22,13 @@
 
 
 {{/* Append the cert secret to the additionalVolumes */}}
-{{- define "cert-manager-dnsmadeeasy.servingCertificate.volume" -}}
+{{- define "dnsmadeeasy-webhook.servingCertificate.volume" -}}
 name: certs
 secret:
-  secretName: {{ include "cert-manager-dnsmadeeasy.servingCertificate" . }}
+  secretName: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
 {{- end -}}
 
-{{- $volume := include "cert-manager-dnsmadeeasy.servingCertificate.volume" . | fromYaml -}}
+{{- $volume := include "dnsmadeeasy-webhook.servingCertificate.volume" . | fromYaml -}}
 {{- if $volume -}}
   {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
   {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}

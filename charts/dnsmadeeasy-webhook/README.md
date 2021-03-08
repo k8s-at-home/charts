@@ -1,4 +1,4 @@
-# cert-manager-dnsmadeeasy
+# dnsmadeeasy-webhook
 
 ![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
@@ -8,7 +8,7 @@ Cert-Manager Webhook for DNSMadeEasy
 
 ## Source Code
 
-* <https://github.com/angelnu/cert-manager-webhook-dnsmadeeasy>
+* <https://github.com/k8s-at-home/dnsmadeeasy-webhook>
 * <https://cert-manager.io>
 
 ## Requirements
@@ -24,23 +24,23 @@ Cert-Manager Webhook for DNSMadeEasy
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install cert-manager-dnsmadeeasy k8s-at-home/cert-manager-dnsmadeeasy
+helm install dnsmadeeasy-webhook k8s-at-home/dnsmadeeasy-webhook
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `cert-manager-dnsmadeeasy`
+To install the chart with the release name `dnsmadeeasy-webhook`
 
 ```console
-helm install cert-manager-dnsmadeeasy k8s-at-home/cert-manager-dnsmadeeasy
+helm install dnsmadeeasy-webhook k8s-at-home/dnsmadeeasy-webhook
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `cert-manager-dnsmadeeasy` deployment
+To uninstall the `dnsmadeeasy-webhook` deployment
 
 ```console
-helm uninstall cert-manager-dnsmadeeasy
+helm uninstall dnsmadeeasy-webhook
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -53,15 +53,15 @@ Other values may be used from the [values.yaml](../common/values.yaml) from the 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install cert-manager-dnsmadeeasy \
+helm install dnsmadeeasy-webhook \
   --set env.TZ="America/New York" \
-    k8s-at-home/cert-manager-dnsmadeeasy
+    k8s-at-home/dnsmadeeasy-webhook
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install cert-manager-dnsmadeeasy k8s-at-home/cert-manager-dnsmadeeasy -f values.yaml
+helm install dnsmadeeasy-webhook k8s-at-home/dnsmadeeasy-webhook -f values.yaml
 ```
 
 ## Custom configuration
@@ -82,7 +82,7 @@ N/A
 | certManager.serviceAccountName | string | `"cert-manager"` | Service account used by the cert-manager |
 | groupName | string | `"acme.mycompany.com"` | The GroupName here is used to identify your company or business unit that created this webhook. This name will need to be referenced in each Issuer's `webhook` stanza to inform cert-manager of where to send ChallengePayload resources in order to solve the DNS01 challenge. This group name should be **unique**, hence using your own company's domain here is recommended. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| image.repository | string | `"ghcr.io/k8s-at-home/cert-manager-dnsmadeeasy"` | Image repository |
+| image.repository | string | `"ghcr.io/k8s-at-home/dnsmadeeasy-webhook"` | Image repository |
 | image.tag | string | `"v1.0.0"` | Image tag |
 | probes.liveness.custom | bool | `true` |  |
 | probes.liveness.enabled | bool | `true` |  |

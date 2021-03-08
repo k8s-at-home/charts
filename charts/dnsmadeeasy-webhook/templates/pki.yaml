@@ -4,7 +4,7 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ include "cert-manager-dnsmadeeasy.selfSignedIssuer" . }}
+  name: {{ include "dnsmadeeasy-webhook.selfSignedIssuer" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
@@ -17,17 +17,17 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "cert-manager-dnsmadeeasy.rootCACertificate" . }}
+  name: {{ include "dnsmadeeasy-webhook.rootCACertificate" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
-  secretName: {{ include "cert-manager-dnsmadeeasy.rootCACertificate" . }}
+  secretName: {{ include "dnsmadeeasy-webhook.rootCACertificate" . }}
   duration: 43800h # 5y
   issuerRef:
-    name: {{ include "cert-manager-dnsmadeeasy.selfSignedIssuer" . }}
+    name: {{ include "dnsmadeeasy-webhook.selfSignedIssuer" . }}
     kind: Issuer
-  commonName: "ca.cert-manager-dnsmadeeasy.cert-manager"
+  commonName: "ca.dnsmadeeasy-webhook.cert-manager"
   isCA: true
 
 ---
@@ -36,13 +36,13 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ include "cert-manager-dnsmadeeasy.rootCAIssuer" . }}
+  name: {{ include "dnsmadeeasy-webhook.rootCAIssuer" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
   ca:
-    secretName: {{ include "cert-manager-dnsmadeeasy.rootCACertificate" . }}
+    secretName: {{ include "dnsmadeeasy-webhook.rootCACertificate" . }}
 
 ---
 
@@ -50,15 +50,15 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "cert-manager-dnsmadeeasy.servingCertificate" . }}
+  name: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
-  secretName: {{ include "cert-manager-dnsmadeeasy.servingCertificate" . }}
+  secretName: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
   duration: 8760h # 1y
   issuerRef:
-    name: {{ include "cert-manager-dnsmadeeasy.rootCAIssuer" . }}
+    name: {{ include "dnsmadeeasy-webhook.rootCAIssuer" . }}
     kind: Issuer
   dnsNames:
   - {{ include "common.names.fullname" . }}
