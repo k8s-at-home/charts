@@ -1,14 +1,9 @@
 name: "Charts: helm-docs"
 
 on:
-  workflow_dispatch:
-  push:
-    paths:
-    - 'charts/**/README.md.gotmpl'
-    - 'charts/**/README_CHANGELOG.md.gotmpl'
-    - 'charts/**/README_CONFIG.md.gotmpl'
-    - 'charts/**/Chart.yaml'
-    - 'charts/**/values.yaml'
+  workflow_dispatch:  
+  schedule:
+  - cron: "0 0 * * *"
 
 jobs:
   update-helm-docs:
@@ -35,12 +30,8 @@ jobs:
 
     - name: Update Helm docs
       run: |
-        helm-docs \
-            --ignore-file=".helmdocsignore" \
-            --template-files="README.md.gotmpl" \
-            --template-files="README_CONFIG.md.gotmpl" \
-            --template-files="README_CHANGELOG.md.gotmpl" \
-            --chart-search-root="charts"
+        ./hack/gen-helm-docs.sh
+        
     - name: Create pull request for helm-docs
       uses: peter-evans/create-pull-request@v3
       with:
