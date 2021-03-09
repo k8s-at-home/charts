@@ -27,6 +27,8 @@ https://k8s-at-home.com/charts/
 {{- define "custom.dependencies" -}}
 ## Dependencies
 
+This chart depends on the [cert-manager](https://cert-manager.io/docs/installation/kubernetes/).
+
 {{ template "chart.requirementsTable" . }}
 {{- end -}}
 
