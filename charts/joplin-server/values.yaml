@@ -1,0 +1,28 @@
+# Default values for pyLoad.
+
+image:
+  repository: joplin/server
+  pullPolicy: IfNotPresent
+  tag: 1.7.2
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 22300
+
+env:
+  # APP_BASE_URL: https://joplin.domain
+  APP_PORT: 22300
+  # DB_CLIENT : pg
+  # POSTGRES_HOST : postgresl.domain
+  # POSTGRES_PORT : 5432
+  # POSTGRES_DATABASE : joplin
+  # POSTGRES_USER : joplin
+  # POSTGRES_PASSWORD : password
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false

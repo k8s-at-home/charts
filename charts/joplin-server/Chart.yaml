@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 1.7.2
+description: This server allows you to sync any Joplin client
+name: joplin-server
+version: 1.0.0
+keywords:
+  - joplin
+  - notes
+home: https://github.com/k8s-at-home/charts/tree/master/charts/jopplin
+icon: https://raw.githubusercontent.com/laurent22/joplin/master/Assets/LinuxIcons/256x256.png?raw=true
+sources:
+  - https://github.com/laurent22/joplin/tree/dev/packages/server
+  - https://github.com/laurent22/joplin
+  - https://hub.docker.com/r/joplin/server
+maintainers:
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
+dependencies:
+  - name: common
+    repository: https://k8s-at-home.com/charts/
+    version: 2.2.0
