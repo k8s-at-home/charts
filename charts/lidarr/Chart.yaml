@@ -2,20 +2,21 @@ apiVersion: v2
 appVersion: 0.8.0.1886
 description: Looks and smells like Sonarr but made for music
 name: lidarr
-version: 6.4.0
+version: 7.2.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - lidarr
-  - torrent
-  - usenet
+- lidarr
+- torrent
+- usenet
 home: https://github.com/k8s-at-home/charts/tree/master/charts/lidarr
 icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
 sources:
-  - https://github.com/Lidarr/Lidarr
-  - https://hub.docker.com/r/linuxserver/lidarr
+- https://github.com/Lidarr/Lidarr
+- https://hub.docker.com/r/linuxserver/lidarr
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.1.0

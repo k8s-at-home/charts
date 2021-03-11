@@ -69,4 +69,3 @@ $ helm install --name my-release -f values.yaml k8s-at-home/speedtest
 ```
 
 Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/speedtest/values.yaml) file. It has several commented out suggested values.
-

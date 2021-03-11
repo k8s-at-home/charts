@@ -6,7 +6,7 @@ Default NOTES.txt content.
 1. Get the application URL by running these commands:
 {{- if .Values.ingress.enabled }}
 {{- range .Values.ingress.hosts }}
-  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .host }}{{ (first .paths).path }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{- if .hostTpl }}{{ tpl .hostTpl $ }}{{ else }}{{ .host }}{{ end }}{{ (first .paths).path }}
 {{- end }}
 {{- else if contains "NodePort" .Values.service.type }}
   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "common.names.fullname" . }})

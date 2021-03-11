@@ -1,27 +1,37 @@
-# Default values for Searx.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: searx/searx
   pullPolicy: IfNotPresent
   tag: 0.18.0
 
+strategy:
+  type: Recreate
+
 searx:
+  existingSecret:
+    enabled: false
   # external URL
   baseUrl: "https://searx.DOMAIN"
   # generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service)
   # example : `openssl rand -base64 24`
   mortyKey: "changeme"
 
-strategy:
-  type: Recreate
+envFrom:
+- secretRef:
+    name: searx-config
 
 service:
   port:
     port: 80
 
-envFrom:
-  - secretRef:
-      name: searx-config
+ingress:
+  enabled: false
 
 persistence:
   config:
@@ -32,14 +42,14 @@ additionalContainers:
 - name: caddy
   image: caddy:2.2.0-alpine
   ports:
-    - containerPort: 80
-      name: http
+  - containerPort: 80
+    name: http
   volumeMounts:
-    - name: searx-config
-      mountPath: /etc/caddy/Caddyfile
-      subPath: Caddyfile
-    - name: searx-checker
-      mountPath: /srv/searx-checker
+  - name: searx-config
+    mountPath: /etc/caddy/Caddyfile
+    subPath: Caddyfile
+  - name: searx-checker
+    mountPath: /srv/searx-checker
 - image: dalf/filtron:latest
   imagePullPolicy: Always
   name: filtron
@@ -53,31 +63,31 @@ additionalContainers:
       "localhost:8080",
     ]
   ports:
-    - containerPort: 4040
-      name: filtron
-    - containerPort: 4041
-      name: api
+  - containerPort: 4040
+    name: filtron
+  - containerPort: 4041
+    name: api
   volumeMounts:
-    - name: searx-config
-      mountPath: /etc/filtron/rules.json
-      subPath: rules.json
+  - name: searx-config
+    mountPath: /etc/filtron/rules.json
+    subPath: rules.json
 - image: dalf/morty:latest
   imagePullPolicy: Always
   name: morty
   envFrom:
-    - secretRef:
-        name: searx-config
+  - secretRef:
+      name: searx-config
   args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
   ports:
-    - containerPort: 3000
-      name: morty
+  - containerPort: 3000
+    name: morty
 - name: searx-checker
   image: searx/searx-checker:latest
   args:
     ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
   volumeMounts:
-    - name: searx-checker
-      mountPath: /usr/local/searx-checker/html/data
+  - name: searx-checker
+    mountPath: /usr/local/searx-checker/html/data
 additionalVolumes:
 - name: searx-config
   configMap:

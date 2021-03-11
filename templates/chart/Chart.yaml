@@ -3,17 +3,17 @@ appVersion: 1.0.0
 description: ${CHARTNAME} helm package
 name: ${CHARTNAME}
 version: 1.1.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - ${CHARTNAME}
+- ${CHARTNAME}
 home: https://github.com/k8s-at-home/charts/tree/master/charts/${CHARTNAME}
 icon: https://${CHARTNAME}.org/icon
 sources:
-  - https://github.com/${CHARTNAME}/${CHARTNAME}-docker
-  - https://github.com/k8s-at-home/charts/tree/master/charts/${CHARTNAME}
+- https://github.com/${CHARTNAME}/${CHARTNAME}-docker
 maintainers:
-  - name: ${CHARTNAME}
-    email: ${CHARTNAME}@${CHARTNAME}.com
+- name: ${CHARTNAME}
+  email: ${CHARTNAME}@${CHARTNAME}.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.1.0

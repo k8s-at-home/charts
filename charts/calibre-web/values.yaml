@@ -1,4 +1,9 @@
-# Default values for Calibre-Web.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: linuxserver/calibre-web
@@ -8,16 +13,19 @@ image:
 strategy:
   type: Recreate
 
-service:
-  port:
-    port: 8083
-
 env: {}
   # TZ:
   # PUID:
   # PGID:
   # UMASK:
   # DOCKER_MODS:
+
+service:
+  port:
+    port: 8083
+
+ingress:
+  enabled: false
 
 persistence:
   config:

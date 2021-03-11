@@ -3,62 +3,80 @@
 # Declare variables to be passed into your templates.
 
 image:
+  # -- Image repository
   repository: linuxserver/duplicati
+  # -- Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/duplicati/tags/).
   tag: v2.0.5.1-2.0.5.1_beta_2020-01-18-ls72
+  # -- Image pull policy
   pullPolicy: IfNotPresent
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
+# -- Specifies the strategy used to replace old Pods by new ones
 strategyType: Recreate
 
 # Probes configuration
 probes:
   liveness:
+    # -- Specify liveness `initialDelaySeconds` parameter for the deployment
     initialDelaySeconds: 60
+    # -- Specify liveness `failureThreshold` parameter for the deployment
     failureThreshold: 5
+    # -- Specify liveness `timeoutSeconds` parameter for the deployment
     timeoutSeconds: 10
   readiness:
+    # -- Specify readiness `initialDelaySeconds` parameter for the deployment
     initialDelaySeconds: 60
+    # -- Specify readiness `failureThreshold` parameter for the deployment
     failureThreshold: 5
+    # -- Specify readiness `timeoutSeconds` parameter for the deployment
     timeoutSeconds: 10
 
 nameOverride: ""
 fullnameOverride: ""
 
+# -- Timezone the duplicati instance should run as, e.g. 'America/New_York'
 timezone: UTC
+# -- Process userID the duplicati instance should run as
 puid: 1001
+# -- Process groupID the duplicati instance should run as
 pgid: 1001
+# -- Optionally specify any CLI variables you want to launch the app with
 cliArgs: ""
 
 service:
+  # -- Kubernetes service type for the duplicati GUI
   type: ClusterIP
+  # -- Kubernetes port where the duplicati GUI is exposed
   port: 8200
   ## Specify the nodePort value for the LoadBalancer and NodePort service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
   # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+
+  # -- Service annotations for the duplicati GUI
   annotations: {}
+  # -- Custom labels
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Loadbalance IP for the duplicati GUI
   loadBalancerIP:
+  # -- List of IP CIDRs allowed access to load balancer (if supported)
   # loadBalancerSourceRanges: []
+
   ## Set the externalTrafficPolicy in the Service to either Cluster or Local
   # externalTrafficPolicy: Cluster
 
 ingress:
+  # -- Enables Ingress
   enabled: false
+  # -- Ingress annotations
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # -- Custom labels
   labels: {}
+  # -- Ingress path
   path: /
+  # -- Ingress accepted hostnames
   hosts:
     - chart-example.local
+  # -- Ingress TLS configuration
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -66,59 +84,51 @@ ingress:
 
 persistence:
   config:
+    # -- Use persistent volume to store configuration data
     enabled: true
-    ## duplicati configuration data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
+    # -- Type of persistent volume claim
     # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
+
+    # -- Use an existing PVC to persist data
     # existingClaim: your-claim
+
+    # -- Persistence access mode
     accessMode: ReadWriteOnce
+    # -- Size of persistent volume claim
     size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
+    # -- Do not delete the pvc upon helm uninstall
     skipuninstall: false
   source:
+    # -- Use persistent volume to store source data
     enabled: true
-    ## duplicati source data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
+    # -- Type of persistent volume claim
     # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
+
+    # -- Use an existing PVC to persist data
     # existingClaim: your-claim
+
+    # -- Persistence access mode
     accessMode: ReadWriteOnce
+    # -- Size of persistent volume claim
     size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
+    # -- Do not delete the pvc upon helm uninstall
     skipuninstall: false
   backups:
+    # -- Use persistent volume to store backups data
     enabled: true
-    ## duplicati backups data Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
+    # -- Type of persistent volume claim
     # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
+
+    # -- Use an existing PVC to persist data
     # existingClaim: your-claim
+
+    # -- Persistence access mode
     accessMode: ReadWriteOnce
+    # -- Size of persistent volume claim
     size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
+    # -- Do not delete the pvc upon helm uninstall
     skipuninstall: false
+  # -- Optionally add multiple existing claims
   extraExistingClaimMounts: []
     # - name: external-mount
     #   mountPath: /srv/external-mount
@@ -127,6 +137,7 @@ persistence:
     #   existingClaim:
     #   readOnly: true
 
+# -- CPU/Memory resource requests/limits
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -139,12 +150,17 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
+# -- Node labels for pod assignment
 nodeSelector: {}
 
+# -- Toleration labels for pod assignment
 tolerations: []
 
+# -- Affinity settings for pod assignment
 affinity: {}
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
 
+# -- Key-value pairs to add as deployment annotations
 deploymentAnnotations: {}

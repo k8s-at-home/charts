@@ -2,17 +2,18 @@ apiVersion: v2
 appVersion: v2.7.1
 description: ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home
 name: grocy
-version: 4.4.0
+version: 5.1.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - grocy
+- grocy
 home: https://github.com/k8s-at-home/charts/tree/master/charts/grocy
 icon: https://github.com/grocy/grocy/raw/master/public/img/appicons/mstile-150x150.png
 sources:
-  - https://github.com/grocy/grocy
+- https://github.com/grocy/grocy
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    version: 2.4.0
-    repository: https://k8s-at-home.com/charts/
+- name: common
+  version: 3.1.0
+  repository: https://k8s-at-home.com/charts/

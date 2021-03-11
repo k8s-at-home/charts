@@ -2,19 +2,20 @@ apiVersion: v2
 appVersion: 0.4.20
 description: pyLoad is a Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web.
 name: pyload
-version: 2.4.0
+version: 3.1.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - pyload
-  - download
+- pyload
+- download
 home: https://github.com/k8s-at-home/charts/tree/master/charts/pyload
 icon: https://github.com/pyload/pyload/blob/main/media/logo.png?raw=true
 sources:
-  - https://github.com/pyload/pyload
-  - https://hub.docker.com/r/linuxserver/pyload
+- https://github.com/pyload/pyload
+- https://hub.docker.com/r/linuxserver/pyload
 maintainers:
-  - name: auricom
-    email: k8s-at-home@xpander.eml.cc
+- name: auricom
+  email: k8s-at-home@xpander.eml.cc
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.1.0

@@ -1,21 +1,22 @@
 apiVersion: v2
-appVersion: 1.0.0-alpha.2
+appVersion: 1.1.1
 description: Fully configurable Zwave to MQTT Gateway and Control Panel
 name: zwavejs2mqtt
-version: 1.2.0
+version: 2.1.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - zwave
-  - mqtt
-  - home-assistant
+- zwave
+- mqtt
+- home-assistant
 home: https://github.com/k8s-at-home/charts/tree/master/charts/zwavejs2mqtt
 icon: https://github.com/OpenZWave/Zwave2Mqtt/raw/master/docs/OZW_Logo.png
 sources:
-  - https://github.com/zwave-js/zwavejs2mqtt
-  - https://hub.docker.com/r/zwavejs/zwavejs2mqtt
+- https://github.com/zwave-js/zwavejs2mqtt
+- https://hub.docker.com/r/zwavejs/zwavejs2mqtt
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.1.0

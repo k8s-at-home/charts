@@ -1,40 +1,56 @@
 # traefik-forward-auth
 
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square) [![ArtifactHub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/traefik-forward-auth)](https://artifacthub.io/packages/helm/k8s-at-home/traefik-forward-auth)
+![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.2.1](https://img.shields.io/badge/AppVersion-2.2.1-informational?style=flat-square)
 
 A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
 
-The default values and container images used in this chart will allow for running in a multi-arch cluster (amd64, arm, arm64)
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
-Chart that
-* Adds docker image information leveraging the [official image](https://github.com/thomseddon/traefik-forward-auth)
-* Deploys [traefik-forward-auth](https://github.com/thomseddon/traefik-forward-auth)
+## Source Code
+
+* <https://github.com/thomseddon/traefik-forward-auth>
+* <https://hub.docker.com/r/thomseddon/traefik-forward-auth>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
 
 ## TL;DR
+
 ```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/traefik-forward-auth
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install traefik-forward-auth k8s-at-home/traefik-forward-auth
 ```
 
 ## Installing the Chart
-To install the chart with the release name `traefik-forward-auth`:
+
+To install the chart with the release name `traefik-forward-auth`
+
 ```console
 helm install traefik-forward-auth k8s-at-home/traefik-forward-auth
 ```
 
 ## Uninstalling the Chart
-To uninstall the `traefik-forward-auth` deployment:
+
+To uninstall the `traefik-forward-auth` deployment
+
 ```console
 helm uninstall traefik-forward-auth
 ```
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/traefik-forward-auth/values.yaml)
-file. It has several commented out suggested values.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+
 ```console
 helm install traefik-forward-auth \
   --set env.TZ="America/New York" \
@@ -42,12 +58,18 @@ helm install traefik-forward-auth \
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
-For example,
+
 ```console
-helm install traefik-forward-auth k8s-at-home/traefik-forward-auth --values values.yaml
+helm install traefik-forward-auth k8s-at-home/traefik-forward-auth -f values.yaml
 ```
 
+## Custom configuration
+
+N/A
+
 ## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
@@ -124,3 +146,35 @@ helm install traefik-forward-auth k8s-at-home/traefik-forward-auth --values valu
 | serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` |  |
 | urlPath | string | `""` | Callback URL Path (default: /_oauth) |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.6]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- use helm-docs
+
+#### Removed
+
+- N/A
+
+[1.0.6]: #1.0.6
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

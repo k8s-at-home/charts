@@ -1,0 +1,77 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Host paths */}}
+{{- define "sdm.dev.volume" -}}
+name: host-dev
+hostPath:
+  path: {{ .Values.devPath | default "/dev" }}
+{{- end -}}
+{{- define "sdm.sys.volume" -}}
+name: host-sys
+hostPath:
+  path: {{ .Values.sysPath | default "/sys" }}
+{{- end -}}
+{{- define "sdm.device-plugins.volume" -}}
+name: host-device-plugins
+hostPath:
+  path: {{ .Values.devicePluginPath | default "/var/lib/kubelet/device-plugins" }}
+{{- end -}}
+
+{{- define "sdm.dev.volumeMount" -}}
+name: host-dev
+mountPath: /dev
+{{- end -}}
+{{- define "sdm.sys.volumeMount" -}}
+name: host-sys
+mountPath: /sys
+{{- end -}}
+{{- define "sdm.device-plugins.volumeMount" -}}
+name: host-device-plugins
+mountPath: /var/lib/kubelet/device-plugins
+{{- end -}}
+
+{{/* Append host paths and the configMap to the additionalVolumes and additionalVolumeMounts */}}
+{{- define "sdm.configmap.volume" -}}
+name: configuration
+configMap:
+  name: {{ template "common.names.fullname" . }}
+{{- end -}}
+
+{{- $additionalVolumes := .Values.additionalVolumes -}}
+{{- $volume := include "sdm.dev.volume" . | fromYaml -}}
+{{- $additionalVolumes := append $additionalVolumes $volume -}}
+{{- $volume := include "sdm.sys.volume" . | fromYaml -}}
+{{- $additionalVolumes := append $additionalVolumes $volume -}}
+{{- $volume := include "sdm.device-plugins.volume" . | fromYaml -}}
+{{- $additionalVolumes := append $additionalVolumes $volume -}}
+{{- $volume := include "sdm.configmap.volume" . | fromYaml -}}
+{{- $additionalVolumes := append $additionalVolumes $volume -}}
+{{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+
+{{- define "sdm.configmap.volumeMount" -}}
+name: configuration
+mountPath: /root/config/conf.yaml
+subPath: conf.yaml
+{{- end -}}
+
+{{- $additionalVolumeMounts := .Values.additionalVolumeMounts -}}
+{{- $volumeMount := include "sdm.dev.volumeMount" . | fromYaml -}}
+{{- $additionalVolumeMounts := append $additionalVolumeMounts $volumeMount -}}
+{{- $volumeMount := include "sdm.sys.volumeMount" . | fromYaml -}}
+{{- $additionalVolumeMounts := append $additionalVolumeMounts $volumeMount -}}
+{{- $volumeMount := include "sdm.device-plugins.volumeMount" . | fromYaml -}}
+{{- $additionalVolumeMounts := append $additionalVolumeMounts $volumeMount -}}
+{{- $volumeMount := include "sdm.configmap.volumeMount" . | fromYaml -}}
+{{- $additionalVolumeMounts := append $additionalVolumeMounts $volumeMount -}}
+{{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+
+{{/* DaemonSet controller, disabling defaults */}}
+{{- $_ := set .Values "controllerType" "daemonset" }}
+{{- $_ := set .Values.probes.liveness "enabled" false }}
+{{- $_ := set .Values.probes.readiness "enabled" false }}
+{{- $_ := set .Values.probes.startup "enabled" false }}
+{{- $_ := set .Values.service "enabled" false }}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}

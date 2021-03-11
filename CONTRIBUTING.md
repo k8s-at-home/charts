@@ -48,12 +48,13 @@ sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b .bin
 
 # Create chart
 PATH=$PATH:$PWD/.bin
+task deps:install
 task chart:create CHART=chart_name
 # Don't forgot edit some chart informations in charts/char_name/Chart.yaml and charts/char_name/values.yaml
 
-# Lint & Test
+# Linting
 task chart:lint CHART=chart_name
-task chart:test CHART=chart_name
+task chart:ct-lint CHART=chart_name
 ```
 
 ### Immutability
@@ -72,3 +73,7 @@ Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to
 ### pre-commit
 
 This repo supports the [pre-commit](https://pre-commit.com) framework. By installing the framework (see [docs](https://pre-commit.com/#install)) it is possible to perform the chart linting step before committing your code. This can help prevent linter issues in the pipeline. Note that this requires having Docker running on your development environment.
+
+## Documentation
+
+See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/) for more information.

@@ -1,0 +1,38 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: registry.gitlab.com/arm-research/smarter/smarter-device-manager
+  tag: v1.1.2
+  pullPolicy: IfNotPresent
+
+# Override default configuration
+# config:
+#   - devicematch: ^snd$
+#     nummaxdevices: 20
+#   - devicematch: ^ttyUSB.*$
+#     nummaxdevices: 1
+
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet
+
+devicePluginPath: "/var/lib/kubelet/device-plugins"
+# devPath: "/special-dev/"
+# sysPath: "/special-sys/"
+
+# Setting priority class is not necessary, but is recommended.
+# Ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+priorityClassName: system-node-critical
+
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  allowPrivilegeEscalation: false
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000

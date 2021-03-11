@@ -2,23 +2,24 @@ apiVersion: v2
 appVersion: 4.0.681
 description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
 name: ombi
-version: 7.1.0
+version: 8.1.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - ombi
-  - plex
-  - emby
-  - sonarr
-  - radarr
-  - couchpotato
+- ombi
+- plex
+- emby
+- sonarr
+- radarr
+- couchpotato
 home: https://github.com/k8s-at-home/charts/tree/master/charts/ombi
 icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
 sources:
-  - https://github.com/tidusjar/Ombi
-  - https://hub.docker.com/r/linuxserver/ombi
+- https://github.com/tidusjar/Ombi
+- https://hub.docker.com/r/linuxserver/ombi
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
 dependencies:
-  - name: common
-    repository: https://k8s-at-home.com/charts/
-    version: 2.4.0
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.1.0

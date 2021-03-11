@@ -1,4 +1,9 @@
-# Default values for Octoprint.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: octoprint/octoprint
@@ -8,21 +13,23 @@ image:
 strategy:
   type: Recreate
 
-securityContext:
-  privileged: true
-
-service:
-  port:
-    port: 80
-
 env:
   # TZ: UTC
-
   ## uncomment the environment variables below to ensure camera streaming is enabled when
   ## you add a video device
   # ENABLE_MJPG_STREAMER: "true"
   # MJPG_STREAMER_INPUT: "-y -n -r 640x480"
   # CAMERA_DEV: /dev/video0
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
+
+securityContext:
+  privileged: true
 
 persistence:
   data:

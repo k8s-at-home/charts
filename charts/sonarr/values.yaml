@@ -1,4 +1,9 @@
-# Default values for Sonarr.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: linuxserver/sonarr
@@ -8,14 +13,38 @@ image:
 strategy:
   type: Recreate
 
-service:
-  port:
-    port: 8989
-
 env: {}
   # TZ: UTC
   # PUID: 1001
   # PGID: 1001
+
+service:
+  port:
+    port: 8989
+
+ingress:
+  enabled: false
+
+probes:
+  liveness:
+    enabled: true
+    ## Set this to true if you wish to specify your own livenessProbe
+    custom: true
+    ## The spec field contains the values for the default livenessProbe.
+    ## If you selected custom: true, this field holds the definition of the livenessProbe.
+    spec:
+      exec:
+        command:
+        - /usr/bin/env
+        - bash
+        - -c
+        - curl --fail localhost:8989/api/v3/system/status?apiKey=`IFS=\> && while
+          read -d \< E C; do if [[ $E = "ApiKey" ]]; then echo $C; fi; done < /config/config.xml`
+      failureThreshold: 5
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 10
 
 persistence:
   config:

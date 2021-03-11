@@ -1,4 +1,9 @@
-# Default values for LazyLibrarian.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
 
 image:
   repository: linuxserver/lazylibrarian
@@ -8,10 +13,6 @@ image:
 strategy:
   type: Recreate
 
-service:
-  port:
-    port: 5299
-
 env: {}
   # TZ: UTC
   # PUID: 1001
@@ -19,6 +20,13 @@ env: {}
   ## Docker Mods are not actively tested and might not work as expected.
   # DOCKER_MODS=linuxserver/mods:lazylibrarian-ffmpeg
   # DOCKER_MODS=linuxserver/calibre-web:calibre
+
+service:
+  port:
+    port: 5299
+
+ingress:
+  enabled: false
 
 persistence:
   config:
