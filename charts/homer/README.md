@@ -75,7 +75,8 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | `"externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist\n"` | Homer configuration https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md |
+| configmap.config | string | `"externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist\n"` | Homer configuration https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md |
+| configmap.enabled | bool | `false` | Store homer configuration as a ConfigMap |
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"b4bz/homer"` |  |
