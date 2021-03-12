@@ -1,0 +1,15 @@
+{{- if .Values.configmap.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "homer.fullname" . }}-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "homer.name" . }}
+    helm.sh/chart: {{ include "homer.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  config.yml: |
+{{ .Values.configmap.config | indent 4 }}
+{{- end -}}
