@@ -6,9 +6,11 @@
 configmap/checksum: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
 {{- end -}}
 
+{{- if .Values.configmap.enabled -}}
 {{- $homerPodAnnotations := include "homer.podAnnotations" . | fromYaml -}}
 {{- $podAnnotations := merge .Values.podAnnotations $homerPodAnnotations -}}
 {{- $_ := set .Values "podAnnotations" (deepCopy $podAnnotations) -}}
+{{- end -}}
 
 {{/* Append the configMap to the additionalVolumes */}}
 {{- define "homer.configmap.volume" -}}
@@ -17,10 +19,10 @@ configMap:
   name: {{ template "common.names.fullname" . }}-config
 {{- end -}}
 
+{{- if .Values.configmap.enabled -}}
 {{- $volume := include "homer.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+{{- $additionalVolumes := append .Values.additionalVolumes $volume }}
+{{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
 {{- end -}}
 
 {{/* Append the configMap volume to the additionalVolumeMounts */}}
@@ -30,10 +32,10 @@ mountPath: /www/assets/config.yml
 subPath: config.yml
 {{- end -}}
 
+{{- if .Values.configmap.enabled -}}
 {{- $volumeMount := include "homer.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+{{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
+{{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
 {{- end -}}
 
 {{/* Render the templates */}}
