@@ -17,7 +17,7 @@ jobs:
     - name: Install Helm
       uses: azure/setup-helm@v1
       with:
-        version: v3.4.0
+        version: v3.5.3
 
     - uses: actions/setup-python@v2
       with:
@@ -38,11 +38,11 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: "helm-docs/ci"
         delete-branch: true
-        title: "chore(docs) update helm-docs [ci-skip]"
+        title: "chore(docs): update helm-docs [ci-skip]"
         signoff: true
         committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
         author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-        commit-message: "chore(docs) update helm-docs [ci-skip]"
+        commit-message: "chore(docs): update helm-docs [ci-skip]"
         body: |
           Signed-off-by: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
         labels: helm-docs
