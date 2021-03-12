@@ -13,7 +13,7 @@ jobs:
     - uses: dessant/support-requests@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        support-label: 'invalid:template-incomplete'
+        support-label: 'kind:invalid-template'
         issue-comment: >
           :wave: @{issue-author}, please follow the template provided.
         close-issue: true
