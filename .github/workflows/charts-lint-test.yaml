@@ -100,8 +100,10 @@ jobs:
     - name: Set up chart-testing
       uses: helm/chart-testing-action@v2.0.1
 
-    - name: Create kind cluster
-      uses: helm/kind-action@v1.1.0
+    - name: Create k3d cluster
+      uses: nolar/setup-k3d-k3s@v1
+      with:
+        version: v1.19
       if: needs.lint.outputs.changed == 'true'
 
     - name: Run chart-testing (install)
