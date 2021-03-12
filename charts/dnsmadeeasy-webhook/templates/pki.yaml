@@ -1,0 +1,66 @@
+---
+# Create a selfsigned Issuer, in order to create a root CA certificate for
+# signing webhook serving certificates
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "dnsmadeeasy-webhook.selfSignedIssuer" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  selfSigned: {}
+
+---
+
+# Generate a CA Certificate used to sign certificates for the webhook
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "dnsmadeeasy-webhook.rootCACertificate" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  secretName: {{ include "dnsmadeeasy-webhook.rootCACertificate" . }}
+  duration: 43800h # 5y
+  issuerRef:
+    name: {{ include "dnsmadeeasy-webhook.selfSignedIssuer" . }}
+    kind: Issuer
+  commonName: "ca.dnsmadeeasy-webhook.cert-manager"
+  isCA: true
+
+---
+
+# Create an Issuer that uses the above generated CA certificate to issue certs
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "dnsmadeeasy-webhook.rootCAIssuer" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  ca:
+    secretName: {{ include "dnsmadeeasy-webhook.rootCACertificate" . }}
+
+---
+
+# Finally, generate a serving certificate for the webhook to use
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  secretName: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
+  duration: 8760h # 1y
+  issuerRef:
+    name: {{ include "dnsmadeeasy-webhook.rootCAIssuer" . }}
+    kind: Issuer
+  dnsNames:
+  - {{ include "common.names.fullname" . }}
+  - {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}
+  - {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.svc

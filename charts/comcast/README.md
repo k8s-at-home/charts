@@ -1,79 +1,71 @@
-# Comcast Data Cap Usage Collector For InfluxDB and Grafana
+# comcast
 
-![Screenshot](https://github.com/billimek/comcastUsage-for-influxdb/raw/master/images/comcast_grafana_example.png)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-This tool allows you to run periodic comcast data usage checks and save the results to Influxdb
+periodic comcast data usage checks and save the results to InfluxDB
 
-## TL;DR;
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/billimek/comcastUsage-for-influxdb>
+* <https://github.com/k8s-at-home/charts>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+
+## TL;DR
 
 ```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/comcast
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install comcast k8s-at-home/comcast
 ```
-
-## Introduction
-
-This code is adopted from the work done by [barrycarey](https://github.com/barrycarey) in the [similar thing for capturing speedtest data](https://github.com/barrycarey/Speedtest-for-InfluxDB-and-Grafana) as well as [jantman's](https://github.com/jantman) [xfinity-usage python example](https://github.com/jantman/xfinity-usage)
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `comcast`
 
 ```console
-$ helm install --name my-release k8s-at-home/comcast
+helm install comcast k8s-at-home/comcast
 ```
+
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `comcast` deployment
 
 ```console
-$ helm delete my-release --purge
+helm uninstall comcast
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The configuration is set as a block of text through a configmap and mounted as a file in /src/config.ini Any value in this text block should match the defined Comcast configuration. There are several values here that will have to match our kubernetes configuration.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-## Configuration
-
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-
-| Parameter                            | Description                                | Default                                                    |
-| -------------------------------      | -------------------------------            | ---------------------------------------------------------- |
-| `image.repository`                   | Comcast image                                | `billimek/comcastusage-for-influxdb`                     |
-| `image.tag`                          | Comcast image tag                            | `latest`                                                 |
-| `image.pullPolicy`                   | Comcast image pull policy                    | `IfNotPresent`                                           |
-| `debug`                              | Display debugging output                     | `false`                                                  |
-| `config.delay`                       | how many seconds to wait between checks      | `3600`                                                   |
-| `config.influxdb.host`               | InfluxDB hostname                            | `influxdb-influxdb`                                      |
-| `config.influxdb.port`               | InfluxDB port                                | `8086`                                                   |
-| `config.influxdb.database`           | InfluxDB database                            | `comcast`                                                |
-| `config.influxdb.username`           | InfluxDB username                            | ``                                                       |
-| `config.influxdb.password`           | InfluxDB password                            | ``                                                       |
-| `config.influxdb.ssl`                | InfluxDB connection using SSL                | `false`                                                  |
-| `config.comcast.username`            | Comcast website login usernma                | `someuser`                                               |
-| `config.comcast.password`            | Comcast website login password               | `somepassword`                                           |
-| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install --name my-release \
-  --set config.comcast.username=tonystark,config.comcast.password=mypassword \
+helm install comcast \
+  --set env.TZ="America/New York" \
     k8s-at-home/comcast
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install --name my-release -f values.yaml k8s-at-home/comcast
+helm install comcast k8s-at-home/comcast -f values.yaml
 ```
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/comcast/values.yaml) file. It has several commented out suggested values.
+## Custom configuration
 
-## InfluxDB metrics
+### InfluxDB metrics
 ```
 'measurement': 'comcast_data_usage',
 'fields': {
@@ -82,3 +74,57 @@ Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master
 		'unit'
 }
 ```
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.comcast.password | string | `"somepassword"` | Comcast website login password  |
+| config.comcast.username | string | `"someuser"` | Comcast website login username |
+| config.delay | int | `3600` | how many seconds to wait between checks |
+| config.influxdb.database | string | `"comcast"` | InfluxDB database |
+| config.influxdb.host | string | `"influxdb-influxdb"` | InfluxDB hostname |
+| config.influxdb.port | int | `8086` | InfluxDB port  |
+| config.influxdb.ssl | bool | `false` | InfluxDB connection using SSL  |
+| debug | bool | `false` | Display debugging output |
+| image.pullPolicy | string | `"IfNotPresent"` | Comcast image pull policy  |
+| image.repository | string | `"billimek/comcastusage-for-influxdb"` | Comcast image |
+| image.tag | string | `"latest"` | Comcast image tag  |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- use helm-docs
+
+#### Removed
+
+- N/A
+
+[3.0.0]: #3.0.0
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

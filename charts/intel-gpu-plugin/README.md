@@ -1,60 +1,68 @@
-# intel-gpu-plugin helm chart
+# intel-gpu-plugin
 
-This is a helm chart that will deploy [intel-gpu-plugin](https://github.com/intel/intel-device-plugins-for-kubernetes/blob/master/cmd/gpu_plugin) as a DaemonSet.
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 0.18.1](https://img.shields.io/badge/AppVersion-0.18.1-informational?style=flat-square)
 
-The GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware.
+The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware
+
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/intel/intel-device-plugins-for-kubernetes/blob/master/cmd/gpu_plugin>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
 
 ## TL;DR
 
-```shell
+```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm install k8s-at-home/intel-gpu-plugin
+helm repo update
+helm install intel-gpu-plugin k8s-at-home/intel-gpu-plugin
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `intel-gpu-plugin`
 
-```shell
-helm install my-release k8s-at-home/intel-gpu-plugin
+```console
+helm install intel-gpu-plugin k8s-at-home/intel-gpu-plugin
 ```
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `intel-gpu-plugin` deployment
 
-```shell
-helm delete my-release --purge
+```console
+helm uninstall intel-gpu-plugin
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/intel-gpu-plugin/values.yaml) file. It has several commented out suggested values.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-| Parameter                                   | Description                                                                                  | Default                                               |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| `image.repository`                          | Image repository                                                                             | `intel/intel-gpu-plugin` |
-| `image.tag`                                 | Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags).     | `0.18.1`                         |
-| `image.pullPolicy`                          | Image pull policy                                                                            | `IfNotPresent`                                        |
-| `strategyType`                              | Specifies the strategy used to replace old Pods by new ones                                  | `Recreate`                                            |
-| `podAnnotations`                            | Key-value pairs to add as pod annotations                                                    | `{}`                                                  |
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```shell
-helm install my-release \
-  --set image.pullPolicy="Always" \
+```console
+helm install intel-gpu-plugin \
+  --set env.TZ="America/New York" \
     k8s-at-home/intel-gpu-plugin
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
-```shell
-helm install my-release -f values.yaml k8s-at-home/intel-gpu-plugin
+```console
+helm install intel-gpu-plugin k8s-at-home/intel-gpu-plugin -f values.yaml
 ```
+
+## Custom configuration
 
 ### Node Feature Discovery
 
@@ -71,3 +79,59 @@ affinity:
               values:
                 - "true"
 ```
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| fullnameOverride | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"intel/intel-gpu-plugin"` | Image repository |
+| image.tag | string | `"0.18.1"` | Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags) |
+| imagePullSecrets | list | `[]` |  |
+| nameOverride | string | `""` |  |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
+| podSecurityContext | object | `{}` |  |
+| resources | object | `{}` |  |
+| securityContext | object | `{}` |  |
+| serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.create | bool | `true` |  |
+| serviceAccount.name | string | `""` |  |
+| strategyType | string | `"Recreate"` | Specifies the strategy used to replace old Pods by new ones |
+| tolerations | list | `[]` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.18.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- use helm-docs
+
+#### Removed
+
+- N/A
+
+[0.18.1]: #0.18.1
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

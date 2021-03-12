@@ -1,6 +1,6 @@
 # common
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![Type: library](https://img.shields.io/badge/Type-library-informational?style=flat-square)
+![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![Type: library](https://img.shields.io/badge/Type-library-informational?style=flat-square)
 
 Function library for k8s-at-home charts
 
@@ -74,7 +74,7 @@ Include this chart as a dependency in your `Chart.yaml` e.g.
 # Chart.yaml
 dependencies:
 - name: common
-  version: 3.0.1
+  version: 3.1.0
   repository: https://k8s-at-home.com/charts/
 ```
 Write a `values.yaml` with some basic defaults you want to present to the user e.g.
@@ -252,6 +252,7 @@ helm dependency update
 | probes.startup.spec.timeoutSeconds | int | `1` |  |
 | replicas | int | `1` |  |
 | resources | object | `{}` |  |
+| secret | object | `{}` |  |
 | securityContext | object | `{}` |  |
 | service.additionalPorts | list | `[]` |  |
 | service.additionalServices | list | `[]` |  |
@@ -276,6 +277,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.1.0]
+
+#### Added
+
+- Allow setting secret values through Helm values file.
 
 ### [3.0.1]
 
@@ -389,6 +396,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[3.1.0]: #3.1.0
+
 [3.0.1]: #3.0.1
 
 [3.0.0]: #3.0.0
@@ -415,9 +424,9 @@ This is the last version before starting this changelog. All sorts of cool stuff
 
 ## Support
 
-- See the [Wiki](https://github.com/k8s-at-home/charts/wiki).
-- Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
-- Ask a [question](https://github.com/k8s-at-home/charts/discussions)
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/).
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
 ----------------------------------------------

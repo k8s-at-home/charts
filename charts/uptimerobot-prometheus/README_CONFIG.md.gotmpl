@@ -1,0 +1,11 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+### Grafana Dashboard
+
+You can find an [example grafana dashboard](https://github.com/lekpamartin/uptimerobot_exporter/blob/master/dashboards/grafana.json) as shown in the screenshot above.
+{{- end -}}

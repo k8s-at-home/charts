@@ -1,22 +1,27 @@
 apiVersion: v2
-name: statping
-description: Status page for monitoring your websites and applications
-type: application
-version: 1.5.1
 appVersion: v0.90.65
+description: Status page for monitoring your websites and applications
+name: statping
+version: 2.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - statping
-  - status
-  - status-page
+- statping
+- status
+- status-page
 home: https://github.com/k8s-at-home/charts/tree/master/charts/statping
+icon: https://github.com/statping/statping/blob/dev/frontend/src/assets/logo.png?raw=true
 sources:
-  - https://github.com/statping/statping
+- https://github.com/statping/statping
 maintainers:
   - name: DirtyCajunRice
     email: nick@cajun.pro
-icon: https://github.com/statping/statping/blob/dev/frontend/src/assets/logo.png?raw=true
+  - name: angelnu
+    email: git@angelnu.com
 dependencies:
-  - name: postgresql
-    repository: https://charts.bitnami.com/bitnami
-    version: 10.2.6
-    condition: postgres.posgresql.enabled
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.1.0
+- name: postgresql
+  version: 10.3.7
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
