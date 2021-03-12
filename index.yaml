@@ -10244,6 +10244,31 @@ entries:
     version: 1.0.0
   jackett:
   - apiVersion: v2
+    appVersion: v0.17.591
+    created: "2021-03-12T01:01:18.765219846Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.1.0
+    description: API Support for your favorite torrent trackers
+    digest: ecda956a0e02f2dc97d4ede1c78fcaa4c8ca959b0e1ba9532a382805b3ed84e7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-7.1.1/jackett-7.1.1.tgz
+    version: 7.1.1
+  - apiVersion: v2
     appVersion: v0.16.2106
     created: "2021-03-01T07:24:15.067335263Z"
     dependencies:
@@ -32415,4 +32440,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-12T00:56:17.760644852Z"
+generated: "2021-03-12T01:01:18.774361157Z"
