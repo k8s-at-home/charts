@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-20.04
     outputs:
       changed: ${{ steps.list-changed.outputs.changed }}
-      common: ${{ steps.list-changed.outputs.common }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -42,15 +41,10 @@ jobs:
           echo "::set-output name=changed::true"
         fi
 
-        changed_unfiltered=$(ct list-changed --config .github/ct-lint.yaml --excluded-charts "")
-        if [[ $(grep -E "^charts/common(-test)?$" <<< "$changed_unfiltered") ]]; then
-          echo "::set-output name=common::true"
-        fi
-
     - name: Run chart-testing (lint)
       id: lint
-      run: ct lint --config .github/ct-lint.yaml --excluded-charts ""
-      if: steps.list-changed.outputs.changed == 'true' || steps.list-changed.outputs.common == 'true'
+      run: ct lint --config .github/ct-lint.yaml
+      if: steps.list-changed.outputs.changed == 'true'
 
   unittest:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
@@ -106,15 +100,12 @@ jobs:
     - name: Set up chart-testing
       uses: helm/chart-testing-action@v2.0.1
 
-    - name: Create kind cluster
-      uses: helm/kind-action@v1.1.0
-      if: needs.lint.outputs.changed == 'true' || needs.lint.outputs.common == 'true'
+    - name: Create k3d cluster
+      uses: nolar/setup-k3d-k3s@v1
+      with:
+        version: v1.19
+      if: needs.lint.outputs.changed == 'true'
 
     - name: Run chart-testing (install)
       run: ct install --config .github/ct-install.yaml
       if: needs.lint.outputs.changed == 'true'
-
-    - name: Run chart-testing (common-test)
-      run: |
-        ct install --config .github/ct-install.yaml --charts 'charts/common-test'
-      if: needs.lint.outputs.common == 'true'
