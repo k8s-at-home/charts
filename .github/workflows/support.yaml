@@ -13,14 +13,15 @@ jobs:
     - uses: dessant/support-requests@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        support-label: 'support'
+        support-label: 'kind:support'
         issue-comment: >
           :wave: @{issue-author}, we use the issue tracker exclusively
           for bug reports and feature requests. However, this issue appears
           to be a support request. Please use our support channels
-          to get help with our Helm charts.
+          to get help.
+          - [Docs](https://docs.k8s-at-home.com/)
           - [Discord](https://discord.gg/sTMX7Vh)
-          - [GitHub Discussions](https://github.com/k8s-at-home/charts/discussions)
+          - [GitHub Discussions](https://github.com/k8s-at-home/organization/discussions)
         close-issue: true
         lock-issue: false
         issue-lock-reason: 'off-topic'
