@@ -28,6 +28,14 @@ service:
 ingress:
   enabled: false
 
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
 persistence:
   data:
     enabled: false
