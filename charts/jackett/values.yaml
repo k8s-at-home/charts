@@ -8,7 +8,7 @@
 image:
   repository: linuxserver/jackett
   pullPolicy: IfNotPresent
-  tag: version-v0.16.2106
+  tag: version-v0.17.591
 
 strategy:
   type: Recreate
@@ -17,6 +17,8 @@ env: {}
   # TZ: UTC
   # PUID: 1001
   # PGID: 1001
+  ## Allow Jackett to update inside of the container, but might cause outages if turned on.
+  # AUTOUPDATE: false
 
 service:
   port:
