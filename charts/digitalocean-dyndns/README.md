@@ -1,62 +1,119 @@
-# Dynamic DNS using DigitalOcean's DNS Services
+# digitalocean-dyndns
 
-A script that pushes the public IP address of the running machine to DigitalOcean's DNS API's. It requires an existing A record to update. The resulting container image is roughly around 7 MB (thanks to Alpine Linux).
+![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 1.0](https://img.shields.io/badge/AppVersion-1.0-informational?style=flat-square)
 
-## TL;DR;
+Dynamic DNS using DigitalOcean's DNS Services
+
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/tunix/digitalocean-dyndns>
+* <https://github.com/k8s-at-home/charts>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+
+## TL;DR
 
 ```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/digitalocean-dyndns
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install digitalocean-dyndns k8s-at-home/digitalocean-dyndns
 ```
-
-## Introduction
-
-This code is adopted from [this original repo](https://github.com/tunix/digitalocean-dyndns)
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `digitalocean-dyndns`
 
 ```console
-$ helm install --name my-release k8s-at-home/digitalocean-dyndns
+helm install digitalocean-dyndns k8s-at-home/digitalocean-dyndns
 ```
+
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `digitalocean-dyndns` deployment
 
 ```console
-$ helm delete my-release --purge
+helm uninstall digitalocean-dyndns
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The following tables lists the configurable parameters of the Sentry chart and their default values.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-| Parameter                            | Description                                  | Default                                                    |
-| -------------------------------      | -------------------------------              | ---------------------------------------------------------- |
-| `image.repository`                   | digitalocean-dyndns image                            | `tunix/digitalocean-dyndns`                        |
-| `image.tag`                          | digitalocean-dyndns image tag                        | `latest`                                           |
-| `image.pullPolicy`                   | digitalocean-dyndns image pull policy                | `Always`                                           |
-| `digitialocean.token`                | The token you generate in DigitalOcean's API settings. | ``                                               |
-| `digitialocean.domain`               | The domain your subdomain is registered at. (i.e. foo.com for home.foo.com) | ``                          |
-| `digitialocean.name`                 | Subdomain to use. (name in A record) (i.e. home for home.foo.com or @ for no subdomain) | `@`             |
-| `digitialocean.sleep_interval`       |  Polling time in seconds                             | `300`                                              |
-
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install --name my-release \
-  --set config.digitalocean.token=thisismyapikey \
+helm install digitalocean-dyndns \
+  --set env.TZ="America/New York" \
     k8s-at-home/digitalocean-dyndns
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install --name my-release -f values.yaml k8s-at-home/digitalocean-dyndns
+helm install digitalocean-dyndns k8s-at-home/digitalocean-dyndns -f values.yaml
 ```
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/digitalocean-dyndns/values.yaml) file. It has several commented out suggested values.
+## Custom configuration
+
+N/A
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| digitialocean.domain | string | `"somedomain"` | The domain your subdomain is registered at. (i.e. foo.com for home.foo.com) |
+| digitialocean.name | string | `"@"` | Subdomain to use. (name in A record) (i.e. home for home.foo.com or @ for no subdomain) |
+| digitialocean.sleep_interval | int | `300` | Polling time in seconds |
+| digitialocean.token | string | `"sometoken"` | The token you generate in DigitalOcean's API settings. |
+| image.pullPolicy | string | `"Always"` | digitalocean-dyndns image pull policy  |
+| image.repository | string | `"tunix/digitalocean-dyndns"` | digitalocean-dyndns image  |
+| image.tag | string | `"latest"` |  |
+| nodeSelector | object | `{}` |  |
+| replicaCount | int | `1` | Number of replicas |
+| resources | object | `{}` |  |
+| tolerations | list | `[]` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

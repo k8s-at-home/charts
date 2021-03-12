@@ -37,7 +37,7 @@ tasks:
   ct-lint:
     desc: run `ct lint` on your chart code
     cmds:
-    - docker run --rm -it --user $(id -u):$(id -g) -e "HELM_CONFIG_HOME=/tmp/helm" -e "HELM_CACHE_HOME=/tmp/helm" -v {{.GIT_ROOT}}:/ci -w /ci quay.io/helmpack/chart-testing:latest ct lint --charts charts/{{.CHART}} --config /ci/.github/ct.yaml
+    - docker run --rm -it --user $(id -u):$(id -g) -e "HELM_CONFIG_HOME=/tmp/helm" -e "HELM_CACHE_HOME=/tmp/helm" -v {{.GIT_ROOT}}:/ci -w /ci quay.io/helmpack/chart-testing:latest ct lint --charts charts/{{.CHART}} --config /ci/.github/ct-lint.yaml
     deps:
     - check-chart
     - lint

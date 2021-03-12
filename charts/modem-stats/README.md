@@ -1,69 +1,123 @@
-# cable modem (sb6183) signal and stats collection agent for influxdb
+# modem-stats
 
-![Screenshot](https://camo.githubusercontent.com/939e044c0491abf790d91bd1d7f909b187e4098c/68747470733a2f2f692e696d6775722e636f6d2f70705a6a6e6b502e706e67)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-This tool allows you to run periodic scanning of the sb6183 cable modem and save the results to Influxdb
+periodic cable modem data collection and save the results to InfluxDB
 
-## TL;DR;
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/k8s-at-home/SB6183-stats-for-influxdb>
+* <https://github.com/k8s-at-home/charts>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+
+## TL;DR
 
 ```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/modem-stats
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install modem-stats k8s-at-home/modem-stats
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `modem-stats`
 
 ```console
-$ helm install --name my-release k8s-at-home/modem-stats
+helm install modem-stats k8s-at-home/modem-stats
 ```
+
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `modem-stats` deployment
 
 ```console
-$ helm delete my-release --purge
+helm uninstall modem-stats
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The configuration is set as a block of text through a configmap and mouted as a file in /src/config.ini Any value in this text block should match the defined sb6183 configuration. There are several values here that will have to match our kubernetes configuration.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-## Configuration
-
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-
-| Parameter                            | Description                                  | Default                                                    |
-| -------------------------------      | -------------------------------              | ---------------------------------------------------------- |
-| `image.repository`                   | modem-stats image                            | `billimek/sb6183-for-influxdb`                             |
-| `image.tag`                          | modem-stats image tag                        | `latest`                                                   |
-| `image.pullPolicy`                   | modem-stats image pull policy                | `IfNotPresent`                                             |
-| `debug`                              | Display debugging output                     | `false`                                                    |
-| `config.delay`                       | how many seconds to wait between checks      | `3600`                                                     |
-| `config.influxdb.host`               | InfluxDB hostname                            | `influxdb-influxdb`                                        |
-| `config.influxdb.port`               | InfluxDB port                                | `8086`                                                     |
-| `config.influxdb.database`           | InfluxDB database                            | `sb6183`                                                   |
-| `config.influxdb.username`           | InfluxDB username                            | ``                                                         |
-| `config.influxdb.password`           | InfluxDB password                            | ``                                                         |
-| `config.influxdb.ssl`                | InfluxDB connection using SSL                | `false`                                                    |
-| `config.modem.url`                   | sb6183 stats URL page                        | `http://192.168.100.1/RgConnect.asp`                       |
-| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-$ helm install --name my-release \
-  --set onfig.influxdb.host=some-influx-host \
+helm install modem-stats \
+  --set env.TZ="America/New York" \
     k8s-at-home/modem-stats
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-$ helm install --name my-release -f values.yaml k8s-at-home/modem-stats
+helm install modem-stats k8s-at-home/modem-stats -f values.yaml
 ```
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/modem-stats/values.yaml) file. It has several commented out suggested values.
+## Custom configuration
+
+![Screenshot](https://camo.githubusercontent.com/939e044c0491abf790d91bd1d7f909b187e4098c/68747470733a2f2f692e696d6775722e636f6d2f70705a6a6e6b502e706e67)
+
+The configuration is set as a block of text through a configmap and mouted as a file in /src/config.ini Any value in this text block should match the defined sb6183 configuration. There are several values here that will have to match our kubernetes configuration.
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.delay | int | `3600` | how many seconds to wait between checks |
+| config.influxdb.database | string | `"cable_modem_stats"` | InfluxDB database |
+| config.influxdb.host | string | `"influxdb-influxdb"` | InfluxDB hostname |
+| config.influxdb.port | int | `8086` | InfluxDB port |
+| config.influxdb.ssl | bool | `false` | InfluxDB connection using SSL |
+| config.modem.url | string | `"http://192.168.100.1/RgConnect.asp"` | sb6183 stats URL page |
+| debug | bool | `false` | Display debugging output |
+| image.pullPolicy | string | `"IfNotPresent"` | modem-stats image pull policy |
+| image.repository | string | `"billimek/sb6183-for-influxdb"` | modem-stats image |
+| image.tag | string | `"latest"` | modem-stats image tag |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[3.0.1]: #3.0.1
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

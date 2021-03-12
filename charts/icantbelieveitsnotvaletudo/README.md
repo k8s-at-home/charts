@@ -1,6 +1,6 @@
 # icantbelieveitsnotvaletudo
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 2021.2.0](https://img.shields.io/badge/AppVersion-2021.2.0-informational?style=flat-square)
+![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: 2021.2.0](https://img.shields.io/badge/AppVersion-2021.2.0-informational?style=flat-square)
 
 Create live map data from Valetudo powered robots
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+| https://k8s-at-home.com/charts/ | common | 3.1.0 |
 
 ## TL;DR
 
@@ -102,7 +102,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.0.0]
+### [2.0.1]
 
 #### Added
 
@@ -126,9 +126,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Support
 
-- See the [Wiki](https://github.com/k8s-at-home/charts/wiki)
-- Open a [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
-- Ask a [question](https://github.com/k8s-at-home/charts/discussions)
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
 ----------------------------------------------

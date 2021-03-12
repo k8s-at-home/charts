@@ -3,8 +3,11 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
+  # -- modem-stats image
   repository: billimek/sb6183-for-influxdb
+  # -- modem-stats image tag
   tag: latest
+  # -- modem-stats image pull policy
   pullPolicy: IfNotPresent
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -18,19 +21,28 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 nodeSelector: {}
+# -- Display debugging output
 debug: false
 config:
-  # how many seconds to wait between checks
+  # -- how many seconds to wait between checks
   delay: 3600
   influxdb:
-    # host/port/database are mandatory - change as needed
+    # -- InfluxDB hostname
     host: influxdb-influxdb
+    # -- InfluxDB port
     port: 8086
+    # -- InfluxDB database
     database: cable_modem_stats
+    # -- InfluxDB username
     # username:
+    # -- InfluxDB password
     # password:
+
+    # -- InfluxDB connection using SSL
     ssl: false
   modem:
+    # -- sb6183 stats URL page
     url: http://192.168.100.1/RgConnect.asp
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
