@@ -4284,6 +4284,32 @@ entries:
   ddclient:
   - apiVersion: v2
     appVersion: 3.9.1
+    created: "2021-03-12T01:03:32.764416589Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.1.0
+    description: Perl client used to update dynamic DNS entries for accounts on Dynamic
+      DNS Network Service Providers
+    digest: a6e0388b71f3b675ec43ae0a04c5783a97cd438d517cfeb6f503da50b63a210c
+    home: https://github.com/ddclient/ddclient
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ddclient-logo.png
+    keywords:
+    - ddclient
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ddclient
+    sources:
+    - https://github.com/ddclient/ddclient
+    - https://hub.docker.com/r/linuxserver/ddclient
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ddclient-3.1.1/ddclient-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 3.9.1
     created: "2021-03-01T07:24:13.219822123Z"
     dependencies:
     - name: common
@@ -32462,4 +32488,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-12T01:02:32.102184122Z"
+generated: "2021-03-12T01:03:32.772545034Z"
