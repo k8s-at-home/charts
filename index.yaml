@@ -10123,6 +10123,27 @@ entries:
   homebridge:
   - apiVersion: v2
     appVersion: 3.1.0
+    created: "2021-03-13T15:31:05.175877102Z"
+    description: A lightweight NodeJS server that emulates the iOS HomeKit API
+    digest: 12d0d8fb99722c35ca4339247a8d49e1990f5ed04f41b60b8431c6452f9911ef
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/homebridge
+    icon: https://avatars0.githubusercontent.com/u/38217527?s=400&v=4?sanitize=true
+    keywords:
+    - homebridge
+    - homekit
+    maintainers:
+    - email: bjw-s@users.noreply.github.com
+      name: bjw-s
+    name: homebridge
+    sources:
+    - https://homebridge.io/
+    - https://github.com/oznu/docker-homebridge
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/homebridge-1.0.3/homebridge-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 3.1.0
     created: "2020-11-11T13:39:51.243712755Z"
     description: A lightweight NodeJS server that emulates the iOS HomeKit API
     digest: 7daa055afad165d02996c67b36e6d0fbebc74a5d4a2a985727501e32c04de79d
@@ -12522,6 +12543,26 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/lazylibrarian-1.0.0/lazylibrarian-1.0.0.tgz
     version: 1.0.0
   librespeed:
+  - apiVersion: v2
+    appVersion: 1.0.6-12
+    created: "2021-03-13T15:31:05.459987193Z"
+    description: Librespeed is a HTML5 webpage to test upload and download speeds
+    digest: ed0305eef43bcea2e728c73a571fd562a5346820e2d64367f8437ef2cc06eef9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/librespeed
+    icon: https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true
+    keywords:
+    - librespeed
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: librespeed
+    sources:
+    - https://github.com/librespeed/speedtest
+    - https://hub.docker.com/r/linuxserver/librespeed
+    - https://github.com/k8s-at-home/charts/tree/master/charts/librespeed
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/librespeed-2.0.1/librespeed-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: 1.0.6-12
     created: "2020-08-29T15:24:35.31947533Z"
@@ -15431,6 +15472,28 @@ entries:
   node-feature-discovery:
   - apiVersion: v2
     appVersion: 0.7.0
+    created: "2021-03-13T15:31:05.740335038Z"
+    description: Detect hardware features available on each node in a Kubernetes cluster,
+      and advertises those features using node labels
+    digest: 2a8a79e3c374c070f30a10d213f9cad03ec640f4a4a5dad9594640720498bba7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/node-feature-discovery
+    icon: https://avatars1.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - cluster
+    - hardware
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: node-feature-discovery
+    sources:
+    - https://github.com/kubernetes-sigs/node-feature-discovery
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/node-feature-discovery-2.1.1/node-feature-discovery-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 0.7.0
     created: "2020-12-21T00:42:06.206311251Z"
     description: Detect hardware features available on each node in a Kubernetes cluster,
       and advertises those features using node labels
@@ -17615,6 +17678,30 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/nzbhydra2-2.0.1/nzbhydra2-2.0.1.tgz
     version: 2.0.1
   oauth2-proxy:
+  - apiVersion: v1
+    appVersion: 7.0.1
+    created: "2021-03-13T15:31:06.022853709Z"
+    description: A reverse proxy that provides authentication with Google, Github
+      or other providers
+    digest: a42efe8a52cce4154bbbbd1a0a90fd2a701591faa0f68bbd333269fd2882a4be
+    home: https://oauth2-proxy.github.io/oauth2-proxy/
+    keywords:
+    - kubernetes
+    - oauth
+    - oauth2
+    - authentication
+    - google
+    - github
+    kubeVersion: '>=1.9.0-0'
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: oauth2-proxy
+    sources:
+    - https://github.com/oauth2-proxy/oauth2-proxy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/oauth2-proxy-5.0.1/oauth2-proxy-5.0.1.tgz
+    version: 5.0.1
   - apiVersion: v1
     appVersion: 7.0.1
     created: "2021-02-23T23:02:29.597272444Z"
@@ -26660,6 +26747,25 @@ entries:
   ser2sock:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-03-13T15:31:06.292620524Z"
+    description: Serial to Socket Redirector
+    digest: 0422261021440b85c3114d60720791d59668194b0a64f69a3443dcf5a5c72a76
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/ser2sock
+    icon: https://i.imgur.com/GfZ7McO.png
+    keywords:
+    - ser2sock
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ser2sock
+    sources:
+    - https://github.com/nutechsoftware/ser2sock
+    - https://github.com/tenstartups/ser2sock
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ser2sock-2.0.2/ser2sock-2.0.2.tgz
+    version: 2.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2020-08-31T20:43:39.93874044Z"
     description: Serial to Socket Redirector
     digest: 8c265f1c0719577891bac4764b4911eaa216e03378d8e8a7ce5c30510e2269f6
@@ -27892,6 +27998,32 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/sonarr-3.0.0/sonarr-3.0.0.tgz
     version: 3.0.0
   speedtest:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-03-13T15:31:06.579970354Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: periodic speedtest and save the results to InfluxDB
+    digest: 372a920b59cf23ee825e81911b7d46ae0fbe0863f369951d00130003f21220a0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/speedtest
+    icon: https://i.imgur.com/nDYjKk8.png
+    keywords:
+    - speedtest
+    - influxdb
+    - grafana
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: speedtest
+    sources:
+    - https://github.com/k8s-at-home/Speedtest-for-InfluxDB-and-Grafana
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/speedtest-3.0.1/speedtest-3.0.1.tgz
+    version: 3.0.1
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2020-08-29T15:24:37.229845594Z"
@@ -30771,6 +30903,28 @@ entries:
   unifi:
   - apiVersion: v2
     appVersion: 5.14.23
+    created: "2021-03-13T15:31:06.863932443Z"
+    description: Ubiquiti Network's Unifi Controller
+    digest: 0d8a82ac9126abd23d77224ce0ffe70ad67eb741baee58913501e26e8defe270
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/unifi
+    icon: https://blog.ubnt.com/wp-content/uploads/2016/10/unifi-app-logo.png
+    keywords:
+    - ubiquiti
+    - unifi
+    - mongodb
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: mike@quadra-tec.net
+      name: mcronce
+    name: unifi
+    sources:
+    - https://github.com/jacobalberty/unifi-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-1.5.3/unifi-1.5.3.tgz
+    version: 1.5.3
+  - apiVersion: v2
+    appVersion: 5.14.23
     created: "2021-02-22T18:05:49.818246499Z"
     description: Ubiquiti Network's Unifi Controller
     digest: 2e5083c2c13eb41e46f7647fbeff436dfdd960e386e4680c632993be0fa99d31
@@ -31920,6 +32074,27 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/unpackerr-1.0.0/unpackerr-1.0.0.tgz
     version: 1.0.0
   uptimerobot:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2021-03-13T15:31:07.132056238Z"
+    description: A tool to get statistics from Uptime Robot and log it into InfluxDB
+    digest: 89422aeab8cfed3755a1384d60f39f6055ef6cf94c9518f69de88698e884598e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/uptimerobot
+    icon: https://i.imgur.com/ARSSILk.png
+    keywords:
+    - uptimerobot
+    - influxdb
+    - grafana
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: uptimerobot
+    sources:
+    - https://github.com/trojanc/node-influx-uptimerobot
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/uptimerobot-3.0.2/uptimerobot-3.0.2.tgz
+    version: 3.0.2
   - apiVersion: v2
     appVersion: 1.1.0
     created: "2021-03-05T13:32:31.975404529Z"
@@ -34425,4 +34600,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-12T19:00:23.588283753Z"
+generated: "2021-03-13T15:31:07.139486129Z"
