@@ -1,184 +1,70 @@
-# Ubiquiti Network's Unifi Controller
+# unifi
 
-This is a helm chart for [Ubiquiti Network's][ubnt] [Unifi Controller][ubnt 2].
+![Version: 1.5.2](https://img.shields.io/badge/Version-1.5.2-informational?style=flat-square) ![AppVersion: 5.14.23](https://img.shields.io/badge/AppVersion-5.14.23-informational?style=flat-square)
 
-## TL;DR;
+Ubiquiti Network's Unifi Controller
 
-```shell
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/jacobalberty/unifi-docker>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+
+## TL;DR
+
+```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm install k8s-at-home/unifi
+helm repo update
+helm install unifi k8s-at-home/unifi
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `unifi`
 
 ```console
-helm install --name my-release stable/unifi
+helm install unifi k8s-at-home/unifi
 ```
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `unifi` deployment
 
 ```console
-helm delete my-release --purge
+helm uninstall unifi
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The following tables lists the configurable parameters of the Unifi chart and their default values.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-| Parameter                                       | Default                      | Description                                                                                                            |
-|-------------------------------------------------|------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| `image.repository`                              | `jacobalberty/unifi`         | Image repository                                                                                                       |
-| `image.tag`                                     | `5.14.23`                    | Image tag. Possible values listed [here][docker].                                                                      |
-| `image.pullPolicy`                              | `IfNotPresent`               | Image pull policy                                                                                                      |
-| `strategyType`                                  | `Recreate`                   | Specifies the strategy used to replace old Pods by new ones                                                            |
-| `guiService.type`                               | `ClusterIP`                  | Kubernetes service type for the Unifi GUI                                                                              |
-| `guiService.port`                               | `8443`                       | Kubernetes port where the Unifi GUI is exposed                                                                         |
-| `guiService.annotations`                        | `{}`                         | Service annotations for the Unifi GUI                                                                                  |
-| `guiService.labels`                             | `{}`                         | Custom labels                                                                                                          |
-| `guiService.loadBalancerIP`                     | `{}`                         | Loadbalance IP for the Unifi GUI                                                                                       |
-| `guiService.loadBalancerSourceRanges`           | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
-| `guiService.externalTrafficPolicy`              | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `captivePortalService.enabled`                  | `false`                      | Install the captive portal service (needed if you want guest captive portal)                                           |
-| `captivePortalService.type`                     | `ClusterIP`                  | Kubernetes service type for the captive portal                                                                         |
-| `captivePortalService.http`                     | `8880`                       | Kubernetes port where the captive portal is exposed                                                                    |
-| `captivePortalService.https`                    | `8843`                       | Kubernetes port where the captive portal is exposed (with SSL)                                                         |
-| `captivePortalService.annotations`              | `{}`                         | Service annotations for the captive portal                                                                             |
-| `captivePortalService.labels`                   | `{}`                         | Custom labels                                                                                                          |
-| `captivePortalService.loadBalancerIP`           | `{}`                         | Loadbalance IP for the Unifi GUI                                                                                       |
-| `captivePortalService.loadBalancerSourceRanges` | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
-| `captivePortalService.externalTrafficPolicy`    | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `captivePortalService.ingress.enabled`          | `false`                      | Enables Ingress (for the captive portal, the main ingress needs to be enabled for the controller to be accessible)     |
-| `captivePortalService.ingress.annotations`      | `{}`                         | Ingress annotations for the captive portal                                                                             |
-| `captivePortalService.ingress.labels`           | `{}`                         | Custom labels for the captive portal                                                                                   |
-| `captivePortalService.ingress.path`             | `/`                          | Ingress path for the captive portal                                                                                    |
-| `captivePortalService.ingress.hosts`            | `chart-example.local`        | Ingress accepted hostnames for the captive portal                                                                      |
-| `captivePortalService.ingress.tls`              | `[]`                         | Ingress TLS configuration for the captive portal                                                                       |
-| `controllerService.type`                        | `NodePort`                   | Kubernetes service type for the Unifi Controller communication                                                         |
-| `controllerService.port`                        | `8080`                       | Kubernetes port where the Unifi Controller is exposed - this needs to be reachable by the unifi devices on the network |
-| `controllerService.annotations`                 | `{}`                         | Service annotations for the Unifi Controller                                                                           |
-| `controllerService.labels`                      | `{}`                         | Custom labels                                                                                                          |
-| `controllerService.loadBalancerIP`              | `{}`                         | Loadbalance IP for the Unifi Controller                                                                                |
-| `controllerService.loadBalancerSourceRanges`    | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
-| `controllerService.externalTrafficPolicy`       | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `controllerService.ingress.enabled`             | `false`                      | Enables Ingress for the controller                                                                                     |
-| `controllerService.ingress.annotations`         | `{}`                         | Ingress annotations for the controller                                                                                 |
-| `controllerService.ingress.labels`              | `{}`                         | Custom labels for the controller                                                                                       |
-| `controllerService.ingress.path`                | `/`                          | Ingress path for the controller                                                                                        |
-| `controllerService.ingress.hosts`               | `chart-example.local`        | Ingress accepted hostnames for the controller                                                                          |
-| `controllerService.ingress.tls`                 | `[]`                         | Ingress TLS configuration for the controller                                                                           |
-| `stunService.type`                              | `NodePort`                   | Kubernetes service type for the Unifi STUN                                                                             |
-| `stunService.port`                              | `3478`                       | Kubernetes UDP port where the Unifi STUN is exposed                                                                    |
-| `stunService.annotations`                       | `{}`                         | Service annotations for the Unifi STUN                                                                                 |
-| `stunService.labels`                            | `{}`                         | Custom labels                                                                                                          |
-| `stunService.loadBalancerIP`                    | `{}`                         | Loadbalance IP for the Unifi STUN                                                                                      |
-| `stunService.loadBalancerSourceRanges`          | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
-| `stunService.externalTrafficPolicy`             | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `discoveryService.type`                         | `NodePort`                   | Kubernetes service type for AP discovery                                                                               |
-| `discoveryService.port`                         | `10001`                      | Kubernetes UDP port for AP discovery                                                                                   |
-| `discoveryService.annotations`                  | `{}`                         | Service annotations for AP discovery                                                                                   |
-| `discoveryService.labels`                       | `{}`                         | Custom labels                                                                                                          |
-| `discoveryService.loadBalancerIP`               | `{}`                         | Loadbalance IP for AP discovery                                                                                        |
-| `discoveryService.loadBalancerSourceRanges`     | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
-| `discoveryService.externalTrafficPolicy`        | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `syslogService.type`                            | `NodePort`                   | Kubernetes service type for remote syslog capture                                                                      |
-| `syslogService.port`                            | `5514`                       | Kubernetes UDP port for remote syslog capture                                                                          |
-| `syslogService.annotations`                     | `{}`                         | Service annotations for remote syslog capture                                                                          |
-| `syslogService.labels`                          | `{}`                         | Custom labels                                                                                                          |
-| `syslogService.loadBalancerIP`                  | `{}`                         | Loadbalancer IP for remote syslog capture                                                                              |
-| `syslogService.loadBalancerSourceRanges`        | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
-| `syslogService.externalTrafficPolicy`           | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `speedtestService.type`                         | `ClusterIP`                  | Kubernetes service type for mobile speedtest                                                                           |
-| `speedtestService.port`                         | `6789`                       | Kubernetes UDP port for mobile speedtest                                                                               |
-| `speedtestService.annotations`                  | `{}`                         | Service annotations for mobile speedtest                                                                               |
-| `speedtestService.labels`                       | `{}`                         | Custom labels                                                                                                          |
-| `speedtestService.loadBalancerIP`               | `{}`                         | Loadbalancer IP for mobile speedtest                                                                                   |
-| `speedtestService.loadBalancerSourceRanges`     | None                         | List of IP CIDRs allowed access to load balancer (if supported)                                                        |
-| `speedtestService.externalTrafficPolicy`        | `Cluster`                    | Set the externalTrafficPolicy in the Service to either Cluster or Local                                                |
-| `unifiedService.enabled`                        | `false`                      | Use a single service for GUI, controller, STUN, discovery, syslog and speedtest                                        |
-| `unifiedService.type`                           | `ClusterIP`                  | Kubernetes service type for the unified service                                                                        |
-| `unifiedService.annotations`                    | `{}`                         | Annotations for the unified service                                                                                    |
-| `unifiedService.labels`                         | `{}`                         | Custom labels for the unified service                                                                                  |
-| `unifiedService.loadBalancerIP`                 | None                         | Load balancer IP for the unified service                                                                               |
-| `unifiedService.loadBalancerSourceRanges`       | None                         | List of IP CIDRs allowed access to the load balancer (if supported)                                                    |
-| `unifiedService.externalTrafficPolicy`          | `Cluster`                    | Set the externalTrafficPolicy in the service to either Cluster or Local                                                |
-| `ingress.enabled`                               | `false`                      | Enables Ingress                                                                                                        |
-| `ingress.annotations`                           | `{}`                         | Ingress annotations                                                                                                    |
-| `ingress.labels`                                | `{}`                         | Custom labels                                                                                                          |
-| `ingress.path`                                  | `/`                          | Ingress path                                                                                                           |
-| `ingress.hosts`                                 | `chart-example.local`        | Ingress accepted hostnames                                                                                             |
-| `ingress.tls`                                   | `[]`                         | Ingress TLS configuration                                                                                              |
-| `timezone`                                      | `UTC`                        | Timezone the Unifi controller should run as, e.g. 'America/New York'                                                   |
-| `runAsRoot`                                     | `false`                      | Run the controller as UID0 (root user); if set to false, will give container SETFCAP instead                           |
-| `UID`                                           | `999`                        | Run the controller as user UID                                                                                         |
-| `GID`                                           | `999`                        | Run the controller as group GID                                                                                        |
-| `customCert.enabled`                            | `false`                      | Define whether you are using s custom certificate                                                                      |
-| `customCert.isChain`                            | `false`                      | If you are using a Let's Encrypt certificate which already includes the full chain set this to `true`                  |
-| `customCert.certName`                           | `tls.crt`                    | Name of the the certificate file in `<unifi-data>/cert`                                                                |
-| `customCert.keyName`                            | `tls.key`                    | Name of the the private key file in `<unifi-data>/cert`                                                                |
-| `customCert.certSecret`                         | `nil`                        | Name of the the k8s tls secret where the certificate and its key are stored.                                           |
-| `logging.promtail.enabled`                      | `false`                      | Enable a Promtail sidecar to collect controller logs                                                                   |
-| `logging.promtail.image.repository`             | `grafana/promtail`           | Promtail image repository                                                                                              |
-| `logging.promtail.image.tag`                    | `1.6.0`                      | Promtail image tag                                                                                                     |
-| `logging.promtail.image.pullPolicy`             | `IfNotPresent`               | Promtail image pull policy                                                                                             |
-| `logging.promtail.loki.url`                     | `http://loki.logs.svc.cluster.local:3100/loki/api/v1/push` | URL of the Loki push API                                                                 |
-| `mongodb.enabled`                               | `false`                      | Use external MongoDB for data storage                                                                                  |
-| `mongodb.dbUri`                                 | `mongodb://mongo/unifi`      | external MongoDB URI                                                                                                   |
-| `mongodb.statDbUri`                             | `mongodb://mongo/unifi_stat` | external MongoDB statdb URI                                                                                            |
-| `mongodb.databaseName`                          | `unifi`                      | external MongoDB database name                                                                                         |
-| `persistence.enabled`                           | `true`                       | Use persistent volume to store data                                                                                    |
-| `persistence.size`                              | `5Gi`                        | Size of persistent volume claim                                                                                        |
-| `persistence.existingClaim`                     | `nil`                        | Use an existing PVC to persist data                                                                                    |
-| `persistence.subPath`                           | ``                           | Store data in a subdirectory of PV instead of at the root directory                                                    |
-| `persistence.storageClass`                      | `-`                          | Type of persistent volume claim                                                                                        |
-| `extraVolumes`                                  | `[]`                         | Additional volumes to be used by extraVolumeMounts                                                                     |
-| `extraVolumeMounts`                             | `[]`                         | Additional volume mounts to be mounted in unifi container                                                              |
-| `persistence.accessModes`                       | `[]`                         | Persistence access modes                                                                                               |
-| `extraConfigFiles`                              | `{}`                         | Dictionary containing files mounted to `/configmap` inside the pod (See [values.yaml](values.yaml) for examples)       |
-| `extraJvmOpts`                                  | `[]`                         | List of additional JVM options, e.g. `["-Dlog4j.configurationFile=file:/configmap/log4j2.xml"]`                        |
-| `jvmInitHeapSize`                               | ``                           | Java Virtual Machine (JVM) initial, and minimum, heap size.                                                            |
-| `jvmMaxHeapSize`                                | `1024M`                      | Java Virtual Machine (JVM) maximum heap size.                                                                          |
-| `resources`                                     | `{}`                         | CPU/Memory resource requests/limits                                                                                    |
-| `livenessProbe.enabled`                         | `true`                       | Turn on and off liveness probe                                                                                         |
-| `livenessProbe.initialDelaySeconds`             | `30`                         | Delay before liveness probe is initiated                                                                               |
-| `livenessProbe.periodSeconds`                   | `15`                         | How often to perform the probe                                                                                         |
-| `livenessProbe.timeoutSeconds`                  | `5`                          | When the probe times out                                                                                               |
-| `livenessProbe.failureThreshold`                | `3`                          | Minimum consecutive failures for the probe                                                                             |
-| `livenessProbe.successThreshold`                | `1`                          | Minimum consecutive successes for the probe                                                                            |
-| `readinessProbe.enabled`                        | `true`                       | Turn on and off readiness probe                                                                                        |
-| `readinessProbe.initialDelaySeconds`            | `30`                         | Delay before readiness probe is initiated                                                                              |
-| `readinessProbe.periodSeconds`                  | `15`                         | How often to perform the probe                                                                                         |
-| `readinessProbe.timeoutSeconds`                 | `5`                          | When the probe times out                                                                                               |
-| `readinessProbe.failureThreshold`               | `3`                          | Minimum consecutive failures for the probe                                                                             |
-| `readinessProbe.successThreshold`               | `1`                          | Minimum consecutive successes for the probe                                                                            |
-| `nodeSelector`                                  | `{}`                         | Node labels for pod assignment                                                                                         |
-| `tolerations`                                   | `[]`                         | Toleration labels for pod assignment                                                                                   |
-| `affinity`                                      | `{}`                         | Affinity settings for pod assignment                                                                                   |
-| `podAnnotations`                                | `{}`                         | Key-value pairs to add as pod annotations                                                                              |
-| `deploymentAnnotations`                         | `{}`                         | Key-value pairs to add as deployment annotations                                                                       |
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install --name my-release \
-  --set timezone="America/New York" \
-    stable/unifi
+helm install unifi \
+  --set env.TZ="America/New York" \
+    k8s-at-home/unifi
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install --name my-release -f values.yaml stable/unifi
+helm install unifi k8s-at-home/unifi -f values.yaml
 ```
 
-Read through the [values.yaml](values.yaml) file. It has several commented out suggested values.
+## Custom configuration
 
-## Regarding the services
+### Regarding the services
 
 - `guiService`: Represents the main web UI and is what one would normally point
   the ingress to.
@@ -196,13 +82,13 @@ Read through the [values.yaml](values.yaml) file. It has several commented out s
 - `stunService`: Also used periodically by the unifi devices to communicate
   with the controller using UDP. See [this article][ubnt 3] and [this other
   article][ubnt 4] for more information.
-- `syslogService`: Used to capture syslog from Unifi devices if the feature is 
+- `syslogService`: Used to capture syslog from Unifi devices if the feature is
   enabled in the site configuration. This needs to be reachable by Unifi devices
   on port 5514/UDP.
 - `speedtestService`: Used for mobile speedtest inside the UniFi Mobile app.
   This needs to be reachable by clients connecting to port 6789/TCP.
 
-## Ingress and HTTPS
+### Ingress and HTTPS
 
 Unifi does [not support HTTP][unifi] so if you wish to use the guiService, you
 need to ensure that you use a backend transport of HTTPS.
@@ -216,10 +102,142 @@ ingress:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 ```
 
-[docker]: https://hub.docker.com/r/jacobalberty/unifi/tags/
-[github]: https://github.com/jacobalberty/unifi-docker
-[ubnt]: https://www.ubnt.com/
-[ubnt 2]: https://unifi-sdn.ubnt.com/
-[ubnt 3]: https://help.ubnt.com/hc/en-us/articles/204976094-UniFi-What-protocol-does-the-controller-use-to-communicate-with-the-UAP-
-[ubnt 4]: https://help.ubnt.com/hc/en-us/articles/115015457668-UniFi-Troubleshooting-STUN-Communication-Errors
-[unifi]: https://community.ui.com/questions/Controller-how-to-deactivate-http-to-https/c5e247d8-b5b9-4c84-a3bb-28a90fd65668
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| GID | int | `999` |  |
+| UID | int | `999` |  |
+| affinity | object | `{}` |  |
+| captivePortalService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| captivePortalService.enabled | bool | `false` |  |
+| captivePortalService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| captivePortalService.http | int | `8880` | Kubernetes port where the http service is exposed |
+| captivePortalService.https | int | `8843` | Kubernetes port where the https service is exposed |
+| captivePortalService.ingress | object | `{"annotations":{},"enabled":false,"hosts":["chart-example.local"],"path":"/","tls":[]}` | Ingress settings |
+| captivePortalService.labels | object | `{}` |  |
+| captivePortalService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| captivePortalService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| captivePortalService.type | string | `"ClusterIP"` | Kubernetes service type |
+| controllerService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| controllerService.enabled | bool | `false` |  |
+| controllerService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| controllerService.ingress | object | `{"annotations":{},"enabled":false,"hosts":["chart-example.local"],"path":"/","tls":[]}` | Ingress settings |
+| controllerService.labels | object | `{}` |  |
+| controllerService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| controllerService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| controllerService.port | int | `8080` | Kubernetes port where the service is exposed |
+| controllerService.type | string | `"NodePort"` | Kubernetes service type |
+| customCert | object | `{"certName":"tls.crt","enabled":false,"isChain":false,"keyName":"tls.key"}` | If you provide your own custom certificate in <unifi-data>/cert you can define the following parameters to configure the controller |
+| deploymentAnnotations | object | `{}` |  |
+| discoveryService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| discoveryService.enabled | bool | `false` |  |
+| discoveryService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| discoveryService.ingress | object | `{"annotations":{},"enabled":false,"hosts":["chart-example.local"],"path":"/","tls":[]}` | Ingress settings |
+| discoveryService.labels | object | `{}` |  |
+| discoveryService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| discoveryService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| discoveryService.port | int | `10001` | Kubernetes port where the service is exposed |
+| discoveryService.type | string | `"NodePort"` | Kubernetes service type |
+| extraConfigFiles | object | `{}` |  |
+| extraJvmOpts | list | `[]` |  |
+| extraVolumeMounts | list | `[]` |  |
+| extraVolumes | list | `[]` |  |
+| guiService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| guiService.enabled | bool | `false` |  |
+| guiService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| guiService.labels | object | `{}` |  |
+| guiService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| guiService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| guiService.nodePort | int | `nil` | Specify the nodePort value for the LoadBalancer and NodePort service types. ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport |
+| guiService.port | int | `8443` | Kubernetes port where the service is exposed |
+| guiService.type | string | `"ClusterIP"` | Kubernetes service type |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"jacobalberty/unifi"` |  |
+| image.tag | string | `"5.14.23"` |  |
+| ingress | object | `{"annotations":{},"enabled":false,"hosts":["chart-example.local"],"path":"/","tls":[]}` | Ingress settings |
+| jvmInitHeapSize | string | `nil` | Java Virtual Machine (JVM) initial, and minimum, heap size Unset value means there is no lower limit |
+| jvmMaxHeapSize | string | `"1024M"` | Java Virtual Machine (JVM) maximum heap size For larger installations a larger value is recommended. For memory constrained system this value can be lowered. |
+| livenessProbe | object | `{"enabled":true,"failureThreshold":3,"initialDelaySeconds":30,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Liveness probe values Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes |
+| logging | object | `{"promtail":{"enabled":false,"image":{"pullPolicy":"IfNotPresent","repository":"grafana/promtail","tag":"1.6.0"},"loki":{"url":"http://loki.logs.svc.cluster.local:3100/loki/api/v1/push"}}}` | Logging configuration |
+| mongodb | object | `{"databaseName":"unifi","dbUri":"mongodb://mongo/unifi","enabled":false,"statDbUri":"mongodb://mongo/unifi_stat"}` | define an external mongoDB instead of using the built-in mongodb |
+| nodeSelector | object | `{}` |  |
+| persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access modes |
+| persistence.enabled | bool | `true` | Use persistent volume to store data |
+| persistence.existingClaim | string | `nil` | Use an existing PVC to persist data |
+| persistence.size | string | `"5Gi"` | Size of persistent volume claim |
+| persistence.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
+| persistence.storageClass | string | `nil` | Type of persistent volume claim |
+| podAnnotations | object | `{}` |  |
+| readinessProbe | object | `{"enabled":true,"failureThreshold":3,"initialDelaySeconds":15,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Readiness probe values Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes |
+| resources | object | `{}` |  |
+| runAsRoot | bool | `false` |  |
+| speedtestService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| speedtestService.enabled | bool | `false` |  |
+| speedtestService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| speedtestService.labels | object | `{}` |  |
+| speedtestService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| speedtestService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| speedtestService.port | int | `6789` | Kubernetes port where the service is exposed |
+| speedtestService.type | string | `"ClusterIP"` | Kubernetes service type |
+| strategyType | string | `"Recreate"` | upgrade strategy type (e.g. Recreate or RollingUpdate) |
+| stunService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| stunService.enabled | bool | `false` |  |
+| stunService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| stunService.labels | object | `{}` |  |
+| stunService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| stunService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| stunService.port | int | `3478` | Kubernetes port where the service is exposed |
+| stunService.type | string | `"NodePort"` | Kubernetes service type |
+| syslogService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| syslogService.enabled | bool | `false` |  |
+| syslogService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| syslogService.labels | object | `{}` |  |
+| syslogService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| syslogService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| syslogService.port | int | `5514` | Kubernetes port where the service is exposed |
+| syslogService.type | string | `"NodePort"` | Kubernetes service type |
+| timezone | string | `"UTC"` |  |
+| tolerations | list | `[]` |  |
+| unifiedService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
+| unifiedService.enabled | bool | `false` |  |
+| unifiedService.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| unifiedService.labels | object | `{}` |  |
+| unifiedService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
+| unifiedService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
+| unifiedService.nodePort | int | `nil` | Specify the nodePort value for the LoadBalancer and NodePort service types. ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport |
+| unifiedService.type | string | `"ClusterIP"` | Kubernetes service type |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
