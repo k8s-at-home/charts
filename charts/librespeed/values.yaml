@@ -2,112 +2,122 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
+# -- Specifies the strategy used to replace old Pods by new ones
 strategyType: Recreate
 
 image:
+  # -- Librespeed image
   repository: adolfintel/speedtest
+  # -- Librespeed image tag
   tag: latest
+  # -- Librespeed image pull policy
   pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
 
+# -- Default livenessProbe path
 livenessProbePath: /
+# -- Default readinessProbe path
 readinessProbePath: /
 
+# -- Default timezone
 timezone: "UTC"
+# -- Default UID
 puid: "1000"
+# -- Default GID
 pgid: "1000"
 
-## Store results? If enabled, password is required
+# -- Enable/Disable history
 telemetry: false
-## The following are required when telemetry is enabled
-## If telemetry is enabled, a stats page will be available at http://your.server/results/stats.php
-# password: "ChangeMe"
-# email: "fake@fake.com"
+# -- password for stats page
+password: "ChangeMe"
+# -- (string) Email address for GDPR requests. Must be specified when telemetry=true
+email:
 
-## The following are optional. The defaults are listed
-# title: LibreSpeed
-## Test IDs are obfuscated, to avoid exposing the database internal sequential IDs
-# idObfuscation: false
-## IP addresses and hostnames are redacted from the collected telemetry, for better privacy
-# redactIPAddresses: false
-## Specifies how the distance from the server is measured. Can be either km for kilometers, mi for miles, or an empty string to disable distance measurement.
-# distance: "km"
+# -- Title of your speedtest
+title: LibreSpeed
+# -- Test IDs are obfuscated, avoids exposing database internal sequential IDs
+idObfuscation: false
+# -- IP addresses/hostnames are redacted from the collected telemetry
+redactIPAddresses: false
+# -- how the distance from the server is measured. Options `km`, `mi`, or ``
+distance: "km"
 
 
 service:
+  # -- Kubernetes service type for the GUI
   type: ClusterIP
+  # -- Kubernetes port where the GUI is exposed
   port: 80
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- (int) Kubernetes nodePort where the GUI is exposed
+  nodePort:
+  # -- Service annotations for the GUI
   annotations: {}
+  # -- Custom labels
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- (string) Loadbalance IP for the GUI
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) List of IP CIDRs allowed access to load balancer (if supported)
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy: Cluster
 
 ingress:
+  # -- Enables Ingress
   enabled: false
+  # -- Ingress annotations
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # -- Ingress path
   path: /
+  # -- Ingress accepted hostnames
   hosts:
     - chart-example.local
+  # -- Ingress TLS configuration
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
 persistence:
-  enabled: false
-  ## node-red data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-  ##
-  ## If you want to reuse an existing claim, you can pass the name of the PVC using
-  ## the existingClaim variable
-  # existingClaim: your-claim
+  # -- Use persistent volume to store data
+  enabled: true
+  # -- (string) Type of persistent volume claim
+  storageClass:
+  # -- (string) Use an existing PVC to persist data
+  existingClaim:
+  # -- Persistence access modes
   accessMode: ReadWriteOnce
+  # -- Size of persistent volume claim
   size: 1Gi
-  ## When mounting the data volume you may specify a subPath
-  # subPath: /configs/node-red
-
+  # -- Do not delete the pvc upon helm uninstall
+  skipuninstall: false
+  # -- (string) When mounting the data volume you may specify a subPath
+  subPath:
+# -- CPU/Memory resource requests/limits or the homebridge GUI
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
+  #   cpu: 100m
+  #   memory: 128Mi
   # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+  #   cpu: 100m
+  #   memory: 128Mi
 
+# -- Node labels for pod assignment or the homebridge GUI
 nodeSelector: {}
 
+# -- Toleration labels for pod assignment or the homebridge GUI
 tolerations: []
 
+# -- Affinity settings for pod assignment or the homebridge GUI
 affinity: {}
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
 
+# -- Key-value pairs to add as deployment annotations
 deploymentAnnotations: {}
