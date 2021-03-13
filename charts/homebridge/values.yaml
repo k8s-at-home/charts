@@ -3,29 +3,39 @@
 replicaCount: 1
 
 image:
+  # -- Image repository
   repository: oznu/homebridge
+  # -- Image pull policy
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart appVersion.
+  # Possible values listed [here](https://hub.docker.com/r/oznu/homebridge/tags)
   tag: "3.1.0"
 
+# -- Secrets to use when pulling the image
 imagePullSecrets: []
+
 nameOverride: ""
 fullnameOverride: ""
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
+# -- Specifies the strategy used to replace old Pods by new ones
 strategyType: Recreate
 
+# -- Specify the container timezone
 timezone: "UTC"
+# -- process userID the instance should run as
 puid: 1000
+# -- process groupID the instance should run as
 pgid: 1000
 
 config:
+  # -- Enable the Homebridge UI plugin
   enableUI: true
+  # -- Additional Homebridge plugins to install at container startup such as `homebridge-hue`
   plugins: []
-    # - homebridge-hue
+  # -- Additional Alpine packages to install at container statup such as `bash`
   additionalPackages: []
-    # - bash
 
+# -- Extra ENV vars to pass to the homebridge container
 extraEnvs: []
 
 serviceAccount:
@@ -37,6 +47,7 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
 
 podSecurityContext: {}
@@ -51,60 +62,87 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  # -- Kubernetes service type for the homebridge GUI
   type: ClusterIP
   homebridgePort: 51826
+  # -- Kubernetes port where the homebridge GUI is exposed
   httpPort: 8080
+  # -- Service annotations for the homebridge GUI
+  annotations: {}
+  # -- (string) Cluster IP for the homebridge GUI
+  clusterIP:
+  # -- (string) External IPs for the homebridge GUI
+  externalIPs:
+  # -- (string) Loadbalancer IP for the homebridge GUI
+  loadBalancerIP:
+  # -- (string) Loadbalancer client IP restriction range for the homebridge GUI
+  loadBalancerSourceRanges:
+  # -- (string) Loadbalancer externalTrafficPolicy
+  externalTrafficPolicy:
+  # -- (string) nodePort to listen on for the homebridge GUI
+  nodePort:
 
 ingress:
+  # -- Enables Ingress
   enabled: false
+  # -- Ingress annotations
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # -- Ingress path
   path: /
+  # -- Ingress accepted hostnames
   hosts:
     - chart-example.local
+  # -- Ingress TLS configuration
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
+# -- Enable hostNetwork - needed for discovery to work
 hostNetwork: false
 
 persistence:
+  # -- Use persistent volume to store data
   enabled: true
-  ## homebridge data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-  ##
-  ## If you want to reuse an existing claim, you can pass the name of the PVC using
-  ## the existingClaim variable
-  # existingClaim: your-claim
+  # -- (string) Type of persistent volume claim
+  storageClass:
+  # -- (string) Use an existing PVC to persist data
+  existingClaim:
+  # -- Persistence access modes
   accessMode: ReadWriteOnce
+  # -- Size of persistent volume claim
   size: 1Gi
-  ## Do not delete the pvc upon helm uninstall
+  # -- Do not delete the pvc upon helm uninstall
   skipuninstall: false
 
 probes:
   liveness:
+    # -- Use the livenessProbe?
     enabled: true
+    # -- Specify liveness `initialDelaySeconds` parameter for the deployment
     initialDelaySeconds: 60
+    # -- Specify liveness `failureThreshold` parameter for the deployment
     failureThreshold: 5
+    # -- Specify liveness `timeoutSeconds` parameter for the deployment
     timeoutSeconds: 10
   readiness:
+    # -- Use the readinessProbe?
     enabled: true
+    # -- Specify readiness `initialDelaySeconds` parameter for the deployment
     initialDelaySeconds: 60
+    # -- Specify readiness `failureThreshold` parameter for the deployment
     failureThreshold: 5
+    # -- Specify readiness `timeoutSeconds` parameter for the deployment
     timeoutSeconds: 10
   startup:
+    # -- Use the startupProbe? (new in kubernetes 1.16)
     enabled: false
+    # -- Specify startup `failureThreshold` parameter for the deployment
     failureThreshold: 30
+    # -- Specify startup `periodSeconds` parameter for the deployment
     periodSeconds: 10
 
+# -- CPU/Memory resource requests/limits or the homebridge GUI
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -117,8 +155,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- Node labels for pod assignment or the homebridge GUI
 nodeSelector: {}
 
+# -- Toleration labels for pod assignment or the homebridge GUI
 tolerations: []
 
+# -- Affinity settings for pod assignment or the homebridge GUI
 affinity: {}
