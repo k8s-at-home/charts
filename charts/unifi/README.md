@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 1.5.2](https://img.shields.io/badge/Version-1.5.2-informational?style=flat-square) ![AppVersion: 5.14.23](https://img.shields.io/badge/AppVersion-5.14.23-informational?style=flat-square)
+![Version: 1.5.3](https://img.shields.io/badge/Version-1.5.3-informational?style=flat-square) ![AppVersion: 5.14.23](https://img.shields.io/badge/AppVersion-5.14.23-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -216,7 +216,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [1.5.3]
 
 #### Added
 
@@ -224,13 +224,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- Use helm-docs
 
 #### Removed
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.5.3]: #1.5.3
 
 ## Support
 

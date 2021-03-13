@@ -1,73 +1,120 @@
-# A tool to get statistics from Uptime Robot and log it into InfluxDB
+# uptimerobot
 
-![Screenshot](https://raw.githubusercontent.com/billimek/node-influx-uptimerobot/master/docs/dashboard.png)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
 
-This tool allows you to run periodic uptimerobot data usage checks and save the results to Influxdb
+A tool to get statistics from Uptime Robot and log it into InfluxDB
 
-## TL;DR;
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/trojanc/node-influx-uptimerobot>
+* <https://github.com/k8s-at-home/charts>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+
+## TL;DR
 
 ```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/uptimerobot
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install uptimerobot k8s-at-home/uptimerobot
 ```
-
-## Introduction
-
-This code is adopted from [this original repo](https://github.com/trojanc/node-influx-uptimerobot)
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `uptimerobot`
 
 ```console
-$ helm install --name my-release k8s-at-home/uptimerobot
+helm install uptimerobot k8s-at-home/uptimerobot
 ```
+
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `uptimerobot` deployment
 
 ```console
-$ helm delete my-release --purge
+helm uninstall uptimerobot
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The configuration is set as a block of text through a configmap and mounted as a file in /src/config.ini Any value in this text block should match the defined uptimerobot configuration. There are several values here that will have to match our kubernetes configuration.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-## Configuration
-
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-
-| Parameter                            | Description                                  | Default                                                    |
-| -------------------------------      | -------------------------------              | ---------------------------------------------------------- |
-| `image.repository`                   | uptimerobot image                            | `billimek/uptimerobotusage-for-influxdb`                   |
-| `image.tag`                          | uptimerobot image tag                        | `latest`                                                   |
-| `image.pullPolicy`                   | uptimerobot image pull policy                | `IfNotPresent`                                             |
-| `delay`                              | number of seconds to wait between collections | `300`                                                     |
-| `config.influxdb.host`               | InfluxDB hostname                            | `influxdb-influxdb`                                        |
-| `config.influxdb.port`               | InfluxDB port                                | `8086`                                                     |
-| `config.influxdb.database`           | InfluxDB database                            | `uptimerobot`                                              |
-| `config.influxdb.protocol`           | InfluxDB protocol                            | `http`                                                     |
-| `config.influxdb.username`           | InfluxDB username                            | ``                                                         |
-| `config.influxdb.password`           | InfluxDB password                            | ``                                              |
-| `config.uptimerobot.apikey`          | uptimerobot API key (REQUIRED)               | `someapikey`                                               |
-| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
-
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-$ helm install --name my-release \
-  --set config.uptimerobot.apikey=thisismyapikey \
+helm install uptimerobot \
+  --set env.TZ="America/New York" \
     k8s-at-home/uptimerobot
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-$ helm install --name my-release -f values.yaml k8s-at-home/uptimerobot
+helm install uptimerobot k8s-at-home/uptimerobot -f values.yaml
 ```
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/uptimerobot/values.yaml) file. It has several commented out suggested values.
+## Custom configuration
+
+N/A
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.influxdb.database | string | `"uptimerobot"` |  |
+| config.influxdb.host | string | `"influxdb-influxdb"` | host/port/database are mandatory - change as needed |
+| config.influxdb.port | int | `8086` |  |
+| config.influxdb.protocol | string | `"http"` |  |
+| config.uptimerobot.apikey | string | `"someapikey"` | uptimerobot API key (REQUIRED) |
+| delay | int | `300` | number of seconds to wait between collections |
+| image.pullPolicy | string | `"Always"` | uptimerobot image pull policy |
+| image.repository | string | `"billimek/node-influx-uptimerobot"` | uptimerobot image |
+| image.tag | string | `"latest"` | uptimerobot image tag |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Use helm-docs
+
+#### Removed
+
+- N/A
+
+[3.0.1]: #3.0.1
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
