@@ -3,9 +3,11 @@
 # Declare variables to be passed into your templates.
 
 image:
+  # -- Image repository
   repository: gcr.io/k8s-staging-nfd/node-feature-discovery
+  # -- Image pull policy
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Image tag. Possible values listed [here](https://github.com/kubernetes-sigs/node-feature-discovery/releases).
   tag: "v0.7.0"
 
 imagePullSecrets: []
@@ -25,7 +27,7 @@ rbac:
   # Specifies whether RBAC roles should be created
   create: true
 
-# Comma separated list of feature sources.
+# -- List of sources to consider when labeling - see [documentation](https://github.com/kubernetes-sigs/node-feature-discovery#feature-sources) for info
 sources: []
   # - cpu
   # - custom
@@ -39,7 +41,7 @@ sources: []
   # - system
   # - usb
 
-# node-feature-discovery configuration - see https://github.com/kubernetes-sigs/node-feature-discovery/blob/master/nfd-worker.conf.example for example
+# -- node-feature-discovery configuration - see https://github.com/kubernetes-sigs/node-feature-discovery/blob/master/nfd-worker.conf.example for example
 config: |
   #sources:
   #  cpu:
@@ -128,28 +130,32 @@ config: |
   #          loadedKMod : ["vendor_kmod1", "vendor_kmod2"]
 
 service:
+  # -- Kubernetes service type for the GUI
   type: ClusterIP
   clusterIP: ""
+  # -- Kubernetes port where the GUI is exposed
   port: 8080
+  # -- (int) Kubernetes nodePort where the GUI is exposed
+  nodePort:
+  # -- Service annotations for the GUI
+  annotations: {}
+  # -- Custom labels
+  labels: {}
+  # -- (string) Loadbalance IP for the GUI
+  loadBalancerIP:
+  # -- (list) List of IP CIDRs allowed access to load balancer (if supported)
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
 
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  # nodePort:
-  ## List of IP addresses at which the hass-configurator service is available
-  ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-  externalIPs: []
-  ## Use loadBalancerIP to request a specific static IP, otherwise leave blank
-  loadBalancerIP: ""
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy:  # Local
-
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
 
 master:
+  # -- Number of replicas to scale the master component to
   replicaCount: 1
 
   securityContext: {}
@@ -160,6 +166,7 @@ master:
     # runAsNonRoot: true
     # runAsUser: 1000
 
+  # -- CPU/Memory resource requests/limits for master component
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -172,14 +179,17 @@ master:
     #   cpu: 100m
   #   memory: 128Mi
 
+  # -- Node labels for master component pod assignment
   nodeSelector: {}
 
+  # -- Toleration labels for master component pod assignment.
   tolerations:
     - key: "node-role.kubernetes.io/master"
       operator: "Equal"
       value: ""
       effect: "NoSchedule"
 
+  # -- Affinity settings for master component pod assignment
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -199,6 +209,7 @@ worker:
     # runAsNonRoot: true
   # runAsUser: 1000
 
+  # -- CPU/Memory resource requests/limits for worker component
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -211,8 +222,11 @@ worker:
   #   cpu: 100m
   #   memory: 128Mi
 
+  # -- Node labels for worker component pod assignment
   nodeSelector: {}
 
+  # -- Toleration labels for worker component pod assignment
   tolerations: []
 
+  # -- Affinity settings for worker component pod assignment
   affinity: {}

@@ -2,44 +2,52 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
+# -- Specifies the strategy used to replace old Pods by new ones
 strategyType: Recreate
 
 image:
+  # -- Image repository
   repository: tenstartups/ser2sock
+  # -- Image tag. Possible values listed [here](https://hub.docker.com/r/tenstartups/ser2sock/tags).
   tag: latest
+  # -- Image pull policy
   pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
 
-# timezone: "America/New York"
+# -- (string) Timezone the ser2sock instance should run as, e.g. 'America/New_York'
+timezone:
+# -- USB Device to use
 device: "/dev/ttyUSB0"
+# -- UID to run as
 puid: "1001"
+# -- GID to run as
 pgid: "1001"
+# -- Baudrate
 baudRate: 115200
 
 service:
+  # -- Kubernetes service type for the GUI
   type: ClusterIP
+  # -- Kubernetes port where the GUI is exposed
   port: 10000
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- Service annotations for the GUI
   annotations: {}
-  labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- (string) Cluster IP for the GUI
+  clusterIP:
+  # -- (string) External IPs for the GUI
+  externalIPs:
+  # -- (string) Loadbalancer IP for the GUI
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (string) Loadbalancer client IP restriction range for the GUI
+  loadBalancerSourceRanges:
+  # -- (string) Loadbalancer externalTrafficPolicy
+  externalTrafficPolicy:
+  # -- (string) nodePort to listen on for the GUI
+  nodePort:
 
+# -- CPU/Memory resource requests/limits or the GUI
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -52,10 +60,14 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+# -- Node labels for pod assignment of the GUI
 nodeSelector: {}
 
+# -- Toleration labels for pod assignment of the GUI
 tolerations: []
 
+# -- Affinity settings for pod assignment of the GUI
 affinity: {}
 
+# -- Pod annotations
 podAnnotations: {}

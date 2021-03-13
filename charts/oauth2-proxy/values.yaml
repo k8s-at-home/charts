@@ -1,22 +1,22 @@
 # Oauth client configuration specifics
 config:
-  # OAuth client ID
+  # -- OAuth client ID
   clientID: "XXXXXXX"
-  # OAuth client secret
+  # -- OAuth client secret
   clientSecret: "XXXXXXXX"
-  # Create a new secret with the following command
-  # openssl rand -base64 32 | head -c 32 | base64
-  # Use an existing secret for OAuth2 credentials (see secret.yaml for required fields)
-  # Example:
-  # existingSecret: secret
+  # -- server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64`
   cookieSecret: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
   google: {}
+    # -- user impersonated by the google service account
     # adminEmail: xxxx
+
+    # -- google service account json contents
     # serviceAccountJson: xxxx
-    # Alternatively, use an existing secret (see google-secret.yaml for required fields)
-    # Example:
+
+    # -- Alternatively, use an existing secret (see google-secret.yaml for required fields)
     # existingSecret: google-secret
-  # Default configuration, to be overridden
+
+  # -- custom [oauth2_proxy.cfg](https://github.com/pusher/oauth2_proxy/blob/master/contrib/oauth2_proxy.cfg.example) contents for settings not overridable via environment nor command line
   configFile: |-
     email_domains = [ "*" ]
     upstreams = [ "file:///dev/null" ]
@@ -24,32 +24,37 @@ config:
   # configFile: |-
   #   pass_basic_auth = false
   #   pass_access_token = true
-  # Use an existing config map (see configmap.yaml for required fields)
-  # Example:
-  # existingConfig: config
+
+  # -- (string)existing Kubernetes configmap to use for the configuration file. See [config template](https://github.com/helm/charts/blob/master/stable/oauth2-proxy/templates/configmap.yaml) for the required values
+  existingConfig:
 
 image:
+  # -- Image repository
   repository: "quay.io/oauth2-proxy/oauth2-proxy"
+  # -- Image tag
   tag: "v7.0.1"
+  # -- Image pull policy
   pullPolicy: "IfNotPresent"
 
-# Optionally specify an array of imagePullSecrets.
+# -- (list) Optionally specify an array of imagePullSecrets.
 # Secrets must be manually created in the namespace.
 # ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
-# imagePullSecrets:
+imagePullSecrets:
   # - name: myRegistryKeySecretName
 
+# -- key:value list of extra arguments to give the binary
 extraArgs: {}
+# -- key:value list of extra environment variables to give the binary
 extraEnv: []
 
 # To authorize individual email addresses
 # That is part of extraArgs but since this needs special treatment we need to do a separate section
 authenticatedEmailsFile:
+  # -- Enables authorize individual email addresses
   enabled: false
-  # template is the name of the configmap what contains the email user list but has been configured without this chart.
+  # -- Name of the configmap that is handled outside of that chart
   # It's a simpler way to maintain only one configmap (user list) instead changing it for each oauth2-proxy service.
   # Be aware the value name in the extern config map in data needs to be named to "restricted_user_access".
-  template: ""
   # One email per line
   # example:
   # restricted_access: |-
@@ -57,18 +62,22 @@ authenticatedEmailsFile:
   #   name2@domain
   # If you override the config with restricted_access it will configure a user list within this chart what takes care of the
   # config map resource.
+  template: ""
+
+  # -- [email addresses](https://github.com/pusher/oauth2_proxy#email-authentication) list config
   restricted_access: ""
 
 service:
+  # -- Kubernetes service type for the GUI
   type: ClusterIP
-  # when service.type is ClusterIP ...
-  # clusterIP: 192.0.2.20
-  # when service.type is LoadBalancer ...
-  # loadBalancerIP: 198.51.100.40
-  # loadBalancerSourceRanges: 203.0.113.0/24
+  # -- Kubernetes port where the GUI is exposed
   port: 80
+  # -- Service annotations for the GUI
   annotations: {}
-  # foo.io/bar: "true"
+  # -- (string) Loadbalance IP for the GUI
+  loadBalancerIP:
+  # -- (list) List of IP CIDRs allowed access to load balancer (if supported)
+  loadBalancerSourceRanges:
 
 ## Create or use ServiceAccount
 serviceAccount:
@@ -80,27 +89,33 @@ serviceAccount:
   annotations: {}
 
 ingress:
+  # -- Enable Ingress
   enabled: false
+  # -- Ingress accepted path
   path: /
-  # Used to create an Ingress record.
-  # hosts:
-    # - chart-example.local
-  # Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
-  # extraPaths:
+  # -- Ingress accepted hostnames
+  hosts: []
+  # -- Ingress extra paths to prepend to every host configuration. Useful when configuring [custom actions with AWS ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#actions).
+  extraPaths: []
   # - path: /*
   #   backend:
   #     serviceName: ssl-redirect
   #     servicePort: use-annotation
-  # annotations:
+
+  # -- Ingress annotations
+  annotations: {}
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
-  # tls:
+
+  # -- (list) Ingress TLS configuration
+  tls:
     # Secrets must be manually created in the namespace.
     # - secretName: chart-example-tls
     #   hosts:
     #     - chart-example.local
-  # Define the ingressClassName
-  # ingressClassName: nginx
+
+  # -- (string) Set ingressClassName
+  ingressClassName:
 
 resources: {}
   # limits:
@@ -110,33 +125,35 @@ resources: {}
   #   cpu: 100m
   #   memory: 300Mi
 
+# -- list of extra volumes
 extraVolumes: []
   # - name: ca-bundle-cert
   #   secret:
   #     secretName: <secret-name>
 
+# -- list of extra volumeMounts
 extraVolumeMounts: []
   # - mountPath: /etc/ssl/certs/
   #   name: ca-bundle-cert
 
 priorityClassName: ""
 
-# Affinity for pod assignment
+# -- node/pod affinities
 # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-# affinity: {}
+affinity: {}
 
-# Tolerations for pod assignment
+# -- Tolerations for pod assignment
 # Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 tolerations: []
 
-# Node labels for pod assignment
+# -- Node labels for pod assignment
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
 nodeSelector: {}
 
 # Whether to use secrets instead of environment values for setting up OAUTH2_PROXY variables
 proxyVarsAsSecrets: true
 
-# Configure Kubernetes liveness and readiness probes.
+# -- Configure Kubernetes liveness probes.
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 # Disable both when deploying with Istio 1.0 mTLS. https://istio.io/help/faq/security/#k8s-health-checks
 livenessProbe:
@@ -144,6 +161,7 @@ livenessProbe:
   initialDelaySeconds: 0
   timeoutSeconds: 1
 
+# -- Configure Kubernetes readiness probes.
 readinessProbe:
   enabled: true
   initialDelaySeconds: 0
@@ -151,18 +169,20 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
 
-# Configure Kubernetes security context for container
+# -- Configure Kubernetes security context for container
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 securityContext:
   enabled: false
   runAsNonRoot: true
 
+# -- annotations to add to each pod
 podAnnotations: {}
+# -- labels to add to each pod
 podLabels: {}
 replicaCount: 1
 
-## PodDisruptionBudget settings
-## ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
+# -- PodDisruptionBudget settings
+# Ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
 podDisruptionBudget:
   enabled: true
   minAvailable: 1
@@ -171,27 +191,30 @@ podDisruptionBudget:
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 podSecurityContext: {}
 
-# Configure init containers for pod
-# REF: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+# -- Configure init containers for pod
+# Ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 initContainers: []
 
-# whether to use http or https
+# -- `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service.
 httpScheme: http
 
 # Additionally authenticate against a htpasswd file. Entries must be created with "htpasswd -s" for SHA encryption.
 # Alternatively supply an existing secret which contains the required information.
 htpasswdFile:
+  # -- enable htpasswd-file option
   enabled: false
+  # -- existing Kubernetes secret to use for OAuth2 htpasswd file
   existingSecret: ""
+  # -- list of [SHA encrypted user:passwords](https://pusher.github.io/oauth2_proxy/configuration#command-line-options)
   entries: {}
   # One row for each user
   # example:
   # entries:
   #  - testuser:{SHA}EWhzdhgoYJWy0z2gyzhRYlN9DSiv
 
-## Configure Pod Topology Spread Constraints
-## See https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
-## Requires Kubernetes >= v1.16
+# -- Configure Pod Topology Spread Constraints
+# See https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+# Requires Kubernetes >= v1.16
 topologySpreadConstraints:
   enabled: false
   maxSkew: 1
