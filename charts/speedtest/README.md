@@ -1,10 +1,8 @@
 # speedtest
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 periodic speedtest and save the results to InfluxDB
-
-![Screenshot](https://camo.githubusercontent.com/c652a6685bcb5a8cec6a47c92e57d159b28e47e7/68747470733a2f2f7075752e73682f746d664f412f623535373665383864652e706e67)
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -19,6 +17,7 @@ periodic speedtest and save the results to InfluxDB
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
 
 ## TL;DR
 
@@ -75,18 +74,25 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.delay | int | `3600` |  |
-| config.influxdb.database | string | `"speedtests"` |  |
-| config.influxdb.host | string | `"influxdb-influxdb"` |  |
-| config.influxdb.port | int | `8086` |  |
-| config.influxdb.ssl | bool | `false` |  |
-| config.speedtest.server | string | `nil` |  |
-| debug | bool | `false` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"atribe/speedtest-for-influxdb-and-grafana"` |  |
-| image.tag | string | `"latest"` |  |
+| config.delay | int | `3600` | how many seconds to wait between checks |
+| config.influxdb.database | string | `"speedtests"` | InfluxDB database |
+| config.influxdb.host | string | `nil` | InfluxDB host @default - internal influxDB chart if not set |
+| config.influxdb.password | string | `nil` | InfluxDB password |
+| config.influxdb.port | int | `8086` | InfluxDB port |
+| config.influxdb.ssl | bool | `false` | enable TLS |
+| config.influxdb.username | string | `nil` | InfluxDB username |
+| config.speedtest.server | string | `nil` | server to use for speedtest - leave blank to auto-pick |
+| debug | bool | `false` | Display debugging output |
+| image.pullPolicy | string | `"IfNotPresent"` | speedtest image pull policy |
+| image.repository | string | `"atribe/speedtest-for-influxdb-and-grafana"` | speedtest image |
+| image.tag | string | `"latest"` | speedtest image tag |
+| influxdb.architecture | string | `"standalone"` |  |
+| influxdb.authEnabled | bool | `false` |  |
+| influxdb.database | string | `"speedtests"` |  |
+| influxdb.enabled | bool | `true` |  |
+| influxdb.persistence.enabled | bool | `false` |  |
 | nodeSelector | object | `{}` |  |
-| podAnnotations | object | `{}` |  |
+| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 
@@ -96,7 +102,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [3.0.1]
 
 #### Added
 
@@ -104,13 +110,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- USe helm-docs
 
 #### Removed
 
 - N/A
 
-[1.0.0]: #1.0.0
+[3.0.1]: #3.0.1
 
 ## Support
 

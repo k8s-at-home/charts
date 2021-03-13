@@ -12,7 +12,7 @@ data:
     [GENERAL]
     Delay = {{ .Values.config.delay }}
     [INFLUXDB]
-    Address = {{ .Values.config.influxdb.host }}
+    Address = {{ default .Values.config.influxdb.host (printf "%s-influxdb" .Release.Name) }}
     Port = {{ .Values.config.influxdb.port }}
     Database = {{ .Values.config.influxdb.database }}
     Username = {{ .Values.config.influxdb.username }}
