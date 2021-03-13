@@ -1,154 +1,72 @@
 # oauth2-proxy
 
-[oauth2-proxy](https://github.com/pusher/oauth2_proxy) is a reverse proxy and static file server that provides authentication using Providers (Google, GitHub, and others) to validate accounts by email, domain or group.
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: 7.0.1](https://img.shields.io/badge/AppVersion-7.0.1-informational?style=flat-square)
 
-## TL;DR;
+A reverse proxy that provides authentication with Google, Github or other providers
+
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/oauth2-proxy/oauth2-proxy>
+
+## Requirements
+
+Kubernetes: `>=1.9.0-0`
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+
+## TL;DR
 
 ```console
-$ helm install stable/oauth2-proxy
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install oauth2-proxy k8s-at-home/oauth2-proxy
 ```
-
-## Introduction
-
-This chart bootstraps an oauth2-proxy deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `oauth2-proxy`
 
 ```console
-$ helm install stable/oauth2-proxy --name my-release
+helm install oauth2-proxy k8s-at-home/oauth2-proxy
 ```
-
-The command deploys oauth2-proxy on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `oauth2-proxy` deployment
 
 ```console
-$ helm delete my-release
+helm uninstall oauth2-proxy
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
-
-## Upgrading an existing Release to a new major version
-
-A major chart version change (like v1.2.3 -> v2.0.0) indicates that there is an
-incompatible breaking change needing manual actions.
-
-### To 1.0.0
-
-This version upgrade oauth2-proxy to v4.0.0. Please see the [changelog](https://github.com/pusher/oauth2_proxy/blob/v4.0.0/CHANGELOG.md#v400) in order to upgrade.
-
-### To 2.0.0
-
-Version 2.0.0 of this chart introduces support for Kubernetes v1.16.x by way of addressing the deprecation of the Deployment object apiVersion `apps/v1beta2`.  See [the v1.16 API deprecations page](https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/) for more information.
-
-Due to [this issue](https://github.com/helm/helm/issues/6583) there may be errors performing a `helm upgrade`of this chart from versions earlier than 2.0.0.
-
-### To 3.0.0
-
-Version 3.0.0 introduces support for [EKS IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) by adding a managed service account to the chart.  This is a breaking change since the service account is enabled by default.  To disable this behaviour set `serviceAccount.enabled` to `false`
-
-### To 4.0.0
-
-This is a breaking change as the chart was moved to k8s-at-home. No other change on top of the 3.x.x branch.
-
-## To 5.0.0
-
-Not many breaking changes. See the [changelog](https://github.com/oauth2-proxy/oauth2-proxy/releases/tag/v7.0.0) for oauth2-proxy, specifically the section "Breaking Changes" for a few configuration changes, particularly to do with the Azure provider.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-Parameter | Description | Default
---- | --- | ---
-`affinity` | node/pod affinities | None
-`authenticatedEmailsFile.enabled` | Enables authorize individual email addresses | `false`
-`authenticatedEmailsFile.template` | Name of the configmap that is handled outside of that chart | `""`
-`authenticatedEmailsFile.restricted_access` | [email addresses](https://github.com/pusher/oauth2_proxy#email-authentication) list config | `""`
-`config.clientID` | oauth client ID | `""`
-`config.clientSecret` | oauth client secret | `""`
-`config.cookieSecret` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64` | `""`
-`config.existingSecret` | existing Kubernetes secret to use for OAuth2 credentials. See [secret template](https://github.com/helm/charts/blob/master/stable/oauth2-proxy/templates/secret.yaml) for the required values | `nil`
-`config.configFile` | custom [oauth2_proxy.cfg](https://github.com/pusher/oauth2_proxy/blob/master/contrib/oauth2_proxy.cfg.example) contents for settings not overridable via environment nor command line | `""`
-`config.existingConfig` | existing Kubernetes configmap to use for the configuration file. See [config template](https://github.com/helm/charts/blob/master/stable/oauth2-proxy/templates/configmap.yaml) for the required values | `nil`
-`config.google.adminEmail` | user impersonated by the google service account | `""`
-`config.google.serviceAccountJson` | google service account json contents | `""`
-`config.google.existingConfig` | existing Kubernetes configmap to use for the service account file. See [google secret template](https://github.com/helm/charts/blob/master/stable/oauth2-proxy/templates/google-secret.yaml) for the required values | `nil`
-`extraArgs` | key:value list of extra arguments to give the binary | `{}`
-`extraEnv` | key:value list of extra environment variables to give the binary | `[]`
-`extraVolumes` | list of extra volumes | `[]`
-`extraVolumeMounts` | list of extra volumeMounts | `[]`
-`htpasswdFile.enabled` | enable htpasswd-file option | `false`
-`htpasswdFile.entries` | list of [SHA encrypted user:passwords](https://pusher.github.io/oauth2_proxy/configuration#command-line-options) | `{}`
-`htpasswdFile.existingSecret` | existing Kubernetes secret to use for OAuth2 htpasswd file | `""`
-`httpScheme` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. | `http`
-`image.pullPolicy` | Image pull policy | `IfNotPresent`
-`image.repository` | Image repository | `quay.io/pusher/oauth2_proxy`
-`image.tag` | Image tag | `v5.1.0`
-`imagePullSecrets` | Specify image pull secrets | `nil` (does not add image pull secrets to deployed pods)
-`ingress.enabled` | Enable Ingress | `false`
-`ingress.ingressClassName` | Set ingressClassName | `nil`
-`ingress.path` | Ingress accepted path | `/`
-`ingress.extraPaths` | Ingress extra paths to prepend to every host configuration. Useful when configuring [custom actions with AWS ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#actions). | `[]`
-`ingress.annotations` | Ingress annotations | `nil`
-`ingress.hosts` | Ingress accepted hostnames | `nil`
-`ingress.tls` | Ingress TLS configuration | `nil`
-`initContainers` | pod init containers | `[]`
-`livenessProbe.enabled`  | enable Kubernetes livenessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
-`livenessProbe.initialDelaySeconds` | number of seconds | 0
-`livenessProbe.timeoutSeconds` | number of seconds | 1
-`nodeSelector` | node labels for pod assignment | `{}`
-`podAnnotations` | annotations to add to each pod | `{}`
-`podLabels` | additional labesl to add to each pod | `{}`
-`podDisruptionBudget.enabled`| Enabled creation of PodDisruptionBudget (only if replicaCount > 1) | true
-`podDisruptionBudget.minAvailable`| minAvailable parameter for PodDisruptionBudget | 1
-`podSecurityContext` | Kubernetes security context to apply to pod | `{}`
-`priorityClassName` | priorityClassName | `nil`
-`readinessProbe.enabled` | enable Kubernetes readinessProbe. Disable to use oauth2-proxy with Istio mTLS. See [Istio FAQ](https://istio.io/help/faq/security/#k8s-health-checks) | `true`
-`readinessProbe.initialDelaySeconds` | number of seconds | 0
-`readinessProbe.timeoutSeconds` | number of seconds | 1
-`readinessProbe.periodSeconds` | number of seconds | 10
-`readinessProbe.successThreshold` | number of successes | 1
-`replicaCount` | desired number of pods | `1`
-`resources` | pod resource requests & limits | `{}`
-`service.port` | port for the service | `80`
-`service.type` | type of service | `ClusterIP`
-`service.clusterIP` | cluster ip address | `nil`
-`service.loadBalancerIP` | ip of load balancer | `nil`
-`service.loadBalancerSourceRanges` | allowed source ranges in load balancer | `nil`
-`serviceAccount.enabled` | create a service account | `true`
-`serviceAccount.name` | the service account name | ``
-`serviceAccount.annotations` | (optional) annotations for the service account | `{}`
-`tolerations` | list of node taints to tolerate | `[]`
-`topologySpreadConstraints.enabled` | enable Kubernetes [topologySpreadConstraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) | `false`
-`topologySpreadConstraints.maxSkew` | the degree to which Pods may be unevenly distributed | `1`
-`topologySpreadConstraints.topologyKey` | the key of node labels | `topology.kubernetes.io/zone`
-`topologySpreadConstraints.whenUnsatisfiable` | how to deal with a Pod if it doesn't satisfy the spread constraint (`DoNotSchedule`, `ScheduleAnyway`) | `DoNotSchedule`
-`securityContext.enabled` | enable Kubernetes security context on container | `false`
-`securityContext.runAsNonRoot` | make sure that the container runs as a non-root user | `true`
-`proxyVarsAsSecrets` | choose between environment values or secrets for setting up OAUTH2_PROXY variables. When set to false, remember to add the variables OAUTH2_PROXY_CLIENT_ID, OAUTH2_PROXY_CLIENT_SECRET, OAUTH2_PROXY_COOKIE_SECRET in extraEnv | `true`
-
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-$ helm install stable/oauth2-proxy --name my-release \
-  --set=image.tag=v0.0.2,resources.limits.cpu=200m
+helm install oauth2-proxy \
+  --set env.TZ="America/New York" \
+    k8s-at-home/oauth2-proxy
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-$ helm install stable/oauth2-proxy --name my-release -f values.yaml
+helm install oauth2-proxy k8s-at-home/oauth2-proxy -f values.yaml
 ```
 
-> **Tip**: You can use the default [values.yaml](values.yaml)
+## Custom configuration
 
-## SSL Configuration
+### SSL Configuration
 
 See: [SSL Configuration](https://pusher.github.io/oauth2_proxy/tls-configuration).
 Use ```values.yaml``` like:
@@ -178,3 +96,126 @@ data:
   cert.pem: AB..==
   cert.key: CD..==
 ```
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` | node/pod affinities Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
+| authenticatedEmailsFile.enabled | bool | `false` | Enables authorize individual email addresses |
+| authenticatedEmailsFile.restricted_access | string | `""` | [email addresses](https://github.com/pusher/oauth2_proxy#email-authentication) list config |
+| authenticatedEmailsFile.template | string | `""` | Name of the configmap that is handled outside of that chart It's a simpler way to maintain only one configmap (user list) instead changing it for each oauth2-proxy service. Be aware the value name in the extern config map in data needs to be named to "restricted_user_access". One email per line example: restricted_access: |-   name1@domain   name2@domain If you override the config with restricted_access it will configure a user list within this chart what takes care of the config map resource. |
+| config.clientID | string | `"XXXXXXX"` | OAuth client ID |
+| config.clientSecret | string | `"XXXXXXXX"` | OAuth client secret |
+| config.configFile | string | `"email_domains = [ \"*\" ]\nupstreams = [ \"file:///dev/null\" ]"` | google service account json contents serviceAccountJson: xxxx -- Alternatively, use an existing secret (see google-secret.yaml for required fields) existingSecret: google-secret -- custom [oauth2_proxy.cfg](https://github.com/pusher/oauth2_proxy/blob/master/contrib/oauth2_proxy.cfg.example) contents for settings not overridable via environment nor command line |
+| config.cookieSecret | string | `"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64` |
+| config.existingConfig | string | `nil` | xisting Kubernetes configmap to use for the configuration file. See [config template](https://github.com/helm/charts/blob/master/stable/oauth2-proxy/templates/configmap.yaml) for the required values |
+| config.google | object | `{}` |  |
+| extraArgs | object | `{}` | key:value list of extra arguments to give the binary |
+| extraEnv | list | `[]` | key:value list of extra environment variables to give the binary |
+| extraVolumeMounts | list | `[]` | list of extra volumeMounts |
+| extraVolumes | list | `[]` | list of extra volumes |
+| htpasswdFile.enabled | bool | `false` | enable htpasswd-file option |
+| htpasswdFile.entries | object | `{}` | list of [SHA encrypted user:passwords](https://pusher.github.io/oauth2_proxy/configuration#command-line-options) |
+| htpasswdFile.existingSecret | string | `""` | existing Kubernetes secret to use for OAuth2 htpasswd file |
+| httpScheme | string | `"http"` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"quay.io/oauth2-proxy/oauth2-proxy"` | Image repository |
+| image.tag | string | `"v7.0.1"` | Image tag |
+| imagePullSecrets | list | `nil` | Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace. ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod |
+| ingress.annotations | object | `{}` | Ingress annotations |
+| ingress.enabled | bool | `false` | Enable Ingress |
+| ingress.extraPaths | list | `[]` | Ingress extra paths to prepend to every host configuration. Useful when configuring [custom actions with AWS ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#actions). |
+| ingress.hosts | list | `[]` | Ingress accepted hostnames |
+| ingress.ingressClassName | string | `nil` | Set ingressClassName |
+| ingress.path | string | `"/"` | Ingress accepted path |
+| ingress.tls | list | `nil` | Ingress TLS configuration |
+| initContainers | list | `[]` | Configure init containers for pod Ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ |
+| livenessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"timeoutSeconds":1}` | Configure Kubernetes liveness probes. Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/ Disable both when deploying with Istio 1.0 mTLS. https://istio.io/help/faq/security/#k8s-health-checks |
+| nodeSelector | object | `{}` | Node labels for pod assignment Ref: https://kubernetes.io/docs/user-guide/node-selection/ |
+| podAnnotations | object | `{}` | annotations to add to each pod |
+| podDisruptionBudget | object | `{"enabled":true,"minAvailable":1}` | PodDisruptionBudget settings Ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/ |
+| podLabels | object | `{}` | labels to add to each pod |
+| podSecurityContext | object | `{}` |  |
+| priorityClassName | string | `""` |  |
+| proxyVarsAsSecrets | bool | `true` |  |
+| readinessProbe | object | `{"enabled":true,"initialDelaySeconds":0,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Configure Kubernetes readiness probes. |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+| securityContext | object | `{"enabled":false,"runAsNonRoot":true}` | Configure Kubernetes security context for container Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
+| service.annotations | object | `{}` | Service annotations for the GUI |
+| service.loadBalancerIP | string | `nil` | Loadbalance IP for the GUI |
+| service.loadBalancerSourceRanges | list | `nil` | List of IP CIDRs allowed access to load balancer (if supported) |
+| service.port | int | `80` | Kubernetes port where the GUI is exposed |
+| service.type | string | `"ClusterIP"` | Kubernetes service type for the GUI |
+| serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.enabled | bool | `true` |  |
+| serviceAccount.name | string | `nil` |  |
+| tolerations | list | `[]` | Tolerations for pod assignment Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/ |
+| topologySpreadConstraints | object | `{"enabled":false,"maxSkew":1,"topologyKey":"topology.kubernetes.io/zone","whenUnsatisfiable":"DoNotSchedule"}` | Configure Pod Topology Spread Constraints See https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/ Requires Kubernetes >= v1.16 |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.0]
+
+#### Changed
+
+- This version upgrade oauth2-proxy to v4.0.0. Please see the [changelog](https://github.com/pusher/oauth2_proxy/blob/v4.0.0/CHANGELOG.md#v400) in order to upgrade.
+
+### [2.0.0]
+
+#### Changed
+
+- support for Kubernetes v1.16.x by way of addressing the deprecation of the Deployment object apiVersion `apps/v1beta2`.  See [the v1.16 API deprecations page](https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/) for more information.
+
+Due to [this issue](https://github.com/helm/helm/issues/6583) there may be errors performing a `helm upgrade`of this chart from versions earlier than 2.0.0.
+
+### [3.0.0]
+
+#### Changed
+
+- support for [EKS IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) by adding a managed service account to the chart.  This is a breaking change since the service account is enabled by default.  To disable this behaviour set `serviceAccount.enabled` to `false`
+
+### [4.0.0]
+
+#### Changed
+
+- This is a breaking change as the chart was moved to k8s-at-home. No other change on top of the 3.x.x branch.
+
+### [5.0.0]
+
+#### Changed
+
+- Not many breaking changes. See the [changelog](https://github.com/oauth2-proxy/oauth2-proxy/releases/tag/v7.0.0) for oauth2-proxy, specifically the section "Breaking Changes" for a few configuration changes, particularly to do with the Azure provider.
+
+### [5.0.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Use helm-docs
+
+#### Removed
+
+- N/A
+
+[5.0.1]: #5.0.1
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

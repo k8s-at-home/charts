@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
+# -- upgrade strategy type (e.g. Recreate or RollingUpdate)
 strategyType: Recreate
 
 image:
@@ -19,106 +19,98 @@ image:
 # different services on different IPs.
 unifiedService:
   enabled: false
+  # -- Kubernetes service type
   type: ClusterIP
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- (int) Specify the nodePort value for the LoadBalancer and NodePort service types.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  #
+  nodePort:
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
 
 guiService:
+  enabled: false
+  # -- Kubernetes service type
   type: ClusterIP
+  # -- Kubernetes port where the service is exposed
   port: 8443
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- (int) Specify the nodePort value for the LoadBalancer and NodePort service types.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  #
+  nodePort:
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
 
 captivePortalService:
   enabled: false
+  # -- Kubernetes service type
   type: ClusterIP
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
+  # -- Kubernetes port where the http service is exposed
   http: 8880
+  # -- Kubernetes port where the https service is exposed
   https: 8843
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
 
-
-  # Ingress settings only for the captive portal
+  # -- Ingress settings
   ingress:
     enabled: false
     annotations: {}
-      # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
     path: /
     hosts:
       - chart-example.local
     tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
 
 controllerService:
+  enabled: false
+  # -- Kubernetes service type
   type: NodePort
+  # -- Kubernetes port where the service is exposed
   port: 8080
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
-  ##
-  # Ingress settings only for the controller
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
+
+  # -- Ingress settings
   ingress:
     enabled: false
     annotations: {}
@@ -128,102 +120,100 @@ controllerService:
     tls: []
 
 stunService:
+  enabled: false
+  # -- Kubernetes service type
   type: NodePort
-  port: 3478   # udp
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- Kubernetes port where the service is exposed
+  port: 3478
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
 
 discoveryService:
+  enabled: false
+  # -- Kubernetes service type
   type: NodePort
-  port: 10001  # udp
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- Kubernetes port where the service is exposed
+  port: 10001
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
+
+
+  # -- Ingress settings
+  ingress:
+    enabled: false
+    annotations: {}
+    path: /
+    hosts:
+      - chart-example.local
+    tls: []
 
 syslogService:
+  enabled: false
+  # -- Kubernetes service type
   type: NodePort
-  port: 5514  # udp
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- Kubernetes port where the service is exposed
+  port: 5514
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
 
 speedtestService:
+  enabled: false
+  # -- Kubernetes service type
   type: ClusterIP
+  # -- Kubernetes port where the service is exposed
   port: 6789
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
+  # -- Provide any additional annotations which may be required. This can be used to
+  # set the LoadBalancer service type to internal only.
+  # ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   annotations: {}
   labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
+  # -- Use loadBalancerIP to request a specific static IP,
+  # otherwise leave blank
   loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  # -- (list) loadBalancerSourceRanges
+  loadBalancerSourceRanges:
+  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy:
 
+
+# -- Ingress settings
 ingress:
   enabled: false
   annotations: {}
-    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
     - chart-example.local
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 timezone: UTC
 
@@ -231,8 +221,8 @@ runAsRoot: false
 UID: 999
 GID: 999
 
-## If you provide your own custom certificate in <unifi-data>/cert
-## you can define the following parameters to configure the controller
+# -- If you provide your own custom certificate in <unifi-data>/cert
+# you can define the following parameters to configure the controller
 customCert:
   enabled: false
   isChain: false
@@ -242,7 +232,7 @@ customCert:
   # you can pass the name of that secret using certSecret variable
   # certSecret: unifi-tls
 
-# Logging configuration
+# -- Logging configuration
 logging:
   promtail:
     enabled: false
@@ -253,7 +243,7 @@ logging:
     loki:
       url: http://loki.logs.svc.cluster.local:3100/loki/api/v1/push
 
-# define an external mongoDB instead of using the built-in mongodb
+# -- define an external mongoDB instead of using the built-in mongodb
 mongodb:
   enabled: false
   dbUri: mongodb://mongo/unifi
@@ -261,24 +251,18 @@ mongodb:
   databaseName: unifi
 
 persistence:
-  enabled: true
-  ## unifi data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-  ##
-  ## If you want to reuse an existing claim, you can pass the name of the PVC using
-  ## the existingClaim variable
-  # existingClaim: your-claim
-  #
-  ## Applies a prefix to the directories created by the unifi container
-  # subPath: unifi
+  # -- Use persistent volume to store data
+  enabled: false
+  # -- (string) Type of persistent volume claim
+  storageClass:
+  # -- (string) Use an existing PVC to persist data
+  existingClaim:
+  # -- Persistence access modes
   accessMode: ReadWriteOnce
+  # -- Size of persistent volume claim
   size: 5Gi
+  # -- Do not delete the pvc upon helm uninstall
+  skipuninstall: false
 
 extraVolumes: []
   ## specify additional volume to be used by extraVolumeMounts inside unifi container
@@ -300,13 +284,13 @@ extraJvmOpts: []
   # - "-Dlog4j.configurationFile=file:/configmap/log4j2.xml"
   # - "-Dsystem_ip=1.2.3.4"
 
-## Java Virtual Machine (JVM) initial, and minimum, heap size
-## Unset value means there is no lower limit
+# -- Java Virtual Machine (JVM) initial, and minimum, heap size
+# Unset value means there is no lower limit
 jvmInitHeapSize:
 
-## Java Virtual Machine (JVM) maximum heap size
-## For larger installations a larger value is recommended.
-## For memory constrained system this value can be lowered.
+# -- Java Virtual Machine (JVM) maximum heap size
+# For larger installations a larger value is recommended.
+# For memory constrained system this value can be lowered.
 jvmMaxHeapSize: 1024M
 
 extraConfigFiles: {}
@@ -350,9 +334,8 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
-## Liveness and readiness probe values
-## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
-##
+# -- Liveness probe values
+# Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 livenessProbe:
   enabled: true
   initialDelaySeconds: 30
@@ -360,6 +343,9 @@ livenessProbe:
   timeoutSeconds: 1
   failureThreshold: 3
   successThreshold: 1
+
+# -- Readiness probe values
+# Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 readinessProbe:
   enabled: true
   initialDelaySeconds: 15
