@@ -1,6 +1,6 @@
 # dnsmadeeasy-webhook
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Cert-Manager Webhook for DNSMadeEasy
 
@@ -17,7 +17,7 @@ Cert-Manager Webhook for DNSMadeEasy
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.1.0 |
+| https://library-charts.k8s-at-home.com | common | 1.0.0 |
 
 ## TL;DR
 
@@ -77,7 +77,7 @@ N/A
 | additionalVolumeMounts[0].mountPath | string | `"/tls"` |  |
 | additionalVolumeMounts[0].name | string | `"certs"` |  |
 | additionalVolumeMounts[0].readOnly | bool | `true` |  |
-| args | string | `"[\"--tls-cert-file=/tls/tls.crt\",\"--tls-private-key-file=/tls/tls.key\"]"` |  |
+| args | string | `"[\"--tls-cert-file=/tls/tls.crt\",\"--tls-private-key-file=/tls/tls.key\",\"--secure-port=4443\"]"` |  |
 | certManager.namespace | string | `"cert-manager"` | Namespace where the cert-manager operator was installed to |
 | certManager.serviceAccountName | string | `"cert-manager"` | Service account used by the cert-manager |
 | groupName | string | `"acme.mycompany.com"` | The GroupName here is used to identify your company or business unit that created this webhook. This name will need to be referenced in each Issuer's `webhook` stanza to inform cert-manager of where to send ChallengePayload resources in order to solve the DNS01 challenge. This group name should be **unique**, hence using your own company's domain here is recommended. |
@@ -101,6 +101,7 @@ N/A
 | probes.startup.spec.httpGet.scheme | string | `"HTTPS"` |  |
 | service.port.name | string | `"https"` |  |
 | service.port.port | int | `443` |  |
+| service.port.targetPort | int | `4443` |  |
 
 ## Changelog
 
@@ -123,6 +124,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - N/A
 
 [1.0.0]: #1.0.0
+
+### [1.1.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Use port 4443 for application
+
+#### Removed
+
+- N/A
+
+[1.1.1]: #1.1.1
 
 ## Support
 
