@@ -3,8 +3,11 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
+  # -- uptimerobot image
   repository: billimek/node-influx-uptimerobot
+  # -- uptimerobot image tag
   tag: latest
+  # -- uptimerobot image pull policy
   pullPolicy: Always
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -18,11 +21,11 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 nodeSelector: {}
-# number of seconds to wait between collections
+# -- number of seconds to wait between collections
 delay: 300
 config:
   influxdb:
-    # host/port/database are mandatory - change as needed
+    # -- host/port/database are mandatory - change as needed
     host: influxdb-influxdb
     port: 8086
     protocol: http
@@ -30,9 +33,10 @@ config:
     # username:
     # password:
   uptimerobot:
-    # API key is mandatory and must be populated
+    # -- uptimerobot API key (REQUIRED)
     apikey: someapikey
     # logs_limit: 100
     # response_times_limit: 100
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
