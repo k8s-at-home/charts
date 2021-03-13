@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: v1.2.18
+description: Kanboard is a free and open source Kanban project management software.
+name: kanboard
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- kanboard
+- kanban
+home: https://github.com/k8s-at-home/charts/tree/master/charts/kanboard
+icon: https://raw.githubusercontent.com/kanboard/website/master/assets/img/icon.svg
+sources:
+- https://github.com/kanboard/kanboard
+maintainers:
+- name: trly
+  email: trly@users.noreply.github.com
+dependencies:
+- name: common
+  repository: https://k8s-at-home.com/charts/
+  version: 3.1.0
