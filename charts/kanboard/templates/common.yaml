@@ -1,0 +1,29 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Set non-sensitive configuration through environment variables */}}
+{{- $_ := set .Values.env "DEBUG" (printf "%t" .Values.config.debug) -}}
+{{- $_ := set .Values.env "ENABLE_URL_REWRITE" (printf "%t" .Values.config.urlRewrite) -}}
+{{- $_ := set .Values.env "PLUGIN_DIR" (printf "%s" .Values.config.plugins.dir) -}}
+{{- $_ := set .Values.env "PLUGIN_INSTALLER" (printf "%t" .Values.config.plugins.installer) -}}
+{{- $_ := set .Values.env "PLUGIN_API_URL" (printf "%s" .Values.config.plugins.api.url) -}}
+{{- $_ := set .Values.env "FILES_DIR" (printf "%s" .Values.config.files.dir) -}}
+{{- $_ := set .Values.env "CACHE_DRIVER" (printf "%s" .Values.config.cache.driver) -}}
+{{- if .Values.config.cache.dir -}}
+{{- $_ := set .Values.env "CACHE_DIR" (printf "%s" .Values.config.cache.dir) -}}
+{{- end -}}
+{{- $_ := set .Values.env "MAIL_CONFIGURATION" (printf "%t" .Values.config.mail.enabled) -}}
+{{- if .Values.config.mail.enabled -}}
+{{- $_ := set .Values.env "MAIL_FROM" (printf "%s" .Values.config.mail.from) -}}
+{{- if .Values.config.mail.bcc -}}
+{{- $_ := set .Values.env "MAIL_BCC" (printf "%s" .Values.config.mail.bcc) -}}
+{{- end -}}
+{{- end -}}
+{{- $_ := set .Values.env "DB_RUN_MIGRATIONS" (printf "%t" .Values.config.db.runMigrations) -}}
+{{- $_ := set .Values.env "DB_DRIVER" (printf "%s" .Values.config.db.driver) -}}
+{{- $_ := set .Values.env "LOG_DRIVER" (printf "%s" .Values.config.logging.driver) -}}
+{{- $_ := set .Values.env "SESSION_DURATION" (printf "%v" .Values.config.session.duration) -}}
+{{- $_ := set .Values.env "SESSION_HANDLER" (printf "%s" .Values.config.session.handler) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
