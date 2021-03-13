@@ -1,71 +1,123 @@
-# Speedtest.net Collector For InfluxDB and Grafana
+# speedtest
+
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+
+periodic speedtest and save the results to InfluxDB
 
 ![Screenshot](https://camo.githubusercontent.com/c652a6685bcb5a8cec6a47c92e57d159b28e47e7/68747470733a2f2f7075752e73682f746d664f412f623535373665383864652e706e67)
 
-This tool is a wrapper for speedtest-cli which allows you to run periodic speedtets and save the results to Influxdb
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
-## TL;DR;
+## Source Code
+
+* <https://github.com/k8s-at-home/Speedtest-for-InfluxDB-and-Grafana>
+* <https://github.com/k8s-at-home/charts>
+
+## Requirements
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+
+## TL;DR
 
 ```console
-$ helm repo add k8s-at-home https://k8s-at-home.com/charts/
-$ helm install k8s-at-home/speedtest
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install speedtest k8s-at-home/speedtest
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name `speedtest`
 
 ```console
-$ helm install --name my-release k8s-at-home/speedtest
+helm install speedtest k8s-at-home/speedtest
 ```
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall the `speedtest` deployment
 
 ```console
-$ helm delete my-release --purge
+helm uninstall speedtest
 ```
 
-The command removes all the Kubernetes components associated with the chart and deletes the release.
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
 
 ## Configuration
 
-The configuration is set as a block of text through a configmap and mounted as a file in /src/config.ini Any value in this text block should match the defined speedtest configuration. There are several values here that will have to match our kubernetes configuration. 
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
 
-## Configuration
-
-The following tables lists the configurable parameters of the Sentry chart and their default values.
-
-| Parameter                            | Description                                | Default                                                    |
-| -------------------------------      | -------------------------------            | ---------------------------------------------------------- |
-| `image.repository`                   | speedtest image                                | `k8s-at-home/speedtestusage-for-influxdb`                     |
-| `image.tag`                          | speedtest image tag                            | `latest`                                                 |
-| `image.pullPolicy`                   | speedtest image pull policy                    | `IfNotPresent`                                           |
-| `debug`                              | Display debugging output                     | `false`                                                  |
-| `config.delay`                       | how many seconds to wait between checks      | `3600`                                                   |
-| `config.influxdb.host`               | InfluxDB hostname                            | `influxdb-influxdb`                                      |
-| `config.influxdb.port`               | InfluxDB port                                | `8086`                                                   |
-| `config.influxdb.database`           | InfluxDB database                            | `speedtests`                                                |
-| `config.influxdb.username`           | InfluxDB username                            | ``                                                       |
-| `config.influxdb.password`           | InfluxDB password                            | ``                                                       |
-| `config.influxdb.ssl`                | InfluxDB connection using SSL                | `false`                                                  |
-| `config.speedtest.server`            | server to use for speedtest - leave blank to auto-pick | ``                                               |
-| `podAnnotations`                     | Key-value pairs to add as pod annotations    | `{}` |
-
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-$ helm install --name my-release \
-  --set config.influxdb.host=some-influx-host \
+helm install speedtest \
+  --set env.TZ="America/New York" \
     k8s-at-home/speedtest
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-$ helm install --name my-release -f values.yaml k8s-at-home/speedtest
+helm install speedtest k8s-at-home/speedtest -f values.yaml
 ```
 
-Read through the [values.yaml](https://github.com/k8s-at-home/charts/blob/master/charts/speedtest/values.yaml) file. It has several commented out suggested values.
+## Custom configuration
+
+N/A
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config.delay | int | `3600` |  |
+| config.influxdb.database | string | `"speedtests"` |  |
+| config.influxdb.host | string | `"influxdb-influxdb"` |  |
+| config.influxdb.port | int | `8086` |  |
+| config.influxdb.ssl | bool | `false` |  |
+| config.speedtest.server | string | `nil` |  |
+| debug | bool | `false` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"atribe/speedtest-for-influxdb-and-grafana"` |  |
+| image.tag | string | `"latest"` |  |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` |  |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

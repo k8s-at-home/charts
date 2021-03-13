@@ -3,8 +3,11 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
+  # -- speedtest image
   repository: atribe/speedtest-for-influxdb-and-grafana
+  # -- speedtest image tag
   tag: latest
+  # -- speedtest image pull policy
   pullPolicy: IfNotPresent
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -17,21 +20,29 @@ resources: {}
   # requests:
   #  cpu: 100m
   #  memory: 128Mi
+
 nodeSelector: {}
+# -- Display debugging output
 debug: false
 config:
-  # how many seconds to wait between checks
+  # -- how many seconds to wait between checks
   delay: 3600
   influxdb:
-    # host/port/database are mandatory - change as needed
+    # -- host/port/database are mandatory - change as needed
     host: influxdb-influxdb
+    # -- InfluxDB port
     port: 8086
+    # -- InfluxDB database
     database: speedtests
-    # username:
-    # password:
+    # -- (string) InfluxDB username
+    username:
+    # -- (string) InfluxDB password
+    password:
+    # -- enable TLS
     ssl: false
   speedtest:
-    # Leave blank to auto pick server
+    # -- server to use for speedtest - leave blank to auto-pick
     server:
 
+# -- Key-value pairs to add as pod annotations
 podAnnotations: {}
