@@ -1,0 +1,65 @@
+---
+
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+# -- This is the default, you can also use requarks/wiki
+image:
+  repository: linuxserver/wikijs
+  pullPolicy: IfNotPresent
+  tag: version-2.5.191
+
+strategy:
+  type: Recreate
+
+env:
+  # -- Set the time zone, e.g. Europe/Amsterdam
+  TZ:
+  # -- mysql, postgres, mariadb, mssql or sqlite
+  DB_TYPE: sqlite
+  # -- Path to the SQLite file
+  DB_FILEPATH: /app/wiki/data/db.sqlite
+  # -- Port of the database
+  DB_PORT:
+  # -- Username to connect to the database
+  DB_USER:
+  # -- Password to connect to the database
+  DB_PASS:
+  # -- Database name
+  DB_NAME:
+  # -- Set to either 1 or true to enable. (optional, off if omitted)
+  DB_SSL:
+  # -- Database CA certificate content, as a single line string (without spaces or new lines), without the prefix and suffix lines. (optional, requires 2.3+)
+  DB_SSL_CA:
+  # -- Path to the mapped file containing to the database password. (optional, replaces DB_PASS)
+  DB_PASS_FILE:
+
+service:
+  # -- The default port is 3000 used by wiki.ks
+  port:
+    port: 3000
+    targetPort: 3000
+
+ingress:
+  # enable this if you would like to access you wiki
+  enabled: false
+  ingress.hosts[0].host: "chart-example.local"
+  ingress.hosts[0].paths[0].path: "/"
+  ingress.hosts[0].paths[0].pathType: "Prefix"
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    accessMode: "ReadWriteOnce"
+    size: "1Gi"
+  data:
+    enabled: false
+    emptyDir: false
+    accessMode: "ReadWriteOnce"
+    mountPath: /app/wiki/data
+    size: "1Gi"
