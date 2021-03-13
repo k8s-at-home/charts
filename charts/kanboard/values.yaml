@@ -1,0 +1,80 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+image:
+  repository: kanboard/kanboard
+  pullPolicy: IfNotPresent
+  tag: v1.2.18
+
+strategy:
+  type: Recreate
+
+# -- https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables
+env: {}
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
+
+persistence:
+  # -- enable data persistence
+  data:
+    enabled: false
+    emptyDir: false
+    mountPath: /var/www/app/data
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
+  # -- enable SSL persistence
+  ssl:
+    enabled: false
+    emptyDir: false
+    mountPath: /etc/nginx/ssl
+
+# https://docs.kanboard.org/en/latest/admin_guide/config_file.html
+config:
+  debug: false
+  urlRewrite: false
+  plugins:
+    # -- Enable/disable plugin installation from the user interface
+    installer: false
+    # -- Plugin folder
+    dir: 'data/plugins'
+    api:
+      # -- default plugin directory URL
+      url: 'https://kanboard.org/plugins.json'
+  files:
+    # -- Folder for uploaded files
+    dir: 'data/files'
+  cache:
+    # -- Available cache drivers are "file" and "memory"
+    driver: 'memory'
+    # -- Cache folder to use if cache driver is "file"
+    dir: null
+  mail:
+    # -- Enable/disable email configuration from the user interface
+    enabled: false
+    from: 'notifications@kanboard.local'
+    bcc: null
+  db:
+    # -- Run automatically database migrations
+    runMigrations: true
+    # -- Database driver: sqlite, mysql or postgres
+    driver: sqlite
+
+  logging:
+    # -- log driver: syslog, stderr, stdout or file
+    driver: stdout
+
+  session:
+    # -- Session duration in second (0 = until the browser is closed)
+    duration: 0
+    # -- Session handler: db or php
+    handler: db
