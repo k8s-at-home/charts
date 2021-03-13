@@ -36,7 +36,7 @@ unifiedService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
 guiService:
   enabled: false
@@ -59,7 +59,7 @@ guiService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
 captivePortalService:
   enabled: false
@@ -80,7 +80,7 @@ captivePortalService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
   # -- Ingress settings
   ingress:
@@ -108,7 +108,7 @@ controllerService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
   # -- Ingress settings
   ingress:
@@ -136,7 +136,7 @@ stunService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
 discoveryService:
   enabled: false
@@ -155,7 +155,7 @@ discoveryService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
 
   # -- Ingress settings
@@ -184,7 +184,7 @@ syslogService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
 speedtestService:
   enabled: false
@@ -203,7 +203,7 @@ speedtestService:
   # -- (list) loadBalancerSourceRanges
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy:
 
 
 # -- Ingress settings
@@ -252,7 +252,7 @@ mongodb:
 
 persistence:
   # -- Use persistent volume to store data
-  enabled: true
+  enabled: false
   # -- (string) Type of persistent volume claim
   storageClass:
   # -- (string) Use an existing PVC to persist data
