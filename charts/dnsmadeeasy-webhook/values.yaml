@@ -24,7 +24,7 @@ image:
   # -- Image tag
   tag: v1.0.0
 
-args: '["--tls-cert-file=/tls/tls.crt","--tls-private-key-file=/tls/tls.key"]'
+args: '["--tls-cert-file=/tls/tls.crt","--tls-private-key-file=/tls/tls.key","--secure-port=4443"]'
 
 additionalVolumeMounts:
 - name: certs
@@ -60,4 +60,5 @@ probes:
 service:
   port:
     name: https
+    targetPort: 4443
     port: 443
