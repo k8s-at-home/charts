@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://github.com/pre-commit/pre-commit)
@@ -53,6 +53,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/bjw-s"><img src="https://avatars.githubusercontent.com/u/6213398?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=bjw-s" title="Code">💻</a></td>
     <td align="center"><a href="http://schouten-lebbing.nl"><img src="https://avatars.githubusercontent.com/u/7613738?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kjeld Schouten-Lebbing</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Ornias1993" title="Code">💻</a></td>
     <td align="center"><a href="https://www.meetup.com/nl-NL/I-I-Inspiratie-Innovatie/"><img src="https://avatars.githubusercontent.com/u/30292281?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rolf Berkenbosch</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rolfberkenbosch" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/auricom"><img src="https://avatars.githubusercontent.com/u/27022259?v=4?s=100" width="100px;" alt=""/><br /><sub><b>auricom</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=auricom" title="Code">💻</a></td>
   </tr>
 </table>
 
