@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 2.5.191
+description: Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
+name: wikijs
+version: 3.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- wiki
+- wikijs
+home: https://github.com/k8s-at-home/charts/tree/master/charts/wikijs
+icon: https://static.requarks.io/logo/wikijs-full.svg
+sources:
+- https://hub.docker.com/r/linuxserver/wikijs/
+- https://github.com/Requarks/wiki
+maintainers:
+- name: rolfberkenbosch
+  email: rolf@berkenbosch.nl
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0

@@ -83,11 +83,17 @@ N/A
 | persistence.data.enabled | bool | `false` |  |
 | persistence.data.mountPath | string | `"/mosquitto/data"` |  |
 | persistence.data.size | string | `"100Mi"` |  |
+| persistence.configinc.accessMode | string | `"ReadWriteOnce"` |  |
+| persistence.configinc.emptyDir | bool | `false` |  |
+| persistence.configinc.enabled | bool | `false` |  |
+| persistence.configinc.mountPath | string | `"/mosquitto/configinc"` |  |
+| persistence.configinc.size | string | `"100Mi"` |  |
 | service.annotations | object | `{}` |  |
 | service.port.name | string | `"mqtt"` |  |
 | service.port.port | int | `1883` |  |
 | service.type | string | `"ClusterIP"` |  |
 | strategy.type | string | `"Recreate"` |  |
+| auth.enabled | bool | `false` | |
 
 ## Changelog
 

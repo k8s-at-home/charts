@@ -21,11 +21,31 @@ service:
     port: 1883
     name: mqtt
 
+auth:
+  enabled: false
+
 persistence:
   data:
     enabled: false
     emptyDir: false
     mountPath: /mosquitto/data
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    accessMode: ReadWriteOnce
+    size: 100Mi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+  configinc:
+    # a persistent volume to place *.conf mosquitto-config-files in
+    enabled: false
+    emptyDir: false
+    mountPath: /mosquitto/configinc
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
