@@ -49,6 +49,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/devfaz"><img src="https://avatars.githubusercontent.com/u/4060372?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Fabian Zimmermann</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=devfaz" title="Code">💻</a></td>
     <td align="center"><a href="http://schouten-lebbing.nl"><img src="https://avatars.githubusercontent.com/u/7613738?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kjeld Schouten-Lebbing</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Ornias1993" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.meetup.com/nl-NL/I-I-Inspiratie-Innovatie/"><img src="https://avatars.githubusercontent.com/u/30292281?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rolf Berkenbosch</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rolfberkenbosch" title="Code">💻</a></td>
   </tr>
 </table>
 
