@@ -7,9 +7,16 @@ metadata:
 data:
   mosquitto.conf: |
     listener {{ .Values.service.port.port }}
+    {{- if .Values.auth.enabled }}
+    allow_anonymous false
+    {{- else }}
     allow_anonymous true
+    {{- end }}
     {{- if .Values.persistence.data.enabled }}
     persistence true
     persistence_location {{ .Values.persistence.data.mountPath }}
     autosave_interval 1800
+    {{- end }}
+    {{- if .Values.persistence.configinc.enabled }}
+    include_dir {{ .Values.persistence.configinc.mountPath }}
     {{- end }}
