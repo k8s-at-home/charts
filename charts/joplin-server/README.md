@@ -18,7 +18,7 @@ This server allows you to sync any Joplin client
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 1.0.0 |
 
 ## TL;DR
 
@@ -75,14 +75,18 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.APP_PORT | int | `22300` |  |
+| affinity | object | `{}` | Affinity settings for pod assignment of the GUI |
+| env.APP_BASE_URL | string | `"https://joplin.domain"` | joplin-server base URL |
+| env.APP_PORT | int | `22300` | joplin-server listening port (same as Service port) |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"joplin/server"` |  |
-| image.tag | string | `"1.7.2"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| service.port.port | int | `22300` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.repository | string | `"joplin/server"` | joplin-server image |
+| image.tag | string | `"1.7.2"` | joplin-server image tag |
+| nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
+| podAnnotations | object | `{}` | Pod annotations |
+| resources | object | `{}` |  |
+| service.port | int | `22300` | Kubernetes port where the GUI is exposed |
+| service.type | string | `"ClusterIP"` | Kubernetes service type for the GUI |
+| tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
 
 ## Changelog
 
