@@ -25,5 +25,27 @@
 {{- $_ := set .Values.env "SESSION_DURATION" (printf "%v" .Values.config.session.duration) -}}
 {{- $_ := set .Values.env "SESSION_HANDLER" (printf "%s" .Values.config.session.handler) -}}
 
+{{/* Append the configMap to the additionalVolumes */}}
+{{- define "kanboard.config.volume" -}}
+name: config
+secret:
+  secretName: {{ template "common.names.fullname" . }}-config
+{{- end -}}
+
+{{- $volume := include "kanboard.config.volume" . | fromYaml -}}
+{{- $additionalVolumes := append .Values.additionalVolumes $volume }}
+{{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+
+{{/* Append the config secret volume to the additionalVolumeMounts */}}
+{{- define "kanboard.config.volumeMount" -}}
+name: config
+mountPath: /var/www/app/config.php
+subPath: config.php
+{{- end -}}
+
+{{- $volumeMount := include "kanboard.config.volumeMount" . | fromYaml -}}
+{{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
+{{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+
 {{/* Render the templates */}}
 {{ include "common.all" . }}
