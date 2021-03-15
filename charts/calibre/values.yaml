@@ -1,0 +1,54 @@
+---
+
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
+#
+
+# -- This is the default, you can also use requarks/wiki
+image:
+  repository: linuxserver/calibre
+  pullPolicy: IfNotPresent
+  tag: version-v5.13.0
+
+strategy:
+  type: Recreate
+
+env:
+  # -- Set the time zone, e.g. Europe/Amsterdam
+  TZ:
+  # -- for UserID
+  PUID: "1000"
+  # -- for GroupID
+  PGID: "1000"
+  # -- Username for the calibre desktop gui
+  GUAC_USER:
+  # -- Password's md5 hash for the calibre desktop gui
+  GUAC_PASS:
+  # -- for umask setting of Calibre, default if left unset is 022.
+  UMASK_SET: "022"
+  # -- Optionally pass cli start arguments to calibre.
+  CLI_ARGS:
+
+service:
+  # -- The default port is 8080
+  port:
+    port: 8080
+    targetPort: 8080
+    name: desktopgui
+
+ingress:
+  # enable this if you would like to access you wiki
+  enabled: false
+
+nodeSelector:
+  kubernetes.io/arch: amd64
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false
+    accessMode: "ReadWriteOnce"
+    size: "1Gi"

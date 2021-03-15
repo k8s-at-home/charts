@@ -6,7 +6,7 @@ image:
   # -- Image pull policy
   pullPolicy: IfNotPresent
   # -- Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags)
-  tag: 0.18.1
+  tag: 0.19.0
 
 # -- Specifies the strategy used to replace old Pods by new ones
 strategyType: Recreate
@@ -23,6 +23,10 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
+
+# -- Number of containers sharing the same GPU device
+# @default -- 1
+sharedDeviceNumber: 1
 
 # -- Key-value pairs to add as pod annotations
 podAnnotations: {}

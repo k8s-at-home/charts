@@ -36,6 +36,9 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+          args:
+            - -shared-dev-num
+            - {{ .Values.sharedDeviceNumber | quote }}
           volumeMounts:
             - name: devfs
               mountPath: /dev/dri

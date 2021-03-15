@@ -1,6 +1,6 @@
 # homer
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 20.09.1](https://img.shields.io/badge/AppVersion-20.09.1-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 20.09.1](https://img.shields.io/badge/AppVersion-20.09.1-informational?style=flat-square)
 
 A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+| https://k8s-at-home.com/charts/ | common | 3.1.0 |
 
 ## TL;DR
 
@@ -75,6 +75,8 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| configmap.config | string | `"externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist\n"` | Homer configuration https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md |
+| configmap.enabled | bool | `false` | Store homer configuration as a ConfigMap |
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"b4bz/homer"` |  |
@@ -92,19 +94,19 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [3.2.0]
 
 #### Added
 
-- N/A
+- Added changelog.
+- Updated README to reflect common chart dependency version in use.
+- Enable homer configuration through values.yaml.
 
-#### Changed
+[3.2.0]: https://github.com/k8s-at-home/charts/tree/homer-3.1.0/charts
 
-- N/A
+### [1.0.0]
 
-#### Removed
-
-- N/A
+No changelog prior to 3.2.0
 
 [1.0.0]: #1.0.0
 
