@@ -1,6 +1,6 @@
 # comcast
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 periodic comcast data usage checks and save the results to InfluxDB
 
@@ -81,17 +81,17 @@ helm install comcast k8s-at-home/comcast -f values.yaml
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.comcast.password | string | `"somepassword"` | Comcast website login password  |
+| config.comcast.password | string | `"somepassword"` | Comcast website login password |
 | config.comcast.username | string | `"someuser"` | Comcast website login username |
 | config.delay | int | `3600` | how many seconds to wait between checks |
 | config.influxdb.database | string | `"comcast"` | InfluxDB database |
 | config.influxdb.host | string | `"influxdb-influxdb"` | InfluxDB hostname |
-| config.influxdb.port | int | `8086` | InfluxDB port  |
-| config.influxdb.ssl | bool | `false` | InfluxDB connection using SSL  |
+| config.influxdb.port | int | `8086` | InfluxDB port |
+| config.influxdb.ssl | bool | `false` | InfluxDB connection using SSL |
 | debug | bool | `false` | Display debugging output |
-| image.pullPolicy | string | `"IfNotPresent"` | Comcast image pull policy  |
+| image.pullPolicy | string | `"IfNotPresent"` | Comcast image pull policy |
 | image.repository | string | `"billimek/comcastusage-for-influxdb"` | Comcast image |
-| image.tag | string | `"latest"` | Comcast image tag  |
+| image.tag | string | `"latest"` | Comcast image tag |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
 | replicaCount | int | `1` |  |
@@ -103,7 +103,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.0.0]
+### [3.0.1]
 
 #### Added
 
@@ -117,7 +117,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[3.0.0]: #3.0.0
+[3.0.1]: #3.0.1
 
 ## Support
 

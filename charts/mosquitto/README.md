@@ -1,6 +1,6 @@
 # mosquitto
 
-![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: 2.0.7](https://img.shields.io/badge/AppVersion-2.0.7-informational?style=flat-square)
+![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 2.0.7](https://img.shields.io/badge/AppVersion-2.0.7-informational?style=flat-square)
 
 Eclipse Mosquitto - An open source MQTT broker
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.1.0 |
+| https://library-charts.k8s-at-home.com | common | 1.0.0 |
 
 ## TL;DR
 
@@ -71,29 +71,29 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| auth.enabled | bool | `false` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"eclipse-mosquitto"` |  |
 | image.tag | string | `"2.0.7"` |  |
-| persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.data.emptyDir | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/mosquitto/data"` |  |
-| persistence.data.size | string | `"100Mi"` |  |
 | persistence.configinc.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.configinc.emptyDir | bool | `false` |  |
 | persistence.configinc.enabled | bool | `false` |  |
 | persistence.configinc.mountPath | string | `"/mosquitto/configinc"` |  |
 | persistence.configinc.size | string | `"100Mi"` |  |
+| persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
+| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/mosquitto/data"` |  |
+| persistence.data.size | string | `"100Mi"` |  |
 | service.annotations | object | `{}` |  |
 | service.port.name | string | `"mqtt"` |  |
 | service.port.port | int | `1883` |  |
 | service.type | string | `"ClusterIP"` |  |
 | strategy.type | string | `"Recreate"` |  |
-| auth.enabled | bool | `false` | |
 
 ## Changelog
 

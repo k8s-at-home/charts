@@ -123,7 +123,7 @@ N/A
 | service.httpPort | int | `8080` | Kubernetes port where the homebridge GUI is exposed |
 | service.loadBalancerIP | string | `nil` | Loadbalancer IP for the homebridge GUI |
 | service.loadBalancerSourceRanges | string | `nil` | Loadbalancer client IP restriction range for the homebridge GUI |
-| service.nodePort | string | `nil` | nodePort to listen on for the homebridge GUI |
+| service.nodePort | int | `nil` | nodePort to listen on for the homebridge GUI |
 | service.type | string | `"ClusterIP"` | Kubernetes service type for the homebridge GUI |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |

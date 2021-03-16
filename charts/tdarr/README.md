@@ -71,7 +71,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
@@ -96,10 +96,10 @@ N/A
 | nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
 | persistence.config | object | `{"emptyDir":false,"enabled":false,"mountpath":"/app/configs"}` | Volume used for configuration |
 | persistence.data.emptyDir | bool | `false` |  |
-| persistence.data.enabled | bool | `false` | Volume used for tdarr server database   |
+| persistence.data.enabled | bool | `false` | Volume used for tdarr server database |
 | persistence.data.mountpath | string | `"/app/server"` |  |
 | persistence.media.emptyDir | bool | `false` |  |
-| persistence.media.enabled | bool | `false` | Volume used for media libraries   |
+| persistence.media.enabled | bool | `false` | Volume used for media libraries |
 | persistence.media.mountpath | string | `"/media"` |  |
 | podAnnotations | object | `{}` | Pod annotations |
 | resources | object | `{}` |  |

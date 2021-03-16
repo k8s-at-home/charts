@@ -70,7 +70,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
@@ -84,8 +84,8 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"eikek0/sharry"` | sharry image |
 | image.tag | string | `"1.6.0"` | sharry image tag |
-| ingress.annotations."nginx.ingress.kubernetes.io/client-body-buffer-size" | string | `"2048m"` | Nginx client Body Buffer Size  |
-| ingress.annotations."nginx.ingress.kubernetes.io/proxy-body-size" | string | `"2048m"` | Nginx Proxy Body Size  |
+| ingress.annotations."nginx.ingress.kubernetes.io/client-body-buffer-size" | string | `"2048m"` | Nginx client Body Buffer Size |
+| ingress.annotations."nginx.ingress.kubernetes.io/proxy-body-size" | string | `"2048m"` | Nginx Proxy Body Size |
 | ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffering" | string | `"off"` |  |
 | ingress.enabled | bool | `false` |  |
 | nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |

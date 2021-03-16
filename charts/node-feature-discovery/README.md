@@ -91,7 +91,7 @@ N/A
 | rbac.create | bool | `true` |  |
 | service.annotations | object | `{}` | Service annotations for the GUI |
 | service.clusterIP | string | `""` |  |
-| service.externalTrafficPolicy | string | `"Local"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| service.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
 | service.labels | object | `{}` | Custom labels |
 | service.loadBalancerIP | string | `nil` | Loadbalance IP for the GUI |
 | service.loadBalancerSourceRanges | list | `nil` | List of IP CIDRs allowed access to load balancer (if supported) |

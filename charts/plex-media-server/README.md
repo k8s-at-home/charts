@@ -1,6 +1,6 @@
 # plex-media-server
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: v1.21.3.4021-5a0a3e4b2](https://img.shields.io/badge/AppVersion-v1.21.3.4021--5a0a3e4b2-informational?style=flat-square)
+![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![AppVersion: v1.22.0.4163-d8c4875dd](https://img.shields.io/badge/AppVersion-v1.22.0.4163--d8c4875dd-informational?style=flat-square)
 
 Plex Media Server
 
@@ -8,8 +8,8 @@ Plex Media Server
 
 ## Source Code
 
-* <https://github.com/k8s-at-home/charts/tree/master/charts/plex>
-* <https://hub.docker.com/r/plexinc/pms-docker/>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/plex-media-server>
+* <https://github.com/k8s-at-home/container-images/>
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+| https://library-charts.k8s-at-home.com | common | 1.0.0 |
 
 ## TL;DR
 
@@ -76,14 +76,14 @@ Be sure to use the [plex](https://github.com/k8s-at-home/charts/tree/master/char
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/plex-media-server"` |  |
-| image.tag | string | `"v1.21.3.4021-5a0a3e4b2"` |  |
+| image.tag | string | `"v1.22.0.4163-d8c4875dd"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
