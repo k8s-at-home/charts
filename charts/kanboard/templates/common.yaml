@@ -32,9 +32,11 @@ secret:
   secretName: {{ template "common.names.fullname" . }}-config
 {{- end -}}
 
+{{- if .Values.postgresql.enabled -}}
 {{- $volume := include "kanboard.config.volume" . | fromYaml -}}
 {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
 {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+{{- end -}}
 
 {{/* Append the config secret volume to the additionalVolumeMounts */}}
 {{- define "kanboard.config.volumeMount" -}}
@@ -43,9 +45,11 @@ mountPath: /var/www/app/config.php
 subPath: config.php
 {{- end -}}
 
+{{- if .Values.postgresql.enabled -}}
 {{- $volumeMount := include "kanboard.config.volumeMount" . | fromYaml -}}
 {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
 {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+{{- end -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
