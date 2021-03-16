@@ -12386,6 +12386,34 @@ entries:
   kanboard:
   - apiVersion: v2
     appVersion: v1.2.18
+    created: "2021-03-16T00:39:48.356042866Z"
+    dependencies:
+    - name: common
+      repository: https://k8s-at-home.com/charts/
+      version: 3.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: Kanboard is a free and open source Kanban project management software.
+    digest: 3896c77dab49fc02cac5d4336c32991f3bcf3cdcf7cec930f42e04910bab3310
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/kanboard
+    icon: https://raw.githubusercontent.com/kanboard/website/master/assets/img/icon.svg
+    keywords:
+    - kanboard
+    - kanban
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: kanboard
+    sources:
+    - https://github.com/kanboard/kanboard
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/kanboard-1.1.0/kanboard-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
+    appVersion: v1.2.18
     created: "2021-03-13T19:45:46.651393483Z"
     dependencies:
     - name: common
@@ -34753,4 +34781,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-14T21:42:12.407434648Z"
+generated: "2021-03-16T00:39:48.362030929Z"
