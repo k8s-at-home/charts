@@ -80,7 +80,7 @@ Once installed do the following to configure the application within the pod:
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

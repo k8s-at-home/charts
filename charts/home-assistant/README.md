@@ -122,7 +122,7 @@ The value derived is the name of the kubernetes service object for home-assistan
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
