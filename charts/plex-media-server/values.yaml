@@ -8,17 +8,40 @@
 image:
   repository: ghcr.io/k8s-at-home/plex-media-server
   pullPolicy: IfNotPresent
-  tag: v1.21.3.4021-5a0a3e4b2
+  tag: v1.22.0.4163-d8c4875dd
 
 strategy:
   type: Recreate
 
 env: {}
   # TZ:
+  # ADVERTISE_IP:
+  # ALLOWED_NETWORKS:
+  # PLEX_CLAIM:
+  # # NOTE: Plex preference options are camelCase and CASE SENSITIVE!
+  # # You can do horrible things to your Plex configuration if you are not careful
+  # # See a full list at https://support.plex.tv/articles/201105343-advanced-hidden-server-settings/
+  # PLEX_PREFERENCE_1: "FriendlyName=plex-kubernetes"
+  # PLEX_PREFERENCE_2: "EnableIPv6=0"
+  # PLEX_PREFERENCE_3: "logDebug=0"
+  # PLEX_PREFERENCE_4: "DisableTLSv1_0=1"
+  # PLEX_PREFERENCE_5: "LanNetworksBandwidth=xxx.xxx.xxx.0/18\,xxx.xxx.xxx.0/24\,xxx.xxx.xxx.0/24"
+  # PLEX_PREFERENCE_6: "TranscoderQuality=2"
+  # PLEX_PREFERENCE_7: "TreatWanIpAsLocal=0"
+  # PLEX_PREFERENCE_8: "TranscoderH264BackgroundPreset=fast"
 
 service:
   port:
     port: 32400
+  # additionalPorts:
+  # - port: 1900
+  #   name: dnla-udp
+  #   protocol: UDP
+  #   targetPort: 1900
+  # - port: 32469
+  #   name: dnlas-tcp
+  #   protocol: TCP
+  #   targetPort: 32469
 
 ingress:
   enabled: false
@@ -57,3 +80,28 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     # skipuninstall: false
     # existingClaim: ""
+
+# podSecurityContext:
+#   runAsUser: 568
+#   runAsGroup: 568
+#   fsGroup: 568
+#   # Hardware acceleration using an Intel iGPU w/ QuickSync
+#   # These IDs below should be matched to your `video` and `render` group on the host
+#   # To obtain those IDs run the following grep statement on the host:
+#   # $ cat /etc/group | grep "video\|render"
+#   # video:x:44:
+#   # render:x:109:
+#   supplementalGroups:
+#   - 44
+#   - 109
+
+# resources:
+#   requests:
+#     # Hardware acceleration using an Intel iGPU w/ QuickSync
+#     gpu.intel.com/i915: 1
+#     cpu: 200m
+#     memory: 256Mi
+#   limits:
+#     # Hardware acceleration using an Intel iGPU w/ QuickSync
+#     gpu.intel.com/i915: 1
+#     memory: 4096Mi
