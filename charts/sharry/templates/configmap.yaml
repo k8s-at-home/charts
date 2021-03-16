@@ -1,0 +1,91 @@
+
+{{/*
+Sharry Configuration files.
+*/}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "sharry-config"
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  sharry.conf: |
+    sharry.restserver {
+      
+      {{- if .Values.sharry.baseUrl }}
+      base-url = "{{ .Values.sharry.baseUrl }}"
+      {{ end }}
+      bind {
+        address = "0.0.0.0"
+        port = {{- if .Values.service.port.port }}{{ .Values.service.port.port }}{{ end }}
+      }
+
+      backend {
+        auth {
+          fixed.enabled = true ## enabled admin:admin access
+        }
+
+        jdbc {
+          url = "{{- if .Values.sharry.jdbcUrl }}{{ .Values.sharry.jdbcUrl }}{{ end }}"
+          user = "{{- if .Values.sharry.jdbcUser }}{{ .Values.sharry.jdbcUser }}{{ end }}"
+          password = "{{- if .Values.sharry.jdbcPassword }}{{ .Values.sharry.jdbcPassword }}{{ end }}"
+        }
+
+      webapp {
+        # This is shown in the top right corner of the web application
+        app-name = "Sharry"
+
+        # The icon next to the app-name. Needs to be an URL to a image.
+        app-icon = ""
+
+        # The login and register page displays a logo image, by default
+        # the Sharry logo. This can be changed here. It needs to be an URL
+        # to an image.
+        app-logo = ""
+
+        # This is markdown that is inserted as the footer on each page in
+        # the ui. If left empty, a link to the project is rendered.
+        app-footer = ""
+
+        # Whether to display the footer on each page in the ui. Set it to
+        # false to hide it.
+        app-footer-visible = true
+
+        # Chunk size used for one request. The server will re-chunk the
+        # stream into smaller chunks. But the client can transfer more in
+        # one requests, resulting in faster uploads.
+        #
+        # You might need to adjust this value depending on your setup. A
+        # higher value usually means faster uploads.
+        chunk-size = "100M"
+
+        # Number of milliseconds the client should wait before doing a new
+        # upload attempt after something failed. The length of the array
+        # denotes the number of retries.
+        retry-delays = [0, 3000, 6000, 12000, 24000, 48000]
+
+        # The login page can display a welcome message that is readable by
+        # everyone. The text is processed as markdown.
+        welcome-message = ""
+
+      }
+
+      share {
+            # When storing binary data use chunks of this size.
+            chunk-size = "{{- if .Values.sharry.chunkSize }}{{ .Values.sharry.chunkSize }}{{ end }}"
+      
+            # Maximum size of a share.
+            max-size = "{{- if .Values.sharry.maxSize }}{{ .Values.sharry.maxSize }}{{ end }}"
+      
+            # Maximum validity for uploads
+            max-validity = {{- if .Values.sharry.maxValidity }}{{ .Values.sharry.maxValidity }}{{ end }}
+          }
+      
+              signup {
+                mode = "{{- if .Values.sharry.signup }}{{ .Values.sharry.signup }}{{ end }}"
+                invite-time = "3 days"
+                invite-password = "generate-invite"
+              }
+            }
+      
+          }
