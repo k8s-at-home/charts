@@ -1,0 +1,71 @@
+#!/usr/bin/with-contenv sh
+
+export EMBYCONF="/config/config/system.xml"
+
+function createConfig {
+  mkdir /config/config
+  cat << EOF > "${EMBYCONF}"
+<?xml version="1.0"?>
+<ServerConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+</ServerConfiguration>
+EOF
+}
+
+function setPref {
+  local key="$1"
+  local value="$2"
+
+  xmlstarlet ed --inplace -s "/ServerConfiguration" -t elem -n "${key}" -v "${value}" "${EMBYCONF}"
+}
+
+if [ ! -f "${EMBYCONF}" ]; then
+  createConfig
+fi
+
+if [ ! -z "${CERTIFICATE_PATH}" ]; then
+  setPref "CertificatePath" "${CERTIFICATE_PATH}"
+fi
+
+if [ ! -z "${CERTIFICATE_PASSWORD}" ]; then
+  setPref "CertificatePassword" "${CERTIFICATE_PASSWORD}"
+fi
+
+if [ ! -z "${WANDDNS}" ]; then
+  setPref "WanDdns" "${WANDDNS}"
+fi
+
+if [ ! -z "${ENABLE_HTTPS}" ]; then
+  setPref "EnableHttps" "${ENABLE_HTTPS}"
+fi
+
+if [ ! -z "${REQUIRE_HTTPS}" ]; then
+  setPref "RequireHttps" "${REQUIRE_HTTPS}"
+fi
+
+if [ ! -z "${ENABLE_UPNP}" ]; then
+  setPref "EnableUPnP" "${ENABLE_UPNP}"
+fi
+
+if [ ! -z "${PUBLIC_HTTP_PORT}" ]; then
+  setPref "PublicPort" "${PUBLIC_HTTP_PORT}"
+fi
+
+if [ ! -z "${PUBLIC_HTTPS_PORT}" ]; then
+  setPref "PublicHttpsPort" "${PUBLIC_HTTPS_PORT}"
+fi
+
+if [ ! -z "${HTTP_PORT_NUMBER}" ]; then
+  setPref "HttpServerPortNumber" "${HTTP_PORT_NUMBER}"
+fi
+
+if [ ! -z "${HTTPS_PORT_NUMBER}" ]; then
+  setPref "HttpsPortNumber" "${HTTPS_PORT_NUMBER}"
+fi
+
+if [ ! -z "${UI_LANGUAGE}" ]; then
+  setPref "UICulture" "${UI_LANGUAGE}"
+fi
+
+if [ ! -z "${SKIP_SETUP_WIZARD}" ]; then
+  setPref "IsStartupWizardCompleted" "${SKIP_SETUP_WIZARD}"
+fi

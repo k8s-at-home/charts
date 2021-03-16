@@ -1,0 +1,367 @@
+# Default values
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# The Image to use for Emby
+
+image:
+  repository: emby/embyserver
+  tag: 4.5.4.0
+  pullPolicy: IfNotPresent
+
+# Set the timezone of the emby server
+timezone: "UTC"
+
+# add your pod network subnet to the `List of IP addresses and networks that are allowed without auth`
+# This will override the manual settings, so only use this if you will not need to change it manually.
+# This list will be automatically converted to a command seperated string when passed to the container.
+# You would specify this when using helm CLI with --set allowedNetworks="{127.0.0.1,10.54.2.0/24}"
+# allowedNetworks:
+#   -   127.0.0.1
+#   -   10.54.2.0/24
+
+# Instruct the Emby Server Container to Change the Configuration Directory Ownership
+# Default is true, you would only need to set this if you want to disable it.
+# changeConfigDirOwnership: true
+
+# advertiseIp This variable defines the additional IPs on which the server may be be found.
+# For example: http://10.1.1.23:32400.
+# This adds to the list where the server advertises that it can be found.
+# See https://hub.docker.com/r/plexinc/pms-docker/ for details
+# advertiseIp: "http://10.1.1.23:32400"
+
+# Set The user id of the plex user created inside the container.
+# See https://hub.docker.com/r/plexinc/pms-docker/ for details
+# plexUid: 1000
+
+# Set The group id of the plex group created inside the container
+# See https://hub.docker.com/r/plexinc/pms-docker/ for details
+# plexGid: 1000
+
+#####   END  --> Official PLEX container environment variables
+
+# You can add as many Additional ENV variables here
+# The following is the same as --set extraEnv.TMPDIR="/transcode"
+# extraEnv:
+#   TMPDIR: /transcode
+
+# upgrade strategy type (e.g. Recreate or RollingUpdate)
+strategyType: Recreate
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+serviceTCP:
+  type: ClusterIP
+  port: 32400
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  # metallb.universe.tf/allow-shared-ip: plex-svc
+  labels: {}
+  ## Use loadBalancerIP to request a specific static IP,
+  ## otherwise leave blank
+  ##
+  loadBalancerIP:
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  # externalTrafficPolicy: Cluster
+
+serviceUDP:
+  type: ClusterIP
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  # metallb.universe.tf/allow-shared-ip: plex-svc
+  labels: {}
+  ## Use loadBalancerIP to request a specific static IP,
+  ## otherwise leave blank
+  ##
+  loadBalancerIP:
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  # externalTrafficPolicy: Cluster
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+embyPreferences:
+  # Enable init script that will read all environment variables starting with PLEX_PREFERENCE_
+  # and take the value (of PLEX_PREFERENCE_<whatever>) as the Key:Value option to set in Emby Preference.xml
+  # You can use extraEnv to add the addtional ENV's to the container.
+  # NOTE: Emby preference options are camelCase and CASE SENSITIVE!
+  # You can do horrible things to your PLEX configuration if you are not careful.
+  # --set extraEnv.PLEX_PREFERENCE_1="FriendlyName=emby-kubeernetes-test1" `
+  # --set extraEnv.PLEX_PREFERENCE_2="EnableIPv6=0" `
+  # --set extraEnv.PLEX_PREFERENCE_3="logDebug=0" `
+  # --set extraEnv.PLEX_PREFERENCE_4="DisableTLSv1_0=1" `
+  # --set extraEnv.PLEX_PREFERENCE_5="LanNetworksBandwidth=xxx.xxx.xxx.0/18\,xxx.xxx.xxx.0/24\,xxx.xxx.xxx.0/24" `
+  # --set extraEnv.PLEX_PREFERENCE_6="TranscoderQuality=2" `
+  # --set extraEnv.PLEX_PREFERENCE_7="TreatWanIpAsLocal=0" `
+  # --set extraEnv.PLEX_PREFERENCE_8="TranscoderH264BackgroundPreset=fast"
+  # Why not use a single ENV?
+  #      I thought using multiple environment variables would be less confusing
+  #      It should work easily with CLI and value.yaml usage
+  #      There is only minimal parsing required on the ENV value, as the only deliminator is =
+  #      From what I can see, all the PLEX preferences that are NOT currently supported by the OFFICIAL
+  #      Container are simple enough to work with this.
+  enabled: false
+  configmap:
+    labels: {}
+    annotations: {}
+    # Right now you can't really change this, additionally the configmap data is
+    # not configurable.
+    name: 41-emby-preferences
+  volume:
+    name: 41-emby-preferences
+    defaultMode: 493  # 0755 in octal permission notation
+    # Using mountPath & SubPath allow you to volume mount a configMap AS A FILE
+    # Unfortunately this also means that updates to the configMap are not automatically
+    # propagated to the file contents. But it's better than replacing the entire
+    # /etc/cont-init.d/ directory which is the "normal" behavior when doing volume
+    # mounts.
+    mountPath: /etc/cont-init.d/41-emby-preferences
+    subPath: 41-emby-preferences
+
+hostNetwork: false
+
+persistence:
+  transcode:
+    # We want to enable a transcode pvc
+    enabled: false
+    # Optionally specify claimName to manually override the PVC to be used for
+    # the transcode directory. If claimName is specified, storageClass and size
+    # are ignored.
+    ## claimName: "emby-transcode-pvc"
+    # Optionally specify a storage class to be used for the transcode directory.
+    # If not specified and claimName is not specified, the default storage
+    # class will be used.
+    storageClass: ""
+    # subPath: some-subpath
+    # The requested size of the volume to be used when creating a
+    # PersistentVolumeClaim.
+    size: 20Gi
+    # Access mode for this volume
+    accessMode: ReadWriteOnce
+    # If not using a transcode PVC, specify emptyDir.medium="Memory" to use a tmpfs (in-memory)
+    # Volume for /transcode. Warning! this will greatly increase the amount of memory the emby pod is using
+    # AND it will count toward any ram pod/namespace limits. Additionally all data will be lost if/when the
+    # pod is moved to another node. --set persistence.transcode.emptyDir.medium="Memory" `
+    emptyDir:
+      medium: ""
+  #   medium: "Memory"
+
+
+  data:
+    # We want to enable a data pvc
+    enabled: true
+    # Optionally specify claimName to manually override the PVC to be used for
+    # the data directory. If claimName is specified, storageClass and size are
+    # ignored.
+    ## claimName: "emby-data-pvc"
+    # Optionally specify a storage class to be used for the data directory.
+    # If not specified and claimName is not specified, the default storage
+    # class will be used.
+    storageClass: ""
+    # subPath: some-subpath
+    # The requested size of the volume to be used when creating a
+    # PersistentVolumeClaim.
+    size: 40Gi
+    # Access mode for this volume
+    accessMode: ReadWriteOnce
+
+  extraData: []
+    # Optionally specifify additional Data mounts.  These will be mounted as
+    # /data-${name}.  This should be in the same format as the above 'data',
+    # with the additional field 'name'
+    # - claimName: "special-tv"
+    #   name: 'foo'
+    #   subPath: optional/sub/path
+
+  extraMounts: []
+  ## Include additional claims that can be mounted inside the
+  ## pod. This is useful if you wish to use different paths with categories
+  ## Claim will me mounted as /{mountPath} if specified. If no {mountPath} is given,
+  ## mountPath will default to {name}
+  # - name: video
+  #   # if claimName is specified the a new volume will mounted, if omitted the mount will be considered to be associated with one of the standard volumes (e.g data, config, transcode).
+  #   # This useful to mount data to a different subPath
+  #   claimName: optional-claim
+  #   mountPath: /mnt/path/in/pod
+  #   subPath: optional/sub/path
+  #
+  ## Example using an existing NFS filer directly. Below the 'volume' key all volume types are allowed (eg. nfs, iscsi, hostPath).
+  ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#volume-v1-core for further information
+  # - name: example2
+  #   mountPath: mnt/example2
+  #   volume:
+  #     nfs:
+  #       server: <nfs server fqdn or ip>
+  #       path: <nfs export path>
+  #       readOnly: true
+
+  config:
+    # Optionally specify claimName to manually override the PVC to be used for
+    # the config directory. If claimName is specified, storageClass and size
+    # are ignored.
+    ## claimName: "emby-config-pvc"
+    # Optionally specify a storage class to be used for the config directory.
+    # If not specified and claimName is not specified, the default storage
+    # class will be used.
+    # subPath: some-subpath
+    storageClass: ""
+    # The requested size of the volume to be used when creating a
+    # PersistentVolumeClaim.
+    size: 20Gi
+    # Access mode for this volume
+    accessMode: ReadWriteOnce
+
+# Certificate(s) in Emby
+certificate:
+  # Assuming you have a kubernetes certificate secret (say from cert-manager) that has a tls.crt and tls.key but NO PFX!
+  # pkcsMangler to the rescue. The pkcsMangler part will add the supplied pfxPassword to a kubernetes secret
+  # This is so it's not in the clear in the YAML of the deployment in the kubernetes api.
+  # We will then use an OpenSSL init container to create a pfx file using the supplied secret (only available in container)
+  # Then we will use an init script (via configMap) to move the pfx file out of /shared (it's temporary storage) to
+  # the location specified in pfxInContainerPath.
+  pkcsMangler:
+    enabled: false
+    # The Image to use for pkcsMangler
+    image:
+      repository: tlsprint/openssl
+      tag: 1.1.1f
+    configmap:
+      labels: {}
+      annotations: {}
+      # Right now you can't really change this, additionally the configmap data is
+      # not configurable.
+      name: 42-pkcs-mangler
+    volume:
+      name: 42-pkcs-mangler
+      defaultMode: 493  # 0755 in octal permission notation
+      # Using mountPath & SubPath allow you to volume mount a configMap AS A FILE
+      # Unfortunately this also means that updates to the configMap are not automtically
+      # propagated to the file contents. But it's better then replacing the entire
+      # /etc/cont-init.d/ directory which is the "normal" behavior when doing volume
+      # mounts.
+      mountPath: /etc/cont-init.d/42-pkcs-mangler
+      subPath: 42-pkcs-mangler
+    setEmbyPreferences:
+      enabled: true  # Set Emby Preferences related to Certificates
+      customCertificateDomain: ""  # If not empty, Set the Emby Preference customCertificateDomain
+      # Use spec.certificate.pkcsMangler.pfxPassword.value to Set the Emby Preference customCertificateKey
+      # Use spec.certificate.pkcsMangler.pfxInContainerPath to Set the Emby Preference customCertificatePath
+    pfxPassword:
+      value: "setpassword"
+      # We wlll create a Kubernetes Secret for spec.certificate.pkcsMangler.pfxPassword.value
+      # These are your options.
+      secretName: "emby-server-pfx-password"
+      passwordKey: "pfx-password"
+      labels: {}
+      annotations: {}
+    pfxInContainerPath: "/config/emby.pfx"  # This is full path in the container pkcsMangler will copy the pfx file to
+    # This is the SSL Certificate Secret that will provide our crt and key file.  If you used cert-manager to create
+    # the certificate, these defaults should work for you.  This Secret (and volume details) are only used by the
+    # pkcsMangler Init Container.
+    certificateSecret:
+      name: ""
+      keyName: "tls.key"
+      crtName: "tls.crt"
+      volume:
+        name: emby-certs
+        mountPath: /etc/emby-certs
+
+# Logging configuration
+logging:
+  promtail:
+    enabled: false
+    image:
+      repository: grafana/promtail
+      tag: 1.6.0
+      pullPolicy: IfNotPresent
+    loki:
+      url: http://loki.logs.svc.cluster.local:3100/loki/api/v1/push
+
+# Probes configuration
+probes:
+  liveness:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
+    failureThreshold: 5
+    periodSeconds: 10
+  readiness:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
+    failureThreshold: 5
+    periodSeconds: 10
+  startup:
+    enabled: true
+    httpGet:
+      path: /identity
+      port: 32400
+    initialDelaySeconds: 5
+    failureThreshold: 30
+    periodSeconds: 10
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+podAnnotations: {}
+
+deploymentAnnotations: {}
+
+proxy:
+  # This allows to set a proxy environment variable, which Emby uses to fetch assets like movie covers
+  enabled: false
+  # http: "http://proxy:8080"
+  # https: "https://proxy:8080"
+  # noproxy: "localhost,127.0.0.1,10.96.0.0/12,10.244.0.0/12"
