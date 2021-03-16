@@ -1,6 +1,6 @@
 # deconz
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 2.05.80](https://img.shields.io/badge/AppVersion-2.05.80-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: 2.05.80](https://img.shields.io/badge/AppVersion-2.05.80-informational?style=flat-square)
 
 A Helm chart for deploying deCONZ
 
@@ -92,21 +92,21 @@ N/A
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` | Node labels for pod assignment |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Use an existing PVC to persist data existingClaim: deconz-data -- Persistence access mode |
-| persistence.annotations | object | `{}` | Key-value pairs to add as persistent volume claim annotations  |
+| persistence.annotations | object | `{}` | Key-value pairs to add as persistent volume claim annotations |
 | persistence.enabled | bool | `false` | Use persistent volume to store configuration data |
 | persistence.size | string | `"1Gi"` | Size of persistent volume claim |
 | podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
 | podSecurityContext | object | `{}` |  |
-| probes.liveness.enabled | bool | `true` | Enables liveness probe for the Pod    |
+| probes.liveness.enabled | bool | `true` | Enables liveness probe for the Pod |
 | probes.liveness.failureThreshold | int | `5` | Specify liveness `failureThreshold` parameter for the Pod |
 | probes.liveness.initialDelaySeconds | int | `30` | Specify liveness `initialDelaySeconds` parameter for the Pod |
 | probes.liveness.timeoutSeconds | int | `10` | Specify liveness `timeoutSeconds` parameter for the Pod |
-| probes.readiness.enabled | bool | `true` | Enables readiness probe for the Pod    |
+| probes.readiness.enabled | bool | `true` | Enables readiness probe for the Pod |
 | probes.readiness.failureThreshold | int | `5` | Specify readiness `failureThreshold` parameter for the Pod |
 | probes.readiness.initialDelaySeconds | int | `30` | Specify readiness `initialDelaySeconds` parameter for the Pod |
 | probes.startup.enabled | bool | `false` | Enables startup probe for the Pod |
-| probes.startup.failureThreshold | int | `30` | Specify startup `failureThreshold` parameter for the Pod  |
-| probes.startup.periodSeconds | int | `10` | Specify startup `periodSeconds` parameter for the Pod  |
+| probes.startup.failureThreshold | int | `30` | Specify startup `failureThreshold` parameter for the Pod |
+| probes.startup.periodSeconds | int | `10` | Specify startup `periodSeconds` parameter for the Pod |
 | replicaCount | int | `1` | Number of replicas to scale to |
 | resources | object | `{}` | CPU/Memory resource requests/limits |
 | securityContext.privileged | bool | `true` |  |
@@ -130,7 +130,7 @@ N/A
 | vnc.enabled | bool | `true` | Enabled the built-in VNC server to access the application |
 | vnc.existingSecret | string | `""` | Existing Kubernetes secret containing the VNC password |
 | vnc.password | string | `"changeme"` | VNC server password |
-| zigbeeDevice.enabled | bool | `false` | Enables passing through a Zigbee device  |
+| zigbeeDevice.enabled | bool | `false` | Enables passing through a Zigbee device |
 | zigbeeDevice.hostPath | string | `"/dev/ttyUSB1"` | HostPath of the Zigbee device that should be passed through |
 
 ## Changelog
@@ -139,7 +139,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [2.0.2]
 
 #### Added
 
@@ -147,13 +147,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- move to helm-docs
 
 #### Removed
 
 - N/A
 
-[1.0.0]: #1.0.0
+[2.0.2]: #2.0.2
 
 ## Support
 

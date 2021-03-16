@@ -1,6 +1,6 @@
 # hyperion-ng
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 2.0.0-alpha9](https://img.shields.io/badge/AppVersion-2.0.0--alpha9-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.0.0-alpha9](https://img.shields.io/badge/AppVersion-2.0.0--alpha9-informational?style=flat-square)
 
 Hyperion is an opensource Bias or Ambient Lighting implementation
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+| https://library-charts.k8s-at-home.com | common | 1.0.0 |
 
 ## TL;DR
 
@@ -72,7 +72,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

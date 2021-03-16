@@ -71,7 +71,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
@@ -84,8 +84,7 @@ N/A
 | nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
 | podAnnotations | object | `{}` | Pod annotations |
 | resources | object | `{}` |  |
-| service.port | int | `22300` | Kubernetes port where the GUI is exposed |
-| service.type | string | `"ClusterIP"` | Kubernetes service type for the GUI |
+| service.port.port | int | `22300` | Kubernetes port where the GUI is exposed |
 | tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
 
 ## Changelog

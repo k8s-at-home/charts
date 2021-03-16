@@ -1,15 +1,15 @@
-# heimdall
+# wikijs
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.5.191](https://img.shields.io/badge/AppVersion-2.5.191-informational?style=flat-square)
 
-An Application dashboard and launcher
+Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://hub.docker.com/r/linuxserver/heimdall/>
-* <https://github.com/linuxserver/heimdall>
+* <https://hub.docker.com/r/linuxserver/wikijs/>
+* <https://github.com/Requarks/wiki>
 
 ## Requirements
 
@@ -19,30 +19,30 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.1.0 |
+| https://library-charts.k8s-at-home.com | common | 1.0.0 |
 
 ## TL;DR
 
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install heimdall k8s-at-home/heimdall
+helm install wikijs k8s-at-home/wikijs
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `heimdall`
+To install the chart with the release name `wikijs`
 
 ```console
-helm install heimdall k8s-at-home/heimdall
+helm install wikijs k8s-at-home/wikijs
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `heimdall` deployment
+To uninstall the `wikijs` deployment
 
 ```console
-helm uninstall heimdall
+helm uninstall wikijs
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +55,15 @@ Other values may be used from the [values.yaml](../common/values.yaml) from the 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install heimdall \
+helm install wikijs \
   --set env.TZ="America/New York" \
-    k8s-at-home/heimdall
+    k8s-at-home/wikijs
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install heimdall k8s-at-home/heimdall -f values.yaml
+helm install wikijs k8s-at-home/wikijs -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,15 +76,33 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env.DB_FILEPATH | string | `"/app/wiki/data/db.sqlite"` | Path to the SQLite file |
+| env.DB_NAME | string | `nil` | Database name |
+| env.DB_PASS | string | `nil` | Password to connect to the database |
+| env.DB_PASS_FILE | string | `nil` | Path to the mapped file containing to the database password. (optional, replaces DB_PASS) |
+| env.DB_PORT | string | `nil` | Port of the database |
+| env.DB_SSL | string | `nil` | Set to either 1 or true to enable. (optional, off if omitted) |
+| env.DB_SSL_CA | string | `nil` | Database CA certificate content, as a single line string (without spaces or new lines), without the prefix and suffix lines. (optional, requires 2.3+) |
+| env.DB_TYPE | string | `"sqlite"` | mysql, postgres, mariadb, mssql or sqlite |
+| env.DB_USER | string | `nil` | Username to connect to the database |
+| env.TZ | string | `nil` | Set the time zone, e.g. Europe/Amsterdam |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/heimdall"` |  |
-| image.tag | string | `"version-2.2.2"` |  |
+| image.repository | string | `"linuxserver/wikijs"` |  |
+| image.tag | string | `"version-2.5.191"` |  |
+| ingress."ingress.hosts[0].host" | string | `"chart-example.local"` |  |
+| ingress."ingress.hosts[0].paths[0].path" | string | `"/"` |  |
+| ingress."ingress.hosts[0].paths[0].pathType" | string | `"Prefix"` |  |
 | ingress.enabled | bool | `false` |  |
+| persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.emptyDir | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `true` |  |
-| service.port.port | int | `80` |  |
+| persistence.config.size | string | `"1Gi"` |  |
+| persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
+| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/app/wiki/data"` |  |
+| persistence.data.size | string | `"1Gi"` |  |
+| service.port | object | `{"port":3000,"targetPort":3000}` | The default port is 3000 used by wiki.ks |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -93,11 +111,11 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [0.0.1]
 
 #### Added
 
-- N/A
+- First version of the helm chart for wikijs
 
 #### Changed
 
@@ -107,7 +125,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[0.0.1]: #0.0.1
 
 ## Support
 

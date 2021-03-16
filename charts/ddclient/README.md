@@ -1,6 +1,6 @@
 # ddclient
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 3.9.1](https://img.shields.io/badge/AppVersion-3.9.1-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 3.9.1](https://img.shields.io/badge/AppVersion-3.9.1-informational?style=flat-square)
 
 Perl client used to update dynamic DNS entries for accounts on Dynamic DNS Network Service Providers
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.0.1 |
+| https://library-charts.k8s-at-home.com | common | 1.0.0 |
 
 ## TL;DR
 
@@ -72,11 +72,11 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | `"# This is the configuration for ddclient\n# Inorder for it to function you need to set it up\n# e.g. this is the config for Cloudflare\nuse=web\nweb=dynamicdns.park-your-domain.com/getip\nprotocol=cloudflare\nssl=yes\nttl=1\nlogin=${CF_EMAIL}\npassword=${CF_GLOBAL_APIKEY}\nzone=${DOMAIN}.${TLD}\n${DOMAIN}.${TLD}\n"` |  |
+| config | string | `"# This is the configuration for ddclient\n# Inorder for it to function you need to set it up\n# e.g. this is the config for Cloudflare\ndaemon=600\nuse=web\nweb=dynamicdns.park-your-domain.com/getip\nprotocol=cloudflare\nssl=yes\nttl=1\nlogin=${CF_EMAIL}\npassword=${CF_GLOBAL_APIKEY}\nzone=${DOMAIN}.${TLD}\n${DOMAIN}.${TLD}\n"` |  |
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/ddclient"` |  |

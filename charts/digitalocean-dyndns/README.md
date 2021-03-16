@@ -1,6 +1,6 @@
 # digitalocean-dyndns
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 1.0](https://img.shields.io/badge/AppVersion-1.0-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: 1.0](https://img.shields.io/badge/AppVersion-1.0-informational?style=flat-square)
 
 Dynamic DNS using DigitalOcean's DNS Services
 
@@ -78,8 +78,8 @@ N/A
 | digitialocean.name | string | `"@"` | Subdomain to use. (name in A record) (i.e. home for home.foo.com or @ for no subdomain) |
 | digitialocean.sleep_interval | int | `300` | Polling time in seconds |
 | digitialocean.token | string | `"sometoken"` | The token you generate in DigitalOcean's API settings. |
-| image.pullPolicy | string | `"Always"` | digitalocean-dyndns image pull policy  |
-| image.repository | string | `"tunix/digitalocean-dyndns"` | digitalocean-dyndns image  |
+| image.pullPolicy | string | `"Always"` | digitalocean-dyndns image pull policy |
+| image.repository | string | `"tunix/digitalocean-dyndns"` | digitalocean-dyndns image |
 | image.tag | string | `"latest"` |  |
 | nodeSelector | object | `{}` |  |
 | replicaCount | int | `1` | Number of replicas |
@@ -92,7 +92,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [2.0.2]
 
 #### Added
 
@@ -100,13 +100,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- Use helm-docs
 
 #### Removed
 
 - N/A
 
-[1.0.0]: #1.0.0
+[2.0.2]: #2.0.2
 
 ## Support
 

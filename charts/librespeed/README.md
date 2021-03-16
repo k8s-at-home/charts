@@ -93,7 +93,7 @@ N/A
 | nodeSelector | object | `{}` | Node labels for pod assignment or the homebridge GUI |
 | password | string | `"ChangeMe"` | password for stats page |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access modes |
-| persistence.enabled | bool | `true` | Use persistent volume to store data |
+| persistence.enabled | bool | `false` | Use persistent volume to store data |
 | persistence.existingClaim | string | `nil` | Use an existing PVC to persist data |
 | persistence.size | string | `"1Gi"` | Size of persistent volume claim |
 | persistence.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
@@ -106,7 +106,7 @@ N/A
 | redactIPAddresses | bool | `false` | IP addresses/hostnames are redacted from the collected telemetry |
 | resources | object | `{}` | CPU/Memory resource requests/limits or the homebridge GUI |
 | service.annotations | object | `{}` | Service annotations for the GUI |
-| service.externalTrafficPolicy | string | `"Cluster"` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
+| service.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
 | service.labels | object | `{}` | Custom labels |
 | service.loadBalancerIP | string | `nil` | Loadbalance IP for the GUI |
 | service.loadBalancerSourceRanges | list | `nil` | List of IP CIDRs allowed access to load balancer (if supported) |

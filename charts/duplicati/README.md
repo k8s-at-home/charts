@@ -87,7 +87,7 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 | image.tag | string | `"v2.0.5.1-2.0.5.1_beta_2020-01-18-ls72"` | Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/duplicati/tags/). |
 | ingress.annotations | object | `{}` | Ingress annotations |
 | ingress.enabled | bool | `false` | Enables Ingress |
-| ingress.hosts | list | `["chart-example.local"]` | Ingress accepted hostnames  |
+| ingress.hosts | list | `["chart-example.local"]` | Ingress accepted hostnames |
 | ingress.labels | object | `{}` | Custom labels |
 | ingress.path | string | `"/"` | Ingress path |
 | ingress.tls | list | `[]` | Ingress TLS configuration |
@@ -96,16 +96,16 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 | persistence.backups.accessMode | string | `"ReadWriteOnce"` | Use an existing PVC to persist data existingClaim: your-claim -- Persistence access mode |
 | persistence.backups.enabled | bool | `true` | Use persistent volume to store backups data |
 | persistence.backups.size | string | `"1Gi"` | Size of persistent volume claim |
-| persistence.backups.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall  |
+| persistence.backups.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` | Use an existing PVC to persist data existingClaim: your-claim -- Persistence access mode |
 | persistence.config.enabled | bool | `true` | Use persistent volume to store configuration data |
 | persistence.config.size | string | `"1Gi"` | Size of persistent volume claim |
-| persistence.config.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall  |
+| persistence.config.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
 | persistence.extraExistingClaimMounts | list | `[]` | Optionally add multiple existing claims |
 | persistence.source.accessMode | string | `"ReadWriteOnce"` | Use an existing PVC to persist data existingClaim: your-claim -- Persistence access mode |
 | persistence.source.enabled | bool | `true` | Use persistent volume to store source data |
 | persistence.source.size | string | `"1Gi"` | Size of persistent volume claim |
-| persistence.source.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall  |
+| persistence.source.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
 | pgid | int | `1001` | Process groupID the duplicati instance should run as |
 | podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
 | probes.liveness.failureThreshold | int | `5` | Specify liveness `failureThreshold` parameter for the deployment |
