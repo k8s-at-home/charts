@@ -1,0 +1,26 @@
+apiVersion: v2
+appVersion: 0.16.0
+description: The to-do app to organize your life
+name: vikunja
+version: 1.0.0
+keywords:
+  - vikunja
+  - to-do
+  - tasks
+  - calendar
+  - kanban
+home: https://github.com/k8s-at-home/charts/tree/master/charts/vikunja
+icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+sources:
+  - https://kolaente.dev/vikunja/api
+  - https://kolaente.dev/vikunja/frontend
+  - https://hub.docker.com/r/vikunja/api
+  - https://hub.docker.com/r/vikunja/frontend
+  - https://vikunja.io/docs/
+maintainers:
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 1.0.0
