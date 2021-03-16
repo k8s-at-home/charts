@@ -22,9 +22,8 @@ if [ ! -f "${EMBYCONF}" ]; then
   createConfig
 fi
 
-if [ ! -z "${CERTIFICATE_PATH}" ]; then
-  setPref "CertificatePath" "${CERTIFICATE_PATH}"
-fi
+wget https://github.com/acjohnson/xmlstarlet-static-binary/raw/master/xmlstarlet -O /bin/xmlstarlet
+chmod +x /bin/xmlstarlet
 
 if [ ! -z "${CERTIFICATE_PASSWORD}" ]; then
   setPref "CertificatePassword" "${CERTIFICATE_PASSWORD}"
@@ -42,6 +41,10 @@ if [ ! -z "${REQUIRE_HTTPS}" ]; then
   setPref "RequireHttps" "${REQUIRE_HTTPS}"
 fi
 
+if [ ! -z "${HTTPS_HANDLED_BY_REVERSE_PROXY}" ]; then
+  setPref "IsBehindProxy" "${HTTPS_HANDLED_BY_REVERSE_PROXY}"
+fi
+
 if [ ! -z "${ENABLE_UPNP}" ]; then
   setPref "EnableUPnP" "${ENABLE_UPNP}"
 fi
@@ -54,16 +57,20 @@ if [ ! -z "${PUBLIC_HTTPS_PORT}" ]; then
   setPref "PublicHttpsPort" "${PUBLIC_HTTPS_PORT}"
 fi
 
-if [ ! -z "${HTTP_PORT_NUMBER}" ]; then
-  setPref "HttpServerPortNumber" "${HTTP_PORT_NUMBER}"
+if [ ! -z "${HTTP_PORT}" ]; then
+  setPref "HttpServerPortNumber" "${HTTP_PORT}"
 fi
 
-if [ ! -z "${HTTPS_PORT_NUMBER}" ]; then
-  setPref "HttpsPortNumber" "${HTTPS_PORT_NUMBER}"
+if [ ! -z "${HTTPS_PORT}" ]; then
+  setPref "HttpsPortNumber" "${HTTPS_PORT}"
 fi
 
 if [ ! -z "${UI_LANGUAGE}" ]; then
   setPref "UICulture" "${UI_LANGUAGE}"
+fi
+
+if [ ! -z "${ALLOWED_NETWORKS}" ]; then
+  setPref "LocalNetworkSubnets" "${ALLOWED_NETWORKS}"
 fi
 
 if [ ! -z "${SKIP_SETUP_WIZARD}" ]; then

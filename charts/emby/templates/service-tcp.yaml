@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "plex.fullname" . }}-tcp
+  name: {{ include "emby.fullname" . }}-tcp
   labels:
-    {{- include "plex.labels" . | nindent 4 }}
+    {{- include "emby.labels" . | nindent 4 }}
 {{- if .Values.serviceTCP.labels }}
 {{ toYaml .Values.serviceTCP.labels | indent 4 }}
 {{- end }}
@@ -37,21 +37,19 @@ spec:
   externalTrafficPolicy: {{ .Values.serviceTCP.externalTrafficPolicy }}
   {{- end }}
   ports:
-    - name: pms
-      port: {{ .Values.serviceTCP.port }}
+    - name: emby-http
+      port: {{ .Values.serviceTCP.ports.http }}
       protocol: TCP
-      targetPort: pms
+      targetPort: emby-http
 {{ if (and (eq .Values.serviceTCP.type "NodePort") (not (empty .Values.serviceTCP.nodePort))) }}
       nodePort: {{.Values.serviceTCP.nodePort}}
 {{ end }}
-    - name: http
-      port: 80
-      targetPort: pms
-    - name: https
-      port: 443
-      targetPort: pms
-    - name: plex-dlna
-      port: 1900
-      targetPort: plex-dlna
+    - name: emby-https
+      port: {{ .Values.serviceTCP.ports.https }}
+      protocol: TCP
+      targetPort: emby-https
+{{ if (and (eq .Values.serviceTCP.type "NodePort") (not (empty .Values.serviceTCP.nodePort))) }}
+      nodePort: {{.Values.serviceTCP.nodePort}}
+{{ end }}
   selector:
-    {{- include "plex.selectorLabels" . | nindent 4 }}
+    {{- include "emby.selectorLabels" . | nindent 4 }}

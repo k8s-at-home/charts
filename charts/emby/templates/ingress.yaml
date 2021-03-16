@@ -1,6 +1,11 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "plex.fullname" . -}}
-{{- $svcPort := .Values.serviceTCP.port -}}
+{{- $fullName := include "emby.fullname" . -}}
+{{- if eq .Values.serviceTCP.defaultProtocol "http" -}}
+{{- $dummy := set . "svcPort" .Values.serviceTCP.ports.http }}
+{{- else if eq .Values.serviceTCP.defaultProtocol "https" -}}
+{{- $dummy := set . "svcPort" .Values.serviceTCP.ports.https }}
+{{- end -}}
+{{- $svcPort := .svcPort -}}
 {{- $ingressPath := .Values.ingress.path -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
@@ -11,7 +16,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "plex.labels" . | nindent 4 }}
+    {{- include "emby.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

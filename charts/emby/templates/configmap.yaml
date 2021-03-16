@@ -1,14 +1,14 @@
-{{- if .Values.plexPreferences.enabled -}}
+{{- if .Values.embyPreferences.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.plexPreferences.configmap.name }}
+  name: {{ .Values.embyPreferences.configmap.name }}
   labels:
-    {{- include "plex.labels" . | nindent 4 }}
-{{- if .Values.plexPreferences.configmap.labels }}
-{{ toYaml .Values.plexPreferences.configmap.labels | indent 4 }}
+    {{- include "emby.labels" . | nindent 4 }}
+{{- if .Values.embyPreferences.configmap.labels }}
+{{ toYaml .Values.embyPreferences.configmap.labels | indent 4 }}
 {{- end }}
-{{- with .Values.plexPreferences.configmap.annotations }}
+{{- with .Values.embyPreferences.configmap.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
 {{- end }}
@@ -16,7 +16,7 @@ metadata:
 data:
 # At some point figure out how to use a value/Variable here to be able to specify
 # a different file or something.
-{{ (tpl (.Files.Glob "configs/41-plex-preferences").AsConfig . ) | indent 2 }}
+{{ (tpl (.Files.Glob "configs/41-emby-preferences").AsConfig . ) | indent 2 }}
 {{- end -}}
 
 {{- if .Values.certificate.pkcsMangler.enabled }}
@@ -26,7 +26,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.certificate.pkcsMangler.configmap.name }}
   labels:
-    {{- include "plex.labels" . | nindent 4 }}
+    {{- include "emby.labels" . | nindent 4 }}
 {{- if .Values.certificate.pkcsMangler.configmap.labels }}
 {{ toYaml .Values.certificate.pkcsMangler.configmap.labels | indent 4 }}
 {{- end }}

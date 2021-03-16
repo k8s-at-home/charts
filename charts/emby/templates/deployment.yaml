@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "plex.fullname" . }}
+  name: {{ include "emby.fullname" . }}
   labels:
-    {{- include "plex.labels" . | nindent 4 }}
+    {{- include "emby.labels" . | nindent 4 }}
   {{- if .Values.deploymentAnnotations }}
   annotations:
     {{- range $key, $value := .Values.deploymentAnnotations }}
@@ -17,11 +17,11 @@ spec:
     type: {{ .Values.strategyType }}
   selector:
     matchLabels:
-      {{- include "plex.selectorLabels" . | nindent 6 }}
+      {{- include "emby.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "plex.selectorLabels" . | nindent 8 }}
+        {{- include "emby.selectorLabels" . | nindent 8 }}
       {{- if .Values.podAnnotations }}
       annotations:
         {{- range $key, $value := .Values.podAnnotations }}
@@ -41,7 +41,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
   {{- if .Values.certificate.pkcsMangler.enabled }}
       initContainers:
-      # This is ugly, but it does work to create a pks file that will work with PLEX from the tls.crt and tls.key that cert-manager normally creates
+      # This is ugly, but it does work to create a pks file that will work with Emby from the tls.crt and tls.key that cert-manager normally creates
       {{- if .Values.certificate.pkcsMangler.enabled }}
       - name: pkcsmangler-init-container
         image: "{{ .Values.certificate.pkcsMangler.image.repository }}:{{ .Values.certificate.pkcsMangler.image.tag }}"
@@ -74,7 +74,7 @@ spec:
             subPath: promtail.yaml
             readOnly: true
           - name: shared-logs
-            mountPath: /plex-logs
+            mountPath: /emby-logs
       {{- end }}
         - name: {{ .Chart.Name }}
           securityContext:
@@ -82,34 +82,22 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-          - name: pms
+          - name: emby-http
             protocol: TCP
-            containerPort: 32400
-          - name: plex-dlna
+            containerPort: {{.Values.httpPort}}
+          - name: emby-https
             protocol: TCP
-            containerPort: 32469
-          - name: plex-dlna-udp
-            protocol: UDP
-            containerPort: 1900
-          - name: plex-gdm1
-            protocol: UDP
-            containerPort: 32410
-          - name: plex-gdm2
-            protocol: UDP
-            containerPort: 32412
-          - name: plex-gdm3
-            protocol: UDP
-            containerPort: 32413
-          - name: plex-gdm4
-            protocol: UDP
-            containerPort: 32414
+            containerPort: {{.Values.httpsPort}}
           env:
           - name: TZ
             value: "{{ .Values.timezone }}"
-          # emby env vars
-          - name: PMS_INTERNAL_ADDRESS
-            value: http://{{ template "plex.fullname" . }}:32400
-          - name: PMS_IMAGE
+          - name: "WANDDNS"
+            value: "{{ .Values.dnsExternalDomain }}"
+          - name: "HTTP_PORT"
+            value: "{{ .Values.httpPort }}"
+          - name: "HTTPS_PORT"
+            value: "{{ .Values.httpsPort }}"
+          - name: EMBY_IMAGE
             value: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           - name: KUBE_NAMESPACE
             valueFrom:
@@ -119,56 +107,84 @@ spec:
   {{- if .Values.persistence.transcode.claimName }}
             value: "{{ .Values.persistence.transcode.claimName }}"
   {{- else }}
-            value: "{{ template "plex.fullname" . }}-transcode"
+            value: "{{ template "emby.fullname" . }}-transcode"
   {{- end }}
   {{- if .Values.persistence.data.enabled }}
           - name: DATA_PVC
-    {{- if .Values.persistence.data.claimName }}
+  {{- if .Values.persistence.data.claimName }}
             value: "{{ .Values.persistence.data.claimName }}"
-    {{- else }}
-            value: "{{ template "plex.fullname" . }}-data"
-    {{- end }}
+  {{- else }}
+            value: "{{ template "emby.fullname" . }}-data"
+  {{- end }}
   {{- end }}
           - name: CONFIG_PVC
   {{- if .Values.persistence.config.claimName }}
             value: "{{ .Values.persistence.config.claimName }}"
   {{- else }}
-            value: "{{ template "plex.fullname" . }}-config"
+            value: "{{ template "emby.fullname" . }}-config"
   {{- end }}
   {{- if .Values.proxy.enabled }}
-    {{- if .Values.proxy.http }}
+  {{- if .Values.proxy.http }}
           - name: "HTTP_PROXY"
-            value: "{{.Values.proxy.http}}"
-    {{- end }}
-    {{- if .Values.proxy.https }}
-          - name: "HTTPS_PROXY"
-            value: "{{.Values.proxy.https}}"
-    {{- end }}
-    {{- if .Values.proxy.noproxy }}
-          - name: "NO_PROXY"
-            value: "{{.Values.proxy.noproxy}}"
-    {{- end }}
+            value: "{{ .Values.proxy.http }}"
   {{- end }}
-  {{- if .Values.advertiseIp }}
-          - name: "ADVERTISE_IP"
-            value: "{{.Values.advertiseIp}}"
-{{- end }}
-{{- if .Values.changeConfigDirOwnership }}
+  {{- if .Values.proxy.https }}
+          - name: "HTTPS_PROXY"
+            value: "{{ .Values.proxy.https }}"
+  {{- end }}
+  {{- if .Values.proxy.noproxy }}
+          - name: "NO_PROXY"
+            value: "{{ .Values.proxy.noproxy }}"
+  {{- end }}
+  {{- end }}
+  {{- if .Values.publicHttpPort }}
+          - name: "PUBLIC_HTTP_PORT"
+            value: "{{ .Values.publicHttpPort }}"
+  {{- end }}
+  {{- if .Values.publicHttpsPort }}
+          - name: "PUBLIC_HTTPS_PORT"
+            value: "{{ .Values.publicHttpsPort }}"
+  {{- end }}
+  {{- if .Values.enableHttps }}
+          - name: "ENABLE_HTTPS"
+            value: "{{ .Values.enableHttps }}"
+  {{- end }}
+  {{- if .Values.requireHttps }}
+          - name: "REQUIRE_HTTPS"
+            value: "{{ .Values.requireHttps }}"
+  {{- end }}
+  {{- if .Values.httpsHandledByReverseProxy }}
+          - name: "HTTPS_HANDLED_BY_REVERSE_PROXY"
+            value: "{{ .Values.httpsHandledByReverseProxy }}"
+  {{- end }}
+  {{- if .Values.enableUpnp }}
+          - name: "ENABLE_UPNP"
+            value: "{{ .Values.enableUpnp }}"
+  {{- end }}
+  {{- if .Values.uiLanguage }}
+          - name: "UI_LANGUAGE"
+            value: "{{ .Values.uiLanguage }}"
+  {{- end }}
+  {{- if .Values.skipSetupWizard }}
+          - name: "SKIP_SETUP_WIZARD"
+            value: "{{ .Values.skipSetupWizard }}"
+  {{- end }}
+  {{- if .Values.changeConfigDirOwnership }}
           - name: "CHANGE_CONFIG_DIR_OWNERSHIP"
-            value: "{{.Values.changeConfigDirOwnership}}"
-{{- end }}
-{{- if .Values.allowedNetworks }}
+            value: "{{ .Values.changeConfigDirOwnership }}"
+  {{- end }}
+  {{- if .Values.allowedNetworks }}
           - name: "ALLOWED_NETWORKS"
             value: "{{include "joinListWithComma" .Values.allowedNetworks}}"
-{{- end }}
-{{- if .Values.plexUid }}
-          - name: "PLEX_UID"
-            value: "{{.Values.plexUid}}"
-{{- end }}
-{{- if .Values.plexGid }}
-          - name: "PLEX_GID"
-            value: "{{.Values.plexGid}}"
-{{- end }}
+  {{- end }}
+  {{- if .Values.embyUid }}
+          - name: "UID"
+            value: "{{ .Values.embyUid }}"
+  {{- end }}
+  {{- if .Values.embyGid }}
+          - name: "GID"
+            value: "{{ .Values.embyGid }}"
+  {{- end }}
 # Extra ENV Values supplied by user
 {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
@@ -178,15 +194,11 @@ spec:
 {{- if .Values.certificate.pkcsMangler.enabled }}
           - name: "PKCSMANGLER_PFXINCONTAINERPATH"
             value: "{{.Values.certificate.pkcsMangler.pfxInContainerPath}}"
-{{- if .Values.certificate.pkcsMangler.setPlexPreferences.enabled }}
           - name: "PKCSMANGLER_PFXPASSWORD"
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.certificate.pkcsMangler.pfxPassword.secretName }}
                 key: {{ .Values.certificate.pkcsMangler.pfxPassword.passwordKey }}
-          - name: "PKCSMANGLER_CUSTOMCERTDOMAIN"
-            value: "customCertificateDomain={{.Values.certificate.pkcsMangler.setPlexPreferences.customCertificateDomain}}"
-{{- end }}
 {{- end }}
           {{- if .Values.probes.readiness.enabled }}
           readinessProbe:
@@ -239,11 +251,11 @@ spec:
           - name: shared
             mountPath: /shared
           - name: shared-logs
-            mountPath: "/config/Library/Application Support/Plex Media Server/Logs"
-          {{- if .Values.plexPreferences.enabled }}
-          - name: {{ .Values.plexPreferences.volume.name }}
-            mountPath: {{ .Values.plexPreferences.volume.mountPath }}
-            subPath: {{ .Values.plexPreferences.volume.subPath }}
+            mountPath: "/var/lib/emby/logs"
+          {{- if .Values.embyPreferences.enabled }}
+          - name: {{ .Values.embyPreferences.volume.name }}
+            mountPath: {{ .Values.embyPreferences.volume.mountPath }}
+            subPath: {{ .Values.embyPreferences.volume.subPath }}
           {{- end }}
           {{- if .Values.certificate.pkcsMangler.enabled }}
           - name: {{ .Values.certificate.pkcsMangler.volume.name }}
@@ -260,7 +272,7 @@ spec:
   {{- if .Values.persistence.data.claimName }}
           claimName: "{{ .Values.persistence.data.claimName }}"
   {{- else }}
-          claimName: "{{ template "plex.fullname" . }}-data"
+          claimName: "{{ template "emby.fullname" . }}-data"
   {{- end }}
 {{- end }}
       - name: config
@@ -268,7 +280,7 @@ spec:
 {{- if .Values.persistence.config.claimName }}
           claimName: "{{ .Values.persistence.config.claimName }}"
 {{- else }}
-          claimName: "{{ template "plex.fullname" . }}-config"
+          claimName: "{{ template "emby.fullname" . }}-config"
 {{- end }}
       - name: transcode
 {{- if .Values.persistence.transcode.enabled }}
@@ -276,7 +288,7 @@ spec:
 {{- if .Values.persistence.transcode.claimName }}
           claimName: "{{ .Values.persistence.transcode.claimName }}"
 {{- else }}
-          claimName: "{{ template "plex.fullname" . }}-transcode"
+          claimName: "{{ template "emby.fullname" . }}-transcode"
 {{- end }}
 {{- else }}
 {{- if .Values.persistence.transcode.emptyDir.medium }}
@@ -309,11 +321,11 @@ spec:
         emptyDir: {}
       - name: shared-logs
         emptyDir: {}
-      {{- if .Values.plexPreferences.enabled }}
-      - name: {{ .Values.plexPreferences.volume.name }}
+      {{- if .Values.embyPreferences.enabled }}
+      - name: {{ .Values.embyPreferences.volume.name }}
         configMap:
-          name: {{ .Values.plexPreferences.configmap.name }}
-          defaultMode: {{ .Values.plexPreferences.volume.defaultMode }}
+          name: {{ .Values.embyPreferences.configmap.name }}
+          defaultMode: {{ .Values.embyPreferences.volume.defaultMode }}
       {{- end }}
       {{- if .Values.certificate.pkcsMangler.enabled }}
       - name: {{ .Values.certificate.pkcsMangler.volume.name }}
@@ -330,7 +342,7 @@ spec:
           defaultMode: 0444
           sources:
           - configMap:
-              name: {{ template "plex.fullname" . }}-promtail
+              name: {{ template "emby.fullname" . }}-promtail
               items:
                 - key: promtail.yaml
                   path: promtail.yaml

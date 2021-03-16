@@ -47,7 +47,7 @@ The command removes all the Kubernetes components associated with the chart **in
 ## Configuration
 
 Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
-Other values may be used from the [values.yaml](../common/values.yaml) from the [common library](../common).
+Other values may be used from the [values.yaml](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml) from the [common library](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common).
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
@@ -69,7 +69,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
@@ -91,18 +91,33 @@ N/A
 | certificate.pkcsMangler.pfxPassword.passwordKey | string | `"pfx-password"` |  |
 | certificate.pkcsMangler.pfxPassword.secretName | string | `"emby-server-pfx-password"` |  |
 | certificate.pkcsMangler.pfxPassword.value | string | `"setpassword"` |  |
-| certificate.pkcsMangler.setEmbyPreferences.customCertificateDomain | string | `""` |  |
-| certificate.pkcsMangler.setEmbyPreferences.enabled | bool | `true` |  |
 | certificate.pkcsMangler.volume.defaultMode | int | `493` |  |
 | certificate.pkcsMangler.volume.mountPath | string | `"/etc/cont-init.d/42-pkcs-mangler"` |  |
 | certificate.pkcsMangler.volume.name | string | `"42-pkcs-mangler"` |  |
 | certificate.pkcsMangler.volume.subPath | string | `"42-pkcs-mangler"` |  |
+| changeConfigDirOwnership | bool | `true` |  |
 | deploymentAnnotations | object | `{}` |  |
+| dnsExternalDomain | string | `"emby.example.com"` |  |
+| embyGid | int | `2` |  |
+| embyPreferences.configmap.annotations | object | `{}` |  |
+| embyPreferences.configmap.labels | object | `{}` |  |
+| embyPreferences.configmap.name | string | `"41-emby-preferences"` |  |
+| embyPreferences.enabled | bool | `false` |  |
+| embyPreferences.volume.defaultMode | int | `493` |  |
+| embyPreferences.volume.mountPath | string | `"/etc/cont-init.d/41-emby-preferences"` |  |
+| embyPreferences.volume.name | string | `"41-emby-preferences"` |  |
+| embyPreferences.volume.subPath | string | `"41-emby-preferences"` |  |
+| embyUid | int | `2` |  |
+| enableHttps | bool | `false` |  |
+| enableUpnp | bool | `true` |  |
 | fullnameOverride | string | `""` |  |
 | hostNetwork | bool | `false` |  |
+| httpPort | int | `8096` |  |
+| httpsHandledByReverseProxy | bool | `false` |  |
+| httpsPort | int | `8920` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"emby/embyserver"` |  |
-| image.tag | string | `"1.20.2.3402-0fec14d92"` |  |
+| image.tag | string | `"4.5.4.0"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
@@ -130,51 +145,46 @@ N/A
 | persistence.transcode.enabled | bool | `false` |  |
 | persistence.transcode.size | string | `"20Gi"` |  |
 | persistence.transcode.storageClass | string | `""` |  |
-| embyPreferences.configmap.annotations | object | `{}` |  |
-| embyPreferences.configmap.labels | object | `{}` |  |
-| embyPreferences.configmap.name | string | `"41-emby-preferences"` |  |
-| embyPreferences.enabled | bool | `false` |  |
-| embyPreferences.volume.defaultMode | int | `493` |  |
-| embyPreferences.volume.mountPath | string | `"/etc/cont-init.d/41-emby-preferences"` |  |
-| embyPreferences.volume.name | string | `"41-emby-preferences"` |  |
-| embyPreferences.volume.subPath | string | `"41-emby-preferences"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | probes.liveness.enabled | bool | `true` |  |
 | probes.liveness.failureThreshold | int | `5` |  |
-| probes.liveness.httpGet.path | string | `"/identity"` |  |
-| probes.liveness.httpGet.port | int | `32400` |  |
+| probes.liveness.httpGet.path | string | `"/"` |  |
+| probes.liveness.httpGet.port | int | `8096` |  |
 | probes.liveness.periodSeconds | int | `10` |  |
 | probes.readiness.enabled | bool | `true` |  |
 | probes.readiness.failureThreshold | int | `5` |  |
-| probes.readiness.httpGet.path | string | `"/identity"` |  |
-| probes.readiness.httpGet.port | int | `32400` |  |
+| probes.readiness.httpGet.path | string | `"/"` |  |
+| probes.readiness.httpGet.port | int | `8096` |  |
 | probes.readiness.periodSeconds | int | `10` |  |
 | probes.startup.enabled | bool | `true` |  |
 | probes.startup.failureThreshold | int | `30` |  |
-| probes.startup.httpGet.path | string | `"/identity"` |  |
-| probes.startup.httpGet.port | int | `32400` |  |
+| probes.startup.httpGet.path | string | `"/"` |  |
+| probes.startup.httpGet.port | int | `8096` |  |
 | probes.startup.initialDelaySeconds | int | `5` |  |
 | probes.startup.periodSeconds | int | `10` |  |
 | proxy.enabled | bool | `false` |  |
+| publicHttpPort | int | `8096` |  |
+| publicHttpsPort | int | `8920` |  |
+| requireHttps | bool | `false` |  |
 | resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
 | serviceTCP.annotations | object | `{}` |  |
+| serviceTCP.defaultProtocol | string | `"http"` |  |
 | serviceTCP.labels | object | `{}` |  |
 | serviceTCP.loadBalancerIP | string | `nil` |  |
-| serviceTCP.port | int | `32400` |  |
+| serviceTCP.ports.http | int | `8096` |  |
+| serviceTCP.ports.https | int | `8920` |  |
 | serviceTCP.type | string | `"ClusterIP"` |  |
-| serviceUDP.annotations | object | `{}` |  |
-| serviceUDP.labels | object | `{}` |  |
-| serviceUDP.loadBalancerIP | string | `nil` |  |
-| serviceUDP.type | string | `"ClusterIP"` |  |
+| skipSetupWizard | bool | `false` |  |
 | strategyType | string | `"Recreate"` |  |
 | timezone | string | `"UTC"` |  |
 | tolerations | list | `[]` |  |
+| uiLanguage | string | `"en-us"` |  |
 
 ## Changelog
 
-All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
@@ -182,7 +192,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- N/A
+- Initial release
 
 #### Changed
 

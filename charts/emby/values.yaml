@@ -22,23 +22,62 @@ timezone: "UTC"
 
 # Instruct the Emby Server Container to Change the Configuration Directory Ownership
 # Default is true, you would only need to set this if you want to disable it.
-# changeConfigDirOwnership: true
+changeConfigDirOwnership: true
 
-# advertiseIp This variable defines the additional IPs on which the server may be be found.
-# For example: http://10.1.1.23:32400.
-# This adds to the list where the server advertises that it can be found.
-# See https://hub.docker.com/r/plexinc/pms-docker/ for details
-# advertiseIp: "http://10.1.1.23:32400"
+# Enable https
+# Default is false
+enableHttps: false
 
-# Set The user id of the plex user created inside the container.
-# See https://hub.docker.com/r/plexinc/pms-docker/ for details
-# plexUid: 1000
+# Require https
+# Default is false
+requireHttps: false
 
-# Set The group id of the plex group created inside the container
-# See https://hub.docker.com/r/plexinc/pms-docker/ for details
-# plexGid: 1000
+# https handled by reverse proxy
+# Default is false
+httpsHandledByReverseProxy: false
 
-#####   END  --> Official PLEX container environment variables
+# Enable upnp
+# Default is true
+enableUpnp: true
+
+# Override public http port
+# Default is 8096
+publicHttpPort: 8096
+
+# Override public https port
+# Default is 8920
+publicHttpsPort: 8920
+
+# Override http port
+# Default is 8096
+httpPort: 8096
+
+# Override https port
+# Default is 8920
+httpsPort: 8920
+
+# Set UI Language
+# Default is en-us
+uiLanguage: en-us
+
+# Skip the initial Emby setup wizard
+# Default is false
+skipSetupWizard: false
+
+# Set the user id of the emby user created inside the container.
+# See https://hub.docker.com/r/emby/embyserver/ for details
+# Default is 2
+embyUid: 2
+
+# Set the group id of the emby group created inside the container
+# See https://hub.docker.com/r/emby/embyserver/ for details
+# Default is 2
+embyGid: 2
+
+# Set the DNS External domain (WanDdns in system.xml)
+dnsExternalDomain: emby.example.com
+
+#####   END  --> Emby container environment variables
 
 # You can add as many Additional ENV variables here
 # The following is the same as --set extraEnv.TMPDIR="/transcode"
@@ -53,7 +92,20 @@ nameOverride: ""
 fullnameOverride: ""
 
 podSecurityContext: {}
-  # fsGroup: 2000
+# podSecurityContext:
+#   runAsUser: 568
+#   runAsGroup: 568
+#   fsGroup: 568
+#   # Hardware acceleration using an Intel iGPU w/ QuickSync
+#   # These IDs below should be matched to your `video` and `render` group on the host
+#   # To obtain those IDs run the following grep statement on the host:
+#   # $ cat /etc/group | grep "video\|render"
+#   # video:x:44:
+#   # render:x:109:
+#   supplementalGroups:
+#   - 44
+#   - 109
+
 
 securityContext: {}
   # capabilities:
@@ -65,7 +117,10 @@ securityContext: {}
 
 serviceTCP:
   type: ClusterIP
-  port: 32400
+  defaultProtocol: "http"
+  ports:
+    http: 8096
+    https: 8920
   ## Specify the nodePort value for the LoadBalancer and NodePort service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
@@ -75,24 +130,7 @@ serviceTCP:
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   ##
   annotations: {}
-  # metallb.universe.tf/allow-shared-ip: plex-svc
-  labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
-  loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
-
-serviceUDP:
-  type: ClusterIP
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  # metallb.universe.tf/allow-shared-ip: plex-svc
+  # metallb.universe.tf/allow-shared-ip: emby-svc
   labels: {}
   ## Use loadBalancerIP to request a specific static IP,
   ## otherwise leave blank
@@ -116,25 +154,7 @@ ingress:
   #      - chart-example.local
 
 embyPreferences:
-  # Enable init script that will read all environment variables starting with PLEX_PREFERENCE_
-  # and take the value (of PLEX_PREFERENCE_<whatever>) as the Key:Value option to set in Emby Preference.xml
-  # You can use extraEnv to add the addtional ENV's to the container.
-  # NOTE: Emby preference options are camelCase and CASE SENSITIVE!
-  # You can do horrible things to your PLEX configuration if you are not careful.
-  # --set extraEnv.PLEX_PREFERENCE_1="FriendlyName=emby-kubeernetes-test1" `
-  # --set extraEnv.PLEX_PREFERENCE_2="EnableIPv6=0" `
-  # --set extraEnv.PLEX_PREFERENCE_3="logDebug=0" `
-  # --set extraEnv.PLEX_PREFERENCE_4="DisableTLSv1_0=1" `
-  # --set extraEnv.PLEX_PREFERENCE_5="LanNetworksBandwidth=xxx.xxx.xxx.0/18\,xxx.xxx.xxx.0/24\,xxx.xxx.xxx.0/24" `
-  # --set extraEnv.PLEX_PREFERENCE_6="TranscoderQuality=2" `
-  # --set extraEnv.PLEX_PREFERENCE_7="TreatWanIpAsLocal=0" `
-  # --set extraEnv.PLEX_PREFERENCE_8="TranscoderH264BackgroundPreset=fast"
-  # Why not use a single ENV?
-  #      I thought using multiple environment variables would be less confusing
-  #      It should work easily with CLI and value.yaml usage
-  #      There is only minimal parsing required on the ENV value, as the only deliminator is =
-  #      From what I can see, all the PLEX preferences that are NOT currently supported by the OFFICIAL
-  #      Container are simple enough to work with this.
+  # Enable container init script that customizes Emby's system.xml config file
   enabled: false
   configmap:
     labels: {}
@@ -276,11 +296,6 @@ certificate:
       # mounts.
       mountPath: /etc/cont-init.d/42-pkcs-mangler
       subPath: 42-pkcs-mangler
-    setEmbyPreferences:
-      enabled: true  # Set Emby Preferences related to Certificates
-      customCertificateDomain: ""  # If not empty, Set the Emby Preference customCertificateDomain
-      # Use spec.certificate.pkcsMangler.pfxPassword.value to Set the Emby Preference customCertificateKey
-      # Use spec.certificate.pkcsMangler.pfxInContainerPath to Set the Emby Preference customCertificatePath
     pfxPassword:
       value: "setpassword"
       # We wlll create a Kubernetes Secret for spec.certificate.pkcsMangler.pfxPassword.value
@@ -317,22 +332,22 @@ probes:
   liveness:
     enabled: true
     httpGet:
-      path: /identity
-      port: 32400
+      path: /
+      port: 8096
     failureThreshold: 5
     periodSeconds: 10
   readiness:
     enabled: true
     httpGet:
-      path: /identity
-      port: 32400
+      path: /
+      port: 8096
     failureThreshold: 5
     periodSeconds: 10
   startup:
     enabled: true
     httpGet:
-      path: /identity
-      port: 32400
+      path: /
+      port: 8096
     initialDelaySeconds: 5
     failureThreshold: 30
     periodSeconds: 10
