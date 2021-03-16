@@ -1,6 +1,6 @@
 # kanboard
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v1.2.18](https://img.shields.io/badge/AppVersion-v1.2.18-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v1.2.18](https://img.shields.io/badge/AppVersion-v1.2.18-informational?style=flat-square)
 
 Kanboard is a free and open source Kanban project management software.
 
@@ -18,6 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | postgresql | 10.3.7 |
 | https://k8s-at-home.com/charts/ | common | 3.1.0 |
 
 ## TL;DR
@@ -98,6 +99,12 @@ N/A
 | ingress.enabled | bool | `false` |  |
 | persistence.data | object | `{"accessMode":"ReadWriteOnce","emptyDir":false,"enabled":false,"mountPath":"/var/www/app/data","size":"1Gi"}` | enable data persistence |
 | persistence.ssl | object | `{"emptyDir":false,"enabled":false,"mountPath":"/etc/nginx/ssl"}` | enable SSL persistence |
+| postgresql | object | `{"enabled":false,"persistence":{"enabled":false},"postgresqlDatabase":"kanboard","postgresqlPassword":"kanboard","postgresqlUsername":"kanboard"}` | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
+| postgresql.enabled | bool | `false` | true: use bitnami postgres instance -- false: use your own postgres instance |
+| postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
+| postgresql.postgresqlDatabase | string | `"kanboard"` | Postgres database password |
+| postgresql.postgresqlPassword | string | `"kanboard"` | Postgres database password |
+| postgresql.postgresqlUsername | string | `"kanboard"` | Postgres database user name |
 | service.port.port | int | `80` |  |
 | strategy.type | string | `"Recreate"` |  |
 
@@ -106,6 +113,14 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.1.0]
+
+#### Added
+
+- Added postgres support
+
+[1.1.0]: https://github.com/k8s-at-home/charts/tree/kanboard-1.1.0/charts/home-assistant
 
 ### [1.0.0]
 
