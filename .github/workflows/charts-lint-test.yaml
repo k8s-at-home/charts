@@ -10,25 +10,18 @@ on:
     - '!charts/**/README_CONFIG.md.gotmpl'
 
 jobs:
-  lint:
+  changes:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+    name: Get changes
     runs-on: ubuntu-20.04
     outputs:
-      changed: ${{ steps.list-changed.outputs.changed }}
+      matrix: "{\"chart\": ${{ steps.list-changed.outputs.charts }} }"
+      detected: ${{ steps.list-changed.outputs.detected }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.5.3
-
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
 
     - name: Set up chart-testing
       uses: helm/chart-testing-action@v2.0.1
@@ -36,77 +29,99 @@ jobs:
     - name: Run chart-testing (list-changed)
       id: list-changed
       run: |
-        changed=$(ct list-changed --config .github/ct-lint.yaml)
-        if [[ -n "$changed" ]]; then
-          echo "::set-output name=changed::true"
+        CHARTS=$(ct list-changed --config .github/ct-lint.yaml)
+        CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
+        echo ::set-output name=charts::${CHARTS_JSON}
+        if [[ -n "${CHARTS}" ]]; then
+          echo "::set-output name=detected::true"
         fi
 
-    - name: Run chart-testing (lint)
-      id: lint
-      run: ct lint --config .github/ct-lint.yaml
-      if: steps.list-changed.outputs.changed == 'true'
+  # lint:
+  #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+  #   runs-on: ubuntu-20.04
+  #   outputs:
+  #     changed: ${{ steps.list-changed.outputs.changed }}
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 0
 
-  unittest:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-    runs-on: ubuntu-20.04
-    needs: lint
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+  #   - name: Install Helm
+  #     uses: azure/setup-helm@v1
+  #     with:
+  #       version: v3.5.3
 
-    - name: Install Dev tools
-      run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
+  #   - uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.7
 
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.5.3
+  #   - name: Run chart-testing (lint)
+  #     id: lint
+  #     run: ct lint --config .github/ct-lint.yaml
+  #     if: steps.list-changed.outputs.changed == 'true'
 
-    - name: Install Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7
+  # unittest:
+  #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+  #   runs-on: ubuntu-20.04
+  #   needs: lint
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 0
 
-    - name: Install dependencies
-      env:
-        RUBYJQ_USE_SYSTEM_LIBRARIES: 1
-      run: |
-        bundle install
+  #   - name: Install Dev tools
+  #     run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
 
-    - name: Run tests
-      run: |
-        bundle exec m -r test/charts
+  #   - name: Install Helm
+  #     uses: azure/setup-helm@v1
+  #     with:
+  #       version: v3.5.3
 
-  install:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-    runs-on: ubuntu-20.04
-    needs: lint
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+  #   - name: Install Ruby
+  #     uses: ruby/setup-ruby@v1
+  #     with:
+  #       ruby-version: 2.7
 
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.5.3
+  #   - name: Install dependencies
+  #     env:
+  #       RUBYJQ_USE_SYSTEM_LIBRARIES: 1
+  #     run: |
+  #       bundle install
 
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
+  #   - name: Run tests
+  #     run: |
+  #       bundle exec m -r test/charts
 
-    - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.0.1
+  # install:
+  #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+  #   runs-on: ubuntu-20.04
+  #   needs: lint
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 0
 
-    - name: Create k3d cluster
-      uses: nolar/setup-k3d-k3s@v1
-      with:
-        version: v1.19
-      if: needs.lint.outputs.changed == 'true'
+  #   - name: Install Helm
+  #     uses: azure/setup-helm@v1
+  #     with:
+  #       version: v3.5.3
 
-    - name: Run chart-testing (install)
-      run: ct install --config .github/ct-install.yaml
-      if: needs.lint.outputs.changed == 'true'
+  #   - uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.7
+
+  #   - name: Set up chart-testing
+  #     uses: helm/chart-testing-action@v2.0.1
+
+  #   - name: Create k3d cluster
+  #     uses: nolar/setup-k3d-k3s@v1
+  #     with:
+  #       version: v1.19
+  #     if: needs.lint.outputs.changed == 'true'
+
+  #   - name: Run chart-testing (install)
+  #     run: ct install --config .github/ct-install.yaml
+  #     if: needs.lint.outputs.changed == 'true'
