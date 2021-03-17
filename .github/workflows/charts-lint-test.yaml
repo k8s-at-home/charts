@@ -41,7 +41,7 @@ jobs:
           echo "::set-output name=lint::true"
         fi
 
-        CHARTS_INSTALL=$(ct list-changed --config .github/ct-insall.yaml)
+        CHARTS_INSTALL=$(ct list-changed --config .github/ct-install.yaml)
         CHARTS_INSTALL_JSON=$(echo "${CHARTS_INSTALL}" | jq -R -s -c 'split("\n")[:-1]')
         echo ::set-output name=charts_install::${CHARTS_TEST_JSON}
         if [[ -n "${CHARTS_INSTALL}" ]]; then
