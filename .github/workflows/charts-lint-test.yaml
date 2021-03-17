@@ -70,8 +70,9 @@ jobs:
         ruby-version: 2.7
 
     - name: Install dependencies
+      env:
+        RUBYJQ_USE_SYSTEM_LIBRARIES: 1
       run: |
-        export RUBYJQ_USE_SYSTEM_LIBRARIES=1
         bundle install
 
     - name: Run tests
