@@ -41,7 +41,7 @@ jobs:
     - changes
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
-      and
+      &&
       needs.changes.outputs.detected == 'true'
     runs-on: ubuntu-20.04
     steps:
