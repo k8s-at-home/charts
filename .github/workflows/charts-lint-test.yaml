@@ -58,13 +58,18 @@ jobs:
     - name: Set up chart-testing
       uses: helm/chart-testing-action@v2.0.1
 
+    - name: Install Dev tools
+      run: sudo apt-get update && sudo apt-get install -y yq
+
     - name: Run chart-testing (list-changed)
       id: list-changed
       run: |
+        EXCLUDED=$(yq eval -j '.excluded-charts' .github/ct-install.yaml)
         CHARTS=$(ct list-changed --config .github/ct-install.yaml)
         CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
-        echo ::set-output name=charts::${CHARTS_JSON}
-        if [[ -n "${CHARTS}" ]]; then
+        OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -s -c '.all-.excluded')
+        echo ::set-output name=charts::${OUTPUT_JSON}
+        if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
           echo "::set-output name=detected::true"
         fi
 
@@ -79,7 +84,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.changes-lint.outputs.matrix) }}
       fail-fast: true
-      max-parallel: 10
+      max-parallel: 15
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -148,7 +153,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.changes-install.outputs.matrix) }}
       fail-fast: true
-      max-parallel: 10
+      max-parallel: 15
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
