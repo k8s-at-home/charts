@@ -59,7 +59,9 @@ jobs:
       uses: helm/chart-testing-action@v2.0.1
 
     - name: Install Dev tools
-      run: sudo apt-get update && sudo apt-get install -y yq
+      run: |
+        wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O /usr/bin/yq
+        chmod +x /usr/bin/yq
 
     - name: Run chart-testing (list-changed)
       id: list-changed
