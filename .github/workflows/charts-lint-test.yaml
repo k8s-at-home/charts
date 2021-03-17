@@ -15,8 +15,13 @@ jobs:
     name: Get changes
     runs-on: ubuntu-20.04
     outputs:
-      matrix: "{\"chart\": ${{ steps.list-changed.outputs.charts }} }"
-      detected: ${{ steps.list-changed.outputs.detected }}
+      matrix: |
+        {
+          "lint": ${{ steps.list-changed.outputs.charts_lint }},
+          "install": ${{ steps.list-changed.outputs.charts_install }},
+        }
+      lint: ${{ steps.list-changed.outputs.detected }}
+      install: ${{ steps.list-changed.outputs.detected }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -29,11 +34,18 @@ jobs:
     - name: Run chart-testing (list-changed)
       id: list-changed
       run: |
-        CHARTS=$(ct list-changed --config .github/ct-lint.yaml)
-        CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
-        echo ::set-output name=charts::${CHARTS_JSON}
-        if [[ -n "${CHARTS}" ]]; then
-          echo "::set-output name=detected::true"
+        CHARTS_LINT=$(ct list-changed --config .github/ct-lint.yaml)
+        CHARTS_LINT_JSON=$(echo "${CHARTS_LINT}" | jq -R -s -c 'split("\n")[:-1]')
+        echo ::set-output name=charts_lint::${CHARTS_LINT_JSON}
+        if [[ -n "${CHARTS_LINT}" ]]; then
+          echo "::set-output name=lint::true"
+        fi
+
+        CHARTS_INSTALL=$(ct list-changed --config .github/ct-insall.yaml)
+        CHARTS_INSTALL_JSON=$(echo "${CHARTS_INSTALL}" | jq -R -s -c 'split("\n")[:-1]')
+        echo ::set-output name=charts_install::${CHARTS_TEST_JSON}
+        if [[ -n "${CHARTS_INSTALL}" ]]; then
+          echo "::set-output name=install::true"
         fi
 
   lint:
@@ -42,11 +54,12 @@ jobs:
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
-      needs.changes.outputs.detected == 'true'
+      needs.changes.outputs.lint == 'true'
     name: Lint charts
     strategy:
       matrix: ${{ fromJson(needs.changes.outputs.matrix) }}
       fail-fast: true
+      max-parallel: 10
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -68,7 +81,7 @@ jobs:
 
     - name: Run chart-testing (lint)
       id: lint
-      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
+      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.lint }}
 
   # unittest:
   #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
@@ -110,11 +123,12 @@ jobs:
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
-      needs.changes.outputs.detected == 'true'
+      needs.changes.outputs.install == 'true'
     name: Install charts
     strategy:
       matrix: ${{ fromJson(needs.changes.outputs.matrix) }}
       fail-fast: true
+      max-parallel: 10
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -140,4 +154,4 @@ jobs:
         version: v1.19
 
     - name: Run chart-testing (install)
-      run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
+      run: ct install --config .github/ct-install.yaml --charts ${{ matrix.install }}
