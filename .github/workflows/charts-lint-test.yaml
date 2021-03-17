@@ -44,6 +44,9 @@ jobs:
       &&
       needs.changes.outputs.detected == 'true'
     name: Lint charts
+    strategy:
+      matrix: ${{ fromJson(needs.changes.outputs.matrix) }}
+      fail-fast: true
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -108,11 +111,11 @@ jobs:
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
       needs.changes.outputs.detected == 'true'
+    name: Install charts
     strategy:
       matrix: ${{ fromJson(needs.changes.outputs.matrix) }}
-      fail-fast: false
+      fail-fast: true
     runs-on: ubuntu-20.04
-    name: Install
     steps:
     - name: Checkout
       uses: actions/checkout@v2
