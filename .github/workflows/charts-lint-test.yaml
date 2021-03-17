@@ -74,7 +74,7 @@ jobs:
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
-      needs.changes.outputs.lint == 'true'
+      needs.changes-lint.outputs.detected == 'true'
     name: Lint charts
     strategy:
       matrix: ${{ fromJson(needs.changes.outputs.matrix) }}
@@ -143,7 +143,7 @@ jobs:
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
-      needs.changes.outputs.install == 'true'
+      needs.changes-install.outputs.detected == 'true'
     name: Install charts
     strategy:
       matrix: ${{ fromJson(needs.changes.outputs.matrix) }}
