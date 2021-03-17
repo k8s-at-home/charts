@@ -36,30 +36,32 @@ jobs:
           echo "::set-output name=detected::true"
         fi
 
-  # lint:
-  #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-  #   runs-on: ubuntu-20.04
-  #   outputs:
-  #     changed: ${{ steps.list-changed.outputs.changed }}
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  lint:
+    needs:
+    - changes
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+      and
+      needs.changes.outputs.detected == 'true'
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.5.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
 
-  #   - uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.7
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
 
-  #   - name: Run chart-testing (lint)
-  #     id: lint
-  #     run: ct lint --config .github/ct-lint.yaml
-  #     if: steps.list-changed.outputs.changed == 'true'
+    - name: Run chart-testing (lint)
+      id: lint
+      run: ct lint --config .github/ct-lint.yaml
 
   # unittest:
   #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
