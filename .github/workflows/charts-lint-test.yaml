@@ -20,8 +20,8 @@ jobs:
           "lint": ${{ steps.list-changed.outputs.charts_lint }},
           "install": ${{ steps.list-changed.outputs.charts_install }},
         }
-      lint: ${{ steps.list-changed.outputs.detected }}
-      install: ${{ steps.list-changed.outputs.detected }}
+      lint: ${{ steps.list-changed.outputs.lint }}
+      install: ${{ steps.list-changed.outputs.install }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -43,7 +43,7 @@ jobs:
 
         CHARTS_INSTALL=$(ct list-changed --config .github/ct-install.yaml)
         CHARTS_INSTALL_JSON=$(echo "${CHARTS_INSTALL}" | jq -R -s -c 'split("\n")[:-1]')
-        echo ::set-output name=charts_install::${CHARTS_TEST_JSON}
+        echo ::set-output name=charts_install::${CHARTS_INSTALL_JSON}
         if [[ -n "${CHARTS_INSTALL}" ]]; then
           echo "::set-output name=install::true"
         fi
