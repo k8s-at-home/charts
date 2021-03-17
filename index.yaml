@@ -12411,6 +12411,32 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/jellyfin-1.0.0/jellyfin-1.0.0.tgz
     version: 1.0.0
+  joplin-server:
+  - apiVersion: v2
+    appVersion: 1.7.2
+    created: "2021-03-17T17:45:04.295842825Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 1.0.0
+    description: This server allows you to sync any Joplin client
+    digest: 3f9a6aac5861f2fcf1ae56045c3f9e21d03ff77063f1e5e4d3fbe92b5425a307
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/jopplin-server
+    icon: https://raw.githubusercontent.com/laurent22/joplin/master/Assets/LinuxIcons/256x256.png?raw=true
+    keywords:
+    - joplin
+    - notes
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: joplin-server
+    sources:
+    - https://github.com/laurent22/joplin/tree/dev/packages/server
+    - https://github.com/laurent22/joplin
+    - https://hub.docker.com/r/joplin/server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/joplin-server-1.0.1/joplin-server-1.0.1.tgz
+    version: 1.0.1
   kanboard:
   - apiVersion: v2
     appVersion: v1.2.18
@@ -29485,6 +29511,36 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/tautulli-2.0.0/tautulli-2.0.0.tgz
     version: 2.0.0
+  tdarr:
+  - apiVersion: v2
+    appVersion: 2.00.07
+    created: "2021-03-17T17:45:04.604933037Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 1.0.0
+    description: Tdarr is a self hosted web-app for automating media library transcode/remux
+      management and making sure your files are exactly how you need them to be in
+      terms of codecs/streams/containers etc.
+    digest: 89e64f112f59253222eecaf2bdcafcdb26fd088dd0379874e3481c5486365758
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/tdarr
+    icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+    keywords:
+    - transcoding
+    - remux
+    - media
+    - video
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: tdarr
+    sources:
+    - https://www.github.com/HaveAGitGat/Tdarr
+    - https://hub.docker.com/r/haveagitgat/tdarr/
+    - https://tdarr.io/docs/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tdarr-1.0.1/tdarr-1.0.1.tgz
+    version: 1.0.1
   teedy:
   - apiVersion: v2
     appVersion: v1.9
@@ -34891,4 +34947,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-16T14:20:08.451902332Z"
+generated: "2021-03-17T17:45:04.611628552Z"
