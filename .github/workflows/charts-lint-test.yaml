@@ -10,18 +10,16 @@ on:
     - '!charts/**/README_CONFIG.md.gotmpl'
 
 jobs:
-  changes:
+  changes-lint:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-    name: Get changes
+    name: Detect changes for linting
     runs-on: ubuntu-20.04
     outputs:
       matrix: |
         {
-          "lint": ${{ steps.list-changed.outputs.charts_lint }},
-          "install": ${{ steps.list-changed.outputs.charts_install }},
+          "chart": ${{ steps.list-changed.outputs.charts }}
         }
-      lint: ${{ steps.list-changed.outputs.lint }}
-      install: ${{ steps.list-changed.outputs.install }}
+      detected: ${{ steps.list-changed.outputs.detected }}
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -34,23 +32,45 @@ jobs:
     - name: Run chart-testing (list-changed)
       id: list-changed
       run: |
-        CHARTS_LINT=$(ct list-changed --config .github/ct-lint.yaml)
-        CHARTS_LINT_JSON=$(echo "${CHARTS_LINT}" | jq -R -s -c 'split("\n")[:-1]')
-        echo ::set-output name=charts_lint::${CHARTS_LINT_JSON}
-        if [[ -n "${CHARTS_LINT}" ]]; then
-          echo "::set-output name=lint::true"
+        CHARTS=$(ct list-changed --config .github/ct-lint.yaml)
+        CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
+        echo ::set-output name=charts::${CHARTS_JSON}
+        if [[ -n "${CHARTS}" ]]; then
+          echo "::set-output name=detected::true"
         fi
 
-        CHARTS_INSTALL=$(ct list-changed --config .github/ct-install.yaml)
-        CHARTS_INSTALL_JSON=$(echo "${CHARTS_INSTALL}" | jq -R -s -c 'split("\n")[:-1]')
-        echo ::set-output name=charts_install::${CHARTS_INSTALL_JSON}
-        if [[ -n "${CHARTS_INSTALL}" ]]; then
-          echo "::set-output name=install::true"
+  changes-install:
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+    name: Detect changes for install
+    runs-on: ubuntu-20.04
+    outputs:
+      matrix: |
+        {
+          "chart": ${{ steps.list-changed.outputs.charts }}
+        }
+      detected: ${{ steps.list-changed.outputs.detected }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Set up chart-testing
+      uses: helm/chart-testing-action@v2.0.1
+
+    - name: Run chart-testing (list-changed)
+      id: list-changed
+      run: |
+        CHARTS=$(ct list-changed --config .github/ct-install.yaml)
+        CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
+        echo ::set-output name=charts::${CHARTS_JSON}
+        if [[ -n "${CHARTS}" ]]; then
+          echo "::set-output name=detected::true"
         fi
 
   lint:
     needs:
-    - changes
+    - changes-lint
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
@@ -81,7 +101,7 @@ jobs:
 
     - name: Run chart-testing (lint)
       id: lint
-      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.lint }}
+      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
 
   # unittest:
   #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
@@ -118,7 +138,7 @@ jobs:
 
   install:
     needs:
-    - changes
+    - changes-install
     - lint
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
@@ -154,4 +174,4 @@ jobs:
         version: v1.19
 
     - name: Run chart-testing (install)
-      run: ct install --config .github/ct-install.yaml --charts ${{ matrix.install }}
+      run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
