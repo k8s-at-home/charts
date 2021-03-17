@@ -100,34 +100,41 @@ jobs:
   #     run: |
   #       bundle exec m -r test/charts
 
-  # install:
-  #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-  #   runs-on: ubuntu-20.04
-  #   needs: lint
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  install:
+    needs:
+    - changes
+    - lint
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+      &&
+      needs.changes.outputs.detected == 'true'
+    strategy:
+      matrix: ${{ fromJson(needs.changes.outputs.matrix) }}
+      fail-fast: false
+    runs-on: ubuntu-20.04
+    name: Install
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.5.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
 
-  #   - uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.7
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
 
-  #   - name: Set up chart-testing
-  #     uses: helm/chart-testing-action@v2.0.1
+    - name: Set up chart-testing
+      uses: helm/chart-testing-action@v2.0.1
 
-  #   - name: Create k3d cluster
-  #     uses: nolar/setup-k3d-k3s@v1
-  #     with:
-  #       version: v1.19
-  #     if: needs.lint.outputs.changed == 'true'
+    - name: Create k3d cluster
+      uses: nolar/setup-k3d-k3s@v1
+      with:
+        version: v1.19
 
-  #   - name: Run chart-testing (install)
-  #     run: ct install --config .github/ct-install.yaml
-  #     if: needs.lint.outputs.changed == 'true'
+    - name: Run chart-testing (install)
+      run: ct install --config .github/ct-install.yaml --chart ${{ matrix.chart }}
