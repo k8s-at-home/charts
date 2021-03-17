@@ -68,7 +68,7 @@ jobs:
 
     - name: Run chart-testing (lint)
       id: lint
-      run: ct lint --config .github/ct-lint.yaml
+      run: ct lint --config .github/ct-lint.yaml --chart ${{ matrix.chart }}
 
   # unittest:
   #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
