@@ -2,7 +2,7 @@
 set -eu
 
 # Generate helm-docs for Helm charts
-# Usage ./gen-helm-docs.sh [chart]
+# Usage ./gen-helm-docs.sh [stable/incubator] [chart]
 
 # require helm-docs
 command -v helm-docs >/dev/null 2>&1 || {
@@ -19,11 +19,11 @@ readme_config_template="${repository}/hack/templates/README_CONFIG.md.gotmpl"
 readme_changelog_template="${repository}/hack/templates/README_CHANGELOG.md.gotmpl"
 
 # Gather all charts using the common library, excluding common-test
-charts=$(find "${repository}" -name "Chart.yaml" -exec grep --exclude="*common-test*"  -l "\- name\: common" {} \;)
+charts=$(find "${repository}" -name "Chart.yaml")
 
 # Allow for a specific chart to be passed in as a argument
-if [ $# -ge 1 ] && [ -n "$1" ]; then
-    charts="${repository}/charts/$1/Chart.yaml"
+if [ $# -ge 1 ] && [ -n "$1" ] && [ -n "$2" ]; then
+    charts="${repository}/charts/$1/$2/Chart.yaml"
     root="$(dirname "${charts}")"
     if [ ! -f "$charts" ]; then
         echo "File ${charts} does not exist." 
