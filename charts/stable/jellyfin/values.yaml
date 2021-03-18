@@ -6,9 +6,9 @@
 #
 
 image:
-  repository: linuxserver/jellyfin
+  repository: jellyfin/jellyfin
   pullPolicy: IfNotPresent
-  tag: version-10.6.4-1
+  tag: 10.7.0
 
 strategy:
   type: Recreate
@@ -24,6 +24,24 @@ persistence:
   config:
     enabled: false
     emptyDir: false
+
+  # Cache does NOT contain temporary transcoding data.
+  cache:
+    enabled: false
+    emptyDir: false
+    mountPath: /cache
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
 
   media:
     enabled: false
@@ -41,3 +59,30 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     # skipuninstall: false
     # existingClaim: ""
+
+# podSecurityContext:
+#   runAsUser: 568
+#   runAsGroup: 568
+#   fsGroup: 568
+#   # Hardware acceleration using an Intel iGPU w/ QuickSync
+#   # These IDs below should be matched to your `video` and `render` group on the host
+#   # To obtain those IDs run the following grep statement on the host:
+#   # $ cat /etc/group | grep "video\|render"
+#   # video:x:44:
+#   # render:x:109:
+#   supplementalGroups:
+#   - 44
+#   - 109
+
+# resources:
+#   requests:
+#     # Hardware acceleration using an Intel iGPU w/ QuickSync and
+#     # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
+#     gpu.intel.com/i915: 1
+#     cpu: 200m
+#     memory: 256Mi
+#   limits:
+#     # Hardware acceleration using an Intel iGPU w/ QuickSync and
+#     # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
+#     gpu.intel.com/i915: 1
+#     memory: 4096Mi
