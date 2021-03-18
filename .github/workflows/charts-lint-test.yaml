@@ -106,17 +106,20 @@ jobs:
       with:
         version: v3.5.3
 
-    - name: Read Helm Chart
-      id: chart
-      uses: jacobtomlinson/gha-read-helm-chart@0.1.3
-      with:
-        path: ${{ matrix.chart }}
+    - name: Get version
+      id: version-get
+      run: |
+        shopt -s extglob
+        OUTPUT=$(helm inspect chart ${{ matrix.chart }} | grep "version:")
+        VERSION=${OUTPUT#"version:"}
+        echo "::set-output name=version::${VERSION##*( )}"
+        shopt -u extglob
 
     - name: Parse version
       id: version-parse
       uses: apexskier/github-semver-parse@v1
       with:
-        version: ${{ steps.chart.outputs.version }}
+        version: ${{ steps.version-get.outputs.version }}
 
     - name: Check version
       id: version-check
