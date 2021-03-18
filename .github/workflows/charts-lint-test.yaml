@@ -106,16 +106,28 @@ jobs:
       with:
         version: v3.5.3
 
-    - uses: actions/setup-python@v2
+    - name: Read Helm Chart
+      id: chart
+      uses: jacobtomlinson/gha-read-helm-chart@v0.1.3
       with:
-        python-version: 3.7
+        path: ${{ matrix.chart }}
+    
+    - name: Print outputs
+      run: |
+        echo "Name - ${{ steps.chart.outputs.name }}"
+        echo "Version - ${{ steps.chart.outputs.version }}"
+        echo "App Version - ${{ steps.chart.outputs.appVersion }}"
 
-    - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.0.1
+    # - uses: actions/setup-python@v2
+    #   with:
+    #     python-version: 3.7
 
-    - name: Run chart-testing (lint)
-      id: lint
-      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
+    # - name: Set up chart-testing
+    #   uses: helm/chart-testing-action@v2.0.1
+
+    # - name: Run chart-testing (lint)
+    #   id: lint
+    #   run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
 
   unittest:
     needs: 
