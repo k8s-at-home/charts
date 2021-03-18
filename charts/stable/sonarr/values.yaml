@@ -67,3 +67,25 @@ persistence:
     ## Do not delete the pvc upon helm uninstall
     # skipuninstall: false
     # existingClaim: ""
+
+# # When using the prometheus.serviceMonitor the following
+# # container and volumes are required
+# additionalContainers:
+# - name: exportarr
+#   image: ghcr.io/onedr0p/exportarr:v0.6.0
+#   imagePullPolicy: IfNotPresent
+#   args: ["exportarr", "radarr"]
+#   env:
+#   - name: PORT
+#     value: "32123"
+#   - name: URL
+#     value: "http://localhost"
+#   - name: CONFIG
+#     value: "/config/config.xml"
+#   ports:
+#   - name: exportarr
+#     containerPort: 32123
+#   volumeMounts:
+#   - name: config
+#     mountPath: /config
+#     readOnly: true
