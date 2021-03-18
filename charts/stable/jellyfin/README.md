@@ -1,6 +1,6 @@
 # jellyfin
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: 10.6.4](https://img.shields.io/badge/AppVersion-10.6.4-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 10.7.0](https://img.shields.io/badge/AppVersion-10.7.0-informational?style=flat-square)
 
 Jellyfin is a Free Software Media System
 
@@ -8,7 +8,7 @@ Jellyfin is a Free Software Media System
 
 ## Source Code
 
-* <https://hub.docker.com/r/linuxserver/Jellyfin/>
+* <https://hub.docker.com/r/jellyfin/jellyfin>
 * <https://github.com/jellyfin/jellyfin>
 
 ## Requirements
@@ -77,9 +77,12 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/jellyfin"` |  |
-| image.tag | string | `"version-10.6.4-1"` |  |
+| image.repository | string | `"jellyfin/jellyfin"` |  |
+| image.tag | string | `"10.7.0"` |  |
 | ingress.enabled | bool | `false` |  |
+| persistence.cache.emptyDir | bool | `false` |  |
+| persistence.cache.enabled | bool | `false` |  |
+| persistence.cache.mountPath | string | `"/cache"` |  |
 | persistence.config.emptyDir | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.media.emptyDir | bool | `false` |  |
@@ -94,21 +97,43 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [6.0.0]
+
+#### Migration !breaking changes!
+
+*It is recommended to drop old configuration and start from scratch.*
+
+This release will change the layout of `config` and `cache` persistent volumes.
+To migrate the old configuration, manual modifications to volumes are required prior the upgrade or after the upgrade.
+Be aware that `cache` will only be created after the upgrade if auto provisioning is used.
+
+Mount (depends on used CSI) both volumes `config` and `cache` and be sure that jellyfin does not access the files (or is scaled down to zero).
+The volumes are assumed to be mounted on `/mnt/config` and `/mnt/cache` in the example:
+
+```bash
+cd /mnt
+mv config/cache/* cache/
+rm -r config/cache
+mkdir config/config
+mv dlna/ branding.xml encoding.xml logging.default.json migrations.xml network.xml system.xml config/
+mv data data.bak
+mv data.bak/* .
+rm -r data.bak
+sed -i "s|<CachePath>.*</CachePath>|<CachePath>/cache</CachePath>|" config/system.xml
+sed -i "s|<MetadataPath>.*</MetadataPath>|<MetadataPath>/config/metadata</MetadataPath>|" config/system.xml
+sed -i "s|<EncoderAppPath>.*</EncoderAppPath>|<EncoderAppPath>/usr/lib/jellyfin-ffmpeg/ffmpeg</EncoderAppPath>|" config/encoding.xml
+sed -i "s|<EncoderAppPathDisplay>.*</EncoderAppPathDisplay>|<EncoderAppPathDisplay>/usr/lib/jellyfin-ffmpeg/ffmpeg</EncoderAppPathDisplay>|" config/encoding.xml
+```
+
+Drop browser cache and cookies for your jellyfin URL!
 
 #### Added
 
-- N/A
+- Persistent volume definition for cache
 
 #### Changed
 
-- N/A
-
-#### Removed
-
-- N/A
-
-[1.0.0]: #1.0.0
+- Replaced LinuxServer.io image with official
 
 ## Support
 
