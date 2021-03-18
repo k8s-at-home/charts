@@ -6,9 +6,9 @@
 #
 
 image:
-  repository: linuxserver/jellyfin
+  repository: jellyfin/jellyfin
   pullPolicy: IfNotPresent
-  tag: version-10.6.4-1
+  tag: 10.7.0
 
 strategy:
   type: Recreate
@@ -24,6 +24,24 @@ persistence:
   config:
     enabled: false
     emptyDir: false
+
+  # Cache does NOT contain temporary transcoding data.
+  cache:
+    enabled: false
+    emptyDir: false
+    mountPath: /cache
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
 
   media:
     enabled: false
