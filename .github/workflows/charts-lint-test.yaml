@@ -29,13 +29,20 @@ jobs:
     - name: Set up chart-testing
       uses: helm/chart-testing-action@v2.0.1
 
+    - name: Install Dev tools
+      run: |
+        sudo wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O /usr/bin/yq
+        sudo chmod +x /usr/bin/yq
+
     - name: Run chart-testing (list-changed)
       id: list-changed
       run: |
+        EXCLUDED=$(yq eval -j '.excluded-charts // []' .github/ct-lint.yaml)
         CHARTS=$(ct list-changed --config .github/ct-lint.yaml)
         CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
-        echo ::set-output name=charts::${CHARTS_JSON}
-        if [[ -n "${CHARTS}" ]]; then
+        OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
+        echo ::set-output name=charts::${OUTPUT_JSON}
+        if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
           echo "::set-output name=detected::true"
         fi
 
@@ -66,7 +73,7 @@ jobs:
     - name: Run chart-testing (list-changed)
       id: list-changed
       run: |
-        EXCLUDED=$(yq eval -j '.excluded-charts' .github/ct-install.yaml)
+        EXCLUDED=$(yq eval -j '.excluded-charts // []' .github/ct-install.yaml)
         CHARTS=$(ct list-changed --config .github/ct-install.yaml)
         CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
         OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
@@ -110,38 +117,43 @@ jobs:
       id: lint
       run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
 
-  # unittest:
-  #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-  #   runs-on: ubuntu-20.04
-  #   needs: lint
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  unittest:
+    needs: 
+    - lint
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+      &&
+      needs.changes-lint.outputs.detected == 'true'
+    name: Run unit tests
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Dev tools
-  #     run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
+    # - name: Install Dev tools
+    #   run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.5.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
 
-  #   - name: Install Ruby
-  #     uses: ruby/setup-ruby@v1
-  #     with:
-  #       ruby-version: 2.7
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
 
-  #   - name: Install dependencies
-  #     env:
-  #       RUBYJQ_USE_SYSTEM_LIBRARIES: 1
-  #     run: |
-  #       bundle install
+    - name: Install dependencies
+      env:
+        RUBYJQ_USE_SYSTEM_LIBRARIES: 1
+      run: |
+        bundle install
 
-  #   - name: Run tests
-  #     run: |
-  #       bundle exec m -r test/charts
+    - name: Run tests
+      run: |
+        bundle exec m -r ./test/
 
   install:
     needs:
