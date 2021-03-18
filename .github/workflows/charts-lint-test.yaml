@@ -158,13 +158,21 @@ jobs:
       id: lint
       run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
 
-  unittest:
+  lint_success:
     needs: 
     - lint
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
-      &&
-      needs.changes-lint.outputs.detected == 'true'
+    name: Lint successful
+    runs-on: ubuntu-20.04
+    steps:
+    - run: echo Done!
+
+  unittest:
+    needs: 
+    - lint_success
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
     name: Run unit tests
     runs-on: ubuntu-20.04
     steps:
@@ -199,7 +207,7 @@ jobs:
   install:
     needs:
     - changes-install
-    - lint
+    - lint_success
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
@@ -235,3 +243,13 @@ jobs:
 
     - name: Run chart-testing (install)
       run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
+
+  install_success:
+    needs: 
+    - install
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+    name: Install successful
+    runs-on: ubuntu-20.04
+    steps:
+    - run: echo Done!
