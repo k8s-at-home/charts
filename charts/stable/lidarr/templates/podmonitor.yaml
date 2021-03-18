@@ -1,23 +1,23 @@
-{{- if .Values.prometheus.serviceMonitor.enabled }}
+{{- if .Values.prometheus.podMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: {{ template "common.names.fullname" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
-    {{- with .Values.prometheus.serviceMonitor.additionalLabels }}
+    {{- with .Values.prometheus.podMonitor.additionalLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
   selector:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
-  endpoints:
+  podMetricsEndpoints:
   - port: exportarr
-    {{- with .Values.prometheus.serviceMonitor.interval }}
+    {{- with .Values.prometheus.podMonitor.interval }}
     interval: {{ . }}
     {{- end }}
-    {{- with .Values.prometheus.serviceMonitor.scapeTimeout }}
+    {{- with .Values.prometheus.podMonitor.scapeTimeout }}
     scapeTimeout: {{ . }}
     {{- end }}
     path: /metrics

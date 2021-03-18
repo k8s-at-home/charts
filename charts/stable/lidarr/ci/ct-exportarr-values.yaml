@@ -6,20 +6,15 @@ additionalContainers:
   args: ["exportarr", "lidarr"]
   env:
   - name: PORT
-    value: "8000"
+    value: "32123"
   - name: URL
     value: "http://localhost"
   - name: CONFIG
     value: "/config/config.xml"
   ports:
   - name: exportarr
-    containerPort: 8000
+    containerPort: 32123
   volumeMounts:
   - name: lidarr-config
-    mountPath: /config/config.xml
-    subPath: config.xml
+    mountPath: /config
     readOnly: true
-additionalVolumes:
-- name: lidarr-config
-  configMap:
-    name: lidarr-config
