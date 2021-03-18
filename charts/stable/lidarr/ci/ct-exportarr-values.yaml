@@ -1,4 +1,9 @@
 # Test exportarr
+persistence:
+  config:
+    enabled: true
+    emptyDir: true
+
 additionalContainers:
 - name: exportarr
   image: ghcr.io/onedr0p/exportarr:v0.6.0
