@@ -158,15 +158,17 @@ jobs:
       id: lint
       run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
 
+  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   lint_success:
     needs: 
     - lint
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
+    if: ${{ always() }}
     name: Lint successful
     runs-on: ubuntu-20.04
     steps:
-    - run: echo Done!
+    - name: Check lint matrix status
+      if: ${{ needs.lint.result != 'success' }}
+      run: exit 1
 
   unittest:
     needs: 
@@ -244,12 +246,14 @@ jobs:
     - name: Run chart-testing (install)
       run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
 
+  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   install_success:
     needs: 
     - install
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
+    if: ${{ always() }}
     name: Install successful
     runs-on: ubuntu-20.04
     steps:
-    - run: echo Done!
+    - name: Check install matrix status
+      if: ${{ needs.install.result != 'success' }}
+      run: exit 1
