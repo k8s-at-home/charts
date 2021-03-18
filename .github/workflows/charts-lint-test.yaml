@@ -121,7 +121,28 @@ jobs:
     - name: Check version
       id: version-check
       run: |
-        echo ${{ steps.version-parse.outputs.major }}
+        if [[ ${{ matrix.chart }} =~ ^charts\/(.*)\/.* ]]; then
+          TYPE="${BASH_REMATCH[1]}"  
+          case $TYPE in
+            stable)
+              if [[ ${{ steps.version-parse.outputs.major }} -lt 1 ]]; then
+                echo "Chart version for \"$TYPE\" charts must be >= 1.0.0"
+                exit 1
+              fi
+            ;;
+
+            incubator)
+              if [[ ${{ steps.version-parse.outputs.major }} -gt 0 ]]; then
+                echo "Chart version for \"$TYPE\" charts must be < 1.0.0"
+                exit 1
+              fi
+            ;;
+
+            *)
+              echo "Unhandled chart type: $TYPE"
+              exit 1
+          esac
+        fi
 
     # - uses: actions/setup-python@v2
     #   with:
