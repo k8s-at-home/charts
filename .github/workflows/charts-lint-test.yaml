@@ -121,7 +121,7 @@ jobs:
     - name: Check version
       id: version-check
       run: |
-        echo ${{ !!steps.version-parse.outputs.major }}
+        echo ${{ steps.version-parse.outputs.major }}
 
     # - uses: actions/setup-python@v2
     #   with:
