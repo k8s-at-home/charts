@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 1.19.0
+description: Healthchecks is a cron job monitoring service. It listens for HTTP requests and email messages ("pings") from your cron jobs and scheduled tasks ("checks"). When a ping does not arrive on time, Healthchecks sends out alerts.
+name: healthchecks
+version: 1.0.1
+keywords:
+  - cron
+  - monitoring
+  - alert
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/healthchecks
+icon: https://raw.githubusercontent.com/healthchecks/healthchecks/master/stuff/logo.svg?raw=true
+sources:
+  - https://github.com/healthchecks/healthchecks
+  - https://hub.docker.com/r/linuxserver/healthchecks
+maintainers:
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 1.0.0

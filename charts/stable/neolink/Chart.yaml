@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: 0.3.0
+description: Neolink - RTSP bridge to Reolink IP cameras
+name: neolink
+version: 2.2.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- reolink
+- rtsp
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/neolink
+sources:
+- https://github.com/thirtythreeforty/neolink
+maintainers:
+- name: mr-onion-2
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0

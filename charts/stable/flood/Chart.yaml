@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 4.1.1
+description: Flood is a monitoring service for various torrent clients
+name: flood
+version: 3.2.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- flood
+- rtorrent
+- qbittorrent
+- transmission
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/flood
+icon: https://raw.githubusercontent.com/jesec/flood/master/flood.svg
+sources:
+- https://github.com/jesec/flood
+- https://hub.docker.com/r/jesec/flood
+maintainers:
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0

@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 4.0.5
+description: AppDaemon is a loosely coupled, multi-threaded, sandboxed python execution environment for writing automation apps for various types of Home Automation Software including Home Assistant and MQTT.
+name: appdaemon
+version: 3.2.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- appdaemon
+- home-automation
+- home-assistant
+- mqtt
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/appdaemon
+sources:
+- https://github.com/AppDaemon/appdaemon
+maintainers:
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0

@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.6.0
+description: Sharry allows to share files with others in a simple way. It is a self-hosted web application. The basic concept is to upload files and get a url back that can then be shared.
+name: sharry
+version: 1.0.1
+keywords:
+  - file sharing
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sharry
+icon: https://github.com/eikek/sharry/blob/master/artwork/logo.svg?raw=true
+sources:
+  - https://github.com/eikek/sharry
+  - https://hub.docker.com/r/eikek0/sharry
+maintainers:
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 1.0.0

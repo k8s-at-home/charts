@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: 4.0.8
+description: Lychee is a free photo-management tool, which runs on your server or web-space
+name: lychee
+version: 3.2.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- lychee
+- photo
+- pictures
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lychee
+icon: https://github.com/LycheeOrg/Lychee/blob/master/Banner.png?raw=true
+sources:
+- https://github.com/LycheeOrg/Lychee
+- https://hub.docker.com/r/lycheeorg/lychee
+maintainers:
+- name: auricom
+  email: k8s-at-home@xpander.eml.cc
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0

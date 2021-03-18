@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: v21.0
+description: NZBGet is a Usenet downloader client
+name: nzbget
+version: 8.2.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- nzbget
+- usenet
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbget
+icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+sources:
+- https://hub.docker.com/r/linuxserver/nzbget/
+- https://nzbget.net/
+maintainers:
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0

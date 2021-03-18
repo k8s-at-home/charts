@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 2.00.07
+description: Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
+name: tdarr
+version: 1.0.2
+keywords:
+  - transcoding
+  - remux
+  - media
+  - video
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tdarr
+icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+sources:
+  - https://www.github.com/HaveAGitGat/Tdarr
+  - https://hub.docker.com/r/haveagitgat/tdarr/
+  - https://tdarr.io/docs/
+maintainers:
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 1.0.0

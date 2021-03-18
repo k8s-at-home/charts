@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: latest
+description: HTPC/Homelab Services Organizer
+name: organizr
+version: 4.2.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- organizr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/organizr
+icon: https://github.com/causefx/Organizr/blob/v2-master/plugins/images/organizr/logo.png?raw=true
+sources:
+- https://github.com/causefx/Organizr
+- https://hub.docker.com/r/organizr/organizr
+maintainers:
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0

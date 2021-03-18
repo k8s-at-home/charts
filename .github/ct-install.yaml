@@ -2,12 +2,13 @@ remote: origin
 target-branch: master
 helm-extra-args: --timeout 600s
 chart-dirs:
-- charts
+- charts/incubator
+- charts/stable
 excluded-charts:
-- alertmanager-bot
-- dnsmadeeasy-webhook
-- ser2sock
-- zigbee2mqtt
+- charts/stable/alertmanager-bot
+- charts/stable/dnsmadeeasy-webhook
+- charts/stable/ser2sock
+- charts/stable/zigbee2mqtt
 chart-repos:
 - bitnami=https://charts.bitnami.com/bitnami
 - k8s-at-home-libraries=https://library-charts.k8s-at-home.com

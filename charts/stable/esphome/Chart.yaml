@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: 1.15.3
+description: ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+name: esphome
+version: 5.2.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- esphome
+- home-automation
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/esphome
+icon: https://esphome.io/_images/logo-text.svg
+sources:
+- https://github.com/esphome/esphome
+maintainers:
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0
