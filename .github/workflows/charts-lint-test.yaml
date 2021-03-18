@@ -110,7 +110,7 @@ jobs:
       id: version-get
       run: |
         shopt -s extglob
-        OUTPUT=$(helm inspect chart ${{ matrix.chart }} | grep "version:")
+        OUTPUT=$(helm inspect chart ${{ matrix.chart }} | grep "^version:")
         VERSION=${OUTPUT#"version:"}
         echo "::set-output name=version::${VERSION##*( )}"
         shopt -u extglob
