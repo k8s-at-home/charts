@@ -52,6 +52,20 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Ldap labels
+*/}}
+{{- define "bitwardenrsLdap.labels" -}}
+helm.sh/chart: {{ include "bitwardenrs.chart" . }}
+{{ include "bitwardenrsLdap.selectorLabels" . }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{- define "bitwardenrsLdap.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "bitwardenrs.name" . }}-ldap
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "bitwardenrs.serviceAccountName" -}}
