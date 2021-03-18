@@ -17,8 +17,8 @@ spec:
     {{- with .Values.prometheus.podMonitor.interval }}
     interval: {{ . }}
     {{- end }}
-    {{- with .Values.prometheus.podMonitor.scapeTimeout }}
-    scapeTimeout: {{ . }}
+    {{- with .Values.prometheus.podMonitor.scrapeTimeout }}
+    scrapeTimeout: {{ . }}
     {{- end }}
     path: /metrics
 {{- end }}

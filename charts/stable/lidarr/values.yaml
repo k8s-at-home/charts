@@ -71,7 +71,7 @@ persistence:
 # Enable gathering Prometheus metrics
 prometheus:
   podMonitor:
-    enabled: false
+    enabled: true
     interval: 1m
     scrapeTimeout: 1m30s
     additionalLabels: {}
@@ -95,10 +95,5 @@ prometheus:
 #     containerPort: 32123
 #   volumeMounts:
 #   - name: lidarr-config
-#     mountPath: /config/config.xml
-#     subPath: config.xml
+#     mountPath: /config
 #     readOnly: true
-# additionalVolumes:
-# - name: lidarr-config
-#   configMap:
-#     name: lidarr-config
