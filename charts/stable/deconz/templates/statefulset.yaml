@@ -141,7 +141,8 @@ spec:
     - metadata:
         name: config
         labels:
-        {{- include "deconz.labels" . | nindent 10 }}
+          {{- include "deconz.selectorLabels" . | nindent 10 }}
+          app.kubernetes.io/managed-by: {{ .Release.Service }}
         {{- if .Values.persistence.annotations  }}
         annotations:
         {{- toYaml .Values.persistence.annotations | nindent 10 }}
