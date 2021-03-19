@@ -1,6 +1,6 @@
 # radarr
 
-![Version: 9.3.0](https://img.shields.io/badge/Version-9.3.0-informational?style=flat-square) ![AppVersion: 3.0.2.4552](https://img.shields.io/badge/AppVersion-3.0.2.4552-informational?style=flat-square)
+![Version: 9.4.0](https://img.shields.io/badge/Version-9.4.0-informational?style=flat-square) ![AppVersion: 3.0.2.4552](https://img.shields.io/badge/AppVersion-3.0.2.4552-informational?style=flat-square)
 
 A fork of Sonarr to work with movies à la Couchpotato
 
@@ -97,6 +97,10 @@ N/A
 | probes.liveness.spec.periodSeconds | int | `10` |  |
 | probes.liveness.spec.successThreshold | int | `1` |  |
 | probes.liveness.spec.timeoutSeconds | int | `10` |  |
+| prometheus.podMonitor.additionalLabels | object | `{}` |  |
+| prometheus.podMonitor.enabled | bool | `false` |  |
+| prometheus.podMonitor.interval | string | `"1m"` |  |
+| prometheus.podMonitor.scrapeTimeout | string | `"1m30s"` |  |
 | service.port.port | int | `7878` |  |
 | strategy.type | string | `"Recreate"` |  |
 

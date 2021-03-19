@@ -1,6 +1,6 @@
 # deconz
 
-![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: 2.05.80](https://img.shields.io/badge/AppVersion-2.05.80-informational?style=flat-square)
+![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![AppVersion: 2.05.80](https://img.shields.io/badge/AppVersion-2.05.80-informational?style=flat-square)
 
 A Helm chart for deploying deCONZ
 
@@ -69,7 +69,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

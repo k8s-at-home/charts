@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 1.5.3](https://img.shields.io/badge/Version-1.5.3-informational?style=flat-square) ![AppVersion: 5.14.23](https://img.shields.io/badge/AppVersion-5.14.23-informational?style=flat-square)
+![Version: 1.5.4](https://img.shields.io/badge/Version-1.5.4-informational?style=flat-square) ![AppVersion: 5.14.23](https://img.shields.io/badge/AppVersion-5.14.23-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -104,7 +104,7 @@ ingress:
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

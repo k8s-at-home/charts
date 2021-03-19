@@ -1,6 +1,6 @@
 # piaware
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: v4.0](https://img.shields.io/badge/AppVersion-v4.0-informational?style=flat-square)
+![Version: 5.2.1](https://img.shields.io/badge/Version-5.2.1-informational?style=flat-square) ![AppVersion: v4.0](https://img.shields.io/badge/AppVersion-v4.0-informational?style=flat-square)
 
 Program for forwarding ADS-B data to FlightAware
 

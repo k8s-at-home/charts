@@ -1,6 +1,6 @@
 # duplicati
 
-![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: v2.0.5.1](https://img.shields.io/badge/AppVersion-v2.0.5.1-informational?style=flat-square)
+![Version: 2.1.2](https://img.shields.io/badge/Version-2.1.2-informational?style=flat-square) ![AppVersion: v2.0.5.1](https://img.shields.io/badge/AppVersion-v2.0.5.1-informational?style=flat-square)
 
 Store securely encrypted backups on cloud storage services!
 
@@ -74,7 +74,7 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

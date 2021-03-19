@@ -1,6 +1,6 @@
 # powerdns
 
-![Version: 3.1.1](https://img.shields.io/badge/Version-3.1.1-informational?style=flat-square) ![AppVersion: v4.3.1](https://img.shields.io/badge/AppVersion-v4.3.1-informational?style=flat-square)
+![Version: 3.1.2](https://img.shields.io/badge/Version-3.1.2-informational?style=flat-square) ![AppVersion: v4.3.1](https://img.shields.io/badge/AppVersion-v4.3.1-informational?style=flat-square)
 
 PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
 
@@ -70,7 +70,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

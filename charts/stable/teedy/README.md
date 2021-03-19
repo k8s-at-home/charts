@@ -1,6 +1,6 @@
 # teedy
 
-![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
+![Version: 2.3.1](https://img.shields.io/badge/Version-2.3.1-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
 
 Teedy is an open source, lightweight document management system for individuals and businesses.
 

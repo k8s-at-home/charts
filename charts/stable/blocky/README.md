@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: v0.12](https://img.shields.io/badge/AppVersion-v0.12-informational?style=flat-square)
+![Version: 5.0.2](https://img.shields.io/badge/Version-5.0.2-informational?style=flat-square) ![AppVersion: v0.12](https://img.shields.io/badge/AppVersion-v0.12-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -68,7 +68,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

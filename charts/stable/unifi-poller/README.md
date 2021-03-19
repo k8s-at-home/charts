@@ -1,6 +1,6 @@
 # unifi-poller
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
+![Version: 6.2.1](https://img.shields.io/badge/Version-6.2.1-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
 
 Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus
 

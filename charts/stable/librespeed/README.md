@@ -1,6 +1,6 @@
 # librespeed
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 1.0.6-12](https://img.shields.io/badge/AppVersion-1.0.6--12-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: 1.0.6-12](https://img.shields.io/badge/AppVersion-1.0.6--12-informational?style=flat-square)
 
 Librespeed is a HTML5 webpage to test upload and download speeds
 
@@ -70,7 +70,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
