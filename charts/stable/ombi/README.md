@@ -1,6 +1,6 @@
 # ombi
 
-![Version: 8.2.0](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: 4.0.681](https://img.shields.io/badge/AppVersion-4.0.681-informational?style=flat-square)
+![Version: 8.2.1](https://img.shields.io/badge/Version-8.2.1-informational?style=flat-square) ![AppVersion: 4.0.681](https://img.shields.io/badge/AppVersion-4.0.681-informational?style=flat-square)
 
 Want a Movie or TV Show on Plex or Emby? Use Ombi!
 

@@ -1,6 +1,6 @@
 # plex-media-server
 
-![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![AppVersion: v1.22.0.4163-d8c4875dd](https://img.shields.io/badge/AppVersion-v1.22.0.4163--d8c4875dd-informational?style=flat-square)
+![Version: 2.3.1](https://img.shields.io/badge/Version-2.3.1-informational?style=flat-square) ![AppVersion: v1.22.0.4163-d8c4875dd](https://img.shields.io/badge/AppVersion-v1.22.0.4163--d8c4875dd-informational?style=flat-square)
 
 Plex Media Server
 
@@ -8,7 +8,7 @@ Plex Media Server
 
 ## Source Code
 
-* <https://github.com/k8s-at-home/charts/tree/master/charts/plex-media-server>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex-media-server>
 * <https://github.com/k8s-at-home/container-images/>
 
 ## Requirements

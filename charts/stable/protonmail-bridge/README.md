@@ -1,6 +1,6 @@
 # protonmail-bridge
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 1.5.7-1](https://img.shields.io/badge/AppVersion-1.5.7--1-informational?style=flat-square)
+![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: 1.5.7-1](https://img.shields.io/badge/AppVersion-1.5.7--1-informational?style=flat-square)
 
 Container for protonmail bridge to work on the network.
 
