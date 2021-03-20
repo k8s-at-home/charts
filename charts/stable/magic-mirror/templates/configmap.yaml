@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-config
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  config.js: |
+    {{- .Values.config | nindent 4 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-css
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  custom.css: |
+    {{- .Values.custom_css | nindent 4 }}
