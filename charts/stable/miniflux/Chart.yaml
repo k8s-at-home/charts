@@ -1,0 +1,25 @@
+apiVersion: v2
+appVersion: 2.0.28
+description: Miniflux is a minimalist and opinionated feed reader.
+name: miniflux
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- miniflux
+- rss
+- news
+home: https://github.com/k8s-at-home/charts/tree/master/charts/miniflux
+icon: https://raw.githubusercontent.com/miniflux/logo/master/icon.svg
+sources:
+- https://github.com/miniflux/v2
+maintainers:
+- name: trly
+  email: trly@users.noreply.github.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0
+- name: postgresql
+  version: 10.3.7
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
