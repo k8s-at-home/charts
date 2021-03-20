@@ -1,6 +1,6 @@
 # deluge
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: v2.0.3-2201906121747](https://img.shields.io/badge/AppVersion-v2.0.3--2201906121747-informational?style=flat-square)
+![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: v2.0.3-2201906121747](https://img.shields.io/badge/AppVersion-v2.0.3--2201906121747-informational?style=flat-square)
 
 Deluge is a torrent download client
 

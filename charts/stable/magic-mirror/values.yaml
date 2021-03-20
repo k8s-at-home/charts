@@ -1,0 +1,51 @@
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: bastilimbach/docker-magicmirror
+  pullPolicy: IfNotPresent
+  tag: v2.14.0
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8080
+
+ingress:
+  enabled: false
+
+persistence:
+  data:
+    enabled: false
+    mountPath: "/opt/magic_mirror/modules/custom"
+
+# Contents of your custom.css
+custom_css: ""
+
+# Contents of your config.js
+config: |
+  var config = {
+    address: "0.0.0.0",
+    port: 8080,
+    ipWhitelist: [],
+    language: "en",
+    timeFormat: 24,
+    units: "metric",
+    modules: [],
+  };
+
+  /*************** DO NOT EDIT THE LINE BELOW ***************/
+  if (typeof module !== "undefined") {module.exports = config;}
+
+env: {}
+  ## Optional ENV Vars that can be set.
+  ## All values below are the current default values.
+  # PUID: "1000"
+  # PGID: "1000"
+  # TZ: "Europe/Oslo"
+  # UMASK_SET: "022"
