@@ -1,6 +1,6 @@
 # deconz
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.10.02](https://img.shields.io/badge/AppVersion-2.10.02-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.10.03](https://img.shields.io/badge/AppVersion-2.10.03-informational?style=flat-square)
 
 deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort.
 
@@ -76,12 +76,22 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env.DECONZ_VNC_MODE | int | `1` |  |
+| env.DECONZ_VNC_PORT | int | `5900` |  |
+| env.DECONZ_WEB_PORT | int | `80` |  |
+| env.DECONZ_WS_PORT | int | `443` |  |
+| env.TZ | string | `"UTC"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"deconz/deconz"` |  |
-| image.tag | string | `"1.0.0"` |  |
+| image.repository | string | `"marthoc/deconz"` |  |
+| image.tag | string | `"amd64-2.10.03"` |  |
 | ingress.enabled | bool | `false` |  |
-| service.port.port | int | `1880` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/root/.local/share/dresden-elektronik/deCONZ"` |  |
+| service.additionalPorts[0].name | string | `"websocket"` |  |
+| service.additionalPorts[0].port | int | `443` |  |
+| service.additionalPorts[1].name | string | `"vnc"` |  |
+| service.additionalPorts[1].port | int | `5900` |  |
+| service.port.port | int | `80` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
