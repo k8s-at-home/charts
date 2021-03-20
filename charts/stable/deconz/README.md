@@ -100,21 +100,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [3.0.0]
 
-#### Added
+#### Migration !breaking change!
 
-- N/A
+This version migrates the chart to the common dependency. If you have used prior versions that had version labels
+attached to the volume template of the `StatefulSet`, you will need to remove the `StatefulSet` manually prior to update
+or the update will fail until it's removed.
+
+If you used auto provisioning on the config volume, a new volume will be created upon update. It is recommended to **backup**
+the prior configuration using Phoscon App (deCONZ frontend) and restore it on a fresh installation (default password on fresh installation: `delight`).
+This will preserve all devices, settings and access tokens. The configuration can also be restored by copying files over from the old volume.
 
 #### Changed
 
-- N/A
-
-#### Removed
-
-- N/A
-
-[1.0.0]: #1.0.0
+- Initial release using common chart
 
 ## Support
 
