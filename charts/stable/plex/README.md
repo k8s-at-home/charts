@@ -1,6 +1,6 @@
 # plex
 
-![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square) ![AppVersion: 1.20.2.3402](https://img.shields.io/badge/AppVersion-1.20.2.3402-informational?style=flat-square)
+![Version: 2.3.3](https://img.shields.io/badge/Version-2.3.3-informational?style=flat-square) ![AppVersion: 1.20.2.3402](https://img.shields.io/badge/AppVersion-1.20.2.3402-informational?style=flat-square)
 
 Plex Media Server
 
@@ -8,7 +8,7 @@ Plex Media Server
 
 ## Source Code
 
-* <https://github.com/k8s-at-home/charts/tree/master/charts/plex>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex>
 * <https://hub.docker.com/r/plexinc/pms-docker/>
 
 ## Requirements
@@ -69,7 +69,7 @@ N/A
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/)
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|

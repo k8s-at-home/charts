@@ -1,6 +1,6 @@
 # bazarr
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v0.9.0.5](https://img.shields.io/badge/AppVersion-v0.9.0.5-informational?style=flat-square)
+![Version: 6.2.1](https://img.shields.io/badge/Version-6.2.1-informational?style=flat-square) ![AppVersion: v0.9.0.5](https://img.shields.io/badge/AppVersion-v0.9.0.5-informational?style=flat-square)
 
 Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements
 

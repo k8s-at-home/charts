@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -57,6 +57,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://aaronjohnson.io"><img src="https://avatars.githubusercontent.com/u/1386238?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aaron Johnson</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=acjohnson" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/brujoand"><img src="https://avatars.githubusercontent.com/u/124421?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anders Brujordet</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=brujoand" title="Code">💻</a></td>
   </tr>
 </table>
 

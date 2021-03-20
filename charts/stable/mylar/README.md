@@ -1,6 +1,6 @@
 # mylar
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 0.4.9.5](https://img.shields.io/badge/AppVersion-0.4.9.5-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 0.4.9.5](https://img.shields.io/badge/AppVersion-0.4.9.5-informational?style=flat-square)
 
 Mylar is the automated Comic Book downloader (cbr/cbz) for use with various download clients.
 

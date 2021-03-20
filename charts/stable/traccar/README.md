@@ -1,6 +1,6 @@
 # traccar
 
-![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: v4.11](https://img.shields.io/badge/AppVersion-v4.11-informational?style=flat-square)
+![Version: 3.3.1](https://img.shields.io/badge/Version-3.3.1-informational?style=flat-square) ![AppVersion: v4.11](https://img.shields.io/badge/AppVersion-v4.11-informational?style=flat-square)
 
 Traccar is an open source GPS tracking system.
 

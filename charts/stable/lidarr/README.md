@@ -1,6 +1,6 @@
 # lidarr
 
-![Version: 7.3.0](https://img.shields.io/badge/Version-7.3.0-informational?style=flat-square) ![AppVersion: 0.8.0.1886](https://img.shields.io/badge/AppVersion-0.8.0.1886-informational?style=flat-square)
+![Version: 7.4.0](https://img.shields.io/badge/Version-7.4.0-informational?style=flat-square) ![AppVersion: 0.8.0.1886](https://img.shields.io/badge/AppVersion-0.8.0.1886-informational?style=flat-square)
 
 Looks and smells like Sonarr but made for music
 
@@ -97,6 +97,10 @@ N/A
 | probes.liveness.spec.periodSeconds | int | `10` |  |
 | probes.liveness.spec.successThreshold | int | `1` |  |
 | probes.liveness.spec.timeoutSeconds | int | `10` |  |
+| prometheus.podMonitor.additionalLabels | object | `{}` |  |
+| prometheus.podMonitor.enabled | bool | `false` |  |
+| prometheus.podMonitor.interval | string | `"1m"` |  |
+| prometheus.podMonitor.scrapeTimeout | string | `"1m30s"` |  |
 | service.port.port | int | `8686` |  |
 | strategy.type | string | `"Recreate"` |  |
 

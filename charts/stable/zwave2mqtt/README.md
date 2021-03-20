@@ -1,6 +1,6 @@
 # zwave2mqtt
 
-![Version: 7.2.0](https://img.shields.io/badge/Version-7.2.0-informational?style=flat-square) ![AppVersion: 4.0.6](https://img.shields.io/badge/AppVersion-4.0.6-informational?style=flat-square)
+![Version: 7.2.1](https://img.shields.io/badge/Version-7.2.1-informational?style=flat-square) ![AppVersion: 4.0.6](https://img.shields.io/badge/AppVersion-4.0.6-informational?style=flat-square)
 
 Fully configurable Zwave to MQTT gateway and Control Panel using NodeJS and Vue
 

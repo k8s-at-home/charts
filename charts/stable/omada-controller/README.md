@@ -1,6 +1,6 @@
 # omada-controller
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 4.2.11](https://img.shields.io/badge/AppVersion-4.2.11-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 4.2.11](https://img.shields.io/badge/AppVersion-4.2.11-informational?style=flat-square)
 
 Omada enables the network administrators to monitor and manage all the Omada products in the network with a centralized management platform.
 

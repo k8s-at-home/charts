@@ -1,6 +1,6 @@
 # nzbhydra2
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v3.8.1](https://img.shields.io/badge/AppVersion-v3.8.1-informational?style=flat-square)
+![Version: 6.2.1](https://img.shields.io/badge/Version-6.2.1-informational?style=flat-square) ![AppVersion: v3.8.1](https://img.shields.io/badge/AppVersion-v3.8.1-informational?style=flat-square)
 
 Usenet meta search
 
