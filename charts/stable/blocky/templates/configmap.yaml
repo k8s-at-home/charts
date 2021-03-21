@@ -1,13 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "blocky.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  name: {{ template "common.names.fullname" . }}-config
   labels:
-    app.kubernetes.io/name: {{ include "blocky.name" . }}
-    helm.sh/chart: {{ include "blocky.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "common.labels" . | nindent 4 }}
 data:
   config.yml: |
 {{ .Values.config | indent 4 }}

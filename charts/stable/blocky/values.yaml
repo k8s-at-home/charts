@@ -1,17 +1,73 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
 image:
   repository: spx01/blocky
-  tag: v0.12
+  tag: v0.13
   pullPolicy: IfNotPresent
 
-nameOverride: ""
-fullnameOverride: ""
+strategy:
+  type: Recreate
 
-replicas: 1
+env: {}
+  # TZ:
 
-timeZone: "UTC"
+service:
+  port:
+    port: 4000
+  additionalServices:
+  - enabled: true
+    nameSuffix: dns-tcp
+    type: NodePort
+    port:
+      port: 53
+      name: dns-tcp
+      protocol: TCP
+      targetPort: 53
+    externalTrafficPolicy: Local
+  - enabled: true
+    nameSuffix: dns-udp
+    type: NodePort
+    port:
+      port: 53
+      name: dns-udp
+      protocol: UDP
+      targetPort: 53
+    externalTrafficPolicy: Local
 
-# Blocky configuration, for a full list of options see
-# https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
+ingress:
+  enabled: false
+
+persistence:
+  logs:
+    enabled: false
+    emptyDir: false
+    mountPath: /logs
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+prometheus:
+  serviceMonitor:
+    enabled: false
+    interval: 30s
+    additionalLabels: {}
+
+# -- Full list of options: https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
+# @default -- values provided by the default Blocky configuration
 config: |
   upstream:
     # these external DNS resolvers will be used. Blocky picks 2 random resolvers from the list for each query
@@ -136,94 +192,3 @@ config: |
   logLevel: info
   # optional: Log format (text or json). Default: text
   logFormat: text
-
-## Add persistence for query logs (if enabled)
-persistence:
-  enabled: false
-  # storageClassName: default
-  accessModes:
-    - ReadWriteOnce
-  size: 10Gi
-  # annotations: {}
-  finalizers:
-    - kubernetes.io/pvc-protection
-  # selectorLabels: {}
-  # subPath: ""
-  # existingClaim:
-
-# Probes configuration
-probes:
-  liveness:
-    failureThreshold: 5
-    periodSeconds: 10
-  readiness:
-    failureThreshold: 5
-    periodSeconds: 10
-  startup:
-    initialDelaySeconds: 5
-    failureThreshold: 30
-    periodSeconds: 10
-
-service:
-  type: ClusterIP
-  # externalTrafficPolicy: Local
-  # loadBalancerIP: ""
-    # a fixed LoadBalancer IP
-  annotations: {}
-    # metallb.universe.tf/address-pool: network-services
-    # metallb.universe.tf/allow-shared-ip: blocky-svc
-
-serviceTCP:
-  enabled: false
-  externalIPs: []
-  type: NodePort
-  externalTrafficPolicy: Local
-  loadBalancerIP: ""
-    # a fixed LoadBalancer IP
-  annotations: {}
-    # metallb.universe.tf/address-pool: network-services
-    # metallb.universe.tf/allow-shared-ip: blocky-svc
-
-serviceUDP:
-  enabled: true
-  externalIPs: []
-  type: NodePort
-  externalTrafficPolicy: Local
-  loadBalancerIP: ""
-    # a fixed LoadBalancer IP
-  annotations: {}
-    # metallb.universe.tf/address-pool: network-services
-    # metallb.universe.tf/allow-shared-ip: blocky-svc
-
-serviceMonitor:
-  enabled: false
-  additionalLabels: {}
-
-## Pod Annotations
-podAnnotations:
-  prometheus.io/scrape: "true"
-  prometheus.io/port: "api"
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  memory: 500Mi
-  # requests:
-  #  cpu: 50m
-  #  memory: 275Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-## Add any extra files you want populated to /app here, e.g.:
-#  extraLists:
-#    whitelist.txt: |
-#      analytics.google.com
-#      googleadservices.com
-extraLists: {}
