@@ -77,6 +77,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
+| hostNetwork | bool | `false` | Enable devices to be discoverable |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/plex"` |  |
 | image.tag | string | `"v1.22.0.4163-d8c4875dd"` |  |

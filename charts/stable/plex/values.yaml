@@ -33,21 +33,31 @@ env: {}
 service:
   port:
     port: 32400
-  # additionalPorts:
-  # - port: 1900
-  #   name: dnla-udp
-  #   protocol: UDP
-  #   targetPort: 1900
-  # - port: 32469
-  #   name: dnla-tcp
-  #   protocol: TCP
-  #   targetPort: 32469
+  # additionalServices:
+  # - enabled: true
+  #   nameSuffix: dnla-tcp
+  #   type: NodePort
+  #   port:
+  #     port: 32469
+  #     name: dnla-tcp
+  #     protocol: TCP
+  #     targetPort: 32469
+  #   externalTrafficPolicy: Local
+  # - enabled: true
+  #   nameSuffix: dnla-udp
+  #   type: NodePort
+  #   port:
+  #     port: 1900
+  #     name: dnla-udp
+  #     protocol: UDP
+  #     targetPort: 1900
+  #   externalTrafficPolicy: Local
 
 ingress:
   enabled: false
 
-# # Enable devices to be discoverable
-# hostNetwork: true
+# -- Enable devices to be discoverable
+hostNetwork: false
 
 persistence:
   config:
