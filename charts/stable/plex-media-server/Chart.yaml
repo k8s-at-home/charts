@@ -2,7 +2,8 @@ apiVersion: v2
 appVersion: v1.22.0.4163-d8c4875dd
 description: Plex Media Server
 name: plex-media-server
-version: 2.3.1
+version: 2.3.2
+deprecated: true
 kubeVersion: ">=1.16.0-0"
 keywords:
 - plex
@@ -12,9 +13,6 @@ icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
 sources:
 - https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex-media-server
 - https://github.com/k8s-at-home/container-images/
-maintainers:
-- name: billimek
-  email: jeff@billimek.com
 dependencies:
 - name: common
   repository: https://library-charts.k8s-at-home.com
