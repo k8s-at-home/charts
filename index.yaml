@@ -23203,6 +23203,31 @@ entries:
     version: 1.0.0
   plex:
   - apiVersion: v2
+    appVersion: v1.22.0.4163-d8c4875dd
+    created: "2021-03-21T18:17:34.169879488Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 1.0.0
+    description: Plex Media Server
+    digest: f56038aaec716aab05bac5ee800ed134f3dabdae909f98a55f9cd58a9fe2ce12
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    - plex-media-server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: plex
+    sources:
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    - https://github.com/k8s-at-home/container-images/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/plex-3.0.0/plex-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 1.20.2.3402
     created: "2021-03-18T13:23:18.846673Z"
     description: Plex Media Server
@@ -23773,6 +23798,29 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/plex-1.0.0/plex-1.0.0.tgz
     version: 1.0.0
   plex-media-server:
+  - apiVersion: v2
+    appVersion: v1.22.0.4163-d8c4875dd
+    created: "2021-03-21T18:17:34.398575096Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 1.0.0
+    deprecated: true
+    description: Plex Media Server
+    digest: dc40b3712ac594a293509c6f6bed3fc784bd8e338581e43df3652da14ac1f837
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex-media-server
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    - plex-media-server
+    kubeVersion: '>=1.16.0-0'
+    name: plex-media-server
+    sources:
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex-media-server
+    - https://github.com/k8s-at-home/container-images/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/plex-media-server-2.3.2/plex-media-server-2.3.2.tgz
+    version: 2.3.2
   - apiVersion: v2
     appVersion: v1.22.0.4163-d8c4875dd
     created: "2021-03-18T13:23:19.121189955Z"
@@ -37873,4 +37921,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-21T18:10:41.281831712Z"
+generated: "2021-03-21T18:17:34.408191995Z"
