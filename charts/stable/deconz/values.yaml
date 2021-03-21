@@ -17,9 +17,9 @@ strategy:
 env:
   TZ: UTC
   ## Path to mounted device inside the container.
-  #DECONZ_DEVICE: /dev/conbee
+  # DECONZ_DEVICE: /dev/conbee
   ## Do not set the VNC password here directly - use a Secret, see envValueFrom below.
-  #DECONZ_VNC_PASSWORD: changeme
+  # DECONZ_VNC_PASSWORD: changeme
   DECONZ_VNC_MODE: 1
   DECONZ_WEB_PORT: 80
   DECONZ_WS_PORT: 443
