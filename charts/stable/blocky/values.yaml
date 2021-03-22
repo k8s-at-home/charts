@@ -16,6 +16,7 @@ strategy:
 env: {}
   # TZ:
 
+# -- (int) Number of pods to load balance between
 replicas: 1
 
 service:
@@ -69,7 +70,7 @@ prometheus:
 #   prometheus.io/scrape: "true"
 #   prometheus.io/port: "api"
 
-# -- Full list of options: https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
+# -- Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
 # @default -- see URL to default config
 config: |
   upstream:
