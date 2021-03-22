@@ -1,12 +1,14 @@
 apiVersion: v2
+appVersion: 2.10.03
+description: deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort.
 name: deconz
-description: A Helm chart for deploying deCONZ
-version: 2.0.3
-appVersion: 2.05.80
+version: 3.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
   - deconz
   - home-automation
   - zigbee
+  - conbee
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deconz
 icon: https://avatars1.githubusercontent.com/u/4217524?s=400&v=4
 sources:
@@ -15,3 +17,7 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 1.0.0

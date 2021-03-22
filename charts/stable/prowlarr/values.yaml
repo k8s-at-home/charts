@@ -1,0 +1,29 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/k8s-at-home/prowlarr
+  pullPolicy: IfNotPresent
+  tag: v0.1.0.181
+
+strategy:
+  type: Recreate
+
+env: {}
+  # TZ: UTC
+
+service:
+  port:
+    port: 9696
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir: false

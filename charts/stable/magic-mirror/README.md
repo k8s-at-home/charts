@@ -1,15 +1,15 @@
-# deconz
+# magic-mirror
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.10.03](https://img.shields.io/badge/AppVersion-2.10.03-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v2.14.0](https://img.shields.io/badge/AppVersion-v2.14.0-informational?style=flat-square)
 
-deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort.
+magic-mirror helm package
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/dresden-elektronik/deconz-rest-plugin>
-* <https://github.com/marthoc/docker-deconz>
+* <https://github.com/MichMich/MagicMirror>
+* <https://hub.docker.com/r/bastilimbach/docker-magicmirror>
 
 ## Requirements
 
@@ -26,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install deconz k8s-at-home/deconz
+helm install magic-mirror k8s-at-home/magic-mirror
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `deconz`
+To install the chart with the release name `magic-mirror`
 
 ```console
-helm install deconz k8s-at-home/deconz
+helm install magic-mirror k8s-at-home/magic-mirror
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `deconz` deployment
+To uninstall the `magic-mirror` deployment
 
 ```console
-helm uninstall deconz
+helm uninstall magic-mirror
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,20 +55,22 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install deconz \
+helm install magic-mirror \
   --set env.TZ="America/New York" \
-    k8s-at-home/deconz
+    k8s-at-home/magic-mirror
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install deconz k8s-at-home/deconz -f values.yaml
+helm install magic-mirror k8s-at-home/magic-mirror -f values.yaml
 ```
 
 ## Custom configuration
 
-N/A
+The default login details (change ASAP) are:
+
+* password:deluge
 
 ## Values
 
@@ -76,22 +78,16 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.DECONZ_VNC_MODE | int | `1` |  |
-| env.DECONZ_VNC_PORT | int | `5900` |  |
-| env.DECONZ_WEB_PORT | int | `80` |  |
-| env.DECONZ_WS_PORT | int | `443` |  |
-| env.TZ | string | `"UTC"` |  |
+| config | string | `"var config = {\n  address: \"0.0.0.0\",\n  port: 8080,\n  ipWhitelist: [],\n  language: \"en\",\n  timeFormat: 24,\n  units: \"metric\",\n  modules: [],\n};\n\n/*************** DO NOT EDIT THE LINE BELOW ***************/\nif (typeof module !== \"undefined\") {module.exports = config;}\n"` |  |
+| custom_css | string | `""` |  |
+| env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"marthoc/deconz"` |  |
-| image.tag | string | `"amd64-2.10.03"` |  |
+| image.repository | string | `"bastilimbach/docker-magicmirror"` |  |
+| image.tag | string | `"v2.14.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/root/.local/share/dresden-elektronik/deCONZ"` |  |
-| service.additionalPorts[0].name | string | `"websocket"` |  |
-| service.additionalPorts[0].port | int | `443` |  |
-| service.additionalPorts[1].name | string | `"vnc"` |  |
-| service.additionalPorts[1].port | int | `5900` |  |
-| service.port.port | int | `80` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/opt/magic_mirror/modules/custom"` |  |
+| service.port.port | int | `8080` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -100,21 +96,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.0.0]
+### [1.0.0]
 
-#### Migration !breaking change!
+#### Added
 
-This version migrates the chart to the common dependency. If you have used prior versions that had version labels
-attached to the volume template of the `StatefulSet`, you will need to remove the `StatefulSet` manually prior to update
-or the update will fail until it's removed.
-
-If you used auto provisioning on the config volume, a new volume will be created upon update. It is recommended to **backup**
-the prior configuration using Phoscon App (deCONZ frontend) and restore it on a fresh installation (default password on fresh installation: `delight`).
-This will preserve all devices, settings and access tokens. The configuration can also be restored by copying files over from the old volume.
+- N/A
 
 #### Changed
 
-- Initial release using common chart
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
 
 ## Support
 

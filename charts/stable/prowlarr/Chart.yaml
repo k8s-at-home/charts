@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 0.1.0.181
+description: Indexer manager/proxy built on the popular arr net base stack to integrate with your various PVR apps.
+name: prowlarr
+version: 1.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- prowlarr
+- torrent
+- usenet
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prowlarr
+sources:
+- https://github.com/Prowlarr/Prowlarr
+- https://github.com/k8s-at-home/container-images
+maintainers:
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 1.0.0
