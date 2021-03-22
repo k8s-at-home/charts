@@ -19,25 +19,25 @@ env: {}
 service:
   port:
     port: 4000
-  additionalServices:
-  - enabled: true
-    nameSuffix: dns-tcp
-    type: NodePort
-    port:
-      port: 53
-      name: dns-tcp
-      protocol: TCP
-      targetPort: 53
-    externalTrafficPolicy: Local
-  - enabled: true
-    nameSuffix: dns-udp
-    type: NodePort
-    port:
-      port: 53
-      name: dns-udp
-      protocol: UDP
-      targetPort: 53
-    externalTrafficPolicy: Local
+  # additionalServices:
+  # - enabled: true
+  #   nameSuffix: dns-tcp
+  #   type: NodePort
+  #   port:
+  #     port: 53
+  #     name: dns-tcp
+  #     protocol: TCP
+  #     targetPort: 53
+  #   externalTrafficPolicy: Local
+  # - enabled: true
+  #   nameSuffix: dns-udp
+  #   type: NodePort
+  #   port:
+  #     port: 53
+  #     name: dns-udp
+  #     protocol: UDP
+  #     targetPort: 53
+  #   externalTrafficPolicy: Local
 
 ingress:
   enabled: false
@@ -66,8 +66,12 @@ prometheus:
     interval: 30s
     additionalLabels: {}
 
+# podAnnotations:
+#   prometheus.io/scrape: "true"
+#   prometheus.io/port: "api"
+
 # -- Full list of options: https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
-# @default -- values provided by the default Blocky configuration
+# @default -- see URL to default config
 config: |
   upstream:
     # these external DNS resolvers will be used. Blocky picks 2 random resolvers from the list for each query
