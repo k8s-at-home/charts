@@ -16,6 +16,8 @@ strategy:
 env: {}
   # TZ:
 
+replicas: 1
+
 service:
   port:
     port: 4000
@@ -38,9 +40,6 @@ service:
   #     protocol: UDP
   #     targetPort: 53
   #   externalTrafficPolicy: Local
-
-ingress:
-  enabled: false
 
 persistence:
   logs:

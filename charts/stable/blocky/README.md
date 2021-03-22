@@ -80,13 +80,13 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"spx01/blocky"` |  |
 | image.tag | string | `"v0.13"` |  |
-| ingress.enabled | bool | `false` |  |
 | persistence.logs.emptyDir | bool | `false` |  |
 | persistence.logs.enabled | bool | `false` |  |
 | persistence.logs.mountPath | string | `"/logs"` |  |
 | prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
 | prometheus.serviceMonitor.enabled | bool | `false` |  |
 | prometheus.serviceMonitor.interval | string | `"30s"` |  |
+| replicas | int | `1` |  |
 | service.port.port | int | `4000` |  |
 | strategy.type | string | `"Recreate"` |  |
 
@@ -100,11 +100,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- **BREAKING** Migrate Blocky to the common library, a lot of configuration has changed.
+- N/A
 
 #### Changed
 
-- N/A
+- **BREAKING** Migrate Blocky to the common library, a lot of configuration has changed.
 
 #### Removed
 
