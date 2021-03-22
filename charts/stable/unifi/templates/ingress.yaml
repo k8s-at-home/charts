@@ -12,15 +12,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
-  labels:
-    app.kubernetes.io/name: {{ include "unifi.name" . }}
-    helm.sh/chart: {{ include "unifi.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
 {{- end }}
+  labels:
+    {{- include "unifi.labels" . | nindent 4 }}
 spec:
 {{- if .Values.ingress.tls }}
   tls:
@@ -33,12 +30,12 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
+  {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion -}}
+    {{- range .Values.ingress.hosts }}
     - host: {{ . }}
       http:
         paths:
           - path: {{ $ingressPath }}
-            {{- if semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion -}}
             pathType: ImplementationSpecific
             backend:
               service:
@@ -49,7 +46,13 @@ spec:
                 {{- end }}
                 port:
                   name: https-gui
-            {{- else -}}
+    {{- end -}}
+  {{- else -}}
+    {{- range .Values.ingress.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+          - path: {{ $ingressPath }}
             backend:
               {{- if $unifiedServiceEnabled }}
               serviceName: {{ $fullName }}
@@ -57,6 +60,6 @@ spec:
               serviceName: {{ $fullName }}-gui
               {{- end }}
               servicePort: https-gui
-            {{- end -}}
+    {{- end -}}
   {{- end }}
 {{- end }}

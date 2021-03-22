@@ -34,12 +34,12 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- range .Values.captivePortalService.ingress.hosts }}
+  {{- if semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion -}}
+    {{- range .Values.captivePortalService.ingress.hosts }}
     - host: {{ . }}
       http:
         paths:
           - path: {{ $ingressPath }}
-            {{- if semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion -}}
             pathType: ImplementationSpecific
             backend:
               service:
@@ -50,7 +50,13 @@ spec:
                   {{- else }}
                   name: captive-http
                   {{- end }}
-            {{- else -}}
+    {{- end -}}
+  {{- else -}}
+    {{- range .Values.captivePortalService.ingress.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+          - path: {{ $ingressPath }}
             backend:
               serviceName: {{ $fullName }}-captiveportalservice
               {{- if $captivePortalHttps }}
@@ -58,6 +64,6 @@ spec:
               {{- else }}
               servicePort: captive-http
               {{- end }}
-            {{- end -}}
+    {{- end -}}
   {{- end }}
 {{- end }}
