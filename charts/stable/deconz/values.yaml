@@ -1,205 +1,69 @@
-# Default values for deconz.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# -- Number of replicas to scale to
-replicaCount: 1
-
-autoscaling:
-  # -- Enables Pod auto-scaling
-  enabled: false
-  # -- Minimum number of replicas to auto-scale to
-  minReplicas: 1
-  # -- Maximum number of replicas to auto-scale to
-  maxReplicas: 1
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
-  # -- Image repository
   repository: marthoc/deconz
-  # -- Image pull policy
   pullPolicy: IfNotPresent
-  # -- Image tag. Possible values listed [here](https://hub.docker.com/r/marthoc/deconz/tags/).
-  tag: "amd64-2.05.80"
+  tag: amd64-2.10.03
 
-imagePullSecrets: []
+strategy:
+  type: Recreate
 
-# -- Specifies the strategy used to replace old Pods by new ones
-strategyType: Recreate
+# See https://github.com/marthoc/docker-deconz/blob/master/README.md for more settings for e.g. debug.
+env:
+  TZ: UTC
+  ## Path to mounted device inside the container.
+  # DECONZ_DEVICE: /dev/conbee
+  ## Do not set the VNC password here directly - use a Secret, see envValueFrom below.
+  # DECONZ_VNC_PASSWORD: changeme
+  DECONZ_VNC_MODE: 1
+  DECONZ_WEB_PORT: 80
+  DECONZ_WS_PORT: 443
+  DECONZ_VNC_PORT: 5900
 
-nameOverride: ""
-fullnameOverride: ""
+## If VNC is enabled (DECONZ_VNC_MODE) you can change the default password "changeme" using a Secret.
+# envValueFrom:
+#   DECONZ_VNC_PASSWORD:
+#     secretKeyRef:
+#       name: deconz-vnc-password
+#       key: password
 
-# -- Timezone the instance should run as, e.g. 'America/New_York'
-timezone: "UTC"
+## Privileged context is required to mount devices in container using volumes.
+# securityContext:
+#   privileged: true
 
-# Specify the Zigbee device that should be passed through to the deCONZ container
-zigbeeDevice:
-  # -- Enables passing through a Zigbee device
-  enabled: false
-  # -- HostPath of the Zigbee device that should be passed through
-  hostPath: /dev/ttyUSB1
+## Path to device on the host.
+# additionalVolumes:
+#   - name: conbee
+#     hostPath:
+#       path: /dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_00000000-if00-port0
 
-vnc:
-  # -- Enabled the built-in VNC server to access the application
-  enabled: true
+## Path to mounted device inside the container.
+# additionalVolumeMounts:
+#   - name: conbee
+#     mountPath: /dev/conbee
 
-  # -- VNC server password
-  password: changeme
-  # -- Existing Kubernetes secret containing the VNC password
-  existingSecret: ""
-
-serviceAccount:
-  # -- Specifies whether a service account should be created
-  create: true
-  # -- Annotations to add to the service account
-  annotations: {}
-  # -- The name of the service account to use.
-  # @default: a name is generated using the fullname template
-  name: ""
-
-# -- Key-value pairs to add as pod annotations
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext:
-  privileged: true
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-persistence:
-  # -- Use persistent volume to store configuration data
-  enabled: false
-  # -- Key-value pairs to add as persistent volume claim annotations
-  annotations: {}
-  ## deconz data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # -- Type of persistent volume claim
-  # storageClass: "-"
-
-  # -- Use an existing PVC to persist data
-  # existingClaim: deconz-data
-
-  # -- Persistence access mode
-  accessMode: ReadWriteOnce
-  # -- Size of persistent volume claim
-  size: 1Gi
-  # -- Mount a sub dir of the persistent volume
-  # subPath: /configs/deconz
-
-# -- Optionally add additional Volumes
-# Volumes will be mounted to the folder specified under mountPath
-# If no mountPath is set it will be mounted to /mnt/<name>
-extraVolumes: []
-#  - name: example-name
-#    hostPath:
-#      path: /path/on/host
-#    type: DirectoryOrCreate
-#    mountPath: "/mnt/test"
+## The node having the dongle attached should be labeled accordingly.
+# nodeSelector:
+#   feature.node.kubernetes.io/custom-deconz: "true"
 
 service:
-  # -- Kubernetes service type for the GUI
-  type: ClusterIP
-  clusterIP: ""
-
-  # -- Kubernetes port where the GUI is exposed
-  httpPort: 80
-  # -- Kubernetes port where the websocket is exposed
-  websocketPort: 443
-  # -- Kubernetes port where the VNC server is exposed
-  vncPort: 5900
-
-  # -- Service annotations for the GUI
-  annotations: {}
-  # -- Custom labels
-  labels: {}
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  # nodePort:
-  # -- List of IP addresses at which the hass-configurator service is available
-  ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-  externalIPs: []
-  # -- Loadbalancer IP for the GUI
-  loadBalancerIP: ""
-  # -- List of IP CIDRs allowed access to load balancer (if supported)
-  loadBalancerSourceRanges:
-  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy: Local
+  port:
+    port: 80
+  additionalPorts:
+    - name: websocket
+      port: 443
+    - name: vnc
+      port: 5900
 
 ingress:
-  # -- Enables Ingress
   enabled: false
-  # -- Ingress annotations
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  # -- Custom labels
-  labels: {}
-  # -- Ingress path
-  path: /
-  # -- Ingress accepted hostnames
-  hosts:
-    - host: deconz.local
-  # -- Ingress TLS configuration
-  tls: []
-  #  - secretName: deconz-tls
-  #    hosts:
-  #      - deconz.local
 
-# -- CPU/Memory resource requests/limits
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-probes:
-  liveness:
-    # -- Enables liveness probe for the Pod
-    enabled: true
-    # -- Specify liveness `initialDelaySeconds` parameter for the Pod
-    initialDelaySeconds: 30
-    # -- Specify liveness `failureThreshold` parameter for the Pod
-    failureThreshold: 5
-    # -- Specify liveness `timeoutSeconds` parameter for the Pod
-    timeoutSeconds: 10
-  readiness:
-    # -- Enables readiness probe for the Pod
-    enabled: true
-    # -- Specify readiness `initialDelaySeconds` parameter for the Pod
-    initialDelaySeconds: 30
-    # -- Specify readiness `failureThreshold` parameter for the Pod
-    failureThreshold: 5
-    # -- Specify readiness `timeoutSeconds` parameter for the Pod
-  startup:
-    # -- Enables startup probe for the Pod
+persistence:
+  config:
     enabled: false
-    # -- Specify startup `failureThreshold` parameter for the Pod
-    failureThreshold: 30
-    # -- Specify startup `periodSeconds` parameter for the Pod
-    periodSeconds: 10
-
-# -- Node labels for pod assignment
-nodeSelector: {}
-
-# -- Toleration labels for pod assignment
-tolerations: []
-
-# -- Affinity settings for pod assignment
-affinity: {}
+    mountPath: /root/.local/share/dresden-elektronik/deCONZ
