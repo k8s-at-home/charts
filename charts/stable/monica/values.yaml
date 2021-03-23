@@ -34,7 +34,8 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /var/www/html/storage
 
 # Enabled mariadb

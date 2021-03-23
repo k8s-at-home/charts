@@ -23,12 +23,14 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
 
   # Cache does NOT contain temporary transcoding data.
   cache:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /cache
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -45,7 +47,8 @@ persistence:
 
   media:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /media
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
