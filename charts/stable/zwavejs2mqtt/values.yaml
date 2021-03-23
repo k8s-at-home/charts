@@ -76,7 +76,8 @@ probes:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /usr/src/app/store
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

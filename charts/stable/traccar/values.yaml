@@ -34,7 +34,8 @@ probes:
 persistence:
   data:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /opt/traccar/data
 
 # Enabled mariadb

@@ -28,21 +28,26 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /app/appdata
   audio:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /app/audio
   subscriptions:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /subscriptions
   users:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /users
   video:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /video

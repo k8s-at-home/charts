@@ -34,7 +34,8 @@ securityContext:
 persistence:
   data:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /octoprint
 
 # Paths to your 3D printer and/or camera in the container

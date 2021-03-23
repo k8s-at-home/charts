@@ -74,7 +74,8 @@ persistence:
   ## blocklists and DHT peers
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /config
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -91,12 +92,14 @@ persistence:
 
   downloads:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /downloads
 
   watch:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /watch
 
 transmissionConfig:

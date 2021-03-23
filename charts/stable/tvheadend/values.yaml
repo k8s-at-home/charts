@@ -34,9 +34,11 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /config
   recordings:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /recordings

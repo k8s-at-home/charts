@@ -71,7 +71,8 @@ persistence:
 # -- Volume used for static files
   files:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountpath: /app/vikunja/files
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

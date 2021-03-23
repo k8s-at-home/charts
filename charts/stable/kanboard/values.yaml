@@ -27,7 +27,8 @@ persistence:
   # -- enable data persistence
   data:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /var/www/app/data
     accessMode: ReadWriteOnce
     size: 1Gi
@@ -35,7 +36,8 @@ persistence:
   # -- enable SSL persistence
   ssl:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /etc/nginx/ssl
 
 # https://docs.kanboard.org/en/latest/admin_guide/config_file.html
