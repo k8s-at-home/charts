@@ -30,7 +30,8 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /data
     accessMode: ReadWriteOnce
     ## Persistent Volume Storage Class
@@ -47,7 +48,8 @@ persistence:
     # existingClaim: ""
   music:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /music
     accessMode: ReadWriteOnce
     ## Persistent Volume Storage Class

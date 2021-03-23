@@ -42,12 +42,14 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /photoprism/storage
 
   originals:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: "/photoprism/originals"
     # readOnly: true
 

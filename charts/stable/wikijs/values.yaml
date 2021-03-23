@@ -54,12 +54,14 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     accessMode: "ReadWriteOnce"
     size: "1Gi"
   data:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     accessMode: "ReadWriteOnce"
     mountPath: /app/wiki/data
     size: "1Gi"

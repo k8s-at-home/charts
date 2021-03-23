@@ -31,19 +31,23 @@ ingress:
 persistence:
   data:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
 
   podcasts:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
 
   cache:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
 
   music:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /music
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

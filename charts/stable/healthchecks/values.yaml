@@ -56,7 +56,8 @@ persistence:
 # -- Volume used for configuration
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountpath: /config
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

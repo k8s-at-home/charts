@@ -41,7 +41,8 @@ persistence:
     enabled: false
   media:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /opt/recipes/mediafiles
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -57,7 +58,8 @@ persistence:
     # existingClaim: ""
   static:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /opt/recipes/staticfiles
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

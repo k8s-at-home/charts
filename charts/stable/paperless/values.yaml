@@ -35,19 +35,23 @@ persistence:
   data:
     enabled: false
     mountPath: /usr/src/paperless/data
-    emptyDir: false
+    emptyDir:
+      enabled: false
   media:
     enabled: false
     mountPath: /usr/src/paperless/media
-    emptyDir: false
+    emptyDir:
+      enabled: false
   consume:
     enabled: false
     mountPath: /usr/src/paperless/consume
-    emptyDir: false
+    emptyDir:
+      enabled: false
   export:
     enabled: false
     mountPath: /usr/src/paperless/export
-    emptyDir: false
+    emptyDir:
+      enabled: false
 
 additionalContainers:
   - name: broker

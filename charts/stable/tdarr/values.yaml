@@ -74,7 +74,8 @@ persistence:
 # -- Volume used for configuration
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountpath: /app/configs
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -92,7 +93,8 @@ persistence:
   data:
 # -- Volume used for tdarr server database
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountpath: /app/server
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -110,7 +112,8 @@ persistence:
   media:
 # -- Volume used for media libraries
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountpath: /media
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
