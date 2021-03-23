@@ -30,14 +30,16 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion -}}
     {{- range .Values.ingress.hosts }}
     - host: {{ . }}
       http:
         paths:
           - path: {{ $ingressPath }}
-            pathType: ImplementationSpecific
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
             backend:
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
                 {{- if $unifiedServiceEnabled }}
                 name: {{ $fullName }}
@@ -46,20 +48,13 @@ spec:
                 {{- end }}
                 port:
                   name: https-gui
-    {{- end -}}
-  {{- else -}}
-    {{- range .Values.ingress.hosts }}
-    - host: {{ . }}
-      http:
-        paths:
-          - path: {{ $ingressPath }}
-            backend:
+            {{- else -}}
               {{- if $unifiedServiceEnabled }}
               serviceName: {{ $fullName }}
               {{- else }}
               serviceName: {{ $fullName }}-gui
               {{- end }}
               servicePort: https-gui
-    {{- end -}}
+            {{- end -}}
   {{- end }}
 {{- end }}

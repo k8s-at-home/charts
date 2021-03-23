@@ -33,26 +33,23 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- if semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion -}}
-    {{- range .Values.controllerService.ingress.hosts }}
+  {{- range .Values.controllerService.ingress.hosts }}
     - host: {{ . }}
       http:
         paths:
           - path: {{ $ingressPath }}
-            pathType: ImplementationSpecific
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
             backend:
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
                 name: {{ $fullName }}-controller
                 port:
                   name: controller
-    {{- else -}}
-    - host: {{ . }}
-      http:
-        paths:
-          - path: {{ $ingressPath }}
-            backend:
+            {{- else -}}
               serviceName: {{ $fullName }}-controller
               servicePort: controller
-    {{- end -}}
+            {{- end }}
   {{- end }}
 {{- end }}
