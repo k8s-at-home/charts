@@ -62,7 +62,8 @@ hostNetwork: false
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /config
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -79,7 +80,8 @@ persistence:
 
   transcode:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /transcode
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

@@ -19,8 +19,7 @@ spec:
     type: {{ .Values.strategyType }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "unifi.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "unifi.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:

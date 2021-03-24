@@ -35,7 +35,8 @@ probes:
 persistence:
   downloads:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /downloads
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

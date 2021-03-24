@@ -31,11 +31,13 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
 
   music:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /music
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -51,13 +53,16 @@ persistence:
     # existingClaim: ""
   playlists:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /playlists
   podcasts:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /podcasts
   media:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /media

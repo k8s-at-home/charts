@@ -78,7 +78,7 @@ The default login details (change ASAP) are:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | `""` |  |
+| config | string | `"var config = {\n  address: \"0.0.0.0\",\n  port: 8080,\n  ipWhitelist: [],\n  language: \"en\",\n  timeFormat: 24,\n  units: \"metric\",\n  modules: [],\n};\n\n/*************** DO NOT EDIT THE LINE BELOW ***************/\nif (typeof module !== \"undefined\") {module.exports = config;}\n"` |  |
 | custom_css | string | `""` |  |
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |

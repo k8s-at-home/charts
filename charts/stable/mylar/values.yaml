@@ -29,12 +29,15 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
   comics:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /comics
   downloads:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /downloads

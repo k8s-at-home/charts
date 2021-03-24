@@ -5,17 +5,21 @@ env:
 persistence:
   data:
     enabled: true
-    emptyDir: true
+    emptyDir:
+      enabled: true
     mountPath: /data
   podcasts:
     enabled: true
-    emptyDir: true
+    emptyDir:
+      enabled: true
     mountPath: /podcasts
   cache:
     enabled: true
-    emptyDir: true
+    emptyDir:
+      enabled: true
     mountPath: /cache
   music:
     enabled: true
-    emptyDir: true
+    emptyDir:
+      enabled: true
     mountPath: /music

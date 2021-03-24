@@ -28,7 +28,8 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /conf
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -45,7 +46,8 @@ persistence:
 
   uploads:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /uploads
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -62,7 +64,8 @@ persistence:
 
   sym:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /sym
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

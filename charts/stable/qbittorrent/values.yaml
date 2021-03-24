@@ -38,11 +38,13 @@ ingress:
 persistence:
   config:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
 
   media:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /media
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -59,7 +61,8 @@ persistence:
 
   downloads:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /downloads
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>

@@ -27,7 +27,8 @@ auth:
 persistence:
   data:
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /mosquitto/data
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
@@ -44,7 +45,8 @@ persistence:
   configinc:
     # a persistent volume to place *.conf mosquitto-config-files in
     enabled: false
-    emptyDir: false
+    emptyDir:
+      enabled: false
     mountPath: /mosquitto/configinc
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
