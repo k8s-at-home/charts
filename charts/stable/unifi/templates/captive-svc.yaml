@@ -56,6 +56,5 @@ spec:
       nodePort: {{.Values.captivePortalService.https}}
 {{ end }}
   selector:
-    app.kubernetes.io/name: {{ include "unifi.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "unifi.selectorLabels" . | nindent 6 }}
 {{ end }}
