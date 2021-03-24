@@ -1,16 +1,21 @@
 apiVersion: v2
-appVersion: v0.12
+appVersion: v0.13
 description: DNS proxy as ad-blocker for local network
 name: blocky
-version: 5.0.2
+version: 6.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - blocky
-  - adblock
-  - dns
+- blocky
+- adblock
+- dns
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/blocky
 icon: https://github.com/0xERR0R/blocky/raw/master/docs/blocky.svg?sanitize=true
 sources:
-  - https://github.com/0xERR0R/blocky
+- https://github.com/0xERR0R/blocky
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.0.1
