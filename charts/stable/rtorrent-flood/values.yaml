@@ -1,143 +1,205 @@
-# Default values for rtorrent-flood.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
-# upgrade strategy type (e.g. Recreate or RollingUpdate)
-strategyType: Recreate
+image:
+  repository: jesec/rtorrent-flood
+  pullPolicy: IfNotPresent
+  tag: latest
 
-nameOverride: ""
-fullnameOverride: ""
+strategy:
+  type: Recreate
 
-# timezone: UTC
-floodSecret: "supersecret"
-uid: 1001
-gid: 1001
+env:
+  # TZ:
+  HOME: "/config"
 
-rtorrent:
-  enabled: true
-  image:
-    repository: billimek/rtorrent
-    tag: latest
-    pullPolicy: Always
-  resources:
-    requests:
-      cpu: "50m"
-      memory: "50Mi"
-    limits:
-      memory: "1Gi"
+args:
+- "--port 3000"
+- "--allowedpath /downloads"
 
-flood:
-  enabled: true
-  image:
-    repository: jfurrow/flood-ui
-    tag: latest
-    pullPolicy: Always
-  resources:
-    requests:
-      memory: "100Mi"
-      cpu: "10m"
-    limits:
-      memory: "250Mi"
-
-guiService:
-  type: ClusterIP
-  port: 3000
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
-  loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
-
-btService:
-  type: NodePort
-  port: 49161
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  ## Use loadBalancerIP to request a specific static IP,
-  ## otherwise leave blank
-  ##
-  loadBalancerIP:
-  # loadBalancerSourceRanges: []
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
-
+service:
+  port:
+    port: 3000
+  additionalServices:
+  - enabled: true
+    nameSuffix: bittorrent
+    type: ClusterIP
+    port:
+      port: 6881
+      name: bittorrent
+      protocol: TCP
+      targetPort: 6881
 
 ingress:
   enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 persistence:
   config:
-    enabled: true
-    ## configuration data Persistent Volume Storage Class
+    enabled: false
+    emptyDir:
+      enabled: false
+
+  downloads:
+    enabled: false
+    emptyDir:
+      enabled: false
+    ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
-    ##
     # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
     ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-  data:
-    enabled: true
-    ## torrents data volume configuration
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    ##
-    # storageClass: "-"
-    ##
-    ## If you want to reuse an existing claim, you can pass the name of the PVC using
-    ## the existingClaim variable
-    # existingClaim: your-claim
-    # subPath: some-subpath
-    accessMode: ReadWriteOnce
-    size: 10Gi
-    ## Do not delete the pvc upon helm uninstall
-    skipuninstall: false
+    # skipuninstall: false
+    # existingClaim: ""
 
-nodeSelector: {}
+# -- Minimal configuration provided from https://github.com/jesec/rtorrent/blob/master/doc/rtorrent.rc
+# @default -- see URL to default config
+config: |
+  #############################################################################
+  # A minimal rTorrent configuration that provides the basic features
+  #############################################################################
 
-tolerations: []
+  # Some default configs are commented out by #, you can override them to fit your needs
+  # Lines commented out by ## are merely examples (NOT default)
 
-affinity: {}
+  # It is recommended to extend upon this default config file. For example:
+  # override only some configs via command line: -o network.port_range.set=6881-6881
+  # or, on top of custom config: import = /etc/rtorrent/rtorrent.rc
 
-podAnnotations: {}
+  # rTorrent runtime directory (cfg.basedir) [default: "$HOME/.local/share/rtorrent"]
+  method.insert = cfg.basedir,  private|const|string, (cat,(fs.homedir),"/.local/share/rtorrent/")
+
+  # Default download directory (cfg.download) [default: "$(cfg.basedir)/download"]
+  method.insert = cfg.download, private|const|string, (cat,(cfg.basedir),"download/")
+
+  # Log directory (cfg.logs) [default: "$(cfg.basedir)/log"]
+  method.insert = cfg.logs,     private|const|string, (cat,(cfg.basedir),"log/")
+  method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")
+
+  # Torrent session directory (cfg.session) [default: "$(cfg.basedir)/.session"]
+  method.insert = cfg.session,  private|const|string, (cat,(cfg.basedir),".session/")
+
+  # Watch (drop to add) directories (cfg.watch) [default: "$(cfg.basedir)/watch"]
+  method.insert = cfg.watch,    private|const|string, (cat,(cfg.basedir),"watch/")
+
+  # Create directories
+  fs.mkdir.recursive = (cat,(cfg.basedir))
+
+  fs.mkdir = (cat,(cfg.download))
+  fs.mkdir = (cat,(cfg.logs))
+  fs.mkdir = (cat,(cfg.session))
+
+  fs.mkdir = (cat,(cfg.watch))
+  fs.mkdir = (cat,(cfg.watch),"/load")
+  fs.mkdir = (cat,(cfg.watch),"/start")
+
+  # Drop to "$(cfg.watch)/load" to add torrent
+  schedule2 = watch_load, 11, 10, ((load.verbose, (cat, (cfg.watch), "load/*.torrent")))
+
+  # Drop to "$(cfg.watch)/start" to add torrent and start downloading
+  schedule2 = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start/*.torrent")))
+
+  # Listening port for incoming peer traffic
+  #network.port_range.set = 6881-6999
+  #network.port_random.set = yes
+
+  # Distributed Hash Table and Peer EXchange
+  # Enable tracker-less torrents but vulnerable to passive sniffing
+  # DHT and PEX are always disabled for private torrents
+  #dht.mode.set = auto
+  #dht.port.set = 6881
+  #protocol.pex.set = yes
+
+  # DHT nodes for bootstrapping
+  dht.add_bootstrap = dht.transmissionbt.com:6881
+  dht.add_bootstrap = dht.libtorrent.org:25401
+
+  # UDP tracker support
+  #trackers.use_udp.set = yes
+
+  # Peer settings
+  throttle.max_uploads.set = 100
+  throttle.max_uploads.global.set = 250
+  throttle.min_peers.normal.set = 20
+  throttle.max_peers.normal.set = 60
+  throttle.min_peers.seed.set = 30
+  throttle.max_peers.seed.set = 80
+  trackers.numwant.set = 80
+
+  #protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+
+  # Limits for file handle resources, this is optimized for
+  # an `ulimit` of 1024 (a common default). You MUST leave
+  # a ceiling of handles reserved for rTorrent's internal needs!
+  network.max_open_files.set = 600
+  network.max_open_sockets.set = 300
+
+  # Memory resource usage (increase if you have a large number of items loaded,
+  # and/or the available resources to spend)
+  pieces.memory.max.set = 1800M
+  #network.xmlrpc.size_limit.set = 16M
+
+  # Basic operational settings
+  session.path.set = (cat, (cfg.session))
+  directory.default.set = (cat, (cfg.download))
+  log.execute = (cat, (cfg.logs), "execute.log")
+  ##log.xmlrpc = (cat, (cfg.logs), "xmlrpc.log")
+
+  # Other operational settings
+  encoding.add = utf8
+  system.umask.set = 0027
+  system.cwd.set = (directory.default)
+  #schedule2 = low_diskspace, 5, 60, ((close_low_diskspace, 500M))
+  #pieces.hash.on_completion.set = no
+  ##view.sort_current = seeding, greater=d.ratio=
+  ##keys.layout.set = qwerty
+
+  # HTTP and SSL
+  network.http.max_open.set = 50
+  network.http.dns_cache_timeout.set = 25
+
+  # Path to the CA bundle. By default, rTorrent tries to detect from:
+  #   $RTORRENT_CA_BUNDLE (highest priority)
+  #   $CURL_CA_BUNDLE
+  #   $SSL_CERT_FILE
+  #   /etc/ssl/certs/ca-certificates.crt
+  #   /etc/pki/tls/certs/ca-bundle.crt
+  #   /usr/share/ssl/certs/ca-bundle.crt
+  #   /usr/local/share/certs/ca-root-nss.crt
+  #   /etc/ssl/cert.pem (lowest priority)
+  ##network.http.cacert.set = /etc/ssl/certs/ca-certificates.crt
+
+  # Path to the certificate directory to verify the peer. The certificates
+  # must be in PEM format, and the directory must have been processed using
+  # the c_rehash utility supplied with openssl.
+  #
+  # For advanced users only, generally you should use network.http.cacert.set
+  # to specify path to the bundle of certificates.
+  ##network.http.capath.set = "/etc/ssl/certs"
+
+  #network.http.ssl_verify_peer.set = 1
+  #network.http.ssl_verify_host.set = 1
+
+  # Run the rTorrent process as a daemon in the background
+  #system.daemon.set = false
+
+  # XML-RPC interface
+  network.scgi.open_local = (cat,(cfg.basedir),rtorrent.sock)
+
+  # Logging:
+  #   Levels = critical error warn notice info debug
+  #   Groups = connection_* dht_* peer_* rpc_* storage_* thread_* tracker_* torrent_*
+  print = (cat, "Logging to ", (cfg.logfile))
+  log.open_file = "log", (cfg.logfile)
+  log.add_output = "info", "log"
+  ##log.add_output = "tracker_debug", "log"
+
+  ### END of rtorrent.rc ###
