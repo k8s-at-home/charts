@@ -18,5 +18,8 @@ spec:
       params:
         target:
           - "{{ .hostname }}:{{ .port }}"
+      relabelings:
+        - sourceLabels: [__param_target]
+          targetLabel: target
     {{- end }}
 {{- end }}
