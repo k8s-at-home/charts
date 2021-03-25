@@ -31081,6 +31081,35 @@ entries:
     version: 1.0.0
   rtorrent-flood:
   - apiVersion: v2
+    appVersion: latest
+    created: "2021-03-25T22:26:23.399580735Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.0.1
+    description: rTorrent is a stable, high-performance and low resource consumption
+      BitTorrent client.
+    digest: 034645164076150886e4f0c2386140cd9792e7f3b02fd54a689c8bc2b3328e66
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rtorrent-flood
+    icon: https://github.com/jfurrow/flood/blob/master/flood.png?raw=true
+    keywords:
+    - rtorrent
+    - flood
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: rtorrent-flood
+    sources:
+    - https://github.com/jesec/rtorrent
+    - https://github.com/jesec/flood
+    - https://hub.docker.com/r/jesec/rtorrent
+    - https://hub.docker.com/r/jesec/flood
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/rtorrent-flood-6.0.0/rtorrent-flood-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2021-03-18T13:23:21.869099915Z"
     description: rtorrent and flood co-located in the same deployment
@@ -42582,4 +42611,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-25T10:52:44.01245361Z"
+generated: "2021-03-25T22:26:23.40752788Z"
