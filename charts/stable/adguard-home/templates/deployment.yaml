@@ -59,8 +59,8 @@ spec:
           volumeMounts:
             - name: work
               mountPath: /opt/adguardhome/work
-            {{- if .Values.persistence.work.subPath }}
-              subPath: {{ .Values.persistence.work.subPath }}
+            {{- with .Values.persistence.work.subPath }}
+              subPath: {{ . }}
             {{- end }}
               readOnly: false
             - name: config
