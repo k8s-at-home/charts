@@ -1,23 +1,27 @@
 # rtorrent-flood
 
-![Version: 5.0.2](https://img.shields.io/badge/Version-5.0.2-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v0.9.8-r8+v4.5.0](https://img.shields.io/badge/AppVersion-v0.9.8--r8+v4.5.0-informational?style=flat-square)
 
-rtorrent and flood co-located in the same deployment
+rTorrent is a stable, high-performance and low resource consumption BitTorrent client.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://hub.docker.com/r/looselyrigorous/rtorrent>
-* <https://github.com/looselyrigorous/docker-rtorrent>
-* <https://github.com/Flood-UI/flood>
+* <https://github.com/jesec/rtorrent>
+* <https://github.com/jesec/flood>
+* <https://hub.docker.com/r/jesec/rtorrent>
+* <https://hub.docker.com/r/jesec/flood>
 
 ## Requirements
+
+Kubernetes: `>=1.16.0-0`
 
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.0.1 |
 
 ## TL;DR
 
@@ -66,23 +70,7 @@ helm install rtorrent-flood k8s-at-home/rtorrent-flood -f values.yaml
 
 ## Custom configuration
 
-### Setup
-
-NB: This chart will start 2 containers in a single pod, when both containers are started, you will be able to configure flood.
-
-1. Install the chart `helm install rtorrent k8s-at-home/rtorrent-flood`
-
-2. Port-forward to the container `kubectl port-forward $(kubectl get pods -A -o json | jq '.items[] | select(.metadata.labels."app.kubernetes.io/name"=="rtorrent-flood")' | jq .metadata.name -r) 3000:3000`
-
-3. To connect flood to rtorrent, provide the socket path : `/tmp/rtorrent.sock`
-
-4. When connected with flood to rtorrent, go to the settings and change the download path to `/data` which is set by default by the chart
-
-5. You should be able to start downloading torrents now :)
-
-### Pitfalls
-
-You may need to change the StorageClass depending on your kubernetes setup or the containers won't start, use a custom `values.yaml` file to do so.
+N/A
 
 ## Values
 
@@ -90,59 +78,47 @@ You may need to change the StorageClass depending on your kubernetes setup or th
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
-| btService.annotations | object | `{}` |  |
-| btService.labels | object | `{}` |  |
-| btService.loadBalancerIP | string | `nil` |  |
-| btService.port | int | `49161` |  |
-| btService.type | string | `"NodePort"` |  |
-| flood.enabled | bool | `true` |  |
-| flood.image.pullPolicy | string | `"Always"` |  |
-| flood.image.repository | string | `"jfurrow/flood-ui"` |  |
-| flood.image.tag | string | `"latest"` |  |
-| flood.resources.limits.memory | string | `"250Mi"` |  |
-| flood.resources.requests.cpu | string | `"10m"` |  |
-| flood.resources.requests.memory | string | `"100Mi"` |  |
-| floodSecret | string | `"supersecret"` |  |
-| fullnameOverride | string | `""` |  |
-| gid | int | `1001` |  |
-| guiService.annotations | object | `{}` |  |
-| guiService.labels | object | `{}` |  |
-| guiService.loadBalancerIP | string | `nil` |  |
-| guiService.port | int | `3000` |  |
-| guiService.type | string | `"ClusterIP"` |  |
-| ingress.annotations | object | `{}` |  |
+| args[0] | string | `"--port 3000"` |  |
+| args[1] | string | `"--allowedpath /downloads"` |  |
+| config | string | see URL to default config | Minimal configuration provided from https://github.com/jesec/rtorrent/blob/master/doc/rtorrent.rc |
+| env.HOME | string | `"/config"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"jesec/rtorrent-flood"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
-| ingress.hosts[0] | string | `"chart-example.local"` |  |
-| ingress.path | string | `"/"` |  |
-| ingress.tls | list | `[]` |  |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
-| persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.config.enabled | bool | `true` |  |
-| persistence.config.size | string | `"1Gi"` |  |
-| persistence.config.skipuninstall | bool | `false` |  |
-| persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.data.enabled | bool | `true` |  |
-| persistence.data.size | string | `"10Gi"` |  |
-| persistence.data.skipuninstall | bool | `false` |  |
-| podAnnotations | object | `{}` |  |
-| rtorrent.enabled | bool | `true` |  |
-| rtorrent.image.pullPolicy | string | `"Always"` |  |
-| rtorrent.image.repository | string | `"billimek/rtorrent"` |  |
-| rtorrent.image.tag | string | `"latest"` |  |
-| rtorrent.resources.limits.memory | string | `"1Gi"` |  |
-| rtorrent.resources.requests.cpu | string | `"50m"` |  |
-| rtorrent.resources.requests.memory | string | `"50Mi"` |  |
-| strategyType | string | `"Recreate"` |  |
-| tolerations | list | `[]` |  |
-| uid | int | `1001` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.downloads.emptyDir.enabled | bool | `false` |  |
+| persistence.downloads.enabled | bool | `false` |  |
+| service.additionalServices[0].enabled | bool | `true` |  |
+| service.additionalServices[0].nameSuffix | string | `"bittorrent"` |  |
+| service.additionalServices[0].port.name | string | `"bittorrent"` |  |
+| service.additionalServices[0].port.port | int | `6881` |  |
+| service.additionalServices[0].port.protocol | string | `"TCP"` |  |
+| service.additionalServices[0].port.targetPort | int | `6881` |  |
+| service.additionalServices[0].type | string | `"ClusterIP"` |  |
+| service.port.port | int | `3000` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [6.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING** Migrate rtorrent-flood to the common library, a lot of configuration has changed.
+
+#### Removed
+
+- N/A
 
 ### [5.0.1]
 
@@ -158,6 +134,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[6.0.0]: #6.0.0
 [5.0.1]: #5.0.1
 
 ## Support
