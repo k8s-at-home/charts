@@ -65,8 +65,8 @@ spec:
               readOnly: false
             - name: config
               mountPath: /opt/adguardhome/conf
-            {{- if .Values.persistence.conf.subPath }}
-              subPath: {{ .Values.persistence.conf.subPath }}
+            {{- with .Values.persistence.conf.subPath }}
+              subPath: {{ . }}
             {{- end }}
               readOnly: false
         {{- end }}
