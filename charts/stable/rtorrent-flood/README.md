@@ -78,65 +78,26 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers[0].image | string | `"caddy:2.2.0-alpine"` |  |
-| additionalContainers[0].name | string | `"caddy"` |  |
-| additionalContainers[0].ports[0].containerPort | int | `80` |  |
-| additionalContainers[0].ports[0].name | string | `"http"` |  |
-| additionalContainers[0].volumeMounts[0].mountPath | string | `"/etc/caddy/Caddyfile"` |  |
-| additionalContainers[0].volumeMounts[0].name | string | `"rtorrent-flood-config"` |  |
-| additionalContainers[0].volumeMounts[0].subPath | string | `"Caddyfile"` |  |
-| additionalContainers[0].volumeMounts[1].mountPath | string | `"/srv/rtorrent-flood-checker"` |  |
-| additionalContainers[0].volumeMounts[1].name | string | `"rtorrent-flood-checker"` |  |
-| additionalContainers[1].args[0] | string | `"-listen"` |  |
-| additionalContainers[1].args[1] | string | `"0.0.0.0:4040"` |  |
-| additionalContainers[1].args[2] | string | `"-api"` |  |
-| additionalContainers[1].args[3] | string | `"0.0.0.0:4041"` |  |
-| additionalContainers[1].args[4] | string | `"-target"` |  |
-| additionalContainers[1].args[5] | string | `"localhost:8080"` |  |
-| additionalContainers[1].image | string | `"dalf/filtron:latest"` |  |
-| additionalContainers[1].imagePullPolicy | string | `"Always"` |  |
-| additionalContainers[1].name | string | `"filtron"` |  |
-| additionalContainers[1].ports[0].containerPort | int | `4040` |  |
-| additionalContainers[1].ports[0].name | string | `"filtron"` |  |
-| additionalContainers[1].ports[1].containerPort | int | `4041` |  |
-| additionalContainers[1].ports[1].name | string | `"api"` |  |
-| additionalContainers[1].volumeMounts[0].mountPath | string | `"/etc/filtron/rules.json"` |  |
-| additionalContainers[1].volumeMounts[0].name | string | `"rtorrent-flood-config"` |  |
-| additionalContainers[1].volumeMounts[0].subPath | string | `"rules.json"` |  |
-| additionalContainers[2].args[0] | string | `"-listen"` |  |
-| additionalContainers[2].args[1] | string | `"localhost:3000"` |  |
-| additionalContainers[2].args[2] | string | `"-timeout"` |  |
-| additionalContainers[2].args[3] | string | `"6"` |  |
-| additionalContainers[2].args[4] | string | `"ipv6"` |  |
-| additionalContainers[2].envFrom[0].secretRef.name | string | `"rtorrent-flood-config"` |  |
-| additionalContainers[2].image | string | `"dalf/morty:latest"` |  |
-| additionalContainers[2].imagePullPolicy | string | `"Always"` |  |
-| additionalContainers[2].name | string | `"morty"` |  |
-| additionalContainers[2].ports[0].containerPort | int | `3000` |  |
-| additionalContainers[2].ports[0].name | string | `"morty"` |  |
-| additionalContainers[3].args[0] | string | `"-cron"` |  |
-| additionalContainers[3].args[1] | string | `"-o"` |  |
-| additionalContainers[3].args[2] | string | `"html/data/status.json"` |  |
-| additionalContainers[3].args[3] | string | `"http://localhost:8080"` |  |
-| additionalContainers[3].image | string | `"rtorrent-flood/rtorrent-flood-checker:latest"` |  |
-| additionalContainers[3].name | string | `"rtorrent-flood-checker"` |  |
-| additionalContainers[3].volumeMounts[0].mountPath | string | `"/usr/local/rtorrent-flood-checker/html/data"` |  |
-| additionalContainers[3].volumeMounts[0].name | string | `"rtorrent-flood-checker"` |  |
-| additionalVolumes[0].configMap.name | string | `"rtorrent-flood-config"` |  |
-| additionalVolumes[0].name | string | `"rtorrent-flood-config"` |  |
-| additionalVolumes[1].emptyDir | object | `{}` |  |
-| additionalVolumes[1].name | string | `"rtorrent-flood-checker"` |  |
-| envFrom[0].secretRef.name | string | `"rtorrent-flood-config"` |  |
+| args[0] | string | `"--port 3000"` |  |
+| args[1] | string | `"--allowedpath /downloads"` |  |
+| config | string | see URL to default config | Minimal configuration provided from https://github.com/jesec/rtorrent/blob/master/doc/rtorrent.rc |
+| env.HOME | string | `"/config"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"rtorrent-flood/rtorrent-flood"` |  |
-| image.tag | string | `"0.18.0"` |  |
+| image.repository | string | `"jesec/rtorrent-flood"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| rtorrent-flood.baseUrl | string | `"https://rtorrent-flood.DOMAIN"` |  |
-| rtorrent-flood.existingSecret.enabled | bool | `false` |  |
-| rtorrent-flood.mortyKey | string | `"changeme"` |  |
-| service.port.port | int | `80` |  |
+| persistence.downloads.emptyDir.enabled | bool | `false` |  |
+| persistence.downloads.enabled | bool | `false` |  |
+| service.additionalServices[0].enabled | bool | `true` |  |
+| service.additionalServices[0].nameSuffix | string | `"bittorrent"` |  |
+| service.additionalServices[0].port.name | string | `"bittorrent"` |  |
+| service.additionalServices[0].port.port | int | `6881` |  |
+| service.additionalServices[0].port.protocol | string | `"TCP"` |  |
+| service.additionalServices[0].port.targetPort | int | `6881` |  |
+| service.additionalServices[0].type | string | `"ClusterIP"` |  |
+| service.port.port | int | `3000` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
