@@ -59,9 +59,15 @@ spec:
           volumeMounts:
             - name: work
               mountPath: /opt/adguardhome/work
+            {{- with .Values.persistence.work.subPath }}
+              subPath: {{ . }}
+            {{- end }}
               readOnly: false
             - name: config
               mountPath: /opt/adguardhome/conf
+            {{- with .Values.persistence.config.subPath }}
+              subPath: {{ . }}
+            {{- end }}
               readOnly: false
         {{- end }}
       {{- end }}
@@ -79,9 +85,15 @@ spec:
           volumeMounts:
             - name: work
               mountPath: /opt/adguardhome/work
+            {{- with .Values.persistence.work.subPath }}
+              subPath: {{ . }}
+            {{- end }}
               readOnly: false
             - name: config
               mountPath: /opt/adguardhome/conf
+            {{- with .Values.persistence.config.subPath }}
+              subPath: {{ . }}
+            {{- end }}
               readOnly: false
             {{- if .Values.tlsSecretName }}
             - name: certs
