@@ -26,7 +26,7 @@ spec:
   {{- end }}
   externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy }}
   ports:
-    - port: 3000
+    - port: 80
       targetPort: http
       protocol: TCP
       name: http
