@@ -72,11 +72,14 @@ Once installed do the following to configure the application within the pod:
 
 1. Get the name of your deployed pod `kubectl get pods`
 2. Run interactively on the pod (setup only) `kubectl exec --stdin --tty protonmail-bridge-deployment-6c79fd7f84-ftwcw -- /bin/bash`
-3. Once logged in, execute the init command `bash /protonmail/entrypoint.sh init`
-4. You should now see the CLI for protonmail-bridge, authenticate with login
-5. (optional) If you use split address mode, change mode and info are good for printing the details.
-6. Copy your SMTP server info (or IMAP, your choice)
-7. Delete the active pod so a new one gets created (which will properly fire up with your persisted settings)
+3. Once logged in, make the entrypoint.sh file executable `chmod +x entrypoint.sh`
+4. Execute the init command `./entrypoint.sh init`
+5. Go into `top` and find protonmail-bridge and proton-bridge, remember the PID and then kill them: `kill 10 11`
+6. Now execute `./entrypoint.sh` without init
+7. You should now see the CLI for protonmail-bridge, authenticate with login
+8. (optional) If you use split address mode, change mode and info are good for printing the details.
+9. Copy your SMTP server info (or IMAP, your choice)
+10. Delete the active pod so a new one gets created (which will properly fire up with your persisted settings)
 
 ## Values
 
