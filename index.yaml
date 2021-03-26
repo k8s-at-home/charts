@@ -36197,6 +36197,30 @@ entries:
     version: 1.0.0
   teslamate:
   - apiVersion: v2
+    appVersion: v1.22.0
+    created: "2021-03-26T17:45:19.399522998Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: 6dbc37d078d12f9521958ba14edbd305cf6e164299682e639623f8e5a2923b2f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teslamate-3.6.3/teslamate-3.6.3.tgz
+    version: 3.6.3
+  - apiVersion: v2
     appVersion: v1.20.0
     created: "2021-03-18T13:23:25.785228358Z"
     dependencies:
@@ -42741,4 +42765,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-26T13:42:38.284816461Z"
+generated: "2021-03-26T17:45:19.407286657Z"
