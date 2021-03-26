@@ -15,12 +15,8 @@ spec:
   endpoints:
   {{- range .Values.prometheus.serviceMonitor.targets }}
   - port: http
-    {{- with .interval }}
-    interval: {{ . }}
-    {{- end }}
-    {{- with .scrapeTimeout }}
-    scrapeTimeout: {{ . }}
-    {{- end }}
+    interval: {{ .interval }}
+    scrapeTimeout: {{ .scrapeTimeout }}
     path: /nut
     params:
       target:
