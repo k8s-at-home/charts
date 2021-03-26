@@ -57,6 +57,13 @@ persistence:
     enabled: false
     mountPath: /config
 
+resources:
+  requests:
+    memory: 2048Mi
+    cpu: 300m
+  limits:
+    memory: 4096Mi
+
 probes:
   liveness:
     enabled: false
