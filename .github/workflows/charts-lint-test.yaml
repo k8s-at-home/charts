@@ -167,7 +167,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Check lint matrix status
-      if: ${{ needs.lint.result != 'success' }}
+      if: |
+        !contains(github.event.head_commit.message, '[ci-skip]')
+        &&
+        needs.changes-lint.outputs.detected == 'true'
+        &&
+        needs.lint.result != 'success'
       run: exit 1
 
   unittest:
@@ -255,5 +260,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Check install matrix status
-      if: ${{ needs.install.result != 'success' }}
+      if: |
+        !contains(github.event.head_commit.message, '[ci-skip]')
+        &&
+        needs.changes-install.outputs.detected == 'true'
+        &&
+        needs.install.result != 'success'
       run: exit 1
