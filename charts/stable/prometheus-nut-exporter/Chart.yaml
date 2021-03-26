@@ -1,9 +1,9 @@
 apiVersion: v2
-name: prometheus-nut-exporter
-description: Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance.
-type: application
-version: 1.0.4
 appVersion: 1.0.1
+description: Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance.
+name: prometheus-nut-exporter
+version: 2.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
 - nut
 - prometheus
@@ -14,3 +14,7 @@ sources:
 maintainers:
 - name: billimek
   email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.0.1

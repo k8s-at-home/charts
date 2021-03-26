@@ -1,6 +1,6 @@
 # prometheus-nut-exporter
 
-![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.1](https://img.shields.io/badge/AppVersion-1.0.1-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.0.1](https://img.shields.io/badge/AppVersion-1.0.1-informational?style=flat-square)
 
 Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance.
 
@@ -12,10 +12,13 @@ Prometheus NUT Exporter a service monitor to send NUT server metrics to a Promet
 
 ## Requirements
 
+Kubernetes: `>=1.16.0-0`
+
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.0.1 |
 
 ## TL;DR
 
@@ -64,9 +67,7 @@ helm install prometheus-nut-exporter k8s-at-home/prometheus-nut-exporter -f valu
 
 ## Custom configuration
 
-### Metrics
-
-You can find the exported metrics here: [metrics](https://github.com/HON95/prometheus-nut-exporter/blob/master/metrics.md).
+N/A
 
 ## Values
 
@@ -74,40 +75,34 @@ You can find the exported metrics here: [metrics](https://github.com/HON95/prome
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
 | env | object | `{}` |  |
-| fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"hon95/prometheus-nut-exporter"` |  |
 | image.tag | string | `"1.0.1"` |  |
-| imagePullSecrets | list | `[]` |  |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
-| podAnnotations | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
-| probes.liveness.failureThreshold | int | `5` |  |
-| probes.liveness.initialDelaySeconds | int | `30` |  |
-| probes.liveness.timeoutSeconds | int | `10` |  |
-| probes.readiness.failureThreshold | int | `5` |  |
-| probes.readiness.initialDelaySeconds | int | `30` |  |
-| probes.readiness.timeoutSeconds | int | `10` |  |
-| replicaCount | int | `1` |  |
-| resources | object | `{}` |  |
-| securityContext | object | `{}` |  |
-| service.port | int | `9995` |  |
-| service.type | string | `"ClusterIP"` |  |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
-| serviceMonitor.enabled | bool | `false` |  |
-| serviceMonitor.targets | list | `[]` |  |
-| tolerations | list | `[]` |  |
+| prometheus.serviceMonitor.enabled | bool | `false` |  |
+| prometheus.serviceMonitor.targets | list | `[]` |  |
+| service.port.port | int | `9995` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING** Migrate prometheus-nut-exporter to the common library, Helm configuration values have changed.
+
+#### Removed
+
+- N/A
 
 ### [1.0.2]
 
