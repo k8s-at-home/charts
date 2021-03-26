@@ -1,73 +1,55 @@
-# Default values for ser2sock.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# -- Specifies the strategy used to replace old Pods by new ones
-strategyType: Recreate
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
-  # -- Image repository
   repository: tenstartups/ser2sock
-  # -- Image tag. Possible values listed [here](https://hub.docker.com/r/tenstartups/ser2sock/tags).
-  tag: latest
-  # -- Image pull policy
   pullPolicy: IfNotPresent
+  tag: latest
 
-nameOverride: ""
-fullnameOverride: ""
+strategy:
+  type: Recreate
 
-# -- (string) Timezone the ser2sock instance should run as, e.g. 'America/New_York'
-timezone:
-# -- USB Device to use
-device: "/dev/ttyUSB0"
-# -- UID to run as
-puid: "1001"
-# -- GID to run as
-pgid: "1001"
-# -- Baudrate
-baudRate: 115200
+env:
+  # TZ:
+  # PUID:
+  # PGID:
+  LISTENER_PORT: 10000
+  BAUD_RATE: 115200
+  SERIAL_DEVICE: "/dev/ttyUSB0"
+
 
 service:
-  # -- Kubernetes service type for the GUI
-  type: ClusterIP
-  # -- Kubernetes port where the GUI is exposed
-  port: 10000
-  # -- Service annotations for the GUI
-  annotations: {}
-  # -- (string) Cluster IP for the GUI
-  clusterIP:
-  # -- (string) External IPs for the GUI
-  externalIPs:
-  # -- (string) Loadbalancer IP for the GUI
-  loadBalancerIP:
-  # -- (string) Loadbalancer client IP restriction range for the GUI
-  loadBalancerSourceRanges:
-  # -- (string) Loadbalancer externalTrafficPolicy
-  externalTrafficPolicy:
-  # -- (string) nodePort to listen on for the GUI
-  nodePort:
+  port:
+    port: 10000
 
-# -- CPU/Memory resource requests/limits or the GUI
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+ingress:
+  enabled: false
 
-# -- Node labels for pod assignment of the GUI
-nodeSelector: {}
+# Privileged may be required if USB controller is accessed directly through the host machine
+# securityContext:
+#   privileged: true
 
-# -- Toleration labels for pod assignment of the GUI
-tolerations: []
+# Path to your ser2sock device in the container
+additionalVolumeMounts: []
+#  - name: usb
+#    mountPath: /dev/ttyUSB0
 
-# -- Affinity settings for pod assignment of the GUI
-affinity: {}
+# Path to your ser2sock device on the host
+additionalVolumes: []
+#  - name: usb
+#    hostPath:
+#      path: /dev/ttyUSB0
 
-# -- Pod annotations
-podAnnotations: {}
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: app
+#           operator: In
+#           values:
+#           - ser2sock-controller

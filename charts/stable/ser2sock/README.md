@@ -1,6 +1,6 @@
 # ser2sock
 
-![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Serial to Socket Redirector
 
@@ -13,10 +13,13 @@ Serial to Socket Redirector
 
 ## Requirements
 
+Kubernetes: `>=1.16.0-0`
+
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.0.1 |
 
 ## TL;DR
 
@@ -65,9 +68,22 @@ helm install ser2sock k8s-at-home/ser2sock -f values.yaml
 
 ## Custom configuration
 
-**IMPORTANT NOTE:** the USB device must be accessible on the node where this pod runs, in order for this chart to function properly.
+**IMPORTANT NOTE:** a ser2sock controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
 
-A way to achieve this can be with nodeAffinity rules, for example:
+First, you will need to mount your ser2sock device into the pod, you can do so by adding the following to your values:
+
+```yaml
+additionalVolumeMounts:
+  - name: usb
+    mountPath: /path/to/device
+
+additionalVolumes:
+  - name: usb
+    hostPath:
+      path: /path/to/device
+```
+
+Second you will need to set a nodeAffinity rule, for example:
 
 ```yaml
 affinity:
@@ -75,13 +91,13 @@ affinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
       - matchExpressions:
-        - key: usb
+        - key: app
           operator: In
           values:
-          - alarmdecoder
+          - ser2sock-controller
 ```
 
-... where a node with an attached Coral USB device is labeled with `usb: alarmdecoder`
+... where a node with an attached ser2sock controller USB device is labeled with `app: ser2sock-controller`
 
 ## Values
 
@@ -89,31 +105,17 @@ affinity:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Affinity settings for pod assignment of the GUI |
-| baudRate | int | `115200` | Baudrate |
-| device | string | `"/dev/ttyUSB0"` | USB Device to use |
-| fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| image.repository | string | `"tenstartups/ser2sock"` | Image repository |
-| image.tag | string | `"latest"` | Image tag. Possible values listed [here](https://hub.docker.com/r/tenstartups/ser2sock/tags). |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| pgid | string | `"1001"` | GID to run as |
-| podAnnotations | object | `{}` | Pod annotations |
-| puid | string | `"1001"` | UID to run as |
-| resources | object | `{}` | CPU/Memory resource requests/limits or the GUI |
-| service.annotations | object | `{}` | Service annotations for the GUI |
-| service.clusterIP | string | `nil` | Cluster IP for the GUI |
-| service.externalIPs | string | `nil` | External IPs for the GUI |
-| service.externalTrafficPolicy | string | `nil` | Loadbalancer externalTrafficPolicy |
-| service.loadBalancerIP | string | `nil` | Loadbalancer IP for the GUI |
-| service.loadBalancerSourceRanges | string | `nil` | Loadbalancer client IP restriction range for the GUI |
-| service.nodePort | string | `nil` | nodePort to listen on for the GUI |
-| service.port | int | `10000` | Kubernetes port where the GUI is exposed |
-| service.type | string | `"ClusterIP"` | Kubernetes service type for the GUI |
-| strategyType | string | `"Recreate"` | Specifies the strategy used to replace old Pods by new ones |
-| timezone | string | `nil` | Timezone the ser2sock instance should run as, e.g. 'America/New_York' |
-| tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
+| additionalVolumeMounts | list | `[]` |  |
+| additionalVolumes | list | `[]` |  |
+| env.BAUD_RATE | int | `115200` |  |
+| env.LISTENER_PORT | int | `10000` |  |
+| env.SERIAL_DEVICE | string | `"/dev/ttyUSB0"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"tenstartups/ser2sock"` |  |
+| image.tag | string | `"latest"` |  |
+| ingress.enabled | bool | `false` |  |
+| service.port.port | int | `10000` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -121,7 +123,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.0.2]
+### [3.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING** Migrate ser2sock to the common library, Helm configuration values have changed.
+
+#### Removed
+
+- N/A
+
+### [1.0.0]
 
 #### Added
 
@@ -135,7 +151,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[2.0.2]: #2.0.2
+[3.0.0]: #3.0.0
+[1.0.0]: #1.0.0
 
 ## Support
 
