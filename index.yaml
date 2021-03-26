@@ -5148,6 +5148,30 @@ entries:
   ddclient:
   - apiVersion: v2
     appVersion: 3.9.1
+    created: "2021-03-26T13:42:38.103492272Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.0.1
+    deprecated: true
+    description: Perl client used to update dynamic DNS entries for accounts on Dynamic
+      DNS Network Service Providers
+    digest: e9283f84599be08c44e706f0d2b08ee455ee8f3fe551cf376c9b774309edda18
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ddclient
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ddclient-logo.png
+    keywords:
+    - ddclient
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    name: ddclient
+    sources:
+    - https://github.com/ddclient/ddclient
+    - https://hub.docker.com/r/linuxserver/ddclient
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ddclient-4.0.2/ddclient-4.0.2.tgz
+    version: 4.0.2
+  - apiVersion: v2
+    appVersion: 3.9.1
     created: "2021-03-23T21:24:05.09762765Z"
     dependencies:
     - name: common
@@ -6163,6 +6187,24 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/deluge-1.0.0/deluge-1.0.0.tgz
     version: 1.0.0
   digitalocean-dyndns:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2021-03-26T13:42:38.276072673Z"
+    deprecated: true
+    description: Dynamic DNS using DigitalOcean's DNS Services
+    digest: f44d1df14d1e8e3c87ef398337d1187f4bb8293325e35dd705738e7c3ad6a7d5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/digitalocean-dyndns
+    icon: https://i.imgur.com/cS6iqXD.png
+    keywords:
+    - digitalocean
+    - dynamicdns
+    name: digitalocean-dyndns
+    sources:
+    - https://github.com/tunix/digitalocean-dyndns
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/digitalocean-dyndns-2.0.4/digitalocean-dyndns-2.0.4.tgz
+    version: 2.0.4
   - apiVersion: v2
     appVersion: "1.0"
     created: "2021-03-18T13:23:05.773804547Z"
@@ -42699,4 +42741,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-26T09:32:26.116814067Z"
+generated: "2021-03-26T13:42:38.284816461Z"
