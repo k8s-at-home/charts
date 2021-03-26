@@ -1,22 +1,28 @@
-{{- if .Values.serviceMonitor.enabled }}
+{{- if .Values.prometheus.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "prometheus-nut-exporter.fullname" . }}
+  name: {{ template "common.names.fullname" . }}
   labels:
-    {{- include "prometheus-nut-exporter.labels" . | nindent 4 }}
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.prometheus.serviceMonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   selector:
     matchLabels:
-      {{- include "prometheus-nut-exporter.selectorLabels" . | nindent 6 }}
+      {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-    {{- range .Values.serviceMonitor.targets }}
-    - port: http
-      interval: 15s
-      scrapeTimeout: 10s
-      path: "/nut"
-      params:
-        target:
-          - "{{ .hostname }}:{{ .port }}"
-    {{- end }}
+  {{- range .Values.prometheus.serviceMonitor.targets }}
+  - port: http
+    interval: {{ .interval }}
+    scrapeTimeout: {{ .scrapeTimeout }}
+    path: /nut
+    params:
+      target:
+      - "{{ .hostname }}:{{ .port }}"
+    relabelings:
+    - sourceLabels: [__param_target]
+      targetLabel: target
+  {{- end }}
 {{- end }}
