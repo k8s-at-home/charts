@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 3.9.1
 description: Perl client used to update dynamic DNS entries for accounts on Dynamic DNS Network Service Providers
 name: ddclient
-version: 4.0.1
+version: 4.0.2
 kubeVersion: ">=1.16.0-0"
 keywords:
 - ddclient
@@ -12,9 +12,7 @@ icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linu
 sources:
 - https://github.com/ddclient/ddclient
 - https://hub.docker.com/r/linuxserver/ddclient
-maintainers:
-- name: billimek
-  email: jeff@billimek.com
+deprecated: true
 dependencies:
 - name: common
   repository: https://library-charts.k8s-at-home.com
