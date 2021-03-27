@@ -86,13 +86,6 @@ N/A
 | image.repository | string | `"jesec/rtorrent-flood"` |  |
 | image.tag | string | `"latest@sha256:378853e3af5ba59ed68a757ca740db65717ee4c6562a2886a96d8559d26e3db4"` |  |
 | ingress.enabled | bool | `false` |  |
-| initContainers[0].command[0] | string | `"sh"` |  |
-| initContainers[0].command[1] | string | `"-c"` |  |
-| initContainers[0].command[2] | string | `"rm -rf /config/.local/share/rtorrent/.session/rtorrent.lock"` |  |
-| initContainers[0].image | string | `"busybox"` |  |
-| initContainers[0].name | string | `"remove-session-lock"` |  |
-| initContainers[0].volumeMounts[0].mountPath | string | `"/config"` |  |
-| initContainers[0].volumeMounts[0].name | string | `"config"` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.downloads.emptyDir.enabled | bool | `false` |  |
