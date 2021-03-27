@@ -84,7 +84,7 @@ N/A
 | env.HOME | string | `"/config"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"jesec/rtorrent-flood"` |  |
-| image.tag | string | `"latest@sha256:378853e3af5ba59ed68a757ca740db65717ee4c6562a2886a96d8559d26e3db4"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
