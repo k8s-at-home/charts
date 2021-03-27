@@ -1,6 +1,6 @@
 # rtorrent-flood
 
-![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v0.9.8-r8+v4.5.0](https://img.shields.io/badge/AppVersion-v0.9.8--r8+v4.5.0-informational?style=flat-square)
+![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 rTorrent is a stable, high-performance and low resource consumption BitTorrent client.
 
