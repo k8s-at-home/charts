@@ -5,5 +5,5 @@ metadata:
   labels:
     {{- include "common.labels" . | nindent 4 }}
 data:
-  rtorrent.rc: |
+  .rtorrent.rc: |
 {{ .Values.config | indent 4 }}
