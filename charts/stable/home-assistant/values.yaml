@@ -44,6 +44,12 @@ git:
 prometheus:
   serviceMonitor:
     enabled: false
+    ## See https://www.home-assistant.io/docs/authentication/ for where to find
+    ## long lived access token creation under your account profile, which is
+    ## needed to monitor Home Assistant
+    # bearerTokenSecret:
+    #   name: ""
+    #   key: ""
     # interval: 1m
     # additionalLabels: {}
 
