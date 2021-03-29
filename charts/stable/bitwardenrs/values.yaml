@@ -176,3 +176,46 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+ldapSync:
+  enabled: false
+  # Configuration file for ldap server connection
+  configToml: |-
+    bitwarden_url = "http://bitwarden:80"
+    bitwarden_admin_token = "admin"
+    ldap_host = "ldap"
+    ldap_bind_dn = "cn=admin,dc=example,dc=org"
+    ldap_bind_password = "admin"
+    ldap_search_base_dn = "dc=example,dc=org"
+    ldap_search_filter = "(&(objectClass=*)(uid=*))"
+    ldap_sync_interval_seconds = 10
+  # Use existing secret for config.toml
+  existingSecret: ""
+  # Add extra containers
+  extraContainers: []
+    # - name: vpn
+    #   image: dperson/openvpn-client
+    #   command: ["/bin/sh","-c"]
+    #   args: ["openvpn --config 'vpn/client.ovpn' --script-security 3;"]
+    #   stdin: true
+    #   tty: true
+    #   securityContext:
+    #     privileged: true
+    #     capabilities:
+    #       add:
+    #         - NET_ADMIN
+    #   env:
+    #     - name: DE
+    #       value: "Berlin"
+    #   volumeMounts:
+    #     - name: bitwardenrs-vpn
+    #       mountPath: /vpn/client.ovpn
+    #       subPath: client.ovpn
+  # Add extra volumes
+  extraVolumes: []
+    # - name: bitwarden-vpn
+    #   secret:
+    #     secretName: bitwardenrs-vpn
+    #     items:
+    #       - key: client.ovpn
+    #         path: client.ovpn

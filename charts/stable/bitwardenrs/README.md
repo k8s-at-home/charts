@@ -62,6 +62,14 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install bitwardenrs k8s-at-home/bitwardenrs -f values.yaml
 ```
 
+### Ldap-Sync
+
+Via [vividboarder/bitwarden_rs_ldap](https://github.com/ViViDboarder/bitwarden_rs_ldap) it is possible to fetch your user base from an ldap server of your choosing. If ldapSync.enabled is true you will get the opportunity to use an ldap server which could assist with inviting users.
+
+With the ldapSync.extraContainers and ldapSync.extraVolumes values you're able to customize the ldap-sync pod.
+
+For example with environments that require a secure connection to an LDAP server you can add a VPN container, which enables the sync container to communicate over a VPN.
+
 ## Custom configuration
 
 N/A
@@ -129,6 +137,11 @@ N/A
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths | list | `[]` |  |
 | ingress.tls | list | `[]` |  |
+| ldapSync.configToml | string | `"bitwarden_url = \"http://bitwarden:80\"\nbitwarden_admin_token = \"admin\"\nldap_host = \"ldap\"\nldap_bind_dn = \"cn=admin,dc=example,dc=org\"\nldap_bind_password = \"admin\"\nldap_search_base_dn = \"dc=example,dc=org\"\nldap_search_filter = \"(&(objectClass=*)(uid=*))\"\nldap_sync_interval_seconds = 10"` |  |
+| ldapSync.enabled | bool | `false` |  |
+| ldapSync.existingSecret | string | `""` |  |
+| ldapSync.extraContainers | list | `[]` |  |
+| ldapSync.extraVolumes | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` |  |
