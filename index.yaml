@@ -175,6 +175,31 @@ entries:
   airsonic:
   - apiVersion: v2
     appVersion: 10.6.2
+    created: "2021-03-29T23:59:54.048851726Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Airsonic is a Free and Open Source community driven media server
+    digest: 0f370b3c6a3493d2d22e0596baa26aef861b0acab92b2677461fa522fc2ff9e8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/airsonic
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/airsonic-logo.png
+    keywords:
+    - airsonic
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: airsonic
+    sources:
+    - https://github.com/airsonic/airsonic
+    - https://github.com/linuxserver/docker-airsonic
+    - https://github.com/k8s-at-home/charts/tree/master/charts/airsonic
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/airsonic-2.1.1/airsonic-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 10.6.2
     created: "2021-03-23T21:24:04.093036754Z"
     dependencies:
     - name: common
@@ -324,6 +349,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/airsonic-1.0.0/airsonic-1.0.0.tgz
     version: 1.0.0
   alertmanager-bot:
+  - apiVersion: v2
+    appVersion: 0.4.2
+    created: "2021-03-29T23:59:54.331789391Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Bot for Prometheus Alertmanager
+    digest: 19352898265e8d3c242e30b725b7ea36e7056d3a0190f10248e057853756b362
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/alertmanager-bot
+    keywords:
+    - alertmanager
+    - telegram
+    - bot
+    - alerting
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: alertmanager-bot
+    sources:
+    - https://hub.docker.com/r/metalmatze/alertmanager-bot
+    - https://github.com/metalmatze/alertmanager-bot
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/alertmanager-bot-4.1.1/alertmanager-bot-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: 0.4.2
     created: "2021-03-23T21:24:04.25190944Z"
@@ -784,6 +835,33 @@ entries:
   appdaemon:
   - apiVersion: v2
     appVersion: 4.0.5
+    created: "2021-03-29T23:59:54.604606039Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: AppDaemon is a loosely coupled, multi-threaded, sandboxed python
+      execution environment for writing automation apps for various types of Home
+      Automation Software including Home Assistant and MQTT.
+    digest: 37ffa9b729529fd6f16c4a4eae8a013a1f74e6de874c30795a37685101df0a98
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/appdaemon
+    keywords:
+    - appdaemon
+    - home-automation
+    - home-assistant
+    - mqtt
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: appdaemon
+    sources:
+    - https://github.com/AppDaemon/appdaemon
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/appdaemon-4.1.1/appdaemon-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: 4.0.5
     created: "2021-03-23T21:24:04.398235872Z"
     dependencies:
     - name: common
@@ -1232,6 +1310,36 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/appdaemon-1.0.0/appdaemon-1.0.0.tgz
     version: 1.0.0
   bazarr:
+  - apiVersion: v2
+    appVersion: v0.9.0.5
+    created: "2021-03-29T23:59:54.871551319Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Bazarr is a companion application to Sonarr and Radarr. It manages
+      and downloads subtitles based on your requirements
+    digest: 217a9abfa94ebed2fa1b1ec61c55fb271bf0db4ece13d89ad04d5eb706aeb77d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bazarr
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: bazarr
+    sources:
+    - https://hub.docker.com/r/linuxserver/bazarr/
+    - https://github.com/morpheus65535/bazarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bazarr-7.1.1/bazarr-7.1.1.tgz
+    version: 7.1.1
   - apiVersion: v2
     appVersion: v0.9.0.5
     created: "2021-03-23T21:24:04.544632008Z"
@@ -2200,6 +2308,29 @@ entries:
   bitwardenrs:
   - apiVersion: v2
     appVersion: 1.18.0
+    created: "2021-03-29T23:59:55.154696387Z"
+    description: Unofficial Bitwarden compatible server written in Rust
+    digest: 4be862b0e11d61b1584881f9ed642fc61098e5b2dfe17735fd0e0c8e07de47a0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bitwardenrs
+    icon: https://raw.githubusercontent.com/bitwarden/brand/master/icons/256x256.png
+    keywords:
+    - bitwarden
+    - bitwardenrs
+    - bitwarden_rs
+    - password
+    - rust
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: bitwardenrs
+    sources:
+    - https://github.com/dani-garcia/bitwarden_rs
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bitwardenrs-2.1.0/bitwardenrs-2.1.0.tgz
+    version: 2.1.0
+  - apiVersion: v2
+    appVersion: 1.18.0
     created: "2021-03-18T13:23:03.17283386Z"
     description: Unofficial Bitwarden compatible server written in Rust
     digest: 8e764ee8156c0c8e4846c2929d0c6ad01ff9f65bc860a721d113527077321b8d
@@ -2337,6 +2468,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/bitwardenrs-0.1.0/bitwardenrs-0.1.0.tgz
     version: 0.1.0
   blocky:
+  - apiVersion: v2
+    appVersion: v0.13
+    created: "2021-03-29T23:59:55.43054477Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: DNS proxy as ad-blocker for local network
+    digest: b467089108f78d5e1e1d3d4cde8356d9f483970464428ed68248423afa00e8f9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/blocky
+    icon: https://github.com/0xERR0R/blocky/raw/master/docs/blocky.svg?sanitize=true
+    keywords:
+    - blocky
+    - adblock
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: blocky
+    sources:
+    - https://github.com/0xERR0R/blocky
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/blocky-6.1.1/blocky-6.1.1.tgz
+    version: 6.1.1
   - apiVersion: v2
     appVersion: v0.13
     created: "2021-03-24T16:51:13.241078241Z"
@@ -2804,6 +2960,32 @@ entries:
   booksonic-air:
   - apiVersion: v2
     appVersion: v2009.1.0
+    created: "2021-03-29T23:59:55.695227024Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Booksonic is a platform for accessing the audibooks you own wherever
+      you are
+    digest: 86dc408f9d28b1644ad12ff1bc271545a12470eacc6e577ce4ef3228bf453576
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/booksonic-air
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/booksonic-air.png
+    keywords:
+    - booksonic
+    - audiobook
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: wojoinc@pm.me
+      name: wojoinc
+    name: booksonic-air
+    sources:
+    - https://github.com/popeen/Booksonic-Air
+    - https://hub.docker.com/r/linuxserver/booksonic-air
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/booksonic-air-4.1.1/booksonic-air-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: v2009.1.0
     created: "2021-03-23T21:24:04.680843912Z"
     dependencies:
     - name: common
@@ -3212,6 +3394,30 @@ entries:
   calibre:
   - apiVersion: v2
     appVersion: 5.13.0
+    created: "2021-03-29T23:59:55.96875808Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Calibre is a powerful and easy to use e-book manager.
+    digest: b5dcc292e1115e566700649e5f330d94b10a389af62fa857dc6fde0863789094
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/calibre
+    icon: https://github.com/kovidgoyal/calibre/raw/master/resources/images/lt.png
+    keywords:
+    - calibre
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rolf@berkenbosch.nl
+      name: rolfberkenbosch
+    name: calibre
+    sources:
+    - https://hub.docker.com/r/linuxserver/calibre/
+    - https://github.com/kovidgoyal/calibre/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/calibre-2.1.1/calibre-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 5.13.0
     created: "2021-03-23T21:24:04.821025724Z"
     dependencies:
     - name: common
@@ -3307,6 +3513,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/calibre-1.0.0/calibre-1.0.0.tgz
     version: 1.0.0
   calibre-web:
+  - apiVersion: v2
+    appVersion: 0.6.9
+    created: "2021-03-29T23:59:56.243237148Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Calibre-Web is a web app providing a clean interface for browsing,
+      reading and downloading eBooks using an existing Calibre database.
+    digest: 01c732cc92a38f13fb7bfacfb0ba01ac5eefe899ddf4bc549d9a5d1041769249
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/calibre-web
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-web-icon.png
+    keywords:
+    - calibre
+    - ebook
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: wojoinc@pm.me
+      name: wojoinc
+    name: calibre-web
+    sources:
+    - https://hub.docker.com/r/linuxserver/calibre-web/
+    - https://github.com/janeczku/calibre-web
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/calibre-web-6.1.1/calibre-web-6.1.1.tgz
+    version: 6.1.1
   - apiVersion: v2
     appVersion: 0.6.9
     created: "2021-03-23T21:24:04.957304932Z"
@@ -5706,6 +5938,34 @@ entries:
   deconz:
   - apiVersion: v2
     appVersion: 2.10.03
+    created: "2021-03-29T23:59:56.528311737Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: deCONZ is an easy to use control software, with which you can set
+      up and control Zigbee networks of any size without further programming effort.
+    digest: ddc2f6306180eed61f43f13d93ad94a0d9907d22c5b12b723f2f2e1580a0fe7d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deconz
+    icon: https://avatars1.githubusercontent.com/u/4217524?s=400&v=4
+    keywords:
+    - deconz
+    - home-automation
+    - zigbee
+    - conbee
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: deconz
+    sources:
+    - https://github.com/dresden-elektronik/deconz-rest-plugin
+    - https://github.com/marthoc/docker-deconz
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/deconz-4.1.1/deconz-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: 2.10.03
     created: "2021-03-23T21:24:05.240940225Z"
     dependencies:
     - name: common
@@ -5915,6 +6175,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/deconz-1.0.0/deconz-1.0.0.tgz
     version: 1.0.0
   deluge:
+  - apiVersion: v2
+    appVersion: v2.0.3-2201906121747
+    created: "2021-03-29T23:59:56.933861189Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Deluge is a torrent download client
+    digest: b79b2b85dcdd2fe1e6679583722c3818c492834c3615452303cac44d0bd9a685
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deluge
+    icon: https://avatars2.githubusercontent.com/u/6733935?v=3&s=200
+    keywords:
+    - deluge
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark@markmcw.uk
+      name: mcmarkj
+    name: deluge
+    sources:
+    - https://hub.docker.com/r/linuxserver/deluge/
+    - https://deluge-torrent.org/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/deluge-3.1.1/deluge-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: v2.0.3-2201906121747
     created: "2021-03-23T21:24:05.451876527Z"
@@ -6288,6 +6573,31 @@ entries:
   dizquetv:
   - apiVersion: v2
     appVersion: 1.3.0
+    created: "2021-03-29T23:59:57.209455389Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Create live TV channel streams from media on your Plex servers.
+    digest: 7081e792ed9af078adb0146f68026a50aa7a58c9d7ed01258847c00b4d576b4c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dizquetv
+    icon: https://github.com/vexorian/dizquetv/raw/main/resources/dizquetv.png?raw=true
+    keywords:
+    - dizqueTV
+    - dizquetv
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dizquetv
+    sources:
+    - https://github.com/vexorian/dizquetv
+    - https://hub.docker.com/r/vexorian/dizquetv
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dizquetv-2.1.1/dizquetv-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.3.0
     created: "2021-03-23T21:24:05.585684906Z"
     dependencies:
     - name: common
@@ -6439,6 +6749,31 @@ entries:
   dnsmadeeasy-webhook:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-03-29T23:59:57.48155955Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Cert-Manager Webhook for DNSMadeEasy
+    digest: e84b99cafd9719ded52e23d328b5adc1fe74e556865df4c7f6010b0d7d82ca34
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dnsmadeeasy-webhook
+    icon: https://pbs.twimg.com/profile_images/1759911243/dnsmeavatar_400x400.png
+    keywords:
+    - cert-manager
+    - dnsmadeeasy
+    - letsencrypt
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: dnsmadeeasy-webhook
+    sources:
+    - https://github.com/k8s-at-home/dnsmadeeasy-webhook
+    - https://cert-manager.io
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dnsmadeeasy-webhook-2.1.1/dnsmadeeasy-webhook-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-03-23T21:24:05.718654541Z"
     dependencies:
     - name: common
@@ -6588,6 +6923,36 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/dnsmadeeasy-webhook-1.0.0/dnsmadeeasy-webhook-1.0.0.tgz
     version: 1.0.0
   dsmr-reader:
+  - apiVersion: v2
+    appVersion: v4.9.0
+    created: "2021-03-29T23:59:57.770862204Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: DSMR-protocol reader, telegram data storage and energy consumption
+      visualizer.
+    digest: 45e36b2d9b17a2e32121b76fd11516347197485b2fa4f710e60303f4eac73abb
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dsmr-reader
+    icon: https://avatars2.githubusercontent.com/u/57727360?s=400&v=4
+    keywords:
+    - dsmr-reader
+    - energy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dsmr-reader
+    sources:
+    - https://github.com/dsmrreader/dsmr-reader
+    - https://github.com/xirixiz/dsmr-reader-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dsmr-reader-3.1.1/dsmr-reader-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: v4.9.0
     created: "2021-03-23T21:24:05.865330391Z"
@@ -7110,6 +7475,31 @@ entries:
   esphome:
   - apiVersion: v2
     appVersion: 1.16.2
+    created: "2021-03-29T23:59:58.037404702Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful
+      configuration files and control them remotely through Home Automation systems.
+    digest: faff98263a43a7896ac6721b2e80f8367c2d047d2c413cef52f6d4164cc3bc39
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/esphome
+    icon: https://esphome.io/_images/logo-text.svg
+    keywords:
+    - esphome
+    - home-automation
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: esphome
+    sources:
+    - https://github.com/esphome/esphome
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/esphome-6.2.1/esphome-6.2.1.tgz
+    version: 6.2.1
+  - apiVersion: v2
+    appVersion: 1.16.2
     created: "2021-03-29T10:29:25.28368071Z"
     dependencies:
     - name: common
@@ -7599,6 +7989,30 @@ entries:
   flaresolverr:
   - apiVersion: v2
     appVersion: v1.2.3
+    created: "2021-03-29T23:59:58.440725738Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: FlareSolverr is a proxy server to bypass Cloudflare protection
+    digest: 13bf664e45c5e6549f1b1c2b837e3dba0cea87e8caa465aa8bdd2e486807dfbe
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/flaresolverr
+    keywords:
+    - flaresolverr
+    - jackett
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: flaresolverr
+    sources:
+    - https://github.com/FlareSolverr/FlareSolverr
+    - https://hub.docker.com/r/flaresolverr/flaresolverr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/flaresolverr-3.1.1/flaresolverr-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: v1.2.3
     created: "2021-03-23T21:24:06.379657717Z"
     dependencies:
     - name: common
@@ -7812,6 +8226,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/flaresolverr-1.0.0/flaresolverr-1.0.0.tgz
     version: 1.0.0
   flood:
+  - apiVersion: v2
+    appVersion: 4.1.1
+    created: "2021-03-29T23:59:58.70137917Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Flood is a monitoring service for various torrent clients
+    digest: aa553dc2d4249aa86056b3bd70b935e094d69055369aa02bd45b932d09c0c200
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/flood
+    icon: https://raw.githubusercontent.com/jesec/flood/master/flood.svg
+    keywords:
+    - flood
+    - rtorrent
+    - qbittorrent
+    - transmission
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: flood
+    sources:
+    - https://github.com/jesec/flood
+    - https://hub.docker.com/r/jesec/flood
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/flood-4.1.1/flood-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: 4.1.1
     created: "2021-03-23T21:24:06.535616851Z"
@@ -8366,6 +8807,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/flood-1.0.0/flood-1.0.0.tgz
     version: 1.0.0
   freshrss:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2021-03-29T23:59:58.96454363Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: FreshRSS is a self-hosted RSS feed aggregator
+    digest: 2342fdc1f45227916078d9596b2b49c66c1c5125712ec517fd49a9d5df26c610
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/freshrss
+    icon: https://github.com/FreshRSS/FreshRSS/blob/master/docs/img/FreshRSS-logo.png?raw=true
+    keywords:
+    - freshrss
+    - rss
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nathan@nathanpawelek.com
+      name: npawelek
+    name: freshrss
+    sources:
+    - https://github.com/FreshRSS/FreshRSS
+    - https://hub.docker.com/r/linuxserver/freshrss
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/freshrss-4.1.1/freshrss-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: 1.17.0
     created: "2021-03-23T21:24:06.712545716Z"
@@ -9015,6 +9481,31 @@ entries:
   gaps:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-03-29T23:59:59.239623524Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Gaps searches through your Plex Server or local folders for all movies,
+      then queries for known movies in the same collection.
+    digest: d9bdeb113b4c07ecb11a3e5d1da43135db234df57c5982316b44c77edb88cf40
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/gaps
+    icon: https://raw.githubusercontent.com/JasonHHouse/gaps/master/images/Final-Black.png
+    keywords:
+    - plex
+    - plex-media-server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: gaps
+    sources:
+    - https://github.com/JasonHHouse/gaps
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/gaps-3.1.1/gaps-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-03-23T21:24:06.858244063Z"
     dependencies:
     - name: common
@@ -9311,6 +9802,31 @@ entries:
   gonic:
   - apiVersion: v2
     appVersion: v0.12.0
+    created: "2021-03-29T23:59:59.48819132Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Music streaming server / subsonic server API implementation
+    digest: 3a762b465c03015ff16b8cb3e13e95037804a391e4651f9ced527c1d3f0a7aee
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/gonic
+    icon: https://raw.githubusercontent.com/sentriz/gonic/master/.github/logo.png
+    keywords:
+    - music
+    - subsonic
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: gonic
+    sources:
+    - https://github.com/sentriz/gonic
+    - https://hub.docker.com/r/sentriz/gonic
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/gonic-4.1.1/gonic-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: v0.12.0
     created: "2021-03-23T21:24:07.005778205Z"
     dependencies:
     - name: common
@@ -9557,6 +10073,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/gonic-1.0.0/gonic-1.0.0.tgz
     version: 1.0.0
   grocy:
+  - apiVersion: v2
+    appVersion: v2.7.1
+    created: "2021-03-29T23:59:59.746241422Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: ERP beyond your fridge - grocy is a web-based self-hosted groceries
+      & household management solution for your home
+    digest: 7fd0352dabd68f641f7f4d2df5caab0a4d92c812880308ef1315a6eb001cef1e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/grocy
+    icon: https://github.com/grocy/grocy/raw/master/public/img/appicons/mstile-150x150.png
+    keywords:
+    - grocy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: grocy
+    sources:
+    - https://github.com/grocy/grocy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/grocy-6.1.1/grocy-6.1.1.tgz
+    version: 6.1.1
   - apiVersion: v2
     appVersion: v2.7.1
     created: "2021-03-23T21:24:07.141622942Z"
@@ -9941,6 +10481,33 @@ entries:
   healthchecks:
   - apiVersion: v2
     appVersion: 1.19.0
+    created: "2021-03-30T00:00:00.005339737Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Healthchecks is a cron job monitoring service. It listens for HTTP
+      requests and email messages ("pings") from your cron jobs and scheduled tasks
+      ("checks"). When a ping does not arrive on time, Healthchecks sends out alerts.
+    digest: be4bcd6accc712339d132382a6d52956b7ba23f712fb5ffea34c06b041fa080e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/healthchecks
+    icon: https://raw.githubusercontent.com/healthchecks/healthchecks/master/stuff/logo.svg?raw=true
+    keywords:
+    - cron
+    - monitoring
+    - alert
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: healthchecks
+    sources:
+    - https://github.com/healthchecks/healthchecks
+    - https://hub.docker.com/r/linuxserver/healthchecks
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/healthchecks-2.1.1/healthchecks-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.19.0
     created: "2021-03-23T21:24:07.288065328Z"
     dependencies:
     - name: common
@@ -10048,6 +10615,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/healthchecks-1.0.0/healthchecks-1.0.0.tgz
     version: 1.0.0
   heimdall:
+  - apiVersion: v2
+    appVersion: 2.2.2
+    created: "2021-03-30T00:00:00.268498597Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: An Application dashboard and launcher
+    digest: 698e4877c1bbb92fce1152270e32e79fcfb791172c7f745e6c5ac6ab800af077
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/heimdall
+    icon: https://i.imgur.com/mM4tcO5.png
+    keywords:
+    - heimdall
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: heimdall
+    sources:
+    - https://hub.docker.com/r/linuxserver/heimdall/
+    - https://github.com/linuxserver/heimdall
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/heimdall-6.1.1/heimdall-6.1.1.tgz
+    version: 6.1.1
   - apiVersion: v2
     appVersion: 2.2.2
     created: "2021-03-23T21:24:07.519934838Z"
@@ -10472,6 +11063,45 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/heimdall-1.0.1/heimdall-1.0.1.tgz
     version: 1.0.1
   home-assistant:
+  - apiVersion: v2
+    appVersion: 2021.3.4
+    created: "2021-03-30T00:00:00.67421386Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.4
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Home Assistant
+    digest: 2af814587a96196221529f8264b353f29c8f94ad00e4e9090abd1d710aea6279
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-7.2.1/home-assistant-7.2.1.tgz
+    version: 7.2.1
   - apiVersion: v2
     appVersion: 2021.3.4
     created: "2021-03-28T21:39:17.272232323Z"
@@ -12461,6 +13091,28 @@ entries:
   homer:
   - apiVersion: v2
     appVersion: 20.09.1
+    created: "2021-03-30T00:00:01.081676443Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: A dead simple static HOMepage for your servER to keep your services
+      on hand, from a simple yaml configuration file.
+    digest: 6e66ae5b9e60f7f25ae33cbe732cc9abad1eb46aa1de38e32dfa000cfcb93fab
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/homer
+    icon: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/logo.png
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: homer
+    sources:
+    - https://github.com/bastienwirtz/homer
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/homer-4.1.1/homer-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: 20.09.1
     created: "2021-03-23T21:24:07.921971764Z"
     dependencies:
     - name: common
@@ -12826,6 +13478,31 @@ entries:
   hyperion-ng:
   - apiVersion: v2
     appVersion: 2.0.0-alpha9
+    created: "2021-03-30T00:00:01.505074405Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Hyperion is an opensource Bias or Ambient Lighting implementation
+    digest: 408cca675dd590c53ee668bee77a167842abfc7e61a88920864ded48e4387acc
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/hyperion-ng
+    icon: https://raw.githubusercontent.com/hyperion-project/hyperion.ng/master/assets/webconfig/img/hyperion/hyperionlogo.png?raw=true
+    keywords:
+    - hyperion-ng
+    - hyperion
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: hyperion-ng
+    sources:
+    - https://github.com/hyperion-project/hyperion.ng
+    - https://hub.docker.com/r/sirfragalot/hyperion.ng
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/hyperion-ng-3.1.1/hyperion-ng-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 2.0.0-alpha9
     created: "2021-03-23T21:24:08.067416598Z"
     dependencies:
     - name: common
@@ -13096,6 +13773,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/hyperion-ng-1.0.0/hyperion-ng-1.0.0.tgz
     version: 1.0.0
   icantbelieveitsnotvaletudo:
+  - apiVersion: v2
+    appVersion: 2021.2.0
+    created: "2021-03-30T00:00:01.889238026Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Create live map data from Valetudo powered robots
+    digest: fd35e358f779d618b2a1c7e1f5f4ad8111963c90cd12ace4f41b2fba6c871954
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/icantbelieveitsnotvaletudo
+    icon: https://icantbelieveitsnotvaletudo.org/icon
+    keywords:
+    - icantbelieveitsnotvaletudo
+    - MQTT
+    - valetudo
+    - iot
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    name: icantbelieveitsnotvaletudo
+    sources:
+    - https://github.com/Hypfer/ICantBelieveItsNotValetudo
+    - https://github.com/k8s-at-home/charts/tree/master/charts/icantbelieveitsnotvaletudo
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/icantbelieveitsnotvaletudo-3.1.1/icantbelieveitsnotvaletudo-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: 2021.2.0
     created: "2021-03-23T21:24:08.198855106Z"
@@ -13388,6 +14092,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/intel-gpu-plugin-1.0.0/intel-gpu-plugin-1.0.0.tgz
     version: 1.0.0
   jackett:
+  - apiVersion: v2
+    appVersion: v0.17.591
+    created: "2021-03-30T00:00:02.310755067Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: API Support for your favorite torrent trackers
+    digest: 0dcf5cff505308cff3219389c7009fdcb9a702c2f748f0ea77eec7fbc2da78fe
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://hub.docker.com/r/linuxserver/jackett/
+    - https://github.com/Jackett/Jackett
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-8.1.1/jackett-8.1.1.tgz
+    version: 8.1.1
   - apiVersion: v2
     appVersion: v0.17.591
     created: "2021-03-23T21:24:08.322922633Z"
@@ -14385,6 +15114,32 @@ entries:
   jellyfin:
   - apiVersion: v2
     appVersion: 10.7.0
+    created: "2021-03-30T00:00:02.590578115Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Jellyfin is a Free Software Media System
+    digest: 9d4e7497e321f0768f2f2481ef36199d579b1cf6095a780e9032322cc9d56ba4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/Jellyfin
+    icon: https://github.com/jellyfin/jellyfin-ux/blob/master/branding/SVG/icon-solid-black.svg
+    keywords:
+    - jellyfin
+    - plex
+    - emby
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jellyfin
+    sources:
+    - https://hub.docker.com/r/jellyfin/jellyfin
+    - https://github.com/jellyfin/jellyfin
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jellyfin-7.1.1/jellyfin-7.1.1.tgz
+    version: 7.1.1
+  - apiVersion: v2
+    appVersion: 10.7.0
     created: "2021-03-23T21:24:08.500328622Z"
     dependencies:
     - name: common
@@ -15014,6 +15769,31 @@ entries:
   joplin-server:
   - apiVersion: v2
     appVersion: 1.7.2
+    created: "2021-03-30T00:00:02.934644885Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: This server allows you to sync any Joplin client
+    digest: 7676e07f597b1b6ddda7d364c29c5016b9e3031ad463ecccc5e4d3194211ebd3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jopplin-server
+    icon: https://raw.githubusercontent.com/laurent22/joplin/master/Assets/LinuxIcons/256x256.png?raw=true
+    keywords:
+    - joplin
+    - notes
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: joplin-server
+    sources:
+    - https://github.com/laurent22/joplin/tree/dev/packages/server
+    - https://github.com/laurent22/joplin
+    - https://hub.docker.com/r/joplin/server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/joplin-server-2.1.1/joplin-server-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.7.2
     created: "2021-03-23T21:24:08.628521863Z"
     dependencies:
     - name: common
@@ -15113,6 +15893,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/joplin-server-1.0.1/joplin-server-1.0.1.tgz
     version: 1.0.1
   kanboard:
+  - apiVersion: v2
+    appVersion: v1.2.18
+    created: "2021-03-30T00:00:03.23293654Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: Kanboard is a free and open source Kanban project management software.
+    digest: abe403f0619b12dd22f9737cda4e1fdfeb9254b13bae5c1c4270437d1f88fb11
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/kanboard
+    icon: https://raw.githubusercontent.com/kanboard/website/master/assets/img/icon.svg
+    keywords:
+    - kanboard
+    - kanban
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: kanboard
+    sources:
+    - https://github.com/kanboard/kanboard
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/kanboard-2.1.1/kanboard-2.1.1.tgz
+    version: 2.1.1
   - apiVersion: v2
     appVersion: v1.2.18
     created: "2021-03-23T21:24:08.766069587Z"
@@ -15250,6 +16058,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/kanboard-1.0.0/kanboard-1.0.0.tgz
     version: 1.0.0
   lazylibrarian:
+  - apiVersion: v2
+    appVersion: 1.7.2
+    created: "2021-03-30T00:00:03.560442724Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: A Helm chart for deploying LazyLibrarian
+    digest: 09f49871c5003faf8876d6c9ed617985702eed7b7b9459f19ebfcdb2ed7f6cae
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lazylibrarian
+    icon: https://lazylibrarian.gitlab.io/logo.svg
+    keywords:
+    - lazylibrarian
+    - ebooks
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lazylibrarian
+    sources:
+    - https://gitlab.com/LazyLibrarian/LazyLibrarian.git
+    - https://lazylibrarian.gitlab.io
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lazylibrarian-5.1.1/lazylibrarian-5.1.1.tgz
+    version: 5.1.1
   - apiVersion: v2
     appVersion: 1.7.2
     created: "2021-03-23T21:24:08.883410166Z"
@@ -15615,6 +16448,32 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - apiVersion: v2
+    appVersion: 0.8.0.1886
+    created: "2021-03-30T00:00:03.856051949Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Looks and smells like Sonarr but made for music
+    digest: 1b8ab364e798897ee6e8064dc324a4e7378430784e42146641bbd8dafce628ec
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://hub.docker.com/r/linuxserver/lidarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-8.1.1/lidarr-8.1.1.tgz
+    version: 8.1.1
   - apiVersion: v2
     appVersion: 0.8.0.1886
     created: "2021-03-23T21:24:09.00357289Z"
@@ -16544,6 +17403,33 @@ entries:
   lychee:
   - apiVersion: v2
     appVersion: 4.0.8
+    created: "2021-03-30T00:00:04.188394887Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Lychee is a free photo-management tool, which runs on your server
+      or web-space
+    digest: 0ec7f49cc3fca5ff24d54b611c7399f712ac382ec89616d5025998a32744e463
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lychee
+    icon: https://github.com/LycheeOrg/Lychee/blob/master/Banner.png?raw=true
+    keywords:
+    - lychee
+    - photo
+    - pictures
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: lychee
+    sources:
+    - https://github.com/LycheeOrg/Lychee
+    - https://hub.docker.com/r/lycheeorg/lychee
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lychee-4.1.1/lychee-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: 4.0.8
     created: "2021-03-23T21:24:09.119673104Z"
     dependencies:
     - name: common
@@ -16968,6 +17854,29 @@ entries:
   magic-mirror:
   - apiVersion: v2
     appVersion: v2.14.0
+    created: "2021-03-30T00:00:04.548087632Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: magic-mirror helm package
+    digest: 997a99702d8725f111cac8073f3763084128fba3f71f2d9bf822727d17bcbfc9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/magic-mirror
+    keywords:
+    - magic-mirror
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: anders@brujordet.no
+      name: brujoand
+    name: magic-mirror
+    sources:
+    - https://github.com/MichMich/MagicMirror
+    - https://hub.docker.com/r/bastilimbach/docker-magicmirror
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/magic-mirror-2.1.1/magic-mirror-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: v2.14.0
     created: "2021-03-23T21:24:09.252296674Z"
     dependencies:
     - name: common
@@ -17206,6 +18115,35 @@ entries:
   miniflux:
   - apiVersion: v2
     appVersion: 2.0.28
+    created: "2021-03-30T00:00:04.821658409Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: Miniflux is a minimalist and opinionated feed reader.
+    digest: 5b5a8b295c32d8cd4b4fa5492c8d8bb64746ab8876c082178aa3a467ab0bdc65
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/miniflux
+    icon: https://raw.githubusercontent.com/miniflux/logo/master/icon.svg
+    keywords:
+    - miniflux
+    - rss
+    - news
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: miniflux
+    sources:
+    - https://github.com/miniflux/v2
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/miniflux-2.1.1/miniflux-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 2.0.28
     created: "2021-03-23T21:24:09.399539701Z"
     dependencies:
     - name: common
@@ -17353,6 +18291,35 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/modem-stats-2.0.0/modem-stats-2.0.0.tgz
     version: 2.0.0
   monica:
+  - apiVersion: v2
+    appVersion: v2.19.1
+    created: "2021-03-30T00:00:05.331847855Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.4
+    description: A Personal Relationship Management tool to help you organize your
+      social life
+    digest: dcad8c0082cac3eb643ceb345a3dbe93e170354b20e9d9d19974e90f63f30da7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/monica
+    icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
+    keywords:
+    - crm
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: monica
+    sources:
+    - https://github.com/monicahq/monica
+    - https://hub.docker.com/_/monica
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/monica-4.1.1/monica-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: v2.19.1
     created: "2021-03-23T21:24:09.554202912Z"
@@ -17952,6 +18919,31 @@ entries:
   mosquitto:
   - apiVersion: v2
     appVersion: 2.0.7
+    created: "2021-03-30T00:00:05.681580566Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Eclipse Mosquitto - An open source MQTT broker
+    digest: 3cae282ce603dbb7301279b5f3958745915d6b849ea302ae67332322e5d96dc2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mosquitto
+    icon: https://mosquitto.org/images/mosquitto-text-side-28.png
+    keywords:
+    - mosquitto
+    - MQTT
+    - eclipse-iot
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    name: mosquitto
+    sources:
+    - https://github.com/eclipse/mosquitto
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/mosquitto-2.1.1/mosquitto-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 2.0.7
     created: "2021-03-23T21:24:09.699823455Z"
     dependencies:
     - name: common
@@ -18233,6 +19225,32 @@ entries:
   mylar:
   - apiVersion: v2
     appVersion: 0.4.9.5
+    created: "2021-03-30T00:00:06.014341783Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Mylar is the automated Comic Book downloader (cbr/cbz) for use with
+      various download clients.
+    digest: 7d19193f07e828e0eb039f5457a64cfa56b1aa298b994ef31ff10e1dda3baf4c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mylar
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mylar-icon.png
+    keywords:
+    - mylar
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: mylar
+    sources:
+    - https://github.com/mylar3/mylar3
+    - https://github.com/linuxserver/docker-mylar3
+    - https://github.com/k8s-at-home/charts/tree/master/charts/mylar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/mylar-2.1.1/mylar-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 0.4.9.5
     created: "2021-03-23T21:24:09.882196102Z"
     dependencies:
     - name: common
@@ -18388,6 +19406,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/mylar-1.0.0/mylar-1.0.0.tgz
     version: 1.0.0
   navidrome:
+  - apiVersion: v2
+    appVersion: 0.39.0
+    created: "2021-03-30T00:00:06.279434923Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Navidrome is an open source web-based music collection server and
+      streamer
+    digest: c438396db666f05b0313e1611f81b39dccb92b4af7d27e270edd561b2c389776
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/navidrome
+    icon: https://github.com/deluan/navidrome/blob/master/ui/src/icons/android-icon-72x72.png?raw=true
+    keywords:
+    - navidrome
+    - music
+    - streaming
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: navidrome
+    sources:
+    - https://github.com/deluan/navidrome
+    - https://hub.docker.com/r/deluan/navidrome
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/navidrome-4.1.1/navidrome-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: 0.39.0
     created: "2021-03-23T21:24:10.006654949Z"
@@ -18814,6 +19859,28 @@ entries:
   neolink:
   - apiVersion: v2
     appVersion: 0.3.0
+    created: "2021-03-30T00:00:06.54416516Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Neolink - RTSP bridge to Reolink IP cameras
+    digest: 106362644d81e2ce2b813b907c4f758bf8eec4e472826558ea347fc1fde425a3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/neolink
+    keywords:
+    - reolink
+    - rtsp
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    name: neolink
+    sources:
+    - https://github.com/thirtythreeforty/neolink
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/neolink-3.1.1/neolink-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 0.3.0
     created: "2021-03-23T21:24:10.142564589Z"
     dependencies:
     - name: common
@@ -19051,6 +20118,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/neolink-1.0.0/neolink-1.0.0.tgz
     version: 1.0.0
   network-ups-tools:
+  - apiVersion: v2
+    appVersion: v2.7.4-2061-g46c7da76
+    created: "2021-03-30T00:00:06.832021461Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Network UPS Tools is a collection of programs which provide a common
+      interface for monitoring and administering UPS, PDU and SCD hardware.
+    digest: 0cc14d1ad9b0cf831680ae124955288d83f913441de32f77ce1efb1dc702b5a0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/network-ups-tools
+    icon: https://avatars0.githubusercontent.com/u/3526263?s=400&v=4
+    keywords:
+    - nut
+    - network-ups-tools
+    - ups
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: network-ups-tools
+    sources:
+    - https://github.com/networkupstools/nut
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/network-ups-tools-3.1.1/network-ups-tools-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: v2.7.4-2061-g46c7da76
     created: "2021-03-23T21:24:10.258961518Z"
@@ -19465,6 +20558,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/node-feature-discovery-1.0.0/node-feature-discovery-1.0.0.tgz
     version: 1.0.0
   node-red:
+  - apiVersion: v2
+    appVersion: 1.2.5
+    created: "2021-03-30T00:00:07.129775276Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Node-RED is low-code programming for event-driven applications
+    digest: 8fe3906542afb8456255873fa5bfe3732d6302308eedb21d28026e1053ebcd4b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/node-red
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - nodered
+    - node-red
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: node-red
+    sources:
+    - https://github.com/node-red/node-red-docker
+    - https://github.com/k8s-at-home/charts/tree/master/charts/node-red
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/node-red-7.1.1/node-red-7.1.1.tgz
+    version: 7.1.1
   - apiVersion: v2
     appVersion: 1.2.5
     created: "2021-03-23T21:24:10.374358496Z"
@@ -20083,6 +21201,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/node-red-2.0.0/node-red-2.0.0.tgz
     version: 2.0.0
   nzbget:
+  - apiVersion: v2
+    appVersion: v21.0
+    created: "2021-03-30T00:00:07.411893812Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: NZBGet is a Usenet downloader client
+    digest: 2c560bf5098fcc4a6b036fef58349649a85b591e3a34e708866131ad2dbb9dcf
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbget
+    icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+    keywords:
+    - nzbget
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbget
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbget/
+    - https://nzbget.net/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbget-9.1.1/nzbget-9.1.1.tgz
+    version: 9.1.1
   - apiVersion: v2
     appVersion: v21.0
     created: "2021-03-23T21:24:10.541317944Z"
@@ -20957,6 +22100,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/nzbget-3.0.0/nzbget-3.0.0.tgz
     version: 3.0.0
   nzbhydra2:
+  - apiVersion: v2
+    appVersion: v3.8.1
+    created: "2021-03-30T00:00:07.707090398Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Usenet meta search
+    digest: 64cc3dcbb638f7c24ed733d84d89ce99ab8dc197d294359ab408b2aa9d9a685a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbhydra2
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
+    keywords:
+    - nzbhydra2
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbhydra2
+    sources:
+    - https://hub.docker.com/r/linuxserver/nzbhydra2
+    - https://github.com/theotherp/nzbhydra2
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbhydra2-7.1.1/nzbhydra2-7.1.1.tgz
+    version: 7.1.1
   - apiVersion: v2
     appVersion: v3.8.1
     created: "2021-03-23T21:24:10.66826002Z"
@@ -22028,6 +23196,32 @@ entries:
   octoprint:
   - apiVersion: v2
     appVersion: 1.4.2
+    created: "2021-03-30T00:00:07.971934036Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: OctoPrint is the snappy web interface for your 3D printer
+    digest: 31197b52310441ee57d82eba7ac7fb07b6e7a254d6ae442e54838fdcc0ff2248
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/octoprint
+    icon: https://avatars3.githubusercontent.com/u/5982294?s=400&v=4
+    keywords:
+    - octoprint
+    - 3d
+    - printer
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: octoprint
+    sources:
+    - https://github.com/OctoPrint/OctoPrint
+    - https://hub.docker.com/r/octoprint/octoprint
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/octoprint-4.1.1/octoprint-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: 1.4.2
     created: "2021-03-23T21:24:10.801149903Z"
     dependencies:
     - name: common
@@ -22461,6 +23655,31 @@ entries:
   omada-controller:
   - apiVersion: v2
     appVersion: 4.2.11
+    created: "2021-03-30T00:00:08.304307148Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Omada enables the network administrators to monitor and manage all
+      the Omada products in the network with a centralized management platform.
+    digest: 3efce506afbc9338748c92f03a9225f31a718275d7956f4b0fd9053e9a31fd54
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/omada-controller
+    icon: https://www.tp-link.com/assets/images/icon/logo-white.svg
+    keywords:
+    - omada-controller
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: charlie-haley@users.noreply.github.com
+      name: charlie-haley
+    name: omada-controller
+    sources:
+    - https://github.com/omada-controller/omada-controller-docker
+    - https://github.com/k8s-at-home/charts/tree/master/charts/omada-controller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/omada-controller-2.1.1/omada-controller-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 4.2.11
     created: "2021-03-23T21:24:10.920859504Z"
     dependencies:
     - name: common
@@ -22635,6 +23854,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/omada-controller-1.0.0/omada-controller-1.0.0.tgz
     version: 1.0.0
   ombi:
+  - apiVersion: v2
+    appVersion: 4.0.681
+    created: "2021-03-30T00:00:08.597613712Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+    digest: e997a020a2e1e8a08589db1c1a9aa7fdc415c1c72a4ff086fe8f829decfc88f9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ombi
+    icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
+    keywords:
+    - ombi
+    - plex
+    - emby
+    - sonarr
+    - radarr
+    - couchpotato
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ombi
+    sources:
+    - https://github.com/tidusjar/Ombi
+    - https://hub.docker.com/r/linuxserver/ombi
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ombi-9.1.1/ombi-9.1.1.tgz
+    version: 9.1.1
   - apiVersion: v2
     appVersion: 4.0.681
     created: "2021-03-23T21:24:11.040376995Z"
@@ -23836,6 +25084,30 @@ entries:
   organizr:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-03-30T00:00:08.914032341Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: HTPC/Homelab Services Organizer
+    digest: 19a7d3064df0351710b17b65fb5e95717c7b89846aba90a20b4b664127214913
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/organizr
+    icon: https://github.com/causefx/Organizr/blob/v2-master/plugins/images/organizr/logo.png?raw=true
+    keywords:
+    - organizr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: organizr
+    sources:
+    - https://github.com/causefx/Organizr
+    - https://hub.docker.com/r/organizr/organizr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/organizr-5.1.1/organizr-5.1.1.tgz
+    version: 5.1.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-03-23T21:24:11.190202256Z"
     dependencies:
     - name: common
@@ -24514,6 +25786,35 @@ entries:
   overseerr:
   - apiVersion: v2
     appVersion: 1.19.1
+    created: "2021-03-30T00:00:09.176967957Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Overseerr is a free and open source software application for managing
+      requests for your media library. It integrates with your existing services such
+      as Sonarr, Radarr and Plex!
+    digest: e8a0b70818c74de6b949303f13c5eaaba5c2e6bba300f0c0eedcd369901286d0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overseerr
+    icon: https://i.imgur.com/TMoEG7g.png
+    keywords:
+    - overseerr
+    - plex
+    - sonarr
+    - radarr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: overseerr
+    sources:
+    - https://github.com/sct/overseerr
+    - https://hub.docker.com/r/sctx/overseerr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/overseerr-3.1.1/overseerr-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 1.19.1
     created: "2021-03-23T21:24:11.314948018Z"
     dependencies:
     - name: common
@@ -24772,6 +26073,28 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/overseerr-1.0.0/overseerr-1.0.0.tgz
     version: 1.0.0
   paperless:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-03-30T00:00:09.46752519Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Paperless - Index and archive all of your scanned paper documents
+    digest: dfca4efc855640d09dadf39eecb12c8806ca59bca9d39b4b4cbbd7b8c6e2b3f5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paperless
+    icon: https://raw.githubusercontent.com/the-paperless-project/paperless/master/src/paperless/static/paperless/img/logo-dark.png
+    keywords:
+    - paperless
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    name: paperless
+    sources:
+    - https://github.com/jonaswinkler/paperless-ng
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/paperless-5.1.1/paperless-5.1.1.tgz
+    version: 5.1.1
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2021-03-23T21:24:11.438986743Z"
@@ -25142,6 +26465,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/paperless-1.0.0/paperless-1.0.0.tgz
     version: 1.0.0
   photoprism:
+  - apiVersion: v2
+    appVersion: "20201122"
+    created: "2021-03-30T00:00:09.765278305Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: PhotoPrism® is a server-based application for browsing, organizing
+      and sharing your personal photo collection
+    digest: b4fd268a0e3bde3351807ab99b8a78a7a85943eb4c19b3ec2fd3c70e6b45ee5d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/photoprism
+    icon: https://demo.photoprism.org/static/img/logo-avatar.svg
+    keywords:
+    - photos
+    - photoprism
+    - pictures
+    - sharing
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: photoprism
+    sources:
+    - https://github.com/photoprism/photoprism
+    - https://hub.docker.com/r/photoprism/photoprism
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/photoprism-4.1.1/photoprism-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: "20201122"
     created: "2021-03-23T21:24:11.557631688Z"
@@ -25555,6 +26906,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/photoprism-1.0.0/photoprism-1.0.0.tgz
     version: 1.0.0
   piaware:
+  - apiVersion: v2
+    appVersion: v4.0
+    created: "2021-03-30T00:00:10.070766609Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Program for forwarding ADS-B data to FlightAware
+    digest: 2e8daa9f0e3f189d8e7b05eaadda732df3e67d347f1052dfd2a92f3e5390bab0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/piaware
+    icon: https://pbs.twimg.com/profile_images/964269455483088897/mr2UgvfG_400x400.jpg
+    keywords:
+    - piaware
+    - flight-aware
+    - flight-tracker
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: piaware
+    sources:
+    - https://github.com/flightaware/piaware
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/piaware-6.1.1/piaware-6.1.1.tgz
+    version: 6.1.1
   - apiVersion: v2
     appVersion: v4.0
     created: "2021-03-23T21:24:11.678863368Z"
@@ -26099,6 +27475,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/piaware-1.0.0/piaware-1.0.0.tgz
     version: 1.0.0
   plex:
+  - apiVersion: v2
+    appVersion: v1.22.0.4163-d8c4875dd
+    created: "2021-03-30T00:00:10.337375566Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Plex Media Server
+    digest: 708424faf07bf4835532e93d16923654b6141ef8e020ac40015215cd58bb1e73
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    - plex-media-server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: plex
+    sources:
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    - https://github.com/k8s-at-home/container-images/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/plex-4.1.1/plex-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: v1.22.0.4163-d8c4875dd
     created: "2021-03-23T21:24:11.773781785Z"
@@ -27732,6 +29133,31 @@ entries:
   prometheus-nut-exporter:
   - apiVersion: v2
     appVersion: 1.0.1
+    created: "2021-03-30T00:00:10.628202302Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Prometheus NUT Exporter a service monitor to send NUT server metrics
+      to a Prometheus instance.
+    digest: ee8ed479afd9682200d6073bafc44effdb2fe7aa53ff3270aea49b3f5dd9514d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prometheus-nut-exporter
+    icon: https://www.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/125-512.png
+    keywords:
+    - nut
+    - prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: prometheus-nut-exporter
+    sources:
+    - https://github.com/HON95/prometheus-nut-exporter
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-2.1.1/prometheus-nut-exporter-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.0.1
     created: "2021-03-26T00:22:44.297123815Z"
     dependencies:
     - name: common
@@ -27838,6 +29264,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-1.0.0/prometheus-nut-exporter-1.0.0.tgz
     version: 1.0.0
   protonmail-bridge:
+  - apiVersion: v2
+    appVersion: 1.5.7-1
+    created: "2021-03-30T00:00:10.903018554Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Container for protonmail bridge to work on the network.
+    digest: c87575d37862641ba0d28635a98ce895867f55459ee1ffb184871406fb852cf7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/protonmail-bridge
+    keywords:
+    - protonmail
+    - protonmail-bridge
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: my@email.com
+      name: Eagleman7
+    name: protonmail-bridge
+    sources:
+    - https://github.com/shenxn/protonmail-bridge-docker
+    - https://hub.docker.com/r/shenxn/protonmail-bridge
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/protonmail-bridge-3.1.1/protonmail-bridge-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: 1.5.7-1
     created: "2021-03-23T21:24:11.893621092Z"
@@ -28049,6 +29499,32 @@ entries:
   prowlarr:
   - apiVersion: v2
     appVersion: 0.1.0.181
+    created: "2021-03-30T00:00:11.164758956Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Indexer manager/proxy built on the popular arr net base stack to
+      integrate with your various PVR apps.
+    digest: 3eba5c103980302ac459b32d6be4441d04444d7b31983f11df4cb2e45a0ae266
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prowlarr
+    keywords:
+    - prowlarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: prowlarr
+    sources:
+    - https://github.com/Prowlarr/Prowlarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/prowlarr-2.1.1/prowlarr-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0.181
     created: "2021-03-23T21:24:12.012438347Z"
     dependencies:
     - name: common
@@ -28126,6 +29602,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/prowlarr-1.0.1/prowlarr-1.0.1.tgz
     version: 1.0.1
   pyload:
+  - apiVersion: v2
+    appVersion: 0.4.20
+    created: "2021-03-30T00:00:11.470110759Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: pyLoad is a Free and Open Source download manager written in Python
+      and designed to be extremely lightweight, easily extensible and fully manageable
+      via web.
+    digest: 324e1187d32ee32372bb0d7605f26763d078a673e28b2c73f1cc25ef7c11d141
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pyload
+    icon: https://github.com/pyload/pyload/blob/main/media/logo.png?raw=true
+    keywords:
+    - pyload
+    - download
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: pyload
+    sources:
+    - https://github.com/pyload/pyload
+    - https://hub.docker.com/r/linuxserver/pyload
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/pyload-4.1.1/pyload-4.1.1.tgz
+    version: 4.1.1
   - apiVersion: v2
     appVersion: 0.4.20
     created: "2021-03-23T21:24:12.153365047Z"
@@ -28551,6 +30054,30 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/pyload-1.0.1/pyload-1.0.1.tgz
     version: 1.0.1
   qbittorrent:
+  - apiVersion: v2
+    appVersion: 4.3.0
+    created: "2021-03-30T00:00:11.73352148Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: 6b349ff9cac60b69aa028985383426d9eb88f22ffbe4ff7c55a918cc0edc26b4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: qbittorrent
+    sources:
+    - https://hub.docker.com/r/linuxserver/qbittorrent/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/qbittorrent-9.1.1/qbittorrent-9.1.1.tgz
+    version: 9.1.1
   - apiVersion: v2
     appVersion: 4.3.0
     created: "2021-03-23T21:24:12.274958245Z"
@@ -29307,6 +30834,32 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - apiVersion: v2
+    appVersion: 3.0.2.4552
+    created: "2021-03-30T00:00:12.099542978Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: af590f452d6ab1e6c911e29f1204788680368f8b647bc3aa9d0d3742e40a4320
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://hub.docker.com/r/linuxserver/radarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-10.1.1/radarr-10.1.1.tgz
+    version: 10.1.1
   - apiVersion: v2
     appVersion: 3.0.2.4552
     created: "2021-03-23T21:24:12.396360334Z"
@@ -30367,6 +31920,34 @@ entries:
   readarr:
   - apiVersion: v2
     appVersion: 0.1.0.351
+    created: "2021-03-30T00:00:12.363228302Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: A fork of Radarr to work with Books & AudioBooks
+    digest: 27e9a1eb69bfc5fd03cddf297345323fff66a77421e41575281b63c47a79f8c1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/readarr
+    icon: https://readarr.com/img/logo.png
+    keywords:
+    - readarr
+    - torrent
+    - usenet
+    - AudioBooks
+    - ebooks
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark@markmcw.uk
+      name: mcmarkj
+    name: readarr
+    sources:
+    - https://github.com/Readarr/Readarr
+    - https://readarr.com
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/readarr-3.1.1/readarr-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0.351
     created: "2021-03-23T21:24:12.516575761Z"
     dependencies:
     - name: common
@@ -30700,6 +32281,32 @@ entries:
   recipes:
   - apiVersion: v2
     appVersion: 0.13.0
+    created: "2021-03-30T00:00:12.63937177Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Recipes is a Django application to manage, tag and search recipes
+      using either built in models or external storage providers hosting PDF's, Images
+      or other files.
+    digest: 1ea53085a56a750a049cd9fb3fecd00f40a655095920384244dbd66fe011768b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/recipes
+    keywords:
+    - recipes
+    - cooking
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: recipes
+    sources:
+    - https://github.com/vabene1111/recipes
+    - https://hub.docker.com/r/vabene1111/recipes
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/recipes-4.1.1/recipes-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: 0.13.0
     created: "2021-03-23T21:24:12.640363173Z"
     dependencies:
     - name: common
@@ -30956,6 +32563,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/recipes-2.2.1/recipes-2.2.1.tgz
     version: 2.2.1
   resilio-sync:
+  - apiVersion: v2
+    appVersion: 2.7.2
+    created: "2021-03-30T00:00:12.918556554Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Resilio Sync is a fast, reliable, and simple file sync and share
+      solution, powered by P2P technology
+    digest: e6a9caaaa74fc7ade74d47133e15528f104fc041d041b6450128ee4e024a4072
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/resio-sync
+    icon: https://blog.resilio.com/wp-content/uploads/2016/06/SyncSymbol-260x260px.png
+    keywords:
+    - resilio
+    - sync
+    - btsync
+    - bittorrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: 100800+salekseev@users.noreply.github.com
+      name: salekseev
+    name: resilio-sync
+    sources:
+    - https://github.com/orgs/linuxserver/packages/container/package/resilio-sync
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/resilio-sync-3.1.1/resilio-sync-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: 2.7.2
     created: "2021-03-23T21:24:12.774346113Z"
@@ -31252,6 +32886,35 @@ entries:
   rtorrent-flood:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-03-30T00:00:13.179957973Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: rTorrent is a stable, high-performance and low resource consumption
+      BitTorrent client.
+    digest: 3f7d19b87ddf63d11b5a404e07dd99ac6792cc116a03b440250aff1b8eed797f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rtorrent-flood
+    icon: https://github.com/jfurrow/flood/blob/master/flood.png?raw=true
+    keywords:
+    - rtorrent
+    - flood
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: rtorrent-flood
+    sources:
+    - https://github.com/jesec/rtorrent
+    - https://github.com/jesec/flood
+    - https://hub.docker.com/r/jesec/rtorrent
+    - https://hub.docker.com/r/jesec/flood
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/rtorrent-flood-6.2.1/rtorrent-flood-6.2.1.tgz
+    version: 6.2.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-03-27T20:25:05.648280592Z"
     dependencies:
     - name: common
@@ -31470,6 +33133,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/rtorrent-flood-4.0.0/rtorrent-flood-4.0.0.tgz
     version: 4.0.0
   sabnzbd:
+  - apiVersion: v2
+    appVersion: 3.1.0
+    created: "2021-03-30T00:00:13.476430883Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Free and easy binary newsreader
+    digest: 4ab329e19f3817b93f96e3846c6d4bcd638972f64087430ea2773f8941e64aea
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sabnzbd
+    icon: https://avatars1.githubusercontent.com/u/960698?s=400&v=4
+    keywords:
+    - sabnzbd
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sabnzbd
+    sources:
+    - https://hub.docker.com/r/linuxserver/sabnzbd/
+    - https://sabnzbd.org/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sabnzbd-6.1.1/sabnzbd-6.1.1.tgz
+    version: 6.1.1
   - apiVersion: v2
     appVersion: 3.1.0
     created: "2021-03-23T21:24:12.891980607Z"
@@ -32204,6 +33892,29 @@ entries:
   samba:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-03-30T00:00:13.743742767Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: A simple in-cluster Samba server
+    digest: 12d54203c7cf930072ea830b44ced5baedd47f2c1403da36a0da20b21e58ec75
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/samba
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Samba_logo_2010.svg/500px-Samba_logo_2010.svg.png
+    keywords:
+    - samba
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: samba
+    sources:
+    - https://github.com/dperson/samba
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/samba-3.1.1/samba-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-03-23T21:24:13.005601192Z"
     dependencies:
     - name: common
@@ -32430,6 +34141,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/samba-1.0.0/samba-1.0.0.tgz
     version: 1.0.0
   searx:
+  - apiVersion: v2
+    appVersion: 0.18.0
+    created: "2021-03-30T00:00:14.036042531Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Searx is a privacy-respecting, hackable metasearch engine
+    digest: fb2b629dbd422bd11319d418ef707a25e40cc02589917c8f848d19cbcaac313a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/searx
+    icon: https://github.com/searx/searx/blob/master/searx/static/themes/simple/img/logo_searx_a.png?raw=true
+    keywords:
+    - searx
+    - search engine
+    - privacy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: searx
+    sources:
+    - https://github.com/searx/searx
+    - https://searx.github.io/searx/
+    - https://hub.docker.com/r/searx/searx
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/searx-3.1.1/searx-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: 0.18.0
     created: "2021-03-23T21:24:13.139495628Z"
@@ -32753,6 +34491,30 @@ entries:
   ser2sock:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-03-30T00:00:14.301240892Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Serial to Socket Redirector
+    digest: 64d5f1457353973c467dcc1a3b40c1fe687cdef39495df2109bdd4002fb1a300
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ser2sock
+    icon: https://i.imgur.com/GfZ7McO.png
+    keywords:
+    - ser2sock
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ser2sock
+    sources:
+    - https://github.com/nutechsoftware/ser2sock
+    - https://github.com/tenstartups/ser2sock
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ser2sock-3.1.1/ser2sock-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-03-26T07:12:50.246366602Z"
     dependencies:
     - name: common
@@ -32930,6 +34692,31 @@ entries:
   sharry:
   - apiVersion: v2
     appVersion: 1.6.0
+    created: "2021-03-30T00:00:14.572384619Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Sharry allows to share files with others in a simple way. It is a
+      self-hosted web application. The basic concept is to upload files and get a
+      url back that can then be shared.
+    digest: e80355de5ca9da4c6530fc3406c0da8bbb365f92e784f1cea803c119a584faa9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sharry
+    icon: https://github.com/eikek/sharry/blob/master/artwork/logo.svg?raw=true
+    keywords:
+    - file sharing
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: sharry
+    sources:
+    - https://github.com/eikek/sharry
+    - https://hub.docker.com/r/eikek0/sharry
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sharry-2.1.1/sharry-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.6.0
     created: "2021-03-23T21:24:13.266729919Z"
     dependencies:
     - name: common
@@ -33029,6 +34816,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/sharry-1.0.0/sharry-1.0.0.tgz
     version: 1.0.0
   smarter-device-manager:
+  - apiVersion: v2
+    appVersion: 1.1.2
+    created: "2021-03-30T00:00:14.841368122Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Manage hardware resource allocation without a need for privileged
+      containers
+    digest: b44709a82f1805724df300303cf5e489fb9ec11d793278c394b211362ef8f203
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/smarter-device-manager
+    keywords:
+    - kubernetes
+    - cluster
+    - hardware
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    - email: 19270832+lazyoldbear@users.noreply.github.com
+      name: lazyoldbear
+    name: smarter-device-manager
+    sources:
+    - https://gitlab.com/arm-research/smarter/smarter-device-manager/
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/smarter-device-manager-3.1.1/smarter-device-manager-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: 1.1.2
     created: "2021-03-23T21:24:13.393094364Z"
@@ -33253,6 +35068,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/smarter-device-manager-1.0.0/smarter-device-manager-1.0.0.tgz
     version: 1.0.0
   sonarr:
+  - apiVersion: v2
+    appVersion: 3.0.4.993
+    created: "2021-03-30T00:00:15.105246669Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: 9c6e0f99a83f92b809763f0ebe32c70a135e840079310d880dcbbe32095ee7ed
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://hub.docker.com/r/linuxserver/sonarr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-10.1.1/sonarr-10.1.1.tgz
+    version: 10.1.1
   - apiVersion: v2
     appVersion: 3.0.4.993
     created: "2021-03-23T21:24:13.514532655Z"
@@ -34539,6 +36380,37 @@ entries:
   statping:
   - apiVersion: v2
     appVersion: v0.90.65
+    created: "2021-03-30T00:00:15.385044093Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: Status page for monitoring your websites and applications
+    digest: 54060342796d3f62e60a4b8466877e601e23b0add41ef384ac4c9326d0e5adc6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/statping
+    icon: https://github.com/statping/statping/blob/dev/frontend/src/assets/logo.png?raw=true
+    keywords:
+    - statping
+    - status
+    - status-page
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    - email: git@angelnu.com
+      name: angelnu
+    name: statping
+    sources:
+    - https://github.com/statping/statping
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/statping-3.1.1/statping-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: v0.90.65
     created: "2021-03-23T21:24:13.648548097Z"
     dependencies:
     - name: common
@@ -34953,6 +36825,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/statping-1.0.0/statping-1.0.0.tgz
     version: 1.0.0
   tautulli:
+  - apiVersion: v2
+    appVersion: v2.6.6
+    created: "2021-03-30T00:00:15.644327587Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: A Python based monitoring and tracking tool for Plex Media Server
+    digest: 9d990686cad0c9b57cbd88ca0b13371eaad9606ff901fdc52d20ab8d33fcb513
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tautulli
+    icon: https://github.com/Tautulli/Tautulli/blob/master/data/interfaces/default/images/logo.png?raw=true
+    keywords:
+    - tautulli
+    - plex
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: tautulli
+    sources:
+    - https://github.com/Tautulli/Tautulli
+    - https://hub.docker.com/r/tautulli/tautulli
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tautulli-8.1.1/tautulli-8.1.1.tgz
+    version: 8.1.1
   - apiVersion: v2
     appVersion: v2.6.6
     created: "2021-03-23T21:24:13.772466515Z"
@@ -35834,6 +37731,35 @@ entries:
   tdarr:
   - apiVersion: v2
     appVersion: 2.00.07
+    created: "2021-03-30T00:00:15.897249811Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Tdarr is a self hosted web-app for automating media library transcode/remux
+      management and making sure your files are exactly how you need them to be in
+      terms of codecs/streams/containers etc.
+    digest: 0de9ceae0447eb361ac3573f1a2fca2ff6de14460cf1765a98a303fd30007a56
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tdarr
+    icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+    keywords:
+    - transcoding
+    - remux
+    - media
+    - video
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: tdarr
+    sources:
+    - https://www.github.com/HaveAGitGat/Tdarr
+    - https://hub.docker.com/r/haveagitgat/tdarr/
+    - https://tdarr.io/docs/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tdarr-2.1.1/tdarr-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 2.00.07
     created: "2021-03-23T21:24:13.907551913Z"
     dependencies:
     - name: common
@@ -35949,6 +37875,37 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/tdarr-1.0.1/tdarr-1.0.1.tgz
     version: 1.0.1
   teedy:
+  - apiVersion: v2
+    appVersion: v1.9
+    created: "2021-03-30T00:00:16.174007101Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: Teedy is an open source, lightweight document management system for
+      individuals and businesses.
+    digest: be72f2481bdbde13a0704c11ad9b3d5c311ea53f6fbba1a9104e040e6658e8cf
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teedy
+    icon: https://camo.githubusercontent.com/529d95bcf95198a51c7176ed59068238a6099ee6828aa47a3aac697d6c5ee5f4/68747470733a2f2f74656564792e696f2f696d672f6769746875622d7469746c652e706e67
+    keywords:
+    - teedy
+    - documents
+    - management
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: teedy
+    sources:
+    - https://github.com/sismics/docs
+    - https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teedy-3.1.1/teedy-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: v1.9
     created: "2021-03-23T21:24:14.046441407Z"
@@ -36714,6 +38671,34 @@ entries:
   traccar:
   - apiVersion: v2
     appVersion: v4.11
+    created: "2021-03-30T00:00:16.466404566Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.4
+    description: Traccar is an open source GPS tracking system.
+    digest: 551f9942442ad25a2e1af592749bc3f8475e700d7268d577a8c74103ce708be7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/traccar
+    keywords:
+    - traccar
+    - gps
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: traccar
+    sources:
+    - https://github.com/traccar/traccar
+    - https://hub.docker.com/r/traccar/traccar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traccar-4.1.1/traccar-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: v4.11
     created: "2021-03-23T21:24:14.176330335Z"
     dependencies:
     - name: common
@@ -37405,6 +39390,31 @@ entries:
   transmission:
   - apiVersion: v2
     appVersion: 3.0.0
+    created: "2021-03-30T00:00:16.731399525Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Transmission is a cross-platform BitTorrent client
+    digest: f547ad3566289e0ba7af0dbe0664026f5ca3071596490adc9ad897790940de09
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/transmission
+    icon: https://github.com/transmission/transmission/raw/master/extras/transmission-1920.jpg
+    keywords:
+    - transmission
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    name: transmission
+    sources:
+    - https://hub.docker.com/r/linuxserver/transmission
+    - https://github.com/k8s-at-home/charts/tree/master/charts/transmission
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/transmission-3.1.1/transmission-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 3.0.0
     created: "2021-03-23T21:24:14.295433605Z"
     dependencies:
     - name: common
@@ -37579,6 +39589,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/transmission-1.0.0/transmission-1.0.0.tgz
     version: 1.0.0
   tt-rss:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-03-30T00:00:17.006922801Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.7
+    description: Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom)
+      reader and aggregator
+    digest: f4786fb0e17d7c33850f3db1d8268fce8018a2668e3ff4d522fac81c4346a98b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tt-rss
+    icon: https://git.tt-rss.org/fox/tt-rss/raw/branch/master/images/favicon-72px.png
+    keywords:
+    - tt-rss
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: tt-rss
+    sources:
+    - https://git.tt-rss.org/fox/tt-rss
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tt-rss-2.1.1/tt-rss-2.1.1.tgz
+    version: 2.1.1
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2021-03-23T21:24:14.42237558Z"
@@ -37776,6 +39814,29 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/tt-rss-1.0.6/tt-rss-1.0.6.tgz
     version: 1.0.6
   tvheadend:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2021-03-30T00:00:17.271259152Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: TVheadend - a TV streaming server and digital video recorder
+    digest: 2abace004fc1ce07d49c028afa23dc2786ad566d971cbed549943471a2e5d080
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tvheadend
+    keywords:
+    - tv
+    - streaming
+    - dvb
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    name: tvheadend
+    sources:
+    - https://github.com/tvheadend/tvheadend
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tvheadend-3.1.1/tvheadend-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: latest
     created: "2021-03-23T21:24:14.55784552Z"
@@ -38379,6 +40440,36 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/unifi-1.0.0/unifi-1.0.0.tgz
     version: 1.0.0
   unifi-poller:
+  - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2021-03-30T00:00:17.542222978Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Collect ALL UniFi Controller, Site, Device & Client Data - Export
+      to InfluxDB or Prometheus
+    digest: 7afc548ef37b5aeba895ef9a1df96a38f97300487294d10b6cbc243c69f65dcb
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi-poller
+    icon: https://raw.githubusercontent.com/wiki/unifi-poller/unifi-poller/images/unifi-poller-logo.png
+    keywords:
+    - unifi
+    - unifi-poller
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: unifi-poller
+    sources:
+    - https://github.com/unifi-poller/unifi-poller
+    - https://hub.docker.com/r/golift/unifi-poller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-poller-7.1.1/unifi-poller-7.1.1.tgz
+    version: 7.1.1
   - apiVersion: v2
     appVersion: 2.0.1
     created: "2021-03-23T21:24:14.701695142Z"
@@ -39178,6 +41269,36 @@ entries:
   unpackerr:
   - apiVersion: v2
     appVersion: 0.7.2
+    created: "2021-03-30T00:00:17.817720754Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: This application runs as a daemon on your download host. It checks
+      for completed downloads and extracts them so Radarr, Lidarr, Sonarr, and Readarr
+      may import them.
+    digest: 48059094354cdb247a557991fc4f56c8fd78042a366410ad46dd21485148a71e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unpackerr
+    icon: https://raw.githubusercontent.com/wiki/davidnewhall/unpackerr/images/unpackerr-logo-text.png
+    keywords:
+    - unpackerr
+    - sonarr
+    - radarr
+    - lidarr
+    - readarr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: unpackerr
+    sources:
+    - https://github.com/davidnewhall/unpackerr
+    - https://hub.docker.com/r/golift/unpackerr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unpackerr-3.1.1/unpackerr-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 0.7.2
     created: "2021-03-23T21:24:14.833429314Z"
     dependencies:
     - name: common
@@ -39663,6 +41784,31 @@ entries:
   valheim:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-03-30T00:00:18.100007905Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Valheim dedicated gameserver with automatic update and world backup
+      support
+    digest: 5e6c2513b9d59affab3bc78e7b687fc5197597cc91f3523c9963e625495ddcb4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/valheim
+    icon: https://raw.githubusercontent.com/lloesche/valheim-server-docker/main/misc/Logo_valheim.png
+    keywords:
+    - valheim
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: owner@russellhall.co.uk
+      name: rust84
+    name: valheim
+    sources:
+    - https://github.com/lloesche/valheim-server-docker
+    - https://hub.docker.com/r/lloesche/valheim-server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/valheim-2.1.1/valheim-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-03-26T17:46:59.25586607Z"
     dependencies:
     - name: common
@@ -39839,6 +41985,36 @@ entries:
   vikunja:
   - apiVersion: v2
     appVersion: 0.16.0
+    created: "2021-03-30T00:00:18.362633138Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: The to-do app to organize your life
+    digest: 9e798f9780f1d906caaeeb5be60da237bef6013f8d33cbdb70ebaffe5611ab7b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/vikunja
+    icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+    keywords:
+    - vikunja
+    - to-do
+    - tasks
+    - calendar
+    - kanban
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: vikunja
+    sources:
+    - https://kolaente.dev/vikunja/api
+    - https://kolaente.dev/vikunja/frontend
+    - https://hub.docker.com/r/vikunja/api
+    - https://hub.docker.com/r/vikunja/frontend
+    - https://vikunja.io/docs/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/vikunja-2.1.1/vikunja-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 0.16.0
     created: "2021-03-23T21:24:15.093159658Z"
     dependencies:
     - name: common
@@ -39958,6 +42134,29 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/vikunja-1.0.0/vikunja-1.0.0.tgz
     version: 1.0.0
   wallabag:
+  - apiVersion: v2
+    appVersion: 2.4.1
+    created: "2021-03-30T00:00:18.619606807Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: A self hostable application for saving web pages, freely.
+    digest: b9230a2fae9bf82ea23c8db3699ecb3262a3741a7d5219ac9b2da4a37ed3c0fc
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wallabag
+    keywords:
+    - wallabag
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: wallabag
+    sources:
+    - https://github.com/wallabag/docker
+    - https://hub.docker.com/wallabag/wallabag
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/wallabag-2.1.1/wallabag-2.1.1.tgz
+    version: 2.1.1
   - apiVersion: v2
     appVersion: 2.4.1
     created: "2021-03-23T21:24:15.225391956Z"
@@ -40099,6 +42298,32 @@ entries:
   wikijs:
   - apiVersion: v2
     appVersion: 2.5.191
+    created: "2021-03-30T00:00:18.886397585Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Make documentation a joy to write using Wiki.js's beautiful and intuitive
+      interface!
+    digest: f66da7e2da07873242d9c812f74556ddc51ce00d39edcc1ce8b057f86b78ac34
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wikijs
+    icon: https://static.requarks.io/logo/wikijs-full.svg
+    keywords:
+    - wiki
+    - wikijs
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rolf@berkenbosch.nl
+      name: rolfberkenbosch
+    name: wikijs
+    sources:
+    - https://hub.docker.com/r/linuxserver/wikijs/
+    - https://github.com/Requarks/wiki
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/wikijs-4.1.1/wikijs-4.1.1.tgz
+    version: 4.1.1
+  - apiVersion: v2
+    appVersion: 2.5.191
     created: "2021-03-23T21:24:15.346838776Z"
     dependencies:
     - name: common
@@ -40228,6 +42453,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/wikijs-2.5.191/wikijs-2.5.191.tgz
     version: 2.5.191
   xbackbone:
+  - apiVersion: v2
+    appVersion: 3.3.3
+    created: "2021-03-30T00:00:19.152408455Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: XBackBone is a simple, self-hosted, lightweight PHP file manager
+      that support the instant sharing tool ShareX and *NIX systems. It supports uploading
+      and displaying images, GIF, video, code, formatted text, and file downloading
+      and uploading. Also have a web UI with multi user management, past uploads history
+      and search support.
+    digest: a2128199dfbabf7861179227be991dc3ac7e84629bb07700c8ef9e47cbd9abb0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/xbackbone
+    icon: https://github.com/SergiX44/XBackBone/raw/master/.github/xbackbone.png
+    keywords:
+    - xbackbone
+    - xshare
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: xbackbone
+    sources:
+    - https://github.com/SergiX44/XBackBone
+    - https://hub.docker.com/r/pe46dro/xbackbone-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/xbackbone-3.1.1/xbackbone-3.1.1.tgz
+    version: 3.1.1
   - apiVersion: v2
     appVersion: 3.3.3
     created: "2021-03-23T21:24:15.464424689Z"
@@ -40488,6 +42742,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/xbackbone-1.0.0/xbackbone-1.0.0.tgz
     version: 1.0.0
   xteve:
+  - apiVersion: v2
+    appVersion: 2.1.2.0120
+    created: "2021-03-30T00:00:19.428094033Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: M3U Proxy for Plex DVR and Emby Live TV.
+    digest: c08eed439a4698e005ea78c54f0d10e045da55419eac48ad746a261f533fc5db
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/xteve
+    icon: https://raw.githubusercontent.com/xteve-project/xTeVe/master/html/img/logo_b_880x200.jpg
+    keywords:
+    - xteve
+    - iptv
+    - plex
+    - emby
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: xteve
+    sources:
+    - https://xteve.de
+    - https://github.com/xteve-project/xTeVe
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/xteve-6.1.1/xteve-6.1.1.tgz
+    version: 6.1.1
   - apiVersion: v2
     appVersion: 2.1.2.0120
     created: "2021-03-23T21:24:15.576228891Z"
@@ -41058,6 +43339,29 @@ entries:
   youtubedl-material:
   - apiVersion: v2
     appVersion: "4.2"
+    created: "2021-03-30T00:00:19.708887069Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Self-hosted YouTube downloader built on Material Design
+    digest: 5cf04b46f765363137b960b9d13695c5a0fce8cb81a85001f813d251ee85e619
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/youtubedl-material
+    keywords:
+    - youtubedl-material
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: youtubedl-material
+    sources:
+    - https://github.com/Tzahi12345/YoutubeDL-Material
+    - https://github.com/k8s-at-home/charts/tree/master/charts/youtubedl-material
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/youtubedl-material-2.1.1/youtubedl-material-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: "4.2"
     created: "2021-03-23T21:24:15.696497347Z"
     dependencies:
     - name: common
@@ -41195,6 +43499,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/youtubedl-material-1.0.0/youtubedl-material-1.0.0.tgz
     version: 1.0.0
   zigbee2mqtt:
+  - apiVersion: v2
+    appVersion: 1.17.1
+    created: "2021-03-30T00:00:19.984117442Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Bridges events and allows you to control your Zigbee devices via
+      MQTT
+    digest: 42673afde334969309ba9468e600145c37a789f88864e001f62746b7558fec8e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zigbee2mqtt
+    icon: https://www.zigbee2mqtt.io/images/logo.png
+    keywords:
+    - zigbee
+    - mqtt
+    - home-assistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    - email: miguelangel.santiago@hotmail.com
+      name: masantiago
+    name: zigbee2mqtt
+    sources:
+    - https://github.com/Koenkk/zigbee2mqtt
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/zigbee2mqtt-7.1.1/zigbee2mqtt-7.1.1.tgz
+    version: 7.1.1
   - apiVersion: v2
     appVersion: 1.17.1
     created: "2021-03-23T21:24:15.819978976Z"
@@ -41939,6 +44271,32 @@ entries:
   zwave2mqtt:
   - apiVersion: v2
     appVersion: 4.0.6
+    created: "2021-03-30T00:00:20.248429893Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Fully configurable Zwave to MQTT gateway and Control Panel using
+      NodeJS and Vue
+    digest: 5886d96a23de6a35854aa00dbfb1537507ac255ef5d082e4ecbffc04be5b31a6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zwave2mqtt
+    icon: https://github.com/OpenZWave/Zwave2Mqtt/raw/master/docs/OZW_Logo.png
+    keywords:
+    - zwave
+    - mqtt
+    - home-assistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: zwave2mqtt
+    sources:
+    - https://github.com/OpenZWave/Zwave2Mqtt
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/zwave2mqtt-8.1.1/zwave2mqtt-8.1.1.tgz
+    version: 8.1.1
+  - apiVersion: v2
+    appVersion: 4.0.6
     created: "2021-03-23T21:24:15.956301994Z"
     dependencies:
     - name: common
@@ -42657,6 +45015,32 @@ entries:
   zwavejs2mqtt:
   - apiVersion: v2
     appVersion: 1.1.1
+    created: "2021-03-30T00:00:20.521563442Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    description: Fully configurable Zwave to MQTT Gateway and Control Panel
+    digest: 763f7e1256ce145a3ac464d9e1d61226f9981d3610813bc859b0d8a202ea4423
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zwavejs2mqtt
+    icon: https://github.com/OpenZWave/Zwave2Mqtt/raw/master/docs/OZW_Logo.png
+    keywords:
+    - zwave
+    - mqtt
+    - home-assistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: zwavejs2mqtt
+    sources:
+    - https://github.com/zwave-js/zwavejs2mqtt
+    - https://hub.docker.com/r/zwavejs/zwavejs2mqtt
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-3.1.1/zwavejs2mqtt-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 1.1.1
     created: "2021-03-23T21:24:16.085886051Z"
     dependencies:
     - name: common
@@ -42912,4 +45296,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-03-29T10:29:25.291190899Z"
+generated: "2021-03-30T00:00:20.536161205Z"
