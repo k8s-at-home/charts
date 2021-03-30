@@ -1,5 +1,4 @@
-
-
+# See all operator values at https://github.com/zalando/postgres-operator/blob/master/docs/reference/cluster_manifest.md
 postgresql:
   # -- team Id for the DB cluster
   teamId:
@@ -12,7 +11,7 @@ postgresql:
   # -- Number of replicas
   # It will be automatically set with the number of replicaNodes so any values set here are ignored.
   numberOfInstances:
-  # -- DB users to create 
+  # -- DB users to create (see operator)
   users:
     postgres:
     - superuser
@@ -25,10 +24,8 @@ postgresql:
     # -- Postgres version to deploy - see which versions are supported by the operator
     version: "13"
 
-
-
 superuser:
-  # -- Superuser user used for cronjobs 
+  # -- Superuser user used for cronjobs
   # @default -- first user in postgresql.users
   user:
   # -- Superuser password
@@ -57,7 +54,7 @@ persistentVolumes:
   - node2.example.com
   labels: {}
   annotations: {}
-    
+
 
 dumpBackup:
   # Enable backups to a PVC
