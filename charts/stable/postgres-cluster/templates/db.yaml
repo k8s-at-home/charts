@@ -1,0 +1,28 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: {{ include "postgres-cluster.db" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  {{- .Values.postgresql | toYaml | nindent 2 }}
+
+
+  teamId: {{ include "common.names.fullname" . }}
+  volume:
+    size: {{ .Values.replicaSize }}
+  numberOfInstances: {{ .Values.replicaCount }}
+  users:
+    # database owner
+    {{ .Values.superuser }}:
+    - superuser
+    - createdb
+
+  #databases: name->owner
+  databases:
+    postgres: postgres
+  postgresql:
+    version: "11"
+  volume:
+    storageClass: {{ include "postgres-cluster.storageClass" . }}
+    size: {{ .Values.replicaSize }}

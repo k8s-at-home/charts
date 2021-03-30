@@ -1,4 +1,4 @@
-{{- if .Values.backupPVC -}}
+{{- if .Values.dumpBackup.existingClaim -}}
 # ------------------- CronJob ------------------- #
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -7,7 +7,7 @@ metadata:
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.backup_schedule | quote }}
+  schedule: {{ .Values.dumpBackup.schedule | quote }}
   concurrencyPolicy: Replace
   jobTemplate:
     spec:
@@ -54,5 +54,5 @@ spec:
           volumes:
             - name: backup-volume
               persistentVolumeClaim:
-                claimName: {{ .Values.backupPVC }}
+                claimName: {{ .Values.dumpBackup.existingClaim }}
 {{- end -}}

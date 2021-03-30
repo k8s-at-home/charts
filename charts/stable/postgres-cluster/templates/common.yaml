@@ -17,20 +17,12 @@
 {{- include "common.names.fullname" .|lower -}}
 {{- end -}}
 
-{{- define "postgres-cluster.persistentVolumeReclaimPolicy" -}}
-{{- if .Values.persistent -}}
-Retain
-{{- else -}}
-Recycle
-{{- end -}}
-{{- end -}}
-
 {{- define "postgres-cluster.localPath" -}}
-{{- default (printf "%s/%s" .Values.localPrefix (include "common.names.fullname" .)) .Values.localPath -}}
+{{- default (printf "%s/%s" .Values.persistentVolumes.hostPathPrefix (include "common.names.fullname" .)) .Values.persistentVolumes.hostPath -}}
 {{- end -}}
 
 {{- define "postgres-cluster.backupPVCSubpath" -}}
-{{- default (printf "%s/%s" .Values.backupPVCPrefix (include "common.names.fullname" .)) .Values.backupPVCSubpath -}}
+{{- default (printf "%s/%s" .Values.dumpBackup.subpathPrefix (include "common.names.fullname" .)) .Values.dumpBackup.subpath -}}
 {{- end -}}
 
 
