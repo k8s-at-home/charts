@@ -5,12 +5,12 @@
 {{- include "common.names.fullname" .|lower -}}-postgres
 {{- end -}}
 
-{{- define "postgres-cluster.superuser_secret" -}}
-{{ default (printf "%s.%s.credentials.postgresql.acid.zalan.do" .Values.superuser (include "postgres-cluster.db" .)) .Values.superuser.secret }}
-{{- end -}}
-
 {{- define "postgres-cluster.superuser" -}}
 {{- default (keys .Values.postgresql.users | first ) .Values.superuser.user -}}
+{{- end -}}
+
+{{- define "postgres-cluster.superuser_secret" -}}
+{{ default (printf "%s.%s.credentials.postgresql.acid.zalan.do" (include "postgres-cluster.superuser" .) (include "postgres-cluster.db" .)) .Values.superuser.secret }}
 {{- end -}}
 
 {{- define "postgres-cluster.superuser_password" -}}
