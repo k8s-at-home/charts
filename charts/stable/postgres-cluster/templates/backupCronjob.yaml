@@ -19,8 +19,8 @@ spec:
         spec:
           containers:
             - name: backup
-              image: postgres #TBD
-              imagePullPolicy: Always #TBD
+              image: "{{ .Values.dumpBackup.image.repository}}:{{ .Values.dumpBackup.image.tag}}"
+              imagePullPolicy: {{ .Values.dumpBackup.image.imagePullPolicy}}
               command:
               - /bin/sh
               - -ce
@@ -29,10 +29,8 @@ spec:
                 pg_dumpall > /backup/new && mv /backup/new /backup/backup
                 echo "$(date) - End dump"
                 ls -lh /backup
-              resources: #TBD
-                requests:
-                  memory: "10Mi"
-                  cpu: "5m"
+              resources:
+                {{ .Values.dumpBackup.resources | toYaml | indent 16 }}
               env:
               - name: PGHOST
                 value: {{ include "postgres-cluster.db" . }}

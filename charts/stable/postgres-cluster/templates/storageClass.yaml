@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  miname: foo{{ .Values.postgresql.volume.storageClass }}
+  name: {{ include "postgres-cluster.storageClass" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
   annotations:

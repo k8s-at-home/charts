@@ -2,11 +2,23 @@
 {{- include "common.values.setup" . }}
 
 {{- define "postgres-cluster.db" -}}
-{{- include "common.names.fullname" .|lower -}}-postgres
+{{- include "common.names.fullname" .|lower -}}
 {{- end -}}
 
 {{- define "postgres-cluster.superuser_secret" -}}
-{{ .Values.superuser }}.{{ include "postgres-cluster.db" . }}.credentials
+{{ default (printf "%s.%s.credentials.postgresql.acid.zalan.do" .Values.superuser (include "postgres-cluster.db" .)) .Values.superuser.secret }}
+{{- end -}}
+
+{{- define "postgres-cluster.superuser" -}}
+{{- default (keys .Values.postgresql.users | first ) .Values.superuser.user -}}
+{{- end -}}
+
+{{- define "postgres-cluster.superuser_password" -}}
+{{- default (randAlphaNum 50) .Values.superuser.password -}}
+{{- end -}}
+
+{{- define "postgres-cluster.storageClass" -}}
+{{- default (include "common.names.fullname" .|lower ) .Values.postgresql.volume.storageClass -}}
 {{- end -}}
 
 {{- define "postgres-cluster.pvName" -}}
@@ -20,12 +32,6 @@
 {{- define "postgres-cluster.backupPVCSubpath" -}}
 {{- default (printf "%s/%s" .Values.dumpBackup.subpathPrefix (include "common.names.fullname" .)) .Values.dumpBackup.subpath -}}
 {{- end -}}
-
-{{/* if postgresql.volume.storageClass is not set use fullname */}}
-{{- if not .Values.postgresql.volume.storageClass -}}
-  {{- $_ := set .Values.postgresql.volume "storageClass" (include "common.names.fullname" .|lower ) -}}
-{{- end -}}
-{{- $_ := set .Values.postgresql.volume "storageClass" "bla" -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}

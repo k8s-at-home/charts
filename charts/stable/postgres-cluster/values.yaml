@@ -1,38 +1,17 @@
-persistentVolumes:
-  # -- Local prefix for persistent volumes
-  # NOTE: The default is in tempfs - you should change to a persistent place for production!!!
-  hostPathPrefix: "/run/db"
-  # -- Local path for the persistent volumes
-  # @default: <hostPathPrefix/<release-name>
-  hostPath:
-  # -- persistentVolumeReclaimPolicy for the persistent volumes
-  reclaimPolicy: Recycle
-  accessModes:
-  - ReadWriteOnce
-  replicaNodes:
-  - node1.example.com
-  - node2.example.com
-  labels: {}
-  annotations: {}
 
-dumpBackup:
-  # Enable backups to a PVC
-  existingClaim:
-  # -- Backup schedule for postgres dumps
-  schedule: "@daily"
-  # -- Persistent volume claim subpath prefix for the backups
-  subpathPrefix: "backup/db"
-  # -- Persistent volume claim subpath for the backups
-  # @default: <subpathPrefix/<release-name>
-  subpath:
 
 postgresql:
+  teamId:
   volume:
     size: "1Gi"
-    # storageClass: bla
-  numberOfInstances: 2
+    # -- (string) Name of the storage class
+    # @default -- chart fullname
+    storageClass:
+  # -- Number of replicas
+  # It will be automatically set with the number of replicaNodes
+  numberOfInstances:
+  # -- DB users to create 
   users:
-    # database owner
     postgres:
     - superuser
     - createdb
@@ -44,9 +23,57 @@ postgresql:
     version: "11"
 
 
-# If you change this after creating the DB then use psql to set the password manually
-superuser: postgres
-# superuser_password: <my Password> - random if not set
+
+superuser:
+  # -- Superuser user used for cronjobs 
+  # @default -- first user in postgresql.users
+  user:
+  # -- Superuser password
+  # @default -- randomly generated on first install of the chart
+  password:
+  # -- Superuser k8s secret name. It must match the patter used by the operator
+  # @default -- <user>.<db name>.credentials.postgresql.acid.zalan.do
+  secret:
+
+persistentVolumes:
+  # -- Local prefix for persistent volumes
+  # NOTE: The default is in tempfs - you should change to a persistent place for production!!!
+  hostPathPrefix: "/run/db"
+  # -- Local path for the persistent volumes
+  # @default: <hostPathPrefix/<release-name>
+  hostPath:
+  # -- persistentVolumeReclaimPolicy for the persistent volumes
+  reclaimPolicy: Recycle
+
+  accessModes:
+  - ReadWriteOnce
+  # -- Replica nodes
+  # Must set with 
+  replicaNodes:
+  - node1.example.com
+  - node2.example.com
+  labels: {}
+  annotations: {}
+    
+
+dumpBackup:
+  # Enable backups to a PVC
+  existingClaim:
+  # -- Backup schedule for postgres dumps
+  schedule: "@daily"
+  # -- Persistent volume claim subpath prefix for the backups
+  subpathPrefix: "backup/db"
+  # -- Persistent volume claim subpath for the backups
+  # @default: <subpathPrefix/<release-name>
+  subpath:
+  image:
+    repository: postgres
+    pullPolicy: IfNotPresent
+    tag: latest
+  resources:
+    requests:
+      memory: "10Mi"
+      cpu: "5m"
 
 # Dissable Deployment and Service
 controllerType: ""

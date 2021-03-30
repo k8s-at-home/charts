@@ -16,7 +16,7 @@ Creates a postgres cluster using Zalando Postgres operator
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.1.0 |
 
 ## TL;DR
 
@@ -73,19 +73,28 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| accessModes[0] | string | `"ReadWriteOnce"` |  |
-| backupPVCPrefix | string | `"backup/db"` |  |
-| backup_schedule | string | `"@daily"` |  |
 | controllerType | string | `""` |  |
-| localPrefix | string | `"/run/db"` |  |
-| persistent | bool | `false` |  |
-| replicaCount | int | `2` |  |
-| replicaNodes[0] | string | `"node1.example.com"` |  |
-| replicaNodes[1] | string | `"node2.example.com"` |  |
-| replicaSize | string | `"1Gi"` |  |
+| dumpBackup.existingClaim | string | `nil` |  |
+| dumpBackup.schedule | string | `"@daily"` | Backup schedule for postgres dumps |
+| dumpBackup.subpath | string | `nil` | Persistent volume claim subpath for the backups @default: <subpathPrefix/<release-name> |
+| dumpBackup.subpathPrefix | string | `"backup/db"` | Persistent volume claim subpath prefix for the backups |
+| persistentVolumes.accessModes[0] | string | `"ReadWriteOnce"` |  |
+| persistentVolumes.annotations | object | `{}` |  |
+| persistentVolumes.hostPath | string | `nil` | Local path for the persistent volumes @default: <hostPathPrefix/<release-name> |
+| persistentVolumes.hostPathPrefix | string | `"/run/db"` | Local prefix for persistent volumes NOTE: The default is in tempfs - you should change to a persistent place for production!!! |
+| persistentVolumes.labels | object | `{}` |  |
+| persistentVolumes.reclaimPolicy | string | `"Recycle"` | persistentVolumeReclaimPolicy for the persistent volumes |
+| persistentVolumes.replicaNodes[0] | string | `"node1.example.com"` |  |
+| persistentVolumes.replicaNodes[1] | string | `"node2.example.com"` |  |
+| postgresql.databases.postgres | string | `"postgres"` |  |
+| postgresql.numberOfInstances | int | `2` |  |
+| postgresql.postgresql.version | string | `"11"` |  |
+| postgresql.users.postgres[0] | string | `"superuser"` |  |
+| postgresql.users.postgres[1] | string | `"createdb"` |  |
+| postgresql.volume.size | string | `"1Gi"` |  |
+| postgresql.volume.storageClass | string | `nil` | Name of the storage class |
 | service.enabled | bool | `false` |  |
 | superuser | string | `"postgres"` |  |
-| team | string | `"team"` |  |
 
 ## Changelog
 
