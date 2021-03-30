@@ -13,10 +13,6 @@
 {{- include "common.names.fullname" .|lower -}}
 {{- end -}}
 
-{{- define "postgres-cluster.storageClass" -}}
-{{- include "common.names.fullname" .|lower -}}
-{{- end -}}
-
 {{- define "postgres-cluster.localPath" -}}
 {{- default (printf "%s/%s" .Values.persistentVolumes.hostPathPrefix (include "common.names.fullname" .)) .Values.persistentVolumes.hostPath -}}
 {{- end -}}
@@ -25,6 +21,11 @@
 {{- default (printf "%s/%s" .Values.dumpBackup.subpathPrefix (include "common.names.fullname" .)) .Values.dumpBackup.subpath -}}
 {{- end -}}
 
+{{/* if postgresql.volume.storageClass is not set use fullname */}}
+{{- if not .Values.postgresql.volume.storageClass -}}
+  {{- $_ := set .Values.postgresql.volume "storageClass" (include "common.names.fullname" .|lower ) -}}
+{{- end -}}
+{{- $_ := set .Values.postgresql.volume "storageClass" "bla" -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}

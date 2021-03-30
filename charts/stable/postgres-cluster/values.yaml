@@ -10,10 +10,10 @@ persistentVolumes:
   accessModes:
   - ReadWriteOnce
   replicaNodes:
-    - node1.example.com
-    - node2.example.com
+  - node1.example.com
+  - node2.example.com
   labels: {}
-  anotations: {}
+  annotations: {}
 
 dumpBackup:
   # Enable backups to a PVC
@@ -29,6 +29,7 @@ dumpBackup:
 postgresql:
   volume:
     size: "1Gi"
+    # storageClass: bla
   numberOfInstances: 2
   users:
     # database owner

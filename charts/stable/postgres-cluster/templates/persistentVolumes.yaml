@@ -1,4 +1,4 @@
-{{- range $i:= untilStep 0 (int .Values.replicaCount) 1 -}}
+{{- range $i:= untilStep 0 (int .Values.postgresql.numberOfInstances) 1 -}}
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -6,28 +6,27 @@ metadata:
   name: {{ include "postgres-cluster.pvName" $ }}-{{ $i }}
   labels:
     {{- include "common.labels" $ | nindent 4 }}
-    {{- $.Values.persistentVolumes.labels | nindent 4 }}
   annotations:
-    {{- $.Values.persistentVolumes.annotations | nindent 4 }}
+    {{- $.Values.persistentVolumes.annotations | toYaml | nindent 4 }}
   finalizers:
     - kubernetes.io/pv-protection
 spec:
-  storageClassName: {{ include "postgres-cluster.storageClass" $ }}
+  storageClassName: {{ $.Values.postgresql.volume.storageClass }}
   volumeMode: Filesystem
   capacity:
     storage: "{{ $.Values.postgresql.volume.size }}"
   accessModes:
     {{- $.Values.persistentVolumes.accessModes | toYaml | nindent 4 }}
   hostPath:
-  {{- if lt (len $.Values.replicaNodes) ($.Values.replicaCount | int) }}
+  {{- if lt (len $.Values.persistentVolumes.replicaNodes) ($.Values.postgresql.numberOfInstances | int) }}
     path: {{ include "postgres-cluster.localPath" $ }}-{{ $i }}
   {{- else }}
     path: {{ include "postgres-cluster.localPath" $ }}
   {{- end }}
   #Since it is created directly this does not delete it from cluster
-  persistentVolumeReclaimPolicy: .Values.persistentVolumes.reclaimPolicy
-
-  {{- $e := index $.Values.replicaNodes (mod $i $.Values.replicaCount) -}}
+  persistentVolumeReclaimPolicy: "{{ $.Values.persistentVolumes.reclaimPolicy }}"
+  
+  {{ $e := index $.Values.persistentVolumes.replicaNodes (mod $i ($.Values.postgresql.numberOfInstances | int)) -}}
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -36,4 +35,5 @@ spec:
           operator: In
           values:
           - {{ $e }}
-  {{ end }}
+
+{{ end }}
