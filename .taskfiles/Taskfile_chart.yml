@@ -7,18 +7,18 @@ tasks:
     desc: create new chart
     cmds:
     - git checkout -b add-chart-{{.CHART}}
-    - cp -r {{.GIT_ROOT}}/templates/chart {{.GIT_ROOT}}/charts/{{.CHART}}
-    - ./.bin/go-replace -s '${CHARTNAME}' -r "{{.CHART}}" --path={{.GIT_ROOT}}/charts/{{.CHART}} --path-pattern='*.*'
+    - cp -r {{.GIT_ROOT}}/templates/chart "{{.GIT_ROOT}}/charts/{{.CHART_TYPE}}/{{.CHART}}"
+    - ./.bin/go-replace -s '${CHARTNAME}' -r "{{.CHART}}" --path="{{.GIT_ROOT}}/charts/{{.CHART_TYPE}}/{{.CHART}}" --path-pattern='*.*'
     - task: dependency
-    - echo "Congratulations, charts/{{.CHART}} successfully generated, you can now edit chart informations ( Chart.yaml and values.yaml )"
+    - echo "Congratulations, charts/{{.CHART_TYPE}}/{{.CHART}} successfully generated, you can now edit chart informations ( Chart.yaml and values.yaml )"
     status:
-    - test -d {{.GIT_ROOT}}/charts/{{.CHART}}
+    - test -d "{{.GIT_ROOT}}/charts/{{.CHART_TYPE}}/{{.CHART}}"
     deps:
     - check-chart
     silent: true
 
   dependency:
-    dir: "{{.GIT_ROOT}}/charts/{{.CHART}}"
+    dir: "{{.GIT_ROOT}}/charts/{{.CHART_TYPE}}/{{.CHART}}"
     cmds:
     - test -d Chart.lock && rm Chart.lock || exit 0
     - test -d tmpcharts && rm -rf tmpcharts || exit 0
@@ -27,7 +27,7 @@ tasks:
 
   lint:
     desc: lint your chart code
-    dir: "{{.GIT_ROOT}}/charts/{{.CHART}}"
+    dir: "{{.GIT_ROOT}}/charts/{{.CHART_TYPE}}/{{.CHART}}"
     cmds:
     - helm lint
     deps:
@@ -37,7 +37,7 @@ tasks:
   ct-lint:
     desc: run `ct lint` on your chart code
     cmds:
-    - docker run --rm -it --user $(id -u):$(id -g) -e "HELM_CONFIG_HOME=/tmp/helm" -e "HELM_CACHE_HOME=/tmp/helm" -v {{.GIT_ROOT}}:/ci -w /ci quay.io/helmpack/chart-testing:latest ct lint --charts charts/{{.CHART}} --config /ci/.github/ct-lint.yaml
+    - docker run --rm -it --user $(id -u):$(id -g) -e "HELM_CONFIG_HOME=/tmp/helm" -e "HELM_CACHE_HOME=/tmp/helm" -v {{.GIT_ROOT}}:/ci -w /ci quay.io/helmpack/chart-testing:latest ct lint --charts "charts/{{.CHART_TYPE}}/{{.CHART}}" --config /ci/.github/ct-lint.yaml
     deps:
     - check-chart
     - lint
@@ -46,12 +46,13 @@ tasks:
     desc: generate helm-docs
     dir: "{{.GIT_ROOT}}/hack"
     cmds:
-    - ./gen-helm-docs.sh "{{.CHART}}"
+    - ./gen-helm-docs.sh "{{.CHART_TYPE}}" "{{.CHART}}"
     deps:
     - check-chart
 
   # Checks Parameters
   check-chart:
     cmds:
+    - test ! -z "{{.CHART_TYPE}}" || (echo "Please define CHART_TYPE parameter"; exit 1)
     - test ! -z "{{.CHART}}" || (echo "Please define CHART parameter"; exit 1)
     silent: true
