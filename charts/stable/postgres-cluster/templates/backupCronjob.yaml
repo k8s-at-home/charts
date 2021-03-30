@@ -30,7 +30,7 @@ spec:
                 echo "$(date) - End dump"
                 ls -lh /backup
               resources:
-                {{ .Values.dumpBackup.resources | toYaml | indent 16 }}
+                {{- .Values.dumpBackup.resources | toYaml | nindent 16 }}
               env:
               - name: PGHOST
                 value: {{ include "postgres-cluster.db" . }}

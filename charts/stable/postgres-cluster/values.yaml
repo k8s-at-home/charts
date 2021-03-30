@@ -1,14 +1,16 @@
 
 
 postgresql:
+  # -- team Id for the DB cluster
   teamId:
   volume:
+    # -- Size of the persistance volume to allocate
     size: "1Gi"
     # -- (string) Name of the storage class
     # @default -- chart fullname
     storageClass:
   # -- Number of replicas
-  # It will be automatically set with the number of replicaNodes
+  # It will be automatically set with the number of replicaNodes so any values set here are ignored.
   numberOfInstances:
   # -- DB users to create 
   users:
@@ -16,11 +18,12 @@ postgresql:
     - superuser
     - createdb
 
-  # databases: name->owner
+  # -- databases to create and their user
   databases:
     postgres: postgres
   postgresql:
-    version: "11"
+    # -- Postgres version to deploy - see which versions are supported by the operator
+    version: "13"
 
 
 
@@ -48,7 +51,7 @@ persistentVolumes:
   accessModes:
   - ReadWriteOnce
   # -- Replica nodes
-  # Must set with 
+  # Must set with at least 2 nodes for the cluster to be highly available
   replicaNodes:
   - node1.example.com
   - node2.example.com

@@ -2,7 +2,7 @@
 {{- include "common.values.setup" . }}
 
 {{- define "postgres-cluster.db" -}}
-{{- include "common.names.fullname" .|lower -}}
+{{- include "common.names.fullname" .|lower -}}-postgres
 {{- end -}}
 
 {{- define "postgres-cluster.superuser_secret" -}}

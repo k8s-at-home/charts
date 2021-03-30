@@ -15,7 +15,18 @@ https://k8s-at-home.com/charts/
 {{- end -}}
 
 {{- define "custom.notes" -}}
+
+This chart is a wrapper for the [Zalando postgres operator](https://github.com/zalando/postgres-operator) to create
+a high available Postgres cluster using nodes local storage.
+
+Features added by this wrapper:
+- creates an storage class using local storage in the nodes specified in `persistentVolumes.replicaNodes`. These replicas survive
+  a tear-down and tear-up of the cluster.
+- (optional) does sql dumps to an existing PVC with K8S cronjobs. The Operator only supports backups to cloud, not NFS PVC for example.
+- Define the password for the DB so that it can be used accross tear-down and tear-up of the cluster.
+
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
 {{- end -}}
 
 {{- define "custom.requirements" -}}
@@ -26,6 +37,8 @@ https://k8s-at-home.com/charts/
 
 {{- define "custom.dependencies" -}}
 ## Dependencies
+
+You must install the postgres operator previously to any instance of this Helm chart.
 
 {{ template "chart.requirementsTable" . }}
 {{- end -}}
@@ -92,7 +105,8 @@ helm install {{ template "chart.name" . }} {{ template "custom.helm.path" . }} -
 {{- define "custom.valuesSection" -}}
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
+**Important**: You must update the `persistentVolumes.replicaNodes` with the list of nodes where you want to deploy replicas of the DB.
+At least you need two nodes for a cluster with high availability.
 
 {{ template "chart.valuesTable" . }}
 {{- end -}}
