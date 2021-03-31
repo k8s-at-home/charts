@@ -5,6 +5,18 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
+# Copy the configmap overtop of the AdGuardHome config
+initContainers:
+- name: copy-configmap
+  image: busybox
+  command: ["sh", "-c", "cp", "/opt/adguardhome/conf/staging.yaml", "/opt/adguardhome/conf/AdGuardHome.yaml"]
+  volumeMounts:
+  - name: adguard-home-config
+    mountPath: /opt/adguardhome/conf/staging.yaml
+    subPath: staging.yaml
+  securityContext:
+    runAsUser: 0
+
 image:
   repository: adguard/adguardhome
   tag: v0.105.2
@@ -17,6 +29,7 @@ env: {}
   # TZ:
 
 args:
+- "--config /opt/adguardhome/conf/AdGuardHome.yaml"
 - "--no-check-update"
 
 # -- (int) Number of pods to load balance between

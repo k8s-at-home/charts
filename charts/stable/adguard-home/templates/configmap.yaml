@@ -5,5 +5,5 @@ metadata:
   labels:
     {{- include "common.labels" . | nindent 4 }}
 data:
-  AdGuardHome.yaml: |
+  staging.yaml: |
 {{ .Values.config | indent 4 }}
