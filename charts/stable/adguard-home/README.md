@@ -90,7 +90,6 @@ N/A
 | replicas | int | `1` | (int) Number of pods to load balance between |
 | service.port.port | int | `3000` |  |
 | strategy.type | string | `"Recreate"` |  |
-| workDir | string | `"/data"` |  |
 
 ## Changelog
 
