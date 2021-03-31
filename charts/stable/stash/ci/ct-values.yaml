@@ -1,0 +1,16 @@
+env:
+  STASH_STASH: "/media"
+  STASH_GENERATED: "/root/.stash/generated"
+  STASH_METADATA: "/root/.stash/metadata"
+  STASH_CACHE: "/root/.stash/cache"
+persistence:
+  config:
+    enabled: true
+    emptyDir:
+      enabled: true
+    mountPath: /root/.stash
+media:
+  enabled: true
+  emptyDir:
+    enabled: true
+  mountPath: /media
