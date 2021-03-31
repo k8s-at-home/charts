@@ -15,6 +15,7 @@ initContainers:
   - "-c"
   - |
     if [ ! -f /opt/adguardhome/conf/AdGuardHome.yaml ]; then
+      mkdir -p /opt/adguardhome/conf
       cp /tmp/AdGuardHome.yaml /opt/adguardhome/conf/AdGuardHome.yaml
     fi
   volumeMounts:
