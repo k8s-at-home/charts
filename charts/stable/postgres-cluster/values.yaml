@@ -43,7 +43,8 @@ persistentVolumes:
   # @default: <hostPathPrefix/<release-name>
   hostPath:
   # -- persistentVolumeReclaimPolicy for the persistent volumes
-  reclaimPolicy: Recycle
+  # Recicle will delete content once DB is deleted while Retain (default) will keep it.
+  reclaimPolicy: Retain
 
   accessModes:
   - ReadWriteOnce
