@@ -5,5 +5,13 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+This chart is a wrapper for the [Zalando postgres operator](https://github.com/zalando/postgres-operator) to create
+a high available Postgres cluster using nodes local storage.
+
+Features added by this wrapper:
+- creates an storage class using local storage in the nodes specified in `persistentVolumes.replicaNodes`. These replicas survive
+  a tear-down and tear-up of the cluster.
+- (optional) does sql dumps to an existing PVC with K8S cronjobs. The Operator only supports backups to cloud, not NFS PVC for example.
+- Define the password for the DB so that it can be used accross tear-down and tear-up of the cluster.
+
 {{- end -}}
