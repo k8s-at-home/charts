@@ -5,15 +5,16 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
-# Copy the configmap overtop of the AdGuardHome config
+# Copy the configmap to the AdGuardHome conf directory
+# Do NOT overwrite when the file already exists
 initContainers:
 - name: copy-configmap
   image: busybox
-  command: ["sh", "-c", "cp", "/opt/adguardhome/conf/staging.yaml", "/opt/adguardhome/conf/AdGuardHome.yaml"]
+  command: ["sh", "-c", "cp", "-n", "/tmp/staging.yaml", "/opt/adguardhome/conf/AdGuardHome.yaml"]
   volumeMounts:
   - name: adguard-home-config
-    mountPath: /opt/adguardhome/conf/staging.yaml
-    subPath: staging.yaml
+    mountPath: /tmp/AdGuardHome.yaml
+    subPath: AdGuardHome.yaml
   securityContext:
     runAsUser: 0
 
@@ -59,6 +60,11 @@ service:
   #   externalTrafficPolicy: Local
 
 persistence:
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /opt/adguardhome/conf
   data:
     enabled: false
     emptyDir:

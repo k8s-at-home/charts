@@ -17,8 +17,8 @@ configMap:
 {{/* Append the configMap volume to the additionalVolumeMounts */}}
 {{- define "adguard-home.configmap.volumeMount" -}}
 name: adguard-home-config
-mountPath: /opt/adguardhome/conf/staging.yaml
-subPath: staging.yaml
+mountPath: /tmp/AdGuardHome.yaml
+subPath: AdGuardHome.yaml
 {{- end -}}
 
 {{- $volumeMount := include "adguard-home.configmap.volumeMount" . | fromYaml -}}
