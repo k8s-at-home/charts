@@ -16,6 +16,10 @@ strategy:
 env: {}
   # TZ:
 
+args:
+- "--config /config/config.yaml"
+- "--work-dir /data"
+
 # -- (int) Number of pods to load balance between
 replicas: 1
 
@@ -43,11 +47,10 @@ service:
   #   externalTrafficPolicy: Local
 
 persistence:
-  work:
+  data:
     enabled: false
     emptyDir:
       enabled: false
-    mountPath: /opt/adguardhome/work
     ## Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
