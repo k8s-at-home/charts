@@ -6,9 +6,13 @@ metadata:
   name: {{ include "postgres-cluster.pvName" $ }}-{{ $i }}
   labels:
     {{- include "common.labels" $ | nindent 4 }}
+    {{- if gt (len $.Values.persistentVolumes.labels) 0 }}
     {{- $.Values.persistentVolumes.labels | toYaml | nindent 4 }}
+    {{- end }}
+  {{- if gt (len $.Values.persistentVolumes.annotations) 0 }}
   annotations:
     {{- $.Values.persistentVolumes.annotations | toYaml | nindent 4 }}
+  {{- end }}
   finalizers:
     - kubernetes.io/pv-protection
 spec:
