@@ -75,8 +75,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| args[0] | string | `"--config /config/config.yaml"` |  |
-| args[1] | string | `"--work-dir /data"` |  |
+| args[0] | string | `"--no-check-update"` |  |
 | config | string | `"bind_host: 0.0.0.0\nbind_port: 3000\nusers: []\n# - name: admin\n#   password: $2y$05$mV4GSa5Dymk4Hjg3NCscBuCYSckCGfc2mbS57SNkBkBAfvqfOdFfm\nhttp_proxy: \"\"\nlanguage: \"en\"\nrlimit_nofile: 0\ndebug_pprof: false\nweb_session_ttl: 720\ndns:\n  bind_host: 0.0.0.0\n  port: 53\n  statistics_interval: 1\n  querylog_enabled: true\n  querylog_interval: 90\n  querylog_size_memory: 1000\n  anonymize_client_ip: false\n  protection_enabled: true\n  blocking_mode: default\n  blocking_ipv4: \"\"\n  blocking_ipv6: \"\"\n  blocked_response_ttl: 10\n  parental_block_host: family-block.dns.adguard.com\n  safebrowsing_block_host: standard-block.dns.adguard.com\n  ratelimit: 0\n  ratelimit_whitelist: []\n  refuse_any: true\n  upstream_dns:\n  - https://dns10.quad9.net/dns-query\n  bootstrap_dns:\n  - 9.9.9.10\n  - 149.112.112.10\n  - 2620:fe::10\n  - 2620:fe::fe:10\n  all_servers: false\n  fastest_addr: false\n  allowed_clients: []\n  # - 10.0.0.1\n  # - 10.0.1.1/24\n  disallowed_clients: []\n  # - 10.0.1.1\n  # - 10.0.11.1/24\n  blocked_hosts: []\n  # - example.org\n  # - '*.example.org'\n  # - '||example.org^'\n  cache_size: 4194304\n  cache_ttl_min: 0\n  cache_ttl_max: 0\n  bogus_nxdomain: []\n  aaaa_disabled: false\n  enable_dnssec: false\n  edns_client_subnet: false\n  filtering_enabled: true\n  filters_update_interval: 24\n  parental_enabled: false\n  safesearch_enabled: false\n  safebrowsing_enabled: false\n  safebrowsing_cache_size: 1048576\n  safesearch_cache_size: 1048576\n  parental_cache_size: 1048576\n  cache_time: 30\n  rewrites: []\n  # - domain: example.org\n  #   answer: 127.0.0.1\n  # - domain: '*.example.org'\n  #   answer: 127.0.0.1\n  blocked_services: []\n  # - facebook\n  # - origin\n  # - twitter\n  # - snapchat\n  # - skype\n  # - whatsapp\n  # - instagram\n  # - youtube\n  # - netflix\n  # - twitch\n  # - discord\n  # - amazon\n  # - ebay\n  # - cloudflare\n  # - steam\n  # - epic_games\n  # - reddit\n  # - ok\n  # - vk\n  # - mail_ru\n  # - tiktok\ntls:\n  enabled: false\n  server_name: \"\"\n  force_https: false\n  port_https: 443\n  port_dns_over_tls: 853\n  allow_unencrypted_doh: false\n  strict_sni_check: false\n  certificate_chain: \"\"\n  private_key: \"\"\n  certificate_path: \"\"\n  private_key_path: \"\"\nfilters:\n- enabled: true\n  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt\n  name: AdGuard DNS filter\n  id: 1\n- enabled: false\n  url: https://adaway.org/hosts.txt\n  name: AdAway\n  id: 2\n- enabled: false\n  url: https://www.malwaredomainlist.com/hostslist/hosts.txt\n  name: MalwareDomainList.com Hosts List\n  id: 4\nwhitelist_filters: []\n# - enabled: true\n#   url: https://easylist-downloads.adblockplus.org/exceptionrules.txt\n#   name: Allow nonintrusive advertising\n#   id: 1595760241\nuser_rules: []\n# - '||example.org^'\n# - '@@||example.org^'\n# - 127.0.0.1 example.org\n# - '! Here goes a comment'\n# - '# Also a comment'\ndhcp:\n  enabled: false\n  interface_name: \"\"\n  gateway_ip: \"\"\n  subnet_mask: \"\"\n  range_start: \"\"\n  range_end: \"\"\n  lease_duration: 86400\n  icmp_timeout_msec: 1000\nclients: []\n# - name: myuser\n#   tags:\n#   - user_admin\n#   ids:\n#   - 192.168.91.1\n#   use_global_settings: true\n#   filtering_enabled: false\n#   parental_enabled: false\n#   safesearch_enabled: false\n#   safebrowsing_enabled: false\n#   use_global_blocked_services: true\n#   blocked_services: []\n#   upstreams: []\nlog_file: \"\"\nverbose: false\nschema_version: 6\n"` |  |
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -84,12 +83,14 @@ N/A
 | image.tag | string | `"v0.105.2"` |  |
 | persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/opt/adguardhome/work"` |  |
 | prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
 | prometheus.serviceMonitor.enabled | bool | `false` |  |
 | prometheus.serviceMonitor.interval | string | `"30s"` |  |
 | replicas | int | `1` | (int) Number of pods to load balance between |
 | service.port.port | int | `3000` |  |
 | strategy.type | string | `"Recreate"` |  |
+| workDir | string | `"/data"` |  |
 
 ## Changelog
 
