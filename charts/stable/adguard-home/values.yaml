@@ -10,7 +10,13 @@
 initContainers:
 - name: copy-configmap
   image: busybox
-  command: ["sh", "-c", "cp", "-n", "/tmp/staging.yaml", "/opt/adguardhome/conf/AdGuardHome.yaml"]
+  command:
+  - "sh"
+  - "-c"
+  - |
+    if [ ! -f /opt/adguardhome/conf/AdGuardHome.yaml ]; then
+      cp /tmp/AdGuardHome.yaml /opt/adguardhome/conf/AdGuardHome.yaml
+    fi
   volumeMounts:
   - name: adguard-home-config
     mountPath: /tmp/AdGuardHome.yaml

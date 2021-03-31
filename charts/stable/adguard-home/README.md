@@ -84,10 +84,7 @@ N/A
 | image.tag | string | `"v0.105.2"` |  |
 | initContainers[0].command[0] | string | `"sh"` |  |
 | initContainers[0].command[1] | string | `"-c"` |  |
-| initContainers[0].command[2] | string | `"cp"` |  |
-| initContainers[0].command[3] | string | `"-n"` |  |
-| initContainers[0].command[4] | string | `"/tmp/staging.yaml"` |  |
-| initContainers[0].command[5] | string | `"/opt/adguardhome/conf/AdGuardHome.yaml"` |  |
+| initContainers[0].command[2] | string | `"if [ ! -f /opt/adguardhome/conf/AdGuardHome.yaml ]; then \n  cp /tmp/AdGuardHome.yaml /opt/adguardhome/conf/AdGuardHome.yaml\nfi\n"` |  |
 | initContainers[0].image | string | `"busybox"` |  |
 | initContainers[0].name | string | `"copy-configmap"` |  |
 | initContainers[0].securityContext.runAsUser | int | `0` |  |
