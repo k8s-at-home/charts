@@ -2,14 +2,20 @@ apiVersion: v2
 appVersion: v0.102.0
 description: DNS proxy as ad-blocker for local network
 name: adguard-home
-version: 2.2.3
+version: 3.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - adguard-home
-  - adguard
-  - dns
+- adguard-home
+- adblock
+- dns
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/adguard-home
 icon: https://avatars3.githubusercontent.com/u/8361145?s=200&v=4?sanitize=true
 sources:
-  - https://github.com/AdguardTeam/AdGuardHome
+- https://github.com/AdguardTeam/AdGuardHome
 maintainers:
-  - name: billimek
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.1.0
