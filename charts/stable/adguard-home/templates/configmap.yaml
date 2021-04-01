@@ -1,14 +1,9 @@
-{{- if .Values.configAsCode.enabled }}
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: {{ include "adguard-home.fullname" . }}
+  name: {{ template "common.names.fullname" . }}-config
   labels:
-    app.kubernetes.io/name: {{ include "adguard-home.name" . }}
-    helm.sh/chart: {{ include "adguard-home.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "common.labels" . | nindent 4 }}
 data:
   AdGuardHome.yaml: |
-    {{- toYaml .Values.configAsCode.config | nindent 4 }}
-{{- end }}
+{{ .Values.config | indent 4 }}
