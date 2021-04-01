@@ -1,0 +1,54 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: stashapp/stash
+  pullPolicy: IfNotPresent
+  tag: latest@sha256:24dbd76071745be0c4e75f730aa7ac2b37cb2b2918eabf8559643196b3b7a64a
+
+strategy:
+  type: Recreate
+
+# # See more environment variables in the stash documentation
+# https://raw.githubusercontent.com/stashapp/stash/master/docker/production/docker-compose.yml
+env: {}
+  # STASH_STASH:
+  # STASH_GENERATED:
+  # STASH_METADATA:
+  # STASH_CACHE:
+
+service:
+  port:
+    port: 9999
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /root/.stash
+
+  media:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /media
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
