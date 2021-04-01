@@ -1,6 +1,6 @@
 # rtorrent-flood
 
-![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 rTorrent is a stable, high-performance and low resource consumption BitTorrent client.
 
@@ -21,7 +21,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.0.1 |
+| https://library-charts.k8s-at-home.com | common | 2.1.0 |
 
 ## TL;DR
 
@@ -78,13 +78,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| args[0] | string | `"--port 3000"` |  |
-| args[1] | string | `"--allowedpath /downloads"` |  |
-| config | string | see URL to default config | Minimal configuration provided from https://github.com/jesec/rtorrent/blob/master/doc/rtorrent.rc |
+| config | string | string | Minimal configuration provided from https://github.com/jesec/rtorrent/blob/master/doc/rtorrent.rc |
+| env.FLOOD_OPTION_ALLOWEDPATH | string | `"/downloads"` |  |
+| env.FLOOD_OPTION_HOST | string | `"0.0.0.0"` |  |
+| env.FLOOD_OPTION_PORT | string | `"3000"` |  |
+| env.FLOOD_OPTION_RTORRENT | string | `"true"` |  |
 | env.HOME | string | `"/config"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"jesec/rtorrent-flood"` |  |
-| image.tag | string | `"latest"` |  |
+| image.tag | string | `"latest@sha256:5ff0125ea0e2befbc2ba2f2143e130819db645cb5ef68b44a0712b8162a16f47"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
