@@ -8,7 +8,7 @@
 image:
   repository: zwavejs/zwavejs2mqtt
   pullPolicy: IfNotPresent
-  tag: 1.1.1
+  tag: 3.0.3
 
 strategy:
   type: Recreate
@@ -21,6 +21,9 @@ env: {}
 service:
   port:
     port: 8091
+  # additionalPorts:
+  #   - name: websocket
+  #     port: 3000
 
 ingress:
   enabled: false
