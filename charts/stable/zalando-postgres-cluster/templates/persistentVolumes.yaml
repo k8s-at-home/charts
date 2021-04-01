@@ -1,0 +1,40 @@
+{{- range $i:= untilStep 0 (len $.Values.persistentVolumes.replicaNodes) 1 -}}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "zalando-postgres-cluster.pvName" $ }}-{{ $i }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+    {{- if gt (len $.Values.persistentVolumes.labels) 0 }}
+    {{- $.Values.persistentVolumes.labels | toYaml | nindent 4 }}
+    {{- end }}
+  {{- if gt (len $.Values.persistentVolumes.annotations) 0 }}
+  annotations:
+    {{- $.Values.persistentVolumes.annotations | toYaml | nindent 4 }}
+  {{- end }}
+  finalizers:
+    - kubernetes.io/pv-protection
+spec:
+  storageClassName: {{ include "zalando-postgres-cluster.storageClass" $ }}
+  volumeMode: Filesystem
+  capacity:
+    storage: "{{ $.Values.postgresql.volume.size }}"
+  accessModes:
+    {{- $.Values.persistentVolumes.accessModes | toYaml | nindent 4 }}
+  hostPath:
+    path: {{ include "zalando-postgres-cluster.localPath" $ }}
+  #Since it is created directly this does not delete it from cluster
+  persistentVolumeReclaimPolicy: "{{ $.Values.persistentVolumes.reclaimPolicy }}"
+  
+  {{- $e := index $.Values.persistentVolumes.replicaNodes $i }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {{ $e }}
+
+{{ end }}

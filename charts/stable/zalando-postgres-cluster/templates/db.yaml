@@ -1,0 +1,18 @@
+{{- if not .Values.postgresql.volume.storageClass -}}
+  {{- $_ := set .Values.postgresql.volume "storageClass" (include "zalando-postgres-cluster.storageClass" .) }}
+{{- end}}
+
+{{- if not .Values.postgresql.teamId -}}
+  {{- $_ := set .Values.postgresql "teamId" (include "common.names.fullname" .) }}
+{{- end}}
+
+{{- $_ := set .Values.postgresql "numberOfInstances" (len $.Values.persistentVolumes.replicaNodes) }}
+
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: {{ include "zalando-postgres-cluster.db" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  {{- .Values.postgresql | toYaml | nindent 2 }}

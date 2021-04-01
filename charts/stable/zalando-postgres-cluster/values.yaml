@@ -1,0 +1,83 @@
+# See all operator values at https://github.com/zalando/postgres-operator/blob/master/docs/reference/cluster_manifest.md
+postgresql:
+  # -- team Id for the DB cluster
+  teamId:
+  volume:
+    # -- Size of the persistance volume to allocate
+    size: "1Gi"
+    # -- (string) Name of the storage class
+    # @default -- chart fullname
+    storageClass:
+  # -- Number of replicas
+  # It will be automatically set with the number of replicaNodes so any values set here are ignored.
+  numberOfInstances:
+  # -- DB users to create (see operator)
+  users:
+    postgres:
+    - superuser
+    - createdb
+
+  # -- databases to create and their user
+  databases:
+    postgres: postgres
+  postgresql:
+    # -- Postgres version to deploy - see which versions are supported by the operator
+    version: "13"
+
+superuser:
+  # -- Superuser user used for cronjobs
+  # @default -- first user in postgresql.users
+  user:
+  # -- Superuser password
+  # @default -- randomly generated on first install of the chart
+  password:
+  # -- Superuser k8s secret name. It must match the patter used by the operator
+  # @default -- <user>.<db name>.credentials.postgresql.acid.zalan.do
+  secret:
+
+persistentVolumes:
+  # -- Local prefix for persistent volumes
+  # NOTE: The default is in tempfs - you should change to a persistent place for production!!!
+  hostPathPrefix: "/run/db"
+  # -- Local path for the persistent volumes
+  # @default: <hostPathPrefix/<release-name>
+  hostPath:
+  # -- persistentVolumeReclaimPolicy for the persistent volumes
+  # Recicle will delete content once DB is deleted while Retain (default) will keep it.
+  reclaimPolicy: Retain
+
+  accessModes:
+  - ReadWriteOnce
+  # -- Replica nodes
+  # Must set with at least 2 nodes for the cluster to be highly available
+  replicaNodes:
+  - node1.example.com
+  - node2.example.com
+  labels: {}
+  #  foo: a
+  annotations: {}
+
+
+dumpBackup:
+  # Enable backups to a PVC
+  existingClaim:
+  # -- Backup schedule for postgres dumps
+  schedule: "@daily"
+  # -- Persistent volume claim subpath prefix for the backups
+  subpathPrefix: "backup/db"
+  # -- Persistent volume claim subpath for the backups
+  # @default: <subpathPrefix/<release-name>
+  subpath:
+  image:
+    repository: postgres
+    pullPolicy: IfNotPresent
+    tag: latest
+  resources:
+    requests:
+      memory: "10Mi"
+      cpu: "5m"
+
+# Dissable Deployment and Service
+controllerType: ""
+service:
+  enabled: false
