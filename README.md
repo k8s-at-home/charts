@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -61,6 +61,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Diaoul"><img src="https://avatars.githubusercontent.com/u/319220?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Antoine Bertin</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Diaoul" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/onedr0p"><img src="https://avatars.githubusercontent.com/u/213795?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ᗪєνιη ᗷυнʟ</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=onedr0p" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Ardetus"><img src="https://avatars.githubusercontent.com/u/2253935?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ardetus</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Ardetus" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dynamicat"><img src="https://avatars.githubusercontent.com/u/12977282?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chris Golden</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=dynamicat" title="Code">💻</a></td>
   </tr>
 </table>
 
