@@ -1,6 +1,6 @@
 apiVersion: v2
 name: speedtest
-version: 3.0.2
+version: 4.0.0
 appVersion: 1.0.0
 description: periodic speedtest and save the results to InfluxDB
 keywords:
@@ -18,6 +18,6 @@ maintainers:
 
 dependencies:
 - name: influxdb
-  version: 1.1.9
+  version: 2.2.0
   repository: https://charts.bitnami.com/bitnami
   condition: influxdb.enabled
