@@ -33,21 +33,21 @@ spec:
                 {{- .Values.dumpBackup.resources | toYaml | nindent 16 }}
               env:
               - name: PGHOST
-                value: {{ include "postgres-cluster.db" . }}
+                value: {{ include "zalando-postgres-cluster.db" . }}
               - name: PGUSER
                 valueFrom:
                   secretKeyRef:
-                    name: {{ include "postgres-cluster.superuser_secret" . }}
+                    name: {{ include "zalando-postgres-cluster.superuser_secret" . }}
                     key: username
               - name: PGPASSWORD
                 valueFrom:
                   secretKeyRef:
-                    name: {{ include "postgres-cluster.superuser_secret" . }}
+                    name: {{ include "zalando-postgres-cluster.superuser_secret" . }}
                     key: password
               volumeMounts:
               - mountPath: /backup
                 name: backup-volume
-                subPath: {{ include "postgres-cluster.backupPVCSubpath" . }}
+                subPath: {{ include "zalando-postgres-cluster.backupPVCSubpath" . }}
           restartPolicy: OnFailure
           volumes:
             - name: backup-volume

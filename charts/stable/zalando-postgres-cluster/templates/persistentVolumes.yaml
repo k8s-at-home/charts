@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ include "postgres-cluster.pvName" $ }}-{{ $i }}
+  name: {{ include "zalando-postgres-cluster.pvName" $ }}-{{ $i }}
   labels:
     {{- include "common.labels" $ | nindent 4 }}
     {{- if gt (len $.Values.persistentVolumes.labels) 0 }}
@@ -16,14 +16,14 @@ metadata:
   finalizers:
     - kubernetes.io/pv-protection
 spec:
-  storageClassName: {{ include "postgres-cluster.storageClass" $ }}
+  storageClassName: {{ include "zalando-postgres-cluster.storageClass" $ }}
   volumeMode: Filesystem
   capacity:
     storage: "{{ $.Values.postgresql.volume.size }}"
   accessModes:
     {{- $.Values.persistentVolumes.accessModes | toYaml | nindent 4 }}
   hostPath:
-    path: {{ include "postgres-cluster.localPath" $ }}
+    path: {{ include "zalando-postgres-cluster.localPath" $ }}
   #Since it is created directly this does not delete it from cluster
   persistentVolumeReclaimPolicy: "{{ $.Values.persistentVolumes.reclaimPolicy }}"
   

@@ -25,18 +25,18 @@ spec:
 
         env:
         - name: PGHOST
-          value: {{ include "postgres-cluster.db" . | quote }}
+          value: {{ include "zalando-postgres-cluster.db" . | quote }}
         - name: PGSSLMODE
           value: require
         - name: PGUSER
           valueFrom:
             secretKeyRef:
-              name: {{ include "postgres-cluster.superuser_secret" . }}
+              name: {{ include "zalando-postgres-cluster.superuser_secret" . }}
               key: username
         - name: PGPASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ include "postgres-cluster.superuser_secret" . }}
+              name: {{ include "zalando-postgres-cluster.superuser_secret" . }}
               key: password
       restartPolicy: Never
 

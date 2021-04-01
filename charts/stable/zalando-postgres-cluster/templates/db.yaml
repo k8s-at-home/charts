@@ -1,5 +1,5 @@
 {{- if not .Values.postgresql.volume.storageClass -}}
-  {{- $_ := set .Values.postgresql.volume "storageClass" (include "postgres-cluster.storageClass" .) }}
+  {{- $_ := set .Values.postgresql.volume "storageClass" (include "zalando-postgres-cluster.storageClass" .) }}
 {{- end}}
 
 {{- if not .Values.postgresql.teamId -}}
@@ -11,7 +11,7 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: {{ include "postgres-cluster.db" . }}
+  name: {{ include "zalando-postgres-cluster.db" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:

@@ -1,4 +1,4 @@
-# postgres-cluster
+# zalando-postgres-cluster
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
@@ -23,23 +23,23 @@ Creates a postgres cluster using the Zalando Postgres operator and local storage
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install postgres-cluster k8s-at-home/postgres-cluster
+helm install zalando-postgres-cluster k8s-at-home/zalando-postgres-cluster
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `postgres-cluster`
+To install the chart with the release name `zalando-postgres-cluster`
 
 ```console
-helm install postgres-cluster k8s-at-home/postgres-cluster
+helm install zalando-postgres-cluster k8s-at-home/zalando-postgres-cluster
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `postgres-cluster` deployment
+To uninstall the `zalando-postgres-cluster` deployment
 
 ```console
-helm uninstall postgres-cluster
+helm uninstall zalando-postgres-cluster
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -52,15 +52,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install postgres-cluster \
+helm install zalando-postgres-cluster \
   --set env.TZ="America/New York" \
-    k8s-at-home/postgres-cluster
+    k8s-at-home/zalando-postgres-cluster
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install postgres-cluster k8s-at-home/postgres-cluster -f values.yaml
+helm install zalando-postgres-cluster k8s-at-home/zalando-postgres-cluster -f values.yaml
 ```
 
 ## Custom configuration
