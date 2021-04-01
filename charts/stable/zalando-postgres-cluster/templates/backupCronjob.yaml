@@ -1,0 +1,56 @@
+{{- if .Values.dumpBackup.existingClaim -}}
+# ------------------- CronJob ------------------- #
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "common.names.fullname" . }}-backup
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.dumpBackup.schedule | quote }}
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: {{ include "common.names.fullname" . }}-backup
+          labels:
+            {{- include "common.labels.selectorLabels" . | nindent 12 }}
+        spec:
+          containers:
+            - name: backup
+              image: "{{ .Values.dumpBackup.image.repository}}:{{ .Values.dumpBackup.image.tag}}"
+              imagePullPolicy: {{ .Values.dumpBackup.image.imagePullPolicy}}
+              command:
+              - /bin/sh
+              - -ce
+              - |
+                echo "$(date) - Start dump"
+                pg_dumpall > /backup/new && mv /backup/new /backup/backup
+                echo "$(date) - End dump"
+                ls -lh /backup
+              resources:
+                {{- .Values.dumpBackup.resources | toYaml | nindent 16 }}
+              env:
+              - name: PGHOST
+                value: {{ include "zalando-postgres-cluster.db" . }}
+              - name: PGUSER
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ include "zalando-postgres-cluster.superuser_secret" . }}
+                    key: username
+              - name: PGPASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: {{ include "zalando-postgres-cluster.superuser_secret" . }}
+                    key: password
+              volumeMounts:
+              - mountPath: /backup
+                name: backup-volume
+                subPath: {{ include "zalando-postgres-cluster.backupPVCSubpath" . }}
+          restartPolicy: OnFailure
+          volumes:
+            - name: backup-volume
+              persistentVolumeClaim:
+                claimName: {{ .Values.dumpBackup.existingClaim }}
+{{- end -}}

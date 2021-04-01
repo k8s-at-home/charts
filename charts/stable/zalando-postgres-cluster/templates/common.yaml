@@ -1,0 +1,37 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{- define "zalando-postgres-cluster.db" -}}
+{{- include "common.names.fullname" .|lower -}}-postgres
+{{- end -}}
+
+{{- define "zalando-postgres-cluster.superuser" -}}
+{{- default (keys .Values.postgresql.users | first ) .Values.superuser.user -}}
+{{- end -}}
+
+{{- define "zalando-postgres-cluster.superuser_secret" -}}
+{{ default (printf "%s.%s.credentials.postgresql.acid.zalan.do" (include "zalando-postgres-cluster.superuser" .) (include "zalando-postgres-cluster.db" .)) .Values.superuser.secret }}
+{{- end -}}
+
+{{- define "zalando-postgres-cluster.superuser_password" -}}
+{{- default (randAlphaNum 50) .Values.superuser.password -}}
+{{- end -}}
+
+{{- define "zalando-postgres-cluster.storageClass" -}}
+{{- default (include "common.names.fullname" .|lower ) .Values.postgresql.volume.storageClass -}}
+{{- end -}}
+
+{{- define "zalando-postgres-cluster.pvName" -}}
+{{- include "common.names.fullname" .|lower -}}
+{{- end -}}
+
+{{- define "zalando-postgres-cluster.localPath" -}}
+{{- default (printf "%s/%s" .Values.persistentVolumes.hostPathPrefix (include "common.names.fullname" .)) .Values.persistentVolumes.hostPath -}}
+{{- end -}}
+
+{{- define "zalando-postgres-cluster.backupPVCSubpath" -}}
+{{- default (printf "%s/%s" .Values.dumpBackup.subpathPrefix (include "common.names.fullname" .)) .Values.dumpBackup.subpath -}}
+{{- end -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
