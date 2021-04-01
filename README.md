@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -63,6 +63,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Ardetus"><img src="https://avatars.githubusercontent.com/u/2253935?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ardetus</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Ardetus" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dynamicat"><img src="https://avatars.githubusercontent.com/u/12977282?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chris Golden</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=dynamicat" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/psychopenguin"><img src="https://avatars.githubusercontent.com/u/1420115?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Fabio Brito d'Araujo e Oliveira</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=psychopenguin" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/allenporter"><img src="https://avatars.githubusercontent.com/u/6026418?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Allen Porter</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=allenporter" title="Code">💻</a></td>
   </tr>
 </table>
 
