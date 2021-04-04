@@ -54,8 +54,8 @@ influxdb:
   # - Use internal Influx DB. Set to false if you use an external DB.
   enabled: true
   architecture: standalone
-  database: speedtests
-  authEnabled: false
+  auth:
+    enabled: false
   persistence:
     enabled: false
     # storageClass: ""
