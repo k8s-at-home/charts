@@ -6950,6 +6950,36 @@ entries:
   dsmr-reader:
   - apiVersion: v2
     appVersion: v4.9.0
+    created: "2021-04-04T07:57:45.646435074Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    description: DSMR-protocol reader, telegram data storage and energy consumption
+      visualizer.
+    digest: b52edef048f46dacfce3b56c821a3684e2e048b7c04432cf46e23dd7693a93cf
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dsmr-reader
+    icon: https://avatars2.githubusercontent.com/u/57727360?s=400&v=4
+    keywords:
+    - dsmr-reader
+    - energy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dsmr-reader
+    sources:
+    - https://github.com/dsmrreader/dsmr-reader
+    - https://github.com/xirixiz/dsmr-reader-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dsmr-reader-3.1.2/dsmr-reader-3.1.2.tgz
+    version: 3.1.2
+  - apiVersion: v2
+    appVersion: v4.9.0
     created: "2021-03-29T23:59:57.770862204Z"
     dependencies:
     - name: common
@@ -11088,6 +11118,45 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/heimdall-1.0.1/heimdall-1.0.1.tgz
     version: 1.0.1
   home-assistant:
+  - apiVersion: v2
+    appVersion: 2021.3.4
+    created: "2021-04-04T07:57:45.762928008Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.6
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Home Assistant
+    digest: b0c32281c3b51d13a2b2a6c1e1d246516e0e6976dc01695b693d4619b22c7641
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-7.2.3/home-assistant-7.2.3.tgz
+    version: 7.2.3
   - apiVersion: v2
     appVersion: 2021.3.4
     created: "2021-04-03T11:48:35.247017362Z"
@@ -15959,6 +16028,34 @@ entries:
   kanboard:
   - apiVersion: v2
     appVersion: v1.2.18
+    created: "2021-04-04T07:57:45.899662369Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    description: Kanboard is a free and open source Kanban project management software.
+    digest: aa6f1912aad771f6ea5081c8cd8e3278f4de422e80c5a309b105b9d4c5c317c9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/kanboard
+    icon: https://raw.githubusercontent.com/kanboard/website/master/assets/img/icon.svg
+    keywords:
+    - kanboard
+    - kanban
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: kanboard
+    sources:
+    - https://github.com/kanboard/kanboard
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/kanboard-2.1.2/kanboard-2.1.2.tgz
+    version: 2.1.2
+  - apiVersion: v2
+    appVersion: v1.2.18
     created: "2021-03-30T00:00:03.23293654Z"
     dependencies:
     - name: common
@@ -18179,6 +18276,35 @@ entries:
   miniflux:
   - apiVersion: v2
     appVersion: 2.0.28
+    created: "2021-04-04T07:57:46.002240614Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    description: Miniflux is a minimalist and opinionated feed reader.
+    digest: c68852b8277347cd7ed75c001cfaa4a1e90134e84d668e8449631232c19bdf2a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/miniflux
+    icon: https://raw.githubusercontent.com/miniflux/logo/master/icon.svg
+    keywords:
+    - miniflux
+    - rss
+    - news
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: miniflux
+    sources:
+    - https://github.com/miniflux/v2
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/miniflux-2.1.2/miniflux-2.1.2.tgz
+    version: 2.1.2
+  - apiVersion: v2
+    appVersion: 2.0.28
     created: "2021-03-30T00:00:04.821658409Z"
     dependencies:
     - name: common
@@ -18355,6 +18481,35 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/modem-stats-2.0.0/modem-stats-2.0.0.tgz
     version: 2.0.0
   monica:
+  - apiVersion: v2
+    appVersion: v2.19.1
+    created: "2021-04-04T07:57:46.112050406Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.6
+    description: A Personal Relationship Management tool to help you organize your
+      social life
+    digest: b3f9fbdecaf7134c24c88fedd36ef016b0371b8a1aec136ed28383180dd30f76
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/monica
+    icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
+    keywords:
+    - crm
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: monica
+    sources:
+    - https://github.com/monicahq/monica
+    - https://hub.docker.com/_/monica
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/monica-4.1.2/monica-4.1.2.tgz
+    version: 4.1.2
   - apiVersion: v2
     appVersion: v2.19.1
     created: "2021-03-30T00:00:05.331847855Z"
@@ -28674,6 +28829,35 @@ entries:
   powerdns:
   - apiVersion: v2
     appVersion: v4.3.1
+    created: "2021-04-04T07:57:46.221828997Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.6
+    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL.
+      It runs on most Unix derivatives. PowerDNS features a large number of different
+      backends ranging from simple BIND style zonefiles to relational databases and
+      load balancing/failover algorithms. A DNS recursor is provided as a separate
+      program.
+    digest: 5ceafc2fb4b86df47eb0d9b8098ce544a8c477c8a38dce33d93e40dad4edbaa4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/powerdns
+    icon: https://www.powerdns.com/img/pDNS_logo_positive_claim_down_screen_xsmall.png
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: powerdns
+    sources:
+    - http://www.github.com/PowerDNS/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/powerdns-3.1.3/powerdns-3.1.3.tgz
+    version: 3.1.3
+  - apiVersion: v2
+    appVersion: v4.3.1
     created: "2021-03-18T13:23:19.453223644Z"
     dependencies:
     - condition: postgresql.enabled
@@ -36497,6 +36681,37 @@ entries:
   statping:
   - apiVersion: v2
     appVersion: v0.90.65
+    created: "2021-04-04T07:57:46.340319543Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    description: Status page for monitoring your websites and applications
+    digest: a938ea133c2e111742c8be85bfbdb3d003f1f27ddc40e4ccca80eff17573d950
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/statping
+    icon: https://github.com/statping/statping/blob/dev/frontend/src/assets/logo.png?raw=true
+    keywords:
+    - statping
+    - status
+    - status-page
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    - email: git@angelnu.com
+      name: angelnu
+    name: statping
+    sources:
+    - https://github.com/statping/statping
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/statping-3.1.2/statping-3.1.2.tgz
+    version: 3.1.2
+  - apiVersion: v2
+    appVersion: v0.90.65
     created: "2021-03-30T00:00:15.385044093Z"
     dependencies:
     - name: common
@@ -37994,6 +38209,37 @@ entries:
   teedy:
   - apiVersion: v2
     appVersion: v1.9
+    created: "2021-04-04T07:57:46.458278886Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    description: Teedy is an open source, lightweight document management system for
+      individuals and businesses.
+    digest: 1b0ef98e5eadbaecfe80bf4ca4208713a269a9fd9ef7054456d4fcd91967e855
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teedy
+    icon: https://camo.githubusercontent.com/529d95bcf95198a51c7176ed59068238a6099ee6828aa47a3aac697d6c5ee5f4/68747470733a2f2f74656564792e696f2f696d672f6769746875622d7469746c652e706e67
+    keywords:
+    - teedy
+    - documents
+    - management
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: teedy
+    sources:
+    - https://github.com/sismics/docs
+    - https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teedy-3.1.2/teedy-3.1.2.tgz
+    version: 3.1.2
+  - apiVersion: v2
+    appVersion: v1.9
     created: "2021-03-30T00:00:16.174007101Z"
     dependencies:
     - name: common
@@ -38394,6 +38640,30 @@ entries:
   teslamate:
   - apiVersion: v2
     appVersion: v1.22.0
+    created: "2021-04-04T07:57:46.560460529Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: 58d7c9e03d7f7de9e5d319df186dedae43b7fce4cb81cd3a11eb0e27e26fbf21
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teslamate-3.6.4/teslamate-3.6.4.tgz
+    version: 3.6.4
+  - apiVersion: v2
+    appVersion: v1.22.0
     created: "2021-03-26T17:45:19.399522998Z"
     dependencies:
     - condition: postgresql.enabled
@@ -38786,6 +39056,34 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/teslamate-2.0.0/teslamate-2.0.0.tgz
     version: 2.0.0
   traccar:
+  - apiVersion: v2
+    appVersion: v4.11
+    created: "2021-04-04T07:57:46.669337415Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.6
+    description: Traccar is an open source GPS tracking system.
+    digest: 5d7768ae5f60e791f28d0190a2b566714f9fc959b6b9458d2832d665e1ff3a2f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/traccar
+    keywords:
+    - traccar
+    - gps
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: traccar
+    sources:
+    - https://github.com/traccar/traccar
+    - https://hub.docker.com/r/traccar/traccar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traccar-4.1.2/traccar-4.1.2.tgz
+    version: 4.1.2
   - apiVersion: v2
     appVersion: v4.11
     created: "2021-03-30T00:00:16.466404566Z"
@@ -39706,6 +40004,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/transmission-1.0.0/transmission-1.0.0.tgz
     version: 1.0.0
   tt-rss:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-04-04T07:57:46.767690834Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    description: Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom)
+      reader and aggregator
+    digest: b4dc9d2f539b63ca470657949155cbdd8de81184a1e08d66901d7f291152ec7e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tt-rss
+    icon: https://git.tt-rss.org/fox/tt-rss/raw/branch/master/images/favicon-72px.png
+    keywords:
+    - tt-rss
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: tt-rss
+    sources:
+    - https://git.tt-rss.org/fox/tt-rss
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tt-rss-2.1.2/tt-rss-2.1.2.tgz
+    version: 2.1.2
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2021-03-30T00:00:17.006922801Z"
@@ -45465,4 +45791,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-03T11:48:35.256176222Z"
+generated: "2021-04-04T07:57:46.77982891Z"
