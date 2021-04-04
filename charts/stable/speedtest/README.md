@@ -1,6 +1,6 @@
 # speedtest
 
-![Version: 3.0.2](https://img.shields.io/badge/Version-3.0.2-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 periodic speedtest and save the results to InfluxDB
 
@@ -17,7 +17,7 @@ periodic speedtest and save the results to InfluxDB
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
+| https://charts.bitnami.com/bitnami | influxdb | 2.2.0 |
 
 ## TL;DR
 
@@ -87,8 +87,7 @@ N/A
 | image.repository | string | `"atribe/speedtest-for-influxdb-and-grafana"` | speedtest image |
 | image.tag | string | `"latest"` | speedtest image tag |
 | influxdb.architecture | string | `"standalone"` |  |
-| influxdb.authEnabled | bool | `false` |  |
-| influxdb.database | string | `"speedtests"` |  |
+| influxdb.auth.enabled | bool | `false` |  |
 | influxdb.enabled | bool | `true` |  |
 | influxdb.persistence.enabled | bool | `false` |  |
 | nodeSelector | object | `{}` |  |
@@ -101,6 +100,13 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **Breaking:** Upgraded the `influxdb` dependency chart to v2.x. This is a breaking change! Please read the [official documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb#to-200) on how to perform the migration.
+  **It is not recommended to upgrade `influxdb` in-place! Please read the documentation on how to perform this upgrade!**
 
 ### [3.0.1]
 
@@ -116,6 +122,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #4.0.0
 [3.0.1]: #3.0.1
 
 ## Support
