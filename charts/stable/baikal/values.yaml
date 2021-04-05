@@ -1,0 +1,64 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ckulka/baikal
+  pullPolicy: IfNotPresent
+  # -- Image tag. For available image variants see https://github.com/ckulka/baikal-docker#image-variants
+  tag: 0.8.0
+
+strategy:
+  type: Recreate
+
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /var/www/baikal/config
+  data:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /var/www/baikal/Specific
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    # storageClass: "-"
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    ## Do not delete the pvc upon helm uninstall
+    # skipuninstall: false
+    # existingClaim: ""
+
+# Enables mariadb
+# ... for configuration options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: baikal
+    username: baikal
+    password: baikal
+    rootPassword: baikal-rootpass
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
