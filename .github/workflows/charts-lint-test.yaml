@@ -160,6 +160,7 @@ jobs:
       run: |
         echo ${{ !contains(github.event.head_commit.message, '[ci-skip]') }}
         echo ${{ needs.changes-lint.outputs.detected == 'true' }}
+        echo ${{ needs.check_version.result }}
         echo ${{ needs.check_version.result != 'success' }}
         exit 1
 
