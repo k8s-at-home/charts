@@ -157,7 +157,9 @@ jobs:
           needs.changes-lint.outputs.detected == 'true' &&
           needs.check_version.result != 'success'
         }}
-      run: exit 1
+      run: |
+        echo ${{ needs.changes-lint.outputs.detected }}
+        exit 1
 
   lint:
     needs:
