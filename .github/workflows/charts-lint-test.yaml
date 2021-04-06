@@ -149,9 +149,6 @@ jobs:
     name: Version check successful
     runs-on: ubuntu-20.04
     steps:
-    - name: echo
-      run: |
-        echo ${{ needs.check_version.result }}
     - name: Check Version matrix status
       if: |
         ${{
@@ -161,142 +158,144 @@ jobs:
         }}
       run: exit 1
 
-  # lint:
-  #   needs:
-  #   - changes-lint
-  #   if: |
-  #     !contains(github.event.head_commit.message, '[ci-skip]')
-  #     &&
-  #     needs.changes-lint.outputs.detected == 'true'
-  #   name: Lint charts
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  lint:
+    needs:
+    - changes-lint
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+      &&
+      needs.changes-lint.outputs.detected == 'true'
+    name: Lint charts
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.5.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
 
-  #   - uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.7
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
 
-  #   - name: Set up chart-testing
-  #     uses: helm/chart-testing-action@v2.0.1
+    - name: Set up chart-testing
+      uses: helm/chart-testing-action@v2.0.1
 
-  #   - name: Run chart-testing (lint)
-  #     id: lint
-  #     run: ct lint --config .github/ct-lint.yaml
+    - name: Run chart-testing (lint)
+      id: lint
+      run: ct lint --config .github/ct-lint.yaml
 
-  # # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  # lint_success:
-  #   needs: 
-  #   - lint
-  #   if: ${{ always() }}
-  #   name: Lint successful
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Check lint matrix status
-  #     if: |
-  #       !contains(github.event.head_commit.message, '[ci-skip]')
-  #       &&
-  #       needs.changes-lint.outputs.detected == 'true'
-  #       &&
-  #       needs.lint.result != 'success'
-  #     run: exit 1
+  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
+  lint_success:
+    needs: 
+    - lint
+    if: ${{ always() }}
+    name: Lint successful
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check lint matrix status
+      if: |
+        ${{
+          !contains(github.event.head_commit.message, '[ci-skip]') &&
+          needs.changes-lint.outputs.detected == 'true' &&
+          needs.lint.result != 'success'
+        }}
+      run: exit 1
 
-  # unittest:
-  #   needs: 
-  #   - lint_success
-  #   if: |
-  #     !contains(github.event.head_commit.message, '[ci-skip]')
-  #   name: Run unit tests
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  unittest:
+    needs: 
+    - lint_success
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+    name: Run unit tests
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Dev tools
-  #     run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
+    - name: Install Dev tools
+      run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.5.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
 
-  #   - name: Install Ruby
-  #     uses: ruby/setup-ruby@v1
-  #     with:
-  #       ruby-version: 2.7
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
 
-  #   - name: Install dependencies
-  #     env:
-  #       RUBYJQ_USE_SYSTEM_LIBRARIES: 1
-  #     run: |
-  #       bundle install
+    - name: Install dependencies
+      env:
+        RUBYJQ_USE_SYSTEM_LIBRARIES: 1
+      run: |
+        bundle install
 
-  #   - name: Run tests
-  #     run: |
-  #       bundle exec m -r ./test/
+    - name: Run tests
+      run: |
+        bundle exec m -r ./test/
 
-  # install:
-  #   needs:
-  #   - changes-install
-  #   - check_version_success
-  #   - lint_success
-  #   if: |
-  #     !contains(github.event.head_commit.message, '[ci-skip]')
-  #     &&
-  #     needs.changes-install.outputs.detected == 'true'
-  #   name: Install charts
-  #   strategy:
-  #     matrix: ${{ fromJson(needs.changes-install.outputs.matrix) }}
-  #     fail-fast: true
-  #     max-parallel: 15
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  install:
+    needs:
+    - changes-install
+    - check_version_success
+    - lint_success
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+      &&
+      needs.changes-install.outputs.detected == 'true'
+    name: Install charts
+    strategy:
+      matrix: ${{ fromJson(needs.changes-install.outputs.matrix) }}
+      fail-fast: true
+      max-parallel: 15
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.5.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
 
-  #   - uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.7
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
 
-  #   - name: Set up chart-testing
-  #     uses: helm/chart-testing-action@v2.0.1
+    - name: Set up chart-testing
+      uses: helm/chart-testing-action@v2.0.1
 
-  #   - name: Create k3d cluster
-  #     uses: nolar/setup-k3d-k3s@v1
-  #     with:
-  #       version: v1.19
+    - name: Create k3d cluster
+      uses: nolar/setup-k3d-k3s@v1
+      with:
+        version: v1.19
 
-  #   - name: Run chart-testing (install)
-  #     run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
+    - name: Run chart-testing (install)
+      run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
 
-  # # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  # install_success:
-  #   needs: 
-  #   - install
-  #   if: ${{ always() }}
-  #   name: Install successful
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Check install matrix status
-  #     if: |
-  #       !contains(github.event.head_commit.message, '[ci-skip]') &&
-  #       needs.changes-install.outputs.detected == 'true' &&
-  #       needs.install.result != 'success'
-  #     run: exit 1
+  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
+  install_success:
+    needs: 
+    - install
+    if: ${{ always() }}
+    name: Install successful
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check install matrix status
+      if: |
+        ${{
+          !contains(github.event.head_commit.message, '[ci-skip]') &&
+          needs.changes-install.outputs.detected == 'true' &&
+          needs.install.result != 'success'
+        }}
+      run: exit 1
