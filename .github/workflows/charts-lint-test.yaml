@@ -82,14 +82,14 @@ jobs:
           echo "::set-output name=detected::true"
         fi
 
-  lint:
+  check_version:
     needs:
     - changes-lint
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
       needs.changes-lint.outputs.detected == 'true'
-    name: Lint charts
+    name: Check chart version numbers
     strategy:
       matrix: ${{ fromJson(needs.changes-lint.outputs.matrix) }}
       fail-fast: true
@@ -100,11 +100,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.5.3
 
     - name: Get version
       id: version-get
@@ -147,6 +142,43 @@ jobs:
           esac
         fi
 
+  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
+  check_version_success:
+    needs: 
+    - check_version
+    if: ${{ always() }}
+    name: Version check successful
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check Version matrix status
+      if: |
+        !contains(github.event.head_commit.message, '[ci-skip]')
+        &&
+        needs.changes-lint.outputs.detected == 'true'
+        &&
+        needs.check_version.result != 'success'
+      run: exit 1
+
+  lint:
+    needs:
+    - changes-lint
+    if: |
+      !contains(github.event.head_commit.message, '[ci-skip]')
+      &&
+      needs.changes-lint.outputs.detected == 'true'
+    name: Lint charts
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
+
     - uses: actions/setup-python@v2
       with:
         python-version: 3.7
@@ -156,7 +188,7 @@ jobs:
 
     - name: Run chart-testing (lint)
       id: lint
-      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
+      run: ct lint --config .github/ct-lint.yaml
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   lint_success:
