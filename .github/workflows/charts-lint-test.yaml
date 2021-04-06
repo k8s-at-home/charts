@@ -144,16 +144,12 @@ jobs:
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   check_version_success:
     needs: 
+    - changes-lint
     - check_version
     if: ${{ always() }}
     name: Version check successful
     runs-on: ubuntu-20.04
     steps:
-    - run: |
-        echo ${{ !contains(github.event.head_commit.message, '[ci-skip]') }}
-        echo ${{ needs.changes-lint.outputs.detected }}
-        echo ${{ needs.check_version.result }}
-        echo ${{ !contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-lint.outputs.detected == 'true' && needs.check_version.result != 'success' }}
     - name: Check Version matrix status
       if: |
         ${{
@@ -197,6 +193,7 @@ jobs:
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   lint_success:
     needs: 
+    - changes-lint
     - lint
     if: ${{ always() }}
     name: Lint successful
@@ -291,6 +288,7 @@ jobs:
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   install_success:
     needs: 
+    - changes-install
     - install
     if: ${{ always() }}
     name: Install successful
