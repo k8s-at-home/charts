@@ -1,6 +1,6 @@
 # calibre
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 5.13.0](https://img.shields.io/badge/AppVersion-5.13.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 5.14.0](https://img.shields.io/badge/AppVersion-5.14.0-informational?style=flat-square)
 
 Calibre is a powerful and easy to use e-book manager.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.1.0 |
 
 ## TL;DR
 
@@ -77,22 +77,21 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env.CLI_ARGS | string | `nil` | Optionally pass cli start arguments to calibre. |
-| env.GUAC_PASS | string | `nil` | Password's md5 hash for the calibre desktop gui |
-| env.GUAC_USER | string | `nil` | Username for the calibre desktop gui |
+| env.GUAC_PASS | string | `nil` | Password's md5 hash for the calibre gui |
+| env.GUAC_USER | string | `nil` | Username for the calibre gui |
 | env.PGID | string | `"1000"` | for GroupID |
 | env.PUID | string | `"1000"` | for UserID |
 | env.TZ | string | `nil` | Set the time zone, e.g. Europe/Amsterdam |
 | env.UMASK_SET | string | `"022"` | for umask setting of Calibre, default if left unset is 022. |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/calibre"` |  |
-| image.tag | string | `"version-v5.13.0"` |  |
+| image.tag | string | `"version-v5.14.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
-| persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.config.size | string | `"1Gi"` |  |
-| service.port | object | `{"name":"desktopgui","port":8080,"targetPort":8080}` | The default port is 8080 |
+| service.additionalPorts[0].name | string | `"calibre-server"` |  |
+| service.additionalPorts[0].port | int | `8081` |  |
+| service.port | object | `{"name":"gui","port":8080}` | The default port is 8080 |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -101,21 +100,30 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [0.0.1]
+### [3.0.0]
 
 #### Added
 
-- First version of the helm chart for wikijs
+- Added additional port to the service for when calibre-server is running.
 
 #### Changed
 
-- N/A
+- Updated default image tag to `version-v5.14.0`
+- Renamed default port from `desktopgui` to `gui`
 
 #### Removed
 
-- N/A
+- Removed default `nodeSelector`
+- Removed default values for `accessMode` and `size` under `persistence.config`.
 
-[0.0.1]: #0.0.1
+### [1.0.0]
+
+#### Added
+
+- Initial version
+
+[3.0.0]: #2.0.0
+[1.0.0]: #1.0.0
 
 ## Support
 
