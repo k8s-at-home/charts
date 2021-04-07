@@ -9,19 +9,29 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [0.0.1]
+### [3.0.0]
 
 #### Added
 
-- First version of the helm chart for wikijs
+- Added additional port to the service for when calibre-server is running.
 
 #### Changed
 
-- N/A
+- Updated default image tag to `version-v5.14.0`
+- Renamed default port from `desktopgui` to `gui`
 
 #### Removed
 
-- N/A
+- Removed default `nodeSelector`
+- Removed default values for `accessMode` and `size` under `persistence.config`.
 
-[0.0.1]: #0.0.1
+
+### [1.0.0]
+
+#### Added
+
+- Initial version
+
+[3.0.0]: #2.0.0
+[1.0.0]: #1.0.0
 {{- end -}}
