@@ -1,0 +1,42 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: gabekangas/owncast
+  pullPolicy: IfNotPresent
+  tag: 0.0.6
+
+strategy:
+  type: Recreate
+
+# Configuration docs
+# https://owncast.online/docs/configuration/
+
+service:
+  port:
+    port: 8080
+  additionalServices:
+    - enabled: true
+      nameSuffix: rtmp
+      type: NodePort
+      port:
+        port: 1935
+        name: rtmp
+        protocol: TCP
+        targetPort: 1935
+      externalTrafficPolicy: Local
+
+ingress:
+  enabled: false
+
+# Persistence is required for persistent configuration changes
+persistence:
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /app/data

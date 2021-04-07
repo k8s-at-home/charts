@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 0.0.6
+description: Take control over your live stream video by running it yourself. Streaming + chat out of the box.
+name: owncast
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- owncast
+- stream
+- open source
+- chat
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/owncast
+icon: https://owncast.online/images/owncast-logo-1000x1000.png
+sources:
+  - https://owncast.online/
+  - https://github.com/owncast/owncast
+maintainers:
+- name: FlipEnergy
+  email: dennis.zhang.nrg@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.2.0
