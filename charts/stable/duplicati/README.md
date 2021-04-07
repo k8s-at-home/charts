@@ -1,6 +1,6 @@
 # duplicati
 
-![Version: 2.1.2](https://img.shields.io/badge/Version-2.1.2-informational?style=flat-square) ![AppVersion: v2.0.5.1](https://img.shields.io/badge/AppVersion-v2.0.5.1-informational?style=flat-square)
+![Version: 2.1.3](https://img.shields.io/badge/Version-2.1.3-informational?style=flat-square) ![AppVersion: v2.0.5.1](https://img.shields.io/badge/AppVersion-v2.0.5.1-informational?style=flat-square)
 
 Store securely encrypted backups on cloud storage services!
 
