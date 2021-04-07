@@ -1,0 +1,34 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: benbusby/whoogle-search
+  pullPolicy: IfNotPresent
+  tag: 0.4.0
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the whoogle documentation
+# https://github.com/benbusby/whoogle-search#environment-variables
+env:
+  # WHOOGLE_CONFIG_COUNTRY:
+  # WHOOGLE_CONFIG_DARK: 1
+  # WHOOGLE_CONFIG_SAFE:
+  # WHOOGLE_CONFIG_ALTS:
+  # WHOOGLE_CONFIG_TOR:
+  # WHOOGLE_CONFIG_NEW_TAB:
+  # WHOOGLE_CONFIG_GET_ONLY:
+  # WHOOGLE_CONFIG_URL: https://<your url>/
+  # WHOOGLE_CONFIG_STYLE:
+
+service:
+  port:
+    port: 5000
+
+ingress:
+  enabled: false
