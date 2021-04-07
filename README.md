@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -68,6 +68,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/allenporter"><img src="https://avatars.githubusercontent.com/u/6026418?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Allen Porter</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=allenporter" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rasmustwh"><img src="https://avatars.githubusercontent.com/u/2485005?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rasmus Hermansen</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rasmustwh" title="Code">💻</a></td>
     <td align="center"><a href="http://pleasenoddos.com"><img src="https://avatars.githubusercontent.com/u/7714381?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dennis Zhang</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=FlipEnergy" title="Code">💻</a></td>
+    <td align="center"><a href="https://cbergmann.net"><img src="https://avatars.githubusercontent.com/u/112864?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Clemens Bergmann</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=cbergmann" title="Code">💻</a></td>
   </tr>
 </table>
 
