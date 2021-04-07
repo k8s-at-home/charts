@@ -11,7 +11,7 @@
 image:
   repository: linuxserver/calibre
   pullPolicy: IfNotPresent
-  tag: version-v5.13.0
+  tag: version-v5.14.0
 
 strategy:
   type: Recreate
@@ -23,9 +23,9 @@ env:
   PUID: "1000"
   # -- for GroupID
   PGID: "1000"
-  # -- Username for the calibre desktop gui
+  # -- Username for the calibre gui
   GUAC_USER:
-  # -- Password's md5 hash for the calibre desktop gui
+  # -- Password's md5 hash for the calibre gui
   GUAC_PASS:
   # -- for umask setting of Calibre, default if left unset is 022.
   UMASK_SET: "022"
@@ -36,20 +36,16 @@ service:
   # -- The default port is 8080
   port:
     port: 8080
-    targetPort: 8080
-    name: desktopgui
+    name: gui
+  additionalPorts:
+  - name: calibre-server
+    port: 8081
 
 ingress:
-  # enable this if you would like to access you wiki
   enabled: false
-
-nodeSelector:
-  kubernetes.io/arch: amd64
 
 persistence:
   config:
     enabled: false
     emptyDir:
       enabled: false
-    accessMode: "ReadWriteOnce"
-    size: "1Gi"

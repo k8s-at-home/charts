@@ -1,4 +1,4 @@
-{{- if and (.Values.ldapSync.enabled) (not .Values.ldapSync.existinSecret) }}
+{{- if and (.Values.ldapSync.enabled) (not .Values.ldapSync.existingSecret) }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
