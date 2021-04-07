@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: 0.4.0
+description: A self-hosted, ad-free, privacy-respecting metasearch engine
+name: whoogle
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - whoogle
+  - search
+  - open source
+  - privacy
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/whoogle
+icon: https://raw.githubusercontent.com/benbusby/whoogle-search/develop/docs/banner.png
+sources:
+- https://github.com/benbusby/whoogle-search
+maintainers:
+- name: FlipEnergy
+  email: dennis.zhang.nrg@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.1.0
