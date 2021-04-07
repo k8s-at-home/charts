@@ -275,9 +275,7 @@ jobs:
 
     - name: Remove node taints
       run: |
-        for name in $(kubectl get nodes -o jsonpath={'..name'}); do 
-          kubectl taint nodes $name node.cloudprovider.kubernetes.io/uninitialized-
-        done
+        kubectl taint --all=true nodes node.cloudprovider.kubernetes.io/uninitialized- || true
 
     - name: Run chart-testing (install)
       run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
