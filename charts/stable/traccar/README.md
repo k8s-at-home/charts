@@ -1,6 +1,6 @@
 # traccar
 
-![Version: 3.3.1](https://img.shields.io/badge/Version-3.3.1-informational?style=flat-square) ![AppVersion: v4.11](https://img.shields.io/badge/AppVersion-v4.11-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: v4.11](https://img.shields.io/badge/AppVersion-v4.11-informational?style=flat-square)
 
 Traccar is an open source GPS tracking system.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.4 |
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -89,7 +89,7 @@ N/A
 | mariadb.auth.username | string | `"traccar"` |  |
 | mariadb.enabled | bool | `false` |  |
 | mariadb.primary.persistence.enabled | bool | `false` |  |
-| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
 | persistence.data.mountPath | string | `"/opt/traccar/data"` |  |
 | probes.startup.enabled | bool | `true` |  |

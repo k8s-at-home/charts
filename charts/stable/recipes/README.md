@@ -1,6 +1,6 @@
 # recipes
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 0.13.0](https://img.shields.io/badge/AppVersion-0.13.0-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 0.13.0](https://img.shields.io/badge/AppVersion-0.13.0-informational?style=flat-square)
 
 Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -105,10 +105,10 @@ N/A
 | image.tag | string | `"0.13.0"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/opt/recipes/mediafiles"` |  |
-| persistence.static.emptyDir | bool | `false` |  |
+| persistence.static.emptyDir.enabled | bool | `false` |  |
 | persistence.static.enabled | bool | `false` |  |
 | persistence.static.mountPath | string | `"/opt/recipes/staticfiles"` |  |
 | service.port.port | int | `80` |  |

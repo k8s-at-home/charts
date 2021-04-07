@@ -1,6 +1,6 @@
 # gonic
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: v0.12.0](https://img.shields.io/badge/AppVersion-v0.12.0-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: v0.12.0](https://img.shields.io/badge/AppVersion-v0.12.0-informational?style=flat-square)
 
 Music streaming server / subsonic server API implementation
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,14 +81,14 @@ N/A
 | image.repository | string | `"sentriz/gonic"` |  |
 | image.tag | string | `"v0.12.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.cache.emptyDir | bool | `false` |  |
+| persistence.cache.emptyDir.enabled | bool | `false` |  |
 | persistence.cache.enabled | bool | `false` |  |
-| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
-| persistence.music.emptyDir | bool | `false` |  |
+| persistence.music.emptyDir.enabled | bool | `false` |  |
 | persistence.music.enabled | bool | `false` |  |
 | persistence.music.mountPath | string | `"/music"` |  |
-| persistence.podcasts.emptyDir | bool | `false` |  |
+| persistence.podcasts.emptyDir.enabled | bool | `false` |  |
 | persistence.podcasts.enabled | bool | `false` |  |
 | service.port.port | int | `80` |  |
 | strategy.type | string | `"Recreate"` |  |

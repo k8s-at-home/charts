@@ -1,6 +1,6 @@
 # intel-gpu-plugin
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 0.19.0](https://img.shields.io/badge/AppVersion-0.19.0-informational?style=flat-square)
+![Version: 1.2.3](https://img.shields.io/badge/Version-1.2.3-informational?style=flat-square) ![AppVersion: 0.20.0](https://img.shields.io/badge/AppVersion-0.20.0-informational?style=flat-square)
 
 The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware
 
@@ -90,7 +90,7 @@ affinity:
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"intel/intel-gpu-plugin"` | Image repository |
-| image.tag | string | `"0.19.0"` | Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags) |
+| image.tag | string | `"0.20.0"` | Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags) |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |

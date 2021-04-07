@@ -273,6 +273,10 @@ jobs:
       with:
         version: v1.19
 
+    - name: Remove node taints
+      run: |
+        kubectl taint --all=true nodes node.cloudprovider.kubernetes.io/uninitialized- || true
+
     - name: Run chart-testing (install)
       run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
 

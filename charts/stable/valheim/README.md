@@ -1,6 +1,6 @@
 # valheim
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Valheim dedicated gameserver with automatic update and world backup support
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -85,6 +85,9 @@ N/A
 | probes.liveness.enabled | bool | `false` |  |
 | probes.readiness.enabled | bool | `false` |  |
 | probes.startup.enabled | bool | `false` |  |
+| resources.limits.memory | string | `"4096Mi"` |  |
+| resources.requests.cpu | string | `"300m"` |  |
+| resources.requests.memory | string | `"2048Mi"` |  |
 | service.additionalPorts[0].name | string | `"valheim-2"` |  |
 | service.additionalPorts[0].port | int | `2457` |  |
 | service.additionalPorts[0].protocol | string | `"UDP"` |  |

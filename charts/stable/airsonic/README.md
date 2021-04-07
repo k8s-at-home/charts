@@ -1,6 +1,6 @@
 # airsonic
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 10.6.2](https://img.shields.io/badge/AppVersion-10.6.2-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 10.6.2](https://img.shields.io/badge/AppVersion-10.6.2-informational?style=flat-square)
 
 Airsonic is a Free and Open Source community driven media server
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -84,18 +84,18 @@ by not constantly monitoring media folders.
 | image.repository | string | `"linuxserver/airsonic"` |  |
 | image.tag | string | `"v10.6.2-ls97"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/media"` |  |
-| persistence.music.emptyDir | bool | `false` |  |
+| persistence.music.emptyDir.enabled | bool | `false` |  |
 | persistence.music.enabled | bool | `false` |  |
 | persistence.music.mountPath | string | `"/music"` |  |
-| persistence.playlists.emptyDir | bool | `false` |  |
+| persistence.playlists.emptyDir.enabled | bool | `false` |  |
 | persistence.playlists.enabled | bool | `false` |  |
 | persistence.playlists.mountPath | string | `"/playlists"` |  |
-| persistence.podcasts.emptyDir | bool | `false` |  |
+| persistence.podcasts.emptyDir.enabled | bool | `false` |  |
 | persistence.podcasts.enabled | bool | `false` |  |
 | persistence.podcasts.mountPath | string | `"/podcasts"` |  |
 | service.port.port | int | `4040` |  |

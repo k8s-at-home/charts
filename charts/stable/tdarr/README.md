@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![AppVersion: 2.00.07](https://img.shields.io/badge/AppVersion-2.00.07-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.00.07](https://img.shields.io/badge/AppVersion-2.00.07-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -18,7 +18,7 @@ Tdarr is a self hosted web-app for automating media library transcode/remux mana
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -94,11 +94,11 @@ N/A
 | image.repository | string | `"haveagitgat/tdarr"` | tdarr image |
 | image.tag | string | `"2.00.07"` | tdarr image tag |
 | nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| persistence.config | object | `{"emptyDir":false,"enabled":false,"mountpath":"/app/configs"}` | Volume used for configuration |
-| persistence.data.emptyDir | bool | `false` |  |
+| persistence.config | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountpath":"/app/configs"}` | Volume used for configuration |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` | Volume used for tdarr server database |
 | persistence.data.mountpath | string | `"/app/server"` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` | Volume used for media libraries |
 | persistence.media.mountpath | string | `"/media"` |  |
 | podAnnotations | object | `{}` | Pod annotations |

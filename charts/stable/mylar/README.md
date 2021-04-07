@@ -1,6 +1,6 @@
 # mylar
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 0.4.9.5](https://img.shields.io/badge/AppVersion-0.4.9.5-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 0.4.9.5](https://img.shields.io/badge/AppVersion-0.4.9.5-informational?style=flat-square)
 
 Mylar is the automated Comic Book downloader (cbr/cbz) for use with various download clients.
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -82,12 +82,12 @@ N/A
 | image.repository | string | `"linuxserver/mylar3"` |  |
 | image.tag | string | `"v0.4.9.5-ls14"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.comics.emptyDir | bool | `false` |  |
+| persistence.comics.emptyDir.enabled | bool | `false` |  |
 | persistence.comics.enabled | bool | `false` |  |
 | persistence.comics.mountPath | string | `"/comics"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.downloads.emptyDir | bool | `false` |  |
+| persistence.downloads.emptyDir.enabled | bool | `false` |  |
 | persistence.downloads.enabled | bool | `false` |  |
 | persistence.downloads.mountPath | string | `"/downloads"` |  |
 | service.port.port | int | `8090` |  |

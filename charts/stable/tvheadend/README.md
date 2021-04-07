@@ -1,6 +1,6 @@
 # tvheadend
 
-![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 TVheadend - a TV streaming server and digital video recorder
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -80,10 +80,10 @@ N/A
 | image.repository | string | `"linuxserver/tvheadend"` |  |
 | image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
-| persistence.recordings.emptyDir | bool | `false` |  |
+| persistence.recordings.emptyDir.enabled | bool | `false` |  |
 | persistence.recordings.enabled | bool | `false` |  |
 | persistence.recordings.mountPath | string | `"/recordings"` |  |
 | service.port.port | int | `9981` |  |

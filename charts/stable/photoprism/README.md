@@ -1,6 +1,6 @@
 # photoprism
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 20201122](https://img.shields.io/badge/AppVersion-20201122-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 20201122](https://img.shields.io/badge/AppVersion-20201122-informational?style=flat-square)
 
 PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -82,10 +82,10 @@ N/A
 | image.repository | string | `"photoprism/photoprism"` |  |
 | image.tag | string | `"20201122"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/photoprism/storage"` |  |
-| persistence.originals.emptyDir | bool | `false` |  |
+| persistence.originals.emptyDir.enabled | bool | `false` |  |
 | persistence.originals.enabled | bool | `false` |  |
 | persistence.originals.mountPath | string | `"/photoprism/originals"` |  |
 | service.port.port | int | `2342` |  |

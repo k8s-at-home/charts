@@ -1,6 +1,6 @@
 # youtubedl-material
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 4.2](https://img.shields.io/badge/AppVersion-4.2-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 4.2](https://img.shields.io/badge/AppVersion-4.2-informational?style=flat-square)
 
 Self-hosted YouTube downloader built on Material Design
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,19 +81,19 @@ N/A
 | image.repository | string | `"tzahi12345/youtubedl-material"` |  |
 | image.tag | float | `4.2` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.audio.emptyDir | bool | `false` |  |
+| persistence.audio.emptyDir.enabled | bool | `false` |  |
 | persistence.audio.enabled | bool | `false` |  |
 | persistence.audio.mountPath | string | `"/app/audio"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/app/appdata"` |  |
-| persistence.subscriptions.emptyDir | bool | `false` |  |
+| persistence.subscriptions.emptyDir.enabled | bool | `false` |  |
 | persistence.subscriptions.enabled | bool | `false` |  |
 | persistence.subscriptions.mountPath | string | `"/subscriptions"` |  |
-| persistence.users.emptyDir | bool | `false` |  |
+| persistence.users.emptyDir.enabled | bool | `false` |  |
 | persistence.users.enabled | bool | `false` |  |
 | persistence.users.mountPath | string | `"/users"` |  |
-| persistence.video.emptyDir | bool | `false` |  |
+| persistence.video.emptyDir.enabled | bool | `false` |  |
 | persistence.video.enabled | bool | `false` |  |
 | persistence.video.mountPath | string | `"/video"` |  |
 | service.port.port | int | `17442` |  |

@@ -1,6 +1,6 @@
 # readarr
 
-![Version: 2.3.1](https://img.shields.io/badge/Version-2.3.1-informational?style=flat-square) ![AppVersion: 0.1.0.351](https://img.shields.io/badge/AppVersion-0.1.0.351-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 0.1.0.351](https://img.shields.io/badge/AppVersion-0.1.0.351-informational?style=flat-square)
 
 A fork of Radarr to work with Books & AudioBooks
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -82,9 +82,9 @@ helm install readarr k8s-at-home/readarr -f values.yaml
 | image.repository | string | `"hotio/readarr"` |  |
 | image.tag | string | `"nightly"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/media"` |  |
 | probes.liveness.custom | bool | `true` |  |

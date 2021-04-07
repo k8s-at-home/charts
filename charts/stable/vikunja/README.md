@@ -1,6 +1,6 @@
 # vikunja
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 0.16.0](https://img.shields.io/badge/AppVersion-0.16.0-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 0.16.0](https://img.shields.io/badge/AppVersion-0.16.0-informational?style=flat-square)
 
 The to-do app to organize your life
 
@@ -20,7 +20,7 @@ The to-do app to organize your life
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -94,7 +94,7 @@ N/A
 | image.repository | string | `"caddy"` | Caddy reverse proxy image and tag |
 | image.tag | string | `"2.3.0-alpine"` | vikunja api image tag |
 | nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| persistence.files | object | `{"emptyDir":false,"enabled":false,"mountpath":"/app/vikunja/files"}` | Volume used for static files |
+| persistence.files | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountpath":"/app/vikunja/files"}` | Volume used for static files |
 | podAnnotations | object | `{}` | Pod annotations |
 | resources | object | `{}` |  |
 | service.port.port | int | `8080` | Kubernetes port where used by Caddy reverse proxy |
