@@ -123,20 +123,20 @@ jobs:
           case $TYPE in
             stable)
               if [[ ${{ steps.version-parse.outputs.major }} -lt 1 ]]; then
-                echo "Chart version for \"$TYPE\" charts must be >= 1.0.0"
+                echo "::error file=${{ matrix.chart }}::Chart version for \"$TYPE\" charts must be >= 1.0.0"
                 exit 1
               fi
             ;;
 
             incubator)
               if [[ ${{ steps.version-parse.outputs.major }} -gt 0 ]]; then
-                echo "Chart version for \"$TYPE\" charts must be < 1.0.0"
+                echo "::error file=${{ matrix.chart }}::Chart version for \"$TYPE\" charts must be < 1.0.0"
                 exit 1
               fi
             ;;
 
             *)
-              echo "Unhandled chart type: $TYPE"
+              echo "::error file=${{ matrix.chart }}::Unhandled chart type: $TYPE"
               exit 1
           esac
         fi
