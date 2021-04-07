@@ -1,6 +1,6 @@
 # teslamate
 
-![Version: 3.6.2](https://img.shields.io/badge/Version-3.6.2-informational?style=flat-square) ![AppVersion: v1.20.0](https://img.shields.io/badge/AppVersion-v1.20.0-informational?style=flat-square)
+![Version: 3.6.4](https://img.shields.io/badge/Version-3.6.4-informational?style=flat-square) ![AppVersion: v1.22.0](https://img.shields.io/badge/AppVersion-v1.22.0-informational?style=flat-square)
 
 A self-hosted data logger for your Tesla 🚘
 
@@ -16,7 +16,7 @@ A self-hosted data logger for your Tesla 🚘
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.3.7 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
 
 ## TL;DR
 
@@ -78,7 +78,7 @@ N/A
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"teslamate/teslamate"` |  |
-| image.tag | string | `"1.20.0"` |  |
+| image.tag | string | `"1.22.0"` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.hosts[0] | string | `"chart-example.local"` |  |

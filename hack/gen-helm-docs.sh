@@ -26,11 +26,11 @@ if [ $# -ge 1 ] && [ -n "$1" ] && [ -n "$2" ]; then
     charts="${repository}/charts/$1/$2/Chart.yaml"
     root="$(dirname "${charts}")"
     if [ ! -f "$charts" ]; then
-        echo "File ${charts} does not exist." 
+        echo "File ${charts} does not exist."
         exit 1
     fi
 else
-    root="${repository}"
+    root="${repository}/charts/stable"
 fi
 
 for chart in ${charts}; do

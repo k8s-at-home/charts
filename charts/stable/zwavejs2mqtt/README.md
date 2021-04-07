@@ -1,6 +1,6 @@
 # zwavejs2mqtt
 
-![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
+![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: 3.0.3](https://img.shields.io/badge/AppVersion-3.0.3-informational?style=flat-square)
 
 Fully configurable Zwave to MQTT Gateway and Control Panel
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -110,9 +110,9 @@ affinity:
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"zwavejs/zwavejs2mqtt"` |  |
-| image.tag | string | `"1.1.1"` |  |
+| image.tag | string | `"3.0.3"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/usr/src/app/store"` |  |
 | probes.liveness.enabled | bool | `true` |  |

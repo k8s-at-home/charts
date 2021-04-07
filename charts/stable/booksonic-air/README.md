@@ -1,6 +1,6 @@
 # booksonic-air
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: v2009.1.0](https://img.shields.io/badge/AppVersion-v2009.1.0-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: v2009.1.0](https://img.shields.io/badge/AppVersion-v2009.1.0-informational?style=flat-square)
 
 Booksonic is a platform for accessing the audibooks you own wherever you are
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -83,15 +83,15 @@ by not constantly monitoring media folders.
 | image.repository | string | `"linuxserver/booksonic-air"` |  |
 | image.tag | string | `"v2009.1.0-ls2"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.audiobooks.emptyDir | bool | `false` |  |
+| persistence.audiobooks.emptyDir.enabled | bool | `false` |  |
 | persistence.audiobooks.enabled | bool | `false` |  |
 | persistence.audiobooks.mountPath | string | `"/audiobooks"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.othermedia.emptyDir | bool | `false` |  |
+| persistence.othermedia.emptyDir.enabled | bool | `false` |  |
 | persistence.othermedia.enabled | bool | `false` |  |
 | persistence.othermedia.mountPath | string | `"/othermedia"` |  |
-| persistence.podcasts.emptyDir | bool | `false` |  |
+| persistence.podcasts.emptyDir.enabled | bool | `false` |  |
 | persistence.podcasts.enabled | bool | `false` |  |
 | persistence.podcasts.mountPath | string | `"/podcasts"` |  |
 | service.port.port | int | `4040` |  |

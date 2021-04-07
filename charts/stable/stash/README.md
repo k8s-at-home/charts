@@ -1,6 +1,6 @@
 # stash
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 An organizer for your porn, written in Go
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.1.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -79,10 +79,11 @@ N/A
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"stashapp/stash"` |  |
-| image.tag | string | `"latest"` |  |
+| image.tag | string | `"latest@sha256:24dbd76071745be0c4e75f730aa7ac2b37cb2b2918eabf8559643196b3b7a64a"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/root/.stash"` |  |
 | persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/media"` |  |

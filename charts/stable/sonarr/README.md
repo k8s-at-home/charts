@@ -1,6 +1,6 @@
 # sonarr
 
-![Version: 9.4.0](https://img.shields.io/badge/Version-9.4.0-informational?style=flat-square) ![AppVersion: 3.0.4.993](https://img.shields.io/badge/AppVersion-3.0.4.993-informational?style=flat-square)
+![Version: 10.2.0](https://img.shields.io/badge/Version-10.2.0-informational?style=flat-square) ![AppVersion: 3.0.4.993](https://img.shields.io/badge/AppVersion-3.0.4.993-informational?style=flat-square)
 
 Smart PVR for newsgroup and bittorrent users
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,9 +81,9 @@ N/A
 | image.repository | string | `"linuxserver/sonarr"` |  |
 | image.tag | string | `"version-3.0.4.993"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/media"` |  |
 | probes.liveness.custom | bool | `true` |  |

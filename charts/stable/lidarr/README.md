@@ -1,6 +1,6 @@
 # lidarr
 
-![Version: 7.4.0](https://img.shields.io/badge/Version-7.4.0-informational?style=flat-square) ![AppVersion: 0.8.0.1886](https://img.shields.io/badge/AppVersion-0.8.0.1886-informational?style=flat-square)
+![Version: 8.2.0](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: 0.8.0.1886](https://img.shields.io/badge/AppVersion-0.8.0.1886-informational?style=flat-square)
 
 Looks and smells like Sonarr but made for music
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,9 +81,9 @@ N/A
 | image.repository | string | `"linuxserver/lidarr"` |  |
 | image.tag | string | `"version-0.8.0.1886"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/media"` |  |
 | probes.liveness.custom | bool | `true` |  |

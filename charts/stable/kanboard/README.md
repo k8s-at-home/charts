@@ -1,6 +1,6 @@
 # kanboard
 
-![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: v1.2.18](https://img.shields.io/badge/AppVersion-v1.2.18-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: v1.2.18](https://img.shields.io/badge/AppVersion-v1.2.18-informational?style=flat-square)
 
 Kanboard is a free and open source Kanban project management software.
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.3.7 |
-| https://k8s-at-home.com/charts/ | common | 3.1.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -97,8 +97,8 @@ N/A
 | image.repository | string | `"kanboard/kanboard"` |  |
 | image.tag | string | `"v1.2.18"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.data | object | `{"accessMode":"ReadWriteOnce","emptyDir":false,"enabled":false,"mountPath":"/var/www/app/data","size":"1Gi"}` | enable data persistence |
-| persistence.ssl | object | `{"emptyDir":false,"enabled":false,"mountPath":"/etc/nginx/ssl"}` | enable SSL persistence |
+| persistence.data | object | `{"accessMode":"ReadWriteOnce","emptyDir":{"enabled":false},"enabled":false,"mountPath":"/var/www/app/data","size":"1Gi"}` | enable data persistence |
+| persistence.ssl | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountPath":"/etc/nginx/ssl"}` | enable SSL persistence |
 | postgresql | object | `{"enabled":false,"persistence":{"enabled":false},"postgresqlDatabase":"kanboard","postgresqlPassword":"kanboard","postgresqlUsername":"kanboard"}` | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
 | postgresql.enabled | bool | `false` | true: use bitnami postgres instance -- false: use your own postgres instance |
 | postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |

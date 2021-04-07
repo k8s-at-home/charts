@@ -1,6 +1,6 @@
 # healthchecks
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.19.0](https://img.shields.io/badge/AppVersion-1.19.0-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 1.19.0](https://img.shields.io/badge/AppVersion-1.19.0-informational?style=flat-square)
 
 Healthchecks is a cron job monitoring service. It listens for HTTP requests and email messages ("pings") from your cron jobs and scheduled tasks ("checks"). When a ping does not arrive on time, Healthchecks sends out alerts.
 
@@ -17,7 +17,7 @@ Healthchecks is a cron job monitoring service. It listens for HTTP requests and 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -84,7 +84,7 @@ N/A
 | image.repository | string | `"linuxserver/healthchecks"` | healthchecks image |
 | image.tag | string | `"v1.19.0-ls79"` | healthchecks image tag |
 | nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| persistence.config | object | `{"emptyDir":false,"enabled":false,"mountpath":"/config"}` | Volume used for configuration |
+| persistence.config | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountpath":"/config"}` | Volume used for configuration |
 | podAnnotations | object | `{}` | Pod annotations |
 | resources | object | `{}` |  |
 | service.port.port | int | `8000` | Kubernetes port where the GUI is exposed |

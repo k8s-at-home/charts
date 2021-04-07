@@ -1,6 +1,6 @@
 # lychee
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 4.0.8](https://img.shields.io/badge/AppVersion-4.0.8-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 4.0.8](https://img.shields.io/badge/AppVersion-4.0.8-informational?style=flat-square)
 
 Lychee is a free photo-management tool, which runs on your server or web-space
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,13 +81,13 @@ N/A
 | image.repository | string | `"lycheeorg/lychee-laravel"` |  |
 | image.tag | string | `"v4.0.8"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/conf"` |  |
-| persistence.sym.emptyDir | bool | `false` |  |
+| persistence.sym.emptyDir.enabled | bool | `false` |  |
 | persistence.sym.enabled | bool | `false` |  |
 | persistence.sym.mountPath | string | `"/sym"` |  |
-| persistence.uploads.emptyDir | bool | `false` |  |
+| persistence.uploads.emptyDir.enabled | bool | `false` |  |
 | persistence.uploads.enabled | bool | `false` |  |
 | persistence.uploads.mountPath | string | `"/uploads"` |  |
 | service.port.port | int | `80` |  |

@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 0.39.0](https://img.shields.io/badge/AppVersion-0.39.0-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 0.39.0](https://img.shields.io/badge/AppVersion-0.39.0-informational?style=flat-square)
 
 Navidrome is an open source web-based music collection server and streamer
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -86,11 +86,11 @@ N/A
 | image.tag | string | `"0.39.0"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/data"` |  |
 | persistence.music.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.music.emptyDir | bool | `false` |  |
+| persistence.music.emptyDir.enabled | bool | `false` |  |
 | persistence.music.enabled | bool | `false` |  |
 | persistence.music.mountPath | string | `"/music"` |  |
 | service.port.port | int | `4533` |  |

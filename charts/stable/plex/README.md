@@ -1,6 +1,6 @@
 # plex
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: v1.22.0.4163-d8c4875dd](https://img.shields.io/badge/AppVersion-v1.22.0.4163--d8c4875dd-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: v1.22.0.4163-d8c4875dd](https://img.shields.io/badge/AppVersion-v1.22.0.4163--d8c4875dd-informational?style=flat-square)
 
 Plex Media Server
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -82,10 +82,10 @@ N/A
 | image.repository | string | `"ghcr.io/k8s-at-home/plex"` |  |
 | image.tag | string | `"v1.22.0.4163-d8c4875dd"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
-| persistence.transcode.emptyDir | bool | `false` |  |
+| persistence.transcode.emptyDir.enabled | bool | `false` |  |
 | persistence.transcode.enabled | bool | `false` |  |
 | persistence.transcode.mountPath | string | `"/transcode"` |  |
 | service.port.port | int | `32400` |  |

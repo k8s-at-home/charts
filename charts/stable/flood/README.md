@@ -1,6 +1,6 @@
 # flood
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 4.1.1](https://img.shields.io/badge/AppVersion-4.1.1-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 4.1.1](https://img.shields.io/badge/AppVersion-4.1.1-informational?style=flat-square)
 
 Flood is a monitoring service for various torrent clients
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | image.repository | string | `"jesec/flood"` |  |
 | image.tag | string | `"4.1.1"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
 | persistence.data.mountPath | string | `"/data"` |  |
 | service.port.port | int | `3000` |  |

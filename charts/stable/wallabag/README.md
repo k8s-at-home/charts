@@ -1,6 +1,6 @@
 # wallabag
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
 
 A self hostable application for saving web pages, freely.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -82,10 +82,10 @@ Default login is `wallabag:wallabag`.
 | image.repository | string | `"wallabag/wallabag"` |  |
 | image.tag | string | `"2.4.1"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.cache.emptyDir | bool | `false` |  |
+| persistence.cache.emptyDir.enabled | bool | `false` |  |
 | persistence.cache.enabled | bool | `false` |  |
 | persistence.cache.mountPath | string | `"/var/www/wallabag/var/cache"` |  |
-| persistence.images.emptyDir | bool | `false` |  |
+| persistence.images.emptyDir.enabled | bool | `false` |  |
 | persistence.images.enabled | bool | `false` |  |
 | persistence.images.mountPath | string | `"/var/www/wallabag/web/assets/images"` |  |
 | service.port.port | int | `80` |  |

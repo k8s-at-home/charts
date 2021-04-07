@@ -1,6 +1,6 @@
 # homer
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 20.09.1](https://img.shields.io/badge/AppVersion-20.09.1-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 20.09.1](https://img.shields.io/badge/AppVersion-20.09.1-informational?style=flat-square)
 
 A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://k8s-at-home.com/charts/ | common | 3.1.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -82,7 +82,7 @@ N/A
 | image.repository | string | `"b4bz/homer"` |  |
 | image.tag | string | `"20.09.1"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/www/assets"` |  |
 | service.port.port | int | `8080` |  |

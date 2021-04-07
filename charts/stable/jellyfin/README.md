@@ -1,6 +1,6 @@
 # jellyfin
 
-![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 10.7.0](https://img.shields.io/badge/AppVersion-10.7.0-informational?style=flat-square)
+![Version: 7.2.0](https://img.shields.io/badge/Version-7.2.0-informational?style=flat-square) ![AppVersion: 10.7.0](https://img.shields.io/badge/AppVersion-10.7.0-informational?style=flat-square)
 
 Jellyfin is a Free Software Media System
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -80,12 +80,12 @@ N/A
 | image.repository | string | `"jellyfin/jellyfin"` |  |
 | image.tag | string | `"10.7.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.cache.emptyDir | bool | `false` |  |
+| persistence.cache.emptyDir.enabled | bool | `false` |  |
 | persistence.cache.enabled | bool | `false` |  |
 | persistence.cache.mountPath | string | `"/cache"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/media"` |  |
 | service.port.port | int | `8096` |  |

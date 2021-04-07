@@ -1,6 +1,6 @@
 # wikijs
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 2.5.191](https://img.shields.io/badge/AppVersion-2.5.191-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 2.5.191](https://img.shields.io/badge/AppVersion-2.5.191-informational?style=flat-square)
 
 Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -94,11 +94,11 @@ N/A
 | ingress."ingress.hosts[0].paths[0].pathType" | string | `"Prefix"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.size | string | `"1Gi"` |  |
 | persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
 | persistence.data.mountPath | string | `"/app/wiki/data"` |  |
 | persistence.data.size | string | `"1Gi"` |  |

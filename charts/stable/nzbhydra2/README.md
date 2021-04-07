@@ -1,6 +1,6 @@
 # nzbhydra2
 
-![Version: 6.2.1](https://img.shields.io/badge/Version-6.2.1-informational?style=flat-square) ![AppVersion: v3.8.1](https://img.shields.io/badge/AppVersion-v3.8.1-informational?style=flat-square)
+![Version: 7.2.0](https://img.shields.io/badge/Version-7.2.0-informational?style=flat-square) ![AppVersion: v3.8.1](https://img.shields.io/badge/AppVersion-v3.8.1-informational?style=flat-square)
 
 Usenet meta search
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | image.repository | string | `"linuxserver/nzbhydra2"` |  |
 | image.tag | string | `"version-v3.8.1"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | probes.liveness.custom | bool | `true` |  |
 | probes.liveness.enabled | bool | `true` |  |

@@ -1,6 +1,6 @@
 # nzbget
 
-![Version: 8.2.1](https://img.shields.io/badge/Version-8.2.1-informational?style=flat-square) ![AppVersion: v21.0](https://img.shields.io/badge/AppVersion-v21.0-informational?style=flat-square)
+![Version: 9.2.0](https://img.shields.io/badge/Version-9.2.0-informational?style=flat-square) ![AppVersion: v21.0](https://img.shields.io/badge/AppVersion-v21.0-informational?style=flat-square)
 
 NZBGet is a Usenet downloader client
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -83,12 +83,12 @@ The default login details (change ASAP) are:
 | image.repository | string | `"linuxserver/nzbget"` |  |
 | image.tag | string | `"version-v21.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.downloads.emptyDir | bool | `false` |  |
+| persistence.downloads.emptyDir.enabled | bool | `false` |  |
 | persistence.downloads.enabled | bool | `false` |  |
 | persistence.downloads.mountPath | string | `"/downloads"` |  |
-| persistence.media.emptyDir | bool | `false` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
 | persistence.media.enabled | bool | `false` |  |
 | persistence.media.mountPath | string | `"/media"` |  |
 | service.port.port | int | `6789` |  |

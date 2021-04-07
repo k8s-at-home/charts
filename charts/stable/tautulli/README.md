@@ -1,6 +1,6 @@
 # tautulli
 
-![Version: 7.2.1](https://img.shields.io/badge/Version-7.2.1-informational?style=flat-square) ![AppVersion: v2.6.6](https://img.shields.io/badge/AppVersion-v2.6.6-informational?style=flat-square)
+![Version: 8.2.0](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: v2.6.6](https://img.shields.io/badge/AppVersion-v2.6.6-informational?style=flat-square)
 
 A Python based monitoring and tracking tool for Plex Media Server
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | image.repository | string | `"tautulli/tautulli"` |  |
 | image.tag | string | `"v2.6.6"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | service.port.port | int | `8181` |  |
 | strategy.type | string | `"Recreate"` |  |

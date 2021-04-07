@@ -1,6 +1,6 @@
 # omada-controller
 
-![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 4.2.11](https://img.shields.io/badge/AppVersion-4.2.11-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 4.2.11](https://img.shields.io/badge/AppVersion-4.2.11-informational?style=flat-square)
 
 Omada enables the network administrators to monitor and manage all the Omada products in the network with a centralized management platform.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | image.repository | string | `"mbentley/omada-controller"` |  |
 | image.tag | float | `4.2` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
 | service.port.port | int | `8043` |  |
 | strategy.type | string | `"Recreate"` |  |

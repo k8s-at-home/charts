@@ -1,6 +1,6 @@
 # zigbee2mqtt
 
-![Version: 6.2.1](https://img.shields.io/badge/Version-6.2.1-informational?style=flat-square) ![AppVersion: 1.17.1](https://img.shields.io/badge/AppVersion-1.17.1-informational?style=flat-square)
+![Version: 7.2.0](https://img.shields.io/badge/Version-7.2.0-informational?style=flat-square) ![AppVersion: 1.17.1](https://img.shields.io/badge/AppVersion-1.17.1-informational?style=flat-square)
 
 Bridges events and allows you to control your Zigbee devices via MQTT
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -125,7 +125,7 @@ affinity:
 | image.repository | string | `"koenkk/zigbee2mqtt"` |  |
 | image.tag | string | `"1.17.1"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.data.emptyDir | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
 | persistence.data.mountPath | string | `"/data"` |  |
 | service.port.port | int | `8080` |  |

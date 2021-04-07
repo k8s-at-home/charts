@@ -1,6 +1,6 @@
 # hyperion-ng
 
-![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: 2.0.0-alpha9](https://img.shields.io/badge/AppVersion-2.0.0--alpha9-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 2.0.0-alpha9](https://img.shields.io/badge/AppVersion-2.0.0--alpha9-informational?style=flat-square)
 
 Hyperion is an opensource Bias or Ambient Lighting implementation
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | image.repository | string | `"sirfragalot/hyperion.ng"` |  |
 | image.tag | string | `"2.0.0-alpha.9-x86_64"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/root/.hyperion"` |  |
 | service.additionalPorts[0].name | string | `"jsonservice"` |  |

@@ -1,6 +1,6 @@
 # monica
 
-![Version: 3.3.1](https://img.shields.io/badge/Version-3.3.1-informational?style=flat-square) ![AppVersion: v2.19.1](https://img.shields.io/badge/AppVersion-v2.19.1-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: v2.19.1](https://img.shields.io/badge/AppVersion-v2.19.1-informational?style=flat-square)
 
 A Personal Relationship Management tool to help you organize your social life
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.4 |
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -89,7 +89,7 @@ N/A
 | mariadb.auth.username | string | `"monica"` |  |
 | mariadb.enabled | bool | `false` |  |
 | mariadb.primary.persistence.enabled | bool | `false` |  |
-| persistence.config.emptyDir | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/var/www/html/storage"` |  |
 | service.port.port | int | `80` |  |

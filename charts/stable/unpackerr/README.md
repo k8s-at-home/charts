@@ -1,6 +1,6 @@
 # unpackerr
 
-![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: 0.7.2](https://img.shields.io/badge/AppVersion-0.7.2-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 0.7.2](https://img.shields.io/badge/AppVersion-0.7.2-informational?style=flat-square)
 
 This application runs as a daemon on your download host. It checks for completed downloads and extracts them so Radarr, Lidarr, Sonarr, and Readarr may import them.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | image.repository | string | `"golift/unpackerr"` |  |
 | image.tag | string | `"0.7.2"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.downloads.emptyDir | bool | `false` |  |
+| persistence.downloads.emptyDir.enabled | bool | `false` |  |
 | persistence.downloads.enabled | bool | `false` |  |
 | persistence.downloads.mountPath | string | `"/downloads"` |  |
 | probes.liveness.enabled | bool | `false` |  |
