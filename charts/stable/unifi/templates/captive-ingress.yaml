@@ -48,16 +48,16 @@ spec:
                 name: {{ $fullName }}-captiveportalservice
                 port:
                   {{- if $captivePortalHttps }}
-                  name: captive-https
+                  name: https-captive
                   {{- else }}
-                  name: captive-http
+                  name: http-captive
                   {{- end }}
             {{- else }}
               serviceName: {{ $fullName }}-captiveportalservice
               {{- if $captivePortalHttps }}
-              servicePort: captive-https
+              servicePort: https-captive
               {{- else }}
-              servicePort: captive-http
+              servicePort: http-captive
               {{- end }}
             {{- end -}}
     {{- end }}
