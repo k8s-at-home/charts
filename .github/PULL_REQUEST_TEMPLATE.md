@@ -34,7 +34,6 @@ Also don't be worried if the request is closed or not integrated sometimes our p
 **Checklist** <!-- [Place an '[X]' (no spaces) in all applicable fields. Please remove unrelated fields.] -->
 - [ ] Chart version bumped in `Chart.yaml` according to [semver](http://semver.org/).
 - [ ] Title of the PR starts with chart name (e.g. `[home-assistant]`)
-- [ ] (optional) Chart is using our [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library as a dependency.
-- [ ] (optional) Variables are documented in the README.md
+- [ ] Variables are documented in the README.md (this can be done with using our helm-docs wrapper `./hack/gen-helm-docs.sh stable <chart>`)
 
 <!-- Keep in mind that if you are submitting a new chart, try to use our [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library as a dependency. This will help maintaining charts here and keep them consistent between each other -->
