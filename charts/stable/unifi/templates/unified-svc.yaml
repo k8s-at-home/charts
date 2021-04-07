@@ -77,17 +77,17 @@ spec:
       nodePort: {{.Values.guiService.nodePort}}
 {{ end }}
 {{ if .Values.captivePortalService.enabled }}
-    - name: captive-http
+    - name: http-captive
       port: {{ .Values.captivePortalService.http }}
       protocol: TCP
-      targetPort: captive-http
+      targetPort: http-captive
 {{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.captivePortalService.http))) }}
       nodePort: {{.Values.captivePortalService.http}}
 {{ end }}
-    - name: captive-https
+    - name: https-captive
       port: {{ .Values.captivePortalService.https }}
       protocol: TCP
-      targetPort: captive-https
+      targetPort: https-captive
 {{ if (and (eq .Values.unifiedService.type "NodePort") (not (empty .Values.captivePortalService.https))) }}
       nodePort: {{.Values.captivePortalService.https}}
 {{ end }}

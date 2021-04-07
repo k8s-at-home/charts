@@ -68,10 +68,10 @@ spec:
               containerPort: 5514
               protocol: UDP
             {{- if .Values.captivePortalService.enabled }}
-            - name: captive-http
+            - name: http-captive
               containerPort: {{ .Values.captivePortalService.http }}
               protocol: TCP
-            - name: captive-https
+            - name: https-captive
               containerPort: {{ .Values.captivePortalService.https }}
               protocol: TCP
             {{- end }}

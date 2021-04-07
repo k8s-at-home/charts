@@ -42,16 +42,16 @@ spec:
   {{- end }}
   ports:
     - port: {{ .Values.captivePortalService.http }}
-      targetPort: captive-http
+      targetPort: http-captive
       protocol: TCP
-      name: captive-http
+      name: http-captive
 {{ if (and (eq .Values.captivePortalService.type "NodePort") (not (empty .Values.captivePortalService.http))) }}
       nodePort: {{.Values.captivePortalService.http}}
 {{ end }}
     - port: {{ .Values.captivePortalService.https }}
-      targetPort: captive-https
+      targetPort: https-captive
       protocol: TCP
-      name: captive-https
+      name: https-captive
 {{ if (and (eq .Values.captivePortalService.type "NodePort") (not (empty .Values.captivePortalService.https))) }}
       nodePort: {{.Values.captivePortalService.https}}
 {{ end }}
