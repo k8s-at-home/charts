@@ -1,6 +1,6 @@
 # librespeed
 
-![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![AppVersion: 1.0.6-12](https://img.shields.io/badge/AppVersion-1.0.6--12-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 5.2.4](https://img.shields.io/badge/AppVersion-5.2.4-informational?style=flat-square)
 
 Librespeed is a HTML5 webpage to test upload and download speeds
 
@@ -14,10 +14,13 @@ Librespeed is a HTML5 webpage to test upload and download speeds
 
 ## Requirements
 
+Kubernetes: `>=1.16.0-0`
+
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
 
 ## TL;DR
 
@@ -74,50 +77,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Affinity settings for pod assignment or the homebridge GUI |
-| deploymentAnnotations | object | `{}` | Key-value pairs to add as deployment annotations |
-| distance | string | `"km"` | how the distance from the server is measured. Options `km`, `mi`, or `` |
-| email | string | `nil` | Email address for GDPR requests. Must be specified when telemetry=true |
-| fullnameOverride | string | `""` |  |
-| idObfuscation | bool | `false` | Test IDs are obfuscated, avoids exposing database internal sequential IDs |
-| image.pullPolicy | string | `"IfNotPresent"` | Librespeed image pull policy |
-| image.repository | string | `"adolfintel/speedtest"` | Librespeed image |
-| image.tag | string | `"latest"` | Librespeed image tag |
-| ingress.annotations | object | `{}` | Ingress annotations |
-| ingress.enabled | bool | `false` | Enables Ingress |
-| ingress.hosts | list | `["chart-example.local"]` | Ingress accepted hostnames |
-| ingress.path | string | `"/"` | Ingress path |
-| ingress.tls | list | `[]` | Ingress TLS configuration |
-| livenessProbePath | string | `"/"` | Default livenessProbe path |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` | Node labels for pod assignment or the homebridge GUI |
-| password | string | `"ChangeMe"` | password for stats page |
-| persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access modes |
-| persistence.enabled | bool | `false` | Use persistent volume to store data |
-| persistence.existingClaim | string | `nil` | Use an existing PVC to persist data |
-| persistence.size | string | `"1Gi"` | Size of persistent volume claim |
-| persistence.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
-| persistence.storageClass | string | `nil` | Type of persistent volume claim |
-| persistence.subPath | string | `nil` | When mounting the data volume you may specify a subPath |
-| pgid | string | `"1000"` | Default GID |
-| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
-| puid | string | `"1000"` | Default UID |
-| readinessProbePath | string | `"/"` | Default readinessProbe path |
-| redactIPAddresses | bool | `false` | IP addresses/hostnames are redacted from the collected telemetry |
-| resources | object | `{}` | CPU/Memory resource requests/limits or the homebridge GUI |
-| service.annotations | object | `{}` | Service annotations for the GUI |
-| service.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
-| service.labels | object | `{}` | Custom labels |
-| service.loadBalancerIP | string | `nil` | Loadbalance IP for the GUI |
-| service.loadBalancerSourceRanges | list | `nil` | List of IP CIDRs allowed access to load balancer (if supported) |
-| service.nodePort | int | `nil` | Kubernetes nodePort where the GUI is exposed |
-| service.port | int | `80` | Kubernetes port where the GUI is exposed |
-| service.type | string | `"ClusterIP"` | Kubernetes service type for the GUI |
-| strategyType | string | `"Recreate"` | Specifies the strategy used to replace old Pods by new ones |
-| telemetry | bool | `false` | Enable/Disable history |
-| timezone | string | `"UTC"` | Default timezone |
-| title | string | `"LibreSpeed"` | Title of your speedtest |
-| tolerations | list | `[]` | Toleration labels for pod assignment or the homebridge GUI |
+| env | object | `{}` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"linuxserver/librespeed"` |  |
+| image.tag | string | `"version-5.2.4"` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| service.port.port | int | `80` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -125,7 +93,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.0.1]
+### [1.0.0]
 
 #### Added
 
@@ -133,13 +101,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Use helm-docs
+- N/A
 
 #### Removed
 
 - N/A
 
-[2.0.1]: #2.0.1
+[1.0.0]: #1.0.0
 
 ## Support
 
