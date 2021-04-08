@@ -1,123 +1,42 @@
-# Default values for librespeed
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# -- Specifies the strategy used to replace old Pods by new ones
-strategyType: Recreate
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
-  # -- Librespeed image
-  repository: adolfintel/speedtest
-  # -- Librespeed image tag
-  tag: latest
-  # -- Librespeed image pull policy
+  repository: linuxserver/librespeed
   pullPolicy: IfNotPresent
+  tag: version-5.2.4
 
-nameOverride: ""
-fullnameOverride: ""
+strategy:
+  type: Recreate
 
-# -- Default livenessProbe path
-livenessProbePath: /
-# -- Default readinessProbe path
-readinessProbePath: /
-
-# -- Default timezone
-timezone: "UTC"
-# -- Default UID
-puid: "1000"
-# -- Default GID
-pgid: "1000"
-
-# -- Enable/Disable history
-telemetry: false
-# -- password for stats page
-password: "ChangeMe"
-# -- (string) Email address for GDPR requests. Must be specified when telemetry=true
-email:
-
-# -- Title of your speedtest
-title: LibreSpeed
-# -- Test IDs are obfuscated, avoids exposing database internal sequential IDs
-idObfuscation: false
-# -- IP addresses/hostnames are redacted from the collected telemetry
-redactIPAddresses: false
-# -- how the distance from the server is measured. Options `km`, `mi`, or ``
-distance: "km"
-
+# See more environment variables in the librespeed documentation
+# https://hub.docker.com/r/linuxserver/librespeed
+env: {}
+  # TZ:
+  # PUID:
+  # PGID:
+  # PASSWORD:
+  # CUSTOM_RESULTS:
+  # DB_TYPE:
+  # DB_NAME:
+  # DB_HOSTNAME:
+  # DB_USERNAME:
+  # DB_PASSWORD:
+  # DB_PORT:
 
 service:
-  # -- Kubernetes service type for the GUI
-  type: ClusterIP
-  # -- Kubernetes port where the GUI is exposed
-  port: 80
-  # -- (int) Kubernetes nodePort where the GUI is exposed
-  nodePort:
-  # -- Service annotations for the GUI
-  annotations: {}
-  # -- Custom labels
-  labels: {}
-  # -- (string) Loadbalance IP for the GUI
-  loadBalancerIP:
-  # -- (list) List of IP CIDRs allowed access to load balancer (if supported)
-  loadBalancerSourceRanges:
-  # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
-  externalTrafficPolicy:
+  port:
+    port: 80
 
 ingress:
-  # -- Enables Ingress
   enabled: false
-  # -- Ingress annotations
-  annotations: {}
-  # -- Ingress path
-  path: /
-  # -- Ingress accepted hostnames
-  hosts:
-    - chart-example.local
-  # -- Ingress TLS configuration
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 persistence:
-  # -- Use persistent volume to store data
-  enabled: false
-  # -- (string) Type of persistent volume claim
-  storageClass:
-  # -- (string) Use an existing PVC to persist data
-  existingClaim:
-  # -- Persistence access modes
-  accessMode: ReadWriteOnce
-  # -- Size of persistent volume claim
-  size: 1Gi
-  # -- Do not delete the pvc upon helm uninstall
-  skipuninstall: false
-  # -- (string) When mounting the data volume you may specify a subPath
-  subPath:
-# -- CPU/Memory resource requests/limits or the homebridge GUI
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-# -- Node labels for pod assignment or the homebridge GUI
-nodeSelector: {}
-
-# -- Toleration labels for pod assignment or the homebridge GUI
-tolerations: []
-
-# -- Affinity settings for pod assignment or the homebridge GUI
-affinity: {}
-
-# -- Key-value pairs to add as pod annotations
-podAnnotations: {}
-
-# -- Key-value pairs to add as deployment annotations
-deploymentAnnotations: {}
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
