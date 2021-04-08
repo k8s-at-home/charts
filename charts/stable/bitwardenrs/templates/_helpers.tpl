@@ -57,7 +57,6 @@ Ldap labels
 {{- define "bitwardenrsLdap.labels" -}}
 helm.sh/chart: {{ include "bitwardenrs.chart" . }}
 {{ include "bitwardenrsLdap.selectorLabels" . }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{- define "bitwardenrsLdap.selectorLabels" -}}

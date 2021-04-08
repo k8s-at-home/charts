@@ -30,7 +30,7 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - mountPath: /etc/bitwarden
-              name: {{ if .Values.ldapSync.existingSecret }}{{ .Values.ldapSync.existingSecret }}{{ else }}{{ include "bitwardenrs.name" . }}-ldap{{ end }}
+              name: {{ if .Values.ldapSync.existingSecret }}{{ .Values.ldapSync.existingSecret }}{{ else }}{{ include "bitwardenrs.name" . }}{{ end }}
               readOnly: true
       {{- if .Values.ldapSync.extraContainers }}
       {{- toYaml .Values.ldapSync.extraContainers | nindent 8 }}
