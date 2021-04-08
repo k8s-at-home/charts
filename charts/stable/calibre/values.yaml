@@ -37,9 +37,15 @@ service:
   port:
     port: 8080
     name: gui
-  additionalPorts:
-  - name: calibre-server
-    port: 8081
+  additionalServices:
+  - enabled: false
+    nameSuffix: webserver
+    type: ClusterIP
+    port:
+      port: 8081
+      name: webserver
+      protocol: TCP
+      targetPort: 8081
 
 ingress:
   enabled: false
