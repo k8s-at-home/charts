@@ -13,6 +13,8 @@ image:
 strategy:
   type: Recreate
 
+# -- Removes `ADMIN_USER` `ADMIN_PASSWORD` and `ADMIN_EMAIL` from `env: {}`
+adminEnvDisabled: false
 # See more environment variables in the statping documentation
 # https://github.com/statping/statping/wiki/Config-with-.env-File
 env:
