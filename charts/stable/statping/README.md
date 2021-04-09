@@ -1,6 +1,6 @@
 # statping
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: v0.90.65](https://img.shields.io/badge/AppVersion-v0.90.65-informational?style=flat-square)
+![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: v0.90.74](https://img.shields.io/badge/AppVersion-v0.90.74-informational?style=flat-square)
 
 Status page for monitoring your websites and applications
 
@@ -89,7 +89,7 @@ N/A
 | env.VIRTUAL_HOST | string | `""` | External URL you use to connect to the statping (the one you enter in your browser) |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"statping/statping"` |  |
-| image.tag | string | `"v0.90.74"` |  |
+| image.tag | string | `.Chart.appVersion` | image tag |
 | ingress.enabled | bool | `false` |  |
 | persistence | object | see bellow | Generated application config.yaml and logs are written here. Usually does not need to be persisted. |
 | postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |

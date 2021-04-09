@@ -8,7 +8,9 @@
 image:
   repository: statping/statping
   pullPolicy: IfNotPresent
-  tag: "v0.90.74"
+  # -- image tag
+  # @default -- `.Chart.appVersion`
+  tag: ""
 
 strategy:
   type: Recreate
