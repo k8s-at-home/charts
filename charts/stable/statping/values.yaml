@@ -8,13 +8,11 @@
 image:
   repository: statping/statping
   pullPolicy: IfNotPresent
-  tag: "v0.90.65"
+  tag: "v0.90.74"
 
 strategy:
   type: Recreate
 
-# -- Removes `ADMIN_USER` `ADMIN_PASSWORD` and `ADMIN_EMAIL` from `env: {}`
-adminEnvDisabled: false
 # See more environment variables in the statping documentation
 # https://github.com/statping/statping/wiki/Config-with-.env-File
 env:
@@ -40,17 +38,16 @@ env:
   # -- Postgres database password
   # @default -- postgresql.postgresqlDatabase value
   DB_DATABASE: ""
-  # -- dashboard admin user (needed to edit)
-  ADMIN_USER: admin
-  # -- dashboard admin password (needed to edit)
-  ADMIN_PASSWORD: admin
-  # -- dashboard admin email
-  ADMIN_EMAIL: info@example.com
   # -- Use CDN for static context from third-parties
   USE_CDN: false
   # -- Disable logs from appearing and writing to disk
   DISABLE_LOGS: false
-
+  # -- dashboard admin user (needed to edit)
+  # ADMIN_USER: admin
+  # -- dashboard admin password (needed to edit)
+  # ADMIN_PASSWORD: admin
+  # -- dashboard admin email
+  # ADMIN_EMAIL: info@example.com
 
 service:
   port:

@@ -76,10 +76,6 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| adminEnvDisabled | bool | `false` | Removes `ADMIN_USER` `ADMIN_PASSWORD` and `ADMIN_EMAIL` from `env: {}` |
-| env.ADMIN_EMAIL | string | `"info@example.com"` | dashboard admin email |
-| env.ADMIN_PASSWORD | string | `"admin"` | dashboard admin password (needed to edit) |
-| env.ADMIN_USER | string | `"admin"` | dashboard admin user (needed to edit) |
 | env.DB_CONN | string | `"postgres"` | Type of database to use |
 | env.DB_DATABASE | string | postgresql.postgresqlDatabase value | Postgres database password |
 | env.DB_HOST | string | internal postgresql URL | Postgres database hostname |
@@ -93,7 +89,7 @@ N/A
 | env.VIRTUAL_HOST | string | `""` | External URL you use to connect to the statping (the one you enter in your browser) |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"statping/statping"` |  |
-| image.tag | string | `"v0.90.65"` |  |
+| image.tag | string | `"v0.90.74"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence | object | see bellow | Generated application config.yaml and logs are written here. Usually does not need to be persisted. |
 | postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |

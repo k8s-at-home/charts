@@ -1,9 +1,3 @@
-{{- if .Values.adminEnvDisabled -}}
-  {{- $_ := unset .Values.env "ADMIN_USER" -}}
-  {{- $_ = unset .Values.env "ADMIN_PASSWORD" -}}
-  {{- $_ = unset .Values.env "ADMIN_EMAIL" -}}
-{{- end -}}
-
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
