@@ -1,4 +1,4 @@
-{{- if .Values.adminDisabled -}}
+{{- if .Values.adminEnvDisabled -}}
   {{- $_ := unset .Values.env "ADMIN_USER" -}}
   {{- $_ = unset .Values.env "ADMIN_PASSWORD" -}}
   {{- $_ = unset .Values.env "ADMIN_EMAIL" -}}
