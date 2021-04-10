@@ -1,0 +1,20 @@
+apiVersion: v2
+description: jetbrains-projector helm package
+name: jetbrains-projector
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - jetbrains
+  - projector
+  - jetbrains-projector
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jetbrains-projector
+icon: https://pbs.twimg.com/profile_images/1369990348580216834/dorDbokA_400x400.png
+sources:
+  - https://github.com/JetBrains/projector-docker
+maintainers:
+  - name: DirtyCajunRice
+    email: nick@cajun.pro
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.2.0
