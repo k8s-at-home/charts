@@ -1,1 +1,24 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap to the additionalVolumes */}}
+{{- $volume := include "jetbrains-projector.configmap.volume" . | fromYaml -}}
+{{- $additionalVolumes := append .Values.additionalVolumes $volume -}}
+{{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+
+{{/* Append the configMap volume to the additionalVolumeMounts */}}
+{{- $volumeMount := include "jetbrains-projector.configmap.volumeMount" . | fromYaml -}}
+{{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount -}}
+{{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
+
+{{/* Use .Values.image.registry if it exists because of jetbrains extremely long registry */}}
+{{- if .Values.image.registry -}}
+  {{- $_ := set .Values.image "repository" (printf "%s/%s" .Values.image.registry .Values.image.repository) -}}
+{{- end -}}
+
+{{/* Add the *_PROPERTIES environment variable */}}
+{{- $ide := include "jetbrains-projector.ide" . }}
+{{- $_ := set .Values.env (printf "%s_PROPERTIES" (upper $ide)) "/tmp/idea.properties" -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}
