@@ -22,8 +22,20 @@ initContainers:
   - name: adguard-home-config
     mountPath: /tmp/AdGuardHome.yaml
     subPath: AdGuardHome.yaml
+  - name: shared-config
+    mountPath: /opt/adguardhome/conf
   securityContext:
     runAsUser: 0
+
+
+additionalVolumes:
+- name: shared-config
+  emptyDir: {}
+
+additionalVolumeMounts:
+- name: shared-config
+  mountPath: /opt/adguardhome/conf
+
 
 image:
   repository: adguard/adguardhome
