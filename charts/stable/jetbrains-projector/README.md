@@ -2,13 +2,13 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square)
 
-Projector is a technology to run and access Swing GUI applications remotely
+Projector is a technology to run and access JetBrains IDEs remotely
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/JetBrains/projector-docker>
+* <https://github.com/JetBrains/projector-server>
 
 ## Requirements
 
@@ -66,8 +66,12 @@ helm install jetbrains-projector k8s-at-home/jetbrains-projector -f values.yaml
 ```
 
 ## Custom configuration
-
-N/A
+  These environment variables will set write and read-only keys respectively:
+  ```yaml
+  env:
+    ORG_JETBRAINS_PROJECTOR_SERVER_HANDSHAKE_TOKEN: "admin-password"
+    ORG_JETBRAINS_PROJECTOR_SERVER_RO_HANDSHAKE_TOKEN: "read-only-password"
+  ```
 
 ## Values
 
@@ -76,19 +80,23 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
-| idea.config.path | string | `"/data/config"` |  |
-| idea.log.path | string | `"/data/plugins"` |  |
-| idea.plugins.path | string | `"/data/plugins"` |  |
-| idea.system.path | string | `"/data/system"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.registry | string | `"registry.jetbrains.team/p/prj/containers"` | See list of available images [here](https://github.com/JetBrains/projector-docker) |
-| image.repository | string | `"projector-pycharm-c"` |  |
-| image.tag | string | `"latest"` |  |
+| idea | object | `{}` | IDE settings overrides. See the prospective IDE docs (like pycharm)[https://www.jetbrains.com/help/pycharm/tuning-the-ide.html#common-platform-properties] for more info. Default config paths will be /config/* E.G. `idea.system.path=/config/system` |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.registry | string | `"ghcr.io/k8s-at-home"` | registry that hosts the image |
+| image.repository | string | `""` | image repository. *MUST SPECIFY AN IMAGE* |
+| image.tag | string | `"v2021.1"` | image tag |
 | ingress.enabled | bool | `false` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/data"` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/config"` |  |
 | service.port.port | int | `8887` |  |
+| sslGen.certs.crt | string | `"tls.crt"` | key that holds the tls crt |
+| sslGen.certs.key | string | `"tls.key"` | key that holds the tls key |
+| sslGen.certs.secret | string | `""` | name of secret to mount that has the TLS certs |
+| sslGen.enabled | bool | `false` | enable automatic conversion of mounted TLS certs to JKS for WSS protocol |
+| sslGen.jks.dest | string | `"/tmp/cert.jks"` | location of generated cert.jks used |
+| sslGen.properties.existingSecret | string | `""` | pre-existing ssl.properties secret |
+| sslGen.properties.key | string | `"ssl.properties"` | key that holds ssl.properties file |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -101,21 +109,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- N/A
-
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
+- Initial version
 
 [1.0.0]: #1.0.0
 
 ## Support
 
-- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/introduction/)
 - Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community

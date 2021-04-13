@@ -10,15 +10,38 @@
 {{- end -}}
 
 {{- define "jetbrains-projector.configmap.volume" -}}
-name: jetbrains-projector-config
+name: idea-properties
 configMap:
   name: {{ template "common.names.fullname" . }}-config
 {{- end -}}
 
 {{- define "jetbrains-projector.configmap.volumeMount" -}}
-name: jetbrains-projector-config
+name: idea-properties
 mountPath: /tmp/idea.properties
 subPath: idea.properties
+{{- end -}}
+
+{{- define "jetbrains-projector.certs.volume" -}}
+name: certs
+secret:
+  secretName: {{ required "a secret name is required when sslGen is enabled" .Values.sslGen.certs.secret }}
+{{- end -}}
+
+{{- define "jetbrains-projector.certs.volumeMount" -}}
+name: certs
+mountPath: /tmp/certs
+{{- end -}}
+
+{{- define "jetbrains-projector.secret.volume" -}}
+name: ssl-properties
+secret:
+  secretName: {{ default (printf "%s-secrets" (include "common.names.fullname" .)) .Values.sslGen.properties.existingSecret }}
+{{- end -}}
+
+{{- define "jetbrains-projector.secret.volumeMount" -}}
+name: ssl-properties
+mountPath: /tmp/{{ .Values.sslGen.properties.key }}
+subPath: {{ .Values.sslGen.properties.key }}
 {{- end -}}
 
 {{- define "jetbrains-projector.ide" -}}
