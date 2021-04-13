@@ -40,5 +40,9 @@
 {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
 {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
 
+{{- if not .Values.image.repository -}}
+  {{- fail "an image is required in .Values.image.repository" -}}
+{{- end -}}
+
 {{/* Render the templates */}}
 {{ include "common.all" . }}
