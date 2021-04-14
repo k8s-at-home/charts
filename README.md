@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -71,6 +71,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://cbergmann.net"><img src="https://avatars.githubusercontent.com/u/112864?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Clemens Bergmann</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=cbergmann" title="Code">💻</a></td>
     <td align="center"><a href="http://norad.fr"><img src="https://avatars.githubusercontent.com/u/541709?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arnaud Lemaire</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=n0rad" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dixneuf19"><img src="https://avatars.githubusercontent.com/u/1516762?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Julen Dixneuf</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=dixneuf19" title="Code">💻</a></td>
+    <td align="center"><a href="https://cajun.pro"><img src="https://avatars.githubusercontent.com/u/15788890?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicholas St. Germain</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=DirtyCajunRice" title="Code">💻</a></td>
   </tr>
 </table>
 
