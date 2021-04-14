@@ -22,6 +22,8 @@ initContainers:
   - name: adguard-home-config
     mountPath: /tmp/AdGuardHome.yaml
     subPath: AdGuardHome.yaml
+  - name: config
+    mountPath: /opt/adguardhome/conf
   securityContext:
     runAsUser: 0
 
@@ -69,9 +71,9 @@ service:
 
 persistence:
   config:
-    enabled: false
+    enabled: true
     emptyDir:
-      enabled: false
+      enabled: true
     mountPath: /opt/adguardhome/conf
   data:
     enabled: false
