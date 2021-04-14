@@ -1,0 +1,21 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: emcniece/dockeryourxyzzy
+  pullPolicy: IfNotPresent
+  tag: "4"
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8080
+
+ingress:
+  enabled: false
