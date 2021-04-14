@@ -1,0 +1,48 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: syncthing/syncthing
+  pullPolicy: IfNotPresent
+  tag: 1.15.1
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8384
+  additionalServices:
+  - enabled: true
+    nameSuffix: listen
+    type: NodePort
+    port:
+      port: 22000
+      name: listen
+      protocol: TCP
+      targetPort: 22000
+    externalTrafficPolicy: Local
+  - enabled: true
+    nameSuffix: discovery
+    type: NodePort
+    port:
+      port: 21027
+      name: discovery
+      protocol: UDP
+      targetPort: 21027
+    externalTrafficPolicy: Local
+
+
+ingress:
+  enabled: false
+
+persistence:
+  data:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /var/syncthing

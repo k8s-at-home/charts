@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 1.15.1
+description: Open Source Continuous File Synchronization
+name: syncthing
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- syncthing
+- file sync
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/syncthing
+icon: https://syncthing.net/img/logo-horizontal.svg
+sources:
+- https://syncthing.net/
+- https://github.com/syncthing/syncthing
+maintainers:
+- name: FlipEnergy
+  email: dennis.zhang.nrg@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.2.0
