@@ -1,6 +1,6 @@
 # adguard-home
 
-![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: v0.105.2](https://img.shields.io/badge/AppVersion-v0.105.2-informational?style=flat-square)
+![Version: 3.1.1](https://img.shields.io/badge/Version-3.1.1-informational?style=flat-square) ![AppVersion: v0.105.2](https://img.shields.io/badge/AppVersion-v0.105.2-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -92,8 +92,10 @@ N/A
 | initContainers[0].volumeMounts[0].mountPath | string | `"/tmp/AdGuardHome.yaml"` |  |
 | initContainers[0].volumeMounts[0].name | string | `"adguard-home-config"` |  |
 | initContainers[0].volumeMounts[0].subPath | string | `"AdGuardHome.yaml"` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
+| initContainers[0].volumeMounts[1].mountPath | string | `"/opt/adguardhome/conf"` |  |
+| initContainers[0].volumeMounts[1].name | string | `"config"` |  |
+| persistence.config.emptyDir.enabled | bool | `true` |  |
+| persistence.config.enabled | bool | `true` |  |
 | persistence.config.mountPath | string | `"/opt/adguardhome/conf"` |  |
 | persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
