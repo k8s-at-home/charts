@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: "4"
+description: pretend-youre-xyzzy, a cards against humanity clone
+name: pretend-youre-xyzzy
+version: 1.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- pretend-youre-xyzzy
+- cards
+- against
+- humanity
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pretend-youre-xyzzy
+sources:
+- https://github.com/ajanata/PretendYoureXyzzy
+- https://github.com/emcniece/DockerYourXyzzy
+maintainers:
+- name: FlipEnergy
+  email: dennis.zhang.nrg@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.2.0
