@@ -36,15 +36,24 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ . }}
+            {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
           {{- if $websockets.enabled }}
           - path: {{ . | trimSuffix "/" }}/notifications/hub
+            {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $websockets.port }}
           - path: {{ . | trimSuffix "/" }}/notifications/hub/negotiate
+            {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort}}
