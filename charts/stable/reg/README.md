@@ -76,7 +76,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env.EXTRA_ARGS | string | `"server --registry r.j3ss.co"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/reg"` |  |
 | image.tag | string | `"v0.16.1"` |  |
@@ -94,15 +94,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- N/A
-
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
+- Initial version
 
 [1.0.0]: #1.0.0
 
