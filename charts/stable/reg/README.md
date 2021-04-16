@@ -76,7 +76,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.EXTRA_ARGS | string | `"server --registry r.j3ss.co"` |  |
+| env | string | `nil` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/reg"` |  |
 | image.tag | string | `"v0.16.1"` |  |
