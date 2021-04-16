@@ -59,10 +59,11 @@ spec:
                 name: {{ $fullName }}
                 port:
                   name: websocket
-            {{- end }}
+            {{- else }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $websockets.port }}
+            {{- end }}
           - path: {{ . | trimSuffix "/" }}/notifications/hub/negotiate
             {{- if semverCompare ">=1.19-0" $apiVersion }}
             pathType: Prefix
@@ -71,10 +72,11 @@ spec:
                 name: {{ $fullName }}
                 port:
                   name: http
-            {{- end }}
+            {{- else }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort}}
+            {{- end }}
           {{- end }}
           {{- end }}
     {{- end }}
