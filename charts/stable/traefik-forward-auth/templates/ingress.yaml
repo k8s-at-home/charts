@@ -1,9 +1,10 @@
 {{- if .Values.ingress.enabled -}}
   {{- $fullName := include "traefik-forward-auth.fullname" . -}}
   {{- $svcPort := .Values.service.port -}}
-  {{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+  {{- $apiVersion := .Capabilities.KubeVersion.GitVersion -}}
+  {{- if semverCompare "<1.14-0" $apiVersion -}}
 apiVersion: extensions/v1beta1
-  {{- else if semverCompare "<1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+  {{- else if semverCompare "<1.19-0" $apiVersion -}}
 apiVersion: networking.k8s.io/v1beta1
   {{- else -}}
 apiVersion: networking.k8s.io/v1
@@ -40,7 +41,7 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ . }}
-            {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+            {{- if semverCompare ">=1.19-0" $apiVersion }}
             pathType: Prefix
             backend:
               service:
