@@ -1,16 +1,22 @@
 apiVersion: v2
-appVersion: 1.0.6-12
+appVersion: 5.2.4
 description: Librespeed is a HTML5 webpage to test upload and download speeds
 name: librespeed
-version: 2.0.3
+version: 3.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - librespeed
+- librespeed
+- speedtest
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/librespeed
 icon: https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true
 sources:
-  - https://github.com/librespeed/speedtest
-  - https://hub.docker.com/r/linuxserver/librespeed
-  - https://github.com/k8s-at-home/charts/tree/master/charts/librespeed
+- https://github.com/librespeed/speedtest
+- https://hub.docker.com/r/linuxserver/librespeed
+- https://github.com/k8s-at-home/charts/tree/master/charts/librespeed
 maintainers:
-  - name: billimek
-    email: jeff@billimek.com
+- name: mcmarkj
+  email: mark@markmcw.uk
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.2.0

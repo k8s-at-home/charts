@@ -38,17 +38,16 @@ env:
   # -- Postgres database password
   # @default -- postgresql.postgresqlDatabase value
   DB_DATABASE: ""
-  # -- dashboard admin user (needed to edit)
-  ADMIN_USER: admin
-  # -- dashboard admin password (needed to edit)
-  ADMIN_PASSWORD: admin
-  # -- dashboard admin email
-  ADMIN_EMAIL: info@example.com
   # -- Use CDN for static context from third-parties
   USE_CDN: false
   # -- Disable logs from appearing and writing to disk
   DISABLE_LOGS: false
-
+  # -- dashboard admin user (needed to edit)
+  # ADMIN_USER: admin
+  # -- dashboard admin password (needed to edit)
+  # ADMIN_PASSWORD: admin
+  # -- dashboard admin email
+  # ADMIN_EMAIL: info@example.com
 
 service:
   port:

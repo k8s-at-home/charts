@@ -29,6 +29,9 @@ data:
   {{- if and (not .existingSecret.enabled) .user }}
   SMTP_USERNAME: {{ .user | quote }}
   {{- end }}
+  {{- if and (not .existingSecret.enabled) .password }}
+  SMTP_PASSWORD: {{ .password | quote }}
+  {{- end }}
   {{- end }}
   {{- end }}
   {{- with .Values.bitwardenrs.yubico }}

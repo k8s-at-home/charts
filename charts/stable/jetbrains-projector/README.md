@@ -1,0 +1,122 @@
+# jetbrains-projector
+
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square)
+
+Projector is a technology to run and access JetBrains IDEs remotely
+
+**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+
+## Source Code
+
+* <https://github.com/JetBrains/projector-server>
+
+## Requirements
+
+Kubernetes: `>=1.16.0-0`
+
+## Dependencies
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+
+## TL;DR
+
+```console
+helm repo add k8s-at-home https://k8s-at-home.com/charts/
+helm repo update
+helm install jetbrains-projector k8s-at-home/jetbrains-projector
+```
+
+## Installing the Chart
+
+To install the chart with the release name `jetbrains-projector`
+
+```console
+helm install jetbrains-projector k8s-at-home/jetbrains-projector
+```
+
+## Uninstalling the Chart
+
+To uninstall the `jetbrains-projector` deployment
+
+```console
+helm uninstall jetbrains-projector
+```
+
+The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
+
+## Configuration
+
+Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
+Other values may be used from the [values.yaml](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml) from the [common library](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common).
+
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+
+```console
+helm install jetbrains-projector \
+  --set env.TZ="America/New York" \
+    k8s-at-home/jetbrains-projector
+```
+
+Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
+
+```console
+helm install jetbrains-projector k8s-at-home/jetbrains-projector -f values.yaml
+```
+
+## Custom configuration
+  These environment variables will set write and read-only keys respectively:
+  ```yaml
+  env:
+    ORG_JETBRAINS_PROJECTOR_SERVER_HANDSHAKE_TOKEN: "admin-password"
+    ORG_JETBRAINS_PROJECTOR_SERVER_RO_HANDSHAKE_TOKEN: "read-only-password"
+  ```
+
+## Values
+
+**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| env | object | `{}` |  |
+| idea | object | `{}` | IDE settings overrides. See the prospective IDE docs (like pycharm)[https://www.jetbrains.com/help/pycharm/tuning-the-ide.html#common-platform-properties] for more info. Default config paths will be /config/* E.G. `idea.system.path=/config/system` |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.registry | string | `"ghcr.io/k8s-at-home"` | registry that hosts the image |
+| image.repository | string | `""` | image repository. *MUST SPECIFY AN IMAGE* |
+| image.tag | string | `"v2021.1"` | image tag |
+| ingress.enabled | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/config"` |  |
+| service.port.port | int | `8887` |  |
+| sslGen.certs.crt | string | `"tls.crt"` | key that holds the tls crt |
+| sslGen.certs.key | string | `"tls.key"` | key that holds the tls key |
+| sslGen.certs.secret | string | `""` | name of secret to mount that has the TLS certs |
+| sslGen.enabled | bool | `false` | enable automatic conversion of mounted TLS certs to JKS for WSS protocol |
+| sslGen.jks.dest | string | `"/tmp/cert.jks"` | location of generated cert.jks used |
+| sslGen.properties.existingSecret | string | `""` | pre-existing ssl.properties secret |
+| sslGen.properties.key | string | `"ssl.properties"` | key that holds ssl.properties file |
+| strategy.type | string | `"Recreate"` |  |
+
+## Changelog
+
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.0]
+
+#### Added
+
+- Initial version
+
+[1.0.0]: #1.0.0
+
+## Support
+
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/introduction/)
+- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+- Join our [Discord](https://discord.gg/sTMX7Vh) community
+
