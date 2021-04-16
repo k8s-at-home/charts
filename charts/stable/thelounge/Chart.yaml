@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: "4.2.0"
+description: The Lounge, modern web IRC client designed for self-hosting
+name: thelounge
+version: "1.0.0"
+kubeVersion: ">=1.16.0-0"
+keywords:
+- thelounge
+- IRC
+- "The Lounge"
+- docker
+- thelounge-docker
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/thelounge
+icon: https://raw.githubusercontent.com/thelounge/thelounge/master/client/img/logo-vertical-transparent-bg.svg?sanitize=true
+sources:
+- https://github.com/thelounge/thelounge
+maintainers:
+- name: Rwaltr
+  email: rwalt@pm.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.2.0
