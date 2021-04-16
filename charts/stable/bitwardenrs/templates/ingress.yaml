@@ -2,9 +2,10 @@
 {{- $fullName := include "bitwardenrs.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- $websockets := .Values.bitwardenrs.websockets -}}
-{{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- $apiVersion := .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare "<1.14-0" $apiVersion -}}
 apiVersion: extensions/v1beta1
-{{- else if semverCompare "<1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- else if semverCompare "<1.19-0" $apiVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
 apiVersion: networking.k8s.io/v1
@@ -36,7 +37,7 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ . }}
-            {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+            {{- if semverCompare ">=1.19-0" $apiVersion }}
             pathType: Prefix
             backend:
               service:
@@ -51,7 +52,7 @@ spec:
 
           {{- if $websockets.enabled }}
           - path: {{ . | trimSuffix "/" }}/notifications/hub
-            {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+            {{- if semverCompare ">=1.19-0" $apiVersion }}
             pathType: Prefix
             backend:
               service:
@@ -63,7 +64,7 @@ spec:
               serviceName: {{ $fullName }}
               servicePort: {{ $websockets.port }}
           - path: {{ . | trimSuffix "/" }}/notifications/hub/negotiate
-            {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+            {{- if semverCompare ">=1.19-0" $apiVersion }}
             pathType: Prefix
             backend:
               service:
