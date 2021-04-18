@@ -1,0 +1,33 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: biospheere/promcord
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+strategy:
+  type: Recreate
+
+# https://github.com/nimarion/promcord/blob/master/README.md
+env:
+  # -- Discord bot token
+  DISCORD_TOKEN: <your token>
+
+service:
+  port:
+    port: 8080
+
+ingress:
+  enabled: false
+
+# Enable a prometheus-operator servicemonitor
+prometheus:
+  serviceMonitor:
+    enabled: false
+    # interval: 1m
+    # additionalLabels: {}

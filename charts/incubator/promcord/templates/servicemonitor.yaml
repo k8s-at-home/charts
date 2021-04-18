@@ -1,0 +1,32 @@
+{{- if .Values.prometheus.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.prometheus.serviceMonitor.additionalLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "common.labels.selectorLabels" . | nindent 6 }}
+  endpoints:
+  - port: {{ default "http" .Values.service.port.name }}
+    {{- with .Values.prometheus.serviceMonitor.interval }}
+    interval: {{ . }}
+    {{- end }}
+    {{- with .Values.prometheus.serviceMonitor.bearerTokenFile }}
+    bearerTokenFile: {{ . }}
+    {{- end }}
+    {{- with .Values.prometheus.serviceMonitor.bearerTokenSecret }}
+    bearerTokenSecret:
+      name: {{ .name }}
+      key: {{ .key }}
+      {{- with .optional }}
+      optional: {{ . }}
+      {{- end }}
+    {{- end }}
+    path: /metrics
+{{- end }}
