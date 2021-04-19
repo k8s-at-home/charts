@@ -26,9 +26,7 @@ service:
 ingress:
   enabled: false
 
-# persistence:
-#   data:
-#     enabled: false
-#     emptyDir:
-#       enabled: false
-#     mountPath: /data
+persistence:
+  config:
+    enabled: false
+#    size: 1Gi
