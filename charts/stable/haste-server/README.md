@@ -1,6 +1,6 @@
 # haste-server
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2021.04.18](https://img.shields.io/badge/AppVersion-2021.04.18-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2021.04.19](https://img.shields.io/badge/AppVersion-2021.04.19-informational?style=flat-square)
 
 Simple text sharing
 
@@ -76,11 +76,13 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env.STORAGE_FILEPATH | string | `"/config"` |  |
+| env.STORAGE_TYPE | string | `"file"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/rwaltr/haste-server"` |  |
-| image.tag | string | `"2021-04-18"` |  |
+| image.tag | string | `"2021-04-19"` |  |
 | ingress.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
 | service.port.port | int | `7777` |  |
 | strategy.type | string | `"Recreate"` |  |
 
