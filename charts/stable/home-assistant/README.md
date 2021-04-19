@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 7.3.0](https://img.shields.io/badge/Version-7.3.0-informational?style=flat-square) ![AppVersion: 2021.3.4](https://img.shields.io/badge/AppVersion-2021.3.4-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: 2021.4.4](https://img.shields.io/badge/AppVersion-2021.4.4-informational?style=flat-square)
 
 Home Assistant
 
@@ -23,7 +23,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.0 |
 
 ## TL;DR
 
@@ -127,11 +127,9 @@ The value derived is the name of the kubernetes service object for home-assistan
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
-| git.deployKey | string | `""` |  |
-| git.deployKeyBase64 | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"homeassistant/home-assistant"` |  |
-| image.tag | string | `"2021.3.4"` |  |
+| image.tag | string | `"2021.4.4"` |  |
 | influxdb.architecture | string | `"standalone"` |  |
 | influxdb.authEnabled | bool | `false` |  |
 | influxdb.database | string | `"home_assistant"` |  |
@@ -162,6 +160,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [8.0.0]
+
+### Changed
+
+- Updated image tag to version 2021.4.4.
+
+### Removed
+
+- Removed support for specifying git Deploykey directly from this chart. This feature has been moved to the [codeserver add-on](http://docs.k8s-at-home.com/our-helm-charts/common-library-add-ons/#code-server).
 
 ## [5.0.0]
 
