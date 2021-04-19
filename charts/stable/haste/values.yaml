@@ -1,0 +1,33 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/rwaltr/haste-server
+  pullPolicy: IfNotPresent
+  tag: 2021-04-18
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the ${CHARTNAME} documentation
+# https://${CHARTNAME}.org/docs
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 7777
+
+ingress:
+  enabled: false
+
+# persistence:
+#   data:
+#     enabled: false
+#     emptyDir:
+#       enabled: false
+#     mountPath: /data

@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: 2021.04.18
+description: haste helm package
+name: haste
+version: 1.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- haste
+- hastebin
+- haste-server
+- pastebin
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/haste
+icon: https://github.com/seejohnrun/haste-server/blob/master/static/logo.png
+sources:
+- https://github.com/seejohnrun/haste-server
+maintainers:
+- name: rwaltr
+  email: rwalt@pm.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.2.0
