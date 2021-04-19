@@ -8,7 +8,7 @@
 image:
   repository: homeassistant/home-assistant
   pullPolicy: IfNotPresent
-  tag: 2021.4.1
+  tag: 2021.4.4
 
 strategy:
   type: Recreate
@@ -32,13 +32,6 @@ ingress:
 # # Enable passing thru a USB device to Home Assistant
 # securityContext:
 #   privileged: true
-
-# Allow access a Git repository by passing in a private SSH key
-git:
-  # Raw SSH private key
-  deployKey: ""
-  # Base64-encoded SSH private key. When both variables are set, the raw SSH key takes precedence.
-  deployKeyBase64: ""
 
 # Enable a prometheus-operator servicemonitor
 prometheus:
