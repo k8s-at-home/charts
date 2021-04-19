@@ -23,7 +23,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://library-charts.k8s-at-home.com | common | 2.3.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
