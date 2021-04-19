@@ -8,15 +8,16 @@
 image:
   repository: ghcr.io/rwaltr/haste-server
   pullPolicy: IfNotPresent
-  tag: 2021-04-18
+  tag: 2021-04-19
 
 strategy:
   type: Recreate
 
 # See more environment variables in the haste-server documentation
 # https://github.com/rwaltr/haste-server
-env: {}
-  # TZ:
+env:
+  STORAGE_FILEPATH: "/config"
+  STORAGE_TYPE: "file"
 
 service:
   port:
