@@ -9,6 +9,7 @@ Simple text sharing
 ## Source Code
 
 * <https://github.com/seejohnrun/haste-server>
+* <https://github.com/rwaltr/haste-server>
 
 ## Requirements
 
