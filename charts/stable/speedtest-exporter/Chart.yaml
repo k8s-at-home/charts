@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 3.0.2.4552
+description: Speedtest Exporter made in python using the official speedtest bin
+name: speedtest-exporter
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- speedtest-exporter
+- speedtest
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/speedtest-exporter
+sources:
+- https://github.com/MiguelNdeCarvalho/speedtest-exporter/
+maintainers:
+- name: onedr0p
+  email: devin.kray@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.3.1
