@@ -1,0 +1,56 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: biospheere/promcord
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  enabled: false
+  additionalPorts:
+  - port: 8080
+    name: metrics
+    protocol: TCP
+    targetPort: 8080
+
+## Probes configuration
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      tcpSocket:
+        port: 8080
+  readiness:
+    enabled: true
+    custom: true
+    spec:
+      tcpSocket:
+        port: 8080
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      tcpSocket:
+        port: 8080
+
+strategy:
+  type: Recreate
+
+# https://github.com/nimarion/promcord/blob/master/README.md
+env:
+  # -- Discord bot token
+  # DISCORD_TOKEN:
+
+# Enable a prometheus-operator podmonitor
+prometheus:
+  podMonitor:
+    enabled: false
+    interval: 1m
+    scrapeTimeout: 30s
+    additionalLabels: {}
