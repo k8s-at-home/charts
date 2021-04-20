@@ -12,6 +12,11 @@ image:
 
 service:
   enabled: false
+  additionalPorts:
+    - port: 8080
+      name: metrics
+      protocol: TCP
+      targetPort: 8080
 
 strategy:
   type: Recreate
