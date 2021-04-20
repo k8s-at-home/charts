@@ -1112,6 +1112,34 @@ entries:
     version: 1.0.0
   appdaemon:
   - apiVersion: v2
+    appVersion: 4.0.8
+    created: "2021-04-20T20:10:54.834407259Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: AppDaemon is a loosely coupled, multi-threaded, sandboxed python
+      execution environment for writing automation apps for various types of Home
+      Automation Software including Home Assistant and MQTT.
+    digest: 688585e58a403db462dee9abd3e31b6dd249367d19f61afacdd56cb2c01a565b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/appdaemon
+    keywords:
+    - appdaemon
+    - home-automation
+    - home-assistant
+    - mqtt
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: appdaemon
+    sources:
+    - https://github.com/AppDaemon/appdaemon
+    - https://hub.docker.com/r/acockburn/appdaemon/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/appdaemon-5.0.0/appdaemon-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
     appVersion: 4.0.5
     created: "2021-04-19T09:01:16.200922055Z"
     dependencies:
@@ -1802,6 +1830,36 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/baikal-1.0.0/baikal-1.0.0.tgz
     version: 1.0.0
   bazarr:
+  - apiVersion: v2
+    appVersion: v0.9.4
+    created: "2021-04-20T20:10:54.949017195Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Bazarr is a companion application to Sonarr and Radarr. It manages
+      and downloads subtitles based on your requirements
+    digest: 626cdd81adf254c00703758cf537e5a08ac951068ca067033dbd11744e67230e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bazarr
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: bazarr
+    sources:
+    - https://github.com/morpheus65535/bazarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bazarr-8.0.0/bazarr-8.0.0.tgz
+    version: 8.0.0
   - apiVersion: v2
     appVersion: v0.9.0.5
     created: "2021-04-19T09:01:16.54559965Z"
@@ -17016,6 +17074,31 @@ entries:
     version: 1.0.0
   jackett:
   - apiVersion: v2
+    appVersion: v0.17.908
+    created: "2021-04-20T20:10:55.089455421Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: API Support for your favorite torrent trackers
+    digest: ed3c205c5678a6cac87aec0027c8bb66bbc17a7d057daa1e353f10e3e90980ec
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://github.com/Jackett/Jackett
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-9.0.0/jackett-9.0.0.tgz
+    version: 9.0.0
+  - apiVersion: v2
     appVersion: v0.17.591
     created: "2021-04-19T09:01:20.718963322Z"
     dependencies:
@@ -20065,6 +20148,32 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - apiVersion: v2
+    appVersion: v0.8.1.2134
+    created: "2021-04-20T20:10:55.188283918Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Looks and smells like Sonarr but made for music
+    digest: 92c9d67288ec1e918e933141766aa8a07a242a04b32c9f5f0e9ce9e37352a9f4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-9.0.0/lidarr-9.0.0.tgz
+    version: 9.0.0
   - apiVersion: v2
     appVersion: 0.8.0.1886
     created: "2021-04-19T09:01:21.901049066Z"
@@ -25753,6 +25862,31 @@ entries:
   nzbget:
   - apiVersion: v2
     appVersion: v21.0
+    created: "2021-04-20T20:10:55.310539269Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: NZBGet is a Usenet downloader client
+    digest: 9becf786db95f43d938c66294095a8063bc38a5cb0ba8e2249a1611ef064ff2b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbget
+    icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+    keywords:
+    - nzbget
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbget
+    sources:
+    - https://nzbget.net/
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbget-10.0.0/nzbget-10.0.0.tgz
+    version: 10.0.0
+  - apiVersion: v2
+    appVersion: v21.0
     created: "2021-04-19T09:01:23.793910608Z"
     dependencies:
     - name: common
@@ -26725,6 +26859,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/nzbget-3.0.0/nzbget-3.0.0.tgz
     version: 3.0.0
   nzbhydra2:
+  - apiVersion: v2
+    appVersion: v3.14.0
+    created: "2021-04-20T20:10:55.436653679Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Usenet meta search
+    digest: d697a37f9fcda4b839dfbc21afcd91e6234cd4f84091adb2de1a36dc1e9d93e8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbhydra2
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
+    keywords:
+    - nzbhydra2
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbhydra2
+    sources:
+    - https://github.com/theotherp/nzbhydra2
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbhydra2-8.0.0/nzbhydra2-8.0.0.tgz
+    version: 8.0.0
   - apiVersion: v2
     appVersion: v3.8.1
     created: "2021-04-19T09:01:23.956763353Z"
@@ -36057,6 +36216,31 @@ entries:
     version: 1.0.1
   qbittorrent:
   - apiVersion: v2
+    appVersion: v4.3.4.1
+    created: "2021-04-20T20:10:55.557028802Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: 8b3eec4084ce81837568cb37b932a3f1dfcf3965ae4489db53fff9b023e6107b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: qbittorrent
+    sources:
+    - https://github.com/qbittorrent/qBittorrent
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/qbittorrent-10.0.0/qbittorrent-10.0.0.tgz
+    version: 10.0.0
+  - apiVersion: v2
     appVersion: 4.3.0
     created: "2021-04-19T09:01:26.686547303Z"
     dependencies:
@@ -36908,6 +37092,32 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - apiVersion: v2
+    appVersion: v3.0.2.4552
+    created: "2021-04-20T20:10:55.684608434Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 791600358eee09e9787841a66a1572e9a593a6ff9ebc1c0b7f19da272b36a930
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-11.0.0/radarr-11.0.0.tgz
+    version: 11.0.0
   - apiVersion: v2
     appVersion: 3.0.2.4552
     created: "2021-04-19T09:01:26.858623035Z"
@@ -38070,6 +38280,34 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/radarr-3.0.0/radarr-3.0.0.tgz
     version: 3.0.0
   readarr:
+  - apiVersion: v2
+    appVersion: v0.1.0.587
+    created: "2021-04-20T20:10:55.783904737Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: A fork of Radarr to work with Books & AudioBooks
+    digest: 8bb8adedb7b2b7f2b29d0868b4d77dd75330faa324c17060fde272c8e9006b26
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/readarr
+    icon: https://readarr.com/img/logo.png
+    keywords:
+    - readarr
+    - torrent
+    - usenet
+    - AudioBooks
+    - ebooks
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark@markmcw.uk
+      name: mcmarkj
+    name: readarr
+    sources:
+    - https://github.com/Readarr/Readarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/readarr-4.0.0/readarr-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 0.1.0.351
     created: "2021-04-19T09:01:27.058124796Z"
@@ -39720,6 +39958,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/rtorrent-flood-4.0.0/rtorrent-flood-4.0.0.tgz
     version: 4.0.0
   sabnzbd:
+  - apiVersion: v2
+    appVersion: v3.2.1
+    created: "2021-04-20T20:10:55.890232347Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Free and easy binary newsreader
+    digest: e342ea15350555b0684e2ee1ea9e558d212359f3dc906e58c117130c3b5d2450
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sabnzbd
+    icon: https://avatars1.githubusercontent.com/u/960698?s=400&v=4
+    keywords:
+    - sabnzbd
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sabnzbd
+    sources:
+    - https://sabnzbd.org/
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sabnzbd-7.0.0/sabnzbd-7.0.0.tgz
+    version: 7.0.0
   - apiVersion: v2
     appVersion: 3.1.0
     created: "2021-04-19T09:01:27.933408161Z"
@@ -42112,6 +42375,32 @@ entries:
     version: 1.0.0
   sonarr:
   - apiVersion: v2
+    appVersion: v3.0.6.1196
+    created: "2021-04-20T20:10:55.982625746Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: bc1b749983d1c0ff44b449edf229449c555a591330d7ea81b08151dbea4067ab
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-11.0.0/sonarr-11.0.0.tgz
+    version: 11.0.0
+  - apiVersion: v2
     appVersion: 3.0.4.993
     created: "2021-04-19T09:01:29.021984302Z"
     dependencies:
@@ -44338,6 +44627,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/syncthing-1.0.0/syncthing-1.0.0.tgz
     version: 1.0.0
   tautulli:
+  - apiVersion: v2
+    appVersion: v2.7.0
+    created: "2021-04-20T20:10:56.083830479Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: A Python based monitoring and tracking tool for Plex Media Server
+    digest: 048eadfef3946d86bff08886a466ec95ec685a022b212a718e4a6fccd79213c7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tautulli
+    icon: https://github.com/Tautulli/Tautulli/blob/master/data/interfaces/default/images/logo.png?raw=true
+    keywords:
+    - tautulli
+    - plex
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: tautulli
+    sources:
+    - https://github.com/Tautulli/Tautulli
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tautulli-9.0.0/tautulli-9.0.0.tgz
+    version: 9.0.0
   - apiVersion: v2
     appVersion: v2.6.6
     created: "2021-04-19T09:01:29.760880414Z"
@@ -47501,6 +47815,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/traefik-forward-auth-1.0.0/traefik-forward-auth-1.0.0.tgz
     version: 1.0.0
   transmission:
+  - apiVersion: v2
+    appVersion: v3.00
+    created: "2021-04-20T20:10:56.198455914Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Transmission is a cross-platform BitTorrent client
+    digest: 57b475d8cf9e6033246af124e5b4e3fc1a4613e1a4ce4ae4d79af609664e4305
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/transmission
+    icon: https://github.com/transmission/transmission/raw/master/extras/transmission-1920.jpg
+    keywords:
+    - transmission
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: helm@movishell.pl
+      name: ishioni
+    name: transmission
+    sources:
+    - https://github.com/transmission/transmission
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/transmission-4.0.0/transmission-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 3.0.0
     created: "2021-04-19T09:01:30.65855994Z"
@@ -51883,6 +52222,33 @@ entries:
     version: 1.0.0
   xteve:
   - apiVersion: v2
+    appVersion: v2.2.0.200
+    created: "2021-04-20T20:10:56.30252019Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: M3U Proxy for Plex DVR and Emby Live TV.
+    digest: da0fc6812772672a518a1801511f71e4ec324da21f61ef40ead1cd90e7af2e33
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/xteve
+    icon: https://raw.githubusercontent.com/xteve-project/xTeVe/master/html/img/logo_b_880x200.jpg
+    keywords:
+    - xteve
+    - iptv
+    - plex
+    - emby
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: xteve
+    sources:
+    - https://github.com/xteve-project/xTeVe
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/xteve-6.3.2/xteve-6.3.2.tgz
+    version: 6.3.2
+  - apiVersion: v2
     appVersion: 2.1.2.0120
     created: "2021-04-19T09:01:32.496707846Z"
     dependencies:
@@ -54953,4 +55319,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-20T19:55:57.610881232Z"
+generated: "2021-04-20T20:10:56.320646965Z"
