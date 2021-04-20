@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -75,6 +75,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://blog.waltr.tech"><img src="https://avatars.githubusercontent.com/u/11428125?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ryan Walter</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rwaltr" title="Code">💻</a></td>
+    <td align="center"><a href="https://chipwolf.uk"><img src="https://avatars.githubusercontent.com/u/3164166?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chip Wolf ‮</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=ChipWolf" title="Code">💻</a></td>
   </tr>
 </table>
 
