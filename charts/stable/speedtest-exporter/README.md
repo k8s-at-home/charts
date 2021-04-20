@@ -1,6 +1,6 @@
 # speedtest-exporter
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 3.0.2.4552](https://img.shields.io/badge/AppVersion-3.0.2.4552-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v3.1](https://img.shields.io/badge/AppVersion-v3.1-informational?style=flat-square)
 
 Speedtest Exporter made in python using the official speedtest bin
 
@@ -82,8 +82,8 @@ N/A
 | ingress.enabled | bool | `false` |  |
 | prometheus.podMonitor.additionalLabels | object | `{}` |  |
 | prometheus.podMonitor.enabled | bool | `false` |  |
-| prometheus.podMonitor.interval | string | `"1m"` |  |
-| prometheus.podMonitor.scrapeTimeout | string | `"1m30s"` |  |
+| prometheus.podMonitor.interval | string | `"1h"` |  |
+| prometheus.podMonitor.scrapeTimeout | string | `"1m"` |  |
 | service.port.port | int | `9798` |  |
 | strategy.type | string | `"Recreate"` |  |
 
