@@ -6,19 +6,15 @@
 #
 
 image:
-  repository: linuxserver/jackett
+  repository: ghcr.io/k8s-at-home/jackett
   pullPolicy: IfNotPresent
-  tag: version-v0.17.591
+  tag: v0.17.908
 
 strategy:
   type: Recreate
 
 env: {}
   # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
-  ## Allow Jackett to update inside of the container, but might cause outages if turned on.
-  # AUTOUPDATE: false
 
 service:
   port:

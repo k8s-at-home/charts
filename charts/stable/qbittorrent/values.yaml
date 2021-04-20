@@ -6,18 +6,15 @@
 #
 
 image:
-  repository: linuxserver/qbittorrent
+  repository: ghcr.io/k8s-at-home/qbittorrent
   pullPolicy: IfNotPresent
-  tag: version-4.3.0202010181232-7086-1c663adeeubuntu18.04.1
+  tag: v4.3.4.1
 
 strategy:
   type: Recreate
 
 env: {}
   # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
-  # UMASK: 022
 
 service:
   port:

@@ -1,6 +1,6 @@
 # nzbhydra2
 
-![Version: 7.2.0](https://img.shields.io/badge/Version-7.2.0-informational?style=flat-square) ![AppVersion: v3.8.1](https://img.shields.io/badge/AppVersion-v3.8.1-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: v3.14.0](https://img.shields.io/badge/AppVersion-v3.14.0-informational?style=flat-square)
 
 Usenet meta search
 
@@ -8,8 +8,8 @@ Usenet meta search
 
 ## Source Code
 
-* <https://hub.docker.com/r/linuxserver/nzbhydra2>
 * <https://github.com/theotherp/nzbhydra2>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -78,8 +78,8 @@ N/A
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/nzbhydra2"` |  |
-| image.tag | string | `"version-v3.8.1"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/nzbhydra2"` |  |
+| image.tag | string | `"v3.14.0"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
@@ -116,6 +116,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [8.0.0]
+
+#### Changed
+
+- **Breaking**: swap linuxserver.io images for k8s@home image
+
 ### [1.0.0]
 
 #### Added
@@ -130,6 +136,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[8.0.0]: #8.0.0
 [1.0.0]: #1.0.0
 
 ## Support

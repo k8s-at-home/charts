@@ -6,17 +6,15 @@
 #
 
 image:
-  repository: hotio/readarr
+  repository: ghcr.io/k8s-at-home/readarr
   pullPolicy: IfNotPresent
-  tag: nightly
+  tag: v0.1.0.587
 
 strategy:
   type: Recreate
 
 env: {}
   # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
 
 service:
   port:

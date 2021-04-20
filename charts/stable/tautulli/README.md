@@ -1,6 +1,6 @@
 # tautulli
 
-![Version: 8.2.0](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: v2.6.6](https://img.shields.io/badge/AppVersion-v2.6.6-informational?style=flat-square)
+![Version: 9.0.0](https://img.shields.io/badge/Version-9.0.0-informational?style=flat-square) ![AppVersion: v2.7.0](https://img.shields.io/badge/AppVersion-v2.7.0-informational?style=flat-square)
 
 A Python based monitoring and tracking tool for Plex Media Server
 
@@ -9,7 +9,7 @@ A Python based monitoring and tracking tool for Plex Media Server
 ## Source Code
 
 * <https://github.com/Tautulli/Tautulli>
-* <https://hub.docker.com/r/tautulli/tautulli>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -78,8 +78,8 @@ N/A
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"tautulli/tautulli"` |  |
-| image.tag | string | `"v2.6.6"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/tautulli"` |  |
+| image.tag | string | `"v2.7.0"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
@@ -91,6 +91,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [9.0.0]
+
+#### Changed
+
+- **Breaking**: swap linuxserver.io images for k8s@home image
 
 ### [1.0.0]
 
@@ -106,6 +112,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[9.0.0]: #9.0.0
 [1.0.0]: #1.0.0
 
 ## Support
