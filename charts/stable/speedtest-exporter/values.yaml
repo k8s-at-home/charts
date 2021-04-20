@@ -20,6 +20,11 @@ env: {}
 
 service:
   enabled: false
+  additionalPorts:
+  - port: 9798
+    name: metrics
+    protocol: TCP
+    targetPort: 9798
 
 # Enable gathering Prometheus metrics
 prometheus:
