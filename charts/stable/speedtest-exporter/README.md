@@ -77,7 +77,7 @@ N/A
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"lmiguelndecarvalho/speedtest-exporter"` |  |
+| image.repository | string | `"ghcr.io/miguelndecarvalho/speedtest-exporter"` |  |
 | image.tag | string | `"v3.1"` |  |
 | ingress.enabled | bool | `false` |  |
 | prometheus.podMonitor.additionalLabels | object | `{}` |  |
