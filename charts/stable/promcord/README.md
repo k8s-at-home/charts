@@ -83,7 +83,10 @@ N/A
 | prometheus.podMonitor.additionalLabels | object | `{}` |  |
 | prometheus.podMonitor.enabled | bool | `false` |  |
 | prometheus.podMonitor.interval | string | `"1m"` |  |
-| prometheus.podMonitor.scrapeTimeout | string | `"1m30s"` |  |
+| prometheus.podMonitor.scrapeTimeout | string | `"30s"` |  |
+| prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
+| prometheus.serviceMonitor.enabled | bool | `false` |  |
+| prometheus.serviceMonitor.interval | string | `"1m"` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -106,7 +109,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+### [1.0.1]
+
+#### Added
+
+- Service
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
 [1.0.0]: #1.0.0
+[1.0.1]: #1.0.1
 
 ## Support
 
