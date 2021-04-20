@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 2021.04.19
+description: Simple text sharing
+name: haste-server
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- haste
+- hastebin
+- haste-server
+- pastebin
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/haste
+icon: https://github.com/seejohnrun/haste-server/blob/master/static/logo.png
+sources:
+- https://github.com/seejohnrun/haste-server
+- https://github.com/rwaltr/haste-server
+maintainers:
+- name: rwaltr
+  email: rwalt@pm.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.3.1
