@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 3.0.0](https://img.shields.io/badge/AppVersion-3.0.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
 
 Transmission is a cross-platform BitTorrent client
 
@@ -8,8 +8,8 @@ Transmission is a cross-platform BitTorrent client
 
 ## Source Code
 
-* <https://hub.docker.com/r/linuxserver/transmission>
-* <https://github.com/k8s-at-home/charts/tree/master/charts/transmission>
+* <https://github.com/transmission/transmission>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -78,8 +78,8 @@ N/A
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/transmission"` |  |
-| image.tag | string | `"version-3.00-r2"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/transmission"` |  |
+| image.tag | string | `"v3.00"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
@@ -186,6 +186,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- **Breaking**: swap linuxserver.io images for k8s@home image
+
 ### [2.0.0]
 
 #### Changed
@@ -198,6 +204,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial commit
 
+[4.0.0]: #4.0.0
 [1.0.0]: #1.0.0
 
 ## Support

@@ -1,6 +1,6 @@
 # lidarr
 
-![Version: 8.2.0](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: 0.8.0.1886](https://img.shields.io/badge/AppVersion-0.8.0.1886-informational?style=flat-square)
+![Version: 9.0.0](https://img.shields.io/badge/Version-9.0.0-informational?style=flat-square) ![AppVersion: v0.8.1.2134](https://img.shields.io/badge/AppVersion-v0.8.1.2134-informational?style=flat-square)
 
 Looks and smells like Sonarr but made for music
 
@@ -9,7 +9,7 @@ Looks and smells like Sonarr but made for music
 ## Source Code
 
 * <https://github.com/Lidarr/Lidarr>
-* <https://hub.docker.com/r/linuxserver/lidarr>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -78,8 +78,8 @@ N/A
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/lidarr"` |  |
-| image.tag | string | `"version-0.8.0.1886"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/lidarr"` |  |
+| image.tag | string | `"v0.8.1.2134"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
@@ -99,8 +99,8 @@ N/A
 | probes.liveness.spec.timeoutSeconds | int | `10` |  |
 | prometheus.podMonitor.additionalLabels | object | `{}` |  |
 | prometheus.podMonitor.enabled | bool | `false` |  |
-| prometheus.podMonitor.interval | string | `"1m"` |  |
-| prometheus.podMonitor.scrapeTimeout | string | `"1m30s"` |  |
+| prometheus.podMonitor.interval | string | `"3m"` |  |
+| prometheus.podMonitor.scrapeTimeout | string | `"1m"` |  |
 | service.port.port | int | `8686` |  |
 | strategy.type | string | `"Recreate"` |  |
 
@@ -109,6 +109,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [9.0.0]
+
+#### Changed
+
+- **Breaking**: swap linuxserver.io images for k8s@home image
 
 ### [1.0.0]
 
@@ -124,6 +130,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[9.0.0]: #9.0.0
 [1.0.0]: #1.0.0
 
 ## Support

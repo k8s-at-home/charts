@@ -6,17 +6,15 @@
 #
 
 image:
-  repository: linuxserver/sonarr
+  repository: ghcr.io/k8s-at-home/sonarr
   pullPolicy: IfNotPresent
-  tag: version-3.0.4.993
+  tag: v3.0.6.1196
 
 strategy:
   type: Recreate
 
 env: {}
   # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
 
 service:
   port:
@@ -74,8 +72,8 @@ persistence:
 prometheus:
   podMonitor:
     enabled: false
-    interval: 1m
-    scrapeTimeout: 1m30s
+    interval: 3m
+    scrapeTimeout: 1m
     additionalLabels: {}
 
 # # When using the prometheus.podMonitor the following

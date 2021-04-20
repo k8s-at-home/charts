@@ -1,6 +1,6 @@
 # readarr
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 0.1.0.351](https://img.shields.io/badge/AppVersion-0.1.0.351-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v0.1.0.587](https://img.shields.io/badge/AppVersion-v0.1.0.587-informational?style=flat-square)
 
 A fork of Radarr to work with Books & AudioBooks
 
@@ -9,7 +9,7 @@ A fork of Radarr to work with Books & AudioBooks
 ## Source Code
 
 * <https://github.com/Readarr/Readarr>
-* <https://readarr.com>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -79,8 +79,8 @@ helm install readarr k8s-at-home/readarr -f values.yaml
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"hotio/readarr"` |  |
-| image.tag | string | `"nightly"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/readarr"` |  |
+| image.tag | string | `"v0.1.0.587"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
@@ -107,6 +107,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- **Breaking**: swap linuxserver.io images for k8s@home image
+
 ### [1.0.0]
 
 #### Added
@@ -121,6 +127,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #4.0.0
 [1.0.0]: #1.0.0
 
 ## Support

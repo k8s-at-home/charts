@@ -6,17 +6,16 @@
 #
 
 image:
-  repository: linuxserver/sabnzbd
+  repository: ghcr.io/k8s-at-home/sabnzbd
   pullPolicy: IfNotPresent
-  tag: version-3.1.0
+  tag: v3.2.1
 
 strategy:
   type: Recreate
 
 env: {}
   # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
+  # HOST_WHITELIST_ENTRIES:
 
 service:
   port:

@@ -1,6 +1,6 @@
 # sonarr
 
-![Version: 10.2.0](https://img.shields.io/badge/Version-10.2.0-informational?style=flat-square) ![AppVersion: 3.0.4.993](https://img.shields.io/badge/AppVersion-3.0.4.993-informational?style=flat-square)
+![Version: 11.0.0](https://img.shields.io/badge/Version-11.0.0-informational?style=flat-square) ![AppVersion: v3.0.6.1196](https://img.shields.io/badge/AppVersion-v3.0.6.1196-informational?style=flat-square)
 
 Smart PVR for newsgroup and bittorrent users
 
@@ -9,7 +9,7 @@ Smart PVR for newsgroup and bittorrent users
 ## Source Code
 
 * <https://github.com/Sonarr/Sonarr>
-* <https://hub.docker.com/r/linuxserver/sonarr>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -78,8 +78,8 @@ N/A
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/sonarr"` |  |
-| image.tag | string | `"version-3.0.4.993"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/sonarr"` |  |
+| image.tag | string | `"v3.0.6.1196"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
@@ -99,8 +99,8 @@ N/A
 | probes.liveness.spec.timeoutSeconds | int | `10` |  |
 | prometheus.podMonitor.additionalLabels | object | `{}` |  |
 | prometheus.podMonitor.enabled | bool | `false` |  |
-| prometheus.podMonitor.interval | string | `"1m"` |  |
-| prometheus.podMonitor.scrapeTimeout | string | `"1m30s"` |  |
+| prometheus.podMonitor.interval | string | `"3m"` |  |
+| prometheus.podMonitor.scrapeTimeout | string | `"1m"` |  |
 | service.port.port | int | `8989` |  |
 | strategy.type | string | `"Recreate"` |  |
 
@@ -109,6 +109,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [11.0.0]
+
+#### Changed
+
+- **Breaking**: swap linuxserver.io images for k8s@home image
 
 ### [1.0.0]
 
@@ -124,6 +130,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[11.0.0]: #11.0.0
 [1.0.0]: #1.0.0
 
 ## Support
