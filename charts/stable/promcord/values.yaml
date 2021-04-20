@@ -18,16 +18,10 @@ env:
   # -- Discord bot token
   DISCORD_TOKEN: <your token>
 
-service:
-  port:
-    port: 8080
-
-ingress:
-  enabled: false
-
 # Enable a prometheus-operator servicemonitor
 prometheus:
-  serviceMonitor:
+  podMonitor:
     enabled: false
-    # interval: 1m
-    # additionalLabels: {}
+    interval: 1m
+    scrapeTimeout: 1m30s
+    additionalLabels: {}

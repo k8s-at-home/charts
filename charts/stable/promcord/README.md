@@ -80,8 +80,10 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"biospheere/promcord"` |  |
 | image.tag | string | `latest` |  |
-| ingress.enabled | bool | `false` |  |
-| service.port.port | int | `8080` |  |
+| prometheus.podMonitor.additionalLabels | object | `{}` |  |
+| prometheus.podMonitor.enabled | bool | `false` |  |
+| prometheus.podMonitor.interval | string | `"1m"` |  |
+| prometheus.podMonitor.scrapeTimeout | string | `"1m30s"` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
