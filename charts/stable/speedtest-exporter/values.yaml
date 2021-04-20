@@ -19,33 +19,8 @@ env: {}
   # TZ: UTC
 
 service:
-  enabled: false
-  additionalPorts:
-  - port: 9798
-    name: metrics
-    protocol: TCP
-    targetPort: 9798
-
-## Probes configuration
-probes:
-  liveness:
-    enabled: true
-    custom: true
-    spec:
-      tcpSocket:
-        port: 9798
-  readiness:
-    enabled: true
-    custom: true
-    spec:
-      tcpSocket:
-        port: 9798
-  startup:
-    enabled: true
-    custom: true
-    spec:
-      tcpSocket:
-        port: 9798
+  port:
+    port: 9798
 
 # Enable gathering Prometheus metrics
 prometheus:
