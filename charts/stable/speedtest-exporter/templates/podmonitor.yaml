@@ -13,7 +13,7 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   podMetricsEndpoints:
-  - port: metrics
+  - port: http
     {{- with .Values.prometheus.podMonitor.interval }}
     interval: {{ . }}
     {{- end }}
