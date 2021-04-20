@@ -18,6 +18,27 @@ service:
     protocol: TCP
     targetPort: 8080
 
+## Probes configuration
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      tcpSocket:
+        port: 8080
+  readiness:
+    enabled: true
+    custom: true
+    spec:
+      tcpSocket:
+        port: 8080
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      tcpSocket:
+        port: 8080
+
 strategy:
   type: Recreate
 
