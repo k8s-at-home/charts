@@ -13,10 +13,10 @@ image:
 service:
   enabled: false
   additionalPorts:
-    - port: 8080
-      name: metrics
-      protocol: TCP
-      targetPort: 8080
+  - port: 8080
+    name: metrics
+    protocol: TCP
+    targetPort: 8080
 
 strategy:
   type: Recreate
@@ -24,7 +24,7 @@ strategy:
 # https://github.com/nimarion/promcord/blob/master/README.md
 env:
   # -- Discord bot token
-  DISCORD_TOKEN: <your token>
+  # DISCORD_TOKEN:
 
 # Enable a prometheus-operator podmonitor
 prometheus:
