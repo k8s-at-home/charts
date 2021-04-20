@@ -5,12 +5,10 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
-# Use our own image at https://github.com/k8s-at-home/container-images/tree/main/appdaemon
-# until https://github.com/AppDaemon/appdaemon/pull/1002 is merged
 image:
-  repository: k8sathome/appdaemon
+  repository: acockburn/appdaemon
   pullPolicy: IfNotPresent
-  tag: v4.0.5
+  tag: 4.0.8
 
 strategy:
   type: Recreate
