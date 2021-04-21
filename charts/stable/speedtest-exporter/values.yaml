@@ -1,0 +1,31 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/miguelndecarvalho/speedtest-exporter
+  pullPolicy: IfNotPresent
+  tag: v3.1
+
+strategy:
+  type: Recreate
+
+# For more configuration options see
+# https://docs.miguelndecarvalho.pt/projects/speedtest-exporter/
+env: {}
+  # TZ: UTC
+
+service:
+  port:
+    port: 9798
+
+# Enable gathering Prometheus metrics
+prometheus:
+  podMonitor:
+    enabled: false
+    interval: 1h
+    scrapeTimeout: 1m
+    additionalLabels: {}
