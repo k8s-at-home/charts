@@ -1,6 +1,6 @@
 # haste-server
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Simple text sharing
 
@@ -9,7 +9,7 @@ Simple text sharing
 ## Source Code
 
 * <https://github.com/seejohnrun/haste-server>
-* <https://github.com/rwaltr/haste-server>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
