@@ -1,0 +1,35 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: flipenergy/focalboard
+  pullPolicy: IfNotPresent
+  tag: 0.6.5
+
+# See more environment variables in the image entrypoint script
+# https://github.com/FlipEnergy/concourse-pipelines/blob/master/images/focalboard/entrypoint.sh
+env: {}
+  # SERVER_ROOT:
+  # DBTYPE:
+  # DBCONFIG:
+
+strategy:
+  type: Recreate
+
+service:
+  port:
+    port: 8000
+
+ingress:
+  enabled: false
+
+persistence:
+  data:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /data
