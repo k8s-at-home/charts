@@ -11,33 +11,8 @@ image:
   tag: "latest"
 
 service:
-  enabled: false
-  additionalPorts:
-  - port: 8080
-    name: metrics
-    protocol: TCP
-    targetPort: 8080
-
-## Probes configuration
-probes:
-  liveness:
-    enabled: true
-    custom: true
-    spec:
-      tcpSocket:
-        port: 8080
-  readiness:
-    enabled: true
-    custom: true
-    spec:
-      tcpSocket:
-        port: 8080
-  startup:
-    enabled: true
-    custom: true
-    spec:
-      tcpSocket:
-        port: 8080
+  port:
+    port: 8080
 
 strategy:
   type: Recreate
@@ -47,7 +22,7 @@ env:
   # -- Discord bot token
   # DISCORD_TOKEN:
 
-# Enable a prometheus-operator podmonitor
+# Enable prometheus-operator monitors
 prometheus:
   podMonitor:
     enabled: false
