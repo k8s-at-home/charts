@@ -1,15 +1,16 @@
-# haste-server
+# focalboard
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.6.5](https://img.shields.io/badge/AppVersion-0.6.5-informational?style=flat-square)
 
-Simple text sharing
+Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/seejohnrun/haste-server>
-* <https://github.com/k8s-at-home/container-images>
+* <https://www.focalboard.com/>
+* <https://github.com/mattermost/focalboard>
+* <https://github.com/FlipEnergy/concourse-pipelines/tree/master/images/focalboard>
 
 ## Requirements
 
@@ -26,23 +27,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install haste-server k8s-at-home/haste-server
+helm install focalboard k8s-at-home/focalboard
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `haste-server`
+To install the chart with the release name `focalboard`
 
 ```console
-helm install haste-server k8s-at-home/haste-server
+helm install focalboard k8s-at-home/focalboard
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `haste-server` deployment
+To uninstall the `focalboard` deployment
 
 ```console
-helm uninstall haste-server
+helm uninstall focalboard
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +56,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install haste-server \
+helm install focalboard \
   --set env.TZ="America/New York" \
-    k8s-at-home/haste-server
+    k8s-at-home/focalboard
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install haste-server k8s-at-home/haste-server -f values.yaml
+helm install focalboard k8s-at-home/focalboard -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,14 +77,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.STORAGE_FILEPATH | string | `"/config"` |  |
-| env.STORAGE_TYPE | string | `"file"` |  |
+| env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/k8s-at-home/haste-server"` |  |
-| image.tag | string | `"latest"` |  |
+| image.repository | string | `"flipenergy/focalboard"` |  |
+| image.tag | string | `"0.6.5"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| service.port.port | int | `7777` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/data"` |  |
+| service.port.port | int | `8000` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -96,7 +98,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- Initial version
+- First version of the helm chart for Focalboard
 
 #### Changed
 
