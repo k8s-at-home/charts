@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 0.6.5
+description: Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana.
+name: focalboard
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- focalboard
+- kanban
+- project management
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/focalboard
+icon: https://www.focalboard.com/img/logo.svg
+sources:
+- https://www.focalboard.com/
+- https://github.com/mattermost/focalboard
+- https://github.com/FlipEnergy/concourse-pipelines/tree/master/images/focalboard
+maintainers:
+- name: FlipEnergy
+  email: dennis.zhang.nrg@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.3.1
