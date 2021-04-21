@@ -82,15 +82,6 @@ N/A
 | image.repository | string | `"ghcr.io/k8s-at-home/transmission"` |  |
 | image.tag | string | `"v3.00"` |  |
 | ingress.enabled | bool | `false` |  |
-| initContainers[0].command[0] | string | `"/bin/sh"` |  |
-| initContainers[0].command[1] | string | `"-c"` |  |
-| initContainers[0].command[2] | string | `"curl -fsSL -o /tmp/flood-for-transmission.tar.gz https://github.com/johman10/flood-for-transmission/releases/download/latest/flood-for-transmission.tar.gz"` |  |
-| initContainers[0].command[3] | string | `"mkdir -p /config/flood"` |  |
-| initContainers[0].command[4] | string | `"tar xf /tmp/flood-for-transmission.tar.gz --strip-components 1 -C /config/flood"` |  |
-| initContainers[0].image | string | `"curlimages/curl:7.76.1"` |  |
-| initContainers[0].name | string | `"custom-webui"` |  |
-| initContainers[0].volumeMounts[0].mountPath | string | `"/config"` |  |
-| initContainers[0].volumeMounts[0].name | string | `"config"` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
