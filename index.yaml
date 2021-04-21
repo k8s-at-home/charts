@@ -12720,6 +12720,33 @@ entries:
     version: 1.0.0
   haste-server:
   - apiVersion: v2
+    appVersion: latest
+    created: "2021-04-21T16:37:05.588088995Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Simple text sharing
+    digest: d32cc16ed5dc6e0874132c6ce65145bbae4e2356f7fb23219978fb2b758a1380
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/haste
+    icon: https://github.com/seejohnrun/haste-server/blob/master/static/logo.png
+    keywords:
+    - haste
+    - hastebin
+    - haste-server
+    - pastebin
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rwalt@pm.me
+      name: rwaltr
+    name: haste-server
+    sources:
+    - https://github.com/seejohnrun/haste-server
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/haste-server-1.0.1/haste-server-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     appVersion: 2021.04.19
     created: "2021-04-19T20:04:49.851299755Z"
     dependencies:
@@ -55386,4 +55413,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-21T12:26:36.118990552Z"
+generated: "2021-04-21T16:37:05.599406846Z"
