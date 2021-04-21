@@ -1,6 +1,6 @@
 # haste-server
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2021.04.19](https://img.shields.io/badge/AppVersion-2021.04.19-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Simple text sharing
 
@@ -9,7 +9,7 @@ Simple text sharing
 ## Source Code
 
 * <https://github.com/seejohnrun/haste-server>
-* <https://github.com/rwaltr/haste-server>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -79,8 +79,8 @@ N/A
 | env.STORAGE_FILEPATH | string | `"/config"` |  |
 | env.STORAGE_TYPE | string | `"file"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/rwaltr/haste-server"` |  |
-| image.tag | string | `"2021-04-19"` |  |
+| image.repository | string | `"ghcr.io/k8s-at-home/haste-server"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | service.port.port | int | `7777` |  |
