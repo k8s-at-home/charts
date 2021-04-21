@@ -80,7 +80,7 @@ N/A
 | env.STORAGE_TYPE | string | `"file"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/haste-server"` |  |
-| image.tag | string | `"v5d2965f"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | service.port.port | int | `7777` |  |
