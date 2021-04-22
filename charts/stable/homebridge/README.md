@@ -1,6 +1,6 @@
 # homebridge
 
-![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.1.0](https://img.shields.io/badge/AppVersion-3.1.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 3.3.0](https://img.shields.io/badge/AppVersion-3.3.0-informational?style=flat-square)
 
 A lightweight NodeJS server that emulates the iOS HomeKit API
 
@@ -13,10 +13,13 @@ A lightweight NodeJS server that emulates the iOS HomeKit API
 
 ## Requirements
 
+Kubernetes: `>=1.16.0-0`
+
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -73,64 +76,18 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Affinity settings for pod assignment or the homebridge GUI |
-| config.additionalPackages | list | `[]` | Additional Alpine packages to install at container statup such as `bash` |
-| config.enableUI | bool | `true` | Enable the Homebridge UI plugin |
-| config.plugins | list | `[]` | Additional Homebridge plugins to install at container startup such as `homebridge-hue` |
-| extraEnvs | list | `[]` | Extra ENV vars to pass to the homebridge container |
-| fullnameOverride | string | `""` |  |
+| config | string | string | Custom startup.sh script to install additional packages in the container |
+| env.HOMEBRIDGE_CONFIG_UI | int | `1` |  |
+| env.HOMEBRIDGE_CONFIG_UI_PORT | int | `8581` |  |
 | hostNetwork | bool | `false` | Enable hostNetwork - needed for discovery to work |
-| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| image.repository | string | `"oznu/homebridge"` | Image repository |
-| image.tag | string | `"3.1.0"` | Overrides the image tag whose default is the chart appVersion. Possible values listed [here](https://hub.docker.com/r/oznu/homebridge/tags) |
-| imagePullSecrets | list | `[]` | Secrets to use when pulling the image |
-| ingress.annotations | object | `{}` | Ingress annotations |
-| ingress.enabled | bool | `false` | Enables Ingress |
-| ingress.hosts | list | `["chart-example.local"]` | Ingress accepted hostnames |
-| ingress.path | string | `"/"` | Ingress path |
-| ingress.tls | list | `[]` | Ingress TLS configuration |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` | Node labels for pod assignment or the homebridge GUI |
-| persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access modes |
-| persistence.enabled | bool | `true` | Use persistent volume to store data |
-| persistence.existingClaim | string | `nil` | Use an existing PVC to persist data |
-| persistence.size | string | `"1Gi"` | Size of persistent volume claim |
-| persistence.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
-| persistence.storageClass | string | `nil` | Type of persistent volume claim |
-| pgid | int | `1000` | process groupID the instance should run as |
-| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
-| podSecurityContext | object | `{}` |  |
-| probes.liveness.enabled | bool | `true` | Use the livenessProbe? |
-| probes.liveness.failureThreshold | int | `5` | Specify liveness `failureThreshold` parameter for the deployment |
-| probes.liveness.initialDelaySeconds | int | `60` | Specify liveness `initialDelaySeconds` parameter for the deployment |
-| probes.liveness.timeoutSeconds | int | `10` | Specify liveness `timeoutSeconds` parameter for the deployment |
-| probes.readiness.enabled | bool | `true` | Use the readinessProbe? |
-| probes.readiness.failureThreshold | int | `5` | Specify readiness `failureThreshold` parameter for the deployment |
-| probes.readiness.initialDelaySeconds | int | `60` | Specify readiness `initialDelaySeconds` parameter for the deployment |
-| probes.readiness.timeoutSeconds | int | `10` | Specify readiness `timeoutSeconds` parameter for the deployment |
-| probes.startup.enabled | bool | `false` | Use the startupProbe? (new in kubernetes 1.16) |
-| probes.startup.failureThreshold | int | `30` | Specify startup `failureThreshold` parameter for the deployment |
-| probes.startup.periodSeconds | int | `10` | Specify startup `periodSeconds` parameter for the deployment |
-| puid | int | `1000` | process userID the instance should run as |
-| replicaCount | int | `1` |  |
-| resources | object | `{}` | CPU/Memory resource requests/limits or the homebridge GUI |
-| securityContext | object | `{}` |  |
-| service.annotations | object | `{}` | Service annotations for the homebridge GUI |
-| service.clusterIP | string | `nil` | Cluster IP for the homebridge GUI |
-| service.externalIPs | string | `nil` | External IPs for the homebridge GUI |
-| service.externalTrafficPolicy | string | `nil` | Loadbalancer externalTrafficPolicy |
-| service.homebridgePort | int | `51826` |  |
-| service.httpPort | int | `8080` | Kubernetes port where the homebridge GUI is exposed |
-| service.loadBalancerIP | string | `nil` | Loadbalancer IP for the homebridge GUI |
-| service.loadBalancerSourceRanges | string | `nil` | Loadbalancer client IP restriction range for the homebridge GUI |
-| service.nodePort | int | `nil` | nodePort to listen on for the homebridge GUI |
-| service.type | string | `"ClusterIP"` | Kubernetes service type for the homebridge GUI |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
-| strategyType | string | `"Recreate"` | Specifies the strategy used to replace old Pods by new ones |
-| timezone | string | `"UTC"` | Specify the container timezone |
-| tolerations | list | `[]` | Toleration labels for pod assignment or the homebridge GUI |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"oznu/homebridge"` |  |
+| image.tag | string | `"3.3.0"` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/homebridge"` |  |
+| service.port.port | int | `8581` |  |
 
 ## Changelog
 
@@ -138,7 +95,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.3]
+### [2.0.0]
 
 #### Added
 
@@ -146,13 +103,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Use helm-docs
+- **BREAKING** Migrate to the common library, a lot of configuration has changed.
 
 #### Removed
 
 - N/A
 
-[1.0.3]: #1.0.3
+[2.0.0]: #2.0.0
 
 ## Support
 
