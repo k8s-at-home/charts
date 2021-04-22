@@ -6,4 +6,4 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   settings.json: |
-{{ .Values.config | indent 4 }}
+    {{- .Values.config | nindent 4 }}
