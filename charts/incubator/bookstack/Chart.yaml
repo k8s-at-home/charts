@@ -1,0 +1,30 @@
+---
+apiVersion: v2
+appVersion: v21.04.2
+description: A simple, self-hosted, easy-to-use platform for organising and storing information.
+name: bookstack
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - bookstack
+  - book
+  - stack
+  - organizer
+  - server
+  - hosted
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/bookstack
+icon: https://avatars3.githubusercontent.com/u/20912696?s=400&v=4?sanitize=true
+sources:
+  - https://www.bookstackapp.com/
+  - https://hub.docker.com/r/linuxserver/bookstack
+maintainers:
+  - name: nicholaswilde
+    email: ncwilde43@gmail.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 2.3.1
+  - name: mariadb
+    version: 9.3.7
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
