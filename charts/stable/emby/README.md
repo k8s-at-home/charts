@@ -81,6 +81,12 @@ N/A
 | image.repository | string | `"ghcr.io/k8s-at-home/emby"` |  |
 | image.tag | string | `"v4.5.4.0"` |  |
 | ingress.enabled | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/config"` |  |
+| persistence.media.emptyDir.enabled | bool | `false` |  |
+| persistence.media.enabled | bool | `false` |  |
+| persistence.media.mountPath | string | `"/media"` |  |
 | service.additionalPorts[0].name | string | `"https"` |  |
 | service.additionalPorts[0].port | int | `8920` |  |
 | service.additionalPorts[0].protocol | string | `"TCP"` |  |
