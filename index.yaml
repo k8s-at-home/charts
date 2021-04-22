@@ -4439,6 +4439,41 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/booksonic-air-1.0.0/booksonic-air-1.0.0.tgz
     version: 1.0.0
+  bookstack:
+  - apiVersion: v2
+    appVersion: v21.04.2
+    created: "2021-04-22T17:24:16.101196056Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.7
+    description: A simple, self-hosted, easy-to-use platform for organising and storing
+      information.
+    digest: 2e16b4db7231c902b052fe93e02a11aac91203869bbcf431e32d95fe3b66557d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bookstack
+    icon: https://avatars3.githubusercontent.com/u/20912696?s=400&v=4?sanitize=true
+    keywords:
+    - bookstack
+    - book
+    - stack
+    - organizer
+    - server
+    - hosted
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: bookstack
+    sources:
+    - https://www.bookstackapp.com/
+    - https://hub.docker.com/r/linuxserver/bookstack
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bookstack-1.0.0/bookstack-1.0.0.tgz
+    version: 1.0.0
   calibre:
   - apiVersion: v2
     appVersion: 5.14.0
@@ -55520,4 +55555,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-22T16:36:47.917088867Z"
+generated: "2021-04-22T17:24:16.116795689Z"
