@@ -1,6 +1,6 @@
 # bookstack
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: v21.04.2](https://img.shields.io/badge/AppVersion-v21.04.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v21.04.2](https://img.shields.io/badge/AppVersion-v21.04.2-informational?style=flat-square)
 
 A simple, self-hosted, easy-to-use platform for organising and storing information.
 
@@ -80,7 +80,7 @@ N/A
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/linuxserver/bookstack"` |  |
-| image.tag | string | `"v21.04.2-ls132"` |  |
+| image.tag | string | `"version-v21.04.2"` |  |
 | ingress.enabled | bool | `false` |  |
 | mariadb.architecture | string | `"standalone"` |  |
 | mariadb.auth.database | string | `"bookstack"` |  |
@@ -88,6 +88,9 @@ N/A
 | mariadb.auth.username | string | `"bookstack"` |  |
 | mariadb.enabled | bool | `false` |  |
 | mariadb.primary.persistence.enabled | bool | `false` |  |
+| persistence.config.emptyDir.enabled | bool | `false` |  |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountPath | string | `"/config"` |  |
 | service.port.port | int | `80` |  |
 | strategy.type | string | `"Recreate"` |  |
 
@@ -102,16 +105,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Added
 
 - Initial version
-
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
-[1.0.0]: #1.0.0
 
 ## Support
 

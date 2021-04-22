@@ -8,7 +8,7 @@
 image:
   repository: ghcr.io/linuxserver/bookstack
   pullPolicy: IfNotPresent
-  tag: v21.04.2-ls132
+  tag: version-v21.04.2
 
 strategy:
   type: Recreate
@@ -17,6 +17,10 @@ strategy:
 # https://hub.docker.com/r/linuxserver/bookstack
 env: {}
   # TZ:
+  # DB_HOST:
+  # DB_USER:
+  # DB_PASS:
+  # DB_DATABASE:
 
 service:
   port:
@@ -25,12 +29,12 @@ service:
 ingress:
   enabled: false
 
-# persistence:
-#   config:
-#     enabled: false
-#     emptyDir:
-#       enabled: false
-#     mountPath: /config
+persistence:
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /config
 
 # Enabled mariadb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
