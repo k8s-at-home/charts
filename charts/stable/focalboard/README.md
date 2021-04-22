@@ -1,15 +1,16 @@
-# homebridge
+# focalboard
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 3.3.0](https://img.shields.io/badge/AppVersion-3.3.0-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 0.6.5](https://img.shields.io/badge/AppVersion-0.6.5-informational?style=flat-square)
 
-A lightweight NodeJS server that emulates the iOS HomeKit API
+Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://homebridge.io/>
-* <https://github.com/oznu/docker-homebridge>
+* <https://www.focalboard.com/>
+* <https://github.com/mattermost/focalboard>
+* <https://github.com/FlipEnergy/container-images/blob/main/focalboard>
 
 ## Requirements
 
@@ -26,23 +27,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install homebridge k8s-at-home/homebridge
+helm install focalboard k8s-at-home/focalboard
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `homebridge`
+To install the chart with the release name `focalboard`
 
 ```console
-helm install homebridge k8s-at-home/homebridge
+helm install focalboard k8s-at-home/focalboard
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `homebridge` deployment
+To uninstall the `focalboard` deployment
 
 ```console
-helm uninstall homebridge
+helm uninstall focalboard
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +56,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install homebridge \
+helm install focalboard \
   --set env.TZ="America/New York" \
-    k8s-at-home/homebridge
+    k8s-at-home/focalboard
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install homebridge k8s-at-home/homebridge -f values.yaml
+helm install focalboard k8s-at-home/focalboard -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,18 +77,16 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | string | Custom startup.sh script to install additional packages in the container |
-| env.HOMEBRIDGE_CONFIG_UI | int | `1` |  |
-| env.HOMEBRIDGE_CONFIG_UI_PORT | int | `8581` |  |
-| hostNetwork | bool | `false` | Enable hostNetwork - needed for discovery to work |
+| env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"oznu/homebridge"` |  |
-| image.tag | string | `"3.3.0"` |  |
+| image.repository | string | `"flipenergy/focalboard"` |  |
+| image.tag | string | `"0.6.5"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/homebridge"` |  |
-| service.port.port | int | `8581` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/data"` |  |
+| service.port.port | int | `8000` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -95,21 +94,35 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.0.0]
+### [1.0.1]
 
 #### Added
 
-- N/A
+- Updated source url
 
 #### Changed
 
-- **BREAKING** Migrate to the common library, a lot of configuration has changed.
+- N/A
 
 #### Removed
 
 - N/A
 
-[2.0.0]: #2.0.0
+### [1.0.0]
+
+#### Added
+
+- First version of the helm chart for Focalboard
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
 
 ## Support
 
