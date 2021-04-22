@@ -15,9 +15,6 @@ strategy:
 
 env: {}
 
-service:
-  enabled: false
-
 # -- comcast's config.ini configuration
 # @default -- string
 config: |
@@ -34,3 +31,15 @@ config: |
   [COMCAST]
   Username = someuser
   Password = somepassword
+
+service:
+  enabled: false
+
+## Probes configuration
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
