@@ -1,48 +1,36 @@
-# Default values for comcast.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-replicaCount: 1
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
 image:
-  # -- Comcast image
   repository: billimek/comcastusage-for-influxdb
-  # -- Comcast image tag
-  tag: latest
-  # -- Comcast image pull policy
   pullPolicy: IfNotPresent
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-nodeSelector: {}
-# -- Display debugging output
-debug: false
-config:
-  # -- how many seconds to wait between checks
-  delay: 3600
-  influxdb:
-    # -- InfluxDB hostname
-    host: influxdb-influxdb
-    # -- InfluxDB port
-    port: 8086
-    # -- InfluxDB database
-    database: comcast
-    # username:
-    # password:
+  tag: latest
 
-    # -- InfluxDB connection using SSL
-    ssl: false
-  comcast:
-    # -- Comcast website login username
-    username: someuser
-    # -- Comcast website login password
-    password: somepassword
+strategy:
+  type: Recreate
 
-# -- Key-value pairs to add as pod annotations
-podAnnotations: {}
+env: {}
+
+service:
+  enabled: false
+
+# -- comcast's config.ini configuration
+# @default -- string
+config: |
+  [GENERAL]
+  Delay = 3600
+  Output = False
+  [INFLUXDB]
+  Address = influxdb-influxdb
+  Port = 8086
+  Database = comcast
+  Username =
+  Password =
+  Verify_SSL = False
+  [COMCAST]
+  Username = someuser
+  Password = somepassword

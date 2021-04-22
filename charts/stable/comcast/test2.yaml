@@ -1,0 +1,310 @@
+NAME: comcast
+LAST DEPLOYED: Thu Apr 22 13:34:58 2021
+NAMESPACE: default
+STATUS: pending-install
+REVISION: 1
+TEST SUITE: None
+USER-SUPPLIED VALUES:
+{}
+
+COMPUTED VALUES:
+common:
+  additionalContainers: []
+  additionalVolumeMounts: []
+  additionalVolumes: []
+  addons:
+    codeserver:
+      args:
+      - --auth
+      - none
+      enabled: false
+      env: {}
+      git:
+        deployKey: ""
+        deployKeyBase64: ""
+        deployKeySecret: ""
+      image:
+        pullPolicy: IfNotPresent
+        repository: codercom/code-server
+        tag: 3.9.2
+      ingress:
+        annotations: {}
+        enabled: false
+        hosts:
+        - host: code.chart-example.local
+          paths:
+          - path: /
+            pathType: Prefix
+        labels: {}
+        nameSuffix: codeserver
+        tls: []
+      securityContext:
+        runAsUser: 0
+      service:
+        annotations: {}
+        enabled: true
+        labels: {}
+        port:
+          name: codeserver
+          port: 12321
+          protocol: TCP
+          targetPort: codeserver
+        type: ClusterIP
+      volumeMounts: []
+      workingDir: ""
+    promtail:
+      args: []
+      enabled: false
+      env: {}
+      image:
+        pullPolicy: IfNotPresent
+        repository: grafana/promtail
+        tag: 2.2.0
+      logs: []
+      loki: ""
+      securityContext:
+        runAsUser: 0
+      volumeMounts: []
+    vpn:
+      additionalVolumeMounts: []
+      enabled: false
+      env: {}
+      livenessProbe: {}
+      networkPolicy:
+        enabled: false
+      openvpn:
+        image:
+          pullPolicy: IfNotPresent
+          repository: dperson/openvpn-client
+          tag: latest
+      scripts: {}
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+          - SYS_MODULE
+      type: openvpn
+      wireguard:
+        image:
+          pullPolicy: IfNotPresent
+          repository: k8sathome/wireguard
+          tag: 1.0.20200827
+  affinity: {}
+  args: []
+  command: []
+  controllerAnnotations: {}
+  controllerLabels: {}
+  controllerType: deployment
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  env: {}
+  envFrom: []
+  envTpl: {}
+  envValueFrom: {}
+  fullnameOverride: ""
+  global: {}
+  hostAliases: []
+  hostNetwork: false
+  ingress:
+    additionalIngresses: []
+    annotations: {}
+    enabled: false
+    hosts:
+    - host: chart-example.local
+      paths:
+      - path: /
+        pathType: Prefix
+    labels: {}
+    tls: []
+  initContainers: []
+  lifecycle: {}
+  nameOverride: ""
+  nodeSelector: {}
+  persistence:
+    config:
+      accessMode: ReadWriteOnce
+      enabled: false
+      mountPath: /config
+      size: 1Gi
+      skipuninstall: false
+    shared:
+      emptyDir:
+        enabled: true
+      enabled: false
+      mountPath: /shared
+  podAnnotations: {}
+  podSecurityContext: {}
+  probes:
+    liveness:
+      custom: false
+      enabled: true
+      spec:
+        failureThreshold: 3
+        initialDelaySeconds: 0
+        periodSeconds: 10
+        timeoutSeconds: 1
+    readiness:
+      custom: false
+      enabled: true
+      spec:
+        failureThreshold: 3
+        initialDelaySeconds: 0
+        periodSeconds: 10
+        timeoutSeconds: 1
+    startup:
+      custom: false
+      enabled: true
+      spec:
+        failureThreshold: 30
+        initialDelaySeconds: 0
+        periodSeconds: 5
+        timeoutSeconds: 1
+  replicas: 1
+  resources: {}
+  secret: {}
+  securityContext: {}
+  service:
+    additionalPorts: []
+    additionalServices: []
+    annotations: {}
+    enabled: true
+    labels: {}
+    port:
+      protocol: TCP
+    type: ClusterIP
+  serviceAccount:
+    annotations: {}
+    create: false
+    name: ""
+  strategy:
+    type: RollingUpdate
+  tolerations: []
+  volumeClaimTemplates: []
+config: |
+  [GENERAL]
+  Delay = 3600
+  Output = False
+  [INFLUXDB]
+  Address = influxdb-influxdb
+  Port = 8086
+  Database = comcast
+  Username =
+  Password =
+  Verify_SSL = False
+  [COMCAST]
+  Username = someuser
+  Password = somepassword
+env: {}
+image:
+  pullPolicy: IfNotPresent
+  repository: billimek/comcastusage-for-influxdb
+  tag: latest
+service:
+  enabled: false
+strategy:
+  type: Recreate
+
+HOOKS:
+MANIFEST:
+---
+# Source: comcast/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: comcast-config
+  labels:
+    helm.sh/chart: comcast-4.0.0
+    app.kubernetes.io/name: comcast
+    app.kubernetes.io/instance: comcast
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+data:
+  config.ini: |
+    [GENERAL]
+    Delay = 3600
+    Output = False
+    [INFLUXDB]
+    Address = influxdb-influxdb
+    Port = 8086
+    Database = comcast
+    Username =
+    Password =
+    Verify_SSL = False
+    [COMCAST]
+    Username = someuser
+    Password = somepassword
+---
+# Source: comcast/templates/common.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comcast
+  labels:
+    helm.sh/chart: comcast-4.0.0
+    app.kubernetes.io/name: comcast
+    app.kubernetes.io/instance: comcast
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: comcast
+      app.kubernetes.io/instance: comcast
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: comcast
+        app.kubernetes.io/instance: comcast
+    spec:
+      
+      serviceAccountName: default
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      containers:
+      - name: comcast
+        image: "billimek/comcastusage-for-influxdb:latest"
+        imagePullPolicy: IfNotPresent
+        
+        volumeMounts:
+        - mountPath: /src/config.ini
+          name: comcast-settings
+          subPath: config.ini
+        
+        livenessProbe:
+          tcpSocket:
+            port: <nil>
+          initialDelaySeconds: 0
+          failureThreshold: 3
+          timeoutSeconds: 1
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: <nil>
+          initialDelaySeconds: 0
+          failureThreshold: 3
+          timeoutSeconds: 1
+          periodSeconds: 10
+        startupProbe:
+          tcpSocket:
+            port: <nil>
+          initialDelaySeconds: 0
+          failureThreshold: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
+      volumes:
+      - configMap:
+          name: comcast-config
+        name: comcast-settings
+---
+# Source: comcast/templates/common.yaml
+---
+
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=comcast,app.kubernetes.io/instance=comcast" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl port-forward $POD_NAME 8080:

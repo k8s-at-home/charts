@@ -1,0 +1,67 @@
+---
+# Source: comcast/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: comcast
+  labels:
+    app: comcast
+    chart: "comcast-3.0.3"
+    release: "comcast"
+    heritage: "Helm"
+data:
+  config.ini: |
+    [GENERAL]
+    Delay = 3600
+    Output = False
+    [INFLUXDB]
+    Address = influxdb-influxdb
+    Port = 8086
+    Database = comcast
+    Username =
+    Password =
+    Verify_SSL = False
+    [COMCAST]
+    Username = someuser
+    Password = somepassword
+---
+# Source: comcast/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comcast
+  labels:
+    app: comcast
+    chart: "comcast-3.0.3"
+    release: comcast
+    heritage: Helm
+spec:
+  selector:
+    matchLabels:
+      app: comcast
+      release: comcast
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: comcast
+        release: comcast
+    spec:
+      containers:
+        - name: comcast
+          image: "billimek/comcastusage-for-influxdb:latest"
+          imagePullPolicy: IfNotPresent
+          resources:
+            {}
+          volumeMounts:
+          - name: comcast
+            mountPath: /src/config.ini
+            subPath: config.ini
+      volumes:
+      - name: comcast
+        configMap:
+          name: comcast
+          items:
+          - key: config.ini
+            path: config.ini
