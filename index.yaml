@@ -9222,6 +9222,33 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/duplicati-1.0.0/duplicati-1.0.0.tgz
     version: 1.0.0
+  emby:
+  - apiVersion: v2
+    appVersion: 4.5.4.0
+    created: "2021-04-22T19:14:02.691167116Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Emby Server is a home media server
+    digest: a9487280cb86068bf6c8f485cbb5af493ee8fc078788ac297179787924ca7967
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/emby
+    icon: https://truecharts.org/_static/img/emby-icon.png
+    keywords:
+    - emby
+    - jellyfin
+    - plex
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: emby
+    sources:
+    - https://github.com/MediaBrowser
+    - https://github.com/k8s-at-home/container-images/tree/main/apps/emby
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/emby-1.0.0/emby-1.0.0.tgz
+    version: 1.0.0
   esphome:
   - apiVersion: v2
     appVersion: 1.16.2
@@ -55555,4 +55582,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-22T17:24:16.116795689Z"
+generated: "2021-04-22T19:14:02.704788846Z"
