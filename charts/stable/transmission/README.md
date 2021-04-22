@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
 
 Transmission is a cross-platform BitTorrent client
 
@@ -76,6 +76,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| config | string | string | Transmission's settings.json configuration |
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/transmission"` |  |
@@ -92,99 +93,25 @@ N/A
 | persistence.watch.mountPath | string | `"/watch"` |  |
 | probes.liveness.spec.timeoutSeconds | int | `30` |  |
 | probes.readiness.spec.timeoutSeconds | int | `30` |  |
-| service.additionalServices[0].annotations | object | `{}` |  |
-| service.additionalServices[0].enabled | bool | `true` |  |
-| service.additionalServices[0].nameSuffix | string | `"utptcp"` |  |
-| service.additionalServices[0].port.name | string | `"utptcp"` |  |
-| service.additionalServices[0].port.port | int | `51413` |  |
-| service.additionalServices[0].port.protocol | string | `"TCP"` |  |
-| service.additionalServices[0].port.targetport | int | `51413` |  |
-| service.additionalServices[0].type | string | `"ClusterIP"` |  |
-| service.additionalServices[1].annotations | object | `{}` |  |
-| service.additionalServices[1].enabled | bool | `true` |  |
-| service.additionalServices[1].nameSuffix | string | `"utpudp"` |  |
-| service.additionalServices[1].port.name | string | `"utpudp"` |  |
-| service.additionalServices[1].port.port | int | `51413` |  |
-| service.additionalServices[1].port.protocol | string | `"UDP"` |  |
-| service.additionalServices[1].port.targetport | int | `51413` |  |
-| service.additionalServices[1].type | string | `"ClusterIP"` |  |
 | service.port.name | string | `"http"` |  |
 | service.port.port | int | `9091` |  |
 | strategy.type | string | `"Recreate"` |  |
-| transmissionConfig.alt-speed-down | int | `50` |  |
-| transmissionConfig.alt-speed-enabled | bool | `false` |  |
-| transmissionConfig.alt-speed-time-begin | int | `540` |  |
-| transmissionConfig.alt-speed-time-day | int | `127` |  |
-| transmissionConfig.alt-speed-time-enabled | bool | `false` |  |
-| transmissionConfig.alt-speed-time-end | int | `1020` |  |
-| transmissionConfig.alt-speed-up | int | `50` |  |
-| transmissionConfig.bind-address-ipv4 | string | `"0.0.0.0"` |  |
-| transmissionConfig.bind-address-ipv6 | string | `"::\""` |  |
-| transmissionConfig.blocklist-enabled | bool | `true` |  |
-| transmissionConfig.blocklist-url | string | `"http://john.bitsurge.net/public/biglist.p2p.gz"` |  |
-| transmissionConfig.cache-size-mb | int | `4` |  |
-| transmissionConfig.dht-enabled | bool | `true` |  |
-| transmissionConfig.download-dir | string | `"/downloads/complete"` |  |
-| transmissionConfig.download-queue-enabled | bool | `true` |  |
-| transmissionConfig.download-queue-size | int | `5` |  |
-| transmissionConfig.encryption | int | `1` |  |
-| transmissionConfig.idle-seeding-limit | int | `30` |  |
-| transmissionConfig.idle-seeding-limit-enabled | bool | `false` |  |
-| transmissionConfig.incomplete-dir | string | `"/downloads/incomplete"` |  |
-| transmissionConfig.incomplete-dir-enabled | bool | `true` |  |
-| transmissionConfig.lpd-enabled | bool | `false` |  |
-| transmissionConfig.message-level | int | `2` |  |
-| transmissionConfig.peer-congestion-algorithm | string | `""` |  |
-| transmissionConfig.peer-id-ttl-hours | int | `6` |  |
-| transmissionConfig.peer-limit-global | int | `200` |  |
-| transmissionConfig.peer-limit-per-torrent | int | `50` |  |
-| transmissionConfig.peer-port | int | `51413` |  |
-| transmissionConfig.peer-port-random-high | int | `65535` |  |
-| transmissionConfig.peer-port-random-low | int | `49152` |  |
-| transmissionConfig.peer-port-random-on-start | bool | `false` |  |
-| transmissionConfig.peer-socket-tos | string | `"default"` |  |
-| transmissionConfig.pex-enabled | bool | `true` |  |
-| transmissionConfig.port-forwarding-enabled | bool | `false` |  |
-| transmissionConfig.preallocation | int | `1` |  |
-| transmissionConfig.prefetch-enabled | bool | `true` |  |
-| transmissionConfig.queue-stalled-enabled | bool | `true` |  |
-| transmissionConfig.queue-stalled-minutes | int | `30` |  |
-| transmissionConfig.ratio-limit | int | `2` |  |
-| transmissionConfig.ratio-limit-enabled | bool | `false` |  |
-| transmissionConfig.rename-partial-files | bool | `true` |  |
-| transmissionConfig.rpc-authentication-required | bool | `false` |  |
-| transmissionConfig.rpc-bind-address | string | `"0.0.0.0"` |  |
-| transmissionConfig.rpc-enabled | bool | `true` |  |
-| transmissionConfig.rpc-host-whitelist | string | `""` |  |
-| transmissionConfig.rpc-host-whitelist-enabled | bool | `false` |  |
-| transmissionConfig.rpc-password | string | `"CHANGEME"` |  |
-| transmissionConfig.rpc-port | int | `9091` |  |
-| transmissionConfig.rpc-url | string | `"/transmission/"` |  |
-| transmissionConfig.rpc-username | string | `""` |  |
-| transmissionConfig.rpc-whitelist | string | `""` |  |
-| transmissionConfig.rpc-whitelist-enabled | bool | `false` |  |
-| transmissionConfig.scrape-paused-torrents-enabled | bool | `true` |  |
-| transmissionConfig.script-torrent-done-enabled | bool | `false` |  |
-| transmissionConfig.script-torrent-done-filename | string | `""` |  |
-| transmissionConfig.seed-queue-enabled | bool | `false` |  |
-| transmissionConfig.seed-queue-size | int | `10` |  |
-| transmissionConfig.speed-limit-down | int | `100` |  |
-| transmissionConfig.speed-limit-down-enabled | bool | `false` |  |
-| transmissionConfig.speed-limit-up | int | `100` |  |
-| transmissionConfig.speed-limit-up-enabled | bool | `false` |  |
-| transmissionConfig.start-added-torrents | bool | `true` |  |
-| transmissionConfig.trash-original-torrent-files | bool | `false` |  |
-| transmissionConfig.umask | int | `2` |  |
-| transmissionConfig.upload-slots-per-torrent | int | `14` |  |
-| transmissionConfig.utp-enabled | bool | `true` |  |
-| transmissionConfig.watch-dir | string | `"/watch"` |  |
-| transmissionConfig.watch-dir-enabled | bool | `false` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Added
+
+- Example initContainer to showcase adding a custom web ui
+
+#### Changed
+
+- **Breaking**: `transmissionConfig` became `config` and is now a string not a object
 
 ### [4.0.0]
 
@@ -204,6 +131,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial commit
 
+[5.0.0]: #5.0.0
 [4.0.0]: #4.0.0
 [1.0.0]: #1.0.0
 

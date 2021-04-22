@@ -1,0 +1,50 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/linuxserver/bookstack
+  pullPolicy: IfNotPresent
+  tag: version-v21.04.2
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the bookstack documentation
+# https://hub.docker.com/r/linuxserver/bookstack
+env: {}
+  # TZ:
+  # DB_HOST:
+  # DB_USER:
+  # DB_PASS:
+  # DB_DATABASE:
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /config
+
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: bookstack
+    username: bookstack
+    password: bookstack
+  primary:
+    persistence:
+      enabled: false

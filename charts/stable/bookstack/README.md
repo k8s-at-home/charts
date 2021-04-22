@@ -1,15 +1,15 @@
-# homebridge
+# bookstack
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 3.3.0](https://img.shields.io/badge/AppVersion-3.3.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v21.04.2](https://img.shields.io/badge/AppVersion-v21.04.2-informational?style=flat-square)
 
-A lightweight NodeJS server that emulates the iOS HomeKit API
+A simple, self-hosted, easy-to-use platform for organising and storing information.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://homebridge.io/>
-* <https://github.com/oznu/docker-homebridge>
+* <https://www.bookstackapp.com/>
+* <https://hub.docker.com/r/linuxserver/bookstack>
 
 ## Requirements
 
@@ -19,6 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.7 |
 | https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
@@ -26,23 +27,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install homebridge k8s-at-home/homebridge
+helm install bookstack k8s-at-home/bookstack
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `homebridge`
+To install the chart with the release name `bookstack`
 
 ```console
-helm install homebridge k8s-at-home/homebridge
+helm install bookstack k8s-at-home/bookstack
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `homebridge` deployment
+To uninstall the `bookstack` deployment
 
 ```console
-helm uninstall homebridge
+helm uninstall bookstack
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +56,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install homebridge \
+helm install bookstack \
   --set env.TZ="America/New York" \
-    k8s-at-home/homebridge
+    k8s-at-home/bookstack
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install homebridge k8s-at-home/homebridge -f values.yaml
+helm install bookstack k8s-at-home/bookstack -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,18 +77,22 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | string | Custom startup.sh script to install additional packages in the container |
-| env.HOMEBRIDGE_CONFIG_UI | int | `1` |  |
-| env.HOMEBRIDGE_CONFIG_UI_PORT | int | `8581` |  |
-| hostNetwork | bool | `false` | Enable hostNetwork - needed for discovery to work |
+| env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"oznu/homebridge"` |  |
-| image.tag | string | `"3.3.0"` |  |
+| image.repository | string | `"ghcr.io/linuxserver/bookstack"` |  |
+| image.tag | string | `"version-v21.04.2"` |  |
 | ingress.enabled | bool | `false` |  |
+| mariadb.architecture | string | `"standalone"` |  |
+| mariadb.auth.database | string | `"bookstack"` |  |
+| mariadb.auth.password | string | `"bookstack"` |  |
+| mariadb.auth.username | string | `"bookstack"` |  |
+| mariadb.enabled | bool | `false` |  |
+| mariadb.primary.persistence.enabled | bool | `false` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/homebridge"` |  |
-| service.port.port | int | `8581` |  |
+| persistence.config.mountPath | string | `"/config"` |  |
+| service.port.port | int | `80` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -95,21 +100,11 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.0.0]
+### [1.0.0]
 
 #### Added
 
-- N/A
-
-#### Changed
-
-- **BREAKING** Migrate to the common library, a lot of configuration has changed.
-
-#### Removed
-
-- N/A
-
-[2.0.0]: #2.0.0
+- Initial version
 
 ## Support
 
