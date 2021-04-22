@@ -1,0 +1,23 @@
+---
+apiVersion: v2
+appVersion: 4.5.4.0
+description: Emby Server is a home media server
+name: emby
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - emby
+  - jellyfin
+  - plex
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/emby
+icon: https://truecharts.org/_static/img/emby-icon.png
+sources:
+  - https://github.com/MediaBrowser
+  - https://github.com/k8s-at-home/container-images/tree/main/apps/emby
+maintainers:
+  - name: nicholaswilde
+    email: ncwilde43@gmail.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 2.3.1
