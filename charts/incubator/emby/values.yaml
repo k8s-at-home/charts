@@ -1,0 +1,30 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/k8s-at-home/emby
+  pullPolicy: IfNotPresent
+  tag: v4.5.4.0
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the emby documentation
+# https://emby.org/docs
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 8096
+  additionalPorts:
+    - port: 8920
+      name: https
+      protocol: TCP
+
+ingress:
+  enabled: false
