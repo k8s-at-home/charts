@@ -5296,6 +5296,31 @@ entries:
   comcast:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-04-23T01:06:44.313816612Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: periodic comcast data usage checks and save the results to InfluxDB
+    digest: 3eac7843c947acb182120d33a5320498e13915b84419e2fa7eb21847501525d5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/comcast
+    icon: https://i.imgur.com/iR1dUpp.png
+    keywords:
+    - comcast
+    - influxdb
+    - xfinity
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: comcast
+    sources:
+    - https://github.com/billimek/comcastUsage-for-influxdb
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/comcast-4.0.0/comcast-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-04-07T20:28:31.245019835Z"
     description: periodic comcast data usage checks and save the results to InfluxDB
     digest: 84f803f638d0ce95db6c365c7e81ba80f13dc66ecba92e0b06bc811fe9f1ebb7
@@ -55582,4 +55607,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-22T19:14:02.704788846Z"
+generated: "2021-04-23T01:06:44.326187417Z"
