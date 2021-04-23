@@ -1,58 +1,42 @@
-# Default values for speedtest.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-replicaCount: 1
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
 image:
-  # -- speedtest image
   repository: atribe/speedtest-for-influxdb-and-grafana
-  # -- speedtest image tag
   tag: latest
-  # -- speedtest image pull policy
   pullPolicy: IfNotPresent
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
 
-nodeSelector: {}
-# -- Display debugging output
-debug: false
-config:
-  # -- how many seconds to wait between checks
-  delay: 3600
-  influxdb:
-    # -- InfluxDB host
-    # @default - internal influxDB chart if not set
-    host:
-    # -- InfluxDB port
-    port: 8086
-    # -- InfluxDB database
-    database: speedtests
-    # -- (string) InfluxDB username
-    username:
-    # -- (string) InfluxDB password
-    password:
-    # -- enable TLS
-    ssl: false
-  speedtest:
-    # -- server to use for speedtest - leave blank to auto-pick
-    server:
+strategy:
+  type: Recreate
 
-# -- Key-value pairs to add as pod annotations
-podAnnotations: {}
+env: {}
+
+# -- speedtest's config.ini configuration
+# @default -- string
+config: |
+  [GENERAL]
+  Delay = 3600
+  [INFLUXDB]
+  Address = speedtest-influxdb
+  Port = 8086
+  Database = speedtests
+  Username =
+  Password =
+  Verify_SSL = False
+  [SPEEDTEST]
+  Server =
+  [LOGGING]
+  Level = info
 
 # Enable embeded influxdb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/influxdb
 influxdb:
   # - Use internal Influx DB. Set to false if you use an external DB.
-  enabled: true
+  enabled: false
   architecture: standalone
   database: speedtests
   authEnabled: false
@@ -60,3 +44,15 @@ influxdb:
     enabled: false
     # storageClass: ""
     # size: 8Gi
+
+service:
+  enabled: false
+
+## Probes configuration
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false

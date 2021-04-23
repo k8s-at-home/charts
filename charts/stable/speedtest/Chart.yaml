@@ -1,23 +1,25 @@
 apiVersion: v2
 name: speedtest
-version: 3.0.3
+version: 4.0.0
 appVersion: 1.0.0
 description: periodic speedtest and save the results to InfluxDB
 keywords:
-- speedtest
-- influxdb
-- grafana
+  - speedtest
+  - influxdb
+  - grafana
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/speedtest
 icon: https://i.imgur.com/nDYjKk8.png
 sources:
-- https://github.com/k8s-at-home/Speedtest-for-InfluxDB-and-Grafana
-- https://github.com/k8s-at-home/charts
+  - https://github.com/k8s-at-home/Speedtest-for-InfluxDB-and-Grafana
+  - https://github.com/k8s-at-home/charts
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
-
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: influxdb
-  version: 1.1.9
-  repository: https://charts.bitnami.com/bitnami
-  condition: influxdb.enabled
+  - name: influxdb
+    version: 2.2.1
+    repository: https://charts.bitnami.com/bitnami
+    condition: influxdb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 2.3.1
