@@ -1,6 +1,6 @@
 # modem-stats
 
-![Version: 3.0.3](https://img.shields.io/badge/Version-3.0.3-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 periodic cable modem data collection and save the results to InfluxDB
 
@@ -17,6 +17,7 @@ periodic cable modem data collection and save the results to InfluxDB
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -75,26 +76,36 @@ The configuration is set as a block of text through a configmap and mouted as a 
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.delay | int | `3600` | how many seconds to wait between checks |
-| config.influxdb.database | string | `"cable_modem_stats"` | InfluxDB database |
-| config.influxdb.host | string | `"influxdb-influxdb"` | InfluxDB hostname |
-| config.influxdb.port | int | `8086` | InfluxDB port |
-| config.influxdb.ssl | bool | `false` | InfluxDB connection using SSL |
-| config.modem.url | string | `"http://192.168.100.1/RgConnect.asp"` | sb6183 stats URL page |
-| debug | bool | `false` | Display debugging output |
-| image.pullPolicy | string | `"IfNotPresent"` | modem-stats image pull policy |
-| image.repository | string | `"billimek/sb6183-for-influxdb"` | modem-stats image |
-| image.tag | string | `"latest"` | modem-stats image tag |
-| nodeSelector | object | `{}` |  |
-| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
-| replicaCount | int | `1` |  |
-| resources | object | `{}` |  |
+| config | string | string | modem-stats' config.ini configuration |
+| env | object | `{}` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"billimek/sb6183-for-influxdb"` |  |
+| image.tag | string | `"latest"` |  |
+| probes.liveness.enabled | bool | `false` |  |
+| probes.readiness.enabled | bool | `false` |  |
+| probes.startup.enabled | bool | `false` |  |
+| service.enabled | bool | `false` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING** Migrate to the common library, a lot of configuration has changed.
+
+#### Removed
+
+- N/A
 
 ### [3.0.1]
 
@@ -110,6 +121,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #4.0.0
 [3.0.1]: #3.0.1
 
 ## Support
