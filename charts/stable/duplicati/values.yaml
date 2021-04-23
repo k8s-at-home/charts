@@ -27,23 +27,17 @@ ingress:
 
 persistence:
   config:
-    enabled: true
+    enabled: false
     emptyDir:
       enabled: false
     mountPath: /config
-    accessMode: ReadWriteOnce
-    size: 1Gi
   source:
-    enabled: true
+    enabled: false
     emptyDir:
       enabled: false
     mountPath: /source
-    accessMode: ReadWriteOnce
-    size: 1Gi
   backups:
-    enabled: true
+    enabled: false
     emptyDir:
       enabled: false
     mountPath: /backups
-    accessMode: ReadWriteOnce
-    size: 1Gi
