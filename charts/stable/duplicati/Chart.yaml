@@ -2,14 +2,18 @@ apiVersion: v2
 appVersion: v2.0.5.1
 description: Store securely encrypted backups on cloud storage services!
 name: duplicati
-version: 2.1.3
+version: 3.0.0
 keywords:
   - duplicati
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/duplicati
-icon: https://i.imgur.com/KjnkhUJ.png
+icon: https://avatars.githubusercontent.com/u/8270231?s=200&v=4
 sources:
   - https://hub.docker.com/r/linuxserver/duplicati/
   - https://github.com/duplicati/duplicati
 maintainers:
   - name: simoncaron
     email: simon.caron@protonmail.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 2.3.1

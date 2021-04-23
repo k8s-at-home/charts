@@ -1,166 +1,49 @@
-# Default values for duplicati.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
-  # -- Image repository
   repository: linuxserver/duplicati
-  # -- Image tag. Possible values listed [here](https://hub.docker.com/r/linuxserver/duplicati/tags/).
-  tag: v2.0.5.1-2.0.5.1_beta_2020-01-18-ls72
-  # -- Image pull policy
+  tag: v2.0.5.1-2.0.5.1_beta_2020-01-18-ls98
   pullPolicy: IfNotPresent
 
-# -- Specifies the strategy used to replace old Pods by new ones
-strategyType: Recreate
+strategy:
+  type: Recreate
 
-# Probes configuration
-probes:
-  liveness:
-    # -- Specify liveness `initialDelaySeconds` parameter for the deployment
-    initialDelaySeconds: 60
-    # -- Specify liveness `failureThreshold` parameter for the deployment
-    failureThreshold: 5
-    # -- Specify liveness `timeoutSeconds` parameter for the deployment
-    timeoutSeconds: 10
-  readiness:
-    # -- Specify readiness `initialDelaySeconds` parameter for the deployment
-    initialDelaySeconds: 60
-    # -- Specify readiness `failureThreshold` parameter for the deployment
-    failureThreshold: 5
-    # -- Specify readiness `timeoutSeconds` parameter for the deployment
-    timeoutSeconds: 10
-
-nameOverride: ""
-fullnameOverride: ""
-
-# -- Timezone the duplicati instance should run as, e.g. 'America/New_York'
-timezone: UTC
-# -- Process userID the duplicati instance should run as
-puid: 1001
-# -- Process groupID the duplicati instance should run as
-pgid: 1001
-# -- Optionally specify any CLI variables you want to launch the app with
-cliArgs: ""
+# See more environment variables in the duplicati documentation
+# https://hub.docker.com/r/linuxserver/duplicati
+env: {}
+  # TZ:
 
 service:
-  # -- Kubernetes service type for the duplicati GUI
-  type: ClusterIP
-  # -- Kubernetes port where the duplicati GUI is exposed
-  port: 8200
-  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-  ##
-  # nodePort:
-
-  # -- Service annotations for the duplicati GUI
-  annotations: {}
-  # -- Custom labels
-  labels: {}
-  # -- Loadbalance IP for the duplicati GUI
-  loadBalancerIP:
-  # -- List of IP CIDRs allowed access to load balancer (if supported)
-  # loadBalancerSourceRanges: []
-
-  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-  # externalTrafficPolicy: Cluster
+  port:
+    port: 8200
 
 ingress:
-  # -- Enables Ingress
   enabled: false
-  # -- Ingress annotations
-  annotations: {}
-  # -- Custom labels
-  labels: {}
-  # -- Ingress path
-  path: /
-  # -- Ingress accepted hostnames
-  hosts:
-    - chart-example.local
-  # -- Ingress TLS configuration
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 persistence:
   config:
-    # -- Use persistent volume to store configuration data
     enabled: true
-    # -- Type of persistent volume claim
-    # storageClass: "-"
-
-    # -- Use an existing PVC to persist data
-    # existingClaim: your-claim
-
-    # -- Persistence access mode
+    emptyDir:
+      enabled: false
+    mountPath: /config
     accessMode: ReadWriteOnce
-    # -- Size of persistent volume claim
     size: 1Gi
-    # -- Do not delete the pvc upon helm uninstall
-    skipuninstall: false
   source:
-    # -- Use persistent volume to store source data
     enabled: true
-    # -- Type of persistent volume claim
-    # storageClass: "-"
-
-    # -- Use an existing PVC to persist data
-    # existingClaim: your-claim
-
-    # -- Persistence access mode
+    emptyDir:
+      enabled: false
+    mountPath: /source
     accessMode: ReadWriteOnce
-    # -- Size of persistent volume claim
     size: 1Gi
-    # -- Do not delete the pvc upon helm uninstall
-    skipuninstall: false
   backups:
-    # -- Use persistent volume to store backups data
     enabled: true
-    # -- Type of persistent volume claim
-    # storageClass: "-"
-
-    # -- Use an existing PVC to persist data
-    # existingClaim: your-claim
-
-    # -- Persistence access mode
+    emptyDir:
+      enabled: false
+    mountPath: /backups
     accessMode: ReadWriteOnce
-    # -- Size of persistent volume claim
     size: 1Gi
-    # -- Do not delete the pvc upon helm uninstall
-    skipuninstall: false
-  # -- Optionally add multiple existing claims
-  extraExistingClaimMounts: []
-    # - name: external-mount
-    #   mountPath: /srv/external-mount
-    ## A manually managed Persistent Volume and Claim
-    ## If defined, PVC must be created manually before volume will be bound
-    #   existingClaim:
-    #   readOnly: true
-
-# -- CPU/Memory resource requests/limits
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-# -- Node labels for pod assignment
-nodeSelector: {}
-
-# -- Toleration labels for pod assignment
-tolerations: []
-
-# -- Affinity settings for pod assignment
-affinity: {}
-
-# -- Key-value pairs to add as pod annotations
-podAnnotations: {}
-
-# -- Key-value pairs to add as deployment annotations
-deploymentAnnotations: {}
