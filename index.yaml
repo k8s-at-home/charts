@@ -43809,6 +43809,30 @@ entries:
   speedtest:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-04-24T12:01:31.604604106Z"
+    dependencies:
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    deprecated: true
+    description: periodic speedtest and save the results to InfluxDB
+    digest: afb8bd5bec7a3a2b9d9b8cdcf52d62372eb50825bd80e6bf010e1fa936868af8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/speedtest
+    icon: https://i.imgur.com/nDYjKk8.png
+    keywords:
+    - speedtest
+    - influxdb
+    - grafana
+    name: speedtest
+    sources:
+    - https://github.com/k8s-at-home/Speedtest-for-InfluxDB-and-Grafana
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/speedtest-3.0.4/speedtest-3.0.4.tgz
+    version: 3.0.4
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-04-07T20:28:38.811123794Z"
     dependencies:
     - condition: influxdb.enabled
@@ -55607,4 +55631,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-23T01:06:44.326187417Z"
+generated: "2021-04-24T12:01:31.616620599Z"
