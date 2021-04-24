@@ -1,6 +1,6 @@
 # duplicati
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: v2.0.5.1](https://img.shields.io/badge/AppVersion-v2.0.5.1-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Store securely encrypted backups on cloud storage services!
 
@@ -82,23 +82,17 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/duplicati"` |  |
-| image.tag | string | `"v2.0.5.1-2.0.5.1_beta_2020-01-18-ls98"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
-| persistence.backups.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.backups.emptyDir.enabled | bool | `false` |  |
-| persistence.backups.enabled | bool | `true` |  |
+| persistence.backups.enabled | bool | `false` |  |
 | persistence.backups.mountPath | string | `"/backups"` |  |
-| persistence.backups.size | string | `"1Gi"` |  |
-| persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `true` |  |
+| persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountPath | string | `"/config"` |  |
-| persistence.config.size | string | `"1Gi"` |  |
-| persistence.source.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.source.emptyDir.enabled | bool | `false` |  |
-| persistence.source.enabled | bool | `true` |  |
+| persistence.source.enabled | bool | `false` |  |
 | persistence.source.mountPath | string | `"/source"` |  |
-| persistence.source.size | string | `"1Gi"` |  |
 | service.port.port | int | `8200` |  |
 | strategy.type | string | `"Recreate"` |  |
 
@@ -118,6 +112,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - **BREAKING** Migrate to the common library, a lot of configuration has changed.
 - Updated icon.
+- Changed image tag to latest
 
 #### Removed
 
