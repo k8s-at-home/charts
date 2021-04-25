@@ -18,20 +18,19 @@ args:
 
 # -- Full list of options https://eikek.github.io/sharry/doc/configure
 # @default -- see URL to default config
-config: {}
-# e.g. to enable admin:admin authentication (disabled by default)
-# sharry.restserver {
-#    backend {
-#      auth {
-#        fixed {
-#          enabled = true
-#          user = "admin"
-#          password = "admin"
-#          order = 10
-#        }
-#      }
-#    }
-#  }
+config: |
+ sharry.restserver {
+    backend {
+      auth {
+        fixed {
+          enabled = false  # set to true to enable this auth provider
+          user = "admin"
+          password = "admin"
+          order = 10
+        }
+      }
+    }
+  }
 
 ingress:
   enabled: false
