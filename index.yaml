@@ -22523,6 +22523,30 @@ entries:
   modem-stats:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-04-25T15:01:27.750016518Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: periodic cable modem data collection and save the results to InfluxDB
+    digest: 30b4c799d9773389b4e34e055b8eab2db95b2b808d69aa5d89adac7ecf9f9f6c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/modem-stats
+    icon: https://i.imgur.com/NprLyFf.png
+    keywords:
+    - sb6183
+    - influxdb
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: modem-stats
+    sources:
+    - https://github.com/k8s-at-home/SB6183-stats-for-influxdb
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/modem-stats-4.0.0/modem-stats-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-04-07T20:28:34.954767606Z"
     description: periodic cable modem data collection and save the results to InfluxDB
     digest: 431c2a189e590b3ecb6804a2ff691614bafa116c664e188639e8df53592e9c99
@@ -55681,4 +55705,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-25T14:22:28.69128454Z"
+generated: "2021-04-25T15:01:27.764130023Z"
