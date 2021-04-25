@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
 
 Transmission is a cross-platform BitTorrent client
 
@@ -68,7 +68,7 @@ helm install transmission k8s-at-home/transmission -f values.yaml
 
 ## Custom configuration
 
-N/A
+To view more environment variables [see here](https://github.com/k8s-at-home/container-images/tree/main/apps/transmission/settings.json.tmpl)
 
 ## Values
 
@@ -76,8 +76,14 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | string | Transmission's settings.json configuration |
-| env | object | `{}` |  |
+| env.TRANSMISSION_DOWNLOAD_DIR | string | `"/downloads/complete"` | Torrent download directory |
+| env.TRANSMISSION_INCOMPLETE_DIR | string | `"/downloads/incomplete"` | Incomplete download directory |
+| env.TRANSMISSION_INCOMPLETE_DIR_ENABLED | bool | `false` | Enable incomplete download directory |
+| env.TRANSMISSION_RPC_PASSWORD | string | `"CHANGEME"` | Password to access the Web UI |
+| env.TRANSMISSION_WATCH_DIR | string | `"/watch"` | Watch directory |
+| env.TRANSMISSION_WATCH_DIR_ENABLED | bool | `false` | Enable watch directory |
+| env.TRANSMISSION_WEB_HOME | string | `"/web"` | Path in container where the Web UI is located |
+| env.TZ | string | `"UTC"` | Container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/transmission"` |  |
 | image.tag | string | `"v3.00"` |  |
@@ -103,6 +109,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [6.0.0]
+
+#### Changed
+
+- **Breaking**: `.Values.config` is deprecated in favor of using environment variables for configuration. See [here](https://github.com/k8s-at-home/container-images/tree/main/apps/transmission/settings.json.tmpl) for more options.
+
 ### [5.0.0]
 
 #### Added
@@ -111,7 +123,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- **Breaking**: `transmissionConfig` became `config` and is now a string not a object
+- **Breaking**: `transmissionConfig` became `config` and is now a string not an object
 
 ### [4.0.0]
 
@@ -131,6 +143,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial commit
 
+[6.0.0]: #6.0.0
 [5.0.0]: #5.0.0
 [4.0.0]: #4.0.0
 [1.0.0]: #1.0.0
