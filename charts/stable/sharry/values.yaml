@@ -27,7 +27,8 @@ ingress:
     # -- Full list of options https://eikek.github.io/sharry/doc/configure
 # @default -- see URL to default config
 config: |
- sharry.restserver {
+  sharry.restserver {
+    # base-url = "https://sharry.${DOMAIN}"
     backend {
       auth {
         fixed {
