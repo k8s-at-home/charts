@@ -1,6 +1,6 @@
 # sabnzbd
 
-![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: v3.2.1](https://img.shields.io/badge/AppVersion-v3.2.1-informational?style=flat-square)
+![Version: 7.0.1](https://img.shields.io/badge/Version-7.0.1-informational?style=flat-square) ![AppVersion: v3.2.1](https://img.shields.io/badge/AppVersion-v3.2.1-informational?style=flat-square)
 
 Free and easy binary newsreader
 
@@ -70,10 +70,7 @@ helm install sabnzbd k8s-at-home/sabnzbd -f values.yaml
 
 **IMPORTANT NOTE:** when installing this chart for the first time you will get the follow message in your browser when trying to access Sabnzbd: `Access denied - Hostname verification failed: sabnzbd.org/hostname-check`
 
-You can do one of two things to solve this issue:
-
-1. Update the `sabnzbd.ini` config file to your `ingress` name and/or `loadBalancerIP` to the `host_whitelist` field and restart the pod, or
-2. Forward the service to your local machine with `kubectl port-forward service/sabnzbd -n default 8080:8080` and update the `host_whitelist` in the Sabnzbd Settings UI
+To address this issue, you can set an environment variable named `HOST_WHITELIST_ENTRIES` with the host(s) you would like added to the `host_whitelist` in the `sabnzbd.ini`
 
 ## Values
 

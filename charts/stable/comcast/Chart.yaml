@@ -1,17 +1,21 @@
 apiVersion: v2
 name: comcast
-version: 3.0.3
+version: 4.0.0
 appVersion: 1.0.0
 description: periodic comcast data usage checks and save the results to InfluxDB
 keywords:
-- comcast
-- influxdb
-- xfinity
+  - comcast
+  - influxdb
+  - xfinity
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/comcast
 icon: https://i.imgur.com/iR1dUpp.png
 sources:
-- https://github.com/billimek/comcastUsage-for-influxdb
-- https://github.com/k8s-at-home/charts
+  - https://github.com/billimek/comcastUsage-for-influxdb
+  - https://github.com/k8s-at-home/charts
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 2.3.1
