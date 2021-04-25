@@ -16,7 +16,15 @@ service:
 args:
 - "/opt/sharry.conf"
 
-# -- Full list of options https://eikek.github.io/sharry/doc/configure
+ingress:
+  enabled: false
+  # -- Enable large file support with those annotations for nginx
+  # annotations:
+  #   nginx.ingress.kubernetes.io/client-body-buffer-size: "2048m"
+  #   nginx.ingress.kubernetes.io/proxy-body-size: "2048m"
+  #   nginx.ingress.kubernetes.io/proxy-buffering: "off"
+
+    # -- Full list of options https://eikek.github.io/sharry/doc/configure
 # @default -- see URL to default config
 config: |
  sharry.restserver {
@@ -31,10 +39,3 @@ config: |
       }
     }
   }
-
-ingress:
-  enabled: false
-  annotations:
-    nginx.ingress.kubernetes.io/client-body-buffer-size: "2048m"
-    nginx.ingress.kubernetes.io/proxy-body-size: "2048m"
-    nginx.ingress.kubernetes.io/proxy-buffering: "off"
