@@ -27,9 +27,26 @@ image:
 strategy:
   type: Recreate
 
-env: {}
-  # TZ: UTC
-  # TRANSMISSION_WEB_HOME: /config/flood
+# To view more enviornment variables see here:
+# https://github.com/k8s-at-home/container-images/tree/main/apps/transmission/settings.json.tmpl
+env:
+  # -- Container timezone
+  TZ: UTC
+  # -- Path in container where the Web UI is located
+  TRANSMISSION_WEB_HOME: /web
+  # -- Password to access the Web UI
+  TRANSMISSION_RPC_PASSWORD: CHANGEME
+  # -- Torrent download directory
+  TRANSMISSION_DOWNLOAD_DIR: /downloads/complete
+  # -- Enable incomplete download directory
+  TRANSMISSION_INCOMPLETE_DIR_ENABLED: false
+  # -- Incomplete download directory
+  TRANSMISSION_INCOMPLETE_DIR: /downloads/incomplete
+  # -- Enable watch directory
+  TRANSMISSION_WATCH_DIR_ENABLED: false
+  # -- Watch directory
+  TRANSMISSION_WATCH_DIR: /watch
+
 
 service:
   port:
@@ -65,19 +82,8 @@ probes:
     spec:
       timeoutSeconds: 30
 
-
 ingress:
   enabled: false
-  # annotations: {}
-  # hosts:
-  # - host: example.com
-  #   paths:
-  #   - path: /
-  #     pathType: Prefix
-  # tls:
-  # - secretName: example.com
-  #   hosts:
-  #    - example.com
 
 persistence:
   ## Directory for storing active torrent files, resume list,
@@ -111,77 +117,3 @@ persistence:
     emptyDir:
       enabled: false
     mountPath: /watch
-
-# -- Transmission's settings.json configuration
-# @default -- string
-config: |
-  {
-    "alt-speed-down": 50,
-    "alt-speed-enabled": false,
-    "alt-speed-time-begin": 540,
-    "alt-speed-time-day": 127,
-    "alt-speed-time-enabled": false,
-    "alt-speed-time-end": 1020,
-    "alt-speed-up": 50,
-    "bind-address-ipv4": "0.0.0.0",
-    "bind-address-ipv6": "::",
-    "blocklist-enabled": true,
-    "blocklist-url": "http://john.bitsurge.net/public/biglist.p2p.gz",
-    "cache-size-mb": 4,
-    "dht-enabled": true,
-    "download-dir": "/downloads/complete",
-    "download-queue-enabled": true,
-    "download-queue-size": 5,
-    "encryption": 1,
-    "idle-seeding-limit": 30,
-    "idle-seeding-limit-enabled": false,
-    "incomplete-dir": "/downloads/incomplete",
-    "incomplete-dir-enabled": true,
-    "lpd-enabled": false,
-    "message-level": 2,
-    "peer-congestion-algorithm": "",
-    "peer-id-ttl-hours": 6,
-    "peer-limit-global": 200,
-    "peer-limit-per-torrent": 50,
-    "peer-port": 51413,
-    "peer-port-random-high": 65535,
-    "peer-port-random-low": 49152,
-    "peer-port-random-on-start": false,
-    "peer-socket-tos": "default",
-    "pex-enabled": true,
-    "port-forwarding-enabled": false,
-    "preallocation": 1,
-    "prefetch-enabled": true,
-    "queue-stalled-enabled": true,
-    "queue-stalled-minutes": 30,
-    "ratio-limit": 2,
-    "ratio-limit-enabled": false,
-    "rename-partial-files": true,
-    "rpc-authentication-required": false,
-    "rpc-bind-address": "0.0.0.0",
-    "rpc-enabled": true,
-    "rpc-host-whitelist": "",
-    "rpc-host-whitelist-enabled": false,
-    "rpc-password": "CHANGEME",
-    "rpc-port": 9091,
-    "rpc-url": "/transmission/",
-    "rpc-username": "",
-    "rpc-whitelist": "",
-    "rpc-whitelist-enabled": false,
-    "scrape-paused-torrents-enabled": true,
-    "script-torrent-done-enabled": false,
-    "script-torrent-done-filename": "",
-    "seed-queue-enabled": false,
-    "seed-queue-size": 10,
-    "speed-limit-down": 100,
-    "speed-limit-down-enabled": false,
-    "speed-limit-up": 100,
-    "speed-limit-up-enabled": false,
-    "start-added-torrents": true,
-    "trash-original-torrent-files": false,
-    "umask": 2,
-    "upload-slots-per-torrent": 14,
-    "utp-enabled": true,
-    "watch-dir": "/watch",
-    "watch-dir-enabled": false
-  }
