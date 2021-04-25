@@ -1,6 +1,6 @@
 # sharry
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
 Sharry allows to share files with others in a simple way. It is a self-hosted web application. The basic concept is to upload files and get a url back that can then be shared.
 
@@ -17,7 +17,7 @@ Sharry allows to share files with others in a simple way. It is a self-hosted we
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -74,33 +74,16 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalVolumeMounts[0].mountPath | string | `"/opt/sharry.conf"` |  |
-| additionalVolumeMounts[0].name | string | `"sharry-config"` |  |
-| additionalVolumeMounts[0].subPath | string | `"sharry.conf"` |  |
-| additionalVolumes[0].configMap.name | string | `"sharry-config"` |  |
-| additionalVolumes[0].name | string | `"sharry-config"` |  |
-| affinity | object | `{}` | Affinity settings for pod assignment of the GUI |
 | args[0] | string | `"/opt/sharry.conf"` |  |
+| config | object | see URL to default config | Full list of options https://eikek.github.io/sharry/doc/configure |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"eikek0/sharry"` | sharry image |
-| image.tag | string | `"1.6.0"` | sharry image tag |
-| ingress.annotations."nginx.ingress.kubernetes.io/client-body-buffer-size" | string | `"2048m"` | Nginx client Body Buffer Size |
-| ingress.annotations."nginx.ingress.kubernetes.io/proxy-body-size" | string | `"2048m"` | Nginx Proxy Body Size |
+| image.repository | string | `"eikek0/sharry"` |  |
+| image.tag | string | `"1.6.0"` |  |
+| ingress.annotations."nginx.ingress.kubernetes.io/client-body-buffer-size" | string | `"2048m"` |  |
+| ingress.annotations."nginx.ingress.kubernetes.io/proxy-body-size" | string | `"2048m"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffering" | string | `"off"` |  |
 | ingress.enabled | bool | `false` |  |
-| nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| podAnnotations | object | `{}` | Pod annotations |
-| resources | object | `{}` |  |
-| service.port.port | int | `9090` | Kubernetes port where the GUI is exposed |
-| sharry.baseUrl | string | `"http://localhost:9090"` | This is the base URL this application is deployed to. |
-| sharry.chunkSize | string | `"512K"` | When storing binary data use chunks of this size. |
-| sharry.jdbcPassword | string | `""` | jdbc Password |
-| sharry.jdbcUrl | string | `"jdbc:h2://\"${java.io.tmpdir}\"/sharry-demo.db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE"` | By default a H2 file-based database is configured. You can provide a postgresql or mariadb connection here. |
-| sharry.jdbcUser | string | `"sa"` | jdbc Username |
-| sharry.maxSize | string | `"1.5G"` | Maximum size of a share. |
-| sharry.maxValidity | string | `"365 days"` | Maximum validity for uploads. |
-| sharry.signup | string | `"open"` | The mode defines if new users can signup or not. It can have three values : open, invite, closed |
-| tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
+| service.port.port | int | `9090` |  |
 
 ## Changelog
 
