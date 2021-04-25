@@ -1,6 +1,6 @@
 # dnsmadeeasy-webhook
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Cert-Manager Webhook for DNSMadeEasy
 
@@ -17,7 +17,7 @@ Cert-Manager Webhook for DNSMadeEasy
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -102,6 +102,7 @@ N/A
 | service.port.name | string | `"https"` |  |
 | service.port.port | int | `443` |  |
 | service.port.targetPort | int | `4443` |  |
+| serviceAccount.create | bool | `true` | Create service account |
 
 ## Changelog
 
@@ -139,7 +140,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.1.1]: #1.1.1
+[2.3.2]: #2.3.2
+
+### [2.3.2]
+
+#### Changed
+
+- Fix: use created service account
+
+[2.3.2]: #2.3.2
 
 ## Support
 

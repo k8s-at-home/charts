@@ -16,6 +16,10 @@ certManager:
 
 # Default values for dnsmadeeasy-webhook.
 
+serviceAccount:
+  # -- Create service account
+  create: true
+
 image:
   # -- Image repository
   repository: ghcr.io/k8s-at-home/dnsmadeeasy-webhook
