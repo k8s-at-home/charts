@@ -21,7 +21,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://charts.bitnami.com/bitnami | redis | 6.2.2 |
+| https://charts.bitnami.com/bitnami | redis | 14.1.0 |
 | https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
@@ -85,6 +85,13 @@ Default login is `wallabag:wallabag`.
 | image.repository | string | `"wallabag/wallabag"` |  |
 | image.tag | string | `"2.4.1"` |  |
 | ingress.enabled | bool | `false` |  |
+| mariadb.architecture | string | `"standalone"` |  |
+| mariadb.auth.database | string | `"wallabag"` |  |
+| mariadb.auth.password | string | `"wallabag-pass"` |  |
+| mariadb.auth.rootPassword | string | `"wallabag-rootpass"` |  |
+| mariadb.auth.username | string | `"wallabag"` |  |
+| mariadb.enabled | bool | `false` |  |
+| mariadb.primary.persistence.enabled | bool | `false` |  |
 | persistence.cache.emptyDir.enabled | bool | `false` |  |
 | persistence.cache.enabled | bool | `false` |  |
 | persistence.cache.mountPath | string | `"/var/www/wallabag/var/cache"` |  |
