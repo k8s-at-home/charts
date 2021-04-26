@@ -84,3 +84,20 @@ persistence:
     emptyDir:
       enabled: false
     mountPath: /var/www/wallabag/var/cache
+
+# Enabled postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: false
+  postgresqlUsername: wallabag
+  postgresqlPassword: wallabag-pass
+  postgresqlDatabase: wallabag
+  persistence:
+    enabled: false
+
+# Enabled redis
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/redis
+redis:
+  enabled: false
+  auth:
+    enabled: false

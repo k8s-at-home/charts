@@ -1,6 +1,6 @@
 # wallabag
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
 
 A self hostable application for saving web pages, freely.
 
@@ -19,7 +19,10 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
+| https://charts.bitnami.com/bitnami | redis | 6.2.2 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -88,6 +91,13 @@ Default login is `wallabag:wallabag`.
 | persistence.images.emptyDir.enabled | bool | `false` |  |
 | persistence.images.enabled | bool | `false` |  |
 | persistence.images.mountPath | string | `"/var/www/wallabag/web/assets/images"` |  |
+| postgresql.enabled | bool | `false` |  |
+| postgresql.persistence.enabled | bool | `false` |  |
+| postgresql.postgresqlDatabase | string | `"wallabag"` |  |
+| postgresql.postgresqlPassword | string | `"wallabag-pass"` |  |
+| postgresql.postgresqlUsername | string | `"wallabag"` |  |
+| redis.auth.enabled | bool | `false` |  |
+| redis.enabled | bool | `false` |  |
 | service.port.port | int | `80` |  |
 | strategy.type | string | `"RollingUpdate"` |  |
 
