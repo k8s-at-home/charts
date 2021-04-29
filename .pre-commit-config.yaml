@@ -7,6 +7,15 @@ repos:
   - id: end-of-file-fixer
   - id: fix-byte-order-marker
   - id: mixed-line-ending
+  - id: check-merge-conflict
+  - id: check-case-conflict
+
+- repo: https://github.com/Lucas-C/pre-commit-hooks
+  rev: v1.1.10
+  hooks:
+  - id: remove-crlf
+  - id: remove-tabs
+
 
 - repo: local
   hooks:
