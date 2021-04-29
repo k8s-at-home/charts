@@ -82,79 +82,6 @@ jobs:
           echo "::set-output name=detected::true"
         fi
 
-  check_version:
-    needs:
-    - changes-lint
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]') &&
-      needs.changes-lint.outputs.detected == 'true'
-    name: Check chart version numbers
-    strategy:
-      matrix: ${{ fromJson(needs.changes-lint.outputs.matrix) }}
-      fail-fast: true
-      max-parallel: 15
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-
-    - name: Get version
-      id: version-get
-      run: |
-        shopt -s extglob
-        OUTPUT=$(helm inspect chart ${{ matrix.chart }} | grep "^version:")
-        VERSION=${OUTPUT#"version:"}
-        echo "::set-output name=version::${VERSION##*( )}"
-        shopt -u extglob
-
-    - name: Parse version
-      id: version-parse
-      uses: apexskier/github-semver-parse@v1
-      with:
-        version: ${{ steps.version-get.outputs.version }}
-
-    - name: Check version
-      id: version-check
-      run: |
-        if [[ ${{ matrix.chart }} =~ ^charts\/(.*)\/.* ]]; then
-          TYPE="${BASH_REMATCH[1]}"  
-          case $TYPE in
-            stable)
-              if [[ ${{ steps.version-parse.outputs.major }} -lt 1 ]]; then
-                echo "::error file=${{ matrix.chart }}::Chart version for \"$TYPE\" charts must be >= 1.0.0"
-                exit 1
-              fi
-            ;;
-
-            incubator)
-              if [[ ${{ steps.version-parse.outputs.major }} -gt 0 ]]; then
-                echo "::error file=${{ matrix.chart }}::Chart version for \"$TYPE\" charts must be < 1.0.0"
-                exit 1
-              fi
-            ;;
-
-            *)
-              echo "::error file=${{ matrix.chart }}::Unhandled chart type: $TYPE"
-              exit 1
-          esac
-        fi
-
-  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  check_version_success:
-    needs: 
-    - changes-lint
-    - check_version
-    if: ${{ always() }}
-    name: Version check successful
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Check Version matrix status
-      if: ${{ !contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-lint.outputs.detected == 'true' && needs.check_version.result != 'success' }}
-      run: |
-        exit 1
-
   lint:
     needs:
     - changes-lint
@@ -238,7 +165,6 @@ jobs:
   install:
     needs:
     - changes-install
-    - check_version_success
     - lint_success
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')

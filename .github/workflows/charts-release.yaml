@@ -1,5 +1,7 @@
 name: "Charts: Release"
 
+concurrency: helm-release
+
 on:
   workflow_dispatch:
   push:
@@ -13,30 +15,11 @@ on:
     - '!charts/**/README_CONFIG.md.gotmpl'
 
 jobs:
-  pre-release:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-    runs-on: ubuntu-20.04
-    timeout-minutes: 5
-    steps:
-    - name: Block concurrent jobs
-      uses: softprops/turnstyle@v1
-      with:
-        continue-after-seconds: 180
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   release:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     needs: pre-release
     runs-on: ubuntu-20.04
     steps:
-    - name: Block concurrent jobs
-      uses: softprops/turnstyle@v1
-      with:
-        continue-after-seconds: 180
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Checkout
       uses: actions/checkout@v2
       with:
