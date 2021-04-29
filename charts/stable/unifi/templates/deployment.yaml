@@ -47,7 +47,7 @@ spec:
           - mountPath: /unifi/log
             name: unifi-data
             subPath: {{ ternary "log" (printf "%s/%s" .Values.persistence.subPath "log") (empty .Values.persistence.subPath) }}
-      {{- end }}      
+      {{- end }}
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -203,7 +203,7 @@ spec:
                 items:
                   - key: promtail.yaml
                     path: promtail.yaml
-        {{- end }}        
+        {{- end }}
         {{- if .Values.extraVolumes  }}{{ toYaml .Values.extraVolumes | trim | nindent 8 }}{{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:

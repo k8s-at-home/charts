@@ -70,9 +70,9 @@ helm install comcast k8s-at-home/comcast -f values.yaml
 ```
 'measurement': 'comcast_data_usage',
 'fields': {
-		'used',
-		'total',
-		'unit'
+        'used',
+        'total',
+        'unit'
 }
 ```
 
@@ -107,7 +107,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **BREAKING** Migrate to the common library, a lot of configuration has changed.
 
 #### Removed
- 
+
 - N/A
 
 ### [3.0.1]

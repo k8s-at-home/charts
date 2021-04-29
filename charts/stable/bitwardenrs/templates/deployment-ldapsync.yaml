@@ -19,7 +19,7 @@ spec:
       containers:
         - name: ldap-sync
           image: vividboarder/bitwarden_rs_ldap
-          imagePullPolicy: Always 
+          imagePullPolicy: Always
           env:
             - name: CONFIG_PATH
               value: "/etc/bitwarden/config.toml"

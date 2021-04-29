@@ -119,7 +119,7 @@ jobs:
       id: version-check
       run: |
         if [[ ${{ matrix.chart }} =~ ^charts\/(.*)\/.* ]]; then
-          TYPE="${BASH_REMATCH[1]}"  
+          TYPE="${BASH_REMATCH[1]}"
           case $TYPE in
             stable)
               if [[ ${{ steps.version-parse.outputs.major }} -lt 1 ]]; then
@@ -143,7 +143,7 @@ jobs:
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   check_version_success:
-    needs: 
+    needs:
     - changes-lint
     - check_version
     if: ${{ always() }}
@@ -188,7 +188,7 @@ jobs:
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   lint_success:
-    needs: 
+    needs:
     - changes-lint
     - lint
     if: ${{ always() }}
@@ -200,7 +200,7 @@ jobs:
       run: exit 1
 
   unittest:
-    needs: 
+    needs:
     - lint_success
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
@@ -282,7 +282,7 @@ jobs:
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   install_success:
-    needs: 
+    needs:
     - changes-install
     - install
     if: ${{ always() }}
