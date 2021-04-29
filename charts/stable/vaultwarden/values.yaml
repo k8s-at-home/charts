@@ -1,0 +1,34 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: vaultwarden/server
+  pullPolicy: IfNotPresent
+  tag: latest
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the Vaultwarden documentation
+# https://github.com/dani-garcia/vaultwarden/blob/main/.env.template
+env:
+  # TZ:
+  DATA_FOLDER: "config"
+  IP_HEADER: "X-Real-IP"
+  SIGNUPS_ALLOWED: "true"
+  DOMAIN: "https://bw.domain.tld:8443"
+
+service:
+  port:
+    port: 80
+
+ingress:
+  enabled: false
+
+ persistence:
+   config:
+     enabled: false
