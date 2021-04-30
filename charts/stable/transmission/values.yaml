@@ -5,20 +5,6 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
-# # Use an initContainer to download a custom web ui
-# initContainers:
-# - name: custom-webui
-#   image: curlimages/curl:7.76.1
-#   command:
-#   - "/bin/sh"
-#   - "-c"
-#   - "curl -fsSL -o /tmp/flood-for-transmission.tar.gz https://github.com/johman10/flood-for-transmission/releases/download/latest/flood-for-transmission.tar.gz"
-#   - "mkdir -p /config/flood"
-#   - "tar xf /tmp/flood-for-transmission.tar.gz --strip-components 1 -C /config/flood"
-#   volumeMounts:
-#   - name: config
-#     mountPath: /config
-
 image:
   repository: ghcr.io/k8s-at-home/transmission
   pullPolicy: IfNotPresent
@@ -72,16 +58,6 @@ service:
   #     protocol: UDP
   #     targetport: 51413
 
-## transmission runs the gui and io on the same thread - heavy bandwith usage
-## may stall the UI and result in restarts.
-probes:
-  liveness:
-    spec:
-      timeoutSeconds: 30
-  readiness:
-    spec:
-      timeoutSeconds: 30
-
 ingress:
   enabled: false
 
@@ -117,3 +93,29 @@ persistence:
     emptyDir:
       enabled: false
     mountPath: /watch
+
+## transmission runs the gui and io on the same thread - heavy bandwith usage
+## may stall the UI and result in restarts.
+probes:
+  liveness:
+    spec:
+      timeoutSeconds: 30
+  readiness:
+    spec:
+      timeoutSeconds: 30
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      exec:
+        command:
+        - "bash"
+        - "-c"
+        - curl -fsSL -o /tmp/flood-for-transmission.tar.gz
+          "https://github.com/johman10/flood-for-transmission/releases/download/latest/flood-for-transmission.tar.gz"
+          && mkdir -p /config/flood
+          && tar -xzf /tmp/flood-for-transmission.tar.gz --strip-components 1 -C /config/flood
+      initialDelaySeconds: 0
+      timeoutSeconds: 2
+      periodSeconds: 5
+      failureThreshold: 3
