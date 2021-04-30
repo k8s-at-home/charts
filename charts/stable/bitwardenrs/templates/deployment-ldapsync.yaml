@@ -3,17 +3,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    {{- include "bitwardenrsLdap.labels" . | nindent 4 }}
-  name: {{ include "bitwardenrs.name" . }}-ldap
+    {{- include "bitwardenrs.labels" . | nindent 4 }}
+  name: {{ include "bitwardenrs.fullname" . }}-ldap
 spec:
   selector:
     matchLabels:
-      {{- include "bitwardenrsLdap.selectorLabels" . | nindent 6 }}
+      {{- include "bitwardenrs.selectorLabels.ldapSync" . | nindent 6 }}
   replicas: 1
   template:
     metadata:
       labels:
-        {{- include "bitwardenrsLdap.selectorLabels" . | nindent 8 }}
+        {{- include "bitwardenrs.selectorLabels.ldapSync" . | nindent 8 }}
     spec:
       initContainers:
       containers:

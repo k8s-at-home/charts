@@ -52,17 +52,11 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Ldap labels
+Ldap Sync Selector labels
 */}}
-{{- define "bitwardenrsLdap.labels" -}}
-helm.sh/chart: {{ include "bitwardenrs.chart" . }}
-{{ include "bitwardenrsLdap.selectorLabels" . }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end -}}
-
-{{- define "bitwardenrsLdap.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "bitwardenrs.name" . }}-ldap
-app.kubernetes.io/instance: {{ .Release.Name }}
+{{- define "bitwardenrs.selectorLabels.ldapSync" -}}
+{{ include "bitwardenrs.selectorLabels" . }}
+app.kubernetes.io/component: ldap-sync
 {{- end -}}
 
 {{/*
