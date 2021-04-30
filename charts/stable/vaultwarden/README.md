@@ -1,4 +1,4 @@
-# Vaultwarden
+# vaultwarden
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.20.0](https://img.shields.io/badge/AppVersion-1.20.0-informational?style=flat-square)
 
@@ -18,30 +18,30 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.4.0 |
 
 ## TL;DR
 
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install Vaultwarden k8s-at-home/Vaultwarden
+helm install vaultwarden k8s-at-home/vaultwarden
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `Vaultwarden`
+To install the chart with the release name `vaultwarden`
 
 ```console
-helm install Vaultwarden k8s-at-home/Vaultwarden
+helm install vaultwarden k8s-at-home/vaultwarden
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `Vaultwarden` deployment
+To uninstall the `vaultwarden` deployment
 
 ```console
-helm uninstall Vaultwarden
+helm uninstall vaultwarden
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install Vaultwarden \
+helm install vaultwarden \
   --set env.TZ="America/New York" \
-    k8s-at-home/Vaultwarden
+    k8s-at-home/vaultwarden
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install Vaultwarden k8s-at-home/Vaultwarden -f values.yaml
+helm install vaultwarden k8s-at-home/vaultwarden -f values.yaml
 ```
 
 ## Custom configuration
@@ -75,12 +75,16 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env.DATA_FOLDER | string | `"config"` |  |
+| env.DOMAIN | string | `"https://bw.domain.tld:8443"` |  |
+| env.IP_HEADER | string | `"X-Real-IP"` |  |
+| env.SIGNUPS_ALLOWED | string | `"true"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"${CHARTNAME}/${CHARTNAME}"` |  |
-| image.tag | string | `"1.0.0"` |  |
+| image.repository | string | `"vaultwarden/server"` |  |
+| image.tag | string | `"latest"` |  |
 | ingress.enabled | bool | `false` |  |
-| service.port.port | int | `1880` |  |
+| persistence.config.enabled | bool | `false` |  |
+| service.port.port | int | `80` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
