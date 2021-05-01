@@ -12,7 +12,7 @@ on:
 
 jobs:
   pre-commit-check:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]')"  
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     name: Run pre-commit checks
     runs-on: ubuntu-20.04
     steps:
@@ -137,7 +137,7 @@ jobs:
       run: ct lint --config .github/ct-lint.yaml
 
   unittest:
-    needs: 
+    needs:
     - lint
     - pre-commit-check
     if: |
@@ -220,7 +220,7 @@ jobs:
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   install_success:
-    needs: 
+    needs:
     - changes-install
     - install
     if: ${{ always() }}
