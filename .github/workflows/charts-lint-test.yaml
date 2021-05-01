@@ -13,7 +13,7 @@ on:
 jobs:
   pre-commit-check:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"  
-    name: Detect changes for pre-commit
+    name: Run pre-commit checks on changes
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -136,23 +136,10 @@ jobs:
       id: lint
       run: ct lint --config .github/ct-lint.yaml
 
-  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  lint_success:
-    needs: 
-    - changes-lint
-    - lint
-    if: ${{ always() }}
-    name: Lint successful
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Check lint matrix status
-      if: ${{ !contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-lint.outputs.detected == 'true' && needs.lint.result != 'success' }}
-      run: exit 1
-
   unittest:
     needs: 
+    - lint
     - pre-commit-check
-    - lint_success
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
     name: Run unit tests
@@ -189,7 +176,8 @@ jobs:
   install:
     needs:
     - changes-install
-    - lint_success
+    - lint
+    - pre-commit-check
     if: |
       !contains(github.event.head_commit.message, '[ci-skip]')
       &&
