@@ -23,6 +23,16 @@ jobs:
           addedOrModified:
             - added|modified: '**'
 
-    - uses: pre-commit/action@v2.0.2
+    # run only if changed files were detected
+    - name: Run against changes
+      uses: pre-commit/action@v2.0.2
+      if: steps.filter.outputs.addedOrModified == 'true'
       with:
         extra_args: --files ${{ steps.filter.outputs.addedOrModified_files }}
+
+    # run if no changed files were detected (e.g. workflow_dispatch on master branch)
+    - name: Run against all files
+      uses: pre-commit/action@v2.0.2
+      if: steps.filter.outputs.addedOrModified != 'true'
+      with:
+        extra_args: --all-files
