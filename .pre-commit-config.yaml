@@ -7,15 +7,11 @@ repos:
   - id: end-of-file-fixer
   - id: fix-byte-order-marker
   - id: mixed-line-ending
+  - id: check-merge-conflict
+  - id: check-case-conflict
 
-- repo: local
+- repo: https://github.com/Lucas-C/pre-commit-hooks
+  rev: v1.1.10
   hooks:
-  - id: ct-lint
-    name: "Chart Test: Lint"
-    language: docker_image
-    pass_filenames: false
-    types: ['file']
-    files: '^charts/.*(\.ya?ml|\.tpl|\.helmignore|NOTES.txt)'
-    entry: -u 0 quay.io/helmpack/chart-testing:v3.0.0 ct
-    args:
-    - lint
+  - id: remove-crlf
+  - id: remove-tabs
