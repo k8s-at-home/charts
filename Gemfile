@@ -7,6 +7,6 @@ group :test do
   gem 'minitest', "5.14.4"
   gem 'minitest-implicit-subject'
   gem 'minitest-reporters', "1.4.3"
-  gem 'pry', "0.14.0"
+  gem 'pry', "0.14.1"
   gem 'ruby-jq'
 end

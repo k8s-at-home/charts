@@ -85,10 +85,7 @@ jobs:
   lint:
     needs:
     - changes-lint
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
-      &&
-      needs.changes-lint.outputs.detected == 'true'
+    if: "!contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-lint.outputs.detected == 'true'"
     name: Lint charts
     runs-on: ubuntu-20.04
     steps:
@@ -113,24 +110,10 @@ jobs:
       id: lint
       run: ct lint --config .github/ct-lint.yaml
 
-  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  lint_success:
-    needs: 
-    - changes-lint
-    - lint
-    if: ${{ always() }}
-    name: Lint successful
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Check lint matrix status
-      if: ${{ !contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-lint.outputs.detected == 'true' && needs.lint.result != 'success' }}
-      run: exit 1
-
   unittest:
-    needs: 
-    - lint_success
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
+    needs:
+    - lint
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     name: Run unit tests
     runs-on: ubuntu-20.04
     steps:
@@ -165,11 +148,8 @@ jobs:
   install:
     needs:
     - changes-install
-    - lint_success
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
-      &&
-      needs.changes-install.outputs.detected == 'true'
+    - lint
+    if: "!contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-install.outputs.detected == 'true'"
     name: Install charts
     strategy:
       matrix: ${{ fromJson(needs.changes-install.outputs.matrix) }}
@@ -208,7 +188,7 @@ jobs:
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   install_success:
-    needs: 
+    needs:
     - changes-install
     - install
     if: ${{ always() }}
