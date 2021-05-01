@@ -10,28 +10,6 @@ on:
     - '!charts/**/README_CONFIG.md.gotmpl'
 
 jobs:
-  pre-commit-check:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-    name: Run pre-commit checks
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        list-files: shell
-        filters: |
-          addedOrModified:
-            - added|modified: '**'
-
-    - uses: pre-commit/action@v2.0.2
-      with:
-        extra_args: --files ${{ steps.filter.outputs.addedOrModified_files }}
-
   changes-lint:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     name: Detect changes for linting
@@ -135,7 +113,6 @@ jobs:
   unittest:
     needs:
     - lint
-    - pre-commit-check
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     name: Run unit tests
     runs-on: ubuntu-20.04
@@ -172,7 +149,6 @@ jobs:
     needs:
     - changes-install
     - lint
-    - pre-commit-check
     if: "!contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-install.outputs.detected == 'true'"
     name: Install charts
     strategy:
