@@ -3,7 +3,6 @@ name: "Charts: Lint and test"
 on:
   pull_request:
     paths:
-    - '.github/**'
     - 'charts/**'
     - '!charts/**/README.md'
     - '!charts/**/README.md.gotmpl'
@@ -108,10 +107,7 @@ jobs:
   lint:
     needs:
     - changes-lint
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
-      &&
-      needs.changes-lint.outputs.detected == 'true'
+    if: "!contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-lint.outputs.detected == 'true'"
     name: Lint charts
     runs-on: ubuntu-20.04
     steps:
@@ -140,8 +136,7 @@ jobs:
     needs:
     - lint
     - pre-commit-check
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     name: Run unit tests
     runs-on: ubuntu-20.04
     steps:
@@ -178,10 +173,7 @@ jobs:
     - changes-install
     - lint
     - pre-commit-check
-    if: |
-      !contains(github.event.head_commit.message, '[ci-skip]')
-      &&
-      needs.changes-install.outputs.detected == 'true'
+    if: "!contains(github.event.head_commit.message, '[ci-skip]') && needs.changes-install.outputs.detected == 'true'"
     name: Install charts
     strategy:
       matrix: ${{ fromJson(needs.changes-install.outputs.matrix) }}
