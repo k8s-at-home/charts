@@ -16,12 +16,6 @@ strategy:
 # See more environment variables in the Vaultwarden documentation
 # https://github.com/dani-garcia/vaultwarden/blob/main/.env.template
 
-mariadb:
-  enabled: false
-
-postgresql:
-  enabled: false
-
 
 env:
   # TZ:
@@ -59,3 +53,12 @@ ingress:
 persistence:
   config:
     enabled: false
+
+
+# https://github.com/bitnami/charts/tree/master/bitnami/mariadb/#installing-the-chart
+mariadb:
+  enabled: false
+
+# https://github.com/bitnami/charts/tree/master/bitnami/postgresql/#installing-the-chart
+postgresql:
+  enabled: false
