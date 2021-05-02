@@ -47,7 +47,7 @@ ingress:
         - host: bw.domain.tdl
           paths:
             - path: /notifications/hub
-              pathType: Prefix
+              pathType: Exact
       tls: {}
 
 persistence:
