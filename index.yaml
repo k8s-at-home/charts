@@ -35723,6 +35723,31 @@ entries:
   protonmail-bridge:
   - apiVersion: v2
     appVersion: 1.5.7-1
+    created: "2021-05-02T14:51:38.512253973Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Container for protonmail bridge to work on the network.
+    digest: 852643691ae595a52c752635407eb8c092ac8da9c34c510d5ad1cd331f6754f1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/protonmail-bridge
+    icon: https://raw.githubusercontent.com/ProtonMail/proton-bridge/master/icon.iconset/icon_256x256.png
+    keywords:
+    - protonmail
+    - protonmail-bridge
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: my@email.com
+      name: Eagleman7
+    name: protonmail-bridge
+    sources:
+    - https://github.com/shenxn/protonmail-bridge-docker
+    - https://hub.docker.com/r/shenxn/protonmail-bridge
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/protonmail-bridge-3.3.2/protonmail-bridge-3.3.2.tgz
+    version: 3.3.2
+  - apiVersion: v2
+    appVersion: 1.5.7-1
     created: "2021-04-19T09:01:26.161385164Z"
     dependencies:
     - name: common
@@ -56325,4 +56350,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-02T14:50:59.443742526Z"
+generated: "2021-05-02T14:51:38.524827419Z"
