@@ -47405,6 +47405,35 @@ entries:
   traccar:
   - apiVersion: v2
     appVersion: v4.11
+    created: "2021-05-02T13:05:29.212754877Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.6
+    description: Traccar is an open source GPS tracking system.
+    digest: 2afa3b4e5f76f9b04e5d2a9add71ac6faeadd46f98c87bede2deff4a23e49336
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/traccar
+    icon: https://github.com/traccar/traccar-web/raw/master/web/icon.png
+    keywords:
+    - traccar
+    - gps
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: traccar
+    sources:
+    - https://github.com/traccar/traccar
+    - https://hub.docker.com/r/traccar/traccar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traccar-4.3.2/traccar-4.3.2.tgz
+    version: 4.3.2
+  - apiVersion: v2
+    appVersion: v4.11
     created: "2021-04-19T09:01:30.487372003Z"
     dependencies:
     - name: common
@@ -55953,4 +55982,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-02T12:53:30.844833664Z"
+generated: "2021-05-02T13:05:29.228093492Z"
