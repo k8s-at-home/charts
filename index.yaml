@@ -9918,6 +9918,31 @@ entries:
   flaresolverr:
   - apiVersion: v2
     appVersion: v1.2.3
+    created: "2021-05-02T14:52:38.995635945Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: FlareSolverr is a proxy server to bypass Cloudflare protection
+    digest: 5b3b12da919efb5fab01e5d13a6441955f4906f8acca154a005325ef6033107a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/flaresolverr
+    icon: https://raw.githubusercontent.com/FlareSolverr/FlareSolverr/master/resources/flaresolverr_logo.svg
+    keywords:
+    - flaresolverr
+    - jackett
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: flaresolverr
+    sources:
+    - https://github.com/FlareSolverr/FlareSolverr
+    - https://hub.docker.com/r/flaresolverr/flaresolverr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/flaresolverr-3.3.2/flaresolverr-3.3.2.tgz
+    version: 3.3.2
+  - apiVersion: v2
+    appVersion: v1.2.3
     created: "2021-04-19T09:01:18.537259151Z"
     dependencies:
     - name: common
@@ -16957,33 +16982,6 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/hyperion-ng-1.0.0/hyperion-ng-1.0.0.tgz
     version: 1.0.0
   icantbelieveitsnotvaletudo:
-  - apiVersion: v2
-    appVersion: 2021.2.0
-    created: "2021-05-02T14:52:10.765976284Z"
-    dependencies:
-    - name: common
-      repository: https://library-charts.k8s-at-home.com
-      version: 2.3.1
-    description: Create live map data from Valetudo powered robots
-    digest: 5e13daee6b3a70e72c9f06ff285d73ff4d33270e451ebb0be6715bf1fbb8650d
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/icantbelieveitsnotvaletudo
-    icon: https://raw.githubusercontent.com/Hypfer/Valetudo/master/assets/logo/valetudo_logo_small.svg
-    keywords:
-    - icantbelieveitsnotvaletudo
-    - MQTT
-    - valetudo
-    - iot
-    kubeVersion: '>=1.16.0-0'
-    maintainers:
-    - email: helm@movishell.pl
-      name: ishioni
-    name: icantbelieveitsnotvaletudo
-    sources:
-    - https://github.com/Hypfer/ICantBelieveItsNotValetudo
-    - https://github.com/k8s-at-home/charts/tree/master/charts/icantbelieveitsnotvaletudo
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/icantbelieveitsnotvaletudo-3.3.2/icantbelieveitsnotvaletudo-3.3.2.tgz
-    version: 3.3.2
   - apiVersion: v2
     appVersion: 2021.2.0
     created: "2021-04-19T09:01:20.557853365Z"
@@ -35748,6 +35746,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-1.0.0/prometheus-nut-exporter-1.0.0.tgz
     version: 1.0.0
   protonmail-bridge:
+  - apiVersion: v2
+    appVersion: 1.5.7-1
+    created: "2021-05-02T14:51:38.512253973Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Container for protonmail bridge to work on the network.
+    digest: 852643691ae595a52c752635407eb8c092ac8da9c34c510d5ad1cd331f6754f1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/protonmail-bridge
+    icon: https://raw.githubusercontent.com/ProtonMail/proton-bridge/master/icon.iconset/icon_256x256.png
+    keywords:
+    - protonmail
+    - protonmail-bridge
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: my@email.com
+      name: Eagleman7
+    name: protonmail-bridge
+    sources:
+    - https://github.com/shenxn/protonmail-bridge-docker
+    - https://hub.docker.com/r/shenxn/protonmail-bridge
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/protonmail-bridge-3.3.2/protonmail-bridge-3.3.2.tgz
+    version: 3.3.2
   - apiVersion: v2
     appVersion: 1.5.7-1
     created: "2021-04-19T09:01:26.161385164Z"
@@ -56352,4 +56375,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-02T14:52:10.778863468Z"
+generated: "2021-05-02T14:52:39.007098509Z"
