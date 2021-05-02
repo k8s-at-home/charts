@@ -18469,6 +18469,32 @@ entries:
   jellyfin:
   - apiVersion: v2
     appVersion: 10.7.0
+    created: "2021-05-02T14:40:00.458496356Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Jellyfin is a Free Software Media System
+    digest: 5d75c3e606cc792d7f18ee56d4156d13386ddf8e7bb03b0f51c12bf3d7f9b032
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/Jellyfin
+    icon: https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-solid-black.svg
+    keywords:
+    - jellyfin
+    - plex
+    - emby
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jellyfin
+    sources:
+    - https://hub.docker.com/r/jellyfin/jellyfin
+    - https://github.com/jellyfin/jellyfin
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jellyfin-7.3.2/jellyfin-7.3.2.tgz
+    version: 7.3.2
+  - apiVersion: v2
+    appVersion: 10.7.0
     created: "2021-04-19T09:01:20.886271638Z"
     dependencies:
     - name: common
@@ -55982,4 +56008,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-02T13:05:29.228093492Z"
+generated: "2021-05-02T14:40:00.467720683Z"
