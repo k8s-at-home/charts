@@ -551,6 +551,33 @@ entries:
   alertmanager-bot:
   - apiVersion: v2
     appVersion: 0.4.2
+    created: "2021-05-02T14:46:28.324468931Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Bot for Prometheus Alertmanager
+    digest: 4f4b66e4d288dec5bbdd4cb4d8d1d816cc55e6d21e8adc2cc1c69552e3963cd9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/alertmanager-bot
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - alertmanager
+    - telegram
+    - bot
+    - alerting
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: alertmanager-bot
+    sources:
+    - https://hub.docker.com/r/metalmatze/alertmanager-bot
+    - https://github.com/metalmatze/alertmanager-bot
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/alertmanager-bot-4.3.2/alertmanager-bot-4.3.2.tgz
+    version: 4.3.2
+  - apiVersion: v2
+    appVersion: 0.4.2
     created: "2021-04-19T09:01:16.011685937Z"
     dependencies:
     - name: common
@@ -56135,4 +56162,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-02T14:45:44.387675177Z"
+generated: "2021-05-02T14:46:28.335763634Z"
