@@ -25,9 +25,24 @@ env:
 service:
   port:
     port: 80
+    name: www
+  additionalPorts:
+    port:
+      port: 3012
+      name: websocket
 
 ingress:
   enabled: false
+  hosts:
+    - host: bw.domain.tdl
+      paths:
+        - path: /
+          pathType: Prefix
+        - path: /notifications/hub
+          pathType: Prefix
+          servicePort: 3012
+  tls: {}
+
 
 persistence:
   config:
