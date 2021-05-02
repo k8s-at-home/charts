@@ -1,6 +1,6 @@
 # oauth2-proxy
 
-![Version: 5.0.3](https://img.shields.io/badge/Version-5.0.3-informational?style=flat-square) ![AppVersion: 7.0.1](https://img.shields.io/badge/AppVersion-7.0.1-informational?style=flat-square)
+![Version: 5.0.4](https://img.shields.io/badge/Version-5.0.4-informational?style=flat-square) ![AppVersion: 7.0.1](https://img.shields.io/badge/AppVersion-7.0.1-informational?style=flat-square)
 
 A reverse proxy that provides authentication with Google, Github or other providers
 
@@ -208,6 +208,21 @@ Due to [this issue](https://github.com/helm/helm/issues/6583) there may be error
 
 - N/A
 
+### [5.0.4]
+
+#### Added
+
+- Added icon url.
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[5.0.4]: #5.0.4
 [5.0.1]: #5.0.1
 
 ## Support
