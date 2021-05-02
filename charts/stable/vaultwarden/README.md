@@ -84,7 +84,7 @@ N/A
 | ingress.additionalIngresses[0].enabled | bool | `false` |  |
 | ingress.additionalIngresses[0].hosts[0].host | string | `"bw.domain.tdl"` |  |
 | ingress.additionalIngresses[0].hosts[0].paths[0].path | string | `"/notifications/hub"` |  |
-| ingress.additionalIngresses[0].hosts[0].paths[0].pathType | string | `"Prefix"` |  |
+| ingress.additionalIngresses[0].hosts[0].paths[0].pathType | string | `"Exact"` |  |
 | ingress.additionalIngresses[0].nameSuffix | string | `"websocket"` |  |
 | ingress.additionalIngresses[0].servicePort | int | `3012` |  |
 | ingress.additionalIngresses[0].tls | object | `{}` |  |
@@ -112,7 +112,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- Initial version
+- Initial version, Succeding Bitwarden_RS.
 
 #### Changed
 
