@@ -1,6 +1,6 @@
 # jellyfin
 
-![Version: 7.2.0](https://img.shields.io/badge/Version-7.2.0-informational?style=flat-square) ![AppVersion: 10.7.0](https://img.shields.io/badge/AppVersion-10.7.0-informational?style=flat-square)
+![Version: 7.3.2](https://img.shields.io/badge/Version-7.3.2-informational?style=flat-square) ![AppVersion: 10.7.0](https://img.shields.io/badge/AppVersion-10.7.0-informational?style=flat-square)
 
 Jellyfin is a Free Software Media System
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -97,6 +97,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [7.3.2]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Updated broken icon url.
+
+#### Removed
+
+- N/A
+
 ### [6.0.0]
 
 #### Migration !breaking changes!
@@ -134,6 +148,9 @@ Drop browser cache and cookies for your jellyfin URL!
 #### Changed
 
 - Replaced LinuxServer.io image with official
+
+[7.3.2]: #7.3.2
+[6.0.0]: #6.0.0
 
 ## Support
 
