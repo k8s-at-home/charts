@@ -10864,6 +10864,34 @@ entries:
   focalboard:
   - apiVersion: v2
     appVersion: 0.6.5
+    created: "2021-05-02T08:24:06.488063712Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Focalboard is an open source, self-hosted alternative to Trello,
+      Notion, and Asana.
+    digest: f152f39c17d6b5b107050c44a17cf0976815655c910034d9230ce244584cf968
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/focalboard
+    icon: https://github.com/mattermost/focalboard/raw/main/webapp/static/favicon.svg
+    keywords:
+    - focalboard
+    - kanban
+    - project management
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: dennis.zhang.nrg@gmail.com
+      name: FlipEnergy
+    name: focalboard
+    sources:
+    - https://www.focalboard.com/
+    - https://github.com/mattermost/focalboard
+    - https://github.com/FlipEnergy/container-images/blob/main/focalboard
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/focalboard-1.0.2/focalboard-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 0.6.5
     created: "2021-04-21T23:51:59.02717515Z"
     dependencies:
     - name: common
@@ -10919,6 +10947,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/focalboard-1.0.0/focalboard-1.0.0.tgz
     version: 1.0.0
   freshrss:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2021-05-02T08:24:06.968172582Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: FreshRSS is a self-hosted RSS feed aggregator
+    digest: d750413565ffbf8278f81e916614b69cad45374e60a2bbcc0ea5736f3bc0138e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/freshrss
+    icon: https://avatars.githubusercontent.com/u/9414285?s=200&v=4
+    keywords:
+    - freshrss
+    - rss
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nathan@nathanpawelek.com
+      name: npawelek
+    name: freshrss
+    sources:
+    - https://github.com/FreshRSS/FreshRSS
+    - https://hub.docker.com/r/linuxserver/freshrss
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/freshrss-4.3.2/freshrss-4.3.2.tgz
+    version: 4.3.2
   - apiVersion: v2
     appVersion: 1.17.0
     created: "2021-04-19T09:01:18.877043051Z"
@@ -21426,6 +21479,33 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/lidarr-1.0.0/lidarr-1.0.0.tgz
     version: 1.0.0
   lychee:
+  - apiVersion: v2
+    appVersion: 4.0.8
+    created: "2021-05-02T08:24:07.48898893Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Lychee is a free photo-management tool, which runs on your server
+      or web-space
+    digest: 369b74051ba13cd8bd16d2a7fafca7b3c3aef5237fdb2d6532c962c82936229b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lychee
+    icon: https://avatars.githubusercontent.com/u/37916028?s=200&v=4
+    keywords:
+    - lychee
+    - photo
+    - pictures
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: lychee
+    sources:
+    - https://github.com/LycheeOrg/Lychee
+    - https://hub.docker.com/r/lycheeorg/lychee
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lychee-4.3.2/lychee-4.3.2.tgz
+    version: 4.3.2
   - apiVersion: v2
     appVersion: 4.0.8
     created: "2021-04-19T09:01:22.08585387Z"
@@ -44939,6 +45019,31 @@ entries:
   syncthing:
   - apiVersion: v2
     appVersion: 1.15.1
+    created: "2021-05-02T08:24:07.967784192Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    description: Open Source Continuous File Synchronization
+    digest: cc72277ab3fa0d6dceac648188456acab123cc90a1f1849989f6c6f32cfce22c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/syncthing
+    icon: https://github.com/syncthing/syncthing/raw/main/assets/logo-128.png
+    keywords:
+    - syncthing
+    - file sync
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: dennis.zhang.nrg@gmail.com
+      name: FlipEnergy
+    name: syncthing
+    sources:
+    - https://syncthing.net/
+    - https://github.com/syncthing/syncthing
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/syncthing-1.1.2/syncthing-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v2
+    appVersion: 1.15.1
     created: "2021-04-19T09:01:29.599171118Z"
     dependencies:
     - name: common
@@ -49253,6 +49358,28 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/tvheadend-1.0.0/tvheadend-1.0.0.tgz
     version: 1.0.0
   unifi:
+  - apiVersion: v2
+    appVersion: 6.0.45
+    created: "2021-05-02T08:24:08.431129949Z"
+    description: Ubiquiti Network's Unifi Controller
+    digest: 724e4840e17f0180b0d30705c974c8f9b78e4eeea123baad71d2454fe07e536d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi
+    icon: https://prd-www-cdn.ubnt.com/static/favicon-152.png
+    keywords:
+    - ubiquiti
+    - unifi
+    - mongodb
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: mike@quadra-tec.net
+      name: mcronce
+    name: unifi
+    sources:
+    - https://github.com/jacobalberty/unifi-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-2.0.1/unifi-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: 6.0.45
     created: "2021-04-07T21:09:54.024961384Z"
@@ -55790,4 +55917,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-04-26T15:06:40.024124691Z"
+generated: "2021-05-02T08:24:08.441787821Z"
