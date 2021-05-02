@@ -18,6 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.9 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.0 |
 | https://library-charts.k8s-at-home.com | common | 2.4.0 |
 
 ## TL;DR
@@ -76,14 +78,27 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env.DATA_FOLDER | string | `"config"` |  |
-| env.DOMAIN | string | `"https://bw.domain.tld:8443"` |  |
-| env.IP_HEADER | string | `"X-Real-IP"` |  |
-| env.SIGNUPS_ALLOWED | string | `"true"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"vaultwarden/server"` |  |
 | image.tag | string | `"latest"` |  |
+| ingress.additionalIngresses[0].enabled | bool | `false` |  |
+| ingress.additionalIngresses[0].hosts[0].host | string | `"bw.domain.tdl"` |  |
+| ingress.additionalIngresses[0].hosts[0].paths[0].path | string | `"/notifications/hub"` |  |
+| ingress.additionalIngresses[0].hosts[0].paths[0].pathType | string | `"Prefix"` |  |
+| ingress.additionalIngresses[0].nameSuffix | string | `"websocket"` |  |
+| ingress.additionalIngresses[0].servicePort | int | `3012` |  |
+| ingress.additionalIngresses[0].tls | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
+| ingress.hosts[0].host | string | `"bw.domain.tdl"` |  |
+| ingress.hosts[0].paths[0].path | string | `"/"` |  |
+| ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
+| ingress.tls | object | `{}` |  |
+| mariadb.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
+| postgresql.enabled | bool | `false` |  |
+| service.additionalPorts.port.name | string | `"websocket"` |  |
+| service.additionalPorts.port.port | int | `3012` |  |
+| service.port.name | string | `"www"` |  |
 | service.port.port | int | `80` |  |
 | strategy.type | string | `"Recreate"` |  |
 
