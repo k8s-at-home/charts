@@ -51839,6 +51839,42 @@ entries:
   wallabag:
   - apiVersion: v2
     appVersion: 2.4.1
+    created: "2021-05-02T12:53:30.83581061Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.3.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.1.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.15
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.6
+    description: A self hostable application for saving web pages, freely.
+    digest: ddda46aada96b80aa3a8e9d71ed0e592554be0907e01bf787cdae6b36fed5717
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wallabag
+    icon: https://raw.githubusercontent.com/wallabag/logo/master/app-android/logo-app-android-icon-bg-white-512.png
+    keywords:
+    - wallabag
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: wallabag
+    sources:
+    - https://github.com/wallabag/docker
+    - https://hub.docker.com/wallabag/wallabag
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/wallabag-2.4.1/wallabag-2.4.1.tgz
+    version: 2.4.1
+  - apiVersion: v2
+    appVersion: 2.4.1
     created: "2021-04-26T15:06:40.014580669Z"
     dependencies:
     - name: common
@@ -55917,4 +55953,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-02T08:24:08.441787821Z"
+generated: "2021-05-02T12:53:30.844833664Z"
