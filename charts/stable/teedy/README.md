@@ -1,6 +1,6 @@
 # teedy
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
+![Version: 3.4.1](https://img.shields.io/badge/Version-3.4.1-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
 
 Teedy is an open source, lightweight document management system for individuals and businesses.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.0 |
+| https://library-charts.k8s-at-home.com | common | 2.3.1 |
 
 ## TL;DR
 
@@ -99,6 +99,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [3.4.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Updated icon url.
+
+#### Removed
+
+- N/A
+
 ### [1.0.0]
 
 #### Added
@@ -113,7 +127,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[3.4.1]: #341
+[1.0.0]: #100
 
 ## Support
 
