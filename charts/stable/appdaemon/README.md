@@ -1,6 +1,6 @@
 # appdaemon
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 4.0.8](https://img.shields.io/badge/AppVersion-4.0.8-informational?style=flat-square)
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: 4.0.8](https://img.shields.io/badge/AppVersion-4.0.8-informational?style=flat-square)
 
 AppDaemon is a loosely coupled, multi-threaded, sandboxed python execution environment for writing automation apps for various types of Home Automation Software including Home Assistant and MQTT.
 
@@ -92,6 +92,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [5.0.1]
+
+#### Added
+
+- Added icon url.
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
 ### [1.0.0]
 
 #### Added
@@ -106,7 +120,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[5.0.1]: #501
+[1.0.0]: #100
 
 ## Support
 
