@@ -37,18 +37,12 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+        - path: /notifications/hub/negotiate
+          pathType: Prefix
+        - path: /notifications/hub
+          pathType: Prefix
+          servicePort: 3012
   tls: {}
-  # Additional ingress required for websockets until https://github.com/k8s-at-home/library-charts/issues/31 is resolved
-  additionalIngresses:
-    - enabled: false
-      nameSuffix: "websocket"
-      servicePort: 3012
-      hosts:
-        - host: bw.domain.tdl
-          paths:
-            - path: /notifications/hub
-              pathType: Exact
-      tls: {}
 
 persistence:
   config:
