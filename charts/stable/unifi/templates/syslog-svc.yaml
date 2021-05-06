@@ -1,4 +1,4 @@
-{{ if not .Values.syslogService.enabled }}
+{{ if .Values.syslogService.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
