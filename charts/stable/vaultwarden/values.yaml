@@ -32,17 +32,17 @@ service:
 
 ingress:
   enabled: false
-  hosts:
-    - host: bw.domain.tdl
-      paths:
-        - path: /
-          pathType: Prefix
-        - path: /notifications/hub/negotiate
-          pathType: Prefix
-        - path: /notifications/hub
-          pathType: Prefix
-          servicePort: 3012
-  tls: {}
+#   hosts:
+#     - host: bw.domain.tdl
+#       paths:
+#         - path: /
+#           pathType: Prefix
+#         - path: /notifications/hub/negotiate
+#           pathType: Prefix
+#         - path: /notifications/hub
+#           pathType: Prefix
+#           servicePort: 3012
+#   tls: {}
 
 persistence:
   config:
@@ -54,7 +54,22 @@ persistence:
 # https://github.com/bitnami/charts/tree/master/bitnami/mariadb/#installing-the-chart
 mariadb:
   enabled: false
+  # primary:
+  #   persistence:
+  #     enabled: true
+  # auth:
+  #   username: "username"
+  #   password: "password"
+  #   database: database
 
 # https://github.com/bitnami/charts/tree/master/bitnami/postgresql/#installing-the-chart
 postgresql:
   enabled: false
+  # postgresqlUsername: ""
+  # postgresqlPassword: ""
+  # postgresqlDatabase: ""
+  # persistence:
+  #   enabled: true
+  #   storageClass:
+  #   accessModes:
+  #     - ReadWriteOnce
