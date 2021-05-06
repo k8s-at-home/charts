@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.9 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.5.9 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.0 |
 | https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
@@ -80,18 +80,10 @@ N/A
 | env.DATA_FOLDER | string | `"config"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"vaultwarden/server"` |  |
-| image.tag | string | `"latest"` |  |
+| image.tag | string | `"1.21.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| ingress.hosts[0].host | string | `"bw.domain.tdl"` |  |
-| ingress.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
-| ingress.hosts[0].paths[1].path | string | `"/notifications/hub/negotiate"` |  |
-| ingress.hosts[0].paths[1].pathType | string | `"Prefix"` |  |
-| ingress.hosts[0].paths[2].path | string | `"/notifications/hub"` |  |
-| ingress.hosts[0].paths[2].pathType | string | `"Prefix"` |  |
-| ingress.hosts[0].paths[2].servicePort | int | `3012` |  |
-| ingress.tls | object | `{}` |  |
 | mariadb.enabled | bool | `false` |  |
+| persistence.config.emptydir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | postgresql.enabled | bool | `false` |  |
 | service.additionalPorts.port.name | string | `"websocket"` |  |
