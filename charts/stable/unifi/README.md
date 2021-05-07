@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 6.0.45](https://img.shields.io/badge/AppVersion-6.0.45-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: 6.0.45](https://img.shields.io/badge/AppVersion-6.0.45-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -218,6 +218,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### [2.0.1]
 
+#### Fixed
+
+- Separate syslog service is only created when enabled and unifiedService is disabled.
+
+### [2.0.1]
+
 #### Added
 
 - N/A
@@ -244,6 +250,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[2.0.2]: #2.0.2
 [2.0.1]: #2.0.1
 [1.5.3]: #1.5.3
 
