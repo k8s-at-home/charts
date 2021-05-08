@@ -32656,6 +32656,39 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/ombi-2.0.1/ombi-2.0.1.tgz
     version: 2.0.1
+  openemr:
+  - apiVersion: v2
+    appVersion: 6.0.0
+    created: "2021-05-08T22:24:01.00641524Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.5.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.9
+    description: OpenEMR is the most popular open source electronic health records
+      and medical practice management solution.
+    digest: 2630059394946d33a10510ca3b1230a1bd625639743fca71ae466281059fee1d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openemr
+    icon: https://avatars.githubusercontent.com/u/283089?s=200&v=4
+    keywords:
+    - openemr
+    - health
+    - medical
+    - healthcare
+    - emr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: openemr
+    sources:
+    - https://github.com/openemr/openemr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/openemr-1.0.0/openemr-1.0.0.tgz
+    version: 1.0.0
   organizr:
   - apiVersion: v2
     appVersion: latest
@@ -60376,4 +60409,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-08T22:16:41.450296458Z"
+generated: "2021-05-08T22:24:01.018910643Z"
