@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 1.3.2
+description: Central Management of TrueNAS storage systems
+name: truecommand
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- storage
+- truenas
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/truecommand
+icon: https://www.ixsystems.com/documentation/truecommand/1.2/_static/tv-logo.png
+sources:
+- https://www.truenas.com/truecommand
+- https://hub.docker.com/r/ixsystems/truecommand
+maintainers:
+- name: ornias1993
+  email: kjeld@schouten-lebbing.nl
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.5.0
