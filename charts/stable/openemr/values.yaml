@@ -1,0 +1,63 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: openemr/openemr
+  pullPolicy: IfNotPresent
+  tag: 6.0.0
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the openemr documentation
+# https://github.com/openemr/openemr/blob/master/docker/production/docker-compose.yml
+env: {}
+  # TZ:
+  # MYSQL_HOST: openemr-mariadb
+  # MYSQL_ROOT_PASS: openemrrootpass
+  # MYSQL_USER: openemr
+  # MYSQL_PASS: openemr-pass
+  # OE_USER: admin
+  # OE_PASS: pass
+
+service:
+  port:
+    port: 80
+  additionalPorts:
+    - name: websocket
+      port: 443
+
+ingress:
+  enabled: false
+
+persistence:
+  log:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /var/log
+  sites:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /var/www/localhost/htdocs/openemr/sites
+
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: false
+  # architecture: standalone
+  # auth:
+  #   database: openemr
+  #   username: openemr
+  #   password: openemr-pass
+  #   rootPassword: openemrrootpass
+  # primary:
+  #   persistence:
+  #     enabled: false
+  #     storageClass: ""
+  # fullnameOverride: openemr-mariadb

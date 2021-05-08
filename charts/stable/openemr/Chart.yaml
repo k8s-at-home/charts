@@ -1,0 +1,28 @@
+---
+apiVersion: v2
+appVersion: 6.0.0
+description: OpenEMR is the most popular open source electronic health records and medical practice management solution.
+name: openemr
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - openemr
+  - health
+  - medical
+  - healthcare
+  - emr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openemr
+icon: https://avatars.githubusercontent.com/u/283089?s=200&v=4
+sources:
+  - https://github.com/openemr/openemr
+maintainers:
+  - name: nicholaswilde
+    email: ncwilde43@gmail.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 2.5.0
+  - name: mariadb
+    version: 9.3.9
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled

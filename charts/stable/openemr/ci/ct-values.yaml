@@ -1,0 +1,27 @@
+---
+env:
+  MYSQL_HOST: openemr-mariadb
+  MYSQL_ROOT_PASS: openemrrootpass
+  MYSQL_USER: openemr
+  MYSQL_PASS: openemr-pass
+  OE_USER: admin
+  OE_PASS: pass
+
+ingress:
+  enabled: true
+
+fullnameOverride: openemr
+
+mariadb:
+  enabled: true
+  architecture: standalone
+  auth:
+    database: openemr
+    username: openemr
+    password: openemr-pass
+    rootPassword: openemrrootpass
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
+  fullnameOverride: openemr-mariadb
