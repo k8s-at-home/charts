@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
+![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
 
 Transmission is a cross-platform BitTorrent client
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.4.0 |
 
 ## TL;DR
 
