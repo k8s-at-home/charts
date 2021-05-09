@@ -1217,6 +1217,35 @@ entries:
   appdaemon:
   - apiVersion: v2
     appVersion: 4.0.8
+    created: "2021-05-09T07:41:03.090692168Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.5.0
+    description: AppDaemon is a loosely coupled, multi-threaded, sandboxed python
+      execution environment for writing automation apps for various types of Home
+      Automation Software including Home Assistant and MQTT.
+    digest: 953293fe653e8d42c4d910f1662fc98b8b57c5ca516358cb2831fc56850fa829
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/appdaemon
+    icon: https://avatars.githubusercontent.com/u/67876516?s=200&v=4
+    keywords:
+    - appdaemon
+    - home-automation
+    - home-assistant
+    - mqtt
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: appdaemon
+    sources:
+    - https://github.com/AppDaemon/appdaemon
+    - https://hub.docker.com/r/acockburn/appdaemon/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/appdaemon-6.0.0/appdaemon-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
+    appVersion: 4.0.8
     created: "2021-05-05T14:51:13.969621303Z"
     dependencies:
     - name: common
@@ -60409,4 +60438,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-08T22:24:01.018910643Z"
+generated: "2021-05-09T07:41:03.102415505Z"
