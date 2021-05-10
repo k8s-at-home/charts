@@ -1,6 +1,6 @@
 # intel-gpu-plugin
 
-![Version: 1.2.3](https://img.shields.io/badge/Version-1.2.3-informational?style=flat-square) ![AppVersion: 0.20.0](https://img.shields.io/badge/AppVersion-0.20.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 0.20.0](https://img.shields.io/badge/AppVersion-0.20.0-informational?style=flat-square)
 
 The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware
 
@@ -16,6 +16,7 @@ The Intel GPU plugin facilitates offloading the processing of computation intens
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -86,30 +87,57 @@ affinity:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
-| fullnameOverride | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
-| image.repository | string | `"intel/intel-gpu-plugin"` | Image repository |
-| image.tag | string | `"0.20.0"` | Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags) |
-| imagePullSecrets | list | `[]` |  |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
-| podAnnotations | object | `{}` | Key-value pairs to add as pod annotations |
-| podSecurityContext | object | `{}` |  |
-| resources | object | `{}` |  |
-| securityContext | object | `{}` |  |
-| serviceAccount.annotations | object | `{}` |  |
+| args[0] | string | `"-shared-dev-num"` |  |
+| args[1] | string | `"1"` |  |
+| controllerType | string | `"daemonset"` |  |
+| envValueFrom.NODE_NAME.fieldRef.fieldPath | string | `"spec.nodeName"` |  |
+| hostPathMounts[0].emptyDir | bool | `false` |  |
+| hostPathMounts[0].enabled | bool | `true` |  |
+| hostPathMounts[0].hostPath | string | `"/dev/dri"` |  |
+| hostPathMounts[0].mountPath | string | `"/dev/dri"` |  |
+| hostPathMounts[0].name | string | `"devfs"` |  |
+| hostPathMounts[0].readOnly | bool | `true` |  |
+| hostPathMounts[1].emptyDir | bool | `false` |  |
+| hostPathMounts[1].enabled | bool | `true` |  |
+| hostPathMounts[1].hostPath | string | `"/sys/class/drm"` |  |
+| hostPathMounts[1].mountPath | string | `"/sys/class/drm"` |  |
+| hostPathMounts[1].name | string | `"sysfs"` |  |
+| hostPathMounts[1].readOnly | bool | `true` |  |
+| hostPathMounts[2].emptyDir | bool | `false` |  |
+| hostPathMounts[2].enabled | bool | `true` |  |
+| hostPathMounts[2].hostPath | string | `"/var/lib/kubelet/device-plugins"` |  |
+| hostPathMounts[2].mountPath | string | `"/var/lib/kubelet/device-plugins"` |  |
+| hostPathMounts[2].name | string | `"kubeletsockets"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"intel/intel-gpu-plugin"` |  |
+| image.tag | string | `"0.20.0"` |  |
+| ingress.enabled | bool | `false` |  |
+| probes.liveness.enabled | bool | `false` |  |
+| probes.readiness.enabled | bool | `false` |  |
+| probes.startup.enabled | bool | `false` |  |
+| service.enabled | bool | `false` |  |
 | serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
-| sharedDeviceNumber | int | 1 | Number of containers sharing the same GPU device |
-| strategyType | string | `"Recreate"` | Specifies the strategy used to replace old Pods by new ones |
-| tolerations | list | `[]` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING** Migrate to the common library, a lot of configuration has changed.
+
+#### Removed
+
+- N/A
 
 ### [1.2.0]
 
@@ -145,9 +173,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.2.0]: #1.2.0
-[1.1.0]: #1.1.0
-[1.0.1]: #1.0.1
+[2.0.0]: #200
+[1.2.0]: #120
+[1.1.0]: #110
+[1.0.1]: #101
 
 ## Support
 
