@@ -1,6 +1,6 @@
 # wikijs
 
-![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 2.5.191](https://img.shields.io/badge/AppVersion-2.5.191-informational?style=flat-square)
+![Version: 4.4.1](https://img.shields.io/badge/Version-4.4.1-informational?style=flat-square) ![AppVersion: 2.5.191](https://img.shields.io/badge/AppVersion-2.5.191-informational?style=flat-square)
 
 Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -89,9 +89,6 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"linuxserver/wikijs"` |  |
 | image.tag | string | `"version-2.5.191"` |  |
-| ingress."ingress.hosts[0].host" | string | `"chart-example.local"` |  |
-| ingress."ingress.hosts[0].paths[0].path" | string | `"/"` |  |
-| ingress."ingress.hosts[0].paths[0].pathType" | string | `"Prefix"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
 | persistence.config.emptyDir.enabled | bool | `false` |  |
@@ -111,21 +108,23 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [0.0.1]
+### [4.4.1]
 
 #### Added
 
-- First version of the helm chart for wikijs
+- N/A
 
 #### Changed
 
-- N/A
+- Updated icon url.
 
 #### Removed
 
-- N/A
+- `ingress.hosts[0].host: "chart-example.local"`
+- `ingress.hosts[0].paths[0].path: "/"`
+- `ingress.hosts[0].paths[0].pathType: "Prefix"`
 
-[0.0.1]: #0.0.1
+[4.4.1]: #441
 
 ## Support
 
