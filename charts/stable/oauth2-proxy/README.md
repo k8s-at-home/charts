@@ -68,7 +68,7 @@ helm install oauth2-proxy k8s-at-home/oauth2-proxy -f values.yaml
 
 ### SSL Configuration
 
-See: [SSL Configuration](https://pusher.github.io/oauth2_proxy/tls-configuration).
+See: [SSL Configuration](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/tls).
 Use ```values.yaml``` like:
 
 ```yaml
@@ -105,11 +105,11 @@ data:
 |-----|------|---------|-------------|
 | affinity | object | `{}` | node/pod affinities Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity |
 | authenticatedEmailsFile.enabled | bool | `false` | Enables authorize individual email addresses |
-| authenticatedEmailsFile.restricted_access | string | `""` | [email addresses](https://github.com/pusher/oauth2_proxy#email-authentication) list config |
+| authenticatedEmailsFile.restricted_access | string | `""` | [email addresses](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider#email-authentication) list config |
 | authenticatedEmailsFile.template | string | `""` | Name of the configmap that is handled outside of that chart It's a simpler way to maintain only one configmap (user list) instead changing it for each oauth2-proxy service. Be aware the value name in the extern config map in data needs to be named to "restricted_user_access". One email per line example: restricted_access: |-   name1@domain   name2@domain If you override the config with restricted_access it will configure a user list within this chart what takes care of the config map resource. |
 | config.clientID | string | `"XXXXXXX"` | OAuth client ID |
 | config.clientSecret | string | `"XXXXXXXX"` | OAuth client secret |
-| config.configFile | string | `"email_domains = [ \"*\" ]\nupstreams = [ \"file:///dev/null\" ]"` | google service account json contents serviceAccountJson: xxxx -- Alternatively, use an existing secret (see google-secret.yaml for required fields) existingSecret: google-secret -- custom [oauth2_proxy.cfg](https://github.com/pusher/oauth2_proxy/blob/master/contrib/oauth2_proxy.cfg.example) contents for settings not overridable via environment nor command line |
+| config.configFile | string | `"email_domains = [ \"*\" ]\nupstreams = [ \"file:///dev/null\" ]"` | google service account json contents serviceAccountJson: xxxx -- Alternatively, use an existing secret (see google-secret.yaml for required fields) existingSecret: google-secret -- custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings not overridable via environment nor command line |
 | config.cookieSecret | string | `"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"` | server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64` |
 | config.existingConfig | string | `nil` | xisting Kubernetes configmap to use for the configuration file. See [config template](https://github.com/helm/charts/blob/master/stable/oauth2-proxy/templates/configmap.yaml) for the required values |
 | config.google | object | `{}` |  |
@@ -118,7 +118,7 @@ data:
 | extraVolumeMounts | list | `[]` | list of extra volumeMounts |
 | extraVolumes | list | `[]` | list of extra volumes |
 | htpasswdFile.enabled | bool | `false` | enable htpasswd-file option |
-| htpasswdFile.entries | object | `{}` | list of [SHA encrypted user:passwords](https://pusher.github.io/oauth2_proxy/configuration#command-line-options) |
+| htpasswdFile.entries | object | `{}` | list of [SHA encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/configuration#command-line-options) |
 | htpasswdFile.existingSecret | string | `""` | existing Kubernetes secret to use for OAuth2 htpasswd file |
 | httpScheme | string | `"http"` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
@@ -166,7 +166,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- This version upgrade oauth2-proxy to v4.0.0. Please see the [changelog](https://github.com/pusher/oauth2_proxy/blob/v4.0.0/CHANGELOG.md#v400) in order to upgrade.
+- This version upgrade oauth2-proxy to v4.0.0. Please see the [changelog](https://github.com/oauth2-proxy/oauth2-proxy/blob/v4.0.0/CHANGELOG.md#v400) in order to upgrade.
 
 ### [2.0.0]
 
