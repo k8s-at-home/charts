@@ -22,5 +22,12 @@ service:
   port:
     port: 9705
 
+# enable a prometheus-operator servicemonitor
+prometheus:
+  serviceMonitor:
+    enabled: false
+    interval: 1m
+    additionalLabels: {}
+
 ingress:
   enabled: false
