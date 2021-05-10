@@ -1,61 +1,61 @@
-# Default values for intel-gpu-plugin.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
-  # -- Image repository
   repository: intel/intel-gpu-plugin
-  # -- Image pull policy
   pullPolicy: IfNotPresent
-  # -- Image tag. Possible values listed [here](https://hub.docker.com/r/intel/intel-gpu-plugin/tags)
   tag: 0.20.0
 
-# -- Specifies the strategy used to replace old Pods by new ones
-strategyType: Recreate
+controllerType: daemonset
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+strategy:
+  type: Recreate
 
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
 
-# -- Number of containers sharing the same GPU device
-# @default -- 1
-sharedDeviceNumber: 1
+args:
+  - -shared-dev-num
+  - "1"
 
-# -- Key-value pairs to add as pod annotations
-podAnnotations: {}
+envValueFrom:
+  NODE_NAME:
+    fieldRef:
+      fieldPath: spec.nodeName
 
-podSecurityContext: {}
-  # fsGroup: 2000
+hostPathMounts:
+  - name: "devfs"
+    enabled: true
+    emptyDir: false
+    mountPath: "/dev/dri"
+    hostPath: "/dev/dri"
+    readOnly: true
+  - name: "sysfs"
+    enabled: true
+    emptyDir: false
+    mountPath: "/sys/class/drm"
+    hostPath: "/sys/class/drm"
+    readOnly: true
+  - name: "kubeletsockets"
+    enabled: true
+    emptyDir: false
+    mountPath: "/var/lib/kubelet/device-plugins"
+    hostPath: "/var/lib/kubelet/device-plugins"
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+ingress:
+  enabled: false
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+service:
+  enabled: false
 
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
