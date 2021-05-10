@@ -47,9 +47,6 @@ service:
 ingress:
   # enable this if you would like to access you wiki
   enabled: false
-  ingress.hosts[0].host: "chart-example.local"
-  ingress.hosts[0].paths[0].path: "/"
-  ingress.hosts[0].paths[0].pathType: "Prefix"
 
 persistence:
   config:
