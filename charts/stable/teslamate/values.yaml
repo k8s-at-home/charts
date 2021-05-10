@@ -1,101 +1,50 @@
-replicaCount: 1
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
   repository: teslamate/teslamate
   tag: 1.22.0
   pullPolicy: IfNotPresent
 
-nameOverride: ""
-fullnameOverride: ""
+strategy:
+  type: Recreate
 
-timeZone: UTC
-
-mqtt:
-  enabled: false
-
-  # mqtt broker hostname - REQUIRED if mqtt is enabled
-  host:
-
-  username:
-  password:
-
-  # Enables TLS if true
-  tls:
-  # Accepts invalid certificates if true
-  tlsAcceptInvalid:
-
-# Configures whether to check the origin header or not.
-checkOrigin: false
-
-# Host part used for generating URLs throughout the app
-virtualHost:
-
-# valid values are 'en' or 'de'
-locale: en
-
-# Probes configuration
-probes:
-  liveness:
-    failureThreshold: 15
-    periodSeconds: 10
-  readiness:
-    failureThreshold: 15
-    periodSeconds: 10
-  startup:
-    initialDelaySeconds: 15
-    failureThreshold: 30
-    periodSeconds: 10
+# See more environment variables in the teslamate documentation
+# https://docs.teslamate.org/docs/configuration/environment_variables
+env: {}
+  # TZ:
+  # DATABASE_USER: "postgres"
+  # DATABASE_PASS: "teslamate-pass"
+  # DATABASE_NAME: "teslamate"
+  # DATABASE_HOST: teslamate-postgresql
+  # DISABLE_MQTT: "true"
 
 service:
-  type: ClusterIP
-  port: 4000
+  port:
+    port: 4000
 
 ingress:
   enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+persistence:
+  import:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /opt/app/import
 
 # Configuration values for the postgresql dependency.
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 postgresql:
-  enabled: true
-  postgresqlUsername: teslamate
-  postgresqlPassword: teslamate
-  postgresqlDatabase: teslamate
-  image:
-    repository: postgres
-    tag: 12.1
-  postgresqlDataDir: "/data/pgdata"
-  persistence:
-    enabled: true
-    storageClass:
-    accessModes:
-      - ReadWriteOnce
-    size: 8Gi
-    mountPath: "/data/"
+  enabled: false
+  # postgresqlUsername: postgres
+  # postgresqlPassword: teslamate-pass
+  # postgresqlDatabase: teslamate
+  # persistence:
+  #   enabled: false
+  #   storageClass: ""
+  # fullnameOverride: teslamate-postgresql
