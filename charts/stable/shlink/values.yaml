@@ -1,0 +1,66 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: shlinkio/shlink
+  pullPolicy: IfNotPresent
+  tag: 2.6.2
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the shlink documentation
+# https://shlink.io/documentation/install-docker-image/
+env: {}
+  # SHORT_DOMAIN_HOST: "doma.in"
+  # SHORT_DOMAIN_SCHEMA: "https"
+  # GEOLITE_LICENSE_KEY: "kjh23ljkbndskj345"
+
+service:
+  port:
+    port: 8080
+
+ingress:
+  enabled: false
+
+persistence:
+  params:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /etc/shlink/config/params
+  data:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /etc/shlink/data
+
+# Enabled mariadb
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: shlink
+    username: shlink
+    password: shlink-pass
+    rootPassword: shlinkrootpass
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
+
+# Enabled postgres
+# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+postgresql:
+  enabled: false
+  postgresqlUsername: shlink
+  postgresqlPassword: shlink-pass
+  postgresqlDatabase: shlink
+  persistence:
+    enabled: false
+    # storageClass: ""
