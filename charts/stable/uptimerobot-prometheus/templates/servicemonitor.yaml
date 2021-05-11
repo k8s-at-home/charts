@@ -1,23 +1,21 @@
-{{- if .Values.serviceMonitor.enabled }}
+{{- if .Values.prometheus.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "uptimerobot-prometheus.fullname" . }}
+  name: {{ template "common.names.fullname" . }}
   labels:
-    {{- include "uptimerobot-prometheus.labels" . | nindent 4 }}
-  {{- with .Values.serviceMonitor.additionalLabels }}
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.prometheus.serviceMonitor.additionalLabels }}
     {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- end }}
 spec:
   selector:
     matchLabels:
-      {{- include "uptimerobot-prometheus.selectorLabels" . | nindent 6 }}
+      {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
   - port: http
-    interval: {{ .Values.serviceMonitor.interval }}
-    path: /
-    params:
-      script:
-        - uptimerobot
-    scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
+    {{- with .Values.prometheus.serviceMonitor.interval }}
+    interval: {{ . }}
+    {{- end }}
+    path: /metrics
 {{- end }}

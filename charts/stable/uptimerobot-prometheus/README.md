@@ -1,6 +1,6 @@
 # uptimerobot-prometheus
 
-![Version: 2.0.4](https://img.shields.io/badge/Version-2.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 Prometheus Exporter for the official uptimerobot CLI
 
@@ -17,6 +17,7 @@ Prometheus Exporter for the official uptimerobot CLI
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -75,32 +76,33 @@ You can find an [example grafana dashboard](https://github.com/lekpamartin/uptim
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
-| fullnameOverride | string | `""` |  |
+| env.UPTIMEROBOT_API_KEY | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"billimek/prometheus-uptimerobot-exporter"` |  |
 | image.tag | string | `"0.0.1"` |  |
-| imagePullSecrets | list | `[]` |  |
-| nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
-| replicaCount | int | `1` |  |
-| resources | object | `{}` |  |
-| securityContext | object | `{}` |  |
-| service.port | int | `9705` |  |
-| service.type | string | `"ClusterIP"` |  |
-| serviceMonitor.additionalLabels | object | `{}` |  |
-| serviceMonitor.enabled | bool | `false` |  |
-| serviceMonitor.interval | string | `"5m"` |  |
-| serviceMonitor.scrapeTimeout | string | `"90s"` |  |
-| tolerations | list | `[]` |  |
-| uptimerobotApiKey | string | `""` |  |
+| ingress.enabled | bool | `false` |  |
+| service.port.port | int | `9705` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING** Migrate to the common library, a lot of configuration has changed.
+
+#### Removed
+
+- N/A
 
 ### [2.0.2]
 
@@ -116,7 +118,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[2.0.2]: #2.0.2
+[3.0.0]: #300
+[2.0.2]: #202
 
 ## Support
 
