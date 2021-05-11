@@ -16,7 +16,7 @@ config:
     # -- Alternatively, use an existing secret (see google-secret.yaml for required fields)
     # existingSecret: google-secret
 
-  # -- custom [oauth2_proxy.cfg](https://github.com/pusher/oauth2_proxy/blob/master/contrib/oauth2_proxy.cfg.example) contents for settings not overridable via environment nor command line
+  # -- custom [oauth2_proxy.cfg](https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example) contents for settings not overridable via environment nor command line
   configFile: |-
     email_domains = [ "*" ]
     upstreams = [ "file:///dev/null" ]
@@ -64,7 +64,7 @@ authenticatedEmailsFile:
   # config map resource.
   template: ""
 
-  # -- [email addresses](https://github.com/pusher/oauth2_proxy#email-authentication) list config
+  # -- [email addresses](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider#email-authentication) list config
   restricted_access: ""
 
 service:
@@ -205,7 +205,7 @@ htpasswdFile:
   enabled: false
   # -- existing Kubernetes secret to use for OAuth2 htpasswd file
   existingSecret: ""
-  # -- list of [SHA encrypted user:passwords](https://pusher.github.io/oauth2_proxy/configuration#command-line-options)
+  # -- list of [SHA encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/configuration#command-line-options)
   entries: {}
   # One row for each user
   # example:
