@@ -1,22 +1,25 @@
-# uptimerobot-prometheus
+# shlink
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.6.2](https://img.shields.io/badge/AppVersion-2.6.2-informational?style=flat-square)
 
-Prometheus Exporter for the official uptimerobot CLI
+A self-hosted and PHP-based URL shortener application with CLI and REST interfaces
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/lekpamartin/uptimerobot_exporter>
-* <https://github.com/k8s-at-home/charts/tree/master/charts/uptimerobot-prometheus>
+* <https://github.com/shlinkio/shlink>
 
 ## Requirements
+
+Kubernetes: `>=1.16.0-0`
 
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.9 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.0 |
 | https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
@@ -24,23 +27,23 @@ Prometheus Exporter for the official uptimerobot CLI
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install uptimerobot-prometheus k8s-at-home/uptimerobot-prometheus
+helm install shlink k8s-at-home/shlink
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `uptimerobot-prometheus`
+To install the chart with the release name `shlink`
 
 ```console
-helm install uptimerobot-prometheus k8s-at-home/uptimerobot-prometheus
+helm install shlink k8s-at-home/shlink
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `uptimerobot-prometheus` deployment
+To uninstall the `shlink` deployment
 
 ```console
-helm uninstall uptimerobot-prometheus
+helm uninstall shlink
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -53,22 +56,20 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install uptimerobot-prometheus \
+helm install shlink \
   --set env.TZ="America/New York" \
-    k8s-at-home/uptimerobot-prometheus
+    k8s-at-home/shlink
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install uptimerobot-prometheus k8s-at-home/uptimerobot-prometheus -f values.yaml
+helm install shlink k8s-at-home/shlink -f values.yaml
 ```
 
 ## Custom configuration
 
-### Grafana Dashboard
-
-You can find an [example grafana dashboard](https://github.com/lekpamartin/uptimerobot_exporter/blob/master/dashboards/grafana.json) as shown in the screenshot above.
+N/A
 
 ## Values
 
@@ -76,12 +77,30 @@ You can find an [example grafana dashboard](https://github.com/lekpamartin/uptim
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.UPTIMEROBOT_API_KEY | string | `""` |  |
+| env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"billimek/prometheus-uptimerobot-exporter"` |  |
-| image.tag | string | `"0.0.1"` |  |
+| image.repository | string | `"shlinkio/shlink"` |  |
+| image.tag | string | `"2.6.2"` |  |
 | ingress.enabled | bool | `false` |  |
-| service.port.port | int | `9705` |  |
+| mariadb.architecture | string | `"standalone"` |  |
+| mariadb.auth.database | string | `"shlink"` |  |
+| mariadb.auth.password | string | `"shlink-pass"` |  |
+| mariadb.auth.rootPassword | string | `"shlinkrootpass"` |  |
+| mariadb.auth.username | string | `"shlink"` |  |
+| mariadb.enabled | bool | `false` |  |
+| mariadb.primary.persistence.enabled | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/etc/shlink/data"` |  |
+| persistence.params.emptyDir.enabled | bool | `false` |  |
+| persistence.params.enabled | bool | `false` |  |
+| persistence.params.mountPath | string | `"/etc/shlink/config/params"` |  |
+| postgresql.enabled | bool | `false` |  |
+| postgresql.persistence.enabled | bool | `false` |  |
+| postgresql.postgresqlDatabase | string | `"shlink"` |  |
+| postgresql.postgresqlPassword | string | `"shlink-pass"` |  |
+| postgresql.postgresqlUsername | string | `"shlink"` |  |
+| service.port.port | int | `8080` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -90,36 +109,13 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.0.0]
+### [1.0.0]
 
 #### Added
 
-- N/A
+- Initial version
 
-#### Changed
-
-- **BREAKING** Migrate to the common library, a lot of configuration has changed.
-
-#### Removed
-
-- N/A
-
-### [2.0.2]
-
-#### Added
-
-- N/A
-
-#### Changed
-
-- use helm-docs
-
-#### Removed
-
-- N/A
-
-[3.0.0]: #300
-[2.0.2]: #202
+[1.0.0]: #100
 
 ## Support
 

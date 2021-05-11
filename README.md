@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-24-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-26-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -78,6 +78,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://blog.waltr.tech"><img src="https://avatars.githubusercontent.com/u/11428125?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ryan Walter</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rwaltr" title="Code">💻</a></td>
     <td align="center"><a href="https://chipwolf.uk"><img src="https://avatars.githubusercontent.com/u/3164166?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chip Wolf ‮</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=ChipWolf" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jr0dd"><img src="https://avatars.githubusercontent.com/u/285797?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jr0dd</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=jr0dd" title="Code">💻</a></td>
+    <td align="center"><a href="https://4xxi.com"><img src="https://avatars.githubusercontent.com/u/167288?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aleksandr Beshkenadze</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=beshkenadze" title="Code">💻</a></td>
+    <td align="center"><a href="https://unasuke.com"><img src="https://avatars.githubusercontent.com/u/4487291?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yusuke Nakamura</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=unasuke" title="Code">💻</a></td>
   </tr>
 </table>
 
