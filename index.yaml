@@ -45591,6 +45591,40 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/sharry-1.0.0/sharry-1.0.0.tgz
     version: 1.0.0
+  shlink:
+  - apiVersion: v2
+    appVersion: 2.6.2
+    created: "2021-05-11T12:55:05.75569239Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.5.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.9
+    description: A self-hosted and PHP-based URL shortener application with CLI and
+      REST interfaces
+    digest: 614dc945dcedd9b4be3927653ddb128fcdc805b414e090d69edd2876355b1732
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/shlink
+    icon: https://avatars.githubusercontent.com/u/20341790?s=200&v=4
+    keywords:
+    - shlink
+    - url-shortener
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: shlink
+    sources:
+    - https://github.com/shlinkio/shlink
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/shlink-1.0.0/shlink-1.0.0.tgz
+    version: 1.0.0
   smarter-device-manager:
   - apiVersion: v2
     appVersion: 1.1.2
@@ -60517,4 +60551,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-10T06:46:45.819959991Z"
+generated: "2021-05-11T12:55:05.766218122Z"
