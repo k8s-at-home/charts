@@ -1,0 +1,52 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- gollum upstream image
+  repository: gollumorg/gollum
+  tag: latest
+  pullPolicy: IfNotPresent
+
+controllerType: statefulset
+strategy:
+  type: RollingUpdate
+
+service:
+  type: ClusterIP
+  port:
+    port: 80
+    name: http
+    targetPort: 4567
+
+ingress:
+  enabled: false
+
+persistence:
+  wiki:
+    enabled: false
+    mountPath: /wiki
+    accessMode: ReadWriteOnce
+    size: 2Gi
+
+gollum:
+  # -- Branch to pull
+  gitBranch: master
+  # -- Repository URL to pull (accepts access tokens)
+  # Ex: https://user:access-token@git.example.com/user/repo.git
+  gitUrl: https://github.com/k8s-at-home/charts.git
+  # -- Additional arguments for starting gollum
+  additionalArgs: --h1-title
+  # -- Command run during the sync cron
+  syncCommand: git pull && git push
+  # -- Gollum config.rb customizations
+  # reference https://github.com/gollum/gollum#config-file
+  config: |
+    # Push and pull on commit
+    Gollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|
+         committer.wiki.repo.git.pull('origin', committer.wiki.ref)
+         committer.wiki.repo.git.push('origin', committer.wiki.ref)
+    end
