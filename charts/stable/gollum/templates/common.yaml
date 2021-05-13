@@ -1,0 +1,42 @@
+{{- include "common.values.setup" . }}
+
+{{/* Add initContainers */}}
+{{- $initClear := include "gollum.init.clear" . | fromYaml -}}
+{{- $initClone := include "gollum.init.clone" . | fromYaml -}}
+{{- $initContainers := append .Values.initContainers $initClear -}}
+{{- $initContainers = append $initContainers $initClone -}}
+{{- $_ := set .Values "initContainers" $initContainers -}}
+
+{{/* Add conatiners */}}
+{{- $contCron := include "gollum.container.cron" . | fromYaml -}}
+{{- $containers := append .Values.additionalContainers $contCron -}}
+{{- $_ := set .Values "additionalContainers" $containers -}}
+
+{{/* Add Volumes */}}
+{{- $volSync := include "gollum.volume.sync" . | fromYaml -}}
+{{- $volConfig := include "gollum.volume.config" . | fromYaml -}}
+{{- $volWiki := include "gollum.volume.wiki" . | fromYaml -}}
+{{- $volumes := append .Values.additionalVolumes $volSync -}}
+{{- $volumes = append $volumes $volConfig -}}
+{{- if (not .Values.persistence.wiki.enabled) -}}
+{{- $volumes = append $volumes $volWiki -}}
+{{- end -}}
+{{- $_ := set .Values "additionalVolumes" $volumes -}}
+
+{{/* Add VolumeMounts */}}
+{{- $mntConfig := include "gollum.volumeMounts.config" . | fromYaml -}}
+{{- $mntWiki := include "gollum.volumeMounts.wiki" . | fromYaml -}}
+{{- $mounts := append .Values.additionalVolumeMounts $mntConfig -}}
+{{- if (not .Values.persistence.wiki.enabled) -}}
+{{- $mounts = append $mounts $mntWiki -}}
+{{- end -}}
+{{- $_ := set .Values "additionalVolumeMounts" $mounts -}}
+
+{{/* Setup the start command */}}
+{{- $command := list "gollum" "/wiki" "--config" "/config/config.rb" "--ref" (required "A branch is requred but unset" .Values.gollum.gitBranch) -}}
+{{- if .Values.gollum.additionalArgs -}}
+{{- $command = append $command .Values.gollum.additionalArgs -}}
+{{- end -}}
+{{- $_ := set .Values "command" $command -}}
+
+{{ include "common.all" . }}
