@@ -1,0 +1,26 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+### Error setting up network for sandbox
+
+If you remove multus by force, the helm uninstall hook will not
+be called. In this situation kubelet will still try to call
+multus to during the creation of every single pod. you wil see
+this error:
+
+```
+Failed to create pod sandbox: rpc error: code = Unknown desc = failed to setup network for sandbox
+```
+
+If you hit this problem you can manually remove multus config.
+For k3s you can do so with:
+
+```sh
+rm -rf  /var/lib/rancher/k3s/agent/etc/cni/net.d/*multus*
+```
+
+{{- end -}}
