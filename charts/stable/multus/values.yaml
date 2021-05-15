@@ -1,0 +1,69 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/k8snetworkplumbingwg/multus-cni
+  tag: v3.7.1
+  pullPolicy: IfNotPresent
+
+controllerType: daemonset
+
+serviceAccount:
+  create: true
+
+# -- Init container that install reference CNI plugins
+initContainers:
+- name: cni-installer
+  image: ghcr.io/k8s-at-home/cni-plugins:v0.9.1
+  volumeMounts:
+  - name: cnibin
+    mountPath: /host/opt/cni/bin
+
+
+command:
+- /entrypoint.sh
+
+args:
+  - "--multus-conf-file=auto"
+  - "--cleanup-config-on-exit=true"
+  - "--cni-version=0.3.1"
+  - "--multus-kubeconfig-file-host=/var/lib/rancher/k3s/agent/etc/cni/net.d/multus.d/multus.kubeconfig"
+
+securityContext:
+  privileged: true
+
+strategy:
+  type: RollingUpdate
+
+additionalVolumes:
+- name: cni
+  hostPath:
+    # path: /etc/cni/net.d
+    path: /var/lib/rancher/k3s/agent/etc/cni/net.d
+    type: Directory
+- name: cnibin
+  hostPath:
+    # path: /opt/cni/bin
+    path: /var/lib/rancher/k3s/data/current/bin
+    type: Directory
+
+additionalVolumeMounts:
+- name: cni
+  mountPath: /host/etc/cni/net.d
+- name: cnibin
+  mountPath: /host/opt/cni/bin
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+service:
+  enabled: false
