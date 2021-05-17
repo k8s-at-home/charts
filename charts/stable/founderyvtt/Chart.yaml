@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: An easy-to-deploy Dockerized Foundry Virtual Tabletop server
+name: foundryvtt
+version: 0.7.9
+kubeVersion: ">=1.16.0-0"
+keywords:
+- foundryvtt
+home: https://github.com/felddy/foundryvtt-docker
+icon: https://raw.githubusercontent.com/felddy/foundryvtt-docker/develop/assets/logo.png
+sources:
+- https://github.com/felddy/foundryvtt-docker
+maintainers:
+- name: Ryan Walter
+  email: rwalt@pm.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.5.0
