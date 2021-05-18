@@ -1,14 +1,14 @@
-# ${CHARTNAME}
+# foundryvtt
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.7.9](https://img.shields.io/badge/Version-0.7.9-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-${CHARTNAME} helm package
+An easy-to-deploy Dockerized Foundry Virtual Tabletop server
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/${CHARTNAME}/${CHARTNAME}-docker>
+* <https://github.com/felddy/foundryvtt-docker>
 
 ## Requirements
 
@@ -18,30 +18,30 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install ${CHARTNAME} k8s-at-home/${CHARTNAME}
+helm install foundryvtt k8s-at-home/foundryvtt
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `${CHARTNAME}`
+To install the chart with the release name `foundryvtt`
 
 ```console
-helm install ${CHARTNAME} k8s-at-home/${CHARTNAME}
+helm install foundryvtt k8s-at-home/foundryvtt
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `${CHARTNAME}` deployment
+To uninstall the `foundryvtt` deployment
 
 ```console
-helm uninstall ${CHARTNAME}
+helm uninstall foundryvtt
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install ${CHARTNAME} \
+helm install foundryvtt \
   --set env.TZ="America/New York" \
-    k8s-at-home/${CHARTNAME}
+    k8s-at-home/foundryvtt
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install ${CHARTNAME} k8s-at-home/${CHARTNAME} -f values.yaml
+helm install foundryvtt k8s-at-home/foundryvtt -f values.yaml
 ```
 
 ## Custom configuration
@@ -77,10 +77,19 @@ N/A
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"${CHARTNAME}/${CHARTNAME}"` |  |
-| image.tag | string | `"1.0.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| service.port.port | int | `1880` |  |
+| image.repository | string | `"felddy/foundryvtt"` |  |
+| image.tag | string | `"0.8.3"` |  |
+| ingress.annotations."cert-manager.io/cluster-issuer" | string | `"le-prod"` |  |
+| ingress.annotations."traefik.ingress.kubernetes.io/router.entrypoints" | string | `"websecure"` |  |
+| ingress.annotations."traefik.ingress.kubernetes.io/router.priority" | string | `"10"` |  |
+| ingress.domainName | string | `"testvtt.waltr.tech"` |  |
+| ingress.enabled | bool | `true` |  |
+| ingress.hosts[0].hostTpl | string | `"{{ .Values.ingress.domainName }}"` |  |
+| ingress.hosts[0].paths[0].path | string | `"/"` |  |
+| ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
+| ingress.tls[0].hostsTpl[0] | string | `"{{ .Values.ingress.domainName }}"` |  |
+| ingress.tls[0].secretNameTpl | string | `"{{ .Values.ingress.domainName | replace \".\" \"-\" }}"` |  |
+| service.port.port | int | `30000` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -93,7 +102,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- N/A
+- Initial version
 
 #### Changed
 
