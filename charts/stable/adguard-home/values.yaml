@@ -41,6 +41,8 @@ env: {}
 args:
 - "--config"
 - "/opt/adguardhome/conf/AdGuardHome.yaml"
+- "--work-dir"
+- "/opt/adguardhome/work"
 - "--no-check-update"
 
 # -- (int) Number of pods to load balance between
@@ -104,7 +106,7 @@ prometheus:
 #   prometheus.io/port: "api"
 
 # -- Full list of options https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration
-# @default -- see URL to default config
+# @default -- string
 config: |
   bind_host: 0.0.0.0
   bind_port: 3000
