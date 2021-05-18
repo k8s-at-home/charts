@@ -23,31 +23,14 @@ service:
   port:
     port: 30000
 
-# ingress:
-#   enabled: false
-
 ingress:
-  enabled: true
-  domainName: "testvtt.waltr.tech"
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.priority: "10"
-    cert-manager.io/cluster-issuer: le-prod
-  hosts:
-    - hostTpl: '{{ .Values.ingress.domainName }}'
-      paths:
-        - path: /
-          pathType: Prefix
-  tls:
-    - hostsTpl: ['{{ .Values.ingress.domainName }}']
-      secretNameTpl: '{{ .Values.ingress.domainName | replace "." "-" }}'
-
+  enabled: false
 
 
 # Founderyvtt is hardcoded to use /data for its persistance for config and
-# persistence:
-#   data:
-#     enabled: false
-#     emptyDir:
-#       enabled: false
-#     mountPath: /data
+persistence:
+  data:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /data

@@ -1,6 +1,6 @@
 # foundryvtt
 
-![Version: 0.7.9](https://img.shields.io/badge/Version-0.7.9-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.8.3](https://img.shields.io/badge/Version-0.8.3-informational?style=flat-square) ![AppVersion: 0.8.3](https://img.shields.io/badge/AppVersion-0.8.3-informational?style=flat-square)
 
 An easy-to-deploy Dockerized Foundry Virtual Tabletop server
 
@@ -79,16 +79,10 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"felddy/foundryvtt"` |  |
 | image.tag | string | `"0.8.3"` |  |
-| ingress.annotations."cert-manager.io/cluster-issuer" | string | `"le-prod"` |  |
-| ingress.annotations."traefik.ingress.kubernetes.io/router.entrypoints" | string | `"websecure"` |  |
-| ingress.annotations."traefik.ingress.kubernetes.io/router.priority" | string | `"10"` |  |
-| ingress.domainName | string | `"testvtt.waltr.tech"` |  |
-| ingress.enabled | bool | `true` |  |
-| ingress.hosts[0].hostTpl | string | `"{{ .Values.ingress.domainName }}"` |  |
-| ingress.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
-| ingress.tls[0].hostsTpl[0] | string | `"{{ .Values.ingress.domainName }}"` |  |
-| ingress.tls[0].secretNameTpl | string | `"{{ .Values.ingress.domainName | replace \".\" \"-\" }}"` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/data"` |  |
 | service.port.port | int | `30000` |  |
 | strategy.type | string | `"Recreate"` |  |
 
