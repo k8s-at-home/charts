@@ -6,28 +6,50 @@
 #
 
 image:
+  # -- Configure the image
   repository: registry.gitlab.com/arm-research/smarter/smarter-device-manager
-  tag: v1.1.2
+  # -- Configure the image tag
+  tag: v1.20.7
+  # -- Configure the image pull policy
   pullPolicy: IfNotPresent
 
-# Override default configuration
-# config:
-#   - devicematch: ^snd$
-#     nummaxdevices: 20
-#   - devicematch: ^ttyUSB.*$
-#     nummaxdevices: 1
+# -- Override default configuration
+# See [project repo](https://gitlab.com/arm-research/smarter/smarter-device-manager) for configuration examples
+# @default -- Refer to values.yaml
+config: |
+  - devicematch: ^ttyUSB.*$
+    nummaxdevices: 1
 
 hostNetwork: true
 dnsPolicy: ClusterFirstWithHostNet
 
-devicePluginPath: "/var/lib/kubelet/device-plugins"
-# devPath: "/special-dev/"
-# sysPath: "/special-sys/"
+# -- Configures the host paths that are mapped through to the container
+# @default -- Refer to values.yaml
+hostPathMounts:
+  - name: "devfs"
+    enabled: true
+    emptyDir: false
+    mountPath: "/dev"
+    hostPath: "/dev"
+    readOnly: true
+  - name: "sysfs"
+    enabled: true
+    emptyDir: false
+    mountPath: "/sys"
+    hostPath: "/sys"
+    readOnly: true
+  - name: "kubeletsockets"
+    enabled: true
+    emptyDir: false
+    mountPath: "/var/lib/kubelet/device-plugins"
+    hostPath: "/var/lib/kubelet/device-plugins"
 
-# Setting priority class is not necessary, but is recommended.
-# Ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+# -- Setting priority class is not necessary, but is recommended.
+# [[Ref]](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/)
 priorityClassName: system-node-critical
 
+# -- Configure the securityContext for this pod
+# @default -- Refer to values.yaml
 securityContext:
   capabilities:
     drop:

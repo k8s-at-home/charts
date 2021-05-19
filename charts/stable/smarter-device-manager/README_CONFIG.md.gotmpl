@@ -5,10 +5,10 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-Please consider overriding the default configuration through `values.yaml` file. 
-For example: 
+Please consider overriding the default configuration through `values.yaml` file.
+For example:
 ```yaml
-config:
+config: |
   - devicematch: ^snd$
     nummaxdevices: 20
   - devicematch: ^rtc0$
@@ -18,7 +18,7 @@ config:
   - devicematch: ^ttyACM[0-9]*$
     nummaxdevices: 1
 ```
-The above configuration allows up to twenty pods to make use of `/dev/snd`, `/dev/rtc0` and each of `/dev/video[0-9]*` devices. 
+The above configuration allows up to twenty pods to make use of `/dev/snd`, `/dev/rtc0` and each of `/dev/video[0-9]*` devices.
 Only one pod at a time can use any of the discovered host `/dev/ttyACM[0-9]*` devices. This means that if a pod has reserved a dongle at `/dev/ttyACM0`, another pod requesting the same device will stay pending.
 
 Once the devices are discovered, they will be added as allocatable resources to the nodes:
@@ -34,8 +34,6 @@ Capacity:
   smarter-devices/snd:                  20
   smarter-devices/ttyUSB-Z-Stick-Gen5:  1
 ```
-
-Please note that only the root of the host `/dev` directory is considered for discovery. _Therefore, `by-id` paths will not work and some `udev` rules may be necessary._
 
 The hardware is requested by pods through `resources`, e.g.:
 ```yaml
