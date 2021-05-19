@@ -8,7 +8,7 @@
 Please consider overriding the default configuration through `values.yaml` file. 
 For example: 
 ```yaml
-config:
+config: |
   - devicematch: ^snd$
     nummaxdevices: 20
   - devicematch: ^rtc0$
@@ -34,8 +34,6 @@ Capacity:
   smarter-devices/snd:                  20
   smarter-devices/ttyUSB-Z-Stick-Gen5:  1
 ```
-
-Please note that only the root of the host `/dev` directory is considered for discovery. _Therefore, `by-id` paths will not work and some `udev` rules may be necessary._
 
 The hardware is requested by pods through `resources`, e.g.:
 ```yaml

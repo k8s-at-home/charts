@@ -1,6 +1,6 @@
 # smarter-device-manager
 
-![Version: 3.3.2](https://img.shields.io/badge/Version-3.3.2-informational?style=flat-square) ![AppVersion: 1.1.2](https://img.shields.io/badge/AppVersion-1.1.2-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
 
 Manage hardware resource allocation without a need for privileged containers
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -71,7 +71,7 @@ helm install smarter-device-manager k8s-at-home/smarter-device-manager -f values
 Please consider overriding the default configuration through `values.yaml` file.
 For example:
 ```yaml
-config:
+config: |
   - devicematch: ^snd$
     nummaxdevices: 20
   - devicematch: ^rtc0$
@@ -98,8 +98,6 @@ Capacity:
   smarter-devices/ttyUSB-Z-Stick-Gen5:  1
 ```
 
-Please note that only the root of the host `/dev` directory is considered for discovery. _Therefore, `by-id` paths will not work and some `udev` rules may be necessary._
-
 The hardware is requested by pods through `resources`, e.g.:
 ```yaml
   resources:
@@ -117,21 +115,29 @@ In this case host device `/dev/ttyUSB-Conbee-2` will be given at the same path, 
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| devicePluginPath | string | `"/var/lib/kubelet/device-plugins"` |  |
+| config | string | Refer to values.yaml | Override default configuration See [project repo](https://gitlab.com/arm-research/smarter/smarter-device-manager) for configuration examples |
 | dnsPolicy | string | `"ClusterFirstWithHostNet"` |  |
 | hostNetwork | bool | `true` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"registry.gitlab.com/arm-research/smarter/smarter-device-manager"` |  |
-| image.tag | string | `"v1.1.2"` |  |
-| priorityClassName | string | `"system-node-critical"` |  |
-| securityContext.allowPrivilegeEscalation | bool | `false` |  |
-| securityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| hostPathMounts | list | Refer to values.yaml | Configures the host paths that are mapped through to the container |
+| image.pullPolicy | string | `"IfNotPresent"` | Configure the image pull policy |
+| image.repository | string | `"registry.gitlab.com/arm-research/smarter/smarter-device-manager"` | Configure the image |
+| image.tag | string | `"v1.20.7"` | Configure the image tag |
+| priorityClassName | string | `"system-node-critical"` | Setting priority class is not necessary, but is recommended. [[Ref]](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) |
+| securityContext | object | Refer to values.yaml | Configure the securityContext for this pod |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- BREAKING: The `config` key has been replaced with a multiline string
+- BREAKING: The chart now uses the `hostPathMounts` feature to mount the host paths
+- The app version has been bumped to v1.20.7, this should allow better support of `/dev` subfolders.
 
 ### [3.3.2]
 
@@ -161,6 +167,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #4.0.0
 [3.3.2]: #3.3.2
 [1.0.0]: #1.0.0
 

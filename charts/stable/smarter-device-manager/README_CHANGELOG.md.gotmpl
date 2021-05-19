@@ -9,6 +9,14 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- BREAKING: The `config` key has been replaced with a multiline string
+- BREAKING: The chart now uses the `hostPathMounts` feature to mount the host paths
+- The app version has been bumped to v1.20.7, this should allow better support of `/dev` subfolders.
+
 ### [3.3.2]
 
 #### Added
@@ -37,6 +45,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #4.0.0
 [3.3.2]: #3.3.2
 [1.0.0]: #1.0.0
 {{- end -}}
