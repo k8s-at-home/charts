@@ -1,12 +1,20 @@
 ---
-
-name: 'Incomplete PR'
+name: 'Label Commenter'
 
 on:
+  issues:
+    types:
+      - labeled
+      - unlabeled
   pull_request_target:
     types:
       - labeled
       - unlabeled
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
 
 permissions:
   contents: read

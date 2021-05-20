@@ -1,0 +1,16 @@
+---
+labels:
+  - name: kind:invalid-template
+    labeled:
+      issue:
+        body: |
+          :wave: @{{ issue.user.login }}, please follow the template provided.
+        action: close
+        locking: lock
+        lock_reason: resolved
+
+  - name: kind:incomplete-pr
+    labeled:
+      pr:
+        body: |
+          :wave: @{{ pull_request.user.login }}, thanks for taking the time to submit this PR. 🙏🏽 Would you mind updating the `version` in `Chart.yaml` per [semver](http://semver.org/) and then update `README_CHANGELOG.md.gotmpl` and run `./hack/gen-helm-docs.sh stable <chart>` again?
