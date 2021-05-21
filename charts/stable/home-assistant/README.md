@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: 2021.4.4](https://img.shields.io/badge/AppVersion-2021.4.4-informational?style=flat-square)
+![Version: 8.3.0](https://img.shields.io/badge/Version-8.3.0-informational?style=flat-square) ![AppVersion: 2021.5.5](https://img.shields.io/badge/AppVersion-2021.5.5-informational?style=flat-square)
 
 Home Assistant
 
@@ -21,9 +21,9 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.9 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -129,7 +129,7 @@ The value derived is the name of the kubernetes service object for home-assistan
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"homeassistant/home-assistant"` |  |
-| image.tag | string | `"2021.4.4"` |  |
+| image.tag | string | `"2021.5.5"` |  |
 | influxdb.architecture | string | `"standalone"` |  |
 | influxdb.authEnabled | bool | `false` |  |
 | influxdb.database | string | `"home_assistant"` |  |
@@ -160,6 +160,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [8.3.0]
+
+### Changed
+
+- Updated image tag to version 2021.5.5
 
 ## [8.0.0]
 
