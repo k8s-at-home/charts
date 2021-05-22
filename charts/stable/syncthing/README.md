@@ -1,6 +1,6 @@
 # syncthing
 
-![Version: 1.3.0](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![AppVersion: 1.16.1](https://img.shields.io/badge/AppVersion-1.15.1-informational?style=flat-square)
+![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 1.16.1](https://img.shields.io/badge/AppVersion-1.16.1-informational?style=flat-square)
 
 Open Source Continuous File Synchronization
 
@@ -8,8 +8,8 @@ Open Source Continuous File Synchronization
 
 ## Source Code
 
-- <https://syncthing.net/>
-- <https://github.com/syncthing/syncthing>
+* <https://syncthing.net/>
+* <https://github.com/syncthing/syncthing>
 
 ## Requirements
 
@@ -17,9 +17,9 @@ Kubernetes: `>=1.16.0-0`
 
 ## Dependencies
 
-| Repository                             | Name   | Version |
-| -------------------------------------- | ------ | ------- |
-| https://library-charts.k8s-at-home.com | common | 2.5.0   |
+| Repository | Name | Version |
+|------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -74,33 +74,33 @@ N/A
 
 **Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
-| Key                                                 | Type   | Default                 | Description |
-| --------------------------------------------------- | ------ | ----------------------- | ----------- |
-| image.pullPolicy                                    | string | `"IfNotPresent"`        |             |
-| image.repository                                    | string | `"syncthing/syncthing"` |             |
-| image.tag                                           | string | `"1.16.1"`              |             |
-| ingress.enabled                                     | bool   | `false`                 |             |
-| persistence.data.emptyDir.enabled                   | bool   | `false`                 |             |
-| persistence.data.enabled                            | bool   | `false`                 |             |
-| persistence.data.mountPath                          | string | `"/var/syncthing"`      |             |
-| service.additionalServices[0].enabled               | bool   | `true`                  |             |
-| service.additionalServices[0].externalTrafficPolicy | string | `"Local"`               |             |
-| service.additionalServices[0].nameSuffix            | string | `"listen"`              |             |
-| service.additionalServices[0].port.name             | string | `"listen"`              |             |
-| service.additionalServices[0].port.port             | int    | `22000`                 |             |
-| service.additionalServices[0].port.protocol         | string | `"TCP"`                 |             |
-| service.additionalServices[0].port.targetPort       | int    | `22000`                 |             |
-| service.additionalServices[0].type                  | string | `"NodePort"`            |             |
-| service.additionalServices[1].enabled               | bool   | `true`                  |             |
-| service.additionalServices[1].externalTrafficPolicy | string | `"Local"`               |             |
-| service.additionalServices[1].nameSuffix            | string | `"discovery"`           |             |
-| service.additionalServices[1].port.name             | string | `"discovery"`           |             |
-| service.additionalServices[1].port.port             | int    | `21027`                 |             |
-| service.additionalServices[1].port.protocol         | string | `"UDP"`                 |             |
-| service.additionalServices[1].port.targetPort       | int    | `21027`                 |             |
-| service.additionalServices[1].type                  | string | `"NodePort"`            |             |
-| service.port.port                                   | int    | `8384`                  |             |
-| strategy.type                                       | string | `"Recreate"`            |             |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"syncthing/syncthing"` |  |
+| image.tag | string | `"1.16.1"` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.data.emptyDir.enabled | bool | `false` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountPath | string | `"/var/syncthing"` |  |
+| service.additionalServices[0].enabled | bool | `true` |  |
+| service.additionalServices[0].externalTrafficPolicy | string | `"Local"` |  |
+| service.additionalServices[0].nameSuffix | string | `"listen"` |  |
+| service.additionalServices[0].port.name | string | `"listen"` |  |
+| service.additionalServices[0].port.port | int | `22000` |  |
+| service.additionalServices[0].port.protocol | string | `"TCP"` |  |
+| service.additionalServices[0].port.targetPort | int | `22000` |  |
+| service.additionalServices[0].type | string | `"NodePort"` |  |
+| service.additionalServices[1].enabled | bool | `true` |  |
+| service.additionalServices[1].externalTrafficPolicy | string | `"Local"` |  |
+| service.additionalServices[1].nameSuffix | string | `"discovery"` |  |
+| service.additionalServices[1].port.name | string | `"discovery"` |  |
+| service.additionalServices[1].port.port | int | `21027` |  |
+| service.additionalServices[1].port.protocol | string | `"UDP"` |  |
+| service.additionalServices[1].port.targetPort | int | `21027` |  |
+| service.additionalServices[1].type | string | `"NodePort"` |  |
+| service.port.port | int | `8384` |  |
+| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -162,6 +162,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
----
-
+----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
