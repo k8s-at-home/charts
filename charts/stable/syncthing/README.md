@@ -117,6 +117,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Changed
 
 - Updated syncthing container image version to `v1.16.1`.
+- Updated common chart dependency to `2.5.0`.
 
 #### Removed
 
