@@ -49,7 +49,7 @@ config:
       $(primary_domain) = example.org
       $(local_domains) = $(primary_domain)
 
-      tls file /etc/maddy/certs/$(hostname)/fullchain.pem /etc/maddy/certs/$(hostname)/privkey.pem
+      # tls file /etc/maddy/certs/$(hostname)/fullchain.pem /etc/maddy/certs/$(hostname)/privkey.pem
 
       auth.pass_table local_authdb {
           table sql_table {
