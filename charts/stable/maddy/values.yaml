@@ -1,0 +1,39 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: foxcpp/maddy
+  pullPolicy: IfNotPresent
+  tag: "0.4.4"
+
+service:
+  smtprelay:
+    port: 25
+  imap:
+    port: 143
+  smtp:
+    port: 587
+  imaptls:
+    port: 993
+
+ingress:
+  enabled: false
+
+strategy:
+  type: Recreate
+
+# https://hub.docker.com/r/foxcpp/maddy
+env:
+  # -- MX hostname
+  # MADDY_HOSTNAME: mx.example.org
+  # -- Domain to handle messages for
+  # MADDY_DOMAIN: example.org
+
+persistence:
+  data:
+    enabled: true
+    mountPath: /data

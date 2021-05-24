@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 0.4.4
+description: Composable all-in-one mail server
+name: maddy
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - maddy
+  - email
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/maddy
+sources:
+  - https://github.com/foxcpp/maddy
+maintainers:
+  - name: ChipWolf
+    email: hello@chipwolf.uk
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 2.5.0
