@@ -85,10 +85,14 @@ N/A
 | persistence.data.enabled | bool | `true` |  |
 | persistence.data.mountPath | string | `/data` |  |
 | persistence.data.size | string | `5Gi` |  |
-| service.smtprelay.port | int | `25` |  |
-| service.imap.port | int | `143` |  |
-| service.smtp.port | int | `587` |  |
-| service.imaptls.port | int | `993` |  |
+| service.port.name | string | `smtprelay` |  |
+| service.port.port | int | `25` |  |
+| service.additionalServices[0].name | string | `imap` |  |
+| service.additionalServices[0].port | int | `143` |  |
+| service.additionalServices[1].name | string | `smtp` |  |
+| service.additionalServices[1].port | int | `587` |  |
+| service.additionalServices[2].name | string | `imaptls` |  |
+| service.additionalServices[2].port | int | `993` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog

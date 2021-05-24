@@ -11,13 +11,16 @@ image:
   tag: "0.4.4"
 
 service:
-  smtprelay:
+  port:
+    name: smtprelay
     port: 25
-  imap:
+
+additionalServices:
+  - name: imap
     port: 143
-  smtp:
+  - name: smtp
     port: 587
-  imaptls:
+  - name: imaptls
     port: 993
 
 ingress:
