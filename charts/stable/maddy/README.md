@@ -84,6 +84,7 @@ N/A
 | persistence.data.accessMode | string | `ReadWriteOnce` |  |
 | persistence.data.enabled | bool | `true` |  |
 | persistence.data.mountPath | string | `/data` |  |
+| persistence.data.size | string | `5Gi` |  |
 | service.smtprelay.port | int | `25` |  |
 | service.imap.port | int | `143` |  |
 | service.smtp.port | int | `587` |  |
