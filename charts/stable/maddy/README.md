@@ -75,8 +75,8 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.MADDY_HOSTNAME | string | `""` | MX hostname |
-| env.MADDY_DOMAIN | string | `""` | Domain to handle messages for |
+| config.files."maddy.conf" | string | `...` |  |
+| config.mode | string | `"values"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"foxcpp/maddy"` |  |
 | image.tag | string | `0.4.4` |  |
