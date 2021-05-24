@@ -80,6 +80,14 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"foxcpp/maddy"` |  |
 | image.tag | string | `0.4.4` |  |
+| ingress.enabled | bool | `false` |  |
+| persistence.data.accessMode | string | `ReadWriteOnce` |  |
+| persistence.data.enabled | bool | `true` |  |
+| persistence.data.mountPath | string | `/data` |  |
+| service.smtprelay.port | int | `25` |  |
+| service.imap.port | int | `143` |  |
+| service.smtp.port | int | `587` |  |
+| service.imaptls.port | int | `993` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
