@@ -1,0 +1,17 @@
+{{- if .Values.pki.certManager.enabled -}}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ template "common.names.fullname" . }}-cert
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  secretName: {{- index .Values.extraVolumes 0 | .secret.secretName }}
+  issuerRef:
+    name: {{- .Values.pki.certManager.issuerName }}
+    kind: {{- .Values.pki.certManager.issuerKind }}
+  dnsNames:
+  - {{- .Values.env.MADDY_HOSTNAME }}
+{{- end }}

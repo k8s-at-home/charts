@@ -67,7 +67,20 @@ helm install maddy k8s-at-home/maddy -f values.yaml
 
 ## Custom configuration
 
-N/A
+### TLS certificates
+
+This chart can make use of an existing cert-manager deployment to generate TLS certificates dynamically.
+See the available parameters under `pki.certManager` in `values.yaml`.
+
+To bring your own certificate, see: [TLS certificates](https://maddy.email/tutorials/setting-up/#tls-certificates).
+Assuming use of the default values, you must create a secret called `acme-crt-secret` with the following data:
+
+```yaml
+...
+data:
+  tls.crt: AB..==
+  tls.key: CD..==
+```
 
 ## Values
 
@@ -75,8 +88,14 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.files."maddy.conf" | string | `...` |  |
+| config.config | string | `...` |  |
 | config.mode | string | `"values"` |  |
+| env.MADDY_HOSTNAME | string | `mx.example.org` | MX hostname |
+| env.MADDY_DOMAIN | string | `example.org` | Domain to handle messages for |
+| extraVolumeMounts[0].mountPath | string | `/etc/ssl/` |  |
+| extraVolumeMounts[0].name | string | `tls-cert` |  |
+| extraVolumes[0].name | string | `tls-cert` |  |
+| extraVolumes[0].secret.secretName | string | `acme-crt-secret` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"foxcpp/maddy"` |  |
 | image.tag | string | `0.4.4` |  |
@@ -85,6 +104,9 @@ N/A
 | persistence.data.enabled | bool | `true` |  |
 | persistence.data.mountPath | string | `/data` |  |
 | persistence.data.size | string | `5Gi` |  |
+| pki.certManager.enabled | bool | `false` |  |
+| pki.certManager.issuerKind | string | `ClusterIssuer` |  |
+| pki.certManager.issuerName | string | `letsencrypt-prod` |  |
 | service.port.name | string | `smtprelay` |  |
 | service.port.port | int | `25` |  |
 | service.additionalServices[0].name | string | `imap` |  |
