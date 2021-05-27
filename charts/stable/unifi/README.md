@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: 6.0.45](https://img.shields.io/badge/AppVersion-6.0.45-informational?style=flat-square)
+![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![AppVersion: 6.0.45](https://img.shields.io/badge/AppVersion-6.0.45-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -122,7 +122,6 @@ ingress:
 | captivePortalService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
 | captivePortalService.type | string | `"ClusterIP"` | Kubernetes service type |
 | controllerService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
-| controllerService.enabled | bool | `false` |  |
 | controllerService.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
 | controllerService.ingress | object | `{"annotations":{},"enabled":false,"hosts":["chart-example.local"],"path":"/","tls":[]}` | Ingress settings |
 | controllerService.labels | object | `{}` |  |
@@ -133,9 +132,7 @@ ingress:
 | customCert | object | `{"certName":"tls.crt","enabled":false,"isChain":false,"keyName":"tls.key"}` | If you provide your own custom certificate in <unifi-data>/cert you can define the following parameters to configure the controller |
 | deploymentAnnotations | object | `{}` |  |
 | discoveryService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
-| discoveryService.enabled | bool | `false` |  |
 | discoveryService.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
-| discoveryService.ingress | object | `{"annotations":{},"enabled":false,"hosts":["chart-example.local"],"path":"/","tls":[]}` | Ingress settings |
 | discoveryService.labels | object | `{}` |  |
 | discoveryService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
 | discoveryService.loadBalancerSourceRanges | list | `nil` | loadBalancerSourceRanges |
@@ -146,7 +143,6 @@ ingress:
 | extraVolumeMounts | list | `[]` |  |
 | extraVolumes | list | `[]` |  |
 | guiService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
-| guiService.enabled | bool | `false` |  |
 | guiService.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
 | guiService.labels | object | `{}` |  |
 | guiService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
@@ -175,7 +171,6 @@ ingress:
 | resources | object | `{}` |  |
 | runAsRoot | bool | `false` |  |
 | speedtestService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
-| speedtestService.enabled | bool | `false` |  |
 | speedtestService.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
 | speedtestService.labels | object | `{}` |  |
 | speedtestService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
@@ -184,7 +179,6 @@ ingress:
 | speedtestService.type | string | `"ClusterIP"` | Kubernetes service type |
 | strategyType | string | `"Recreate"` | upgrade strategy type (e.g. Recreate or RollingUpdate) |
 | stunService.annotations | object | `{}` | Provide any additional annotations which may be required. This can be used to set the LoadBalancer service type to internal only. ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer |
-| stunService.enabled | bool | `false` |  |
 | stunService.externalTrafficPolicy | string | `nil` | Set the externalTrafficPolicy in the Service to either Cluster or Local |
 | stunService.labels | object | `{}` |  |
 | stunService.loadBalancerIP | string | `nil` | Use loadBalancerIP to request a specific static IP, otherwise leave blank |
@@ -260,6 +254,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
-
-----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
