@@ -7,7 +7,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: "{{ .Release.Namespace }}/{{ include "pod-gateway-setter.servingCertificate" . }}"
 webhooks:
-- name: "pod-policy.example.com"
+- name: "{{ include "common.names.fullname" . }}.svc.cluster.local"
   namespaceSelector:
   {{- with .Values.namespaceSelector }}
     {{ toYaml . | nindent 4 }}

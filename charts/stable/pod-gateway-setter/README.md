@@ -125,7 +125,7 @@ certificates.
 | probes.readiness.spec.initialDelaySeconds | int | `1` |  |
 | probes.readiness.spec.timeoutSeconds | int | `10` |  |
 | probes.startup.custom | bool | `true` |  |
-| probes.startup.enabled | bool | `false` |  |
+| probes.startup.enabled | bool | `true` |  |
 | probes.startup.spec.failureThreshold | int | `30` |  |
 | probes.startup.spec.httpGet.path | string | `"/wh/health"` |  |
 | probes.startup.spec.httpGet.port | int | `8080` |  |
