@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Admision controller to change the default gateway and DNS server of PODs
+name: pod-gateway-setter
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- pod-gateway-setter
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pod-gateway-setter
+icon: https://pod-gateway-setter.org/icon
+sources:
+- https://github.com/pod-gateway-setter/pod-gateway-setter-docker
+maintainers:
+- name: angelnu
+  email: git@angelnu.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 2.5.0

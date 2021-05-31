@@ -1,0 +1,23 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+You need to set `gateway` to the hostname or address of your gateway. Then
+all PODs in namespaces with the matching label (`routed-gateway=true` by default)
+will be routed to this gateway. DNS server in the PODs will also be set to
+the gateway.
+
+Please notice that other labels might be configured. This is usuefull, for
+example, to install multiple copies of the chart, each routing a different
+namespace to a different gateway.
+
+**IMPORTAN**: Do not deploy this chart to a namespace controlled by this
+webhook. This would result in a likelly deathlock when upgrading the chart.
+
+**NOTE**: This char requires the cert-manager CRD to generate the required
+certificates.
+
+{{- end -}}

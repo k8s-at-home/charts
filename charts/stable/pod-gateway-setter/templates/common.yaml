@@ -1,0 +1,40 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{- define "pod-gateway-setter.selfSignedIssuer" -}}
+{{ printf "%s-selfsign" (include "common.names.fullname" .) }}
+{{- end -}}
+
+{{- define "pod-gateway-setter.rootCAIssuer" -}}
+{{ printf "%s-ca" (include "common.names.fullname" .) }}
+{{- end -}}
+
+{{- define "pod-gateway-setter.rootCACertificate" -}}
+{{ printf "%s-ca" (include "common.names.fullname" .) }}
+{{- end -}}
+
+{{- define "pod-gateway-setter.servingCertificate" -}}
+{{ printf "%s-webhook-tls" (include "common.names.fullname" .) }}
+{{- end -}}
+
+
+{{/* Append the cert secret to the additionalVolumes */}}
+{{- define "pod-gateway-setter.servingCertificate.volume" -}}
+name: certs
+secret:
+  secretName: {{ include "pod-gateway-setter.servingCertificate" . }}
+{{- end -}}
+
+{{- $volume := include "pod-gateway-setter.servingCertificate.volume" . | fromYaml -}}
+{{- if $volume -}}
+  {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
+  {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+{{- end -}}
+
+
+{{/* Append generated args */}}
+{{- $noop := printf "--webhook-listen-address=:%s" (.Values.service.port.port |toString) | append .Values.args | set .Values "args" -}}
+{{- $noop := printf "--gateway=%s"                  .Values.gateway                      | append .Values.args | set .Values "args" -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
