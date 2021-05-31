@@ -37228,6 +37228,31 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/plex-media-server-0.0.1/plex-media-server-0.0.1.tgz
     version: 0.0.1
+  pod-gateway-setter:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-05-31T09:58:17.820543581Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 2.5.0
+    description: Admision controller to change the default gateway and DNS server
+      of PODs
+    digest: 8766ca1ff013a24bc51594dd2d84e2fe1aeb16c1bda84b0ebb715d9f10a4d131
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pod-gateway-setter
+    icon: https://pod-gateway-setter.org/icon
+    keywords:
+    - pod-gateway-setter
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: pod-gateway-setter
+    sources:
+    - https://github.com/pod-gateway-setter/pod-gateway-setter-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/pod-gateway-setter-1.0.0/pod-gateway-setter-1.0.0.tgz
+    version: 1.0.0
   powerdns:
   - apiVersion: v2
     appVersion: v4.3.1
@@ -60888,4 +60913,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-31T09:42:59.980285878Z"
+generated: "2021-05-31T09:58:17.834305764Z"
