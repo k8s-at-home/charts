@@ -8,7 +8,7 @@
 image:
   repository: ghcr.io/k8s-at-home/gateway-admision-controller
   pullPolicy: IfNotPresent
-  tag: dev
+  tag: v2.0.0
 
 # -- Gateway to route traffic to.
 # Can be an hostname or an IP
@@ -33,11 +33,12 @@ strategy:
 args:
 - --tls-cert-file-path=/tls/tls.crt
 - --tls-key-file-path=/tls/tls.key
+- --setGatewayDefault
+- --setGatewayLabel=setGateway
+- --setGatewayAnnotation=setGateway
 # - --debug
 # - --development
 # - --keepDNS
-# - --keepGatewayLabel=keepGAteway
-# - --keepGatewayAnnotation=keepGateway
 # Set by Helm chart:
 # --webhook-listen-address=:<set to service port>
 # --gateway=<set automatically to 'gateway'>

@@ -69,15 +69,24 @@ helm install pod-gateway-setter k8s-at-home/pod-gateway-setter -f values.yaml
 
 You need to set `gateway` to the hostname or address of your gateway. Then
 all PODs in namespaces with the matching label (`routed-gateway=true` by default)
-will be routed to this gateway. DNS server in the PODs will also be set to
-the gateway.
+will be processed by the webhook.
 
-Please notice that other labels might be configured. This is usuefull, for
-example, to install multiple copies of the chart, each routing a different
-namespace to a different gateway.
+The webhook by default changes all processed pods (remove `--setGatewayDefault`
+if you want to change the default). You can also change the default for a
+POD by adding a label or annotation (`setGateway` by default).
 
-**IMPORTAN**: Do not deploy this chart to a namespace controlled by this
+Processed PODs will get their default gateway changed. DNS server will
+also be set to the gateway (at least the option `--keepDNS` is used).
+
+Multiple instances of this chart might be installed that use different label
+values. This is usufull, for example, to route multiple pod groups, each with
+a different gateway.
+
+**IMPORTANT**: Do not deploy this chart to a namespace controlled by this
 webhook. This would result in a likelly deathlock when upgrading the chart.
+
+**NOTE**: This char requires the cert-manager CRD to generate the required
+certificates.
 
 ## Values
 
@@ -90,10 +99,13 @@ webhook. This would result in a likelly deathlock when upgrading the chart.
 | additionalVolumeMounts[0].readOnly | bool | `true` |  |
 | args[0] | string | `"--tls-cert-file-path=/tls/tls.crt"` |  |
 | args[1] | string | `"--tls-key-file-path=/tls/tls.key"` |  |
+| args[2] | string | `"--setGatewayDefault"` |  |
+| args[3] | string | `"--setGatewayLabel=setGateway"` |  |
+| args[4] | string | `"--setGatewayAnnotation=setGateway"` |  |
 | gateway | string | `"10.0.2.7"` | Gateway to route traffic to. Can be an hostname or an IP |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` |  |
-| image.tag | string | `"dev"` |  |
+| image.tag | string | `"v2.0.0"` |  |
 | ingress.enabled | bool | `false` |  |
 | namespaceSelector | object | `{"matchLabels":{"routed-gateway":"true"}}` | Selector for namespace. All pods in this namespace will get their default gateway changed |
 | probes.liveness.custom | bool | `true` |  |
