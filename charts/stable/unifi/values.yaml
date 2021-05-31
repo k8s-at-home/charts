@@ -39,7 +39,6 @@ unifiedService:
   externalTrafficPolicy:
 
 guiService:
-  enabled: false
   # -- Kubernetes service type
   type: ClusterIP
   # -- Kubernetes port where the service is exposed
@@ -92,7 +91,6 @@ captivePortalService:
     tls: []
 
 controllerService:
-  enabled: false
   # -- Kubernetes service type
   type: NodePort
   # -- Kubernetes port where the service is exposed
@@ -120,7 +118,6 @@ controllerService:
     tls: []
 
 stunService:
-  enabled: false
   # -- Kubernetes service type
   type: NodePort
   # -- Kubernetes port where the service is exposed
@@ -139,7 +136,6 @@ stunService:
   externalTrafficPolicy:
 
 discoveryService:
-  enabled: false
   # -- Kubernetes service type
   type: NodePort
   # -- Kubernetes port where the service is exposed
@@ -156,16 +152,6 @@ discoveryService:
   loadBalancerSourceRanges:
   # -- Set the externalTrafficPolicy in the Service to either Cluster or Local
   externalTrafficPolicy:
-
-
-  # -- Ingress settings
-  ingress:
-    enabled: false
-    annotations: {}
-    path: /
-    hosts:
-      - chart-example.local
-    tls: []
 
 syslogService:
   enabled: false
@@ -187,7 +173,6 @@ syslogService:
   externalTrafficPolicy:
 
 speedtestService:
-  enabled: false
   # -- Kubernetes service type
   type: ClusterIP
   # -- Kubernetes port where the service is exposed
