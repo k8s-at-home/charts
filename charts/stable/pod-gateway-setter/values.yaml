@@ -1,0 +1,92 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/k8s-at-home/gateway-admision-controller
+  pullPolicy: IfNotPresent
+  tag: v2.0.0
+
+# -- Gateway to route traffic to.
+# Can be an hostname or an IP
+gateway: 10.0.2.7
+
+# -- Selector for namespace.
+# All pods in this namespace will get their default gateway changed
+namespaceSelector:
+  matchLabels:
+    routed-gateway: "true"
+  # matchExpressions:
+  # - key: notTouch
+  #   operator: NotIn
+  #   values: ["1"]
+
+strategy:
+  type: RollingUpdate
+
+# Args for webhook
+# See more information in the container git repository at
+# https://github.com/k8s-at-home/gateway-admision-controller
+args:
+- --tls-cert-file-path=/tls/tls.crt
+- --tls-key-file-path=/tls/tls.key
+- --setGatewayDefault
+- --setGatewayLabel=setGateway
+- --setGatewayAnnotation=setGateway
+# - --debug
+# - --development
+# - --keepDNS
+# Set by Helm chart:
+# --webhook-listen-address=:<set to service port>
+# --gateway=<set automatically to 'gateway'>
+
+service:
+  port:
+    path: /wh/mutating/setgateway
+    port: 8080
+
+ingress:
+  enabled: false
+
+additionalVolumeMounts:
+- name: certs
+  mountPath: /tls
+  readOnly: true
+
+# Probes configuration
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        scheme: HTTPS
+        port: 8080
+        path: /wh/health
+      initialDelaySeconds: 1
+      failureThreshold: 5
+      timeoutSeconds: 10
+  readiness:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        scheme: HTTPS
+        port: 8080
+        path: /wh/health
+      initialDelaySeconds: 1
+      failureThreshold: 5
+      timeoutSeconds: 10
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        scheme: HTTPS
+        port: 8080
+        path: /wh/health
+      failureThreshold: 30
+      periodSeconds: 1
