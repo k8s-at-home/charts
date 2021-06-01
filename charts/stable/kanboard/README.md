@@ -1,6 +1,6 @@
 # kanboard
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: v1.2.18](https://img.shields.io/badge/AppVersion-v1.2.18-informational?style=flat-square)
+![Version: 2.5.1](https://img.shields.io/badge/Version-2.5.1-informational?style=flat-square) ![AppVersion: v1.2.18](https://img.shields.io/badge/AppVersion-v1.2.18-informational?style=flat-square)
 
 Kanboard is a free and open source Kanban project management software.
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

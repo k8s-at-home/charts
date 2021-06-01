@@ -1,6 +1,6 @@
 # mylar
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 0.4.9.5](https://img.shields.io/badge/AppVersion-0.4.9.5-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: 0.4.9.5](https://img.shields.io/badge/AppVersion-0.4.9.5-informational?style=flat-square)
 
 Mylar is the automated Comic Book downloader (cbr/cbz) for use with various download clients.
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

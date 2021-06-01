@@ -1,6 +1,6 @@
 # speedtest-exporter
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v3.1](https://img.shields.io/badge/AppVersion-v3.1-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v3.1](https://img.shields.io/badge/AppVersion-v3.1-informational?style=flat-square)
 
 Speedtest Exporter made in python using the official speedtest bin
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -79,7 +79,6 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/miguelndecarvalho/speedtest-exporter"` |  |
 | image.tag | string | `"v3.1"` |  |
-| ingress.enabled | bool | `false` |  |
 | prometheus.podMonitor.additionalLabels | object | `{}` |  |
 | prometheus.podMonitor.enabled | bool | `false` |  |
 | prometheus.podMonitor.interval | string | `"1h"` |  |

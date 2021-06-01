@@ -81,6 +81,9 @@ You can find an [example grafana dashboard](https://github.com/lekpamartin/uptim
 | image.repository | string | `"billimek/prometheus-uptimerobot-exporter"` |  |
 | image.tag | string | `"0.0.1"` |  |
 | ingress.enabled | bool | `false` |  |
+| prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
+| prometheus.serviceMonitor.enabled | bool | `false` |  |
+| prometheus.serviceMonitor.interval | string | `"1m"` |  |
 | service.port.port | int | `9705` |  |
 | strategy.type | string | `"Recreate"` |  |
 

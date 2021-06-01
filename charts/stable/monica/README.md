@@ -1,6 +1,6 @@
 # monica
 
-![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: v2.19.1](https://img.shields.io/badge/AppVersion-v2.19.1-informational?style=flat-square)
+![Version: 4.4.1](https://img.shields.io/badge/Version-4.4.1-informational?style=flat-square) ![AppVersion: v2.19.1](https://img.shields.io/badge/AppVersion-v2.19.1-informational?style=flat-square)
 
 A Personal Relationship Management tool to help you organize your social life
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

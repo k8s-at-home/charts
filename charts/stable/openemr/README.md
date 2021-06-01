@@ -1,6 +1,6 @@
 # openemr
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
 
 OpenEMR is the most popular open source electronic health records and medical practice management solution.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.9 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
 | https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
@@ -81,14 +81,7 @@ N/A
 | image.repository | string | `"openemr/openemr"` |  |
 | image.tag | string | `"6.0.0"` |  |
 | ingress.enabled | bool | `false` |  |
-| mariadb.architecture | string | `"standalone"` |  |
-| mariadb.auth.database | string | `"openemr"` |  |
-| mariadb.auth.password | string | `"openemr-pass"` |  |
-| mariadb.auth.rootPassword | string | `"openemrrootpass"` |  |
-| mariadb.auth.username | string | `"openemr"` |  |
 | mariadb.enabled | bool | `false` |  |
-| mariadb.fullnameOverride | string | `"openemr-mariadb"` |  |
-| mariadb.primary.persistence.enabled | bool | `false` |  |
 | persistence.log.emptyDir.enabled | bool | `false` |  |
 | persistence.log.enabled | bool | `false` |  |
 | persistence.log.mountPath | string | `"/var/log"` |  |

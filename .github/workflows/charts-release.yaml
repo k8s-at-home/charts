@@ -41,3 +41,4 @@ jobs:
         charts_repo_url: https://k8s-at-home.com/charts/
       env:
         CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        CR_SKIP_EXISTING: "true"

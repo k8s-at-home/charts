@@ -1,6 +1,6 @@
 # flaresolverr
 
-![Version: 3.3.2](https://img.shields.io/badge/Version-3.3.2-informational?style=flat-square) ![AppVersion: v1.2.3](https://img.shields.io/badge/AppVersion-v1.2.3-informational?style=flat-square)
+![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: v1.2.3](https://img.shields.io/badge/AppVersion-v1.2.3-informational?style=flat-square)
 
 FlareSolverr is a proxy server to bypass Cloudflare protection
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

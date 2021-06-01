@@ -1,6 +1,6 @@
 # wallabag
 
-![Version: 2.4.1](https://img.shields.io/badge/Version-2.4.1-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
+![Version: 2.6.1](https://img.shields.io/badge/Version-2.6.1-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
 
 A self hostable application for saving web pages, freely.
 
@@ -19,10 +19,10 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.6 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://charts.bitnami.com/bitnami | redis | 14.1.0 |
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
+| https://charts.bitnami.com/bitnami | redis | 14.1.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
