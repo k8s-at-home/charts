@@ -1,0 +1,31 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: hkotel/mealie
+  tag: v0.4.3
+  pullPolicy: IfNotPresent
+
+strategy:
+  type: Recreate
+
+env:
+  DB_TYPE: sqlite
+
+service:
+  port:
+    port: 9925
+
+ingress:
+  enabled: false
+
+persistence:
+  config:
+    enabled: false
+    emptyDir:
+      enabled: false
+    mountPath: /app/data/
