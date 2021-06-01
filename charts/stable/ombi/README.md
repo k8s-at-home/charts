@@ -1,6 +1,6 @@
 # ombi
 
-![Version: 9.2.0](https://img.shields.io/badge/Version-9.2.0-informational?style=flat-square) ![AppVersion: 4.0.681](https://img.shields.io/badge/AppVersion-4.0.681-informational?style=flat-square)
+![Version: 9.4.0](https://img.shields.io/badge/Version-9.4.0-informational?style=flat-square) ![AppVersion: 4.0.681](https://img.shields.io/badge/AppVersion-4.0.681-informational?style=flat-square)
 
 Want a Movie or TV Show on Plex or Emby? Use Ombi!
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

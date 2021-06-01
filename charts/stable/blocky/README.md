@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v0.13](https://img.shields.io/badge/AppVersion-v0.13-informational?style=flat-square)
+![Version: 6.4.0](https://img.shields.io/badge/Version-6.4.0-informational?style=flat-square) ![AppVersion: v0.13](https://img.shields.io/badge/AppVersion-v0.13-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -88,7 +88,7 @@ N/A
 | prometheus.serviceMonitor.interval | string | `"30s"` |  |
 | replicas | int | `1` | (int) Number of pods to load balance between |
 | service.port.port | int | `4000` |  |
-| strategy.type | string | `"Recreate"` |  |
+| strategy.type | string | `"RollingUpdate"` |  |
 
 ## Changelog
 

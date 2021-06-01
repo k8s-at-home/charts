@@ -1,6 +1,6 @@
 # teedy
 
-![Version: 3.4.1](https://img.shields.io/badge/Version-3.4.1-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
+![Version: 3.5.1](https://img.shields.io/badge/Version-3.5.1-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
 
 Teedy is an open source, lightweight document management system for individuals and businesses.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.4.0 |
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

@@ -1,6 +1,6 @@
 # comcast
 
-![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 periodic comcast data usage checks and save the results to InfluxDB
 
@@ -17,7 +17,7 @@ periodic comcast data usage checks and save the results to InfluxDB
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -70,9 +70,9 @@ helm install comcast k8s-at-home/comcast -f values.yaml
 ```
 'measurement': 'comcast_data_usage',
 'fields': {
-		'used',
-		'total',
-		'unit'
+        'used',
+        'total',
+        'unit'
 }
 ```
 
@@ -87,6 +87,9 @@ helm install comcast k8s-at-home/comcast -f values.yaml
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"billimek/comcastusage-for-influxdb"` |  |
 | image.tag | string | `"latest"` |  |
+| probes.liveness.enabled | bool | `false` |  |
+| probes.readiness.enabled | bool | `false` |  |
+| probes.startup.enabled | bool | `false` |  |
 | service.enabled | bool | `false` |  |
 | strategy.type | string | `"Recreate"` |  |
 
@@ -107,7 +110,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **BREAKING** Migrate to the common library, a lot of configuration has changed.
 
 #### Removed
- 
+
 - N/A
 
 ### [3.0.1]
