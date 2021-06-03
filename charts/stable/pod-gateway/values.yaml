@@ -1,0 +1,227 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: ghcr.io/k8s-at-home/pod-gateway
+  pullPolicy: IfNotPresent
+  tag: v1.1.0
+
+# -- IP address of the DNS server within the vxlan tunnel.
+# All mutated PODs will get this as their DNS server.
+# It must match VXLAN_GATEWAY_IP in settings.sh
+DNS: 172.16.0.1
+
+# -- cluster name used to derive the gateway full name
+clusterName: "cluster.local"
+
+configmap:
+  # -- configmap contains clients and gateway PODs setting
+  enabled: true
+  # -- Namespaces to create the configmap to.
+  # It must list all namespaces where client PODs get deployed to.
+  # The chart namespace is added automatically
+  namespaces:
+  - kube-system
+  - vpn
+  data:
+    # -- settings for gateway - defaults should usually be good
+    # NOTE: if you change it you will need to manually restart all
+    # containers using it
+    settings.sh: |
+      #!/bin/sh
+      # hostname of the gateway - it must accept vxlan and DHCP traffic
+      # clients get it as env variable
+      GATEWAY_NAME="${gateway}"
+      # K8S DNS IP address
+      # clients get it as env variable
+      K8S_DNS_IPS="${K8S_DNS_ips}"
+
+      # Vxlan ID to use
+      VXLAN_ID="42"
+      # VXLAN need an /24 IP range not conflicting with K8S and local IP ranges
+      VXLAN_IP_NETWORK="172.16.0"
+      # Gateway IP within the VXLAN - client PODs will be routed through it
+      VXLAN_GATEWAY_IP="${VXLAN_IP_NETWORK}.1"
+      # Keep a range of IPs for static assignment in nat.conf
+      VXLAN_GATEWAY_FIRST_DYNAMIC_IP=20
+
+      # If using a VPN, interface name created by it
+      VPN_INTERFACE=tun0
+      # Prevent non VPN traffic to leave the gateway
+      VPN_BLOCK_OTHER_TRAFFIC=false
+      # Traffic to these IPs will be send through the K8S gateway
+      VPN_LOCAL_CIDRS="10.0.0.0/8 192.168.0.0/16"
+
+      # DNS queries to these domains will be resolved by K8S DNS instead of
+      # the default (typcally the VPN client changes it)
+      DNS_LOCAL_CIDRS="local"
+
+    # -- settings to expose ports, usually through a VPN provider
+    # NOTE: if you change it you will need to manually restart all
+    # containers using it
+    nat.conf: |
+      # Configure client PODs with static IP addresses
+      # and ports exposed through NAT
+      # static IPs must be bellow VXLAN_GATEWAY_FIRST_DYNAMIC_IP
+      #
+      # hostname IP ports(coma separated)
+      # Example:
+      # transmission 10 tcp:18289,udp:18289
+
+
+# You should not need to change the settings bellow this
+# at least you have ready the webhook and pod-gateway containers
+# documentation
+
+command:
+- /bin/gateway_sidecar.sh
+
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
+
+additionalVolumeMounts:
+- name: config
+  mountPath: /config
+  readOnly: true
+
+initContainers:
+- name: "routes"
+  # -- Will be set automatically
+  # @default -- <image.repository>:<image.tag>
+  image:
+  # -- Will be set automatically
+  # @default -- <image.pullPolicy>
+  imagePullPolicy:
+  command:
+  - /bin/gateway_init.sh
+  securityContext:
+    capabilities:
+      add:
+        - NET_ADMIN
+  volumeMounts:
+  - name: config
+    mountPath: /config
+    readOnly: true
+
+additionalContainers:
+- name: "test"
+  image: "ghcr.io/k8s-at-home/pod-gateway:dev"
+  imagePullPolicy:
+  command:
+  - /bin/sh
+  - -c
+  - while true; do
+    sleep 600 &
+    wait $!;
+    done
+  securityContext:
+    capabilities:
+      add:
+        - NET_ADMIN
+  volumeMounts:
+  - name: config
+    mountPath: /config
+    readOnly: true
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+service:
+  type: ClusterIP
+  clusterIP: None
+  port:
+    port: 4789
+    protocol: UDP
+
+webhook:
+  image:
+    repository: ghcr.io/k8s-at-home/gateway-admision-controller
+    pullPolicy: IfNotPresent
+    tag: v3.2.0
+
+  # -- Selector for namespace.
+  # All pods in this namespace will get their default gateway changed
+  namespaceSelector:
+    matchLabels:
+      routed-gateway: "true"
+    # matchExpressions:
+    # - key: notTouch
+    #   operator: NotIn
+    #   values: ["1"]
+
+  additionalVolumes: []
+
+
+  inserted:
+    init:
+      # -- Will be set automatically
+      # @default -- <image.repository>
+      repository:
+      # -- Will be set automatically
+      # @default -- <image.pullPolicy>
+      pullPolicy:
+      # -- Will be set automatically
+      # @default -- <image.tag>
+      tag:
+      cmd: /bin/client_init.sh
+      mountPath: /config
+
+    sidecar:
+      # -- Will be set automatically
+      # @default -- <image.repository>
+      repository:
+      # -- Will be set automatically
+      # @default -- <image.pullPolicy>
+      pullPolicy:
+      # -- Will be set automatically
+      # @default -- <image.tag>
+      tag:
+      cmd: /bin/client_sidecar.sh
+      mountPath: /config
+
+  replicas: 1
+
+  strategy:
+    type: RollingUpdate
+
+  # Args for webhook
+  # See more information in the container git repository at
+  # https://github.com/k8s-at-home/gateway-admision-controller
+  args:
+  - --tls-cert-file-path=/tls/tls.crt
+  - --tls-key-file-path=/tls/tls.key
+  - --setGatewayDefault
+  - --setGatewayLabel=setGateway
+  - --setGatewayAnnotation=setGateway
+  - --DNSPolicy=None
+  # - --debug
+  # - --development
+  # Set by Helm chart:
+  # --webhook-listen-address=:<set to service port>
+  # --gateway=<set automatically to 'gateway'>
+  # --DNS=<set automatically to 'gateway'>
+  # --initImage
+  # --initImagePullPol
+  # --initCmd
+  # --initMountPoint
+  # --sidecarImage
+  # --sidecarImagePullPol
+  # --sidecarCmd
+  # --sidecarMountPoint
+  # --configmapName
+
+  service:
+    port:
+      path: /wh/mutating/setgateway
+      protocol: HTTPS
+      port: 8080

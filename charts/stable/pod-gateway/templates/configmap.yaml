@@ -1,0 +1,14 @@
+{{- if .Values.configmap.enabled -}}
+{{- range $namespace := .Values.configmap.namespaces }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "pod-gateway.configmap" $ | quote }}
+  namespace: {{ $namespace }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+data:
+  {{- $.Values.configmap.data | toYaml | nindent 2 }}
+{{- end -}}
+{{- end -}}
