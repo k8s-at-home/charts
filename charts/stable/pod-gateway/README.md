@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -96,16 +96,6 @@ certificates. It does not install it as dependency to avoid conflicts.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | DNS | string | `"172.16.0.1"` | IP address of the DNS server within the vxlan tunnel. All mutated PODs will get this as their DNS server. It must match VXLAN_GATEWAY_IP in settings.sh |
-| additionalContainers[0].command[0] | string | `"/bin/sh"` |  |
-| additionalContainers[0].command[1] | string | `"-c"` |  |
-| additionalContainers[0].command[2] | string | `"while true; do sleep 600 & wait $!; done"` |  |
-| additionalContainers[0].image | string | `"ghcr.io/k8s-at-home/pod-gateway:dev"` |  |
-| additionalContainers[0].imagePullPolicy | string | `nil` |  |
-| additionalContainers[0].name | string | `"test"` |  |
-| additionalContainers[0].securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
-| additionalContainers[0].volumeMounts[0].mountPath | string | `"/config"` |  |
-| additionalContainers[0].volumeMounts[0].name | string | `"config"` |  |
-| additionalContainers[0].volumeMounts[0].readOnly | bool | `true` |  |
 | additionalVolumeMounts[0].mountPath | string | `"/config"` |  |
 | additionalVolumeMounts[0].name | string | `"config"` |  |
 | additionalVolumeMounts[0].readOnly | bool | `true` |  |
@@ -114,7 +104,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | configmap.data."nat.conf" | string | `"# Configure client PODs with static IP addresses\n# and ports exposed through NAT\n# static IPs must be bellow VXLAN_GATEWAY_FIRST_DYNAMIC_IP\n#\n# hostname IP ports(coma separated)\n# Example:\n# transmission 10 tcp:18289,udp:18289\n"` | settings to expose ports, usually through a VPN provider NOTE: if you change it you will need to manually restart all containers using it |
 | configmap.data."settings.sh" | string | `"#!/bin/sh\n# hostname of the gateway - it must accept vxlan and DHCP traffic\n# clients get it as env variable\nGATEWAY_NAME=\"${gateway}\"\n# K8S DNS IP address\n# clients get it as env variable\nK8S_DNS_IPS=\"${K8S_DNS_ips}\"\n\n# Vxlan ID to use\nVXLAN_ID=\"42\"\n# VXLAN need an /24 IP range not conflicting with K8S and local IP ranges\nVXLAN_IP_NETWORK=\"172.16.0\"\n# Gateway IP within the VXLAN - client PODs will be routed through it\nVXLAN_GATEWAY_IP=\"${VXLAN_IP_NETWORK}.1\"\n# Keep a range of IPs for static assignment in nat.conf\nVXLAN_GATEWAY_FIRST_DYNAMIC_IP=20\n\n# If using a VPN, interface name created by it\nVPN_INTERFACE=tun0\n# Prevent non VPN traffic to leave the gateway\nVPN_BLOCK_OTHER_TRAFFIC=false\n# Traffic to these IPs will be send through the K8S gateway\nVPN_LOCAL_CIDRS=\"10.0.0.0/8 192.168.0.0/16\"\n\n# DNS queries to these domains will be resolved by K8S DNS instead of\n# the default (typcally the VPN client changes it)\nDNS_LOCAL_CIDRS=\"local\"\n"` | settings for gateway - defaults should usually be good NOTE: if you change it you will need to manually restart all containers using it |
 | configmap.enabled | bool | `true` | configmap contains clients and gateway PODs setting |
-| configmap.namespaces | list | `["kube-system","vpn"]` | Namespaces to create the configmap to. It must list all namespaces where client PODs get deployed to. The chart namespace is added automatically |
+| configmap.namespaces | list | `[]` | Namespaces to create the configmap to. It must list all namespaces where client PODs get deployed to. The chart namespace is added automatically |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` |  |
 | image.tag | string | `"v1.1.0"` |  |
@@ -166,6 +156,23 @@ certificates. It does not install it as dependency to avoid conflicts.
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- remove test container - sidecar allows exec as well
+- remove hardcoded namespaces for configmaps
+
+#### Removed
+
+- N/A
+
+[1.0.1]: #1.0.1
 
 ### [1.0.0]
 
