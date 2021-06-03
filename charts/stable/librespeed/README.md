@@ -1,6 +1,6 @@
 # librespeed
 
-![Version: 3.1.2](https://img.shields.io/badge/Version-3.1.2-informational?style=flat-square) ![AppVersion: 5.2.4](https://img.shields.io/badge/AppVersion-5.2.4-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 5.2.4](https://img.shields.io/badge/AppVersion-5.2.4-informational?style=flat-square)
 
 Librespeed is a HTML5 webpage to test upload and download speeds
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

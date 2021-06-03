@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 8.3.0](https://img.shields.io/badge/Version-8.3.0-informational?style=flat-square) ![AppVersion: 2021.5.5](https://img.shields.io/badge/AppVersion-2021.5.5-informational?style=flat-square)
+![Version: 8.3.1](https://img.shields.io/badge/Version-8.3.1-informational?style=flat-square) ![AppVersion: 2021.5.5](https://img.shields.io/badge/AppVersion-2021.5.5-informational?style=flat-square)
 
 Home Assistant
 
@@ -21,8 +21,8 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.9 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.4.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
 | https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
@@ -165,7 +165,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Updated image tag to version 2021.5.5
+- Updated image tag to version 2021.5.5.
 
 ## [8.0.0]
 
@@ -182,10 +182,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Migrated chart over to our common library, this version introduces breaking changes. Be sure to back up your config volume incase something goes wrong.
-- Upgraded `home-assistant` container image to `2020.12.1`
+- Upgraded `home-assistant` container image to `2020.12.1`.
 - Upgraded `postgresql` subchart from version 10.1.3 to version 10.2.0.
 - Upgraded `influxdb` subchart from version 1.1.2 to version 1.1.4.
-- Upgraded `mariadb` subchart from version 9.1.2 to version 9.1.4
+- Upgraded `mariadb` subchart from version 9.1.2 to version 9.1.4.
 
 ## [4.0.0]
 
@@ -212,7 +212,7 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 ### Changed
 
 - The default `home-assistant` image has been updated to v0.118.3.
-- The default `vscode` image has been updated to 3.7.2
+- The default `vscode` image has been updated to 3.7.2.
 - :warning: Upgraded `influxdb` subchart from version 0.6.7 to version 1.0.0.
 - :warning: Upgraded `postgresql` subchart from version 9.1.2 to version 10.1.0.
   This is a major version update, [requiring changes](https://github.com/bitnami/charts/tree/master/bitnami/postgresql#to-1000) in your `values.yaml` if you use it!

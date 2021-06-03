@@ -1,6 +1,6 @@
 # hyperion-ng
 
-![Version: 3.3.2](https://img.shields.io/badge/Version-3.3.2-informational?style=flat-square) ![AppVersion: 2.0.0-alpha9](https://img.shields.io/badge/AppVersion-2.0.0--alpha9-informational?style=flat-square)
+![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: 2.0.0-alpha9](https://img.shields.io/badge/AppVersion-2.0.0--alpha9-informational?style=flat-square)
 
 Hyperion is an opensource Bias or Ambient Lighting implementation
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

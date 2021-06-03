@@ -1,6 +1,6 @@
 # deluge
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: v2.0.3-2201906121747](https://img.shields.io/badge/AppVersion-v2.0.3--2201906121747-informational?style=flat-square)
+![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: v2.0.3-2201906121747](https://img.shields.io/badge/AppVersion-v2.0.3--2201906121747-informational?style=flat-square)
 
 Deluge is a torrent download client
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

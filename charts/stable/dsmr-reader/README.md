@@ -1,6 +1,6 @@
 # dsmr-reader
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: v4.9.0](https://img.shields.io/badge/AppVersion-v4.9.0-informational?style=flat-square)
+![Version: 3.5.1](https://img.shields.io/badge/Version-3.5.1-informational?style=flat-square) ![AppVersion: v4.9.0](https://img.shields.io/badge/AppVersion-v4.9.0-informational?style=flat-square)
 
 DSMR-protocol reader, telegram data storage and energy consumption visualizer.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.3.15 |
-| https://library-charts.k8s-at-home.com | common | 2.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 

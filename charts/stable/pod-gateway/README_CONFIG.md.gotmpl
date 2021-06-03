@@ -16,6 +16,11 @@ POD by adding a label or annotation (`setGateway` by default).
 Processed PODs will get their default gateway changed. DNS server will
 also be set to the gateway (at least the option `--keepDNS` is used).
 
+If you want to use the VPN please follow the
+[common chart VPN sidecar docummentation](https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml).
+If you want to test without VPN client you can
+set the `VPN_BLOCK_OTHER_TRAFFIC` to false.
+
 **IMPORTANT**: Do not deploy this chart to a namespace controlled by this
 webhook. This would result in a likelly deathlock when upgrading the chart.
 

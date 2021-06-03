@@ -1,6 +1,6 @@
 # sharry
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
+![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
 Sharry allows to share files with others in a simple way. It is a self-hosted web application. The basic concept is to upload files and get a url back that can then be shared.
 
@@ -17,7 +17,7 @@ Sharry allows to share files with others in a simple way. It is a self-hosted we
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.3.1 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -75,13 +75,10 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | args[0] | string | `"/opt/sharry.conf"` |  |
-| config | object | see URL to default config | Full list of options https://eikek.github.io/sharry/doc/configure |
+| config | string | `"sharry.restserver {\n  # base-url = \"https://sharry.${DOMAIN}\"\n  bind {\n    address = \"0.0.0.0\"\n    port = 9090\n  }\n  backend {\n    auth {\n      fixed {\n        enabled = false  # set to true to enable this auth provider\n        user = \"admin\"\n        password = \"admin\"\n        order = 10\n      }\n    }\n  }\n}\n"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"eikek0/sharry"` |  |
 | image.tag | string | `"1.6.0"` |  |
-| ingress.annotations."nginx.ingress.kubernetes.io/client-body-buffer-size" | string | `"2048m"` |  |
-| ingress.annotations."nginx.ingress.kubernetes.io/proxy-body-size" | string | `"2048m"` |  |
-| ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffering" | string | `"off"` |  |
 | ingress.enabled | bool | `false` |  |
 | service.port.port | int | `9090` |  |
 
