@@ -5,9 +5,9 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-You need to set `gateway` to the hostname or address of your gateway. Then
-all PODs in namespaces with the matching label (`routed-gateway=true` by default)
-will be processed by the webhook.
+You need to add `routed-gateway=true` to the namespaces with PODs you
+want to route through this POD gateway. If needed the label name can be changed
+in .Values.
 
 The webhook by default changes all processed pods (remove `--setGatewayDefault`
 if you want to change the default). You can also change the default for a
@@ -16,14 +16,15 @@ POD by adding a label or annotation (`setGateway` by default).
 Processed PODs will get their default gateway changed. DNS server will
 also be set to the gateway (at least the option `--keepDNS` is used).
 
-Multiple instances of this chart might be installed that use different label
-values. This is usufull, for example, to route multiple pod groups, each with
-a different gateway.
+If you want to use the VPN please follow the
+[common chart VPN sidecar docummentation](https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml).
+If you want to test without VPN client you can
+set the `VPN_BLOCK_OTHER_TRAFFIC` to false.
 
 **IMPORTANT**: Do not deploy this chart to a namespace controlled by this
 webhook. This would result in a likelly deathlock when upgrading the chart.
 
 **NOTE**: This char requires the cert-manager CRD to generate the required
-certificates.
+certificates. It does not install it as dependency to avoid conflicts.
 
 {{- end -}}

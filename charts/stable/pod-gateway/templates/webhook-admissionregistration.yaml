@@ -5,11 +5,11 @@ metadata:
   labels:
     {{- include "common.labels" . | nindent 4 }}
   annotations:
-    cert-manager.io/inject-ca-from: "{{ .Release.Namespace }}/{{ include "pod-gateway-setter.servingCertificate" . }}"
+    cert-manager.io/inject-ca-from: "{{ .Release.Namespace }}/{{ include "pod-gateway.servingCertificate" . }}"
 webhooks:
 - name: "{{ include "common.names.fullname" . }}.svc.cluster.local"
   namespaceSelector:
-  {{- with .Values.namespaceSelector }}
+  {{- with .Values.webhook.namespaceSelector }}
     {{ toYaml . | nindent 4 }}
   {{- end }}
   rules:
@@ -21,9 +21,9 @@ webhooks:
   clientConfig:
     service:
       namespace: {{ .Release.Namespace | quote }}
-      name: {{ include "common.names.fullname" . | quote }}
-      path: {{ .Values.service.port.path | quote }}
-      port: {{ .Values.service.port.port }}
+      name: {{ include "common.names.fullname" . }}-webhook
+      path: {{ .Values.webhook.service.port.path | quote }}
+      port: {{ .Values.webhook.service.port.port }}
   admissionReviewVersions: ["v1", "v1beta1"]
   sideEffects: None
   timeoutSeconds: 5

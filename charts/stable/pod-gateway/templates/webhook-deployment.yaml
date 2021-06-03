@@ -1,0 +1,103 @@
+apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ include "common.names.fullname" . }}-webhook
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.webhook.controllerLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.webhook.controllerAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.webhook.replicas }}
+  {{- with .Values.webhook.strategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{ include "pod-gateway.labels.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.webhook.podAnnotations }}
+      annotations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+      {{ include "pod-gateway.labels.selectorLabels" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: certs
+          secret:
+            secretName: {{ include "pod-gateway.servingCertificate" . }}
+            defaultMode: 420
+      containers:
+        - name: foo-pod-gateway
+          image: {{ .Values.webhook.image.repository }}:{{ .Values.webhook.image.tag }}
+          args:
+            - --webhook-listen-address=:{{ .Values.webhook.service.port.port |toString }}
+            - --gateway={{ include "pod-gateway.gateway" . }}
+            - --DNS={{ .Values.DNS }}
+            {{- if .Values.configmap.enabled }}
+            - --configmapName={{ include "pod-gateway.configmap" . }}
+            {{- end}}
+            {{- if ( include "pod-gateway.webhook-inserted-init-repository" . ) }}
+            - --initImage={{ include "pod-gateway.webhook-inserted-init-repository" . }}
+            - --initImagePullPol={{ include "pod-gateway.webhook-inserted-init-pullPolicy" . }}
+            - --initCmd={{ .Values.webhook.inserted.init.cmd }}
+            - --initMountPoint={{ .Values.webhook.inserted.init.mountPath }}
+            {{- end}}
+            {{- if ( include "pod-gateway.webhook-inserted-sidecar-repository" . ) }}
+            - --sidecarImage={{ include "pod-gateway.webhook-inserted-init-repository" . }}
+            - --sidecarImagePullPol={{ include "pod-gateway.webhook-inserted-sidecar-pullPolicy" . }}
+            - --sidecarCmd={{ .Values.webhook.inserted.sidecar.cmd }}
+            - --sidecarMountPoint={{ .Values.webhook.inserted.sidecar.mountPath }}
+            {{- end}}
+            {{ toYaml .Values.webhook.args | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.webhook.service.port.port }}
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: certs
+              readOnly: true
+              mountPath: /tls
+          livenessProbe:
+            httpGet:
+              path: /wh/health
+              port: {{ .Values.webhook.service.port.port }}
+              scheme: {{ .Values.webhook.service.port.protocol }}
+            initialDelaySeconds: 1
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /wh/health
+              port: {{ .Values.webhook.service.port.port }}
+              scheme: {{ .Values.webhook.service.port.protocol }}
+            initialDelaySeconds: 1
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
+          startupProbe:
+            httpGet:
+              path: /wh/health
+              port: {{ .Values.webhook.service.port.port }}
+              scheme: {{ .Values.webhook.service.port.protocol }}
+            timeoutSeconds: 1
+            periodSeconds: 1
+            successThreshold: 1
+            failureThreshold: 30
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: {{ .Values.webhook.image.pullPolicy }}
+      restartPolicy: Always
+  strategy:
+    type: {{ .Values.webhook.strategy.type }}

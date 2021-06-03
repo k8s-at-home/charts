@@ -4,7 +4,7 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ include "pod-gateway-setter.selfSignedIssuer" . }}
+  name: {{ include "pod-gateway.selfSignedIssuer" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
@@ -17,17 +17,17 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "pod-gateway-setter.rootCACertificate" . }}
+  name: {{ include "pod-gateway.rootCACertificate" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
-  secretName: {{ include "pod-gateway-setter.rootCACertificate" . }}
+  secretName: {{ include "pod-gateway.rootCACertificate" . }}
   duration: 43800h # 5y
   issuerRef:
-    name: {{ include "pod-gateway-setter.selfSignedIssuer" . }}
+    name: {{ include "pod-gateway.selfSignedIssuer" . }}
     kind: Issuer
-  commonName: "ca.pod-gateway-setter.cert-manager"
+  commonName: "ca.pod-gateway.cert-manager"
   isCA: true
 
 ---
@@ -36,13 +36,13 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: {{ include "pod-gateway-setter.rootCAIssuer" . }}
+  name: {{ include "pod-gateway.rootCAIssuer" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
   ca:
-    secretName: {{ include "pod-gateway-setter.rootCACertificate" . }}
+    secretName: {{ include "pod-gateway.rootCACertificate" . }}
 
 ---
 
@@ -50,17 +50,17 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "pod-gateway-setter.servingCertificate" . }}
+  name: {{ include "pod-gateway.servingCertificate" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
 spec:
-  secretName: {{ include "pod-gateway-setter.servingCertificate" . }}
+  secretName: {{ include "pod-gateway.servingCertificate" . }}
   duration: 8760h # 1y
   issuerRef:
-    name: {{ include "pod-gateway-setter.rootCAIssuer" . }}
+    name: {{ include "pod-gateway.rootCAIssuer" . }}
     kind: Issuer
   dnsNames:
-  - {{ include "common.names.fullname" . }}
-  - {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}
-  - {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.svc
+  - {{ include "common.names.fullname" . }}-webhook
+  - {{ include "common.names.fullname" . }}-webhook.{{ .Release.Namespace }}
+  - {{ include "common.names.fullname" . }}-webhook.{{ .Release.Namespace }}.svc

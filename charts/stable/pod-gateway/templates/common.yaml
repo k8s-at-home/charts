@@ -1,0 +1,22 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{- $_ := set (first .Values.initContainers ) "image" (printf "%s:%s" .Values.image.repository .Values.image.tag ) -}}
+{{- $_ := set (first .Values.initContainers ) "imagePullPolicy" .Values.image.pullPolicy -}}
+
+{{/* Append the cert secret to the additionalVolumes */}}
+{{- define "pod-gateway.settings.volume" -}}
+name: config
+configMap:
+  name: {{ include "pod-gateway.configmap" . }}
+  defaultMode: 0555
+{{- end -}}
+
+{{- $volume := include "pod-gateway.settings.volume" . | fromYaml -}}
+{{- if $volume -}}
+  {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
+  {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+{{- end -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
