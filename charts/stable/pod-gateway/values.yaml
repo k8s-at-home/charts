@@ -24,9 +24,7 @@ configmap:
   # -- Namespaces to create the configmap to.
   # It must list all namespaces where client PODs get deployed to.
   # The chart namespace is added automatically
-  namespaces:
-  - kube-system
-  - vpn
+  namespaces: []
   data:
     # -- settings for gateway - defaults should usually be good
     # NOTE: if you change it you will need to manually restart all
@@ -109,26 +107,6 @@ initContainers:
     mountPath: /config
     readOnly: true
 
-additionalContainers:
-- name: "test"
-  image: "ghcr.io/k8s-at-home/pod-gateway:dev"
-  imagePullPolicy:
-  command:
-  - /bin/sh
-  - -c
-  - while true; do
-    sleep 600 &
-    wait $!;
-    done
-  securityContext:
-    capabilities:
-      add:
-        - NET_ADMIN
-  volumeMounts:
-  - name: config
-    mountPath: /config
-    readOnly: true
-
 probes:
   liveness:
     enabled: false
@@ -136,6 +114,7 @@ probes:
     enabled: false
   startup:
     enabled: false
+
 service:
   type: ClusterIP
   clusterIP: None

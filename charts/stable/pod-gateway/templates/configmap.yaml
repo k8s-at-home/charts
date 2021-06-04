@@ -1,5 +1,5 @@
-{{- if .Values.configmap.enabled -}}
-{{- range $namespace := .Values.configmap.namespaces }}
+{{- if .Values.configmap.enabled | default true -}}
+{{- range $namespace := append .Values.configmap.namespaces .Release.Namespace }}
 ---
 apiVersion: v1
 kind: ConfigMap
