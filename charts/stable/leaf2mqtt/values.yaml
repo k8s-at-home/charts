@@ -1,0 +1,33 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: leaf2mqtt/leaf2mqtt
+  pullPolicy: IfNotPresent
+  tag: 1.0.0
+
+strategy:
+  type: Recreate
+
+# See more environment variables in the leaf2mqtt documentation
+# https://leaf2mqtt.org/docs
+env: {}
+  # TZ:
+
+service:
+  port:
+    port: 1880
+
+ingress:
+  enabled: false
+
+# persistence:
+#   data:
+#     enabled: false
+#     emptyDir:
+#       enabled: false
+#     mountPath: /data
