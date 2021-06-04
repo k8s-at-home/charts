@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.1.2](https://img.shields.io/badge/AppVersion-1.1.2-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -99,15 +99,34 @@ certificates. It does not install it as dependency to avoid conflicts.
 | additionalVolumeMounts[0].mountPath | string | `"/config"` |  |
 | additionalVolumeMounts[0].name | string | `"config"` |  |
 | additionalVolumeMounts[0].readOnly | bool | `true` |  |
+| addons.vpn.configFileSecret | string | `"openvpn"` |  |
+| addons.vpn.enabled | bool | `false` | Enable the VPN if you want to route through a VPN. You might also want to set VPN_BLOCK_OTHER_TRAFFIC to true for extra safeness in case the VPN does connect |
+| addons.vpn.env | string | `nil` |  |
+| addons.vpn.networkPolicy.egress[0].ports[0].port | int | `443` |  |
+| addons.vpn.networkPolicy.egress[0].ports[0].protocol | string | `"UDP"` |  |
+| addons.vpn.networkPolicy.egress[0].to[0].ipBlock.cidr | string | `"0.0.0.0/0"` |  |
+| addons.vpn.networkPolicy.egress[1].to[0].ipBlock.cidr | string | `"10.0.0.0/8"` |  |
+| addons.vpn.networkPolicy.enabled | bool | `true` |  |
+| addons.vpn.openvpn | string | `nil` |  |
+| addons.vpn.type | string | `"openvpn"` |  |
+| addons.vpn.wireguard | string | `nil` |  |
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
 | command[0] | string | `"/bin/gateway_sidecar.sh"` |  |
-| configmap.data."nat.conf" | string | `"# Configure client PODs with static IP addresses\n# and ports exposed through NAT\n# static IPs must be bellow VXLAN_GATEWAY_FIRST_DYNAMIC_IP\n#\n# hostname IP ports(coma separated)\n# Example:\n# transmission 10 tcp:18289,udp:18289\n"` | settings to expose ports, usually through a VPN provider NOTE: if you change it you will need to manually restart all containers using it |
-| configmap.data."settings.sh" | string | `"#!/bin/sh\n# hostname of the gateway - it must accept vxlan and DHCP traffic\n# clients get it as env variable\nGATEWAY_NAME=\"${gateway}\"\n# K8S DNS IP address\n# clients get it as env variable\nK8S_DNS_IPS=\"${K8S_DNS_ips}\"\n\n# Vxlan ID to use\nVXLAN_ID=\"42\"\n# VXLAN need an /24 IP range not conflicting with K8S and local IP ranges\nVXLAN_IP_NETWORK=\"172.16.0\"\n# Gateway IP within the VXLAN - client PODs will be routed through it\nVXLAN_GATEWAY_IP=\"${VXLAN_IP_NETWORK}.1\"\n# Keep a range of IPs for static assignment in nat.conf\nVXLAN_GATEWAY_FIRST_DYNAMIC_IP=20\n\n# If using a VPN, interface name created by it\nVPN_INTERFACE=tun0\n# Prevent non VPN traffic to leave the gateway\nVPN_BLOCK_OTHER_TRAFFIC=false\n# Traffic to these IPs will be send through the K8S gateway\nVPN_LOCAL_CIDRS=\"10.0.0.0/8 192.168.0.0/16\"\n\n# DNS queries to these domains will be resolved by K8S DNS instead of\n# the default (typcally the VPN client changes it)\nDNS_LOCAL_CIDRS=\"local\"\n"` | settings for gateway - defaults should usually be good NOTE: if you change it you will need to manually restart all containers using it |
 | configmap.enabled | bool | `true` | configmap contains clients and gateway PODs setting |
 | configmap.namespaces | list | `[]` | Namespaces to create the configmap to. It must list all namespaces where client PODs get deployed to. The chart namespace is added automatically |
+| configmap.publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
+| configmap.settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
+| configmap.settings.NOT_ROUTED_TO_GATEWAY_CIDRS | string | `""` | IPs not sent to the POD gateway but to the default K8S. Multiple CIDRs can be specified using blanks as separator. Example for Calico: ""172.22.0.0/16 172.24.0.0/16" This is needed, for example, in case your CNI does not add a non-default rule for the K8S addresses (Flannel does). |
+| configmap.settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |
+| configmap.settings.VPN_INTERFACE | string | `"tun0"` | If using a VPN, interface name created by it |
+| configmap.settings.VPN_LOCAL_CIDRS | string | `"10.0.0.0/8 192.168.0.0/16"` | Traffic to these IPs will be send through the K8S gateway |
+| configmap.settings.VPN_TRAFFIC_PORT | int | `443` | If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port |
+| configmap.settings.VXLAN_GATEWAY_FIRST_DYNAMIC_IP | int | `20` | Keep a range of IPs for static assignment in nat.conf |
+| configmap.settings.VXLAN_ID | int | `42` | Vxlan ID to use |
+| configmap.settings.VXLAN_IP_NETWORK | string | `"172.16.0"` | VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` |  |
-| image.tag | string | `"v1.1.0"` |  |
+| image.tag | string | `"v1.2.2"` |  |
 | initContainers[0].command[0] | string | `"/bin/gateway_init.sh"` |  |
 | initContainers[0].image | string | `nil` | Will be set automatically |
 | initContainers[0].imagePullPolicy | string | `nil` | Will be set automatically |
@@ -156,6 +175,23 @@ certificates. It does not install it as dependency to avoid conflicts.
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- configmap is now a dictionary instead of a long string
+- only modifed settings need to be specified
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
 
 ### [1.0.1]
 
