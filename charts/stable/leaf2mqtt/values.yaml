@@ -6,9 +6,9 @@
 #
 
 image:
-  repository: leaf2mqtt/leaf2mqtt
+  repository: ghcr.io/k8s-at-home/leaf2mqtt
   pullPolicy: IfNotPresent
-  tag: 1.0.0
+  tag: 0.1
 
 strategy:
   type: Recreate
@@ -16,18 +16,14 @@ strategy:
 # See more environment variables in the leaf2mqtt documentation
 # https://leaf2mqtt.org/docs
 env: {}
-  # TZ:
-
-service:
-  port:
-    port: 1880
-
-ingress:
-  enabled: false
-
-# persistence:
-#   data:
-#     enabled: false
-#     emptyDir:
-#       enabled: false
-#     mountPath: /data
+  # LEAF_USERNAME: 
+  # LEAF_PASSWORD:
+  # LEAF_TYPE: 
+  # MQTT_HOST:
+  # MQTT_PORT:
+  # MQTT_USERNAME:
+  # MQTT_PASSWORD:
+  # MQTT_BASE_TOPIC:
+  # UPDATE_INTERVAL_MINUTES:
+  # CHARGING_UPDATE_INTERVAL_MINUTES:
+  # LOG_LEVEL:
