@@ -1,6 +1,6 @@
 # leaf2mqtt
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.1](https://img.shields.io/badge/AppVersion-0.1-informational?style=flat-square)
 
 leaf2mqtt helm package
 
@@ -8,7 +8,8 @@ leaf2mqtt helm package
 
 ## Source Code
 
-* <https://github.com/leaf2mqtt/leaf2mqtt-docker>
+* <https://github.com/mitsumaui/leaf2mqtt>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
