@@ -99,9 +99,7 @@ initContainers:
   command:
   - /bin/gateway_init.sh
   securityContext:
-    capabilities:
-      add:
-        - NET_ADMIN
+    privileged: true
   volumeMounts:
   - name: config
     mountPath: /config
