@@ -8,7 +8,7 @@
 image:
   repository: ghcr.io/k8s-at-home/pod-gateway
   pullPolicy: IfNotPresent
-  tag: v1.1.0
+  tag: v1.2.3
 
 # -- IP address of the DNS server within the vxlan tunnel.
 # All mutated PODs will get this as their DNS server.
@@ -18,57 +18,78 @@ DNS: 172.16.0.1
 # -- cluster name used to derive the gateway full name
 clusterName: "cluster.local"
 
-configmap:
-  # -- configmap contains clients and gateway PODs setting
-  enabled: true
-  # -- Namespaces to create the configmap to.
-  # It must list all namespaces where client PODs get deployed to.
-  # The chart namespace is added automatically
-  namespaces: []
-  data:
-    # -- settings for gateway - defaults should usually be good
-    # NOTE: if you change it you will need to manually restart all
-    # containers using it
-    settings.sh: |
-      #!/bin/sh
-      # hostname of the gateway - it must accept vxlan and DHCP traffic
-      # clients get it as env variable
-      GATEWAY_NAME="${gateway}"
-      # K8S DNS IP address
-      # clients get it as env variable
-      K8S_DNS_IPS="${K8S_DNS_ips}"
+# -- Namespaces that might contain routed PODs and therefore
+# require a copy of the gneerated settings configmap.
+routed_namespaces: []
+# - vpn
 
-      # Vxlan ID to use
-      VXLAN_ID="42"
-      # VXLAN need an /24 IP range not conflicting with K8S and local IP ranges
-      VXLAN_IP_NETWORK="172.16.0"
-      # Gateway IP within the VXLAN - client PODs will be routed through it
-      VXLAN_GATEWAY_IP="${VXLAN_IP_NETWORK}.1"
-      # Keep a range of IPs for static assignment in nat.conf
-      VXLAN_GATEWAY_FIRST_DYNAMIC_IP=20
+settings:
+  # -- IPs not sent to the POD gateway but to the default K8S.
+  # Multiple CIDRs can be specified using blanks as separator.
+  # Example for Calico: ""172.22.0.0/16 172.24.0.0/16"
+  #
+  # This is needed, for example, in case your CNI does
+  # not add a non-default rule for the K8S addresses (Flannel does).
+  NOT_ROUTED_TO_GATEWAY_CIDRS: ""
 
-      # If using a VPN, interface name created by it
-      VPN_INTERFACE=tun0
-      # Prevent non VPN traffic to leave the gateway
-      VPN_BLOCK_OTHER_TRAFFIC=false
-      # Traffic to these IPs will be send through the K8S gateway
-      VPN_LOCAL_CIDRS="10.0.0.0/8 192.168.0.0/16"
+  # -- Vxlan ID to use
+  VXLAN_ID: 42
+  # -- VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges
+  VXLAN_IP_NETWORK: "172.16.0"
+  # -- Keep a range of IPs for static assignment in nat.conf
+  VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
 
-      # DNS queries to these domains will be resolved by K8S DNS instead of
-      # the default (typcally the VPN client changes it)
-      DNS_LOCAL_CIDRS="local"
+  # -- If using a VPN, interface name created by it
+  VPN_INTERFACE: tun0
+  # -- Prevent non VPN traffic to leave the gateway
+  VPN_BLOCK_OTHER_TRAFFIC: false
+  # -- If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port
+  VPN_TRAFFIC_PORT: 443
+  # -- Traffic to these IPs will be send through the K8S gateway
+  VPN_LOCAL_CIDRS: "10.0.0.0/8 192.168.0.0/16"
 
-    # -- settings to expose ports, usually through a VPN provider
-    # NOTE: if you change it you will need to manually restart all
-    # containers using it
-    nat.conf: |
-      # Configure client PODs with static IP addresses
-      # and ports exposed through NAT
-      # static IPs must be bellow VXLAN_GATEWAY_FIRST_DYNAMIC_IP
-      #
-      # hostname IP ports(coma separated)
-      # Example:
-      # transmission 10 tcp:18289,udp:18289
+  # -- DNS queries to these domains will be resolved by K8S DNS instead of
+  # the default (typcally the VPN client changes it)
+  DNS_LOCAL_CIDRS: "local"
+
+# -- settings to expose ports, usually through a VPN provider.
+# NOTE: if you change it you will need to manually restart the gateway POD
+publicPorts:
+# - hostname: qbittorrent
+#   IP: 10
+#   ports:
+#   - type: udp
+#     port: 18289
+#   - type: tcp
+#     port: 18289
+
+addons:
+  vpn:
+    # -- Enable the VPN if you want to route through a VPN.
+    # You might also want to set VPN_BLOCK_OTHER_TRAFFIC to true
+    # for extra safeness in case the VPN does connect
+    enabled: false
+    type: openvpn
+    openvpn:
+    wireguard:
+    env:
+    configFileSecret: openvpn
+    networkPolicy:
+      enabled: true
+      egress:
+        # Allow only VPN traffic to Internet
+        - to:
+          - ipBlock:
+              cidr: 0.0.0.0/0
+          ports:
+          # VPN traffic (default OpenVPN)
+          - port: 443
+            protocol: UDP
+        # Allow any traffic within k8s
+        - to:
+          - ipBlock:
+              # Cluster IPs (default k3s)
+              cidr: 10.0.0.0/8
 
 
 # You should not need to change the settings bellow this
@@ -99,9 +120,7 @@ initContainers:
   command:
   - /bin/gateway_init.sh
   securityContext:
-    capabilities:
-      add:
-        - NET_ADMIN
+    privileged: true
   volumeMounts:
   - name: config
     mountPath: /config

@@ -41,9 +41,7 @@ spec:
             - --webhook-listen-address=:{{ .Values.webhook.service.port.port |toString }}
             - --gateway={{ include "pod-gateway.gateway" . }}
             - --DNS={{ .Values.DNS }}
-            {{- if .Values.configmap.enabled }}
             - --configmapName={{ include "pod-gateway.configmap" . }}
-            {{- end}}
             {{- if ( include "pod-gateway.webhook-inserted-init-repository" . ) }}
             - --initImage={{ include "pod-gateway.webhook-inserted-init-repository" . }}
             - --initImagePullPol={{ include "pod-gateway.webhook-inserted-init-pullPolicy" . }}
