@@ -131,7 +131,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | initContainers[0].image | string | `nil` | Will be set automatically |
 | initContainers[0].imagePullPolicy | string | `nil` | Will be set automatically |
 | initContainers[0].name | string | `"routes"` |  |
-| initContainers[0].securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
+| initContainers[0].securityContext.privileged | bool | `true` |  |
 | initContainers[0].volumeMounts[0].mountPath | string | `"/config"` |  |
 | initContainers[0].volumeMounts[0].name | string | `"config"` |  |
 | initContainers[0].volumeMounts[0].readOnly | bool | `true` |  |
@@ -184,6 +184,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
+- run gateway init container as privileged
 - configmap is now a dictionary instead of a long string
 - only modifed settings need to be specified
 
@@ -191,7 +192,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.2]: #1.0.2
 
 ### [1.0.1]
 
