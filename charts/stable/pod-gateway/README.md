@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.1.2](https://img.shields.io/badge/AppVersion-1.1.2-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.2.3](https://img.shields.io/badge/AppVersion-1.2.3-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -112,21 +112,9 @@ certificates. It does not install it as dependency to avoid conflicts.
 | addons.vpn.wireguard | string | `nil` |  |
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
 | command[0] | string | `"/bin/gateway_sidecar.sh"` |  |
-| configmap.enabled | bool | `true` | configmap contains clients and gateway PODs setting |
-| configmap.namespaces | list | `[]` | Namespaces to create the configmap to. It must list all namespaces where client PODs get deployed to. The chart namespace is added automatically |
-| configmap.publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
-| configmap.settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
-| configmap.settings.NOT_ROUTED_TO_GATEWAY_CIDRS | string | `""` | IPs not sent to the POD gateway but to the default K8S. Multiple CIDRs can be specified using blanks as separator. Example for Calico: ""172.22.0.0/16 172.24.0.0/16" This is needed, for example, in case your CNI does not add a non-default rule for the K8S addresses (Flannel does). |
-| configmap.settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |
-| configmap.settings.VPN_INTERFACE | string | `"tun0"` | If using a VPN, interface name created by it |
-| configmap.settings.VPN_LOCAL_CIDRS | string | `"10.0.0.0/8 192.168.0.0/16"` | Traffic to these IPs will be send through the K8S gateway |
-| configmap.settings.VPN_TRAFFIC_PORT | int | `443` | If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port |
-| configmap.settings.VXLAN_GATEWAY_FIRST_DYNAMIC_IP | int | `20` | Keep a range of IPs for static assignment in nat.conf |
-| configmap.settings.VXLAN_ID | int | `42` | Vxlan ID to use |
-| configmap.settings.VXLAN_IP_NETWORK | string | `"172.16.0"` | VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` |  |
-| image.tag | string | `"v1.2.2"` |  |
+| image.tag | string | `"v1.2.3"` |  |
 | initContainers[0].command[0] | string | `"/bin/gateway_init.sh"` |  |
 | initContainers[0].image | string | `nil` | Will be set automatically |
 | initContainers[0].imagePullPolicy | string | `nil` | Will be set automatically |
@@ -138,11 +126,22 @@ certificates. It does not install it as dependency to avoid conflicts.
 | probes.liveness.enabled | bool | `false` |  |
 | probes.readiness.enabled | bool | `false` |  |
 | probes.startup.enabled | bool | `false` |  |
+| publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
+| routed_namespaces | list | `[]` | Namespaces that might contain routed PODs and therefore require a copy of the gneerated settings configmap. |
 | securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
 | service.clusterIP | string | `"None"` |  |
 | service.port.port | int | `4789` |  |
 | service.port.protocol | string | `"UDP"` |  |
 | service.type | string | `"ClusterIP"` |  |
+| settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
+| settings.NOT_ROUTED_TO_GATEWAY_CIDRS | string | `""` | IPs not sent to the POD gateway but to the default K8S. Multiple CIDRs can be specified using blanks as separator. Example for Calico: ""172.22.0.0/16 172.24.0.0/16" This is needed, for example, in case your CNI does not add a non-default rule for the K8S addresses (Flannel does). |
+| settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |
+| settings.VPN_INTERFACE | string | `"tun0"` | If using a VPN, interface name created by it |
+| settings.VPN_LOCAL_CIDRS | string | `"10.0.0.0/8 192.168.0.0/16"` | Traffic to these IPs will be send through the K8S gateway |
+| settings.VPN_TRAFFIC_PORT | int | `443` | If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port |
+| settings.VXLAN_GATEWAY_FIRST_DYNAMIC_IP | int | `20` | Keep a range of IPs for static assignment in nat.conf |
+| settings.VXLAN_ID | int | `42` | Vxlan ID to use |
+| settings.VXLAN_IP_NETWORK | string | `"172.16.0"` | VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges |
 | webhook.additionalVolumes | list | `[]` |  |
 | webhook.args[0] | string | `"--tls-cert-file-path=/tls/tls.crt"` |  |
 | webhook.args[1] | string | `"--tls-key-file-path=/tls/tls.key"` |  |

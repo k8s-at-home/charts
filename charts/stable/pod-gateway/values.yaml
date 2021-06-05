@@ -18,54 +18,50 @@ DNS: 172.16.0.1
 # -- cluster name used to derive the gateway full name
 clusterName: "cluster.local"
 
-configmap:
-  # -- configmap contains clients and gateway PODs setting
-  enabled: true
-  # -- Namespaces to create the configmap to.
-  # It must list all namespaces where client PODs get deployed to.
-  # The chart namespace is added automatically
-  namespaces: []
-  # - vpn
+# -- Namespaces that might contain routed PODs and therefore
+# require a copy of the gneerated settings configmap.
+routed_namespaces: []
+# - vpn
 
-  settings:
-    # -- IPs not sent to the POD gateway but to the default K8S.
-    # Multiple CIDRs can be specified using blanks as separator.
-    # Example for Calico: ""172.22.0.0/16 172.24.0.0/16"
-    #
-    # This is needed, for example, in case your CNI does
-    # not add a non-default rule for the K8S addresses (Flannel does).
-    NOT_ROUTED_TO_GATEWAY_CIDRS: ""
+settings:
+  # -- IPs not sent to the POD gateway but to the default K8S.
+  # Multiple CIDRs can be specified using blanks as separator.
+  # Example for Calico: ""172.22.0.0/16 172.24.0.0/16"
+  #
+  # This is needed, for example, in case your CNI does
+  # not add a non-default rule for the K8S addresses (Flannel does).
+  NOT_ROUTED_TO_GATEWAY_CIDRS: ""
 
-    # -- Vxlan ID to use
-    VXLAN_ID: 42
-    # -- VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges
-    VXLAN_IP_NETWORK: "172.16.0"
-    # -- Keep a range of IPs for static assignment in nat.conf
-    VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
+  # -- Vxlan ID to use
+  VXLAN_ID: 42
+  # -- VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges
+  VXLAN_IP_NETWORK: "172.16.0"
+  # -- Keep a range of IPs for static assignment in nat.conf
+  VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
 
-    # -- If using a VPN, interface name created by it
-    VPN_INTERFACE: tun0
-    # -- Prevent non VPN traffic to leave the gateway
-    VPN_BLOCK_OTHER_TRAFFIC: false
-    # -- If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port
-    VPN_TRAFFIC_PORT: 443
-    # -- Traffic to these IPs will be send through the K8S gateway
-    VPN_LOCAL_CIDRS: "10.0.0.0/8 192.168.0.0/16"
+  # -- If using a VPN, interface name created by it
+  VPN_INTERFACE: tun0
+  # -- Prevent non VPN traffic to leave the gateway
+  VPN_BLOCK_OTHER_TRAFFIC: false
+  # -- If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port
+  VPN_TRAFFIC_PORT: 443
+  # -- Traffic to these IPs will be send through the K8S gateway
+  VPN_LOCAL_CIDRS: "10.0.0.0/8 192.168.0.0/16"
 
-    # -- DNS queries to these domains will be resolved by K8S DNS instead of
-    # the default (typcally the VPN client changes it)
-    DNS_LOCAL_CIDRS: "local"
+  # -- DNS queries to these domains will be resolved by K8S DNS instead of
+  # the default (typcally the VPN client changes it)
+  DNS_LOCAL_CIDRS: "local"
 
-  # -- settings to expose ports, usually through a VPN provider.
-  # NOTE: if you change it you will need to manually restart the gateway POD
-  publicPorts:
-  # - hostname: qbittorrent
-  #   IP: 10
-  #   ports:
-  #   - type: udp
-  #     port: 18289
-  #   - type: tcp
-  #     port: 18289
+# -- settings to expose ports, usually through a VPN provider.
+# NOTE: if you change it you will need to manually restart the gateway POD
+publicPorts:
+# - hostname: qbittorrent
+#   IP: 10
+#   ports:
+#   - type: udp
+#     port: 18289
+#   - type: tcp
+#     port: 18289
 
 addons:
   vpn:
