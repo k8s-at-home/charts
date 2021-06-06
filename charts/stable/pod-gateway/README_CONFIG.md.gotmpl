@@ -5,6 +5,9 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
+Please check [this guide](https://docs.k8s-at-home.com/guides/pod-gateway/)
+for the full instructions.
+
 You need to add `routed-gateway=true` to the namespaces with PODs you
 want to route through this POD gateway. If needed the label name can be changed
 in .Values.
