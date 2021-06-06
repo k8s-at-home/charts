@@ -1,6 +1,6 @@
 # syncthing
 
-![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 1.16.1](https://img.shields.io/badge/AppVersion-1.16.1-informational?style=flat-square)
+![Version: 1.3.1](https://img.shields.io/badge/Version-1.3.1-informational?style=flat-square) ![AppVersion: 1.17.0](https://img.shields.io/badge/AppVersion-1.17.0-informational?style=flat-square)
 
 Open Source Continuous File Synchronization
 
@@ -78,7 +78,7 @@ N/A
 |-----|------|---------|-------------|
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"syncthing/syncthing"` |  |
-| image.tag | string | `"1.16.1"` |  |
+| image.tag | string | `"1.17.0"` |  |
 | ingress.enabled | bool | `false` |  |
 | persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
@@ -107,6 +107,20 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.3.1]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Updated syncthing container image version to `v1.17.0`.
+
+#### Removed
+
+- N/A
 
 ### [1.3.0]
 
@@ -151,6 +165,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[1.3.1]: #1.3.1
 [1.3.0]: #1.3.0
 [1.1.2]: #1.1.2
 [1.0.0]: #1.0.0
