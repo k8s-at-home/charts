@@ -2,7 +2,7 @@
 
 ![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 0.1](https://img.shields.io/badge/AppVersion-0.1-informational?style=flat-square)
 
-leaf2mqtt helm package
+Nissan Leaf connected services to MQTT adapter
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
 
@@ -77,12 +77,11 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"leaf2mqtt/leaf2mqtt"` |  |
-| image.tag | string | `"1.0.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| service.port.port | int | `1880` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"ghcr.io/k8s-at-home/leaf2mqtt"` | Image repository |
+| image.tag | float | `0.1` | Image tag |
+| service.enabled | bool | `false` |  |
+| strategy.type | string | `"Recreate"` | Deployment recreation strategy |
 
 ## Changelog
 
@@ -94,7 +93,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- N/A
+- Initial version
 
 #### Changed
 
