@@ -1,0 +1,71 @@
+image:
+  repository: ghcr.io/k8s-at-home/pod-gateway
+  tag: v1.2.5
+
+routed_namespaces: []
+# - downloads
+
+settings:
+  # tun0 for openvpn, wg0 for wireguard
+  VPN_INTERFACE: wg0
+  # Prevent non VPN traffic to leave the gateway
+  VPN_BLOCK_OTHER_TRAFFIC: true
+  # If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port
+  VPN_TRAFFIC_PORT: 51820
+  # Traffic to these IPs will be send through the K8S gateway
+  # change if your K8S cluster or home network uses a different CIDR
+  VPN_LOCAL_CIDRS: "${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_MANAGEMENT_CIDR}"
+
+addons:
+  vpn:
+    enabled: true
+    type: wireguard
+
+    wireguard:
+      image:
+        repository: ghcr.io/k8s-at-home/wireguard
+        tag: v1.0.20210424
+        pullPolicy: IfNotPresent
+
+    securityContext:
+      runAsUser: 568
+      runAsGroup: 568
+
+    env:
+      TZ: "Europe/Amsterdam"
+
+    configFileSecret: vpn-gateway-vpnconfig
+
+    resources:
+      requests:
+        cpu: "0.001"
+        memory: 128Mi
+      limits:
+        memory: 512Mi
+
+    networkPolicy:
+      enabled: true
+
+      egress:
+      - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+        ports:
+        # VPN traffic port - change if your provider uses a different port
+        - port: 51820
+          protocol: UDP
+      - to:
+          # Allow traffic within K8S - change if your K8S cluster uses a different CIDR
+        - ipBlock:
+            cidr: 10.0.0.0/8
+
+    # livenessProbe:
+    #   exec:
+    #     # In the example bellow the VPN output is in Belgic (BE) - change appropiatly
+    #     command:
+    #       - sh
+    #       - -c
+    #       - if [ $(wget -q -O- https://ipinfo.io/country) == 'BE' ]; then exit 0; else exit $?; fi
+    #   initialDelaySeconds: 30
+    #   periodSeconds: 60
+    #   failureThreshold: 1
