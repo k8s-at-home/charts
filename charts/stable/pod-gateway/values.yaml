@@ -8,7 +8,7 @@
 image:
   repository: ghcr.io/k8s-at-home/pod-gateway
   pullPolicy: IfNotPresent
-  tag: v1.2.3
+  tag: v1.2.5
 
 # -- IP address of the DNS server within the vxlan tunnel.
 # All mutated PODs will get this as their DNS server.
@@ -145,7 +145,7 @@ webhook:
   image:
     repository: ghcr.io/k8s-at-home/gateway-admision-controller
     pullPolicy: IfNotPresent
-    tag: v3.2.0
+    tag: v3.3.1
 
   # -- Selector for namespace.
   # All pods in this namespace will get their default gateway changed
