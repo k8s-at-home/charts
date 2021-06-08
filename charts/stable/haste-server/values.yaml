@@ -20,13 +20,15 @@ env:
   STORAGE_TYPE: "file"
 
 service:
-  port:
-    port: 7777
+  main:
+    ports:
+      http:
+        port: 7777
 
 ingress:
-  enabled: false
+  main:
+    enabled: false
 
 persistence:
   config:
     enabled: false
-#    size: 1Gi
