@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: 1.2.5](https://img.shields.io/badge/AppVersion-1.2.5-informational?style=flat-square)
+![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -118,7 +118,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | command[0] | string | `"/bin/gateway_sidecar.sh"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` |  |
-| image.tag | string | `"v1.2.5"` |  |
+| image.tag | string | `"v1.2.6"` |  |
 | initContainers[0].command[0] | string | `"/bin/gateway_init.sh"` |  |
 | initContainers[0].image | string | `nil` | Will be set automatically |
 | initContainers[0].imagePullPolicy | string | `nil` | Will be set automatically |
@@ -155,7 +155,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | webhook.args[5] | string | `"--DNSPolicy=None"` |  |
 | webhook.image.pullPolicy | string | `"IfNotPresent"` |  |
 | webhook.image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` |  |
-| webhook.image.tag | string | `"v3.3.1"` |  |
+| webhook.image.tag | string | `"v3.3.2"` |  |
 | webhook.inserted.init.cmd | string | `"/bin/client_init.sh"` |  |
 | webhook.inserted.init.mountPath | string | `"/config"` |  |
 | webhook.inserted.init.pullPolicy | string | `nil` | Will be set automatically |
@@ -178,6 +178,23 @@ certificates. It does not install it as dependency to avoid conflicts.
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.1.1]
+
+#### Added
+
+- Tolerate PODs that do not include namespace
+- fix for missing VXLAN_GATEWAY_IP
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[2.1.1]: #2.1.1
 
 ### [2.1.0]
 
