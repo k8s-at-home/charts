@@ -19,14 +19,15 @@ env:
   THELOUNGE_HOME: "/config"
 
 service:
-  port:
-    port: 9000
+  main:
+    ports:
+      http:
+        port: 9000
 
 ingress:
-  enabled: false
+  main:
+    enabled: false
 
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
