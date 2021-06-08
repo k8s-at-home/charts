@@ -1,6 +1,6 @@
 # foundryvtt
 
-![Version: 0.8.3](https://img.shields.io/badge/Version-0.8.3-informational?style=flat-square) ![AppVersion: 0.8.3](https://img.shields.io/badge/AppVersion-0.8.3-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.8.3](https://img.shields.io/badge/AppVersion-0.8.3-informational?style=flat-square)
 
 An easy-to-deploy Dockerized Foundry Virtual Tabletop server
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.0 |
 
 ## TL;DR
 
@@ -79,11 +79,11 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"felddy/foundryvtt"` |  |
 | image.tag | string | `"0.8.3"` |  |
-| ingress.enabled | bool | `false` |  |
+| ingress.main.enabled | bool | `false` |  |
 | persistence.data.emptyDir.enabled | bool | `false` |  |
 | persistence.data.enabled | bool | `false` |  |
 | persistence.data.mountPath | string | `"/data"` |  |
-| service.port.port | int | `30000` |  |
+| service.main.ports.http.port | int | `30000` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog

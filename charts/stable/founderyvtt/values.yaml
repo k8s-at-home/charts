@@ -20,11 +20,14 @@ env: {}
   # TZ:
 
 service:
-  port:
-    port: 30000
+  main:
+    ports:
+      http:
+        port: 30000
 
 ingress:
-  enabled: false
+  main:
+    enabled: false
 
 
 # Founderyvtt is hardcoded to use /data for its persistance for config and
