@@ -8,7 +8,7 @@
 image:
   repository: thelounge/thelounge
   pullPolicy: IfNotPresent
-  tag: 4.2.0-alpine
+  tag: 4.3.0-alpine
 
 strategy:
   type: Recreate
@@ -19,14 +19,15 @@ env:
   THELOUNGE_HOME: "/config"
 
 service:
-  port:
-    port: 9000
+  main:
+    ports:
+      http:
+        port: 9000
 
 ingress:
-  enabled: false
+  main:
+    enabled: false
 
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
