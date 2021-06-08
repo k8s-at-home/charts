@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 1.0.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.0 |
 
 ## TL;DR
 
@@ -75,13 +75,14 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"${CHARTNAME}/${CHARTNAME}"` |  |
-| image.tag | string | `"1.0.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| service.port.port | int | `1880` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See more environment variables in the [${CHARTNAME} documentation](https://${CHARTNAME}.org/docs). |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"${CHARTNAME}/${CHARTNAME}"` | image repository |
+| image.tag | string | `"1.0.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -93,7 +94,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- N/A
+- Initial version
 
 #### Changed
 
