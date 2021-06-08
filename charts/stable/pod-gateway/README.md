@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 2.1.2](https://img.shields.io/badge/Version-2.1.2-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -133,10 +133,10 @@ certificates. It does not install it as dependency to avoid conflicts.
 | publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
 | routed_namespaces | list | `[]` | Namespaces that might contain routed PODs and therefore require a copy of the gneerated settings configmap. |
 | securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
-| service.clusterIP | string | `"None"` |  |
-| service.port.port | int | `4789` |  |
-| service.port.protocol | string | `"UDP"` |  |
-| service.type | string | `"ClusterIP"` |  |
+| service.main.clusterIP | string | `"None"` |  |
+| service.main.port.port | int | `4789` |  |
+| service.main.port.protocol | string | `"UDP"` |  |
+| service.main.type | string | `"ClusterIP"` |  |
 | settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
 | settings.NOT_ROUTED_TO_GATEWAY_CIDRS | string | `""` | IPs not sent to the POD gateway but to the default K8S. Multiple CIDRs can be specified using blanks as separator. Example for Calico: ""172.22.0.0/16 172.24.0.0/16" This is needed, for example, in case your CNI does not add a non-default rule for the K8S addresses (Flannel does). |
 | settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |

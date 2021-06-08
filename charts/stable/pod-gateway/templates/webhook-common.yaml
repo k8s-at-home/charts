@@ -9,7 +9,7 @@
 {{- $_ := set .Values.webhook.inserted.sidecar "pullPolicy" .Values.image.pullPolicy -}}
 
 {{- define "pod-gateway.webhook-inserted-init-repository" -}}
-{{ printf "%s:%s" ( .Values.image.repository | default .Values.webhook.inserted.init.repository ) ( .Values.image.tag | default .Values.webhook.inserted.init.tag ) }}
+{{ printf "%s:%s" ( .Values.webhook.inserted.init.repository | default .Values.image.repository ) ( .Values.webhook.inserted.init.tag | default .Values.image.tag ) }}
 {{- end -}}
 
 {{- define "pod-gateway.webhook-inserted-init-pullPolicy" -}}
@@ -17,7 +17,7 @@
 {{- end -}}
 
 {{- define "pod-gateway.webhook-inserted-sidecar-repository" -}}
-{{ printf "%s:%s" ( .Values.image.repository | default .Values.webhook.inserted.sidecar.repository ) ( .Values.image.tag | default .Values.webhook.inserted.sidecar.tag ) }}
+{{ printf "%s:%s" ( .Values.webhook.inserted.sidecar.repository | default .Values.image.repository ) ( .Values.webhook.inserted.sidecar.tag | default .Values.image.tag ) }}
 {{- end -}}
 
 {{- define "pod-gateway.webhook-inserted-sidecar-pullPolicy" -}}

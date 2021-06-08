@@ -35,7 +35,7 @@ spec:
             secretName: {{ include "pod-gateway.servingCertificate" . }}
             defaultMode: 420
       containers:
-        - name: foo-pod-gateway
+        - name: webhook
           image: {{ .Values.webhook.image.repository }}:{{ .Values.webhook.image.tag }}
           args:
             - --webhook-listen-address=:{{ .Values.webhook.service.port.port |toString }}
