@@ -22,16 +22,36 @@ env:
   DATA_FOLDER: "config"
 
 service:
-  port:
-    port: 80
-    name: www
-  additionalPorts:
-    port:
-      port: 3012
-      name: websocket
+  main:
+    ports:
+      http:
+        port: 80
+      websocket:
+        enabled: true
+        port: 3012
+
 
 ingress:
-  enabled: false
+  main:
+    enabled: false
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 80
+          - path: /notifications/hub/negotiate
+            pathType: Prefix
+            service:
+              port: 80
+          - path: /notifications/hub
+            pathType: Prefix
+            service:
+              port: 3012
+    tls: {}
+
+
 #   hosts:
 #     - host: bw.domain.tdl
 #       paths:

@@ -1,6 +1,6 @@
 # vaultwarden
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.20.0](https://img.shields.io/badge/AppVersion-1.20.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.20.0](https://img.shields.io/badge/AppVersion-1.20.0-informational?style=flat-square)
 
 Vaultwarden is a Bitwarden compatable server in Rust
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.0 |
 
 ## TL;DR
 
@@ -81,15 +81,25 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"vaultwarden/server"` |  |
 | image.tag | string | `"1.21.0"` |  |
-| ingress.enabled | bool | `false` |  |
+| ingress.main.enabled | bool | `false` |  |
+| ingress.main.hosts[0].host | string | `"chart-example.local"` |  |
+| ingress.main.hosts[0].paths[0].path | string | `"/"` |  |
+| ingress.main.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
+| ingress.main.hosts[0].paths[0].service.port | int | `80` |  |
+| ingress.main.hosts[0].paths[1].path | string | `"/notifications/hub/negotiate"` |  |
+| ingress.main.hosts[0].paths[1].pathType | string | `"Prefix"` |  |
+| ingress.main.hosts[0].paths[1].service.port | int | `80` |  |
+| ingress.main.hosts[0].paths[2].path | string | `"/notifications/hub"` |  |
+| ingress.main.hosts[0].paths[2].pathType | string | `"Prefix"` |  |
+| ingress.main.hosts[0].paths[2].service.port | int | `3012` |  |
+| ingress.main.tls | object | `{}` |  |
 | mariadb.enabled | bool | `false` |  |
 | persistence.config.emptydir.enabled | bool | `false` |  |
 | persistence.config.enabled | bool | `false` |  |
 | postgresql.enabled | bool | `false` |  |
-| service.additionalPorts.port.name | string | `"websocket"` |  |
-| service.additionalPorts.port.port | int | `3012` |  |
-| service.port.name | string | `"www"` |  |
-| service.port.port | int | `80` |  |
+| service.main.ports.http.port | int | `80` |  |
+| service.main.ports.websocket.enabled | bool | `true` |  |
+| service.main.ports.websocket.port | int | `3012` |  |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -97,6 +107,20 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- pre-rendered ingress disabled by default
+
+#### Changed
+
+- Updated to Commons 3.0.0
+
+#### Removed
+
+- N/A
 
 ### [1.0.0]
 
