@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
-| https://library-charts.k8s-at-home.com | common | 3.0.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -83,12 +83,7 @@ N/A
 | image.repository | string | `"ghcr.io/linuxserver/bookstack"` | image repository |
 | image.tag | string | `"version-v21.05.1"` | image pull policy |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| mariadb.architecture | string | `"standalone"` |  |
-| mariadb.auth.database | string | `"bookstack"` |  |
-| mariadb.auth.password | string | `"bookstack"` |  |
-| mariadb.auth.username | string | `"bookstack"` |  |
-| mariadb.enabled | bool | `false` |  |
-| mariadb.primary.persistence.enabled | bool | `false` |  |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb). |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
@@ -102,7 +97,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- **BREAKING**: Upgraded the common library dependency to version 3.0.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
   Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.0/charts/stable/common/) for the up-to-date values.
 - Changed image tag to `version-v21.05.1`.
 
