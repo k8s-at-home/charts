@@ -1,6 +1,6 @@
 # bookstack
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: v21.05.1-ls138](https://img.shields.io/badge/AppVersion-v21.05.1--ls138-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: version-v21.05.1](https://img.shields.io/badge/AppVersion-version--v21.05.1-informational?style=flat-square)
 
 A simple, self-hosted, easy-to-use platform for organising and storing information.
 
@@ -81,7 +81,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image tag |
 | image.repository | string | `"ghcr.io/linuxserver/bookstack"` | image repository |
-| image.tag | string | `"v21.05.1-ls138"` | image pull policy |
+| image.tag | string | `"version-v21.05.1"` | image pull policy |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb.architecture | string | `"standalone"` |  |
 | mariadb.auth.database | string | `"bookstack"` |  |
@@ -104,7 +104,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - **BREAKING**: Upgraded the common library dependency to version 3.0.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
   Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.0/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `v21.05.1-ls138`.
+- Changed image tag to `version-v21.05.1`.
 
 ### [1.0.0]
 
