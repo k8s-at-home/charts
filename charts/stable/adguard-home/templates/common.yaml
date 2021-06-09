@@ -1,20 +1,17 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-
 {{/* Append the configMap volume to the volumes */}}
-{{- $_ := set .Values.persistence "adguard-home-config"
-  (dict "enabled" "true"
-        "mountPath" "/tmp/AdGuardHome.yaml"
-        "subPath" "AdGuardHome.yaml"
-        "type" "custom"
-        "volumeSpec" (dict
-          "configMap" (dict
-            "name" (printf "%s-config" (include "common.names.fullname" .))
-          )
-        )
-  )
--}}
+{{- define "adguard-home.configVolume" -}}
+enabled: "true"
+mountPath: "/tmp/AdGuardHome.yaml"
+subPath: "AdGuardHome.yaml"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ template "common.names.fullname" . }}-config
+{{- end -}}
+{{- $_ := set .Values.persistence "adguard-home-config" (include "adguard-home.configVolume" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
