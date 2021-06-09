@@ -6,57 +6,40 @@
 #
 
 image:
+  # -- image repository
   repository: eclipse-mosquitto
+  # -- image tag
+  tag: 2.0.11
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 2.0.7
 
-strategy:
-  type: Recreate
-
+# -- Configures service settings for the chart. Normally this does not need to be modified.
+# @default -- See values.yaml
 service:
-  type: ClusterIP
-  # loadBalancerIP:
-  annotations: {}
-  port:
-    port: 1883
-    name: mqtt
+  main:
+    ports:
+      http:
+        enabled: false
+      mqtt:
+        enabled: true
+        port: 1883
 
 auth:
+  # -- By enabling this, `allow_anonymous` gets set to `false` in the mosquitto config.
   enabled: false
 
 persistence:
+  # -- Configure a persistent volume to place mosquitto data in.
+  # When enabled, this enables `persistence` and `persistence_location` in the mosquitto config.
+  # @default -- See values.yaml
   data:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /mosquitto/data
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    accessMode: ReadWriteOnce
-    size: 100Mi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
+  # -- Configure a persistent volume to place *.conf mosquitto-config-files in.
+  # When enabled, this gets set as `include_dir` in the mosquitto config.
+  # @default -- See values.yaml
   configinc:
-    # a persistent volume to place *.conf mosquitto-config-files in
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /mosquitto/configinc
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
     accessMode: ReadWriteOnce
     size: 100Mi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
