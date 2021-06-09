@@ -1,6 +1,6 @@
 # zigbee2mqtt
 
-![Version: 7.4.0](https://img.shields.io/badge/Version-7.4.0-informational?style=flat-square) ![AppVersion: 1.17.1](https://img.shields.io/badge/AppVersion-1.17.1-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: 1.19.1](https://img.shields.io/badge/AppVersion-1.19.1-informational?style=flat-square)
 
 Bridges events and allows you to control your Zigbee devices via MQTT
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -98,44 +98,45 @@ affinity:
 
 ... where a node with an attached zigbee controller USB device is labeled with `app: zigbee-controller`
 
+If you are getting errors, that the device cannot be opened when starting Zigbee2Mqtt, try uncommenting the privileged flag:
+
+```
+securityContext:
+  privileged: true
+```
+
 ## Values
 
 **Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalVolumeMounts | list | `[]` |  |
-| additionalVolumes | list | `[]` |  |
-| config.advanced.homeassistant_discovery_topic | string | `"homeassistant"` |  |
-| config.advanced.homeassistant_status_topic | string | `"homeassistant/status"` |  |
-| config.advanced.last_seen | string | `"ISO_8601"` |  |
-| config.advanced.log_level | string | `"info"` |  |
-| config.advanced.log_output[0] | string | `"console"` |  |
-| config.advanced.network_key | string | `"GENERATE"` |  |
-| config.experimental.new_api | bool | `true` |  |
-| config.frontend.port | int | `8080` |  |
-| config.homeassistant | bool | `false` |  |
-| config.mqtt.base_topic | string | `"zigbee2mqtt"` |  |
-| config.mqtt.include_device_information | bool | `true` |  |
-| config.mqtt.server | string | `"mqtt://localhost"` |  |
-| config.permit_join | bool | `true` |  |
-| config.serial | string | `nil` |  |
-| env.ZIGBEE2MQTT_DATA | string | `"/data"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"koenkk/zigbee2mqtt"` |  |
-| image.tag | string | `"1.17.1"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/data"` |  |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| affinity | object | `{}` | Affinity constraint rules to place the Pod on a specific node. [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) |
+| config | object | See values.yaml | zigbee2mqtt configuration settings. This will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://www.zigbee2mqtt.io/information/configuration.html) for more information. |
+| env | object | See below | environment variables. See [image docs](https://www.zigbee2mqtt.io/information/configuration.html#override-via-environment-variables) for more details. |
+| env.ZIGBEE2MQTT_DATA | string | `"/data"` | Set the data folder for Zigbee2MQTT. |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"koenkk/zigbee2mqtt"` | image repository |
+| image.tag | string | `"1.19.1"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.usb | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
+| securityContext.privileged | bool | `nil` | Privileged securityContext may be required if USB controller is accessed directly through the host machine |
+| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [8.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `1.19.1`.
 
 ### [1.0.0]
 
@@ -151,7 +152,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[8.0.0]: #800
+[1.0.0]: #100
 
 ## Support
 
