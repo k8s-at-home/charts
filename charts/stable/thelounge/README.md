@@ -75,13 +75,13 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.THELOUNGE_HOME | string | `"/config"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"thelounge/thelounge"` |  |
-| image.tag | string | `"4.2.0-alpine"` |  |
-| ingress.main.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| service.main.ports.http.port | int | `9000` |  |
+| env | object | See below | environment variables. See [image docs](https://hub.docker.com/r/thelounge/thelounge/) for more details. |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"thelounge/thelounge"` | image repository |
+| image.tag | string | `"4.2.0-alpine"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -98,7 +98,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Updated to Commons 3.0.0
+- **BREAKING**: Upgraded the common library dependency to version 3.0.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.0/charts/stable/common/) for the up-to-date values.
 
 #### Removed
 
