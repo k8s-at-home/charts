@@ -152,6 +152,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[8.0.0]: #800
 [1.0.0]: #100
 
 ## Support
