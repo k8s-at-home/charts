@@ -46392,6 +46392,39 @@ entries:
     version: 1.0.0
   shlink:
   - apiVersion: v2
+    appVersion: 2.7.1
+    created: "2021-06-09T23:10:45.25859126Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.8
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.13
+    description: A self-hosted and PHP-based URL shortener application with CLI and
+      REST interfaces
+    digest: bd48cf712f0d4c69826e86bb4a3da8cb40df721d548f5e5de14bdd3d9ec13882
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/shlink
+    icon: https://avatars.githubusercontent.com/u/20341790?s=200&v=4
+    keywords:
+    - shlink
+    - url-shortener
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: shlink
+    sources:
+    - https://github.com/shlinkio/shlink
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/shlink-2.0.0/shlink-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: 2.6.2
     created: "2021-06-01T04:42:46.592497045Z"
     dependencies:
@@ -61799,4 +61832,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-09T23:09:03.888332365Z"
+generated: "2021-06-09T23:10:45.272414336Z"
