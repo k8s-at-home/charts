@@ -98,6 +98,13 @@ affinity:
 
 ... where a node with an attached zigbee controller USB device is labeled with `app: zigbee-controller`
 
+If you are getting errors, that the device cannot be opened when starting Zigbee2Mqtt, try uncommenting the privileged flag:
+
+```
+securityContext:
+  privileged: true
+```
+
 ## Values
 
 **Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
