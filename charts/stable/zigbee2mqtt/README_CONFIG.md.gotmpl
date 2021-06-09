@@ -35,4 +35,11 @@ affinity:
 ```
 
 ... where a node with an attached zigbee controller USB device is labeled with `app: zigbee-controller`
+
+If you are getting errors, that the device cannot be opened when starting Zigbee2Mqtt, try uncommenting the privileged flag:
+
+```
+securityContext:
+  privileged: true
+```
 {{- end -}}
