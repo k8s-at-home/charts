@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 3.0.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -77,29 +77,16 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.DATA_FOLDER | string | `"config"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"vaultwarden/server"` |  |
-| image.tag | string | `"1.21.0"` |  |
-| ingress.main.enabled | bool | `false` |  |
-| ingress.main.hosts[0].host | string | `"chart-example.local"` |  |
-| ingress.main.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.main.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
-| ingress.main.hosts[0].paths[0].service.port | int | `80` |  |
-| ingress.main.hosts[0].paths[1].path | string | `"/notifications/hub/negotiate"` |  |
-| ingress.main.hosts[0].paths[1].pathType | string | `"Prefix"` |  |
-| ingress.main.hosts[0].paths[1].service.port | int | `80` |  |
-| ingress.main.hosts[0].paths[2].path | string | `"/notifications/hub"` |  |
-| ingress.main.hosts[0].paths[2].pathType | string | `"Prefix"` |  |
-| ingress.main.hosts[0].paths[2].service.port | int | `3012` |  |
-| ingress.main.tls | object | `{}` |  |
+| env | object | See below | environment variables. See [image docs](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template) for more details. |
+| env.DATA_FOLDER | string | `"config"` | Config dir |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"vaultwarden/server"` | image repository |
+| image.tag | string | `"1.21.0"` | image tag |
+| ingress | object | See values.yaml | Configures service settings for the chart. A template has been provided for you |
 | mariadb.enabled | bool | `false` |  |
-| persistence.config.emptydir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | postgresql.enabled | bool | `false` |  |
-| service.main.ports.http.port | int | `80` |  |
-| service.main.ports.websocket.enabled | bool | `true` |  |
-| service.main.ports.websocket.port | int | `3012` |  |
+| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog

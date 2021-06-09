@@ -6,21 +6,24 @@
 #
 
 image:
+  # -- image repository
   repository: vaultwarden/server
+  # -- image pull policy
   pullPolicy: IfNotPresent
+  # -- image tag
   tag: 1.21.0
 
 strategy:
   type: Recreate
 
-# See more environment variables in the Vaultwarden documentation
-# https://github.com/dani-garcia/vaultwarden/blob/main/.env.template
-
-
+# -- environment variables. See [image docs](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template) for more details.
+# @default -- See below
 env:
-  # TZ:
+# -- Config dir
   DATA_FOLDER: "config"
 
+# -- Configures service settings for the chart. Normally this does not need to be modified.
+# @default -- See values.yaml
 service:
   main:
     ports:
@@ -30,7 +33,8 @@ service:
         enabled: true
         port: 3012
 
-
+# -- Configures service settings for the chart. A template has been provided for you
+# @default -- See values.yaml
 ingress:
   main:
     enabled: false
@@ -49,21 +53,13 @@ ingress:
             pathType: Prefix
             service:
               port: 3012
-    tls: {}
+    tls: 
+      - secretName: chart-example-local
+        hosts:
+          - chart-example.local
 
-
-#   hosts:
-#     - host: bw.domain.tdl
-#       paths:
-#         - path: /
-#           pathType: Prefix
-#         - path: /notifications/hub/negotiate
-#           pathType: Prefix
-#         - path: /notifications/hub
-#           pathType: Prefix
-#           servicePort: 3012
-#   tls: {}
-
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
