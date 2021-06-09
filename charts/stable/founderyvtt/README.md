@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.0.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -75,15 +75,13 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"felddy/foundryvtt"` |  |
-| image.tag | string | `"0.8.3"` |  |
-| ingress.main.enabled | bool | `false` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/data"` |  |
-| service.main.ports.http.port | int | `30000` |  |
+| env | object | See below | environment variables. See [image docs](https://github.com/felddy/foundryvtt-docker#environment-variables) for more details. |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"felddy/foundryvtt"` | image repository |
+| image.tag | string | `"0.8.3"` | image tag |
+| ingress.main | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Founderyvtt is hardcoded to use /data for its persistance for config |
+| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog

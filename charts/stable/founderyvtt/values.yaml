@@ -6,19 +6,24 @@
 #
 
 image:
+  # -- image repository
   repository: felddy/foundryvtt
+  # -- image pull policy
   pullPolicy: IfNotPresent
+  # -- image tag
   tag: 0.8.3
 
 strategy:
   type: Recreate
 
-# See more environment variables in the foundryvtt documentation
-# https://github.com/felddy/foundryvtt-docker#environment-variables
-
+# -- environment variables. See [image docs](https://github.com/felddy/foundryvtt-docker#environment-variables) for more details.
+# @default -- See below
 env: {}
-  # TZ:
+  # TZ
 
+
+# -- Configures service settings for the chart. Normally this does not need to be modified.
+# @default -- See values.yaml
 service:
   main:
     ports:
@@ -26,11 +31,14 @@ service:
         port: 30000
 
 ingress:
+# -- Configures service settings for the chart. Normally this does not need to be modified.
+# @default -- See values.yaml
   main:
     enabled: false
 
-
-# Founderyvtt is hardcoded to use /data for its persistance for config and
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+# Founderyvtt is hardcoded to use /data for its persistance for config
 persistence:
   data:
     enabled: false
