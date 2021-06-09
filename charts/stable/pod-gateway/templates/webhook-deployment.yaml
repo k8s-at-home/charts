@@ -1,4 +1,4 @@
-apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "common.names.fullname" . }}-webhook
@@ -38,7 +38,7 @@ spec:
         - name: webhook
           image: {{ .Values.webhook.image.repository }}:{{ .Values.webhook.image.tag }}
           args:
-            - --webhook-listen-address=:{{ .Values.webhook.service.port.port |toString }}
+            - --webhook-listen-address=:{{ .Values.webhook.service.port |toString }}
             - --gateway={{ include "pod-gateway.gateway" . }}
             - --DNS={{ .Values.DNS }}
             - --configmapName={{ include "pod-gateway.configmap" . }}
@@ -57,7 +57,7 @@ spec:
             {{ toYaml .Values.webhook.args | nindent 12 }}
           ports:
             - name: http
-              containerPort: {{ .Values.webhook.service.port.port }}
+              containerPort: {{ .Values.webhook.service.port }}
               protocol: TCP
           resources: {}
           volumeMounts:
@@ -67,8 +67,8 @@ spec:
           livenessProbe:
             httpGet:
               path: /wh/health
-              port: {{ .Values.webhook.service.port.port }}
-              scheme: {{ .Values.webhook.service.port.protocol }}
+              port: {{ .Values.webhook.service.port }}
+              scheme: {{ .Values.webhook.service.protocol }}
             initialDelaySeconds: 1
             timeoutSeconds: 10
             periodSeconds: 10
@@ -77,8 +77,8 @@ spec:
           readinessProbe:
             httpGet:
               path: /wh/health
-              port: {{ .Values.webhook.service.port.port }}
-              scheme: {{ .Values.webhook.service.port.protocol }}
+              port: {{ .Values.webhook.service.port }}
+              scheme: {{ .Values.webhook.service.protocol }}
             initialDelaySeconds: 1
             timeoutSeconds: 10
             periodSeconds: 10
@@ -87,8 +87,8 @@ spec:
           startupProbe:
             httpGet:
               path: /wh/health
-              port: {{ .Values.webhook.service.port.port }}
-              scheme: {{ .Values.webhook.service.port.protocol }}
+              port: {{ .Values.webhook.service.port }}
+              scheme: {{ .Values.webhook.service.protocol }}
             timeoutSeconds: 1
             periodSeconds: 1
             successThreshold: 1

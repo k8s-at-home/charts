@@ -9,7 +9,7 @@ metadata:
     {{ toYaml $values.labels | nindent 4 }}
   {{- end }}
   annotations:
-  {{- if eq ( $values.port.protocol | default "" ) "HTTPS" }}
+  {{- if eq ( $values.protocol | default "" ) "HTTPS" }}
     traefik.ingress.kubernetes.io/service.serversscheme: https
   {{- end }}
   {{- with $values.annotations }}
@@ -27,6 +27,10 @@ spec:
     {{ toYaml $values.sessionAffinityConfig | nindent 4 }}
   {{- end -}}
   {{- end }}
-  {{- include "common.classes.service.ports" (dict "svcType" "ClusterIP" "values" $values ) | trim | nindent 2 }}
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ $values.port }}
+      targetPort: http
   selector:
     {{- include "pod-gateway.labels.selectorLabels" . | nindent 4 }}

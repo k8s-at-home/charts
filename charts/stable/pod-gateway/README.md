@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 2.1.2](https://img.shields.io/badge/Version-2.1.2-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -100,9 +100,6 @@ certificates. It does not install it as dependency to avoid conflicts.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | DNS | string | `"172.16.0.1"` | IP address of the DNS server within the vxlan tunnel. All mutated PODs will get this as their DNS server. It must match VXLAN_GATEWAY_IP in settings.sh |
-| additionalVolumeMounts[0].mountPath | string | `"/config"` |  |
-| additionalVolumeMounts[0].name | string | `"config"` |  |
-| additionalVolumeMounts[0].readOnly | bool | `true` |  |
 | addons.vpn.configFileSecret | string | `"openvpn"` |  |
 | addons.vpn.enabled | bool | `false` | Enable the VPN if you want to route through a VPN. You might also want to set VPN_BLOCK_OTHER_TRAFFIC to true for extra safeness in case the VPN does connect |
 | addons.vpn.env | string | `nil` |  |
@@ -116,9 +113,9 @@ certificates. It does not install it as dependency to avoid conflicts.
 | addons.vpn.wireguard | string | `nil` |  |
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
 | command[0] | string | `"/bin/gateway_sidecar.sh"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` |  |
-| image.tag | string | `"v1.2.6"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy of the gateway and inserted helpers |
+| image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` | image repository of the gateway and inserted helpers |
+| image.tag | string | `"v1.2.6"` | image tag of the gateway and inserted helpers |
 | initContainers[0].command[0] | string | `"/bin/gateway_init.sh"` |  |
 | initContainers[0].image | string | `nil` | Will be set automatically |
 | initContainers[0].imagePullPolicy | string | `nil` | Will be set automatically |
@@ -127,16 +124,21 @@ certificates. It does not install it as dependency to avoid conflicts.
 | initContainers[0].volumeMounts[0].mountPath | string | `"/config"` |  |
 | initContainers[0].volumeMounts[0].name | string | `"config"` |  |
 | initContainers[0].volumeMounts[0].readOnly | bool | `true` |  |
+| persistence.config.enabled | bool | `true` |  |
+| persistence.config.mountPath | string | `"/config"` |  |
+| persistence.config.readOnly | bool | `true` |  |
+| persistence.config.type | string | `"custom"` |  |
+| persistence.config.volumeSpec.configMap.defaultMode | int | `365` |  |
 | probes.liveness.enabled | bool | `false` |  |
 | probes.readiness.enabled | bool | `false` |  |
 | probes.startup.enabled | bool | `false` |  |
 | publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
 | routed_namespaces | list | `[]` | Namespaces that might contain routed PODs and therefore require a copy of the gneerated settings configmap. |
 | securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
-| service.main.clusterIP | string | `"None"` |  |
-| service.main.port.port | int | `4789` |  |
-| service.main.port.protocol | string | `"UDP"` |  |
-| service.main.type | string | `"ClusterIP"` |  |
+| service.main.ports.http.clusterIP | string | `"None"` |  |
+| service.main.ports.http.port | int | `4789` |  |
+| service.main.ports.http.protocol | string | `"UDP"` |  |
+| service.main.ports.http.type | string | `"ClusterIP"` |  |
 | settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
 | settings.NOT_ROUTED_TO_GATEWAY_CIDRS | string | `""` | IPs not sent to the POD gateway but to the default K8S. Multiple CIDRs can be specified using blanks as separator. Example for Calico: ""172.22.0.0/16 172.24.0.0/16" This is needed, for example, in case your CNI does not add a non-default rule for the K8S addresses (Flannel does). |
 | settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |
@@ -168,9 +170,9 @@ certificates. It does not install it as dependency to avoid conflicts.
 | webhook.inserted.sidecar.tag | string | `nil` | Will be set automatically |
 | webhook.namespaceSelector | object | `{"matchLabels":{"routed-gateway":"true"}}` | Selector for namespace. All pods in this namespace will get their default gateway changed |
 | webhook.replicas | int | `1` |  |
-| webhook.service.port.path | string | `"/wh/mutating/setgateway"` |  |
-| webhook.service.port.port | int | `8080` |  |
-| webhook.service.port.protocol | string | `"HTTPS"` |  |
+| webhook.service.path | string | `"/wh/mutating/setgateway"` |  |
+| webhook.service.port | int | `8080` |  |
+| webhook.service.protocol | string | `"HTTPS"` |  |
 | webhook.strategy.type | string | `"RollingUpdate"` |  |
 
 ## Changelog
@@ -179,7 +181,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.1.1]
+### [3.0.]
 
 #### Added
 
@@ -188,7 +190,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- Update to common chart 3.0.1
 
 #### Removed
 

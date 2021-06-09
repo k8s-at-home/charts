@@ -6,8 +6,11 @@
 #
 
 image:
+  # -- image repository of the gateway and inserted helpers
   repository: ghcr.io/k8s-at-home/pod-gateway
+  # -- image pull policy of the gateway and inserted helpers
   pullPolicy: IfNotPresent
+  # -- image tag of the gateway and inserted helpers
   tag: v1.2.6
 
 # -- IP address of the DNS server within the vxlan tunnel.
@@ -104,10 +107,16 @@ securityContext:
     add:
       - NET_ADMIN
 
-additionalVolumeMounts:
-- name: config
-  mountPath: /config
-  readOnly: true
+persistence:
+  config:
+    enabled: true
+    type: custom
+    mountPath: /config
+    readOnly: true
+    volumeSpec:
+      configMap:
+        # name: Set automatically
+        defaultMode: 0555
 
 initContainers:
 - name: "routes"
@@ -135,11 +144,13 @@ probes:
     enabled: false
 
 service:
-  type: ClusterIP
-  clusterIP: None
-  port:
-    port: 4789
-    protocol: UDP
+  main:
+    ports:
+      http:
+        type: ClusterIP
+        clusterIP: None
+        port: 4789
+        protocol: UDP
 
 webhook:
   image:
@@ -219,7 +230,6 @@ webhook:
   # --configmapName
 
   service:
-    port:
-      path: /wh/mutating/setgateway
-      protocol: HTTPS
-      port: 8080
+    path: /wh/mutating/setgateway
+    protocol: HTTPS
+    port: 8080
