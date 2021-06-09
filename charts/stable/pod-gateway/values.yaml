@@ -121,6 +121,8 @@ persistence:
         defaultMode: 0555
 
 initContainers:
+# -- Configures an initContainer that does <x>
+# @default -- See values.yaml
 - name: "routes"
   # -- Will be set automatically
   # @default -- <image.repository>:<image.tag>
