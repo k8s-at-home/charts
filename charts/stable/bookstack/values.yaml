@@ -44,8 +44,9 @@ persistence: {}
   #   enabled: false
   #   mountPath: /config
 
-# Enabled mariadb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb).
+# @default -- See values.yaml
 mariadb:
   enabled: false
   architecture: standalone
