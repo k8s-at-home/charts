@@ -6,35 +6,43 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/linuxserver/bookstack
+  # -- image tag
   pullPolicy: IfNotPresent
-  tag: version-v21.04.2
+  # -- image pull policy
+  tag: v21.05.1-ls138
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the bookstack documentation
-# https://hub.docker.com/r/linuxserver/bookstack
-env: {}
-  # TZ:
+# -- environment variables. See more environment variables in the [bookstack documentation](https://hub.docker.com/r/linuxserver/bookstack)
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # DB_HOST:
   # DB_USER:
   # DB_PASS:
   # DB_DATABASE:
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
-
-persistence:
-  config:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /config
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # config:
+  #   enabled: false
+  #   mountPath: /config
 
 # Enabled mariadb
 # ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
