@@ -1,11 +1,9 @@
 persistence:
   config:
     enabled: true
-    emptyDir:
-      enabled: true
+    type: emptyDir
     mountPath: /opt/adguardhome/conf
   data:
     enabled: true
-    emptyDir:
-      enabled: true
+    type: emptyDir
     mountPath: /opt/adguardhome/work
