@@ -79,7 +79,7 @@ N/A
 | env | object | `{"TZ":"UTC"}` | environment variables. See more environment variables in the [emby documentation](https://emby.org/docs) |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/emby"` | image repository |
-| image.tag | string | `"v4.6.2.0"` | image tag |
+| image.tag | string | `"v4.6.1.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -96,7 +96,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
   Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `v4.6.2.0`.
+- Changed image tag to `v4.6.1.0`.
 
 ### [1.0.0]
 
