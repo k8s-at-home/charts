@@ -6,37 +6,41 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/emby
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v4.5.4.0
+  # -- image tag
+  tag: v4.6.2.0
 
-strategy:
-  type: Recreate
+# -- environment variables. See more environment variables in the [emby documentation](https://emby.org/docs)
+env:
+  # @default -- See below
+  TZ: UTC
 
-# See more environment variables in the emby documentation
-# https://emby.org/docs
-env: {}
-  # TZ:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8096
-  additionalPorts:
-    - port: 8920
-      name: https
-      protocol: TCP
+  main:
+    ports:
+      http:
+        port: 8096
+      https:
+        enabled: true
+        port: 8920
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
-persistence:
-  config:
-    enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /config
-  media:
-    enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /media
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # config:
+  #   enabled: false
+  #   mountPath: /config
+  # media:
+  #   enabled: false
+  #   mountPath: /media
