@@ -1,6 +1,6 @@
 # plex
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: v1.22.0.4163-d8c4875dd](https://img.shields.io/badge/AppVersion-v1.22.0.4163--d8c4875dd-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v1.23.2.4656-85f0adf5b](https://img.shields.io/badge/AppVersion-v1.23.2.4656--85f0adf5b-informational?style=flat-square)
 
 Plex Media Server
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -76,26 +76,31 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env | object | See below | environment variables. See [plex docs](https://support.plex.tv/articles/201105343-advanced-hidden-server-settings/) for more details. **NOTE:** Plex preference options are camelCase and CASE SENSITIVE! You can do horrible things to your Plex configuration if you are not careful |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | hostNetwork | bool | `false` | Enable devices to be discoverable |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/k8s-at-home/plex"` |  |
-| image.tag | string | `"v1.22.0.4163-d8c4875dd"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/config"` |  |
-| persistence.transcode.emptyDir.enabled | bool | `false` |  |
-| persistence.transcode.enabled | bool | `false` |  |
-| persistence.transcode.mountPath | string | `"/transcode"` |  |
-| service.port.port | int | `32400` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"ghcr.io/k8s-at-home/plex"` | image repository |
+| image.tag | string | `"v1.23.2.4656-85f0adf5b"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| podSecurityContext | object | `{}` | Configure the Security Context for the Pod |
+| resources | object | `{}` | Configure the resource requests and/or limits for the Pod |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `v1.23.2.4656-85f0adf5b`.
 
 ### [3.0.0]
 
@@ -117,8 +122,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[3.0.0]: #3.0.0
-[2.3.1]: #2.3.1
+[5.0.0]: #500
+[3.0.0]: #300
+[2.3.1]: #231
 
 ## Support
 
