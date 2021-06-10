@@ -1,6 +1,6 @@
 # foundryvtt
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.8.3](https://img.shields.io/badge/AppVersion-0.8.3-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 0.8.3](https://img.shields.io/badge/AppVersion-0.8.3-informational?style=flat-square)
 
 An easy-to-deploy Dockerized Foundry Virtual Tabletop server
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.0.1 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -79,7 +79,7 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"felddy/foundryvtt"` | image repository |
 | image.tag | string | `"0.8.3"` | image tag |
-| ingress.main | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Founderyvtt is hardcoded to use /data for its persistance for config |
 | service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 | strategy.type | string | `"Recreate"` |  |
@@ -89,6 +89,21 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- Initial version
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+
+#### Removed
+
+- N/A
 
 ### [1.0.0]
 
