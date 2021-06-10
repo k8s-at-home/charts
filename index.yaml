@@ -19002,6 +19002,34 @@ entries:
   intel-gpu-plugin:
   - apiVersion: v2
     appVersion: 0.20.0
+    created: "2021-06-10T12:15:50.354928098Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: The Intel GPU plugin facilitates offloading the processing of computation
+      intensive workloads to GPU hardware
+    digest: 712f774889df9267fd3077e0b1c53074d7abb462f9a0af0d08e8c47d982a664a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/intel-gpu-plugin
+    icon: https://avatars0.githubusercontent.com/u/17888862?s=400&v=4
+    keywords:
+    - kubernetes
+    - cluster
+    - hardware
+    - gpu
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: intel-gpu-plugin
+    sources:
+    - https://github.com/intel/intel-device-plugins-for-kubernetes/blob/master/cmd/gpu_plugin
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/intel-gpu-plugin-3.0.0/intel-gpu-plugin-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
+    appVersion: 0.20.0
     created: "2021-05-10T06:46:45.808071647Z"
     dependencies:
     - name: common
@@ -62192,4 +62220,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-10T11:46:26.67289619Z"
+generated: "2021-06-10T12:15:50.368867953Z"
