@@ -9504,6 +9504,36 @@ entries:
     version: 1.0.0
   dsmr-reader:
   - apiVersion: v2
+    appVersion: 2021.06.01
+    created: "2021-06-10T18:23:32.347346157Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.9
+    description: DSMR-protocol reader, telegram data storage and energy consumption
+      visualizer.
+    digest: ecf81c8457bd9798a3f235a7a5c0611a0c65ad268f177958a9b9834434ed7f5a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dsmr-reader
+    icon: https://avatars2.githubusercontent.com/u/57727360?s=400&v=4
+    keywords:
+    - dsmr-reader
+    - energy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dsmr-reader
+    sources:
+    - https://github.com/dsmrreader/dsmr-reader
+    - https://github.com/xirixiz/dsmr-reader-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dsmr-reader-4.0.0/dsmr-reader-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: v4.9.0
     created: "2021-06-01T04:42:45.720780038Z"
     dependencies:
@@ -62399,4 +62429,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-10T17:06:53.400709417Z"
+generated: "2021-06-10T18:23:32.357338064Z"
