@@ -4935,6 +4935,40 @@ entries:
     version: 1.0.0
   bookstack:
   - apiVersion: v2
+    appVersion: v21.05.1
+    created: "2021-06-10T07:03:09.022220192Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.1
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.13
+    description: A simple, self-hosted, easy-to-use platform for organising and storing
+      information.
+    digest: 0238eed9ee302a1e4e58d94e9475a0b1e2c636addedf096a270428567db7fa0f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bookstack
+    icon: https://avatars3.githubusercontent.com/u/20912696?s=400&v=4?sanitize=true
+    keywords:
+    - bookstack
+    - book
+    - stack
+    - organizer
+    - server
+    - hosted
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: bookstack
+    sources:
+    - https://www.bookstackapp.com/
+    - https://hub.docker.com/r/linuxserver/bookstack
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bookstack-2.0.0/bookstack-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: v21.04.2
     created: "2021-06-01T04:42:45.598727981Z"
     dependencies:
@@ -61859,4 +61893,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-10T07:00:16.801786368Z"
+generated: "2021-06-10T07:03:09.037026443Z"
