@@ -1,6 +1,6 @@
 # vaultwarden
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.20.0](https://img.shields.io/badge/AppVersion-1.20.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.20.0](https://img.shields.io/badge/AppVersion-1.20.0-informational?style=flat-square)
 
 Vaultwarden is a Bitwarden compatable server in Rust
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -77,19 +77,16 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.DATA_FOLDER | string | `"config"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"vaultwarden/server"` |  |
-| image.tag | string | `"1.21.0"` |  |
-| ingress.enabled | bool | `false` |  |
+| env | object | See below | environment variables. See [image docs](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template) for more details. |
+| env.DATA_FOLDER | string | `"config"` | Config dir |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"vaultwarden/server"` | image repository |
+| image.tag | string | `"1.21.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb.enabled | bool | `false` |  |
-| persistence.config.emptydir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | postgresql.enabled | bool | `false` |  |
-| service.additionalPorts.port.name | string | `"websocket"` |  |
-| service.additionalPorts.port.port | int | `3012` |  |
-| service.port.name | string | `"www"` |  |
-| service.port.port | int | `80` |  |
+| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 | strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
@@ -97,6 +94,21 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- Pre-rendered Ingress example (disabled by default)
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+
+#### Removed
+
+- N/A
 
 ### [1.0.0]
 
