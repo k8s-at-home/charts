@@ -1,6 +1,6 @@
 # openemr
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 6.1.0](https://img.shields.io/badge/AppVersion-6.1.0-informational?style=flat-square)
 
 OpenEMR is the most popular open source electronic health records and medical practice management solution.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -76,22 +76,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"openemr/openemr"` |  |
-| image.tag | string | `"6.0.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| mariadb.enabled | bool | `false` |  |
-| persistence.log.emptyDir.enabled | bool | `false` |  |
-| persistence.log.enabled | bool | `false` |  |
-| persistence.log.mountPath | string | `"/var/log"` |  |
-| persistence.sites.emptyDir.enabled | bool | `false` |  |
-| persistence.sites.enabled | bool | `false` |  |
-| persistence.sites.mountPath | string | `"/var/www/localhost/htdocs/openemr/sites"` |  |
-| service.additionalPorts[0].name | string | `"websocket"` |  |
-| service.additionalPorts[0].port | int | `443` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See more environment variables in the [openemr documentation](https://github.com/openemr/openemr/blob/master/docker/production/docker-compose.yml) |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"openemr/openemr"` | image repository |
+| image.tag | string | `"6.1.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -99,12 +92,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+- Updated the image tag to `6.1.0`.
+
 ### [1.0.0]
 
 #### Added
 
 - Initial version
 
+[2.0.0]: #200
 [1.0.0]: #100
 
 ## Support
