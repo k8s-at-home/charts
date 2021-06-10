@@ -10306,6 +10306,32 @@ entries:
     version: 1.0.0
   emby:
   - apiVersion: v2
+    appVersion: 4.6.1.0
+    created: "2021-06-10T15:29:14.258749547Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.1
+    description: Emby Server is a home media server
+    digest: 228750d7132b53485a57b6133546e11c2e40bfdf908f20bee88dc6ce1cff0b7b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/emby
+    icon: https://truecharts.org/_static/img/emby-icon.png
+    keywords:
+    - emby
+    - jellyfin
+    - plex
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: emby
+    sources:
+    - https://github.com/MediaBrowser
+    - https://github.com/k8s-at-home/container-images/tree/main/apps/emby
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/emby-2.0.0/emby-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: 4.5.4.0
     created: "2021-05-05T14:51:17.077447713Z"
     dependencies:
@@ -62259,4 +62285,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-10T12:16:53.279717764Z"
+generated: "2021-06-10T15:29:14.271299048Z"
