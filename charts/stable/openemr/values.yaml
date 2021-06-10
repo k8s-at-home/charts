@@ -33,14 +33,9 @@ service:
     ports:
       http:
         port: 80
-  websocket:
-    enabled: true
-    ports:
-      websocket:
+      https:
         enabled: true
         port: 443
-        # protocol: TCP
-        # targetPort: 443
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
