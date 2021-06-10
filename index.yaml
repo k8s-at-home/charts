@@ -350,6 +350,31 @@ entries:
   airsonic:
   - apiVersion: v2
     appVersion: 10.6.2
+    created: "2021-06-10T11:46:25.375411698Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Airsonic is a Free and Open Source community driven media server
+    digest: a56713814cc518c2cb2e78b1c19f480b802caf59720e4cc8579b3c48b3e14198
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/airsonic
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/airsonic-logo.png
+    keywords:
+    - airsonic
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: airsonic
+    sources:
+    - https://github.com/airsonic/airsonic
+    - https://github.com/linuxserver/docker-airsonic
+    - https://github.com/k8s-at-home/charts/tree/master/charts/airsonic
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/airsonic-3.0.2/airsonic-3.0.2.tgz
+    version: 3.0.2
+  - apiVersion: v2
+    appVersion: 10.6.2
     created: "2021-06-09T10:08:36.719596156Z"
     dependencies:
     - name: common
@@ -674,6 +699,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/airsonic-1.0.0/airsonic-1.0.0.tgz
     version: 1.0.0
   alertmanager-bot:
+  - apiVersion: v2
+    appVersion: 0.4.3
+    created: "2021-06-10T11:46:25.509848478Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Bot for Prometheus Alertmanager
+    digest: 929241cd67c8f7e7f77ed7350689f84f33cc235360796781e66e568ae1a74f6c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/alertmanager-bot
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - alertmanager
+    - telegram
+    - bot
+    - alerting
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: alertmanager-bot
+    sources:
+    - https://hub.docker.com/r/metalmatze/alertmanager-bot
+    - https://github.com/metalmatze/alertmanager-bot
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/alertmanager-bot-5.0.1/alertmanager-bot-5.0.1.tgz
+    version: 5.0.1
   - apiVersion: v2
     appVersion: 0.4.3
     created: "2021-06-09T12:25:25.578429777Z"
@@ -4934,6 +4986,40 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/booksonic-air-1.0.0/booksonic-air-1.0.0.tgz
     version: 1.0.0
   bookstack:
+  - apiVersion: v2
+    appVersion: v21.05.1
+    created: "2021-06-10T11:46:25.659729188Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.13
+    description: A simple, self-hosted, easy-to-use platform for organising and storing
+      information.
+    digest: 97391882963ec428bb9a07310bcf59db131fd33692d669ec2731d463c458d9fe
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bookstack
+    icon: https://avatars3.githubusercontent.com/u/20912696?s=400&v=4?sanitize=true
+    keywords:
+    - bookstack
+    - book
+    - stack
+    - organizer
+    - server
+    - hosted
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: bookstack
+    sources:
+    - https://www.bookstackapp.com/
+    - https://hub.docker.com/r/linuxserver/bookstack
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bookstack-2.0.1/bookstack-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: v21.05.1
     created: "2021-06-10T07:03:09.022220192Z"
@@ -25828,6 +25914,31 @@ entries:
   mosquitto:
   - apiVersion: v2
     appVersion: 2.0.11
+    created: "2021-06-10T11:46:25.831874605Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Eclipse Mosquitto - An open source MQTT broker
+    digest: 0a234f2111e8f877b45b5e6831df495788381718796032a8ad07a4ed3a63a4ac
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mosquitto
+    icon: https://raw.githubusercontent.com/eclipse/mosquitto/master/logo/mosquitto-logo-min.svg
+    keywords:
+    - mosquitto
+    - MQTT
+    - eclipse-iot
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: mosquitto
+    sources:
+    - https://github.com/eclipse/mosquitto
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/mosquitto-3.0.1/mosquitto-3.0.1.tgz
+    version: 3.0.1
+  - apiVersion: v2
+    appVersion: 2.0.11
     created: "2021-06-09T23:09:03.876231793Z"
     dependencies:
     - name: common
@@ -36443,6 +36554,31 @@ entries:
   plex:
   - apiVersion: v2
     appVersion: v1.23.2.4656-85f0adf5b
+    created: "2021-06-10T11:46:25.970667863Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Plex Media Server
+    digest: e5ed13afbdb890b842be635fc9e895feee1d0fb6eee1fc91e2927c1af5a4dfb3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    - plex-media-server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: plex
+    sources:
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    - https://github.com/k8s-at-home/container-images/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/plex-5.0.1/plex-5.0.1.tgz
+    version: 5.0.1
+  - apiVersion: v2
+    appVersion: v1.23.2.4656-85f0adf5b
     created: "2021-06-10T08:52:29.908387797Z"
     dependencies:
     - name: common
@@ -43274,6 +43410,31 @@ entries:
   reg:
   - apiVersion: v2
     appVersion: 0.16.1
+    created: "2021-06-10T11:46:26.152662083Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Docker registry v2 command line client and repo listing generator
+      with security checks.
+    digest: 8e9e077147c2fe9d49e0e50dee9f31151b9f08d26d43dcbbdfe24c1e92daa573
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/reg
+    icon: https://avatars.githubusercontent.com/u/37218338
+    keywords:
+    - reg
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: reg
+    sources:
+    - https://github.com/genuinetools/reg
+    - https://github.com/k8s-at-home/container-images/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/reg-2.0.1/reg-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v2
+    appVersion: 0.16.1
     created: "2021-06-10T07:18:59.281344418Z"
     dependencies:
     - name: common
@@ -46475,6 +46636,39 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/sharry-1.0.0/sharry-1.0.0.tgz
     version: 1.0.0
   shlink:
+  - apiVersion: v2
+    appVersion: 2.7.1
+    created: "2021-06-10T11:46:26.348166652Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.8
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.13
+    description: A self-hosted and PHP-based URL shortener application with CLI and
+      REST interfaces
+    digest: 57cb777c2bdbcf05475ece1b90aad3c31df6afffd4faef7e2d7a570e4833d899
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/shlink
+    icon: https://avatars.githubusercontent.com/u/20341790?s=200&v=4
+    keywords:
+    - shlink
+    - url-shortener
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: shlink
+    sources:
+    - https://github.com/shlinkio/shlink
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/shlink-2.0.1/shlink-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: 2.7.1
     created: "2021-06-09T23:10:45.25859126Z"
@@ -52123,6 +52317,33 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/teslamate-2.0.0/teslamate-2.0.0.tgz
     version: 2.0.0
   thelounge:
+  - apiVersion: v2
+    appVersion: 4.2.0
+    created: "2021-06-10T11:46:26.500377357Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: The Lounge, modern web IRC client designed for self-hosting
+    digest: 5ceee831289893169f4d95aae8bfb4a63acb86c0a74e7451965afd86fa7c54e4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/thelounge
+    icon: https://avatars.githubusercontent.com/u/14336958?s=200&v=4
+    keywords:
+    - thelounge
+    - IRC
+    - The Lounge
+    - docker
+    - thelounge-docker
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rwalt@pm.me
+      name: Rwaltr
+    name: thelounge
+    sources:
+    - https://github.com/thelounge/thelounge
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/thelounge-2.0.1/thelounge-2.0.1.tgz
+    version: 2.0.1
   - apiVersion: v2
     appVersion: 4.2.0
     created: "2021-06-10T07:00:16.789425595Z"
@@ -59722,6 +59943,34 @@ entries:
   zigbee2mqtt:
   - apiVersion: v2
     appVersion: 1.19.1
+    created: "2021-06-10T11:46:26.661501326Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Bridges events and allows you to control your Zigbee devices via
+      MQTT
+    digest: 4fc0277daa3ac870152f6001c4de3b8683d468f30271835dedc8b823480ac09b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zigbee2mqtt
+    icon: https://www.zigbee2mqtt.io/images/logo.png
+    keywords:
+    - zigbee
+    - mqtt
+    - home-assistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: miguelangel.santiago@hotmail.com
+      name: masantiago
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: zigbee2mqtt
+    sources:
+    - https://github.com/Koenkk/zigbee2mqtt
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/zigbee2mqtt-8.0.1/zigbee2mqtt-8.0.1.tgz
+    version: 8.0.1
+  - apiVersion: v2
+    appVersion: 1.19.1
     created: "2021-06-09T18:02:41.385757987Z"
     dependencies:
     - name: common
@@ -61943,4 +62192,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-10T08:52:29.918288552Z"
+generated: "2021-06-10T11:46:26.67289619Z"
