@@ -6,41 +6,46 @@
 #
 
 image:
+  # -- image repository
   repository: shlinkio/shlink
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 2.6.2
+  # -- image tag
+  tag: 2.7.1
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the shlink documentation
-# https://shlink.io/documentation/install-docker-image/
+# -- environment variables. See more environment variables in the [shlink documentation](https://shlink.io/documentation/install-docker-image/)
 env: {}
   # SHORT_DOMAIN_HOST: "doma.in"
   # SHORT_DOMAIN_SCHEMA: "https"
   # GEOLITE_LICENSE_KEY: "kjh23ljkbndskj345"
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
-
-persistence:
-  params:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /etc/shlink/config/params
-  data:
-    enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /etc/shlink/data
 
-# Enabled mariadb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # params:
+  #   enabled: false
+  #   mountPath: /etc/shlink/config/params
+  # data:
+  #   enabled: false
+  #   mountPath: /etc/shlink/data
+
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb).
+# @default -- See values.yaml
 mariadb:
   enabled: false
   architecture: standalone
@@ -54,8 +59,9 @@ mariadb:
       enabled: false
       # storageClass: ""
 
-# Enabled postgres
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgres database subchart under this key.
+#    For more options see [postgres chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
   enabled: false
   postgresqlUsername: shlink
