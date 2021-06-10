@@ -83,17 +83,7 @@ N/A
 | image.tag | string | `"v3.2.2.5080"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| probes.liveness.custom | bool | `true` |  |
-| probes.liveness.enabled | bool | `true` |  |
-| probes.liveness.spec.exec.command[0] | string | `"/usr/bin/env"` |  |
-| probes.liveness.spec.exec.command[1] | string | `"bash"` |  |
-| probes.liveness.spec.exec.command[2] | string | `"-c"` |  |
-| probes.liveness.spec.exec.command[3] | string | `"curl --fail localhost:7878/api/v3/system/status?apiKey=`IFS=\\> && while read -d \\< E C; do if [[ $E = \"ApiKey\" ]]; then echo $C; fi; done < /config/config.xml`"` |  |
-| probes.liveness.spec.failureThreshold | int | `5` |  |
-| probes.liveness.spec.initialDelaySeconds | int | `60` |  |
-| probes.liveness.spec.periodSeconds | int | `10` |  |
-| probes.liveness.spec.successThreshold | int | `1` |  |
-| probes.liveness.spec.timeoutSeconds | int | `10` |  |
+| probes | object | See values.yaml | Configures the probes for the main Pod. |
 | prometheus.podMonitor | object | See values.yaml | Enable and configure a Prometheus podMonitor for the chart under this key. See also the notes under `additionalContainers`. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
