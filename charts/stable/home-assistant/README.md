@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 8.3.1](https://img.shields.io/badge/Version-8.3.1-informational?style=flat-square) ![AppVersion: 2021.5.5](https://img.shields.io/badge/AppVersion-2021.5.5-informational?style=flat-square)
+![Version: 8.3.1](https://img.shields.io/badge/Version-8.3.1-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
 
 Home Assistant
 
@@ -21,8 +21,8 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.14 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.10 |
 | https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
@@ -79,14 +79,11 @@ A Z-Wave and/or Zigbee controller device could be used with Home Assistant if pa
 First you will need to mount your Z-Wave and/or Zigbee device into the pod, you can do so by adding the following to your values:
 
 ```yaml
-additionalVolumeMounts:
-  - name: zwave-usb
-    mountPath: /path/to/device
-
-additionalVolumes:
-  - name: zwave-usb
-    hostPath:
-      path: /path/to/device
+persistence:
+  usb:
+    enabled: true
+    type: hostPath
+    hostPath: /path/to/device
 ```
 
 Second you will need to set a nodeAffinity rule, for example:
@@ -126,33 +123,21 @@ The value derived is the name of the kubernetes service object for home-assistan
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"homeassistant/home-assistant"` |  |
-| image.tag | string | `"2021.5.5"` |  |
-| influxdb.architecture | string | `"standalone"` |  |
-| influxdb.authEnabled | bool | `false` |  |
-| influxdb.database | string | `"home_assistant"` |  |
-| influxdb.enabled | bool | `false` |  |
-| influxdb.persistence.enabled | bool | `false` |  |
-| ingress.enabled | bool | `false` |  |
-| mariadb.architecture | string | `"standalone"` |  |
-| mariadb.auth.database | string | `"home-assistant"` |  |
-| mariadb.auth.password | string | `"home-assistant-pass"` |  |
-| mariadb.auth.rootPassword | string | `"home-assistantrootpass"` |  |
-| mariadb.auth.username | string | `"home-assistant"` |  |
-| mariadb.enabled | bool | `false` |  |
-| mariadb.primary.persistence.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| postgresql.enabled | bool | `false` |  |
-| postgresql.persistence.enabled | bool | `false` |  |
-| postgresql.postgresqlDatabase | string | `"home-assistant"` |  |
-| postgresql.postgresqlPassword | string | `"home-assistant-pass"` |  |
-| postgresql.postgresqlUsername | string | `"home-assistant"` |  |
-| prometheus.serviceMonitor.enabled | bool | `false` |  |
-| service.port.port | int | `8123` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [image docs](https://docs.linuxserver.io/images/docker-airsonic#environment-variables-e) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"homeassistant/home-assistant"` | image repository |
+| image.tag | string | `"2021.6.3"` | image tag |
+| influxdb | object | See values.yaml | Enable and configure influxdb database subchart under this key.    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb) |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.usb | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| prometheus.serviceMonitor | object | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
+| securityContext | object | `{"privileged":null}` | Enable devices to be discoverable hostNetwork: true -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet dnsPolicy: ClusterFirstWithHostNet |
+| securityContext.privileged | bool | `nil` | Privileged securityContext may be required if USB devics are accessed directly through the host machine |
+| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 
 ## Changelog
 
@@ -160,6 +145,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [9.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `2021.6.3`.
+- Updated `mariadb` chart to version `9.3.14`.
+- Updated `postgresql` chart to version `10.4.10`.
 
 ## [8.3.0]
 
@@ -231,16 +226,12 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[10.0.0]: #1000
 [8.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-8.0.0/charts/home-assistant
-
 [5.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-5.0.0/charts/home-assistant
-
 [4.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-4.0.0/charts/home-assistant
-
 [3.1.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.1.0/charts/home-assistant
-
 [3.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.0.0/charts/home-assistant
-
 [2.7.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-2.7.0/charts/home-assistant
 
 ## Support

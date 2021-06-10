@@ -10,6 +10,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [9.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `2021.6.3`.
+- Updated `mariadb` chart to version `9.3.14`.
+- Updated `postgresql` chart to version `10.4.10`.
+
 ## [8.3.0]
 
 ### Changed
@@ -80,15 +90,11 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[10.0.0]: #1000
 [8.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-8.0.0/charts/home-assistant
-
 [5.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-5.0.0/charts/home-assistant
-
 [4.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-4.0.0/charts/home-assistant
-
 [3.1.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.1.0/charts/home-assistant
-
 [3.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.0.0/charts/home-assistant
-
 [2.7.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-2.7.0/charts/home-assistant
 {{- end -}}
