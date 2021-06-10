@@ -2275,6 +2275,36 @@ entries:
     version: 1.0.0
   bazarr:
   - apiVersion: v2
+    appVersion: v0.9.5
+    created: "2021-06-10T18:41:19.485767901Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Bazarr is a companion application to Sonarr and Radarr. It manages
+      and downloads subtitles based on your requirements
+    digest: 0d0ae3f2b502fc8d9c44f577a6c8651e3fb51d6e88cdae00d7c63d0d47720ee9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bazarr
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: bazarr
+    sources:
+    - https://github.com/morpheus65535/bazarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bazarr-9.0.0/bazarr-9.0.0.tgz
+    version: 9.0.0
+  - apiVersion: v2
     appVersion: v0.9.4
     created: "2021-05-05T14:51:14.470932689Z"
     dependencies:
@@ -15308,6 +15338,45 @@ entries:
   home-assistant:
   - apiVersion: v2
     appVersion: 2021.6.3
+    created: "2021-06-10T18:41:19.711007313Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.9
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.14
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Home Assistant
+    digest: c00879a9dca6bedd2d016d6babde69a0c46641926d864f65be70a37d2913f9d1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-9.0.1/home-assistant-9.0.1.tgz
+    version: 9.0.1
+  - apiVersion: v2
+    appVersion: 2021.6.3
     created: "2021-06-10T12:16:53.266586055Z"
     dependencies:
     - name: common
@@ -22759,6 +22828,32 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - apiVersion: v2
+    appVersion: v1.0.0.2226
+    created: "2021-06-10T18:41:19.893366942Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Looks and smells like Sonarr but made for music
+    digest: fba899e0dd1acecb8d549e79daa2c9c2aa364a2d2b9bf4e3c6d3579c9f292dfe
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-10.0.0/lidarr-10.0.0.tgz
+    version: 10.0.0
   - apiVersion: v2
     appVersion: v0.8.1.2134
     created: "2021-05-05T14:51:21.561081786Z"
@@ -39755,6 +39850,33 @@ entries:
     version: 1.0.0
   prowlarr:
   - apiVersion: v2
+    appVersion: v0.1.0.421
+    created: "2021-06-10T18:41:20.146532611Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Indexer manager/proxy built on the popular arr net base stack to
+      integrate with your various PVR apps.
+    digest: 6f6f084e2a3e145d60448ff2109f207ed1a27e46eb6220c6ea85f2b2ab8d6973
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prowlarr
+    icon: https://raw.githubusercontent.com/Prowlarr/Prowlarr/develop/Logo/400.png
+    keywords:
+    - prowlarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: prowlarr
+    sources:
+    - https://github.com/Prowlarr/Prowlarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/prowlarr-3.0.0/prowlarr-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 0.1.0.181
     created: "2021-05-05T14:51:26.54842075Z"
     dependencies:
@@ -41508,6 +41630,32 @@ entries:
     version: 2.0.1
   radarr:
   - apiVersion: v2
+    appVersion: v3.2.2.5080
+    created: "2021-06-10T18:41:20.332394412Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: ab81059c173d6548d389cbc799b4cda7065fadd64a97c5d78fc2534010c69d2b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-12.0.0/radarr-12.0.0.tgz
+    version: 12.0.0
+  - apiVersion: v2
     appVersion: v3.0.2.4552
     created: "2021-05-05T14:51:27.062481536Z"
     dependencies:
@@ -42721,6 +42869,34 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/radarr-3.0.0/radarr-3.0.0.tgz
     version: 3.0.0
   readarr:
+  - apiVersion: v2
+    appVersion: v0.1.0.715
+    created: "2021-06-10T18:41:20.522183175Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: A fork of Radarr to work with Books & AudioBooks
+    digest: e6f9440dad412b0c08599fd7bf568bfeaa7c0c94102b86e4fe07f592fb653583
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/readarr
+    icon: https://readarr.com/img/logo.png
+    keywords:
+    - readarr
+    - torrent
+    - usenet
+    - AudioBooks
+    - ebooks
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark@markmcw.uk
+      name: mcmarkj
+    name: readarr
+    sources:
+    - https://github.com/Readarr/Readarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/readarr-5.0.0/readarr-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v2
     appVersion: v0.1.0.587
     created: "2021-05-05T14:51:27.238316432Z"
@@ -47422,6 +47598,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/smarter-device-manager-1.0.0/smarter-device-manager-1.0.0.tgz
     version: 1.0.0
   sonarr:
+  - apiVersion: v2
+    appVersion: v3.0.6.1196
+    created: "2021-06-10T18:41:20.728431237Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: d9150a1d91fd58505528a409c136cee4bbce98b392b97546c44455a9fc03e8b6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-12.0.0/sonarr-12.0.0.tgz
+    version: 12.0.0
   - apiVersion: v2
     appVersion: v3.0.6.1196
     created: "2021-05-05T14:51:29.18591898Z"
@@ -62454,4 +62656,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-10T18:24:06.825109944Z"
+generated: "2021-06-10T18:41:20.742141051Z"
