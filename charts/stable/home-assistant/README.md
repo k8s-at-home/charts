@@ -22,7 +22,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.14 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.4.10 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.9 |
 | https://library-charts.k8s-at-home.com | common | 2.5.0 |
 
 ## TL;DR
@@ -154,7 +154,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
 - Changed image tag to `2021.6.3`.
 - Updated `mariadb` chart to version `9.3.14`.
-- Updated `postgresql` chart to version `10.4.10`.
+- Updated `postgresql` chart to version `10.4.9`.
 
 ## [8.3.0]
 
