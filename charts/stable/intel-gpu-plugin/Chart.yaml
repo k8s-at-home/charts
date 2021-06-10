@@ -1,6 +1,6 @@
 apiVersion: v2
 name: intel-gpu-plugin
-version: 2.0.0
+version: 3.0.0
 appVersion: 0.20.0
 description: The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware
 keywords:
@@ -15,7 +15,9 @@ sources:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
   - name: common
-    version: 2.5.0
+    version: 3.0.2
     repository: https://library-charts.k8s-at-home.com
