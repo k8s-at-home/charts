@@ -38,10 +38,10 @@ ingress:
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
-persistence: {}
-  # config:
-  #   enabled: false
-  #   mountPath: /config
-  # media:
-  #   enabled: false
-  #   mountPath: /media
+persistence:
+  config:
+    enabled: false
+    mountPath: /config
+  media:
+    enabled: false
+    mountPath: /media
