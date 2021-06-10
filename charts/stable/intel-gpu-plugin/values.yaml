@@ -6,52 +6,64 @@
 #
 
 image:
+  # -- image repository
   repository: intel/intel-gpu-plugin
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: 0.20.0
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-controllerType: daemonset
-
-strategy:
-  type: Recreate
+controller:
+  # -- Run this chart as a daemonset. Do not modify unless you know what you are doing.
+  type: daemonset
 
 serviceAccount:
+  # -- Specifies whether a service account should be created
   create: true
 
+# -- Override the args for the default container
+# Refer to the [plugin documentation](https://github.com/intel/intel-device-plugins-for-kubernetes/blob/main/cmd/gpu_plugin/README.md) for more information.
 args:
   - -shared-dev-num
   - "1"
 
 envValueFrom:
+  # -- Sets the NODE_NAME env var to the name of the node where the pod is running. Do not modify unless you know what you are doing.
+  # @default -- `spec.nodeName`
   NODE_NAME:
     fieldRef:
       fieldPath: spec.nodeName
 
-hostPathMounts:
-  - name: "devfs"
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  devfs:
     enabled: true
-    emptyDir: false
-    mountPath: "/dev/dri"
+    type: hostPath
     hostPath: "/dev/dri"
     readOnly: true
-  - name: "sysfs"
+  sysfs:
     enabled: true
-    emptyDir: false
-    mountPath: "/sys/class/drm"
+    type: hostPath
     hostPath: "/sys/class/drm"
     readOnly: true
-  - name: "kubeletsockets"
+  kubeletsockets:
     enabled: true
-    emptyDir: false
-    mountPath: "/var/lib/kubelet/device-plugins"
+    type: hostPath
     hostPath: "/var/lib/kubelet/device-plugins"
 
 ingress:
-  enabled: false
+  main:
+    # -- Ingress is disabled for this chart. Do not modify unless you know what you are doing.
+    enabled: false
 
 service:
-  enabled: false
+  main:
+    # -- Main service is disabled for this chart. Do not modify unless you know what you are doing.
+    enabled: false
 
+# -- Disable probes for this chart since there is no service. Do not modify unless you know what you are doing.
+# @default -- See values.yaml
 probes:
   liveness:
     enabled: false
