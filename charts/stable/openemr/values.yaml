@@ -45,13 +45,13 @@ ingress:
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
-persistence: {}
-  # log:
-  #   enabled: false
-  #   mountPath: /var/log
-  # sites:
-  #   enabled: false
-  #   mountPath: /var/www/localhost/htdocs/openemr/sites
+persistence:
+  log:
+    enabled: false
+    mountPath: /var/log
+  sites:
+    enabled: false
+    mountPath: /var/www/localhost/htdocs/openemr/sites
 
 # -- Enable and configure mariadb database subchart under this key.
 #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
