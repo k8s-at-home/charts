@@ -1,6 +1,6 @@
 # shlink
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 2.6.2](https://img.shields.io/badge/AppVersion-2.6.2-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
 
 A self-hosted and PHP-based URL shortener application with CLI and REST interfaces
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -77,31 +77,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"shlinkio/shlink"` |  |
-| image.tag | string | `"2.6.2"` |  |
-| ingress.enabled | bool | `false` |  |
-| mariadb.architecture | string | `"standalone"` |  |
-| mariadb.auth.database | string | `"shlink"` |  |
-| mariadb.auth.password | string | `"shlink-pass"` |  |
-| mariadb.auth.rootPassword | string | `"shlinkrootpass"` |  |
-| mariadb.auth.username | string | `"shlink"` |  |
-| mariadb.enabled | bool | `false` |  |
-| mariadb.primary.persistence.enabled | bool | `false` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/etc/shlink/data"` |  |
-| persistence.params.emptyDir.enabled | bool | `false` |  |
-| persistence.params.enabled | bool | `false` |  |
-| persistence.params.mountPath | string | `"/etc/shlink/config/params"` |  |
-| postgresql.enabled | bool | `false` |  |
-| postgresql.persistence.enabled | bool | `false` |  |
-| postgresql.postgresqlDatabase | string | `"shlink"` |  |
-| postgresql.postgresqlPassword | string | `"shlink-pass"` |  |
-| postgresql.postgresqlUsername | string | `"shlink"` |  |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | `{}` | environment variables. See more environment variables in the [shlink documentation](https://shlink.io/documentation/install-docker-image/) |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"shlinkio/shlink"` | image repository |
+| image.tag | string | `"2.7.1"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb). |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| postgresql | object | See values.yaml | Enable and configure postgres database subchart under this key.    For more options see [postgres chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -109,12 +93,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `2.7.1`.
+
 ### [1.0.0]
 
 #### Added
 
 - Initial version
 
+[2.0.0]: #200
 [1.0.0]: #100
 
 ## Support
