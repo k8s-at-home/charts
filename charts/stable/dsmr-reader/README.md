@@ -1,6 +1,6 @@
 # dsmr-reader
 
-![Version: 3.5.1](https://img.shields.io/badge/Version-3.5.1-informational?style=flat-square) ![AppVersion: v4.9.0](https://img.shields.io/badge/AppVersion-v4.9.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 2021.06.01](https://img.shields.io/badge/AppVersion-2021.06.01-informational?style=flat-square)
 
 DSMR-protocol reader, telegram data storage and energy consumption visualizer.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.9 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -77,28 +77,32 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.DJANGO_DATABASE_NAME | string | `"dsmr-reader"` |  |
-| env.DJANGO_DATABASE_PASSWORD | string | `"dsmr-reader-pass"` |  |
-| env.DJANGO_DATABASE_PORT | int | `5432` |  |
-| env.DJANGO_DATABASE_USER | string | `"dsmr-reader"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"xirixiz/dsmr-reader-docker"` |  |
-| image.tag | string | `"latest-v4.9.0-amd64"` |  |
-| ingress.enabled | bool | `false` |  |
-| postgresql.enabled | bool | `false` |  |
-| postgresql.persistence.enabled | bool | `false` |  |
-| postgresql.postgresqlDatabase | string | `"dsmr-reader"` |  |
-| postgresql.postgresqlPassword | string | `"dsmr-reader-pass"` |  |
-| postgresql.postgresqlUsername | string | `"dsmr-reader"` |  |
-| securityContext.privileged | bool | `true` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [image docs](https://github.com/xirixiz/dsmr-reader-docker#dsmr-reader---environment-variables) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"xirixiz/dsmr-reader-docker"` | image repository |
+| image.tag | string | `"latest-2021.06.01-amd64"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.p1reader | object | See values.yaml | Set up a local USB p1 reader device. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| securityContext.privileged | bool | `nil` | Privileged securityContext may be required if USB devics are accessed directly through the host machine |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
+- Updated image tag to `latest-2021.06.01-amd64`.
+- Updated postgresql chart to `10.4.9`.
 
 ### [1.0.0]
 
