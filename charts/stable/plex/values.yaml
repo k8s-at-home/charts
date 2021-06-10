@@ -6,21 +6,23 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/plex
+  # -- image tag
+  tag: v1.23.2.4656-85f0adf5b
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v1.22.0.4163-d8c4875dd
 
-strategy:
-  type: Recreate
-
-env: {}
-  # TZ:
+# -- environment variables. See [plex docs](https://support.plex.tv/articles/201105343-advanced-hidden-server-settings/) for more details.
+# **NOTE:** Plex preference options are camelCase and CASE SENSITIVE!
+# You can do horrible things to your Plex configuration if you are not careful
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # ADVERTISE_IP:
   # ALLOWED_NETWORKS:
   # PLEX_CLAIM:
-  # # NOTE: Plex preference options are camelCase and CASE SENSITIVE!
-  # # You can do horrible things to your Plex configuration if you are not careful
-  # # See a full list at https://support.plex.tv/articles/201105343-advanced-hidden-server-settings/
   # PLEX_PREFERENCE_1: "FriendlyName=plex-kubernetes"
   # PLEX_PREFERENCE_2: "EnableIPv6=0"
   # PLEX_PREFERENCE_3: "logDebug=0"
@@ -30,95 +32,80 @@ env: {}
   # PLEX_PREFERENCE_7: "TreatWanIpAsLocal=0"
   # PLEX_PREFERENCE_8: "TranscoderH264BackgroundPreset=fast"
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 32400
-  # additionalServices:
-  # - enabled: true
-  #   nameSuffix: dnla-tcp
-  #   type: NodePort
-  #   port:
-  #     port: 32469
-  #     name: dnla-tcp
-  #     protocol: TCP
-  #     targetPort: 32469
-  #   externalTrafficPolicy: Local
-  # - enabled: true
-  #   nameSuffix: dnla-udp
-  #   type: NodePort
-  #   port:
-  #     port: 1900
-  #     name: dnla-udp
-  #     protocol: UDP
-  #     targetPort: 1900
-  #   externalTrafficPolicy: Local
+  main:
+    primary: true
+    ports:
+      http:
+        port: 32400
+  dnla-tcp:
+    enabled: false
+    type: NodePort
+    ports:
+      dnla-tcp:
+        enabled: true
+        port: 32469
+        protocol: TCP
+        targetPort: 32469
+    externalTrafficPolicy: Local
+  dnla-udp:
+    enabled: false
+    type: NodePort
+    ports:
+      dnla-udp:
+        enabled: true
+        port: 1900
+        protocol: TCP
+        targetPort: 1900
+    externalTrafficPolicy: Local
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 # -- Enable devices to be discoverable
 hostNetwork: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /config
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
   transcode:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /transcode
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
-# podSecurityContext:
-#   runAsUser: 568
-#   runAsGroup: 568
-#   fsGroup: 568
-#   # Hardware acceleration using an Intel iGPU w/ QuickSync
-#   # These IDs below should be matched to your `video` and `render` group on the host
-#   # To obtain those IDs run the following grep statement on the host:
-#   # $ cat /etc/group | grep "video\|render"
-#   # video:x:44:
-#   # render:x:109:
-#   supplementalGroups:
-#   - 44
-#   - 109
+# -- Configure the Security Context for the Pod
+podSecurityContext: {}
+  # runAsUser: 568
+  # runAsGroup: 568
+  # fsGroup: 568
+  # # Hardware acceleration using an Intel iGPU w/ QuickSync
+  # # These IDs below should be matched to your `video` and `render` group on the host
+  # # To obtain those IDs run the following grep statement on the host:
+  # # $ cat /etc/group | grep "video\|render"
+  # # video:x:44:
+  # # render:x:109:
+  # supplementalGroups:
+  # - 44
+  # - 109
 
-# resources:
-#   requests:
-#     # Hardware acceleration using an Intel iGPU w/ QuickSync and
-#     # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
-#     gpu.intel.com/i915: 1
-#     cpu: 200m
-#     memory: 256Mi
-#   limits:
-#     # Hardware acceleration using an Intel iGPU w/ QuickSync and
-#     # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
-#     gpu.intel.com/i915: 1
-#     memory: 4096Mi
+# -- Configure the resource requests and/or limits for the Pod
+resources: {}
+  # requests:
+  #   # Hardware acceleration using an Intel iGPU w/ QuickSync and
+  #   # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
+  #   gpu.intel.com/i915: 1
+  #   cpu: 200m
+  #   memory: 256Mi
+  # limits:
+  #   # Hardware acceleration using an Intel iGPU w/ QuickSync and
+  #   # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
+  #   gpu.intel.com/i915: 1
+  #   memory: 4096Mi
