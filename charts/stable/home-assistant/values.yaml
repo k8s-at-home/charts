@@ -6,35 +6,46 @@
 #
 
 image:
+  # -- image repository
   repository: homeassistant/home-assistant
+  # -- image tag
+  tag: 2021.6.3
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 2021.5.5
 
-strategy:
-  type: Recreate
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ:
-
+# -- Configures service settings for the chart. Normally this does not need to be modified.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8123
+  main:
+    ports:
+      http:
+        port: 8123
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
-# # Enable devices to be discoverable
+# -- Enable devices to be discoverable
 # hostNetwork: true
 
-# # When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet
+# -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet
 # dnsPolicy: ClusterFirstWithHostNet
 
-# # Enable passing thru a USB device to Home Assistant
-# securityContext:
-#   privileged: true
+securityContext:
+  # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
+  privileged:  # true
 
-# Enable a prometheus-operator servicemonitor
 prometheus:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # @default -- See values.yaml
   serviceMonitor:
     enabled: false
     ## See https://www.home-assistant.io/docs/authentication/ for where to find
@@ -46,37 +57,21 @@ prometheus:
     # interval: 1m
     # additionalLabels: {}
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
+  # -- Configure a hostPathMount to mount a USB device in the container.
+  # @default -- See values.yaml
+  usb:
+    enabled: false
+    type: hostPath
+    hostPath: /path/to/device
 
-# # Path to your Z-Wave / Zigbee device in the container
-# additionalVolumeMounts:
-#   - name: zwave-usb
-#     mountPath: /dev/serial/by-id/usb-0658_0200-if00
-
-# # Path to your Z-Wave / Zigbee device on the host
-# additionalVolumes:
-#   - name: zwave-usb
-#     hostPath:
-#       path: /dev/serial/by-id/usb-0658_0200-if00
-
-# Enabled mariadb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+# @default -- See values.yaml
 mariadb:
   enabled: false
   architecture: standalone
@@ -90,8 +85,9 @@ mariadb:
       enabled: false
       # storageClass: ""
 
-# Enabled postgres
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
   enabled: false
   postgresqlUsername: home-assistant
@@ -101,8 +97,9 @@ postgresql:
     enabled: false
     # storageClass: ""
 
-# Enable influxdb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/influxdb
+# -- Enable and configure influxdb database subchart under this key.
+#    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb)
+# @default -- See values.yaml
 influxdb:
   enabled: false
   architecture: standalone

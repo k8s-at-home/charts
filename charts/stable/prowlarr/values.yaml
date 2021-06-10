@@ -6,25 +6,35 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/prowlarr
+  # -- image tag
+  tag: v0.1.0.421
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v0.1.0.181
 
-strategy:
-  type: Recreate
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ: UTC
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 9696
+  main:
+    ports:
+      http:
+        port: 9696
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false

@@ -6,7 +6,7 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   mosquitto.conf: |
-    listener {{ .Values.service.port.port }}
+    listener {{ .Values.service.main.ports.mqtt.port }}
     {{- if .Values.auth.enabled }}
     allow_anonymous false
     {{- else }}

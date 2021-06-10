@@ -6,45 +6,55 @@
 #
 
 image:
+  # -- image repository
   repository: xirixiz/dsmr-reader-docker
+  # -- image tag
+  tag: latest-2021.06.01-amd64
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: latest-v4.9.0-amd64
 
-strategy:
-  type: Recreate
-
-# For all options see https://github.com/xirixiz/dsmr-reader-docker#dsmr-reader---environment-variables
+# -- environment variables. See [image docs](https://github.com/xirixiz/dsmr-reader-docker#dsmr-reader---environment-variables) for more details.
+# @default -- See below
 env:
-  # TZ: UTC
-  # DJANGO_TIME_ZONE: UTC
+  # -- Set the container timezone
+  TZ: UTC
+  DJANGO_TIME_ZONE: UTC
   DJANGO_DATABASE_USER: dsmr-reader
   DJANGO_DATABASE_PASSWORD: dsmr-reader-pass
   DJANGO_DATABASE_PORT: 5432
   DJANGO_DATABASE_NAME: dsmr-reader
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 securityContext:
-  privileged: true
+  # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
+  privileged:  # true
 
-# Path to your p1 reader device in the container
-# additionalVolumeMounts:
-# - name: p1reader
-#   mountPath: /dev/ttyUSB0
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  # -- Set up a local USB p1 reader device.
+  # @default -- See values.yaml
+  p1reader:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/ttyUSB0
 
-# Path to your p1 reader device on the host
-# additionalVolumes:
-# - name: p1reader
-#   hostPath:
-#     path: /dev/ttyUSB0
-
-# Enable postgres
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
   enabled: false
   postgresqlUsername: dsmr-reader

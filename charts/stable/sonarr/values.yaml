@@ -6,23 +6,35 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/sonarr
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: v3.0.6.1196
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ: UTC
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8989
+  main:
+    ports:
+      http:
+        port: 8989
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
 probes:
   liveness:
     enabled: true
@@ -44,32 +56,20 @@ probes:
       successThreshold: 1
       timeoutSeconds: 10
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
 
   media:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /media
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
-# Enable gathering Prometheus metrics
 prometheus:
+  # -- Enable and configure a Prometheus podMonitor for the chart under this key.
+  # See also the notes under `additionalContainers`.
+  # @default -- See values.yaml
   podMonitor:
     enabled: false
     interval: 3m

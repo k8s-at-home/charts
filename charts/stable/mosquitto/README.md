@@ -1,6 +1,6 @@
 # mosquitto
 
-![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: 2.0.7](https://img.shields.io/badge/AppVersion-2.0.7-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.0.11](https://img.shields.io/badge/AppVersion-2.0.11-informational?style=flat-square)
 
 Eclipse Mosquitto - An open source MQTT broker
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.1 |
 
 ## TL;DR
 
@@ -75,31 +75,27 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| auth.enabled | bool | `false` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"eclipse-mosquitto"` |  |
-| image.tag | string | `"2.0.7"` |  |
-| persistence.configinc.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.configinc.emptyDir.enabled | bool | `false` |  |
-| persistence.configinc.enabled | bool | `false` |  |
-| persistence.configinc.mountPath | string | `"/mosquitto/configinc"` |  |
-| persistence.configinc.size | string | `"100Mi"` |  |
-| persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/mosquitto/data"` |  |
-| persistence.data.size | string | `"100Mi"` |  |
-| service.annotations | object | `{}` |  |
-| service.port.name | string | `"mqtt"` |  |
-| service.port.port | int | `1883` |  |
-| service.type | string | `"ClusterIP"` |  |
-| strategy.type | string | `"Recreate"` |  |
+| auth.enabled | bool | `false` | By enabling this, `allow_anonymous` gets set to `false` in the mosquitto config. |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"eclipse-mosquitto"` | image repository |
+| image.tag | string | `"2.0.11"` | image tag |
+| persistence.configinc | object | See values.yaml | Configure a persistent volume to place *.conf mosquitto-config-files in. When enabled, this gets set as `include_dir` in the mosquitto config. |
+| persistence.data | object | See values.yaml | Configure a persistent volume to place mosquitto data in. When enabled, this enables `persistence` and `persistence_location` in the mosquitto config. |
+| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `2.0.11`.
 
 ### [2.3.2]
 
@@ -129,8 +125,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[2.3.2]: #2.3.2
-[1.1.1]: #1.1.1
+[3.0.0]: #300
+[2.3.2]: #232
+[1.1.1]: #111
 
 ## Support
 
