@@ -6,17 +6,18 @@
 #
 
 image:
+  # -- image repository
   repository: openemr/openemr
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 6.0.0
+  # -- image tag
+  tag: 6.1.0
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the openemr documentation
-# https://github.com/openemr/openemr/blob/master/docker/production/docker-compose.yml
-env: {}
-  # TZ:
+# -- environment variables. See more environment variables in the [openemr documentation](https://github.com/openemr/openemr/blob/master/docker/production/docker-compose.yml)
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # MYSQL_HOST: openemr-mariadb
   # MYSQL_ROOT_PASS: openemrrootpass
   # MYSQL_USER: openemr
@@ -24,30 +25,42 @@ env: {}
   # OE_USER: admin
   # OE_PASS: pass
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
-  additionalPorts:
-    - name: websocket
-      port: 443
+  main:
+    primary: true
+    ports:
+      http:
+        port: 80
+  websocket:
+    enabled: true
+    ports:
+      websocket:
+        enabled: true
+        port: 443
+        # protocol: TCP
+        # targetPort: 443
 
 ingress:
-  enabled: false
-
-persistence:
-  log:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /var/log
-  sites:
-    enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /var/www/localhost/htdocs/openemr/sites
 
-# Enabled mariadb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # log:
+  #   enabled: false
+  #   mountPath: /var/log
+  # sites:
+  #   enabled: false
+  #   mountPath: /var/www/localhost/htdocs/openemr/sites
+
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+# @default -- See values.yaml
 mariadb:
   enabled: false
   # architecture: standalone
