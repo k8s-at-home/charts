@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.0.1 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -112,33 +112,11 @@ certificates. It does not install it as dependency to avoid conflicts.
 | addons.vpn.type | string | `"openvpn"` |  |
 | addons.vpn.wireguard | string | `nil` |  |
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
-| command[0] | string | `"/bin/gateway_sidecar.sh"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` | image pull policy of the gateway and inserted helpers |
-| image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` | image repository of the gateway and inserted helpers |
-| image.tag | string | `"v1.2.6"` | image tag of the gateway and inserted helpers |
-| initContainers[0].command[0] | string | `"/bin/gateway_init.sh"` |  |
-| initContainers[0].image | string | `nil` | Will be set automatically |
-| initContainers[0].imagePullPolicy | string | `nil` | Will be set automatically |
-| initContainers[0].name | string | `"routes"` |  |
-| initContainers[0].securityContext.privileged | bool | `true` |  |
-| initContainers[0].volumeMounts[0].mountPath | string | `"/config"` |  |
-| initContainers[0].volumeMounts[0].name | string | `"config"` |  |
-| initContainers[0].volumeMounts[0].readOnly | bool | `true` |  |
-| persistence.config.enabled | bool | `true` |  |
-| persistence.config.mountPath | string | `"/config"` |  |
-| persistence.config.readOnly | bool | `true` |  |
-| persistence.config.type | string | `"custom"` |  |
-| persistence.config.volumeSpec.configMap.defaultMode | int | `365` |  |
-| probes.liveness.enabled | bool | `false` |  |
-| probes.readiness.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `false` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy of the gateway and inserted helper cotainers |
+| image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` | image repository of the gateway and inserted helper containers |
+| image.tag | string | `"v1.2.6"` | image tag of the gateway and inserted helper containers |
 | publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
 | routed_namespaces | list | `[]` | Namespaces that might contain routed PODs and therefore require a copy of the gneerated settings configmap. |
-| securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
-| service.main.ports.http.clusterIP | string | `"None"` |  |
-| service.main.ports.http.port | int | `4789` |  |
-| service.main.ports.http.protocol | string | `"UDP"` |  |
-| service.main.ports.http.type | string | `"ClusterIP"` |  |
 | settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
 | settings.NOT_ROUTED_TO_GATEWAY_CIDRS | string | `""` | IPs not sent to the POD gateway but to the default K8S. Multiple CIDRs can be specified using blanks as separator. Example for Calico: ""172.22.0.0/16 172.24.0.0/16" This is needed, for example, in case your CNI does not add a non-default rule for the K8S addresses (Flannel does). |
 | settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |
@@ -148,32 +126,16 @@ certificates. It does not install it as dependency to avoid conflicts.
 | settings.VXLAN_GATEWAY_FIRST_DYNAMIC_IP | int | `20` | Keep a range of IPs for static assignment in nat.conf |
 | settings.VXLAN_ID | int | `42` | Vxlan ID to use |
 | settings.VXLAN_IP_NETWORK | string | `"172.16.0"` | VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges |
-| webhook.additionalVolumes | list | `[]` |  |
-| webhook.args[0] | string | `"--tls-cert-file-path=/tls/tls.crt"` |  |
-| webhook.args[1] | string | `"--tls-key-file-path=/tls/tls.key"` |  |
-| webhook.args[2] | string | `"--setGatewayDefault"` |  |
-| webhook.args[3] | string | `"--setGatewayLabel=setGateway"` |  |
-| webhook.args[4] | string | `"--setGatewayAnnotation=setGateway"` |  |
-| webhook.args[5] | string | `"--DNSPolicy=None"` |  |
-| webhook.image.pullPolicy | string | `"IfNotPresent"` |  |
-| webhook.image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` |  |
-| webhook.image.tag | string | `"v3.3.2"` |  |
-| webhook.inserted.init.cmd | string | `"/bin/client_init.sh"` |  |
-| webhook.inserted.init.mountPath | string | `"/config"` |  |
-| webhook.inserted.init.pullPolicy | string | `nil` | Will be set automatically |
-| webhook.inserted.init.repository | string | `nil` | Will be set automatically |
-| webhook.inserted.init.tag | string | `nil` | Will be set automatically |
-| webhook.inserted.sidecar.cmd | string | `"/bin/client_sidecar.sh"` |  |
-| webhook.inserted.sidecar.mountPath | string | `"/config"` |  |
-| webhook.inserted.sidecar.pullPolicy | string | `nil` | Will be set automatically |
-| webhook.inserted.sidecar.repository | string | `nil` | Will be set automatically |
-| webhook.inserted.sidecar.tag | string | `nil` | Will be set automatically |
-| webhook.namespaceSelector | object | `{"matchLabels":{"routed-gateway":"true"}}` | Selector for namespace. All pods in this namespace will get their default gateway changed |
-| webhook.replicas | int | `1` |  |
-| webhook.service.path | string | `"/wh/mutating/setgateway"` |  |
-| webhook.service.port | int | `8080` |  |
-| webhook.service.protocol | string | `"HTTPS"` |  |
-| webhook.strategy.type | string | `"RollingUpdate"` |  |
+| webhook | object | `{"gatewayAnnotation":"setGateway","gatewayDefault":true,"gatewayLabel":"setGateway","image":{"pullPolicy":"IfNotPresent","repository":"ghcr.io/k8s-at-home/gateway-admision-controller","tag":"v3.3.2"},"namespaceSelector":{"matchLabels":{"routed-gateway":"true"}},"replicas":1,"strategy":{"type":"RollingUpdate"}}` | The webhook is used to mutate the PODs matching the given namespace labels. It inserts an init and sidecard helper containers that connect to the gateway pod created by this chart. |
+| webhook.gatewayAnnotation | string | `"setGateway"` | annotation name to check when evaluating POD. If true the POD will get the gateway. If not set setGatewayDefault will apply. |
+| webhook.gatewayDefault | bool | `true` | default behviour for new PODs in the evaluated namespace |
+| webhook.gatewayLabel | string | `"setGateway"` | label name to check when evaluating POD. If true the POD will get the gateway. If not set setGatewayDefault will apply. |
+| webhook.image.pullPolicy | string | `"IfNotPresent"` | image pullPolicy of the webhook |
+| webhook.image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` | image repository of the webhook |
+| webhook.image.tag | string | `"v3.3.2"` | image tag of the webhook |
+| webhook.namespaceSelector | object | `{"matchLabels":{"routed-gateway":"true"}}` | Selector for namespace. All pods in this namespace will get evaluated by the webhook. **IMPORTANT**: Do not select the namespace where the webhook is deployed to or you will get locking issues. |
+| webhook.replicas | int | `1` | number of webhook instances to deploy |
+| webhook.strategy | object | `{"type":"RollingUpdate"}` | strategy for updates |
 
 ## Changelog
 
@@ -181,7 +143,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.0.]
+### [3.0.0]
 
 #### Added
 
@@ -190,7 +152,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Update to common chart 3.0.1
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
 
 #### Removed
 
