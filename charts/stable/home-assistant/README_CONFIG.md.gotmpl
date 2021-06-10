@@ -12,14 +12,11 @@ A Z-Wave and/or Zigbee controller device could be used with Home Assistant if pa
 First you will need to mount your Z-Wave and/or Zigbee device into the pod, you can do so by adding the following to your values:
 
 ```yaml
-additionalVolumeMounts:
-  - name: zwave-usb
-    mountPath: /path/to/device
-
-additionalVolumes:
-  - name: zwave-usb
-    hostPath:
-      path: /path/to/device
+persistence:
+  usb:
+    enabled: true
+    type: hostPath
+    hostPath: /path/to/device
 ```
 
 Second you will need to set a nodeAffinity rule, for example:
