@@ -79,7 +79,7 @@ N/A
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"spx01/blocky"` |  |
-| image.tag | string | `"v0.13"` |  |
+| image.tag | string | `"v0.13-test"` |  |
 | persistence.logs.emptyDir | bool | `false` |  |
 | persistence.logs.enabled | bool | `false` |  |
 | persistence.logs.mountPath | string | `"/logs"` |  |
