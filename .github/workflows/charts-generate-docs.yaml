@@ -71,5 +71,6 @@ jobs:
     - name: Update Pull Request
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Generated README.md [ci skip]
+        token: ${{ secrets.K8S_BOT_TOKEN }}
+        commit_message: Generated README.md
         file_pattern: charts/**/README.md
