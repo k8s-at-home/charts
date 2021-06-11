@@ -2,6 +2,31 @@ apiVersion: v1
 entries:
   adguard-home:
   - apiVersion: v2
+    appVersion: v0.106.3
+    created: "2021-06-11T17:54:26.917340817Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: DNS proxy as ad-blocker for local network
+    digest: 3a57fa44767d54e5eee53785b45d073c154c9aa5c91d73acf9dfd418cd0ad845
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/adguard-home
+    icon: https://avatars3.githubusercontent.com/u/8361145?s=200&v=4?sanitize=true
+    keywords:
+    - adguard-home
+    - adblock
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: adguard-home
+    sources:
+    - https://github.com/AdguardTeam/AdGuardHome
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/adguard-home-4.0.0/adguard-home-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: v0.105.2
     created: "2021-05-18T12:34:22.919177645Z"
     dependencies:
@@ -62860,4 +62885,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-11T17:44:42.626703723Z"
+generated: "2021-06-11T17:54:26.927590345Z"
