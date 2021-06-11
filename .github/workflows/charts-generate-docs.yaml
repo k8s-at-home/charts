@@ -9,16 +9,16 @@ on:
     - 'charts/**/*.md.gotmpl'
     - 'charts/**/README.md'
 
+concurrency:
+  group: ${{ github.head_ref }}-generate-readme
+  cancel-in-progress: true
+
 jobs:
   generate-docs:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]') && github.actor != 'k8s-at-home'"
+    if: "!contains(github.event.head_commit.message, '[ci-skip]') && github.actor != 'k8s-at-home[bot]'"
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
     steps:
-    - name: Debug
-      run: |
-        echo ${{ github.actor }}
-
     - name: Get k8s-at-home token
       id: get-app-token
       uses: getsentry/action-github-app-token@v1
