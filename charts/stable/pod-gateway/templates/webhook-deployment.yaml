@@ -59,7 +59,7 @@ spec:
             # Sidecar container
             - --sidecarImage={{ .Values.image.repository }}:{{ .Values.image.tag }}
             - --sidecarImagePullPol={{ .Values.image.pullPolicy }}
-            - --sidecarCmd=/bin/sidecar_init.sh
+            - --sidecarCmd=/bin/client_sidecar.sh
             - --sidecarMountPoint=/config
           ports:
             - name: http
