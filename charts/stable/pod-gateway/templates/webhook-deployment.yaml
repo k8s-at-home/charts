@@ -1,4 +1,4 @@
-apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "common.names.fullname" . }}-webhook
@@ -35,29 +35,35 @@ spec:
             secretName: {{ include "pod-gateway.servingCertificate" . }}
             defaultMode: 420
       containers:
-        - name: foo-pod-gateway
+        - name: webhook
           image: {{ .Values.webhook.image.repository }}:{{ .Values.webhook.image.tag }}
           args:
-            - --webhook-listen-address=:{{ .Values.webhook.service.port.port |toString }}
+            - --webhook-listen-address=:{{ include "pod-gateway.webhookPort" . }}
             - --gateway={{ include "pod-gateway.gateway" . }}
             - --DNS={{ .Values.DNS }}
             - --configmapName={{ include "pod-gateway.configmap" . }}
-            {{- if ( include "pod-gateway.webhook-inserted-init-repository" . ) }}
-            - --initImage={{ include "pod-gateway.webhook-inserted-init-repository" . }}
-            - --initImagePullPol={{ include "pod-gateway.webhook-inserted-init-pullPolicy" . }}
-            - --initCmd={{ .Values.webhook.inserted.init.cmd }}
-            - --initMountPoint={{ .Values.webhook.inserted.init.mountPath }}
-            {{- end}}
-            {{- if ( include "pod-gateway.webhook-inserted-sidecar-repository" . ) }}
-            - --sidecarImage={{ include "pod-gateway.webhook-inserted-init-repository" . }}
-            - --sidecarImagePullPol={{ include "pod-gateway.webhook-inserted-sidecar-pullPolicy" . }}
-            - --sidecarCmd={{ .Values.webhook.inserted.sidecar.cmd }}
-            - --sidecarMountPoint={{ .Values.webhook.inserted.sidecar.mountPath }}
-            {{- end}}
-            {{ toYaml .Values.webhook.args | nindent 12 }}
+            - --setGatewayLabel={{ .Values.webhook.gatewayLabel }}
+            - --setGatewayAnnotation={{ .Values.webhook.gatewayAnnotation }}
+            {{ if .Values.webhook.gatewayDefault }}
+            - --setGatewayDefault
+            {{ end }}
+            # Static
+            - --tls-cert-file-path=/tls/tls.crt
+            - --tls-key-file-path=/tls/tls.key
+            - --DNSPolicy=None
+            # Init container
+            - --initImage={{ .Values.image.repository }}:{{ .Values.image.tag }}
+            - --initImagePullPol={{ .Values.image.pullPolicy }}
+            - --initCmd=/bin/client_init.sh
+            - --initMountPoint=/config
+            # Sidecar container
+            - --sidecarImage={{ .Values.image.repository }}:{{ .Values.image.tag }}
+            - --sidecarImagePullPol={{ .Values.image.pullPolicy }}
+            - --sidecarCmd=/bin/client_sidecar.sh
+            - --sidecarMountPoint=/config
           ports:
             - name: http
-              containerPort: {{ .Values.webhook.service.port.port }}
+              containerPort: {{ include "pod-gateway.webhookPort" . }}
               protocol: TCP
           resources: {}
           volumeMounts:
@@ -67,8 +73,8 @@ spec:
           livenessProbe:
             httpGet:
               path: /wh/health
-              port: {{ .Values.webhook.service.port.port }}
-              scheme: {{ .Values.webhook.service.port.protocol }}
+              port: {{ include "pod-gateway.webhookPort" . }}
+              scheme: HTTPS
             initialDelaySeconds: 1
             timeoutSeconds: 10
             periodSeconds: 10
@@ -77,8 +83,8 @@ spec:
           readinessProbe:
             httpGet:
               path: /wh/health
-              port: {{ .Values.webhook.service.port.port }}
-              scheme: {{ .Values.webhook.service.port.protocol }}
+              port: {{ include "pod-gateway.webhookPort" . }}
+              scheme: HTTPS
             initialDelaySeconds: 1
             timeoutSeconds: 10
             periodSeconds: 10
@@ -87,15 +93,15 @@ spec:
           startupProbe:
             httpGet:
               path: /wh/health
-              port: {{ .Values.webhook.service.port.port }}
-              scheme: {{ .Values.webhook.service.port.protocol }}
+              port: {{ include "pod-gateway.webhookPort" . }}
+              scheme: HTTPS
             timeoutSeconds: 1
             periodSeconds: 1
             successThreshold: 1
             failureThreshold: 30
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          imagePullPolicy: {{ .Values.webhook.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
       restartPolicy: Always
   strategy:
     type: {{ .Values.webhook.strategy.type }}

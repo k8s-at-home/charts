@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -100,9 +100,6 @@ certificates. It does not install it as dependency to avoid conflicts.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | DNS | string | `"172.16.0.1"` | IP address of the DNS server within the vxlan tunnel. All mutated PODs will get this as their DNS server. It must match VXLAN_GATEWAY_IP in settings.sh |
-| additionalVolumeMounts[0].mountPath | string | `"/config"` |  |
-| additionalVolumeMounts[0].name | string | `"config"` |  |
-| additionalVolumeMounts[0].readOnly | bool | `true` |  |
 | addons.vpn.configFileSecret | string | `"openvpn"` |  |
 | addons.vpn.enabled | bool | `false` | Enable the VPN if you want to route through a VPN. You might also want to set VPN_BLOCK_OTHER_TRAFFIC to true for extra safeness in case the VPN does connect |
 | addons.vpn.env | string | `nil` |  |
@@ -115,28 +112,11 @@ certificates. It does not install it as dependency to avoid conflicts.
 | addons.vpn.type | string | `"openvpn"` |  |
 | addons.vpn.wireguard | string | `nil` |  |
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
-| command[0] | string | `"/bin/gateway_sidecar.sh"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` |  |
-| image.tag | string | `"v1.2.6"` |  |
-| initContainers[0].command[0] | string | `"/bin/gateway_init.sh"` |  |
-| initContainers[0].image | string | `nil` | Will be set automatically |
-| initContainers[0].imagePullPolicy | string | `nil` | Will be set automatically |
-| initContainers[0].name | string | `"routes"` |  |
-| initContainers[0].securityContext.privileged | bool | `true` |  |
-| initContainers[0].volumeMounts[0].mountPath | string | `"/config"` |  |
-| initContainers[0].volumeMounts[0].name | string | `"config"` |  |
-| initContainers[0].volumeMounts[0].readOnly | bool | `true` |  |
-| probes.liveness.enabled | bool | `false` |  |
-| probes.readiness.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `false` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy of the gateway and inserted helper cotainers |
+| image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` | image repository of the gateway and inserted helper containers |
+| image.tag | string | `"v1.2.6"` | image tag of the gateway and inserted helper containers |
 | publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
 | routed_namespaces | list | `[]` | Namespaces that might contain routed PODs and therefore require a copy of the gneerated settings configmap. |
-| securityContext.capabilities.add[0] | string | `"NET_ADMIN"` |  |
-| service.clusterIP | string | `"None"` |  |
-| service.port.port | int | `4789` |  |
-| service.port.protocol | string | `"UDP"` |  |
-| service.type | string | `"ClusterIP"` |  |
 | settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
 | settings.NOT_ROUTED_TO_GATEWAY_CIDRS | string | `""` | IPs not sent to the POD gateway but to the default K8S. Multiple CIDRs can be specified using blanks as separator. Example for Calico: ""172.22.0.0/16 172.24.0.0/16" This is needed, for example, in case your CNI does not add a non-default rule for the K8S addresses (Flannel does). |
 | settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |
@@ -146,32 +126,16 @@ certificates. It does not install it as dependency to avoid conflicts.
 | settings.VXLAN_GATEWAY_FIRST_DYNAMIC_IP | int | `20` | Keep a range of IPs for static assignment in nat.conf |
 | settings.VXLAN_ID | int | `42` | Vxlan ID to use |
 | settings.VXLAN_IP_NETWORK | string | `"172.16.0"` | VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges |
-| webhook.additionalVolumes | list | `[]` |  |
-| webhook.args[0] | string | `"--tls-cert-file-path=/tls/tls.crt"` |  |
-| webhook.args[1] | string | `"--tls-key-file-path=/tls/tls.key"` |  |
-| webhook.args[2] | string | `"--setGatewayDefault"` |  |
-| webhook.args[3] | string | `"--setGatewayLabel=setGateway"` |  |
-| webhook.args[4] | string | `"--setGatewayAnnotation=setGateway"` |  |
-| webhook.args[5] | string | `"--DNSPolicy=None"` |  |
-| webhook.image.pullPolicy | string | `"IfNotPresent"` |  |
-| webhook.image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` |  |
-| webhook.image.tag | string | `"v3.3.2"` |  |
-| webhook.inserted.init.cmd | string | `"/bin/client_init.sh"` |  |
-| webhook.inserted.init.mountPath | string | `"/config"` |  |
-| webhook.inserted.init.pullPolicy | string | `nil` | Will be set automatically |
-| webhook.inserted.init.repository | string | `nil` | Will be set automatically |
-| webhook.inserted.init.tag | string | `nil` | Will be set automatically |
-| webhook.inserted.sidecar.cmd | string | `"/bin/client_sidecar.sh"` |  |
-| webhook.inserted.sidecar.mountPath | string | `"/config"` |  |
-| webhook.inserted.sidecar.pullPolicy | string | `nil` | Will be set automatically |
-| webhook.inserted.sidecar.repository | string | `nil` | Will be set automatically |
-| webhook.inserted.sidecar.tag | string | `nil` | Will be set automatically |
-| webhook.namespaceSelector | object | `{"matchLabels":{"routed-gateway":"true"}}` | Selector for namespace. All pods in this namespace will get their default gateway changed |
-| webhook.replicas | int | `1` |  |
-| webhook.service.port.path | string | `"/wh/mutating/setgateway"` |  |
-| webhook.service.port.port | int | `8080` |  |
-| webhook.service.port.protocol | string | `"HTTPS"` |  |
-| webhook.strategy.type | string | `"RollingUpdate"` |  |
+| webhook | object | See below | The webhook is used to mutate the PODs matching the given namespace labels. It inserts an init and sidecard helper containers that connect to the gateway pod created by this chart. |
+| webhook.gatewayAnnotation | string | `"setGateway"` | annotation name to check when evaluating POD. If true the POD will get the gateway. If not set setGatewayDefault will apply. |
+| webhook.gatewayDefault | bool | `true` | default behviour for new PODs in the evaluated namespace |
+| webhook.gatewayLabel | string | `"setGateway"` | label name to check when evaluating POD. If true the POD will get the gateway. If not set setGatewayDefault will apply. |
+| webhook.image.pullPolicy | string | `"IfNotPresent"` | image pullPolicy of the webhook |
+| webhook.image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` | image repository of the webhook |
+| webhook.image.tag | string | `"v3.3.2"` | image tag of the webhook |
+| webhook.namespaceSelector | object | `{"matchLabels":{"routed-gateway":"true"}}` | Selector for namespace. All pods in this namespace will get evaluated by the webhook. **IMPORTANT**: Do not select the namespace where the webhook is deployed to or you will get locking issues. |
+| webhook.replicas | int | `1` | number of webhook instances to deploy |
+| webhook.strategy | object | `{"type":"RollingUpdate"}` | strategy for updates |
 
 ## Changelog
 
@@ -179,7 +143,13 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [2.1.1]
+### [3.0.1]
+
+#### Fixed
+
+- Sidecar cmd was referring to the wrong script.
+
+### [3.0.0]
 
 #### Added
 
@@ -188,7 +158,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- N/A
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
 
 #### Removed
 
@@ -265,6 +236,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[3.0.1]: #3.0.1
+[3.0.0]: #3.0.0
 [1.0.0]: #1.0.0
 
 ## Support

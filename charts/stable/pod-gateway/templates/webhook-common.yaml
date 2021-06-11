@@ -1,43 +1,16 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{- $_ := set .Values.webhook.inserted.init    "repository" .Values.image.repository -}}
-{{- $_ := set .Values.webhook.inserted.init    "tag"        .Values.image.tag -}}
-{{- $_ := set .Values.webhook.inserted.init    "pullPolicy" .Values.image.pullPolicy -}}
-{{- $_ := set .Values.webhook.inserted.sidecar "repository" .Values.image.repository -}}
-{{- $_ := set .Values.webhook.inserted.sidecar "tag"        .Values.image.tag -}}
-{{- $_ := set .Values.webhook.inserted.sidecar "pullPolicy" .Values.image.pullPolicy -}}
-
-{{- define "pod-gateway.webhook-inserted-init-repository" -}}
-{{ printf "%s:%s" ( .Values.image.repository | default .Values.webhook.inserted.init.repository ) ( .Values.image.tag | default .Values.webhook.inserted.init.tag ) }}
-{{- end -}}
-
-{{- define "pod-gateway.webhook-inserted-init-pullPolicy" -}}
-{{ .Values.webhook.inserted.init.pullPolicy | default .Values.image.pullPolicy }}
-{{- end -}}
-
-{{- define "pod-gateway.webhook-inserted-sidecar-repository" -}}
-{{ printf "%s:%s" ( .Values.image.repository | default .Values.webhook.inserted.sidecar.repository ) ( .Values.image.tag | default .Values.webhook.inserted.sidecar.tag ) }}
-{{- end -}}
-
-{{- define "pod-gateway.webhook-inserted-sidecar-pullPolicy" -}}
-{{ .Values.webhook.inserted.sidecar.pullPolicy | default .Values.image.pullPolicy }}
-{{- end -}}
-
 {{- define "pod-gateway.gateway" -}}
 {{ printf "%s.%s.svc.%s" (include "common.names.fullname" .) .Release.Namespace .Values.clusterName }}
 {{- end -}}
 
-{{- define "pod-gateway.init.image" -}}
-{{ printf "%s:%s" .Values.webhook.inserted.init.repository (.Values.webhook.inserted.init.tag | default "latest" ) }}
-{{- end -}}
-
-{{- define "pod-gateway.sidecar.image" -}}
-{{ printf "%s:%s" .Values.webhook.inserted.sidecar.repository (.Values.webhook.inserted.sidecar.tag | default "latest" ) }}
-{{- end -}}
-
 {{- define "pod-gateway.configmap" -}}
 {{ include "common.names.fullname" . }}
+{{- end -}}
+
+{{- define "pod-gateway.webhookPort" -}}
+8080
 {{- end -}}
 
 
