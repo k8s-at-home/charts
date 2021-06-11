@@ -77,7 +77,8 @@ dumpBackup:
       memory: "10Mi"
       cpu: "5m"
 
-# Dissable Deployment and Service
+# Dissable Deployment and Service generation
 controllerType: ""
 service:
-  enabled: false
+  main:
+    enabled: false

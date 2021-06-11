@@ -18,21 +18,60 @@
 {{- end -}}
 
 
-{{- $_ := set .Values.env "GROUP_NAME" .Values.groupName -}}
+{{/* Append the hardcoded settings */}}
+{{- define "dnsmadeeasy-webhook.harcodedValues" -}}
 
+# -- Configure persistence settings for the chart under this key.
+persistence:
+  certs:
+    enabled: true
+    type: custom
+    mountPath: /tls
+    readOnly: true
+    volumeSpec:
+      name: certs
+      secret:
+        secretName: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
 
-{{/* Append the cert secret to the additionalVolumes */}}
-{{- define "dnsmadeeasy-webhook.servingCertificate.volume" -}}
-name: certs
-secret:
-  secretName: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        scheme: HTTPS
+        path: /healthz
+        port: https
+  readiness:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        scheme: HTTPS
+        path: /healthz
+        port: https
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        scheme: HTTPS
+        path: /healthz
+        port: https
+service:
+  main:
+    port:
+      name: https
+      targetPort: 4443
+      port: 443
+
+args: '["--tls-cert-file=/tls/tls.crt","--tls-private-key-file=/tls/tls.key","--secure-port=4443"]'
+
+env:
+  GROUP_NAME: {{ .Values.groupName }}
+
 {{- end -}}
-
-{{- $volume := include "dnsmadeeasy-webhook.servingCertificate.volume" . | fromYaml -}}
-{{- if $volume -}}
-  {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-  {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "dnsmadeeasy-webhook.harcodedValues" . | fromYaml) -}}
 
 
 {{/* Render the templates */}}

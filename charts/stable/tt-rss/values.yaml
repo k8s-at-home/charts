@@ -6,8 +6,11 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/tt-rss
+  # -- image pull policy
   pullPolicy: IfNotPresent
+  # -- image tag
   tag: v1.8723.0
 
 strategy:
@@ -33,13 +36,19 @@ env:
   # @default -- postgresql.postgresqlDatabase value
   TTRSS_DB_NAME: ""
 
+# -- Configure the services for the chart here.
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
+# -- Configure the ingresses for the chart here.
 ingress:
-  enabled: false
+  main:
+    enabled: false
 
+# -- Configure the probes for the chart here.
 probes:
   startup:
     enabled: true
