@@ -2,9 +2,6 @@ name: "Auto-generate chart README"
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-    - "auto-gen-docs"
   pull_request:
     paths:
     - 'charts/**/Chart.yaml'
