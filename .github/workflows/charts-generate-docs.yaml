@@ -27,7 +27,23 @@ jobs:
           addedOrModified:
             - added|modified: 'charts/**'
 
-    # run only if changed files were detected
+    - name: Install Helm
+      if: steps.filter.outputs.addedOrModified == 'true'
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
+
+    - uses: actions/setup-python@v2
+      if: steps.filter.outputs.addedOrModified == 'true'
+      with:
+        python-version: 3.7
+
+    - name: Install helm-docs
+      if: steps.filter.outputs.addedOrModified == 'true'
+      run: |
+        wget -O /tmp/helm-docs.deb  https://github.com/norwoodj/helm-docs/releases/download/v1.5.0/helm-docs_1.5.0_linux_amd64.deb
+        sudo dpkg -i /tmp/helm-docs.deb
+
     - name: Run against changed charts
       if: steps.filter.outputs.addedOrModified == 'true'
       run: |
