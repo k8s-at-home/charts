@@ -1,6 +1,6 @@
 # octoprint
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 1.4.2](https://img.shields.io/badge/AppVersion-1.4.2-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 1.6.1](https://img.shields.io/badge/AppVersion-1.6.1-informational?style=flat-square)
 
 OctoPrint is the snappy web interface for your 3D printer
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -76,27 +76,33 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalVolumeMounts[0].mountPath | string | `"/dev/ttyACM0"` |  |
-| additionalVolumeMounts[0].name | string | `"printer"` |  |
-| additionalVolumes[0].hostPath.path | string | `"/dev/ttyACM0"` |  |
-| additionalVolumes[0].name | string | `"printer"` |  |
-| env | string | `nil` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"octoprint/octoprint"` |  |
-| image.tag | string | `"1.4.2"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/octoprint"` |  |
-| securityContext.privileged | bool | `true` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. |
+| env.CAMERA_DEV | string | `nil` | MJPG Streamer camera device |
+| env.ENABLE_MJPG_STREAMER | string | `"true"` | Enable MJPG Streamer Enable this to ensure camera streaming is enabled you add a video device. |
+| env.MJPG_STREAMER_INPUT | string | `nil` | MJPG Streamer input parameters |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"octoprint/octoprint"` | image repository |
+| image.tag | string | `"1.6.1"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.printer | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
+| securityContext.privileged | bool | `true` | (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `1.6.1`.
 
 ### [1.0.0]
 
@@ -112,7 +118,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[1.0.0]: #100
 
 ## Support
 
