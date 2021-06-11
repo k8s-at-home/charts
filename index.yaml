@@ -5487,6 +5487,32 @@ entries:
     version: 1.0.0
   calibre-web:
   - apiVersion: v2
+    appVersion: 0.6.12
+    created: "2021-06-11T17:44:42.606346911Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Calibre-Web is a web app providing a clean interface for browsing,
+      reading and downloading eBooks using an existing Calibre database.
+    digest: 407767095577dedcf77cc3286314cdec3ba7ce6b0d99e4b142befa837be80a4e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/calibre-web
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-web-icon.png
+    keywords:
+    - calibre
+    - ebook
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: wojoinc@pm.me
+      name: wojoinc
+    name: calibre-web
+    sources:
+    - https://hub.docker.com/r/linuxserver/calibre-web/
+    - https://github.com/janeczku/calibre-web
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/calibre-web-7.0.0/calibre-web-7.0.0.tgz
+    version: 7.0.0
+  - apiVersion: v2
     appVersion: 0.6.9
     created: "2021-05-05T14:51:15.481767059Z"
     dependencies:
@@ -62834,4 +62860,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-11T17:33:42.324459474Z"
+generated: "2021-06-11T17:44:42.626703723Z"
