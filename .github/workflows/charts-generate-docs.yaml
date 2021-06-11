@@ -11,7 +11,7 @@ on:
 
 jobs:
   generate-docs:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]') and github.actor != 'k8s-at-home'"
+    if: "!contains(github.event.head_commit.message, '[ci-skip]') && github.actor != 'k8s-at-home'"
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
     steps:
