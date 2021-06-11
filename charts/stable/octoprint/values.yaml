@@ -6,45 +6,53 @@
 #
 
 image:
+  # -- image repository
   repository: octoprint/octoprint
+  # -- image tag
+  tag: 1.6.1
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 1.4.2
 
-strategy:
-  type: Recreate
-
+# -- environment variables.
+# @default -- See below
 env:
-  # TZ: UTC
-  ## uncomment the environment variables below to ensure camera streaming is enabled when
-  ## you add a video device
-  # ENABLE_MJPG_STREAMER: "true"
-  # MJPG_STREAMER_INPUT: "-y -n -r 640x480"
-  # CAMERA_DEV: /dev/video0
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Enable MJPG Streamer
+  # Enable this to ensure camera streaming is enabled you add a video device.
+  ENABLE_MJPG_STREAMER: "true"
+  # -- MJPG Streamer input parameters
+  MJPG_STREAMER_INPUT:  # "-y -n -r 640x480"
+  # -- MJPG Streamer camera device
+  CAMERA_DEV:  # /dev/video0
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 securityContext:
+  # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
   privileged: true
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /octoprint
-
-# Paths to your 3D printer and/or camera in the container
-additionalVolumeMounts:
-  - name: printer
-    mountPath: /dev/ttyACM0
-
-# Paths to your 3D printer and/or camera on the host
-additionalVolumes:
-  - name: printer
-    hostPath:
-      path: /dev/ttyACM0
+  # -- Configure a hostPathMount to mount a USB device in the container.
+  # @default -- See values.yaml
+  printer:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/ttyACM0
