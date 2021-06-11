@@ -17,6 +17,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{ secrets.K8S_BOT_TOKEN }}
         ref: ${{ github.ref }}
         fetch-depth: 0
 
@@ -71,6 +72,5 @@ jobs:
     - name: Update Pull Request
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        token: ${{ secrets.K8S_BOT_TOKEN }}
         commit_message: Generated README.md
         file_pattern: charts/**/README.md
