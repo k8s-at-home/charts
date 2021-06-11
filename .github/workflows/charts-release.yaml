@@ -9,6 +9,7 @@ on:
     - master
     paths:
     - 'charts/**'
+    - '!charts/README.md'
     - '!charts/**/README.md'
     - '!charts/**/README.md.gotmpl'
     - '!charts/**/README_CHANGELOG.md.gotmpl'
@@ -42,3 +43,39 @@ jobs:
       env:
         CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         CR_SKIP_EXISTING: "true"
+
+  generate-summary:
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+    name: Auto-generate charts summary
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Get k8s-at-home token
+      id: get-app-token
+      uses: getsentry/action-github-app-token@v1
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ steps.get-app-token.outputs.token }}
+        ref: ${{ github.ref }}
+
+    - name: Install yq
+      uses: chrisdickinson/setup-yq@latest
+      with:
+        yq-version: v4.9.3
+
+    - name: Run script
+      run: |
+        ./hack/gen-chart-summary.sh
+
+    - name: Update Pull Request
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Auto-generate chart summary [ci skip]
+        commit_user_name: k8s-at-home[bot]
+        commit_user_email: <k8s-at-home[bot]@users.noreply.github.com>
+        commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
+        file_pattern: charts/README.md

@@ -1,6 +1,6 @@
 # adguard-home
 
-![Version: 3.3.1](https://img.shields.io/badge/Version-3.3.1-informational?style=flat-square) ![AppVersion: v0.105.2](https://img.shields.io/badge/AppVersion-v0.105.2-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v0.106.3](https://img.shields.io/badge/AppVersion-v0.106.3-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -75,45 +75,32 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| args[0] | string | `"--config"` |  |
-| args[1] | string | `"/opt/adguardhome/conf/AdGuardHome.yaml"` |  |
-| args[2] | string | `"--work-dir"` |  |
-| args[3] | string | `"/opt/adguardhome/work"` |  |
-| args[4] | string | `"--no-check-update"` |  |
-| config | string | `"bind_host: 0.0.0.0\nbind_port: 3000\nbeta_bind_port: 0\nusers: []\nhttp_proxy: \"\"\nlanguage: en\nrlimit_nofile: 0\ndebug_pprof: false\nweb_session_ttl: 720\ndns:\n  bind_host: 0.0.0.0\n  port: 53\n  statistics_interval: 1\n  querylog_enabled: true\n  querylog_file_enabled: true\n  querylog_interval: 90\n  querylog_size_memory: 1000\n  anonymize_client_ip: false\n  protection_enabled: true\n  blocking_mode: default\n  blocking_ipv4: \"\"\n  blocking_ipv6: \"\"\n  blocked_response_ttl: 10\n  parental_block_host: family-block.dns.adguard.com\n  safebrowsing_block_host: standard-block.dns.adguard.com\n  ratelimit: 0\n  ratelimit_whitelist: []\n  refuse_any: true\n  upstream_dns:\n  - https://dns10.quad9.net/dns-query\n  upstream_dns_file: \"\"\n  bootstrap_dns:\n  - 9.9.9.10\n  - 149.112.112.10\n  - 2620:fe::10\n  - 2620:fe::fe:10\n  all_servers: false\n  fastest_addr: false\n  allowed_clients: []\n  disallowed_clients: []\n  blocked_hosts: []\n  cache_size: 4194304\n  cache_ttl_min: 0\n  cache_ttl_max: 0\n  bogus_nxdomain: []\n  aaaa_disabled: false\n  enable_dnssec: false\n  edns_client_subnet: false\n  max_goroutines: 300\n  ipset: []\n  filtering_enabled: true\n  filters_update_interval: 24\n  parental_enabled: false\n  safesearch_enabled: false\n  safebrowsing_enabled: false\n  safebrowsing_cache_size: 1048576\n  safesearch_cache_size: 1048576\n  parental_cache_size: 1048576\n  cache_time: 30\n  rewrites: []\n  blocked_services: []\n  customresolver: null\ntls:\n  enabled: false\n  server_name: \"\"\n  force_https: false\n  port_https: 443\n  port_dns_over_tls: 853\n  port_dns_over_quic: 784\n  port_dnscrypt: 0\n  dnscrypt_config_file: \"\"\n  allow_unencrypted_doh: false\n  strict_sni_check: false\n  certificate_chain: \"\"\n  private_key: \"\"\n  certificate_path: \"\"\n  private_key_path: \"\"\nfilters:\n- enabled: true\n  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt\n  name: AdGuard DNS filter\n  id: 1\n- enabled: false\n  url: https://adaway.org/hosts.txt\n  name: AdAway\n  id: 2\n- enabled: false\n  url: https://www.malwaredomainlist.com/hostslist/hosts.txt\n  name: MalwareDomainList.com Hosts List\n  id: 4\nwhitelist_filters: []\nuser_rules: []\ndhcp:\n  enabled: false\n  interface_name: \"\"\n  dhcpv4:\n    gateway_ip: \"\"\n    subnet_mask: \"\"\n    range_start: \"\"\n    range_end: \"\"\n    lease_duration: 86400\n    icmp_timeout_msec: 1000\n    options: []\n  dhcpv6:\n    range_start: \"\"\n    lease_duration: 86400\n    ra_slaac_only: false\n    ra_allow_slaac: false\nclients: []\nlog_compress: false\nlog_localtime: false\nlog_max_backups: 0\nlog_max_size: 100\nlog_max_age: 3\nlog_file: \"\"\nverbose: false\nschema_version: 7\n"` |  |
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"adguard/adguardhome"` |  |
-| image.tag | string | `"v0.105.2"` |  |
-| initContainers[0].command[0] | string | `"sh"` |  |
-| initContainers[0].command[1] | string | `"-c"` |  |
-| initContainers[0].command[2] | string | `"if [ ! -f /opt/adguardhome/conf/AdGuardHome.yaml ]; then\n  mkdir -p /opt/adguardhome/conf\n  cp /tmp/AdGuardHome.yaml /opt/adguardhome/conf/AdGuardHome.yaml\nfi\n"` |  |
-| initContainers[0].image | string | `"busybox"` |  |
-| initContainers[0].name | string | `"copy-configmap"` |  |
-| initContainers[0].securityContext.runAsUser | int | `0` |  |
-| initContainers[0].volumeMounts[0].mountPath | string | `"/tmp/AdGuardHome.yaml"` |  |
-| initContainers[0].volumeMounts[0].name | string | `"adguard-home-config"` |  |
-| initContainers[0].volumeMounts[0].subPath | string | `"AdGuardHome.yaml"` |  |
-| initContainers[0].volumeMounts[1].mountPath | string | `"/opt/adguardhome/conf"` |  |
-| initContainers[0].volumeMounts[1].name | string | `"config"` |  |
-| persistence.config.emptyDir.enabled | bool | `true` |  |
-| persistence.config.enabled | bool | `true` |  |
-| persistence.config.mountPath | string | `"/opt/adguardhome/conf"` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/opt/adguardhome/work"` |  |
-| prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
-| prometheus.serviceMonitor.enabled | bool | `false` |  |
-| prometheus.serviceMonitor.interval | string | `"30s"` |  |
-| replicas | int | `1` | (int) Number of pods to load balance between |
-| service.port.port | int | `3000` |  |
-| strategy.type | string | `"Recreate"` |  |
+| args | list | `["--config","/opt/adguardhome/conf/AdGuardHome.yaml","--work-dir","/opt/adguardhome/work","--no-check-update"]` | arguments passed to the adguard-home command line. |
+| config | string | See values.yaml | AdGuard Home configuration. For a full list of options see https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration. |
+| controller.replicas | int | `1` | Number of pods to load balance between |
+| env | object | See below | environment variables. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"adguard/adguardhome"` | image repository |
+| image.tag | string | `"v0.106.3"` | image tag |
+| initContainers[0] | object | See values.yaml | Configures an initContainer that copies the configmap to the AdGuardHome conf directory It does NOT overwrite when the file already exists. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| prometheus.serviceMonitor | object | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.0/charts/stable/common/) for the up-to-date values.
+- Updated the image tag to v0.106.3.
 
 ### [3.3.1]
 
@@ -135,6 +122,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #4.0.0
 [3.3.1]: #3.3.1
 [3.0.0]: #3.0.0
 
