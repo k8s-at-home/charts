@@ -16,7 +16,12 @@ image:
 # -- environment variables. See more environment variables in the [calibre-web documentation](https://github.com/linuxserver/docker-calibre-web#parameters).
 # @default -- See below
 env:
+  # -- Set the container timezone
   TZ: UTC
+  # -- Specify the user ID the application will run as
+  PUID: "1001"
+  # -- Specify the group ID the application will run as
+  PGID: "1001"
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
