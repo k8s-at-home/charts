@@ -15,6 +15,10 @@ jobs:
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
     steps:
+    - name: Debug
+      run: |
+        echo ${{ github.actor }}
+
     - name: Get k8s-at-home token
       id: get-app-token
       uses: getsentry/action-github-app-token@v1
