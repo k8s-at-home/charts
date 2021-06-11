@@ -48,9 +48,9 @@ jobs:
       if: steps.filter.outputs.addedOrModified == 'true'
       run: |
         CHARTS=()
-
+        PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
         # Get only the chart paths
-        for i in "${{ steps.filter.outputs.addedOrModified_files }}"
+        for i in "${PATHS[@]}"
         do
             IFS='/' read -r -a path_parts <<< "$i"
             CHARTS+=("${path_parts[1]}/${path_parts[2]}")
