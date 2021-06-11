@@ -9,6 +9,10 @@ on:
     - '!charts/**/README_CHANGELOG.md.gotmpl'
     - '!charts/**/README_CONFIG.md.gotmpl'
 
+concurrency:
+  group: ${{ github.head_ref }}-lint
+  cancel-in-progress: true
+
 jobs:
   changes-lint:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
