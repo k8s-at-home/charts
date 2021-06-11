@@ -5,14 +5,9 @@ metadata:
   labels:
     {{- include "common.labels" . | nindent 4 }}
 data:
-  {{- /* Determine if the bittorrent port is set somewhere */ -}}
-  {{- $bittorrentPort := "" -}}
-  {{- range $extraServices := .Values.service.additionalServices }}
-    {{- if and .enabled (eq "bittorrent" .nameSuffix) -}}
-      {{- $bittorrentPort = .port.port -}}
-    {{- end }}
-  {{- end }}
-  {{- if $bittorrentPort }}
+  {{- /* Determine if the bittorrent port is enabled */ -}}
+  {{- $bittorrentPort := .Values.service.bittorrent.ports.bittorrent.port -}}
+  {{- if and .Values.settings.automaticPortSetup $bittorrentPort }}
   31-update-port: |-
     #!/bin/bash
     QBITTORRENT_CONFIGFILE="/config/qBittorrent/qBittorrent.conf"
