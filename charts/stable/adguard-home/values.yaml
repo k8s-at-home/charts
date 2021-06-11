@@ -5,9 +5,14 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
-# Copy the configmap to the AdGuardHome conf directory
-# Do NOT overwrite when the file already exists
+controller:
+  # -- Number of pods to load balance between
+  replicas: 1
+
 initContainers:
+# -- Configures an initContainer that copies the configmap to the AdGuardHome conf directory
+# It does NOT overwrite when the file already exists.
+# @default -- See values.yaml
 - name: copy-configmap
   image: busybox
   command:
@@ -28,16 +33,20 @@ initContainers:
     runAsUser: 0
 
 image:
+  # -- image repository
   repository: adguard/adguardhome
-  tag: v0.105.2
+  # -- image tag
+  tag: v0.106.3
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ:
-
+# -- arguments passed to the adguard-home command line.
 args:
 - "--config"
 - "/opt/adguardhome/conf/AdGuardHome.yaml"
@@ -45,57 +54,48 @@ args:
 - "/opt/adguardhome/work"
 - "--no-check-update"
 
-# -- (int) Number of pods to load balance between
-replicas: 1
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 3000
-  # additionalServices:
-  # - enabled: true
-  #   nameSuffix: dns-tcp
-  #   type: NodePort
-  #   port:
-  #     port: 53
-  #     name: dns-tcp
-  #     protocol: TCP
-  #     targetPort: 53
-  #   externalTrafficPolicy: Local
-  # - enabled: true
-  #   nameSuffix: dns-udp
-  #   type: NodePort
-  #   port:
-  #     port: 53
-  #     name: dns-udp
-  #     protocol: UDP
-  #     targetPort: 53
-  #   externalTrafficPolicy: Local
+  main:
+    primary: true
+    ports:
+      http:
+        port: 3000
+  dns-tcp:
+    enabled: true
+    type: NodePort
+    ports:
+      dns-tcp:
+        enabled: true
+        port: 53
+        protocol: TCP
+        targetPort: 53
+    externalTrafficPolicy: Local
+  dns-udp:
+    enabled: true
+    type: NodePort
+    ports:
+      dns-udp:
+        enabled: true
+        port: 53
+        protocol: TCP
+        targetPort: 53
+    externalTrafficPolicy: Local
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: true
-    emptyDir:
-      enabled: true
     mountPath: /opt/adguardhome/conf
   data:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /opt/adguardhome/work
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
 prometheus:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # @default -- See values.yaml
   serviceMonitor:
     enabled: false
     interval: 30s
@@ -105,20 +105,23 @@ prometheus:
 #   prometheus.io/scrape: "true"
 #   prometheus.io/port: "api"
 
-# -- Full list of options https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration
-# @default -- string
+# config -- AdGuard Home configuration. For a full list of options see https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration.
+# @default -- See values.yaml
 config: |
   bind_host: 0.0.0.0
   bind_port: 3000
   beta_bind_port: 0
   users: []
+  auth_attempts: 5
+  block_auth_min: 15
   http_proxy: ""
   language: en
   rlimit_nofile: 0
   debug_pprof: false
   web_session_ttl: 720
   dns:
-    bind_host: 0.0.0.0
+    bind_hosts:
+    - 0.0.0.0
     port: 53
     statistics_interval: 1
     querylog_enabled: true
@@ -169,7 +172,9 @@ config: |
     cache_time: 30
     rewrites: []
     blocked_services: []
-    customresolver: null
+    local_domain_name: lan
+    resolve_clients: true
+    local_ptr_upstreams: []
   tls:
     enabled: false
     server_name: ""
@@ -224,4 +229,4 @@ config: |
   log_max_age: 3
   log_file: ""
   verbose: false
-  schema_version: 7
+  schema_version: 10
