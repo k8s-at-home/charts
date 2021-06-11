@@ -16,33 +16,33 @@ on:
     - '!charts/**/README_CONFIG.md.gotmpl'
 
 jobs:
-  # release:
-  #   if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  release:
+    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Configure Git
-  #     run: |
-  #       git config user.name "$GITHUB_ACTOR"
-  #       git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+    - name: Configure Git
+      run: |
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.5.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.5.3
 
-  #   - name: Run chart-releaser
-  #     uses: helm/chart-releaser-action@v1.2.1
-  #     with:
-  #       charts_dir: charts/*
-  #       charts_repo_url: https://k8s-at-home.com/charts/
-  #     env:
-  #       CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-  #       CR_SKIP_EXISTING: "true"
+    - name: Run chart-releaser
+      uses: helm/chart-releaser-action@v1.2.1
+      with:
+        charts_dir: charts/*
+        charts_repo_url: https://k8s-at-home.com/charts/
+      env:
+        CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        CR_SKIP_EXISTING: "true"
 
   generate-summary:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
@@ -74,7 +74,7 @@ jobs:
     - name: Update Pull Request
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Auto-generate chart summary
+        commit_message: Auto-generate chart summary [ci skip]
         commit_user_name: k8s-at-home[bot]
         commit_user_email: <k8s-at-home[bot]@users.noreply.github.com>
         commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
