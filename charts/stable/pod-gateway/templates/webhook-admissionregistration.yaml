@@ -22,8 +22,8 @@ webhooks:
     service:
       namespace: {{ .Release.Namespace | quote }}
       name: {{ include "common.names.fullname" . }}-webhook
-      path: {{ .Values.webhook.service.port.path | quote }}
-      port: {{ .Values.webhook.service.port.port }}
+      path: /wh/mutating/setgateway
+      port: {{ include "pod-gateway.webhookPort" . }}
   admissionReviewVersions: ["v1", "v1beta1"]
   sideEffects: None
   timeoutSeconds: 5

@@ -1,22 +1,69 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{- $_ := set (first .Values.initContainers ) "image" (printf "%s:%s" .Values.image.repository .Values.image.tag ) -}}
-{{- $_ := set (first .Values.initContainers ) "imagePullPolicy" .Values.image.pullPolicy -}}
+{{/* Append the hardcoded settings */}}
+{{- define "pod-gateway.harcodedValues" -}}
+# -- Command starting DHCP server in the gateway
+command:
+- /bin/gateway_sidecar.sh
 
-{{/* Append the cert secret to the additionalVolumes */}}
-{{- define "pod-gateway.settings.volume" -}}
-name: config
-configMap:
-  name: {{ include "pod-gateway.configmap" . }}
-  defaultMode: 0555
-{{- end -}}
+securityContext:
+  capabilities:
+    add:
+      - NET_ADMIN
 
-{{- $volume := include "pod-gateway.settings.volume" . | fromYaml -}}
-{{- if $volume -}}
-  {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-  {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
+# -- Configure persistence settings for the chart under this key.
+persistence:
+  config:
+    enabled: true
+    type: custom
+    mountPath: /config
+    readOnly: true
+    volumeSpec:
+      configMap:
+        name: {{ include "pod-gateway.configmap" . }}
+        defaultMode: 0555
+
+initContainers:
+# -- Configures an initContainer that creates a VXLAN
+# In the gateway for client PODs to connect to.
+# iptables migh be (see VPN_BLOCK_OTHER_TRAFFIC) setup
+# to block traffic not going through the VPN
+- name: "routes"
+  # -- Image for the init container
+  image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+  # -- Will be set automatically
+  # @default -- <image.pullPolicy>
+  imagePullPolicy: {{ .Values.image.pullPolicy }}
+  # -- Command starting DHCP server in the gateway
+  command:
+  - /bin/gateway_init.sh
+  securityContext:
+    privileged: true
+  volumeMounts:
+  - name: config
+    mountPath: /config
+    readOnly: true
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+service:
+  main:
+    ports:
+      http:
+        type: ClusterIP
+        clusterIP: None
+        port: 4789
+        protocol: UDP
+
 {{- end -}}
+{{- $_ := mergeOverwrite .Values (include "pod-gateway.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}

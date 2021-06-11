@@ -6,8 +6,11 @@
 #
 
 image:
+  # -- image repository of the gateway and inserted helper containers
   repository: ghcr.io/k8s-at-home/pod-gateway
+  # -- image pull policy of the gateway and inserted helper cotainers
   pullPolicy: IfNotPresent
+  # -- image tag of the gateway and inserted helper containers
   tag: v1.2.6
 
 # -- IP address of the DNS server within the vxlan tunnel.
@@ -91,64 +94,30 @@ addons:
               # Cluster IPs (default k3s)
               cidr: 10.0.0.0/8
 
-
-# You should not need to change the settings bellow this
-# at least you have ready the webhook and pod-gateway containers
-# documentation
-
-command:
-- /bin/gateway_sidecar.sh
-
-securityContext:
-  capabilities:
-    add:
-      - NET_ADMIN
-
-additionalVolumeMounts:
-- name: config
-  mountPath: /config
-  readOnly: true
-
-initContainers:
-- name: "routes"
-  # -- Will be set automatically
-  # @default -- <image.repository>:<image.tag>
-  image:
-  # -- Will be set automatically
-  # @default -- <image.pullPolicy>
-  imagePullPolicy:
-  command:
-  - /bin/gateway_init.sh
-  securityContext:
-    privileged: true
-  volumeMounts:
-  - name: config
-    mountPath: /config
-    readOnly: true
-
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false
-
-service:
-  type: ClusterIP
-  clusterIP: None
-  port:
-    port: 4789
-    protocol: UDP
-
+# -- The webhook is used to mutate the PODs matching the given
+# namespace labels. It inserts an init and sidecard helper containers
+# that connect to the gateway pod created by this chart.
+# @default -- See below
 webhook:
   image:
+    # -- image repository of the webhook
     repository: ghcr.io/k8s-at-home/gateway-admision-controller
+    # -- image pullPolicy of the webhook
     pullPolicy: IfNotPresent
+    # -- image tag of the webhook
     tag: v3.3.2
 
+  # -- number of webhook instances to deploy
+  replicas: 1
+
+  # -- strategy for updates
+  strategy:
+    type: RollingUpdate
+
   # -- Selector for namespace.
-  # All pods in this namespace will get their default gateway changed
+  # All pods in this namespace will get evaluated by the webhook.
+  # **IMPORTANT**: Do not select the namespace where the webhook
+  # is deployed to or you will get locking issues.
   namespaceSelector:
     matchLabels:
       routed-gateway: "true"
@@ -157,69 +126,13 @@ webhook:
     #   operator: NotIn
     #   values: ["1"]
 
-  additionalVolumes: []
+  # -- default behviour for new PODs in the evaluated namespace
+  gatewayDefault: true
 
+  # -- label name to check when evaluating POD. If true the POD
+  # will get the gateway. If not set setGatewayDefault will apply.
+  gatewayLabel: setGateway
 
-  inserted:
-    init:
-      # -- Will be set automatically
-      # @default -- <image.repository>
-      repository:
-      # -- Will be set automatically
-      # @default -- <image.pullPolicy>
-      pullPolicy:
-      # -- Will be set automatically
-      # @default -- <image.tag>
-      tag:
-      cmd: /bin/client_init.sh
-      mountPath: /config
-
-    sidecar:
-      # -- Will be set automatically
-      # @default -- <image.repository>
-      repository:
-      # -- Will be set automatically
-      # @default -- <image.pullPolicy>
-      pullPolicy:
-      # -- Will be set automatically
-      # @default -- <image.tag>
-      tag:
-      cmd: /bin/client_sidecar.sh
-      mountPath: /config
-
-  replicas: 1
-
-  strategy:
-    type: RollingUpdate
-
-  # Args for webhook
-  # See more information in the container git repository at
-  # https://github.com/k8s-at-home/gateway-admision-controller
-  args:
-  - --tls-cert-file-path=/tls/tls.crt
-  - --tls-key-file-path=/tls/tls.key
-  - --setGatewayDefault
-  - --setGatewayLabel=setGateway
-  - --setGatewayAnnotation=setGateway
-  - --DNSPolicy=None
-  # - --debug
-  # - --development
-  # Set by Helm chart:
-  # --webhook-listen-address=:<set to service port>
-  # --gateway=<set automatically to 'gateway'>
-  # --DNS=<set automatically to 'gateway'>
-  # --initImage
-  # --initImagePullPol
-  # --initCmd
-  # --initMountPoint
-  # --sidecarImage
-  # --sidecarImagePullPol
-  # --sidecarCmd
-  # --sidecarMountPoint
-  # --configmapName
-
-  service:
-    port:
-      path: /wh/mutating/setgateway
-      protocol: HTTPS
-      port: 8080
+  # -- annotation name to check when evaluating POD. If true the POD
+  # will get the gateway. If not set setGatewayDefault will apply.
+  gatewayAnnotation: setGateway

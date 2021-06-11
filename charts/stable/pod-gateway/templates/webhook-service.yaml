@@ -1,32 +1,15 @@
-{{- $values := .Values.webhook.service -}}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "common.names.fullname" . }}-webhook
   labels:
     {{- include "common.labels" . | nindent 4 }}
-  {{- if $values.labels }}
-    {{ toYaml $values.labels | nindent 4 }}
-  {{- end }}
-  annotations:
-  {{- if eq ( $values.port.protocol | default "" ) "HTTPS" }}
-    traefik.ingress.kubernetes.io/service.serversscheme: https
-  {{- end }}
-  {{- with $values.annotations }}
-    {{ toYaml . | nindent 4 }}
-  {{- end }}
 spec:
   type: ClusterIP
-  {{- if $values.clusterIP }}
-  clusterIP: {{ $values.clusterIP }}
-  {{end}}
-  {{- if $values.sessionAffinity }}
-  sessionAffinity: {{ $values.sessionAffinity }}
-  {{- if $values.sessionAffinityConfig }}
-  sessionAffinityConfig:
-    {{ toYaml $values.sessionAffinityConfig | nindent 4 }}
-  {{- end -}}
-  {{- end }}
-  {{- include "common.classes.service.ports" (dict "svcType" "ClusterIP" "values" $values ) | trim | nindent 2 }}
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ include "pod-gateway.webhookPort" . }}
+      targetPort: http
   selector:
     {{- include "pod-gateway.labels.selectorLabels" . | nindent 4 }}
