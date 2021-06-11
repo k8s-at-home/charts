@@ -6,82 +6,57 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/qbittorrent
+  # -- image tag
+  tag: v4.3.5
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v4.3.4.1
 
-strategy:
-  type: Recreate
+settings:
+  # -- Enables automatic port configuration at startup
+  # This sets the qbittorrent port to the value of `service.bittorrent.ports.bittorrent.port`.
+  automaticPortSetup: false
 
-env: {}
-  # TZ: UTC
+# -- environment variables. See [image docs](https://docs.k8s-at-home.com/our-container-images/configuration/) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
-  additionalServices:
-  - enabled: true
-    nameSuffix: bittorrent
+  main:
+    ports:
+      http:
+        port: 8080
+  bittorrent:
+    enabled: false
     type: ClusterIP
-    port:
-      port: 6881
-      name: bittorrent
-      protocol: TCP
-      targetPort: 6881
+    ports:
+      bittorrent:
+        enabled: true
+        port: 6881
+        protocol: TCP
+        targetPort: 6881
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
 
   media:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /media
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
   downloads:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /downloads
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
-
-additionalVolumes:
-  - name: qbittorrent-scripts
-    emptyDir: {}
-    ## When you want to enable automatic port configuration at startup, adjust this to:
-    # configMap:
-    #   name: <RELEASENAME>-scripts
-    #   defaultMode: 511
-
-additionalVolumeMounts:
-  - mountPath: /config/custom-cont-init.d
-    name: qbittorrent-scripts
