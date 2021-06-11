@@ -1,6 +1,6 @@
 # photoprism
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 20201122](https://img.shields.io/badge/AppVersion-20201122-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 20210523](https://img.shields.io/badge/AppVersion-20210523-informational?style=flat-square)
 
 PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -76,26 +76,35 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.PHOTOPRISM_ORIGINALS_PATH | string | `"/photoprism/originals"` |  |
-| env.PHOTOPRISM_STORAGE_PATH | string | `"/photoprism/storage"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"photoprism/photoprism"` |  |
-| image.tag | string | `"20201122"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/photoprism/storage"` |  |
-| persistence.originals.emptyDir.enabled | bool | `false` |  |
-| persistence.originals.enabled | bool | `false` |  |
-| persistence.originals.mountPath | string | `"/photoprism/originals"` |  |
-| service.port.port | int | `2342` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [image docs](https://docs.photoprism.org/getting-started/config-options/) for more details. |
+| env.GID | string | `nil` | Sets GID Photoprism runs under. |
+| env.PHOTOPRISM_ADMIN_PASSWORD | string | `"please-change"` | Initial admin password. **BE SURE TO CHANGE THIS!** |
+| env.PHOTOPRISM_ORIGINALS_PATH | string | `"/photoprism/originals"` | Photoprism originals path |
+| env.PHOTOPRISM_PUBLIC | string | `"false"` | Disable authentication / password protection |
+| env.PHOTOPRISM_STORAGE_PATH | string | `"/photoprism/storage"` | Photoprism storage path |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| env.UID | string | `nil` | Sets UID Photoprism runs under. |
+| env.UMASK | string | `nil` | Sets UMASK. |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"photoprism/photoprism"` | image repository |
+| image.tag | string | `"20210523"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `20210523`.
 
 ### [1.0.0]
 
