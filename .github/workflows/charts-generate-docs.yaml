@@ -17,6 +17,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        ref: ${{ github.ref }}
         fetch-depth: 0
 
     - uses: dorny/paths-filter@v2
@@ -66,3 +67,9 @@ jobs:
             ./hack/gen-helm-docs.sh "${chart_parts[0]}" "${chart_parts[1]}"
             echo ""
         done
+
+    - name: Update Pull Request
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Generated README.md
+        file_pattern: charts/**/README.md
