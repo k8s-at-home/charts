@@ -1,6 +1,6 @@
 # nzbget
 
-![Version: 10.1.0](https://img.shields.io/badge/Version-10.1.0-informational?style=flat-square) ![AppVersion: v21.0](https://img.shields.io/badge/AppVersion-v21.0-informational?style=flat-square)
+![Version: 11.0.0](https://img.shields.io/badge/Version-11.0.0-informational?style=flat-square) ![AppVersion: v21.0](https://img.shields.io/badge/AppVersion-v21.0-informational?style=flat-square)
 
 NZBGet is a Usenet downloader client
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -79,26 +79,26 @@ The default login details (change ASAP) are:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/k8s-at-home/nzbget"` |  |
-| image.tag | string | `"v21.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.downloads.emptyDir.enabled | bool | `false` |  |
-| persistence.downloads.enabled | bool | `false` |  |
-| persistence.downloads.mountPath | string | `"/downloads"` |  |
-| persistence.media.emptyDir.enabled | bool | `false` |  |
-| persistence.media.enabled | bool | `false` |  |
-| persistence.media.mountPath | string | `"/media"` |  |
-| service.port.port | int | `6789` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"ghcr.io/k8s-at-home/nzbget"` | image repository |
+| image.tag | string | `"v21.1"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [11.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `v21.1`.
 
 ### [10.0.0]
 
@@ -120,8 +120,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[10.0.0]: #10.0.0
-[1.0.0]: #1.0.0
+[11.0.0]: #1100
+[10.0.0]: #1000
+[1.0.0]: #100
 
 ## Support
 
