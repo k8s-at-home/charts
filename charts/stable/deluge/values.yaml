@@ -6,50 +6,45 @@
 #
 
 image:
+  # -- image repository
   repository: linuxserver/deluge
+  # -- image pull policy
   pullPolicy: IfNotPresent
+  # -- image tag
   tag: version-2.0.3-2201906121747ubuntu18.04.1
 
-strategy:
-  type: Recreate
+# -- environment variables. See more environment variables in the [deluge documentation](https://github.com/linuxserver/docker-deluge#parameters).
+# @default -- See below
+env:
+  # -- Specify the user ID the application will run as
+  PUID: "1000"
+  # -- Specify the group ID the application will run as
+  PGID: "1000"
+  # -- Set the container timezone
+  TZ: "Europe/London"
+  # -- Set the loglevel output when running Deluge
+  DELUGE_LOGLEVEL: "error"
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8112
+  main:
+    ports:
+      http:
+        port: 8112
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /config
-
   downloads:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /downloads
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
-
-env: {}
-  ## Optional ENV Vars that can be set.
-  ## All values below are the current default values.
-  # PUID: "1000"
-  # PGID: "1000"
-  # TZ: "Europe/London"
-  # UMASK_SET: "022"
-  # DELUGE_LOGLEVEL: "error"
