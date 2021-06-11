@@ -1,4 +1,4 @@
-name: "Auto-generate chart README"
+name: "Charts: Auto-generate docs"
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  generate-docs:
+  generate-readme:
     if: "!contains(github.event.head_commit.message, '[ci-skip]') && github.actor != 'k8s-at-home[bot]'"
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
