@@ -30,7 +30,6 @@ initContainers:
 # In the gateway for client PODs to connect to.
 # iptables migh be (see VPN_BLOCK_OTHER_TRAFFIC) setup
 # to block traffic not going through the VPN
-# @default -- See values.yaml
 - name: "routes"
   # -- Image for the init container
   image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
