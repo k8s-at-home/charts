@@ -97,6 +97,7 @@ addons:
 # -- The webhook is used to mutate the PODs matching the given
 # namespace labels. It inserts an init and sidecard helper containers
 # that connect to the gateway pod created by this chart.
+# @default -- See below
 webhook:
   image:
     # -- image repository of the webhook
