@@ -14,10 +14,17 @@ jobs:
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
     steps:
+    - name: Get k8s-at-home token
+      id: get-app-token
+      uses: getsentry/action-github-app-token@v1
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.K8S_BOT_TOKEN }}
+        token: ${{ steps.get-app-token.outputs.token }}
         ref: ${{ github.ref }}
         fetch-depth: 0
 
