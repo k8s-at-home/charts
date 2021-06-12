@@ -11670,6 +11670,33 @@ entries:
     version: 1.0.0
   flood:
   - apiVersion: v2
+    appVersion: 4.6.0
+    created: "2021-06-12T23:00:31.417234941Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Flood is a monitoring service for various torrent clients
+    digest: d93ed1e9e6ebd6f2ab9530a4ee96e97d9ed3692b5495081885fc73b052bac314
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/flood
+    icon: https://raw.githubusercontent.com/jesec/flood/master/flood.svg
+    keywords:
+    - flood
+    - rtorrent
+    - qbittorrent
+    - transmission
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: flood
+    sources:
+    - https://github.com/jesec/flood
+    - https://hub.docker.com/r/jesec/flood
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/flood-5.0.0/flood-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
     appVersion: 4.1.1
     created: "2021-05-05T14:51:17.644976697Z"
     dependencies:
@@ -63098,4 +63125,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-12T15:43:14.361709111Z"
+generated: "2021-06-12T23:00:31.431153063Z"
