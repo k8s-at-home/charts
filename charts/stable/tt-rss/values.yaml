@@ -13,11 +13,9 @@ image:
   # -- image tag
   tag: v1.8723.0
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the tt-rss documentation
+# -- See more environment variables in the tt-rss documentation
 # https://git.tt-rss.org/fox/tt-rss/src/branch/master/classes/config.php#L9
+# @default -- See below.
 env:
   # -- External URL you use to connect to the RSS (the one you enter in your browser)
   TTRSS_SELF_URL_PATH: ""

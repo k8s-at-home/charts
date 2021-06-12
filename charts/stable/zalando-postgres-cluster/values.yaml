@@ -77,8 +77,11 @@ dumpBackup:
       memory: "10Mi"
       cpu: "5m"
 
-# Disable Deployment and Service generation
-controllerType: ""
+# Disable Deployment
+controller:
+  type: none
+
+# Disable Service
 service:
   main:
     enabled: false
