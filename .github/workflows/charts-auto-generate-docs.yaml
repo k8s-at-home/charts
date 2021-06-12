@@ -116,4 +116,5 @@ jobs:
     #     ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
 
     - run: |
-        echo "${{ github.event.client_payload.slash_command }}"
+        echo "${{ toJSON(github.event.client_payload.pull_request) }}"
+        echo "${{ toJSON(github.event.client_payload.slash_command) }}"
