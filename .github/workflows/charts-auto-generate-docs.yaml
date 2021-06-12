@@ -2,6 +2,8 @@ name: "Charts: Auto-generate docs"
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [update-readme-command]
   pull_request:
     paths:
     - 'charts/**/Chart.yaml'
@@ -14,8 +16,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  generate-readme:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]') && github.actor != 'k8s-at-home[bot]'"
+  # Branch-based pull request / workflow_dispatch
+  generate-readme-trusted:
+    if:
+      (
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.full_name == github.repository
+      ) ||
+      github.event_name == 'workflow_dispatch'
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
     steps:
@@ -81,7 +89,7 @@ jobs:
             echo ""
         done
 
-    - name: Update Pull Request
+    - name: Create commit
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Auto-generate chart README
