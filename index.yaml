@@ -3,6 +3,31 @@ entries:
   adguard-home:
   - apiVersion: v2
     appVersion: v0.106.3
+    created: "2021-06-12T15:43:11.32579088Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: DNS proxy as ad-blocker for local network
+    digest: 22c0a7915be59e08888e68aa72b3c337c5687dee9f9b76130804054c1ece7fad
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/adguard-home
+    icon: https://avatars3.githubusercontent.com/u/8361145?s=200&v=4?sanitize=true
+    keywords:
+    - adguard-home
+    - adblock
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: adguard-home
+    sources:
+    - https://github.com/AdguardTeam/AdGuardHome
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/adguard-home-4.0.1/adguard-home-4.0.1.tgz
+    version: 4.0.1
+  - apiVersion: v2
+    appVersion: v0.106.3
     created: "2021-06-11T17:54:26.917340817Z"
     dependencies:
     - name: common
@@ -29454,6 +29479,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/node-red-2.0.0/node-red-2.0.0.tgz
     version: 2.0.0
   nzbget:
+  - apiVersion: v2
+    appVersion: v21.1
+    created: "2021-06-12T15:43:13.052451013Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: NZBGet is a Usenet downloader client
+    digest: 054375083b549150abdf05043dd0edc0884f0f4c6a12c652958b87824741bcd1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbget
+    icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+    keywords:
+    - nzbget
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbget
+    sources:
+    - https://nzbget.net/
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbget-11.0.0/nzbget-11.0.0.tgz
+    version: 11.0.0
   - apiVersion: v2
     appVersion: v21.0
     created: "2021-05-05T14:51:23.661144629Z"
@@ -63048,4 +63098,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-12T15:07:21.53181315Z"
+generated: "2021-06-12T15:43:14.361709111Z"
