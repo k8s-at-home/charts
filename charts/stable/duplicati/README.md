@@ -83,7 +83,7 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 | env.PUID | string | `"1000"` | Specify the user ID the application will run as |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"linuxserver/duplicati"` | image repository |
+| image.repository | string | `"ghcr.io/linuxserver/duplicati"` | image repository |
 | image.tag | string | `"latest"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -113,6 +113,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **BREAKING** Migrate to the common library, a lot of configuration has changed.
 - Updated icon.
 - Changed image tag to latest
+- Changed repository to `ghcr.io/linuxserver/duplicati`
 
 #### Removed
 
