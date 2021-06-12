@@ -108,11 +108,11 @@ jobs:
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
     steps:
-    # Check out merge commit
-    - name: Fork based /ok-to-test checkout
-      uses: actions/checkout@v2
-      with:
-        ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
+    # # Check out merge commit
+    # - name: Fork based /ok-to-test checkout
+    #   uses: actions/checkout@v2
+    #   with:
+    #     ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
 
     - run: |
-        echo "success! ;-)"
+        echo "${{ github.event.client_payload.slash_command }}"
