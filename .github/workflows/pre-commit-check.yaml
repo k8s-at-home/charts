@@ -10,7 +10,6 @@ concurrency:
 
 jobs:
   pre-commit-check:
-    if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     name: Run pre-commit checks
     runs-on: ubuntu-20.04
     steps:
