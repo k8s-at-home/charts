@@ -127,7 +127,7 @@ jobs:
         wget -O /tmp/helm-docs.deb  https://github.com/norwoodj/helm-docs/releases/download/v1.5.0/helm-docs_1.5.0_linux_amd64.deb
         sudo dpkg -i /tmp/helm-docs.deb
 
-    - name: Run against changed charts
+    - name: Run against specified charts
       run: |
         IFS=',' read -r -a CHARTS <<< "${{ github.event.client_payload.slash_command.charts }}"
         for i in "${CHARTS[@]}"
@@ -139,7 +139,6 @@ jobs:
         done
 
     - name: Create commit
-      if: steps.filter.outputs.addedOrModified == 'true'
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Auto-generate chart README
