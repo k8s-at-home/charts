@@ -210,6 +210,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.0.4]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Bump controller version to 6.2.25
+
+#### Removed
+
+- N/A
+
 ### [2.0.2]
 
 #### Fixed

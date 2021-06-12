@@ -76,7 +76,8 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{"TZ":"UTC"}` | environment variables. See more environment variables in the [emby documentation](https://emby.org/docs) |
+| env | object | See below | environment variables. See more environment variables in the [emby documentation](https://emby.org/docs) |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/emby"` | image repository |
 | image.tag | string | `"v4.6.1.0"` | image tag |
