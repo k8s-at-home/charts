@@ -90,6 +90,7 @@ jobs:
         done
 
     - name: Create commit
+      if: steps.filter.outputs.addedOrModified == 'true'
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Auto-generate chart README
