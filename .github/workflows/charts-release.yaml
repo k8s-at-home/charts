@@ -81,7 +81,7 @@ jobs:
       if: steps.filter.outputs.addedOrModified == 'true'
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Auto-generate chart README
+        commit_message: Auto-generate chart README [no ci]
         commit_user_name: k8s-at-home[bot]
         commit_user_email: <k8s-at-home[bot]@users.noreply.github.com>
         commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
