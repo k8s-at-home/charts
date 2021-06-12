@@ -6,56 +6,47 @@
 #
 
 image:
-  repository: linuxserver/booksonic-air
+  # -- image repository
+  repository: ghcr.io/linuxserver/booksonic-air
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v2009.1.0-ls2
+  # -- image tag
+  tag: version-v2009.1.0
 
-strategy:
-  type: Recreate
+# See more environment variables in the [booksonic-air documentation](https://github.com/linuxserver/docker-booksonic-air#parameters)
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Specify the user ID the application will run as
+  PUID: "1001"
+  # -- Specify the group ID the application will run as
+  PGID: "1001"
+  # -- Used to set the base path for reverse proxies eg. /booksonic, /books, etc.
+  # CONTEXT_PATH=url-base
 
-env: {}
-  # TZ: UTC
-  # PUID: "1001"
-  # PGID: "1001"
-  # CONTEXT_PATH=url-base # Used to set the base path for reverse proxies eg. /booksonic, /books, etc.
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 4040
+  main:
+    ports:
+      http:
+        port: 4040
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
-
   audiobooks:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /audiobooks
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
   podcasts:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /podcasts
   othermedia:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /othermedia
