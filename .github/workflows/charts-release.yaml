@@ -73,6 +73,9 @@ jobs:
         do
             echo "Rendering README for chart ${i}"
             IFS='/' read -r -a chart_parts <<< "$i"
+            if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
+              echo "$FILE exists."
+            fi
             ./hack/gen-helm-docs.sh "${chart_parts[0]}" "${chart_parts[1]}"
             echo ""
         done
