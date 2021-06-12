@@ -27,7 +27,6 @@ jobs:
       with:
         token: ${{ steps.get-app-token.outputs.token }}
         ref: ${{ github.ref }}
-        fetch-depth: 0
 
     - uses: dorny/paths-filter@v2
       id: filter
@@ -142,10 +141,10 @@ jobs:
       run: |
         ./hack/gen-chart-summary.sh
 
-    - name: Update Pull Request
+    - name: Create Commit
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Auto-generate chart summary [ci skip]
+        commit_message: Auto-generate chart summary [no ci]
         commit_user_name: k8s-at-home[bot]
         commit_user_email: <k8s-at-home[bot]@users.noreply.github.com>
         commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
