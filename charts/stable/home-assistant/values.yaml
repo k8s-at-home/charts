@@ -48,6 +48,7 @@ prometheus:
   # @default -- See values.yaml
   serviceMonitor:
     enabled: false
+    portName: http
     ## See https://www.home-assistant.io/docs/authentication/ for where to find
     ## long lived access token creation under your account profile, which is
     ## needed to monitor Home Assistant

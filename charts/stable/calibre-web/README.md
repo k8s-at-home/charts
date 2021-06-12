@@ -77,6 +77,9 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See more environment variables in the [calibre-web documentation](https://github.com/linuxserver/docker-calibre-web#parameters). |
+| env.PGID | string | `"1001"` | Specify the group ID the application will run as |
+| env.PUID | string | `"1001"` | Specify the user ID the application will run as |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"linuxserver/calibre-web"` | image repository |
 | image.tag | string | `"version-0.6.12"` | image tag |
