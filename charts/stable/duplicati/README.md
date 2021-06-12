@@ -1,6 +1,6 @@
 # duplicati
 
-![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Store securely encrypted backups on cloud storage services!
 
@@ -17,7 +17,7 @@ Store securely encrypted backups on cloud storage services!
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -79,28 +79,28 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/duplicati"` |  |
-| image.tag | string | `"latest"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.backups.emptyDir.enabled | bool | `false` |  |
-| persistence.backups.enabled | bool | `false` |  |
-| persistence.backups.mountPath | string | `"/backups"` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/config"` |  |
-| persistence.source.emptyDir.enabled | bool | `false` |  |
-| persistence.source.enabled | bool | `false` |  |
-| persistence.source.mountPath | string | `"/source"` |  |
-| service.port.port | int | `8200` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env.PGID | string | `"1000"` | Specify the group ID the application will run as |
+| env.PUID | string | `"1000"` | Specify the user ID the application will run as |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"linuxserver/duplicati"` | image repository |
+| image.tag | string | `"latest"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
 
 ### [3.0.0]
 
@@ -132,8 +132,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[3.0.0]: #3.0.0
-[2.1.1]: #2.1.1
+[4.0.0]: #400
+[3.0.0]: #300
+[2.1.1]: #211
 
 ## Support
 
