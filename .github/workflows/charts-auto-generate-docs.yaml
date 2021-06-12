@@ -102,7 +102,8 @@ jobs:
  # Repo owner has commented /update-readme on a (fork-based) pull request
   generate-readme-fork:
     if:
-      github.event_name == 'repository_dispatch'
+      github.event_name == 'repository_dispatch' &&
+      github.event.client_payload.slash_command.charts != ''
     name: Auto-generate chart README
     runs-on: ubuntu-20.04
     steps:
@@ -112,46 +113,23 @@ jobs:
       with:
         ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
         
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        list-files: shell
-        filters: |
-          addedOrModified:
-            - added|modified: 'charts/**'
-
     - name: Install Helm
-      if: steps.filter.outputs.addedOrModified == 'true'
       uses: azure/setup-helm@v1
       with:
         version: v3.5.3
 
     - uses: actions/setup-python@v2
-      if: steps.filter.outputs.addedOrModified == 'true'
       with:
         python-version: 3.7
 
     - name: Install helm-docs
-      if: steps.filter.outputs.addedOrModified == 'true'
       run: |
         wget -O /tmp/helm-docs.deb  https://github.com/norwoodj/helm-docs/releases/download/v1.5.0/helm-docs_1.5.0_linux_amd64.deb
         sudo dpkg -i /tmp/helm-docs.deb
 
     - name: Run against changed charts
-      if: steps.filter.outputs.addedOrModified == 'true'
       run: |
-        CHARTS=()
-        PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
-        # Get only the chart paths
-        for i in "${PATHS[@]}"
-        do
-            IFS='/' read -r -a path_parts <<< "$i"
-            CHARTS+=("${path_parts[1]}/${path_parts[2]}")
-        done
-
-        # Remove duplicates
-        CHARTS=( `for i in ${CHARTS[@]}; do echo $i; done | sort -u` )
-
+        IFS=',' read -r -a CHARTS <<< "${{ github.event.client_payload.slash_command.charts }}"
         for i in "${CHARTS[@]}"
         do
             echo "Rendering README for chart ${i}"
