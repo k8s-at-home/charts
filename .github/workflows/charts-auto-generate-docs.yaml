@@ -109,7 +109,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        ref: ${{ github.ref }}
+        ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
         fetch-depth: 0
 
     - uses: dorny/paths-filter@v2
