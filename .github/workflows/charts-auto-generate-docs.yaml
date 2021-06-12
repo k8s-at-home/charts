@@ -117,6 +117,7 @@ jobs:
       with:
         list-files: shell
         base: origin/master
+        ref: 'refs/pull/${{ github.event.client_payload.pull_request.number }}/merge'
         filters: |
           addedOrModified:
             - added|modified: 'charts/**'
