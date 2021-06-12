@@ -103,7 +103,7 @@ jobs:
   generate-readme-fork:
     if:
       github.event_name == 'repository_dispatch'
-    name: Auto-generate chart README
+    name: Auto-generate chart README for forks
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -116,6 +116,7 @@ jobs:
       id: filter
       with:
         list-files: shell
+        base: master
         filters: |
           addedOrModified:
             - added|modified: 'charts/**'
