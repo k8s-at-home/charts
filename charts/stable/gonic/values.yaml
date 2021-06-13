@@ -6,58 +6,44 @@
 #
 
 image:
+  # -- image repository
   repository: sentriz/gonic
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v0.12.0
+  # -- image tag
+  tag: v0.13.1
 
-strategy:
-  type: Recreate
-
-# # See more environment variables in the gonic documentation
-# https://github.com/sentriz/gonic#configuration-options
-env: {}
-  # TZ:
+# -- environment variables. See more environment variables in the [gonic documentation](https://github.com/sentriz/gonic#configuration-options)
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # GONIC_MUSIC_PATH:
   # GONIC_PODCAST_PATH:
   # GONIC_CACHE_PATH:
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false
-
   podcasts:
     enabled: false
-    emptyDir:
-      enabled: false
-
   cache:
     enabled: false
-    emptyDir:
-      enabled: false
-
   music:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /music
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
