@@ -75,7 +75,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [${CHARTNAME} documentation](https://${CHARTNAME}.org/docs). |
+| env | object | See below | environment variables. See more environment variables in the [grocy documentation](https://github.com/linuxserver/docker-grocy#parameters). |
 | env.PGID | string | `"1000"` | Set the container group id |
 | env.PUID | string | `"1000"` | Set the container user id |
 | env.TZ | string | `"UTC"` | Set the container timezone |
