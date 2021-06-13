@@ -6,30 +6,36 @@
 #
 
 image:
+  # -- image repository
   repository: flipenergy/focalboard
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 0.6.5
+  # -- image tag
+  tag: 0.6.7
 
-# See more environment variables in the image entrypoint script
-# https://github.com/FlipEnergy/container-images/blob/main/focalboard/entrypoint.sh
+# -- environment variables. See more environment variables in the [image entrypoint script](https://github.com/FlipEnergy/container-images/blob/main/focalboard/entrypoint.sh)
+# @default -- See below
 env: {}
   # SERVER_ROOT:
   # DBTYPE:
   # DBCONFIG:
 
-strategy:
-  type: Recreate
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8000
+  main:
+    ports:
+      http:
+        port: 8000
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /data
