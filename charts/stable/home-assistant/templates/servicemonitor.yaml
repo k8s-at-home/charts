@@ -13,7 +13,7 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-  - port: {{ default "http" .Values.service.port.name }}
+  - port: {{ .Values.prometheus.serviceMonitor.portName }}
     {{- with .Values.prometheus.serviceMonitor.interval }}
     interval: {{ . }}
     {{- end }}

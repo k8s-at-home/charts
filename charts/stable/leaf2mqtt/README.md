@@ -1,6 +1,6 @@
 # leaf2mqtt
 
-![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 0.1](https://img.shields.io/badge/AppVersion-0.1-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.1](https://img.shields.io/badge/AppVersion-0.1-informational?style=flat-square)
 
 Nissan Leaf connected services to MQTT adapter
 
@@ -79,7 +79,10 @@ N/A
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/leaf2mqtt"` | Image repository |
-| image.tag | float | `0.1` | Image tag |
+| image.tag | string | `"v0.1"` | Image tag |
+| probes.liveness.enabled | bool | `false` |  |
+| probes.readiness.enabled | bool | `false` |  |
+| probes.startup.enabled | bool | `false` |  |
 | service.enabled | bool | `false` |  |
 | strategy.type | string | `"Recreate"` | Deployment recreation strategy |
 

@@ -6,19 +6,29 @@
 #
 
 image:
-  repository: flaresolverr/flaresolverr
+  # -- image repository
+  repository: ghcr.io/flaresolverr/flaresolverr
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v1.2.3
+  # -- image tag
+  tag: v1.2.8
 
-strategy:
-  type: Recreate
+# -- environment variables. See more environment variables in the [flaresolverr documentation](https://github.com/FlareSolverr/FlareSolverr#environment-variables).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # LOG_LEVEL: UTC
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8191
+  main:
+    ports:
+      http:
+        port: 8191
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
