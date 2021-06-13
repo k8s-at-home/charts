@@ -38683,6 +38683,31 @@ entries:
   pod-gateway:
   - apiVersion: v2
     appVersion: 1.2.6
+    created: "2021-06-13T10:31:19.359938857Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.0.2
+    description: Admision controller to change the default gateway and DNS server
+      of PODs
+    digest: 04784c5bf1abe0fc349a24b1248c5d79e5a77b9cf6eeb57a05d4c27f9c359cd2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pod-gateway
+    icon: https://pod-gateway.org/icon
+    keywords:
+    - pod-gateway
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: pod-gateway
+    sources:
+    - https://github.com/k8s-at-home/gateway-admision-controller
+    - https://github.com/k8s-at-home/pod-gateway
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/pod-gateway-3.0.2/pod-gateway-3.0.2.tgz
+    version: 3.0.2
+  - apiVersion: v2
+    appVersion: 1.2.6
     created: "2021-06-11T13:38:55.47488608Z"
     dependencies:
     - name: common
@@ -63276,4 +63301,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-13T07:47:11.811021883Z"
+generated: "2021-06-13T10:31:19.375457363Z"
