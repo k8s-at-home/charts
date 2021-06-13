@@ -16,11 +16,8 @@ persistence:
     size: 1Gi
   cache:
     enabled: true
-    emptyDir:
-      enabled: true
+    type: emptyDir
     mountPath: /cache
-    accessMode: ReadWriteOnce
-    size: 1Gi
   music:
     enabled: true
     emptyDir:
