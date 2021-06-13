@@ -8,18 +8,26 @@ persistence:
     emptyDir:
       enabled: true
     mountPath: /data
+    accessMode: ReadWriteOnce
+    size: 1Gi
   podcasts:
     enabled: true
     emptyDir:
       enabled: true
     mountPath: /podcasts
+    accessMode: ReadWriteOnce
+    size: 1Gi
   cache:
     enabled: true
     emptyDir:
       enabled: true
     mountPath: /cache
+    accessMode: ReadWriteOnce
+    size: 1Gi
   music:
     enabled: true
     emptyDir:
       enabled: true
     mountPath: /music
+    accessMode: ReadWriteOnce
+    size: 1Gi
