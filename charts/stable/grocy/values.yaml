@@ -6,27 +6,39 @@
 #
 
 image:
+  # -- image repository
   repository: linuxserver/grocy
-  tag: version-v2.7.1
+  # -- image tag
+  tag: version-v3.0.1
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
+# -- environment variables. See more environment variables in the [${CHARTNAME} documentation](https://${CHARTNAME}.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Set the container user id
+  PUID: "1000"
+  # -- Set the container group id
+  PGID: "1000"
 
-env: {}
-  # TZ:
-  # PUID:
-  # PGID:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
