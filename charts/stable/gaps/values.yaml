@@ -6,26 +6,36 @@
 #
 
 image:
+  # -- image repository
   repository: housewrecker/gaps
+  # -- image pull policy
   pullPolicy: IfNotPresent
+  # -- image tag
   tag: latest
 
-strategy:
-  type: Recreate
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ: UTC
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8484
+  main:
+    ports:
+      http:
+        port: 8484
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /usr/data
