@@ -9,11 +9,8 @@ persistence:
     mountPath: /data
   podcasts:
     enabled: true
-    emptyDir:
-      enabled: true
+    type: emptyDir
     mountPath: /podcasts
-    accessMode: ReadWriteOnce
-    size: 1Gi
   cache:
     enabled: true
     type: emptyDir
