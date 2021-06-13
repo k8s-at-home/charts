@@ -5,11 +5,8 @@ env:
 persistence:
   data:
     enabled: true
-    emptyDir:
-      enabled: true
+    type: emptyDir
     mountPath: /data
-    accessMode: ReadWriteOnce
-    size: 1Gi
   podcasts:
     enabled: true
     emptyDir:
