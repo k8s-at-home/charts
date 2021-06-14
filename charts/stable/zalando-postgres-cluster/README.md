@@ -80,7 +80,6 @@ Features added by this wrapper:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| controller.enabled | bool | `false` |  |
 | dumpBackup.existingClaim | string | `nil` |  |
 | dumpBackup.image.pullPolicy | string | `"IfNotPresent"` |  |
 | dumpBackup.image.repository | string | `"postgres"` |  |
@@ -104,7 +103,6 @@ Features added by this wrapper:
 | postgresql.users | object | `{"postgres":["superuser","createdb"]}` | DB users to create (see operator) |
 | postgresql.volume.size | string | `"1Gi"` | Size of the persistance volume to allocate |
 | postgresql.volume.storageClass | string | `nil` | Name of the storage class |
-| service.main.enabled | bool | `false` |  |
 | superuser.password | string | `nil` | Superuser password |
 | superuser.secret | string | `nil` | Superuser k8s secret name. It must match the patter used by the operator |
 | superuser.user | string | `nil` | Superuser user used for cronjobs |
