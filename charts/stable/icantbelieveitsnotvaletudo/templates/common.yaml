@@ -1,30 +1,30 @@
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap to the additionalVolumes */}}
-{{- define "icantbelieveitsnotvaletudo.configmap.volume" -}}
-name: settings
-configMap:
-  name: {{ template "common.names.fullname" . }}
-{{- end -}}
+{{/* Append the hardcoded settings */}}
+{{- define "icantbelieveitsnotvaletudo.harcodedValues" -}}
+persistence:
+  settings:
+    enabled: "true"
+    mountPath: "/app/config.json"
+    subPath: "config.json"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-settings" (include "common.names.fullname" .) }}
 
-{{- $volume := include "icantbelieveitsnotvaletudo.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
 
-{{/* Append the configMap volume to the additionalVolumeMounts */}}
-{{- define "icantbelieveitsnotvaletudo.configmap.volumeMount" -}}
-name: settings
-mountPath: /app/config.json
-subPath: config.json
+service:
+  main:
+    enabled: false
 {{- end -}}
-
-{{- $volumeMount := include "icantbelieveitsnotvaletudo.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "icantbelieveitsnotvaletudo.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
