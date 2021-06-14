@@ -1,6 +1,6 @@
 # tt-rss
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: v1.8723.0](https://img.shields.io/badge/AppVersion-v1.8723.0-informational?style=flat-square)
 
 Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 3.0.2 |
+| https://library-charts.k8s-at-home.com | common | 3.1.0 |
 
 ## TL;DR
 
@@ -76,6 +76,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| env | object | See below. | See more environment variables in the tt-rss documentation https://git.tt-rss.org/fox/tt-rss/src/branch/master/classes/config.php#L9 |
 | env.TTRSS_DB_HOST | string | internal postgresql URL | Postgres database hostname |
 | env.TTRSS_DB_NAME | string | postgresql.postgresqlDatabase value | Postgres database password |
 | env.TTRSS_DB_PASS | string | postgresql.postgresqlPassword value | Postgres database password |
@@ -85,16 +86,14 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/tt-rss"` | image repository |
 | image.tag | string | `"v1.8723.0"` | image tag |
-| ingress | object | `{"main":{"enabled":false}}` | Configure the ingresses for the chart here. |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
 | postgresql.enabled | bool | `true` | By default uses an internal postgress. Dissable if you use your own Postgres. |
 | postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
 | postgresql.postgresqlDatabase | string | `"tt-rss"` | Postgres database password |
 | postgresql.postgresqlPassword | string | `"changeme"` | Postgres database password |
 | postgresql.postgresqlUsername | string | `"postgres"` | Postgres database user name |
-| probes | object | `{"startup":{"enabled":true}}` | Configure the probes for the chart here. |
-| service | object | `{"main":{"ports":{"http":{"port":8080}}}}` | Configure the services for the chart here. |
-| strategy.type | string | `"Recreate"` |  |
+| service | object | See below. | Configure the services for the chart here. |
 
 ## Changelog
 
@@ -110,8 +109,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
+- **BREAKING**: Upgraded the common library dependency to version 3.1.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.0/charts/stable/common/) for the up-to-date values.
 
 #### Removed
 
