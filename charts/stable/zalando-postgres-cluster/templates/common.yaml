@@ -33,5 +33,20 @@
 {{- default (printf "%s/%s" .Values.dumpBackup.subpathPrefix (include "common.names.fullname" .)) .Values.dumpBackup.subpath -}}
 {{- end -}}
 
+{{/* Append the hardcoded settings */}}
+{{- define "zalando-postgres-cluster.harcodedValues" -}}
+
+# Disable Deployment
+controller:
+  enabled: false
+
+# Disable Service
+service:
+  main:
+    enabled: false
+
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "zalando-postgres-cluster.harcodedValues" . | fromYaml) -}}
+
 {{/* Render the templates */}}
 {{ include "common.all" . }}
