@@ -1,6 +1,6 @@
 # zalando-postgres-cluster
 
-![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Creates a postgres cluster using the Zalando Postgres operator and local storage
 
@@ -16,7 +16,7 @@ Creates a postgres cluster using the Zalando Postgres operator and local storage
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.0 |
 
 ## TL;DR
 
@@ -80,7 +80,7 @@ Features added by this wrapper:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| controllerType | string | `""` |  |
+| controller.enabled | bool | `false` |  |
 | dumpBackup.existingClaim | string | `nil` |  |
 | dumpBackup.image.pullPolicy | string | `"IfNotPresent"` |  |
 | dumpBackup.image.repository | string | `"postgres"` |  |
@@ -104,7 +104,7 @@ Features added by this wrapper:
 | postgresql.users | object | `{"postgres":["superuser","createdb"]}` | DB users to create (see operator) |
 | postgresql.volume.size | string | `"1Gi"` | Size of the persistance volume to allocate |
 | postgresql.volume.storageClass | string | `nil` | Name of the storage class |
-| service.enabled | bool | `false` |  |
+| service.main.enabled | bool | `false` |  |
 | superuser.password | string | `nil` | Superuser password |
 | superuser.secret | string | `nil` | Superuser k8s secret name. It must match the patter used by the operator |
 | superuser.user | string | `nil` | Superuser user used for cronjobs |
@@ -114,6 +114,21 @@ Features added by this wrapper:
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/commonREADME.md#Changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.1.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.0/charts/stable/common/) for the up-to-date values.
+
+#### Removed
+
+- N/A
 
 ### [1.0.0]
 
