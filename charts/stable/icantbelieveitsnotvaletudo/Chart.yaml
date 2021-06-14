@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 2021.2.0
+appVersion: 2021.2.1
 description: Create live map data from Valetudo powered robots
 name: icantbelieveitsnotvaletudo
-version: 3.4.0
+version: 4.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
 - icantbelieveitsnotvaletudo
@@ -17,7 +17,9 @@ sources:
 maintainers:
 - name: ishioni
   email: helm@movishell.pl
+- name: bjw-s
+  email: me@bjw-s.dev
 dependencies:
 - name: common
   repository: https://library-charts.k8s-at-home.com
-  version: 2.5.0
+  version: 3.1.0

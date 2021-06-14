@@ -1,6 +1,6 @@
 # dnsmadeeasy-webhook
 
-![Version: 2.5.0](https://img.shields.io/badge/Version-2.5.0-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
 
 Cert-Manager Webhook for DNSMadeEasy
 
@@ -17,7 +17,7 @@ Cert-Manager Webhook for DNSMadeEasy
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.0 |
 
 ## TL;DR
 
@@ -74,34 +74,12 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalVolumeMounts[0].mountPath | string | `"/tls"` |  |
-| additionalVolumeMounts[0].name | string | `"certs"` |  |
-| additionalVolumeMounts[0].readOnly | bool | `true` |  |
-| args | string | `"[\"--tls-cert-file=/tls/tls.crt\",\"--tls-private-key-file=/tls/tls.key\",\"--secure-port=4443\"]"` |  |
 | certManager.namespace | string | `"cert-manager"` | Namespace where the cert-manager operator was installed to |
 | certManager.serviceAccountName | string | `"cert-manager"` | Service account used by the cert-manager |
 | groupName | string | `"acme.mycompany.com"` | The GroupName here is used to identify your company or business unit that created this webhook. This name will need to be referenced in each Issuer's `webhook` stanza to inform cert-manager of where to send ChallengePayload resources in order to solve the DNS01 challenge. This group name should be **unique**, hence using your own company's domain here is recommended. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/dnsmadeeasy-webhook"` | Image repository |
 | image.tag | string | `"v1.0.0"` | Image tag |
-| probes.liveness.custom | bool | `true` |  |
-| probes.liveness.enabled | bool | `true` |  |
-| probes.liveness.spec.httpGet.path | string | `"/healthz"` |  |
-| probes.liveness.spec.httpGet.port | string | `"https"` |  |
-| probes.liveness.spec.httpGet.scheme | string | `"HTTPS"` |  |
-| probes.readiness.custom | bool | `true` |  |
-| probes.readiness.enabled | bool | `true` |  |
-| probes.readiness.spec.httpGet.path | string | `"/healthz"` |  |
-| probes.readiness.spec.httpGet.port | string | `"https"` |  |
-| probes.readiness.spec.httpGet.scheme | string | `"HTTPS"` |  |
-| probes.startup.custom | bool | `true` |  |
-| probes.startup.enabled | bool | `true` |  |
-| probes.startup.spec.httpGet.path | string | `"/healthz"` |  |
-| probes.startup.spec.httpGet.port | string | `"https"` |  |
-| probes.startup.spec.httpGet.scheme | string | `"HTTPS"` |  |
-| service.port.name | string | `"https"` |  |
-| service.port.port | int | `443` |  |
-| service.port.targetPort | int | `4443` |  |
 | serviceAccount.create | bool | `true` | Create service account |
 
 ## Changelog
@@ -109,6 +87,22 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.1.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.0/charts/stable/common/) for the up-to-date values.
+- moved harcoded values into common.tpl
+
+#### Removed
+
+- N/A
 
 ### [1.0.0]
 

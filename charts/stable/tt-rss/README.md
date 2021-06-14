@@ -1,6 +1,6 @@
 # tt-rss
 
-![Version: 2.5.1](https://img.shields.io/badge/Version-2.5.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: v1.8723.0](https://img.shields.io/badge/AppVersion-v1.8723.0-informational?style=flat-square)
 
 Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.0 |
 
 ## TL;DR
 
@@ -76,31 +76,45 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| env | object | See below. | See more environment variables in the tt-rss documentation https://git.tt-rss.org/fox/tt-rss/src/branch/master/classes/config.php#L9 |
 | env.TTRSS_DB_HOST | string | internal postgresql URL | Postgres database hostname |
 | env.TTRSS_DB_NAME | string | postgresql.postgresqlDatabase value | Postgres database password |
 | env.TTRSS_DB_PASS | string | postgresql.postgresqlPassword value | Postgres database password |
 | env.TTRSS_DB_PORT | string | `"5432"` | Postgres database port. |
 | env.TTRSS_DB_USER | string | postgresql.postgresqlUsername value | Postgres database user name |
 | env.TTRSS_SELF_URL_PATH | string | `""` | External URL you use to connect to the RSS (the one you enter in your browser) |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/k8s-at-home/tt-rss"` |  |
-| image.tag | string | `"v1.8723.0"` |  |
-| ingress.enabled | bool | `false` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"ghcr.io/k8s-at-home/tt-rss"` | image repository |
+| image.tag | string | `"v1.8723.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
 | postgresql.enabled | bool | `true` | By default uses an internal postgress. Dissable if you use your own Postgres. |
 | postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
 | postgresql.postgresqlDatabase | string | `"tt-rss"` | Postgres database password |
 | postgresql.postgresqlPassword | string | `"changeme"` | Postgres database password |
 | postgresql.postgresqlUsername | string | `"postgres"` | Postgres database user name |
-| probes.startup.enabled | bool | `true` |  |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| service | object | See below. | Configure the services for the chart here. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.1.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.0/charts/stable/common/) for the up-to-date values.
+
+#### Removed
+
+- N/A
 
 ### [1.0.6]
 

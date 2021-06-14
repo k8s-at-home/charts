@@ -6,15 +6,16 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/tt-rss
+  # -- image pull policy
   pullPolicy: IfNotPresent
+  # -- image tag
   tag: v1.8723.0
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the tt-rss documentation
+# -- See more environment variables in the tt-rss documentation
 # https://git.tt-rss.org/fox/tt-rss/src/branch/master/classes/config.php#L9
+# @default -- See below.
 env:
   # -- External URL you use to connect to the RSS (the one you enter in your browser)
   TTRSS_SELF_URL_PATH: ""
@@ -33,16 +34,19 @@ env:
   # @default -- postgresql.postgresqlDatabase value
   TTRSS_DB_NAME: ""
 
+# -- Configure the services for the chart here.
+# @default -- See below.
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
-
-probes:
-  startup:
-    enabled: true
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 # -- Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 # @default -- see bellow
