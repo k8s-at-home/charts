@@ -14953,6 +14953,33 @@ entries:
     version: 1.0.0
   healthchecks:
   - apiVersion: v2
+    appVersion: version-v1.20.0
+    created: "2021-06-14T16:25:20.932282661Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.1.0
+    description: Healthchecks is a cron job monitoring service. It listens for HTTP
+      requests and email messages ("pings") from your cron jobs and scheduled tasks
+      ("checks"). When a ping does not arrive on time, Healthchecks sends out alerts.
+    digest: 9475a7bde56f02b260076ee6c822855ff005ca74a4eb6864e35cc5006e191a99
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/healthchecks
+    icon: https://raw.githubusercontent.com/healthchecks/healthchecks/master/stuff/logo.svg?raw=true
+    keywords:
+    - cron
+    - monitoring
+    - alert
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: healthchecks
+    sources:
+    - https://github.com/healthchecks/healthchecks
+    - https://hub.docker.com/r/linuxserver/healthchecks
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/healthchecks-3.0.0/healthchecks-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 1.19.0
     created: "2021-05-05T14:51:18.945604159Z"
     dependencies:
@@ -18446,28 +18473,6 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/homebridge-1.0.0/homebridge-1.0.0.tgz
     version: 1.0.0
   homer:
-  - apiVersion: v2
-    appVersion: 21.03.2
-    created: "2021-06-14T16:24:27.3263326Z"
-    dependencies:
-    - name: common
-      repository: https://library-charts.k8s-at-home.com
-      version: 3.1.0
-    description: A dead simple static HOMepage for your servER to keep your services
-      on hand, from a simple yaml configuration file.
-    digest: e3c934cb5002f851635418990d5015352496cd72e19e276fc4e42bad8d28e9d5
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/homer
-    icon: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/logo.png
-    kubeVersion: '>=1.16.0-0'
-    maintainers:
-    - email: jeff@billimek.com
-      name: billimek
-    name: homer
-    sources:
-    - https://github.com/bastienwirtz/homer
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/homer-5.0.0/homer-5.0.0.tgz
-    version: 5.0.0
   - apiVersion: v2
     appVersion: 20.09.1
     created: "2021-05-05T14:51:19.667585938Z"
@@ -63455,4 +63460,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-14T16:24:27.341497992Z"
+generated: "2021-06-14T16:25:20.945507935Z"
