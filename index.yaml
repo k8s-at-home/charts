@@ -18447,6 +18447,28 @@ entries:
     version: 1.0.0
   homer:
   - apiVersion: v2
+    appVersion: 21.03.2
+    created: "2021-06-14T16:24:27.3263326Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.1.0
+    description: A dead simple static HOMepage for your servER to keep your services
+      on hand, from a simple yaml configuration file.
+    digest: e3c934cb5002f851635418990d5015352496cd72e19e276fc4e42bad8d28e9d5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/homer
+    icon: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/logo.png
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: homer
+    sources:
+    - https://github.com/bastienwirtz/homer
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/homer-5.0.0/homer-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
     appVersion: 20.09.1
     created: "2021-05-05T14:51:19.667585938Z"
     dependencies:
@@ -18921,31 +18943,6 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/homer-1.0.0/homer-1.0.0.tgz
     version: 1.0.0
   hyperion-ng:
-  - apiVersion: v2
-    appVersion: 2.0.0-alpha9
-    created: "2021-06-14T16:23:35.274420532Z"
-    dependencies:
-    - name: common
-      repository: https://library-charts.k8s-at-home.com
-      version: 3.1.0
-    description: Hyperion is an opensource Bias or Ambient Lighting implementation
-    digest: 890852b9087af6af0a4ce7b75772d8d241c4bf3560dad24be4f2e185956fe54f
-    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/hyperion-ng
-    icon: https://avatars.githubusercontent.com/u/17778452?s=200&v=4
-    keywords:
-    - hyperion-ng
-    - hyperion
-    kubeVersion: '>=1.16.0-0'
-    maintainers:
-    - email: jeff@billimek.com
-      name: billimek
-    name: hyperion-ng
-    sources:
-    - https://github.com/hyperion-project/hyperion.ng
-    - https://hub.docker.com/r/sirfragalot/hyperion.ng
-    urls:
-    - https://github.com/k8s-at-home/charts/releases/download/hyperion-ng-4.0.0/hyperion-ng-4.0.0.tgz
-    version: 4.0.0
   - apiVersion: v2
     appVersion: 2.0.0-alpha9
     created: "2021-05-05T14:51:19.854896233Z"
@@ -63458,4 +63455,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-14T16:23:35.287505799Z"
+generated: "2021-06-14T16:24:27.341497992Z"
