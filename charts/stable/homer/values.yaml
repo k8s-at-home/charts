@@ -6,36 +6,48 @@
 #
 
 image:
+  # -- image repository
   repository: b4bz/homer
-  tag: 20.09.1
+  # -- image tag
+  tag: 21.03.2
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Specify the user ID the application will run as
+  UID: "911"
+  # -- Specify the group ID the application will run as
+  GID: "911"
 
-env: {}
-  # UID:
-  # GID:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /www/assets
-
 
 configmap:
   # -- Store homer configuration as a ConfigMap
   enabled: false
-  # -- Homer configuration
-  # https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md
+  # -- Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information.
+  # @default -- See values.yaml
   config: |
     externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist
