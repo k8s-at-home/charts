@@ -55,10 +55,10 @@ probes:
 
 service:
   main:
+    type: ClusterIP
+    clusterIP: None
     ports:
       http:
-        type: ClusterIP
-        clusterIP: None
         port: 4789
         protocol: UDP
 
