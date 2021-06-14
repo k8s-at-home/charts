@@ -1,6 +1,6 @@
 # calibre
 
-![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: 5.14.0](https://img.shields.io/badge/AppVersion-5.14.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: version-v5.21.0](https://img.shields.io/badge/AppVersion-version--v5.21.0-informational?style=flat-square)
 
 Calibre is a powerful and easy to use e-book manager.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.0.2 |
 
 ## TL;DR
 
@@ -76,34 +76,34 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| env | object | See below | environment variables. See [image docs](https://docs.linuxserver.io/images/docker-calibre#environment-variables-e) for more details. |
 | env.CLI_ARGS | string | `nil` | Optionally pass cli start arguments to calibre. |
 | env.GUAC_PASS | string | `nil` | Password's md5 hash for the calibre gui |
 | env.GUAC_USER | string | `nil` | Username for the calibre gui |
-| env.PGID | string | `"1000"` | for GroupID |
-| env.PUID | string | `"1000"` | for UserID |
-| env.TZ | string | `nil` | Set the time zone, e.g. Europe/Amsterdam |
+| env.PGID | string | `"1001"` | Specify the group ID the application will run as |
+| env.PUID | string | `"1001"` | Specify the user ID the application will run as |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | env.UMASK_SET | string | `"022"` | for umask setting of Calibre, default if left unset is 022. |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/calibre"` |  |
-| image.tag | string | `"version-v5.14.0"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"linuxserver/calibre"` | image repository |
+| image.tag | string | `"version-v5.21.0"` | image tag |
 | ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| service.additionalServices[0].enabled | bool | `false` |  |
-| service.additionalServices[0].nameSuffix | string | `"webserver"` |  |
-| service.additionalServices[0].port.name | string | `"webserver"` |  |
-| service.additionalServices[0].port.port | int | `8081` |  |
-| service.additionalServices[0].port.protocol | string | `"TCP"` |  |
-| service.additionalServices[0].port.targetPort | int | `8081` |  |
-| service.additionalServices[0].type | string | `"ClusterIP"` |  |
-| service.port | object | `{"name":"gui","port":8080}` | The default port is 8080 |
-| strategy.type | string | `"Recreate"` |  |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `version-v5.21.0`.
 
 ### [3.1.1]
 
