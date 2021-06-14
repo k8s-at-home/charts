@@ -6,13 +6,19 @@
 #
 
 image:
+  # -- image repository
   repository: pmaksymiuk/icantbelieveitsnotvaletudo
+  # -- image tag
+  tag: 2021.2.1
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 2021.2.0
 
-strategy:
-  type: RollingUpdate
+controller:
+  # -- Set the controller upgrade strategy
+  strategy: RollingUpdate
 
+# -- Configures app settings. See [image docs](https://github.com/Hypfer/ICantBelieveItsNotValetudo) for more information.
+# @default -- See values.yaml
 config:
   mapsettings:
     drawPath: true
@@ -27,14 +33,3 @@ config:
     mapDataTopic: "valetudo/rockrobo/map_data"
     minMillisecondsBetweenMapUpdates: 10000
     publishMapImage: true
-
-service:
-  enabled: false
-
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false
