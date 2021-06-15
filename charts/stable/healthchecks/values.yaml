@@ -1,34 +1,26 @@
 # Default values for healthchecks.
 
 image:
-  # -- healthchecks image
+  # -- image repository
   repository: linuxserver/healthchecks
-  # -- healthchecks image tag
-  tag: v1.19.0-ls79
-  # healthchecks image pull policy
+  # -- image tag
+  tag: version-v1.20.0
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    # -- Kubernetes port where the GUI is exposed
-    port: 8000
+  main:
+    ports:
+      http:
+        port: 8000
 
-
- # Please consult https://github.com/linuxserver/docker-healthchecks#parameters to see all parameters
-
+# -- environment variables. See [image docs](https://github.com/linuxserver/docker-healthchecks#parameters) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone
+  TZ: UTC
   # -- Set to true to always override the local_settings.py file with values from environment variables. Do not set to True if you have made manual modifications to this file.
   REGENERATE_SETTINGS: "True"
   # -- The site's top-level URL and the port it listens to
@@ -40,34 +32,10 @@ env:
   # -- Superuser password
   SUPERUSER_PASSWORD: myVeryStrongPassword
 
-# -- Node labels for pod assignment of the GUI
-nodeSelector: {}
-
-# -- Toleration labels for pod assignment of the GUI
-tolerations: []
-
-# -- Affinity settings for pod assignment of the GUI
-affinity: {}
-
-# -- Pod annotations
-podAnnotations: {}
-
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
 # -- Volume used for configuration
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountpath: /config
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""

@@ -1,6 +1,6 @@
 # healthchecks
 
-![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: 1.19.0](https://img.shields.io/badge/AppVersion-1.19.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: version-v1.20.0](https://img.shields.io/badge/AppVersion-version--v1.20.0-informational?style=flat-square)
 
 Healthchecks is a cron job monitoring service. It listens for HTTP requests and email messages ("pings") from your cron jobs and scheduled tasks ("checks"). When a ping does not arrive on time, Healthchecks sends out alerts.
 
@@ -17,7 +17,7 @@ Healthchecks is a cron job monitoring service. It listens for HTTP requests and 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.0 |
 
 ## TL;DR
 
@@ -74,27 +74,50 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Affinity settings for pod assignment of the GUI |
+| env | object | See below | environment variables. See [image docs](https://github.com/linuxserver/docker-healthchecks#parameters) for more details. |
 | env.REGENERATE_SETTINGS | string | `"True"` | Set to true to always override the local_settings.py file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
 | env.SITE_NAME | int | `8265` | The site's name (e.g., "Example Corp HealthChecks") |
 | env.SITE_ROOT | string | `"https://healthchecks.domain"` | The site's top-level URL and the port it listens to |
 | env.SUPERUSER_EMAIL | string | `"email@healthchecks.io"` | Superuser email |
 | env.SUPERUSER_PASSWORD | string | `"myVeryStrongPassword"` | Superuser password |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/healthchecks"` | healthchecks image |
-| image.tag | string | `"v1.19.0-ls79"` | healthchecks image tag |
-| nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| persistence.config | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountpath":"/config"}` | Volume used for configuration |
-| podAnnotations | object | `{}` | Pod annotations |
-| resources | object | `{}` |  |
-| service.port.port | int | `8000` | Kubernetes port where the GUI is exposed |
-| tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"linuxserver/healthchecks"` | image repository |
+| image.tag | string | `"version-v1.20.0"` | image tag |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.config | object | `{"enabled":false,"mountpath":"/config"}` | Volume used for configuration |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.1.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `version-v1.20.0`.
+
+### [1.0.0]
+
+#### Added
+
+- Initial version
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[3.0.0]: #3.0.0
+[1.0.0]: #1.0.0
 
 ## Support
 

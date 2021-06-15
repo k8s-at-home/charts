@@ -6,40 +6,36 @@
 #
 
 image:
+  # -- image repository
   repository: jesec/flood
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 4.1.1
+  # -- image tag
+  tag: 4.6.0
 
-strategy:
-  type: Recreate
-
-# Other environment variables that can be configure can be seen at
-# https://github.com/jesec/flood/blob/master/config.cli.js
+# -- environment variables. See more environment variables in the [flood documentation] (https://github.com/jesec/flood/blob/v4.6.0/config.ts)
+# Note: The environmental variables are not case sensitive (e.g. FLOOD_OPTION_port=FLOOD_OPTION_PORT).
+# @default -- See below
 env:
+  # -- Where to store Flood's runtime files (eg. database)
   FLOOD_OPTION_RUNDIR: /data
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 3000
+  main:
+    ports:
+      http:
+        port: 3000
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false
-    mountPath: /data
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""

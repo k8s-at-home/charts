@@ -2,13 +2,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "homer.fullname" . }}-config
-  namespace: {{ .Release.Namespace }}
+  name: {{ include "common.names.fullname" . }}-config
   labels:
-    app.kubernetes.io/name: {{ include "homer.name" . }}
-    helm.sh/chart: {{ include "homer.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "common.labels" . | nindent 4 }}
 data:
   config.yml: |
 {{ .Values.configmap.config | indent 4 }}
