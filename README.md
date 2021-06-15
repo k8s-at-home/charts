@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-26-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-27-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -80,6 +80,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/jr0dd"><img src="https://avatars.githubusercontent.com/u/285797?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jr0dd</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=jr0dd" title="Code">💻</a></td>
     <td align="center"><a href="https://4xxi.com"><img src="https://avatars.githubusercontent.com/u/167288?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aleksandr Beshkenadze</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=beshkenadze" title="Code">💻</a></td>
     <td align="center"><a href="https://unasuke.com"><img src="https://avatars.githubusercontent.com/u/4487291?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yusuke Nakamura</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=unasuke" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/brandon099"><img src="https://avatars.githubusercontent.com/u/1628223?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brandon Clifford</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=brandon099" title="Code">💻</a></td>
   </tr>
 </table>
 
