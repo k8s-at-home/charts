@@ -32,10 +32,6 @@ service:
     ports:
       http:
         port: 80
-  https:
-    enabled: true
-    type: NodePort
-    ports:
       https:
         enabled: true
         port: 443
@@ -46,6 +42,8 @@ ingress:
   main:
     enabled: false
 
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
 probes:
   readiness:
     enabled: true

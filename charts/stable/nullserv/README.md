@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.0.2 |
+| https://library-charts.k8s-at-home.com | common | 3.1.1 |
 
 ## TL;DR
 
@@ -81,10 +81,7 @@ N/A
 | image.repository | string | `"ghcr.io/k8s-at-home/nullserv"` | image repository |
 | image.tag | string | `"1.3.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| probes.readiness.custom | bool | `true` |  |
-| probes.readiness.enabled | bool | `true` |  |
-| probes.readiness.spec.httpGet.path | string | `"/welcome.txt"` |  |
-| probes.readiness.spec.httpGet.port | string | `"http"` |  |
+| probes | object | See values.yaml | Configures the probes for the main Pod. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
