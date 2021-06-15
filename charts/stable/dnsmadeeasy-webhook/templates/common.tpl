@@ -62,7 +62,7 @@ probes:
 service:
   main:
     ports:
-      http:
+      https:
         targetPort: 4443
         port: 443
 
