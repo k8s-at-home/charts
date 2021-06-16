@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: v2.4.12
+description: A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365, and SharePoint
+name: onedrive
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- onedrive
+- filesync
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/onedrive
+icon: https://github.com/abraunegg/abraunegg.github.io/raw/master/images/linux_onedrive_logo.jpg
+sources:
+- https://github.com/abraunegg/onedrive
+maintainers:
+- name: wrmilling
+  email: winston@milli.ng
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 3.1.1
