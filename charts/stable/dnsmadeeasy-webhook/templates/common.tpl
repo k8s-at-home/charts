@@ -58,14 +58,21 @@ probes:
         scheme: HTTPS
         path: /healthz
         port: https
+
 service:
   main:
-    port:
-      name: https
-      targetPort: 4443
-      port: 443
+    ports:
+      http:
+        enabled: false
+      https:
+        enabled: true
+        targetPort: 4443
+        port: 443
 
-args: '["--tls-cert-file=/tls/tls.crt","--tls-private-key-file=/tls/tls.key","--secure-port=4443"]'
+args:
+- --tls-cert-file=/tls/tls.crt
+- --tls-private-key-file=/tls/tls.key
+- --secure-port=4443
 
 env:
   GROUP_NAME: {{ .Values.groupName }}

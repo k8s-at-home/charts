@@ -1,6 +1,6 @@
 # readarr
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: v0.1.0.715](https://img.shields.io/badge/AppVersion-v0.1.0.715-informational?style=flat-square)
+![Version: 5.1.1](https://img.shields.io/badge/Version-5.1.1-informational?style=flat-square) ![AppVersion: v0.1.0.715](https://img.shields.io/badge/AppVersion-v0.1.0.715-informational?style=flat-square)
 
 A fork of Radarr to work with Books & AudioBooks
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.1.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.1 |
 
 ## TL;DR
 
