@@ -86,7 +86,7 @@ jobs:
         push_options: --force
         commit_message: Auto-generate chart README [no ci]
         commit_user_name: k8s-at-home[bot]
-        commit_user_email: <k8s-at-home[bot]@users.noreply.github.com>
+        commit_user_email: k8s-at-home[bot]@users.noreply.github.com
         commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
         file_pattern: charts/**/
 
@@ -95,21 +95,29 @@ jobs:
     needs:
     - generate-readme
     steps:
+    - name: Get k8s-at-home token
+      id: get-app-token
+      uses: getsentry/action-github-app-token@v1
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{ steps.get-app-token.outputs.token }}
         ref: master
         fetch-depth: 0
 
     - name: Configure Git
       run: |
-        git config user.name "$GITHUB_ACTOR"
-        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git config user.name "k8s-at-home[bot]"
+        git config user.email "k8s-at-home[bot]@users.noreply.github.com"
 
     - name: Install Helm
       uses: azure/setup-helm@v1
       with:
-        version: v3.5.3
+        version: v3.5.4
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.2.1
@@ -117,7 +125,7 @@ jobs:
         charts_dir: charts/*
         charts_repo_url: https://k8s-at-home.com/charts/
       env:
-        CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        CR_TOKEN: "${{ steps.get-app-token.outputs.token }}"
         CR_SKIP_EXISTING: "true"
 
   generate-summary:
@@ -152,6 +160,6 @@ jobs:
         push_options: --force
         commit_message: Auto-generate chart summary [no ci]
         commit_user_name: k8s-at-home[bot]
-        commit_user_email: <k8s-at-home[bot]@users.noreply.github.com>
+        commit_user_email: k8s-at-home[bot]@users.noreply.github.com
         commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
         file_pattern: charts/README.md
