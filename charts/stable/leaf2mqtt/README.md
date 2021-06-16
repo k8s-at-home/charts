@@ -1,6 +1,6 @@
 # leaf2mqtt
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.1](https://img.shields.io/badge/AppVersion-0.1-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 0.1](https://img.shields.io/badge/AppVersion-0.1-informational?style=flat-square)
 
 Nissan Leaf connected services to MQTT adapter
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.1 |
 
 ## TL;DR
 
@@ -83,7 +83,6 @@ N/A
 | probes.liveness.enabled | bool | `false` |  |
 | probes.readiness.enabled | bool | `false` |  |
 | probes.startup.enabled | bool | `false` |  |
-| service.enabled | bool | `false` |  |
 | strategy.type | string | `"Recreate"` | Deployment recreation strategy |
 
 ## Changelog
@@ -91,6 +90,20 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Migrate to common chart v3.1.1. Whilst this is a breaking change for many, it should be non-impactful for this app given there are no service or ingress definitions.
+
+#### Removed
+
+- N/A
 
 ### [1.0.0]
 
