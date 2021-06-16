@@ -80,7 +80,7 @@ N/A
 | env | object | See below | environment variables. See [image docs](https://github.com/marthoc/docker-deconz/blob/master/README.md) for more details. |
 | env.DECONZ_DEVICE | string | `nil` | Override the location where deCONZ looks for the RaspBee/Conbee device. |
 | env.DECONZ_VNC_MODE | int | `1` | Enable VNC access to the container to view the deCONZ ZigBee mesh |
-| env.DECONZ_VNC_PASSWORD | object | `{}` | If VNC is enabled (DECONZ_VNC_MODE=1) you can change the default password "changeme" using a Secret. |
+| env.DECONZ_VNC_PASSWORD | string | `nil` | If VNC is enabled (DECONZ_VNC_MODE=1) you can change the default password "changeme" using a Secret. |
 | env.DECONZ_VNC_PORT | int | `5900` | VNC server listen port |
 | env.DECONZ_WEB_PORT | int | `80` | Web UI listen port |
 | env.DECONZ_WS_PORT | int | `443` | Websocket listen port |
@@ -100,7 +100,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [4.0.0]
+### [5.0.0]
 
 #### Changed
 
