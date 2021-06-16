@@ -8597,6 +8597,34 @@ entries:
     version: 1.1.0
   deconz:
   - apiVersion: v2
+    appVersion: 2.12.01
+    created: "2021-06-16T19:20:06.916191684Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.1.1
+    description: deCONZ is an easy to use control software, with which you can set
+      up and control Zigbee networks of any size without further programming effort.
+    digest: 27e155c1adbf9bf380cdc68e545628ece084034eea882d8516f278b259e879ca
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deconz
+    icon: https://avatars1.githubusercontent.com/u/4217524?s=400&v=4
+    keywords:
+    - deconz
+    - home-automation
+    - zigbee
+    - conbee
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: deconz
+    sources:
+    - https://github.com/dresden-elektronik/deconz-rest-plugin
+    - https://github.com/marthoc/docker-deconz
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/deconz-5.0.0/deconz-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
     appVersion: 2.10.03
     created: "2021-05-05T14:51:15.854669148Z"
     dependencies:
@@ -66257,4 +66285,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-16T19:19:13.374239126Z"
+generated: "2021-06-16T19:20:06.9320481Z"
