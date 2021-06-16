@@ -1,31 +1,17 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap to the additionalVolumes */}}
-{{- define "homebridge.configmap.volume" -}}
-name: homebridge-config
-configMap:
-  name: {{ template "common.names.fullname" . }}-config
+{{/* Append the configMap volume to the volumes */}}
+{{- define "homebridge.configVolume" -}}
+enabled: "true"
+mountPath: "/homebridge/startup.sh"
+subPath: "startup.sh"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-config
 {{- end -}}
-
-{{- $volume := include "homebridge.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
-
-{{/* Append the configMap volume to the additionalVolumeMounts */}}
-{{- define "homebridge.configmap.volumeMount" -}}
-name: homebridge-config
-mountPath: /homebridge/startup.sh
-subPath: startup.sh
-{{- end -}}
-
-{{- $volumeMount := include "homebridge.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
+{{- $_ := set .Values.persistence "homebridge-config" (include "homebridge.configVolume" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}

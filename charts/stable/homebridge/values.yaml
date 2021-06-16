@@ -6,46 +6,48 @@
 #
 
 image:
+  # -- image repository
   repository: oznu/homebridge
-  tag: 3.3.0
+  # -- image tag
+  tag: 4.0.0
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-# Possible values listed here: https://github.com/oznu/docker-homebridge#parameters
+# -- environment variables. See [image docs](https://github.com/oznu/docker-homebridge#parameters) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Specify the user ID the application will run as
+  PUID: "1000"
+  # -- Specify the group ID the application will run as
+  PGID: "1000"
+  # -- Enable the Homebridge UI
   HOMEBRIDGE_CONFIG_UI: 1
-  HOMEBRIDGE_CONFIG_UI_PORT: 8581
-  # TZ:
-  # PGID: 1000
-  # PUID: 1000
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8581
+  main:
+    ports:
+      http:
+        port: 8581
 
 # -- Enable hostNetwork - needed for discovery to work
 hostNetwork: false
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /homebridge
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
 # -- Custom startup.sh script to install additional packages in the container
 # @default -- string
