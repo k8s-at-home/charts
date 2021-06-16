@@ -5632,6 +5632,30 @@ entries:
     version: 1.0.0
   calibre:
   - apiVersion: v2
+    appVersion: version-v5.21.0
+    created: "2021-06-16T19:18:18.753593334Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.1.1
+    description: Calibre is a powerful and easy to use e-book manager.
+    digest: 6937869828282a9f6576a182a227369c42fd18d8a8a433131f5b44eed7494111
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/calibre
+    icon: https://github.com/kovidgoyal/calibre/raw/master/resources/images/lt.png
+    keywords:
+    - calibre
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rolf@berkenbosch.nl
+      name: rolfberkenbosch
+    name: calibre
+    sources:
+    - https://hub.docker.com/r/linuxserver/calibre/
+    - https://github.com/kovidgoyal/calibre/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/calibre-4.0.0/calibre-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: 5.14.0
     created: "2021-05-05T14:51:15.291794865Z"
     dependencies:
@@ -65740,6 +65764,32 @@ entries:
     version: 1.0.0
   zwavejs2mqtt:
   - apiVersion: v2
+    appVersion: 5.0.2
+    created: "2021-06-16T19:18:18.882729969Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.1.1
+    description: Fully configurable Zwave to MQTT Gateway and Control Panel
+    digest: 9c3e33c2aa73d8a03ef68f5992b0a4ce95ddfb92fed7219563b4d03fdf219178
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zwavejs2mqtt
+    icon: https://raw.githubusercontent.com/zwave-js/zwavejs2mqtt/v4.0.0/static/logo.png
+    keywords:
+    - zwave
+    - mqtt
+    - home-assistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: zwavejs2mqtt
+    sources:
+    - https://github.com/zwave-js/zwavejs2mqtt
+    - https://hub.docker.com/r/zwavejs/zwavejs2mqtt
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-4.0.0/zwavejs2mqtt-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: 3.0.3
     created: "2021-05-05T14:51:33.854178759Z"
     dependencies:
@@ -66178,4 +66228,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-16T08:18:34.723076311Z"
+generated: "2021-06-16T19:18:18.899173292Z"
