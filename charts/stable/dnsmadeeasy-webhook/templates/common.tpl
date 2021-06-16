@@ -63,6 +63,9 @@ service:
   main:
     ports:
       http:
+        enabled: false
+      https:
+        enabled: true
         targetPort: 4443
         port: 443
 
