@@ -1,6 +1,6 @@
 # deconz
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 2.10.03](https://img.shields.io/badge/AppVersion-2.10.03-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 2.12.01](https://img.shields.io/badge/AppVersion-2.12.01-informational?style=flat-square)
 
 deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.1 |
 
 ## TL;DR
 
@@ -76,29 +76,37 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.DECONZ_VNC_MODE | int | `1` |  |
-| env.DECONZ_VNC_PORT | int | `5900` |  |
-| env.DECONZ_WEB_PORT | int | `80` |  |
-| env.DECONZ_WS_PORT | int | `443` |  |
-| env.TZ | string | `"UTC"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"marthoc/deconz"` |  |
-| image.tag | string | `"amd64-2.10.03"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/root/.local/share/dresden-elektronik/deCONZ"` |  |
-| service.additionalPorts[0].name | string | `"websocket"` |  |
-| service.additionalPorts[0].port | int | `443` |  |
-| service.additionalPorts[1].name | string | `"vnc"` |  |
-| service.additionalPorts[1].port | int | `5900` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| affinity | object | `{}` | Affinity constraint rules to place the Pod on a specific node. [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) |
+| env | object | See below | environment variables. See [image docs](https://github.com/marthoc/docker-deconz/blob/master/README.md) for more details. |
+| env.DECONZ_DEVICE | string | `nil` | Override the location where deCONZ looks for the RaspBee/Conbee device. |
+| env.DECONZ_VNC_MODE | int | `1` | Enable VNC access to the container to view the deCONZ ZigBee mesh |
+| env.DECONZ_VNC_PASSWORD | string | `nil` | If VNC is enabled (DECONZ_VNC_MODE=1) you can change the default password "changeme" using a Secret. |
+| env.DECONZ_VNC_PORT | int | `5900` | VNC server listen port |
+| env.DECONZ_WEB_PORT | int | `80` | Web UI listen port |
+| env.DECONZ_WS_PORT | int | `443` | Websocket listen port |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"marthoc/deconz"` | image repository |
+| image.tag | string | `"2.12.01"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.usb | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
+| securityContext.privileged | bool | `nil` | Privileged securityContext may be required if USB controller is accessed directly through the host machine |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.1.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.1/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `2.12.01`.
 
 ### [3.0.0]
 

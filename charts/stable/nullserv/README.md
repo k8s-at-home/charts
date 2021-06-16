@@ -1,15 +1,14 @@
-# homebridge
+# nullserv
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.3.0](https://img.shields.io/badge/AppVersion-1.3.0-informational?style=flat-square)
 
-A lightweight NodeJS server that emulates the iOS HomeKit API
+A simple null file http and https server
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://homebridge.io/>
-* <https://github.com/oznu/docker-homebridge>
+* <https://github.com/bmrzycki/nullserv>
 
 ## Requirements
 
@@ -26,23 +25,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install homebridge k8s-at-home/homebridge
+helm install nullserv k8s-at-home/nullserv
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `homebridge`
+To install the chart with the release name `nullserv`
 
 ```console
-helm install homebridge k8s-at-home/homebridge
+helm install nullserv k8s-at-home/nullserv
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `homebridge` deployment
+To uninstall the `nullserv` deployment
 
 ```console
-helm uninstall homebridge
+helm uninstall nullserv
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install homebridge \
+helm install nullserv \
   --set env.TZ="America/New York" \
-    k8s-at-home/homebridge
+    k8s-at-home/nullserv
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install homebridge k8s-at-home/homebridge -f values.yaml
+helm install nullserv k8s-at-home/nullserv -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,18 +75,13 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | string | Custom startup.sh script to install additional packages in the container |
-| env | object | See below | environment variables. See [image docs](https://github.com/oznu/docker-homebridge#parameters) for more details. |
-| env.HOMEBRIDGE_CONFIG_UI | int | `1` | Enable the Homebridge UI |
-| env.PGID | string | `"1000"` | Specify the group ID the application will run as |
-| env.PUID | string | `"1000"` | Specify the user ID the application will run as |
+| controller.replicas | int | `2` | Number of pods to load balance between |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| hostNetwork | bool | `false` | Enable hostNetwork - needed for discovery to work |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"oznu/homebridge"` | image repository |
-| image.tag | string | `"4.0.0"` | image tag |
+| image.repository | string | `"ghcr.io/k8s-at-home/nullserv"` | image repository |
+| image.tag | string | `"1.3.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes | object | See values.yaml | Configures the probes for the main Pod. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -96,29 +90,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.1.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.1/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `4.0.0`.
-
-### [2.0.0]
+### [1.0.0]
 
 #### Added
 
-- N/A
+- Initial version
 
 #### Changed
 
-- **BREAKING** Migrate to the common library, a lot of configuration has changed.
+- N/A
 
 #### Removed
 
 - N/A
 
-[2.0.0]: #2.0.0
+[1.0.0]: #1.0.0
 
 ## Support
 

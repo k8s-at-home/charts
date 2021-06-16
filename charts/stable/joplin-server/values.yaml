@@ -1,56 +1,62 @@
-# Default values for joplin-server.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
-  # -- joplin-server image
+  # -- image repository
   repository: joplin/server
-  # -- joplin-server image tag
+    # -- image tag
   tag: 1.7.2
-  # joplin-server image pull policy
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-service:
-  port:
-    # -- Kubernetes port where the GUI is exposed
-    port: 22300
-
+# -- environment variables. See [image docs](https://github.com/laurent22/joplin) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone
+  TZ: UTC
   # -- joplin-server base URL
   APP_BASE_URL: https://joplin.domain
   # -- joplin-server listening port (same as Service port)
   APP_PORT: 22300
   # -- Use pg for postgres
-  # DB_CLIENT : pg
+  DB_CLIENT:  # pg
   # -- Postgres DB Host
-  # POSTGRES_HOST : db
+  POSTGRES_HOST:  # joplin-postgresql
   # -- Postgres DB port
-  # POSTGRES_PORT : 5432
+  POSTGRES_PORT:  # 5432
   # -- Postgres DB name
-  # POSTGRES_DATABASE : joplin
+  POSTGRES_DATABASE:  # joplin
   # -- Postgres DB Username
-  # POSTGRES_USER : joplin
+  POSTGRES_USER:  # joplin
   # -- Postgres DB password
-  # POSTGRES_PASSWORD : password
+  POSTGRES_PASSWORD:  # joplin-pass
 
-# -- Node labels for pod assignment of the GUI
-nodeSelector: {}
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 22300
 
-# -- Toleration labels for pod assignment of the GUI
-tolerations: []
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
-# -- Affinity settings for pod assignment of the GUI
-affinity: {}
-
-# -- Pod annotations
-podAnnotations: {}
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
+postgresql:
+  enabled: false
+  postgresqlUsername: joplin
+  postgresqlPassword: joplin-pass
+  postgresqlDatabase: joplin
+  persistence:
+    enabled: false
+    # storageClass: ""
