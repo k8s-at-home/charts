@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
+![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
 
 Transmission is a cross-platform BitTorrent client
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.1.1 |
 
 ## TL;DR
 
@@ -76,6 +76,7 @@ To view more environment variables [see here](https://github.com/k8s-at-home/con
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| env | object | See below | environment variables. See [image docs](https://github.com/k8s-at-home/container-images/tree/main/apps/transmission/settings.json.tmpl) for more details. |
 | env.TRANSMISSION_DOWNLOAD_DIR | string | `"/downloads/complete"` | Torrent download directory |
 | env.TRANSMISSION_INCOMPLETE_DIR | string | `"/downloads/incomplete"` | Incomplete download directory |
 | env.TRANSMISSION_INCOMPLETE_DIR_ENABLED | bool | `false` | Enable incomplete download directory |
@@ -83,31 +84,28 @@ To view more environment variables [see here](https://github.com/k8s-at-home/con
 | env.TRANSMISSION_WATCH_DIR | string | `"/watch"` | Watch directory |
 | env.TRANSMISSION_WATCH_DIR_ENABLED | bool | `false` | Enable watch directory |
 | env.TRANSMISSION_WEB_HOME | string | `"/web"` | Path in container where the Web UI is located |
-| env.TZ | string | `"UTC"` | Container timezone |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/k8s-at-home/transmission"` |  |
-| image.tag | string | `"v3.00"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/config"` |  |
-| persistence.downloads.emptyDir.enabled | bool | `false` |  |
-| persistence.downloads.enabled | bool | `false` |  |
-| persistence.downloads.mountPath | string | `"/downloads"` |  |
-| persistence.watch.emptyDir.enabled | bool | `false` |  |
-| persistence.watch.enabled | bool | `false` |  |
-| persistence.watch.mountPath | string | `"/watch"` |  |
-| probes.liveness.spec.timeoutSeconds | int | `30` |  |
-| probes.readiness.spec.timeoutSeconds | int | `30` |  |
-| service.port.name | string | `"http"` |  |
-| service.port.port | int | `9091` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"ghcr.io/k8s-at-home/transmission"` | image repository |
+| image.tag | string | `"v3.00"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| initContainers | list | See values.yaml | Use an initContainer to download the Flood web ui Set UI with env `TRANSMISSION_WEB_HOME` set to `/config/flood-for-transmission/` |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes | object | See values.yaml | Configures the probes for the main Pod. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [7.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.1.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.1/charts/stable/common/) for the up-to-date values.
 
 ### [6.0.0]
 
