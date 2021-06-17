@@ -1,6 +1,6 @@
 # plex
 
-![Version: 5.1.1](https://img.shields.io/badge/Version-5.1.1-informational?style=flat-square) ![AppVersion: v1.23.2.4656-85f0adf5b](https://img.shields.io/badge/AppVersion-v1.23.2.4656--85f0adf5b-informational?style=flat-square)
+![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: v1.23.2.4656-85f0adf5b](https://img.shields.io/badge/AppVersion-v1.23.2.4656--85f0adf5b-informational?style=flat-square)
 
 Plex Media Server
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.1.1 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 

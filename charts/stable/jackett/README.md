@@ -1,6 +1,6 @@
 # jackett
 
-![Version: 10.1.1](https://img.shields.io/badge/Version-10.1.1-informational?style=flat-square) ![AppVersion: v0.18.303](https://img.shields.io/badge/AppVersion-v0.18.303-informational?style=flat-square)
+![Version: 10.2.0](https://img.shields.io/badge/Version-10.2.0-informational?style=flat-square) ![AppVersion: v0.18.303](https://img.shields.io/badge/AppVersion-v0.18.303-informational?style=flat-square)
 
 API Support for your favorite torrent trackers
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.1.1 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
