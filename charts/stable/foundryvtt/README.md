@@ -80,7 +80,7 @@ N/A
 | image.repository | string | `"felddy/foundryvtt"` | image repository |
 | image.tag | string | `"0.8.3"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Founderyvtt is hardcoded to use /data for its persistance for config |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Foundryvtt is hardcoded to use /data for its persistance for config |
 | service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 | strategy.type | string | `"Recreate"` |  |
 
