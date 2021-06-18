@@ -1,6 +1,6 @@
 # zalando-postgres-cluster
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Creates a postgres cluster using the Zalando Postgres operator and local storage
 
@@ -16,7 +16,7 @@ Creates a postgres cluster using the Zalando Postgres operator and local storage
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.1.1 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
