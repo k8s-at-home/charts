@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: 1.7.0
+description: ownCloud Infinite Scale is a self-hosted file sync and share server.
+name: owncloud-ocis
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- owncloud
+- ocis
+- infinite
+- scale
+- self-hosted
+- sync
+- share
+- server
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/owncloud-ocis
+icon: https://avatars.githubusercontent.com/u/1645051?s=200&v=4
+sources:
+- https://hub.docker.com/r/owncloud/ocis
+- https://owncloud.dev/ocis/
+maintainers:
+- name: nicholaswilde
+  email: ncwilde43@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 3.2.0
