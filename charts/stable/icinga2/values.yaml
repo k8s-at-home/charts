@@ -44,18 +44,22 @@ ingress:
 # @default -- See values.yaml
 persistence:
   # -- Icinga2 configuration folder
+  # @default -- Disabled
   config:
     enabled: false
     mountPath: /etc/icinga2
   # -- Icinga2 Data
+  # @default -- Disabled
   data:
     enabled: false
     mountPath: /var/lib/icinga2
   # -- Icingaweb2 configuration folder
+  # @default -- Disabled
   web:
     enabled: false
     mountPath: /etc/icingaweb2
   # -- ssmtp folder
+  # @default -- Disabled
   ssmtp:
     enabled: false
     mountPath: /etc/ssmtp
