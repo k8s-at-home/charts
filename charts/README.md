@@ -73,6 +73,7 @@
 | [organizr](stable/organizr) | HTPC/Homelab Services Organizer |
 | [overseerr](stable/overseerr) | Overseerr is a free and open source software application for managing requests for your media library. It integrates with your existing services such as Sonarr, Radarr and Plex! |
 | [owncast](stable/owncast) | Take control over your live stream video by running it yourself. Streaming + chat out of the box. |
+| [owncloud-ocis](stable/owncloud-ocis) | ownCloud Infinite Scale is a self-hosted file sync and share server. |
 | [paperless](stable/paperless) | Paperless - Index and archive all of your scanned paper documents |
 | [photoprism](stable/photoprism) | PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection |
 | [piaware](stable/piaware) | Program for forwarding ADS-B data to FlightAware |
