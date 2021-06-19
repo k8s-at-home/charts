@@ -59,8 +59,12 @@ persistentVolumes:
 
 
 dumpBackup:
-  # Enable backups to a PVC
+  # -- Enable backups to a PVC
+  enabled: false
+  # -- exiting claim
   existingClaim:
+  # -- type of persistence volume to use
+  type:
   # -- Backup schedule for postgres dumps
   schedule: "@daily"
   # -- Persistent volume claim subpath prefix for the backups
@@ -69,10 +73,15 @@ dumpBackup:
   # @default: <subpathPrefix/<release-name>
   subpath:
   image:
+    # -- image used for the backups
     repository: postgres
+    # -- image pull policy
     pullPolicy: IfNotPresent
+    # -- image pull tag
     tag: latest
   resources:
     requests:
+      # -- requested memory for backup
       memory: "10Mi"
+      # -- requested cpu for backup
       cpu: "5m"
