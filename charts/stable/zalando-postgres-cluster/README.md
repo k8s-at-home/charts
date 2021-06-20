@@ -81,7 +81,7 @@ Features added by this wrapper:
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | dumpBackup.enabled | bool | `false` | Enable backups to a PVC |
-| dumpBackup.existingClaim | string | `nil` | exiting claim |
+| dumpBackup.existingClaim | string | `nil` | existing claim |
 | dumpBackup.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | dumpBackup.image.repository | string | `"postgres"` | image used for the backups |
 | dumpBackup.image.tag | string | `"latest"` | image pull tag |
@@ -90,7 +90,7 @@ Features added by this wrapper:
 | dumpBackup.schedule | string | `"@daily"` | Backup schedule for postgres dumps |
 | dumpBackup.subpath | string | `nil` | Persistent volume claim subpath for the backups @default: <subpathPrefix/<release-name> |
 | dumpBackup.subpathPrefix | string | `"backup/db"` | Persistent volume claim subpath prefix for the backups |
-| dumpBackup.type | string | `nil` | type of persistence volume to use |
+| dumpBackup.type | string | `nil` | Sets the persistence type. Valid options are pvc, emptyDir, hostPath or custom. See [common chart persistence doc](https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml) |
 | persistentVolumes.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | persistentVolumes.annotations | object | `{}` |  |
 | persistentVolumes.hostPath | string | `nil` | Local path for the persistent volumes @default: <hostPathPrefix/<release-name> |
