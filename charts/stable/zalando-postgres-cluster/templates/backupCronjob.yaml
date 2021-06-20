@@ -1,4 +1,4 @@
-{{- if .Values.dumpBackup.existingClaim -}}
+{{- if or .Values.dumpBackup.enabled .Values.dumpBackup.existingClaim -}}
 # ------------------- CronJob ------------------- #
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -50,7 +50,7 @@ spec:
                 subPath: {{ include "zalando-postgres-cluster.backupPVCSubpath" . }}
           restartPolicy: OnFailure
           volumes:
-            - name: backup-volume
-              persistentVolumeClaim:
-                claimName: {{ .Values.dumpBackup.existingClaim }}
+            {{- $valuesCopy := deepCopy . -}}
+            {{- $_ := set $valuesCopy.Values "persistence" (dict "backup-volume" .Values.dumpBackup ) -}}
+            {{- include "common.controller.volumes" $valuesCopy | nindent 12 }}
 {{- end -}}
