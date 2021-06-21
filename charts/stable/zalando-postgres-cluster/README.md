@@ -1,6 +1,6 @@
 # zalando-postgres-cluster
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Creates a postgres cluster using the Zalando Postgres operator and local storage
 
@@ -80,15 +80,17 @@ Features added by this wrapper:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| dumpBackup.existingClaim | string | `nil` |  |
-| dumpBackup.image.pullPolicy | string | `"IfNotPresent"` |  |
-| dumpBackup.image.repository | string | `"postgres"` |  |
-| dumpBackup.image.tag | string | `"latest"` |  |
-| dumpBackup.resources.requests.cpu | string | `"5m"` |  |
-| dumpBackup.resources.requests.memory | string | `"10Mi"` |  |
+| dumpBackup.enabled | bool | `false` | Enable backups to a PVC |
+| dumpBackup.existingClaim | string | `nil` | existing claim |
+| dumpBackup.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| dumpBackup.image.repository | string | `"postgres"` | image used for the backups |
+| dumpBackup.image.tag | string | `"latest"` | image pull tag |
+| dumpBackup.resources.requests.cpu | string | `"5m"` | requested cpu for backup |
+| dumpBackup.resources.requests.memory | string | `"10Mi"` | requested memory for backup |
 | dumpBackup.schedule | string | `"@daily"` | Backup schedule for postgres dumps |
 | dumpBackup.subpath | string | `nil` | Persistent volume claim subpath for the backups @default: <subpathPrefix/<release-name> |
 | dumpBackup.subpathPrefix | string | `"backup/db"` | Persistent volume claim subpath prefix for the backups |
+| dumpBackup.type | string | `nil` | Sets the persistence type. Valid options are pvc, emptyDir, hostPath or custom. See [common chart persistence doc](https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml) |
 | persistentVolumes.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | persistentVolumes.annotations | object | `{}` |  |
 | persistentVolumes.hostPath | string | `nil` | Local path for the persistent volumes @default: <hostPathPrefix/<release-name> |
