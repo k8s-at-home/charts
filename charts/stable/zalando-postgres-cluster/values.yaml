@@ -59,8 +59,15 @@ persistentVolumes:
 
 
 dumpBackup:
-  # Enable backups to a PVC
+  # -- Enable backups to a PVC
+  enabled: false
+  # -- existing claim
   existingClaim:
+  # -- Sets the persistence type.
+  # Valid options are pvc, emptyDir, hostPath or custom.
+  # See
+  # [common chart persistence doc](https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml)
+  type:
   # -- Backup schedule for postgres dumps
   schedule: "@daily"
   # -- Persistent volume claim subpath prefix for the backups
@@ -69,10 +76,15 @@ dumpBackup:
   # @default: <subpathPrefix/<release-name>
   subpath:
   image:
+    # -- image used for the backups
     repository: postgres
+    # -- image pull policy
     pullPolicy: IfNotPresent
+    # -- image pull tag
     tag: latest
   resources:
     requests:
+      # -- requested memory for backup
       memory: "10Mi"
+      # -- requested cpu for backup
       cpu: "5m"
