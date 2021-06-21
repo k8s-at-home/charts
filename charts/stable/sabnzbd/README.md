@@ -84,11 +84,7 @@ To address this issue, you can set an environment variable named `HOST_WHITELIST
 | image.repository | string | `"ghcr.io/k8s-at-home/sabnzbd"` | image repository |
 | image.tag | string | `"v3.3.1"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.downloads.enabled | bool | `false` |  |
-| persistence.downloads.mountPath | string | `"/downloads"` |  |
-| persistence.media.enabled | bool | `false` |  |
-| persistence.media.mountPath | string | `"/media"` |  |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
