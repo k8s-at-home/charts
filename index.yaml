@@ -25927,6 +25927,32 @@ entries:
     version: 1.0.0
   librespeed:
   - apiVersion: v2
+    appVersion: version-5.2.4
+    created: "2021-06-21T10:07:02.055052784Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Librespeed is a HTML5 webpage to test upload and download speeds
+    digest: 84d044d6ebf203ee3c46ec79dc58c31029f4831b2fe51f1a0a27b5d036ca23b0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/librespeed
+    icon: https://github.com/librespeed/speedtest/blob/master/.logo/icon_huge.png?raw=true
+    keywords:
+    - librespeed
+    - speedtest
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark@markmcw.uk
+      name: mcmarkj
+    name: librespeed
+    sources:
+    - https://github.com/librespeed/speedtest
+    - https://hub.docker.com/r/linuxserver/librespeed
+    - https://github.com/k8s-at-home/charts/tree/master/charts/librespeed
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/librespeed-4.0.0/librespeed-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: 5.2.4
     created: "2021-05-05T14:51:21.39356759Z"
     dependencies:
@@ -68122,4 +68148,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-21T09:59:28.609670741Z"
+generated: "2021-06-21T10:07:02.072856957Z"
