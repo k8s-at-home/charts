@@ -39,6 +39,7 @@
 | [homer](stable/homer) | A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file. |
 | [hyperion-ng](stable/hyperion-ng) | Hyperion is an opensource Bias or Ambient Lighting implementation |
 | [icantbelieveitsnotvaletudo](stable/icantbelieveitsnotvaletudo) | Create live map data from Valetudo powered robots |
+| [icinga2](stable/icinga2) | A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting. |
 | [intel-gpu-plugin](stable/intel-gpu-plugin) | The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware |
 | [jackett](stable/jackett) | API Support for your favorite torrent trackers |
 | [jellyfin](stable/jellyfin) | Jellyfin is a Free Software Media System |
