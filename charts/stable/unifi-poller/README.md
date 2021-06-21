@@ -1,6 +1,6 @@
 # unifi-poller
 
-![Version: 7.4.0](https://img.shields.io/badge/Version-7.4.0-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: 2.1.3](https://img.shields.io/badge/AppVersion-2.1.3-informational?style=flat-square)
 
 Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -80,18 +80,18 @@ N/A
 | env | object | `{}` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"golift/unifi-poller"` |  |
-| image.tag | string | `"2.0.1"` |  |
+| image.tag | string | `"2.1.3"` |  |
 | influxdb.architecture | string | `"standalone"` |  |
 | influxdb.authEnabled | bool | `false` |  |
 | influxdb.database | string | `"unifi_poller"` |  |
 | influxdb.enabled | bool | `false` |  |
 | influxdb.persistence.enabled | bool | `false` |  |
-| ingress.enabled | bool | `false` |  |
+| ingress.main.enabled | bool | `false` |  |
 | prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
 | prometheus.serviceMonitor.enabled | bool | `false` |  |
 | prometheus.serviceMonitor.interval | string | `"1m"` |  |
-| service.port.port | int | `9130` |  |
-| strategy.type | string | `"Recreate"` |  |
+| service.main.ports.http.port | int | `9130` |  |
+| strategy | string | `"Recreate"` |  |
 
 ## Changelog
 
