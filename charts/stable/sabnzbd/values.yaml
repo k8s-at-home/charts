@@ -6,62 +6,42 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/sabnzbd
+  # -- image tag
+  tag: v3.3.1
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v3.2.1
 
-strategy:
-  type: Recreate
-
-env: {}
-  # TZ: UTC
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # HOST_WHITELIST_ENTRIES:
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
 
   media:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /media
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
   downloads:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /downloads
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
