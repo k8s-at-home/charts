@@ -10,8 +10,10 @@ persistence:
     emptyDir:
       enabled: true
     mountPath: /root/.stash
+    accessMode: ReadWriteOnce
   media:
     enabled: true
     emptyDir:
       enabled: true
     mountPath: /media
+    accessMode: ReadWriteOnce
