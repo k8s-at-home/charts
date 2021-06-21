@@ -7,19 +7,15 @@
 
 image:
   # -- image repository
-  repository: hkotel/mealie
+  repository: gotson/komga
   # -- image tag
-  tag: v0.5.1
+  tag: 0.99.4
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables. See [image docs](https://hay-kot.github.io/mealie/documentation/getting-started/install/#env-variables) for more details.
+# -- environment variables. See more environment variables in the [komga documentation](https://komga.org/installation/configuration.html#optional-configuration).
 # @default -- See below
-env:
-  # -- Set the container timezone
-  TZ: UTC
-  # -- Set the application database type
-  DB_TYPE: sqlite
+env: {}
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -27,7 +23,7 @@ service:
   main:
     ports:
       http:
-        port: 80
+        port: 8080
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -40,4 +36,7 @@ ingress:
 persistence:
   config:
     enabled: false
-    mountPath: /app/data/
+    mountPath: /config
+  data:
+    enabled: false
+    mountPath: /data

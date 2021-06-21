@@ -1,0 +1,25 @@
+apiVersion: v2
+appVersion: latest
+description: A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting.
+name: icinga2
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- icinga2
+- monitoring
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/icinga2
+icon: https://avatars.githubusercontent.com/u/835441?s=200&v=4
+sources:
+- https://github.com/jjethwa/icinga2
+- https://icinga.com/
+maintainers:
+- name: nicholaswilde
+  email: ncwilde43@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 3.2.0
+- name: mariadb
+  version: 9.3.14
+  repository: https://charts.bitnami.com/bitnami
+  condition: mariadb.enabled

@@ -39,12 +39,14 @@
 | [homer](stable/homer) | A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file. |
 | [hyperion-ng](stable/hyperion-ng) | Hyperion is an opensource Bias or Ambient Lighting implementation |
 | [icantbelieveitsnotvaletudo](stable/icantbelieveitsnotvaletudo) | Create live map data from Valetudo powered robots |
+| [icinga2](stable/icinga2) | A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting. |
 | [intel-gpu-plugin](stable/intel-gpu-plugin) | The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware |
 | [jackett](stable/jackett) | API Support for your favorite torrent trackers |
 | [jellyfin](stable/jellyfin) | Jellyfin is a Free Software Media System |
 | [jetbrains-projector](stable/jetbrains-projector) | Projector is a technology to run and access JetBrains IDEs remotely |
 | [joplin-server](stable/joplin-server) | This server allows you to sync any Joplin client |
 | [kanboard](stable/kanboard) | Kanboard is a free and open source Kanban project management software. |
+| [komga](stable/komga) | A comics/mangas server to serve/stream pages via API |
 | [lazylibrarian](stable/lazylibrarian) | A Helm chart for deploying LazyLibrarian |
 | [leaf2mqtt](stable/leaf2mqtt) | Nissan Leaf connected services to MQTT adapter |
 | [librespeed](stable/librespeed) | Librespeed is a HTML5 webpage to test upload and download speeds |
