@@ -103,5 +103,3 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: {{ .Values.image.pullPolicy }}
       restartPolicy: Always
-  strategy:
-    type: {{ .Values.webhook.strategy.type }}
