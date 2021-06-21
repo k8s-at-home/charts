@@ -1,6 +1,6 @@
 # lazylibrarian
 
-![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: version-8e4bf962](https://img.shields.io/badge/AppVersion-version--8e4bf962-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: version-1152df82](https://img.shields.io/badge/AppVersion-version--1152df82-informational?style=flat-square)
 
 A Helm chart for deploying LazyLibrarian
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.1.1 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -82,7 +82,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"linuxserver/lazylibrarian"` | image repository |
-| image.tag | string | `"version-8e4bf962"` | image tag |
+| image.tag | string | `"version-1152df82"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -97,9 +97,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- **BREAKING**: Upgraded the common library dependency to version 3.1.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.1/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `version-8e4bf962`.
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `version-1152df82`.
 
 ### [1.0.0]
 
