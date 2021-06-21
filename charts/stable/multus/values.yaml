@@ -41,6 +41,7 @@ command:
 # -- Arguments used by the Multus installer.
 # See https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md
 # If you are not using k3s you will need to adjust the multus-kubeconfig.
+# @default -- See values.yaml
 args:
   - "--multus-conf-file=auto"
   - "--cleanup-config-on-exit=true"
