@@ -21,8 +21,9 @@ serviceAccount:
   # -- create needed service account
   create: true
 
-# -- Init container that install reference CNI plugins
 initContainers:
+# -- Init container that install reference CNI plugins
+# @default -- See values.yaml
 - name: cni-installer
   # -- CNI installer image
   image: ghcr.io/k8s-at-home/cni-plugins:v0.9.1
