@@ -22138,6 +22138,37 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/icantbelieveitsnotvaletudo-0.1.0/icantbelieveitsnotvaletudo-0.1.0.tgz
     version: 0.1.0
+  icinga2:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2021-06-21T07:09:55.145782164Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.14
+    description: A monitoring system which checks the availability of your network
+      resources, notifies users of outages, and generates performance data for reporting.
+    digest: 5cf3a8561d8be4ccf0c386a701ca843f426ca20867ee251d1c9f1fa0c4c53ebe
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/icinga2
+    icon: https://avatars.githubusercontent.com/u/835441?s=200&v=4
+    keywords:
+    - icinga2
+    - monitoring
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: icinga2
+    sources:
+    - https://github.com/jjethwa/icinga2
+    - https://icinga.com/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/icinga2-1.0.0/icinga2-1.0.0.tgz
+    version: 1.0.0
   intel-gpu-plugin:
   - apiVersion: v2
     appVersion: 0.20.0
@@ -28031,6 +28062,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/magic-mirror-1.0.0/magic-mirror-1.0.0.tgz
     version: 1.0.0
   mealie:
+  - apiVersion: v2
+    appVersion: v0.5.1
+    created: "2021-06-21T07:09:55.324347003Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Mealie is a self hosted recipe manager and meal planner with a RestAPI
+      backend and a reactive frontend application built in Vue for a pleasant user
+      experience for the whole family.
+    digest: 54b9748d9bbbe864957462e03b574f331556b9265a49fcd5e1978ddf3fb0911e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mealie
+    icon: https://raw.githubusercontent.com/hay-kot/mealie/gh-pages/assets/img/favicon.png
+    keywords:
+    - grocy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: mealie
+    sources:
+    - https://github.com/hay-kot/mealie
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/mealie-2.2.1/mealie-2.2.1.tgz
+    version: 2.2.1
   - apiVersion: v2
     appVersion: v0.4.3
     created: "2021-06-17T22:19:32.877247193Z"
@@ -67959,4 +68015,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-20T20:13:28.673055586Z"
+generated: "2021-06-21T07:09:55.338603357Z"
