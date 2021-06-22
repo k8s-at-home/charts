@@ -6,50 +6,44 @@
 #
 
 image:
+  # -- image repository
   repository: stashapp/stash
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: latest@sha256:24dbd76071745be0c4e75f730aa7ac2b37cb2b2918eabf8559643196b3b7a64a
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
-# # See more environment variables in the stash documentation
-# https://raw.githubusercontent.com/stashapp/stash/master/docker/production/docker-compose.yml
+# -- environment variables. See more environment variables in the [stashapp documentation](https://raw.githubusercontent.com/stashapp/stash/master/docker/production/docker-compose.yml)
+# @default -- See below
 env:
+  # -- Set the container port
   STASH_PORT: 9999
   # STASH_STASH:
   # STASH_GENERATED:
   # STASH_METADATA:
   # STASH_CACHE:
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 9999
+  main:
+    ports:
+      http:
+        port: 9999
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /root/.stash
 
   media:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /media
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
