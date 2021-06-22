@@ -7,24 +7,15 @@
 
 image:
   # -- image repository
-  repository: linuxserver/lazylibrarian
+  repository: gotson/komga
   # -- image tag
-  tag: version-1152df82
+  tag: 0.99.4
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables.
+# -- environment variables. See more environment variables in the [komga documentation](https://komga.org/installation/configuration.html#optional-configuration).
 # @default -- See below
-env:
-  # -- Set the container timezone
-  TZ: UTC
-  # -- Specify the user ID the application will run as
-  PUID: "1001"
-  # -- Specify the group ID the application will run as
-  PGID: "1001"
-  ## Docker Mods are not actively tested and might not work as expected.
-  # DOCKER_MODS=linuxserver/mods:lazylibrarian-ffmpeg
-  # DOCKER_MODS=linuxserver/calibre-web:calibre
+env: {}
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -32,7 +23,7 @@ service:
   main:
     ports:
       http:
-        port: 5299
+        port: 8080
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -45,7 +36,7 @@ ingress:
 persistence:
   config:
     enabled: false
-
-  media:
+    mountPath: /config
+  data:
     enabled: false
-    mountPath: /media
+    mountPath: /data
