@@ -11,9 +11,7 @@ persistence:
       enabled: true
   consume:
     enabled: true
-    size: 1M
-    emptyDir:
-      enabled: true
+    type: emptyDir
   export:
     enabled: true
     type: emptyDir
