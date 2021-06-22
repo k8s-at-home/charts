@@ -28,5 +28,5 @@ spec:
       volumes:
       - name: cni
         hostPath:
-          path: /var/lib/rancher/k3s/agent/etc/cni/net.d
+          path: {{ .Values.cni.paths.config }}
           type: Directory
