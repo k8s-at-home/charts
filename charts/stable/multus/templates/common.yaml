@@ -1,2 +1,82 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "multus.harcodedValues" -}}
+
+controller:
+  # -- deploy to all nodes
+  type: daemonset
+
+# -- Init container that installs reference CNI plugins
+initContainers:
+- name: cni-installer
+  # -- CNI installer image
+  image: {{ .Values.cni.image.repository }}:{{ .Values.cni.image.tag }}
+  pullPolicy: {{ .Values.cni.image.pullPolicy }}
+  # -- Mounts host CNI binary folder
+  # @default -- see values.yaml
+  volumeMounts:
+  - name: cnibin
+    mountPath: /host/opt/cni/bin
+
+
+# -- Command used by the Multus installer
+command:
+- /entrypoint.sh
+
+# -- Arguments used by the Multus installer.
+# See https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md
+# If you are not using k3s you will need to adjust the multus-kubeconfig.
+args:
+  - "--multus-conf-file=auto"
+  - "--cleanup-config-on-exit=true"
+  - "--cni-version={{ .Values.cni.version }}"
+  - "--multus-kubeconfig-file-host={{ .Values.cni.paths.config }}/multus.d/multus.kubeconfig"
+
+# -- Need to run as privileged to install
+securityContext:
+  privileged: true
+
+# -- Configures volumes used by the multus installer.
+# Set by default for k3s.
+# @default -- see values.yaml
+persistence:
+  cni:
+    enabled: true
+    type: hostPath
+    hostPath: {{ .Values.cni.paths.config }}
+    hostPathType: Directory
+    mountPath: /host/etc/cni/net.d
+  cnibin:
+    enabled: true
+    type: hostPath
+    hostPath: {{ .Values.cni.paths.bin }}
+    hostPathType: Directory
+    mountPath: /host/opt/cni/bin
+
+serviceAccount:
+  # -- create needed service account
+  create: true
+
+# -- Disable probes as installer completes after installing
+# @default -- see values.yaml
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+# -- Disable probes as installer completes after installing
+# @default -- see values.yaml
+service:
+  main:
+    enabled: false
+
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "multus.harcodedValues" . | fromYaml) -}}
+
 {{/* Render the templates */}}
 {{ include "common.all" . }}

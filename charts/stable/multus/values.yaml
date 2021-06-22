@@ -6,83 +6,30 @@
 #
 
 image:
-  # -- image repostory
+  # -- multus installer repostory
   repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-  # -- image tag
+  # -- multus installer tag
   tag: v3.7.1
-  # -- image pull policy
+  # -- multus installer pull policy
   pullPolicy: IfNotPresent
 
-controller:
-  # -- deploy to all nodes
-  type: daemonset
+cni:
+  image:
+    # -- CNI installer repostory
+    repository: ghcr.io/k8s-at-home/cni-plugins
+    # -- CNI installer tag
+    tag: v0.9.1
+    # -- CNI installer pull policy
+    pullPolicy: IfNotPresent
 
-serviceAccount:
-  # -- create needed service account
-  create: true
+  paths:
+    # -- CNI config folder for k3s.
+    # Change to `/etc/cni/net.d` for non k3s
+    config: /var/lib/rancher/k3s/agent/etc/cni/net.d
 
-initContainers:
-# -- Init container that install reference CNI plugins
-# @default -- See values.yaml
-- name: cni-installer
-  # -- CNI installer image
-  image: ghcr.io/k8s-at-home/cni-plugins:v0.9.1
-  # -- Mounts host CNI binary folder
-  # @default -- see values.yaml
-  volumeMounts:
-  - name: cnibin
-    mountPath: /host/opt/cni/bin
+    # -- CNI plugin binaries folder for k3s.
+    # Change to `/opt/cni/bin` for non k3s
+    bin: /var/lib/rancher/k3s/data/current/bin
 
-
-# -- Command used by the Multus installer
-command:
-- /entrypoint.sh
-
-# -- Arguments used by the Multus installer.
-# See https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md
-# If you are not using k3s you will need to adjust the multus-kubeconfig.
-# @default -- See values.yaml
-args:
-  - "--multus-conf-file=auto"
-  - "--cleanup-config-on-exit=true"
-  - "--cni-version=0.3.1"
-  - "--multus-kubeconfig-file-host=/var/lib/rancher/k3s/agent/etc/cni/net.d/multus.d/multus.kubeconfig"
-
-# -- Need to run as privileged to install
-securityContext:
-  privileged: true
-
-# -- Configures volumes used by the multus installer.
-# Set by default for k3s.
-# @default -- see values.yaml
-persistence:
-  cni:
-    enabled: true
-    type: hostPath
-    # hostPath: /etc/cni/net.d for non k3s
-    hostPath: /var/lib/rancher/k3s/agent/etc/cni/net.d
-    hostPathType: Directory
-    mountPath: /host/etc/cni/net.d
-  cnibin:
-    enabled: true
-    type: hostPath
-    # hostPath: /opt/cni/bin for non k3s
-    hostPath: /var/lib/rancher/k3s/data/current/bin
-    hostPathType: Directory
-    mountPath: /host/opt/cni/bin
-
-# -- Disable probes as installer completes after installing
-# @default -- see values.yaml
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false
-
-# -- Disable service as installer completes after installing
-# @default -- see values.yaml
-service:
-  main:
-    enabled: false
+    # -- CNI interface version
+    version: "0.3.1"
