@@ -91,20 +91,15 @@ rm -rf  /var/lib/rancher/k3s/agent/etc/cni/net.d/*multus*
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| args | list | `["--multus-conf-file=auto","--cleanup-config-on-exit=true","--cni-version=0.3.1","--multus-kubeconfig-file-host=/var/lib/rancher/k3s/agent/etc/cni/net.d/multus.d/multus.kubeconfig"]` | Arguments used by the Multus installer. See https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md If you are not using k3s you will need to adjust the multus-kubeconfig. |
-| command | list | `["/entrypoint.sh"]` | Command used by the Multus installer |
-| controller.type | string | `"daemonset"` | deploy to all nodes |
-| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"ghcr.io/k8snetworkplumbingwg/multus-cni"` | image repostory |
-| image.tag | string | `"v3.7.1"` | image tag |
-| initContainers | list | `[{"image":"ghcr.io/k8s-at-home/cni-plugins:v0.9.1","name":"cni-installer","volumeMounts":[{"mountPath":"/host/opt/cni/bin","name":"cnibin"}]}]` | Init container that install reference CNI plugins |
-| initContainers[0].image | string | `"ghcr.io/k8s-at-home/cni-plugins:v0.9.1"` | CNI installer image |
-| initContainers[0].volumeMounts | list | see values.yaml | Mounts host CNI binary folder |
-| persistence | object | see values.yaml | Configures volumes used by the multus installer. Set by default for k3s. |
-| probes | object | see values.yaml | Disable probes as installer completes after installing |
-| securityContext | object | `{"privileged":true}` | Need to run as privileged to install |
-| service | object | see values.yaml | Disable probes as installer completes after installing |
-| serviceAccount.create | bool | `true` | create needed service account |
+| cni.image.pullPolicy | string | `"IfNotPresent"` | CNI installer pull policy |
+| cni.image.repository | string | `"ghcr.io/k8s-at-home/cni-plugins"` | CNI installer repostory |
+| cni.image.tag | string | `"v0.9.1"` | CNI installer tag |
+| cni.paths.bin | string | `"/var/lib/rancher/k3s/data/current/bin"` | CNI plugin binaries folder for k3s. Change to `/opt/cni/bin` for non k3s |
+| cni.paths.config | string | `"/var/lib/rancher/k3s/agent/etc/cni/net.d"` | CNI config folder for k3s. Change to `/etc/cni/net.d` for non k3s |
+| cni.paths.version | string | `"0.3.1"` | CNI interface version |
+| image.pullPolicy | string | `"IfNotPresent"` | multus installer pull policy |
+| image.repository | string | `"ghcr.io/k8snetworkplumbingwg/multus-cni"` | multus installer repostory |
+| image.tag | string | `"v3.7.1"` | multus installer tag |
 
 ## Changelog
 
