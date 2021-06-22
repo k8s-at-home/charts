@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -75,36 +75,34 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers[0].image | string | `"redis:6.0"` |  |
-| additionalContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
-| additionalContainers[0].name | string | `"broker"` |  |
-| env.COMPOSE_PROJECT_NAME | string | `"paperless"` |  |
-| env.PAPERLESS_OCR_LANGUAGE | string | `"eng"` |  |
-| env.PAPERLESS_REDIS | string | `"redis://localhost:6379"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"jonaswinkler/paperless-ng"` |  |
-| image.tag | string | `"latest"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.consume.emptyDir.enabled | bool | `false` |  |
-| persistence.consume.enabled | bool | `false` |  |
-| persistence.consume.mountPath | string | `"/usr/src/paperless/consume"` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/usr/src/paperless/data"` |  |
-| persistence.export.emptyDir.enabled | bool | `false` |  |
-| persistence.export.enabled | bool | `false` |  |
-| persistence.export.mountPath | string | `"/usr/src/paperless/export"` |  |
-| persistence.media.emptyDir.enabled | bool | `false` |  |
-| persistence.media.enabled | bool | `false` |  |
-| persistence.media.mountPath | string | `"/usr/src/paperless/media"` |  |
-| service.port.port | int | `8000` |  |
-| strategy.type | string | `"Recreate"` |  |
+| additionalContainers | list | See values.yaml | Deploy local redis instance. |
+| env | object | See below | See the following files for additional environment variables: https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/ https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example |
+| env.COMPOSE_PROJECT_NAME | string | `"paperless"` | Project name |
+| env.PAPERLESS_OCR_LANGUAGE | string | `"eng"` | OCR languages to install |
+| env.PAPERLESS_REDIS | string | `"redis://localhost:6379"` | Redis to use |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"jonaswinkler/paperless-ng"` | image repository |
+| image.tag | string | `"1.4.5"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence.consume | object | See values.yaml | Configure volume to monitor for new documents. |
+| persistence.data | object | See values.yaml | Configure persistence for data. |
+| persistence.export | object | See values.yaml | Configure export volume. |
+| persistence.media | object | See values.yaml | Configure persistence for media. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [6.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed the image tag to `1.4.5`.
 
 ### [5.3.2]
 

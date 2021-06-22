@@ -7,19 +7,15 @@
 
 image:
   # -- image repository
-  repository: ghcr.io/sct/overseerr
+  repository: gotson/komga
   # -- image tag
-  tag: 1.25.0
+  tag: 0.99.4
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables.
+# -- environment variables. See more environment variables in the [komga documentation](https://komga.org/installation/configuration.html#optional-configuration).
 # @default -- See below
-env:
-  # -- Set the container timezone
-  TZ: UTC
-  # -- Set the application log level
-  LOG_LEVEL: info
+env: {}
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -27,7 +23,7 @@ service:
   main:
     ports:
       http:
-        port: 5055
+        port: 8080
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -40,4 +36,7 @@ ingress:
 persistence:
   config:
     enabled: false
-    mountPath: /app/config
+    mountPath: /config
+  data:
+    enabled: false
+    mountPath: /data
