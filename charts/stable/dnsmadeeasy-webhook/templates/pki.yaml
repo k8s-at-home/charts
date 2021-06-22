@@ -1,3 +1,4 @@
+{{- if .Values.generateCerts }}
 ---
 # Create a selfsigned Issuer, in order to create a root CA certificate for
 # signing webhook serving certificates
@@ -64,3 +65,4 @@ spec:
   - {{ include "common.names.fullname" . }}
   - {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}
   - {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.svc
+{{- end }}
