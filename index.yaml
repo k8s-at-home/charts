@@ -34043,6 +34043,31 @@ entries:
     version: 3.0.0
   nzbhydra2:
   - apiVersion: v2
+    appVersion: v3.14.2
+    created: "2021-06-22T09:46:28.323576322Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Usenet meta search
+    digest: 68ef92fd0ae22dcd328ca534559c6a3f5d263facb24577a015da1bb516d4632a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbhydra2
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/hydra-icon.png
+    keywords:
+    - nzbhydra2
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: nzbhydra2
+    sources:
+    - https://github.com/theotherp/nzbhydra2
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nzbhydra2-9.0.0/nzbhydra2-9.0.0.tgz
+    version: 9.0.0
+  - apiVersion: v2
     appVersion: v3.14.0
     created: "2021-05-05T14:51:23.833749624Z"
     dependencies:
@@ -38638,6 +38663,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/organizr-1.0.0/organizr-1.0.0.tgz
     version: 1.0.0
   overseerr:
+  - apiVersion: v2
+    appVersion: 1.25.0
+    created: "2021-06-22T09:46:28.435078958Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Overseerr is a free and open source software application for managing
+      requests for your media library. It integrates with your existing services such
+      as Sonarr, Radarr and Plex!
+    digest: fe5df8223b6bde18f3ae49416b7ae73ba5ea702573232e47f46c9ef590f852d2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overseerr
+    icon: https://i.imgur.com/TMoEG7g.png
+    keywords:
+    - overseerr
+    - plex
+    - sonarr
+    - radarr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: overseerr
+    sources:
+    - https://github.com/sct/overseerr
+    - https://hub.docker.com/r/sctx/overseerr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/overseerr-4.0.0/overseerr-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 1.19.1
     created: "2021-05-05T14:51:24.744343499Z"
@@ -49626,6 +49680,31 @@ entries:
     version: 4.0.0
   sabnzbd:
   - apiVersion: v2
+    appVersion: v3.3.1
+    created: "2021-06-22T09:46:28.548435173Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Free and easy binary newsreader
+    digest: 0790dee93e8f0618d1f2dab8a1e944e25adde3f5cc5517db1da2bceb55967eed
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sabnzbd
+    icon: https://avatars1.githubusercontent.com/u/960698?s=400&v=4
+    keywords:
+    - sabnzbd
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sabnzbd
+    sources:
+    - https://sabnzbd.org/
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sabnzbd-8.0.0/sabnzbd-8.0.0.tgz
+    version: 8.0.0
+  - apiVersion: v2
     appVersion: v3.2.1
     created: "2021-05-05T14:51:28.109480608Z"
     dependencies:
@@ -54238,6 +54317,30 @@ entries:
   stash:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-06-22T09:46:28.659399957Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: An organizer for your porn, written in Go
+    digest: 6a7ab6579173b2d66f6f675df5532696017554e95f50156471614af77ca7ddbe
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/stash
+    icon: https://raw.githubusercontent.com/stashapp/website/master/images/stash.svg
+    keywords:
+    - porn
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: devin.kray@gmail.com
+      name: onedr0p
+    name: stash
+    sources:
+    - https://github.com/stashapp/stash
+    - https://hub.docker.com/r/stashapp/stash
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/stash-2.0.0/stash-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-05-17T14:24:26.450958182Z"
     dependencies:
     - name: common
@@ -55304,6 +55407,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/syncthing-1.0.0/syncthing-1.0.0.tgz
     version: 1.0.0
   tautulli:
+  - apiVersion: v2
+    appVersion: v2.7.4
+    created: "2021-06-22T09:46:28.784478323Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: A Python based monitoring and tracking tool for Plex Media Server
+    digest: 92dbe752c4e3550a33cdb542f2747724d8a2b29e25437ec8850f5adb218b18cb
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tautulli
+    icon: https://github.com/Tautulli/Tautulli/blob/master/data/interfaces/default/images/logo.png?raw=true
+    keywords:
+    - tautulli
+    - plex
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: tautulli
+    sources:
+    - https://github.com/Tautulli/Tautulli
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tautulli-10.0.0/tautulli-10.0.0.tgz
+    version: 10.0.0
   - apiVersion: v2
     appVersion: v2.7.0
     created: "2021-05-05T14:51:30.117744655Z"
@@ -58034,6 +58162,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/thelounge-1.0.0/thelounge-1.0.0.tgz
     version: 1.0.0
   traccar:
+  - apiVersion: v2
+    appVersion: v4.13
+    created: "2021-06-22T09:46:28.950964982Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.13
+    description: Traccar is an open source GPS tracking system.
+    digest: f5450d68958a395a21f587c362ea504134d488a6040d62861fd968fcc7eead89
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/traccar
+    icon: https://github.com/traccar/traccar-web/raw/master/web/icon.png
+    keywords:
+    - traccar
+    - gps
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: traccar
+    sources:
+    - https://github.com/traccar/traccar
+    - https://hub.docker.com/r/traccar/traccar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traccar-5.0.0/traccar-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v2
     appVersion: v4.11
     created: "2021-06-01T04:42:47.139292337Z"
@@ -64574,6 +64731,33 @@ entries:
   xteve:
   - apiVersion: v2
     appVersion: v2.2.0.200
+    created: "2021-06-22T09:46:29.083772812Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: M3U Proxy for Plex DVR and Emby Live TV.
+    digest: c55ca8ebcad652b73bdbfaed437f576461bdac9a829ee85d655318c8752f2a31
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/xteve
+    icon: https://raw.githubusercontent.com/xteve-project/xTeVe/master/html/img/logo_b_880x200.jpg
+    keywords:
+    - xteve
+    - iptv
+    - plex
+    - emby
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: xteve
+    sources:
+    - https://github.com/xteve-project/xTeVe
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/xteve-7.0.0/xteve-7.0.0.tgz
+    version: 7.0.0
+  - apiVersion: v2
+    appVersion: v2.2.0.200
     created: "2021-05-05T14:51:32.959965882Z"
     dependencies:
     - name: common
@@ -68218,4 +68402,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-22T08:48:49.197814588Z"
+generated: "2021-06-22T09:46:29.098479566Z"
