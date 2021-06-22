@@ -11,8 +11,5 @@ persistence:
     mountPath: /root/.stash
   media:
     enabled: true
-    emptyDir:
-      enabled: true
-    size: 10M
+    type: emptyDir
     mountPath: /media
-    accessMode: ReadWriteOnce
