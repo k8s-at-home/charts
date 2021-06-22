@@ -1,6 +1,6 @@
 # multus
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: v3.7.1](https://img.shields.io/badge/AppVersion-v3.7.1-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: v3.7.1](https://img.shields.io/badge/AppVersion-v3.7.1-informational?style=flat-square)
 
 multus CNI allows multiple NICs per pod
 
@@ -96,7 +96,7 @@ rm -rf  /var/lib/rancher/k3s/agent/etc/cni/net.d/*multus*
 | cni.image.tag | string | `"v0.9.1"` | CNI installer tag |
 | cni.paths.bin | string | `"/var/lib/rancher/k3s/data/current/bin"` | CNI plugin binaries folder for k3s. Change to `/opt/cni/bin` for non k3s |
 | cni.paths.config | string | `"/var/lib/rancher/k3s/agent/etc/cni/net.d"` | CNI config folder for k3s. Change to `/etc/cni/net.d` for non k3s |
-| cni.paths.version | string | `"0.3.1"` | CNI interface version |
+| cni.version | string | `"0.3.1"` | CNI interface version |
 | image.pullPolicy | string | `"IfNotPresent"` | multus installer pull policy |
 | image.repository | string | `"ghcr.io/k8snetworkplumbingwg/multus-cni"` | multus installer repostory |
 | image.tag | string | `"v3.7.1"` | multus installer tag |
@@ -106,6 +106,18 @@ rm -rf  /var/lib/rancher/k3s/agent/etc/cni/net.d/*multus*
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.2]
+
+#### Changed
+
+- Correct cni version in values.yaml
+
+### [2.0.1]
+
+#### Changed
+
+- Fix `pullPolicy`to `imagePullPolicy` in init container
 
 ### [2.0.0]
 

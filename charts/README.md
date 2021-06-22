@@ -134,7 +134,6 @@
 | [youtubedl-material](stable/youtubedl-material) | Self-hosted YouTube downloader built on Material Design |
 | [zalando-postgres-cluster](stable/zalando-postgres-cluster) | Creates a postgres cluster using the Zalando Postgres operator and local storage |
 | [zigbee2mqtt](stable/zigbee2mqtt) | Bridges events and allows you to control your Zigbee devices via MQTT |
-| [zwave2mqtt](stable/zwave2mqtt) | Fully configurable Zwave to MQTT gateway and Control Panel using NodeJS and Vue |
 | [zwavejs2mqtt](stable/zwavejs2mqtt) | Fully configurable Zwave to MQTT Gateway and Control Panel |
 ### Incubator charts:
 | Chart | Description |
