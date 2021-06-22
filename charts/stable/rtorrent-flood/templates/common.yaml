@@ -1,31 +1,19 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap to the additionalVolumes */}}
-{{- define "rtorrent-flood.configmap.volume" -}}
-name: rtorrent-flood-config
-configMap:
-  name: {{ template "common.names.fullname" . }}-config
+{{/* Append the hardcoded settings */}}
+{{- define "rtorrent-flood.harcodedValues" -}}
+persistence:
+  rtorrent-flood-config:
+    enabled: true
+    mountPath: "/config/.rtorrent.rc"
+    subPath: ".rtorrent.rc"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ include "common.names.fullname" . }}-config
 {{- end -}}
-
-{{- $volume := include "rtorrent-flood.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
-
-{{/* Append the configMap volume to the additionalVolumeMounts */}}
-{{- define "rtorrent-flood.configmap.volumeMount" -}}
-name: rtorrent-flood-config
-mountPath: /config/.rtorrent.rc
-subPath: .rtorrent.rc
-{{- end -}}
-
-{{- $volumeMount := include "rtorrent-flood.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "rtorrent-flood.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
