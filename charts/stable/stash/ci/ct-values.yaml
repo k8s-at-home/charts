@@ -7,11 +7,8 @@ env:
 persistence:
   config:
     enabled: true
-    emptyDir:
-      enabled: true
-    size: 10M
+    type: emptyDir
     mountPath: /root/.stash
-    accessMode: ReadWriteOnce
   media:
     enabled: true
     emptyDir:
