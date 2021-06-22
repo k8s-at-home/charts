@@ -82,7 +82,7 @@ N/A
 | env.LOGGER_CONSOLE | bool | `true` | Set application to log to stdout |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"traccar/traccar"` | image repository |
-| image.tag | float | `4.13` | image tag |
+| image.tag | string | `"4.13"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb). |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
