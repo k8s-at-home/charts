@@ -22,11 +22,11 @@ spec:
       - name: remove-config
         image: "alpine"
         command: ["/bin/sh","-c", "rm -rf  /host/etc/cni/net.d/*multus*"]
-        {{- with (include "common.controller.volumeMounts" . | trim) }}
         volumeMounts:
-          {{- . | nindent 10 }}
-        {{- end }}
-      {{- with (include "common.controller.volumes" . | trim) }}
+        - name: cni
+          mountPath: /host/etc/cni/net.d
       volumes:
-        {{- . | nindent 8 }}
-      {{- end }}
+      - name: cni
+        hostPath:
+          path: {{ .Values.cni.paths.config }}
+          type: Directory
