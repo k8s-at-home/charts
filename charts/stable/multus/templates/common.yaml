@@ -3,7 +3,6 @@
 
 {{/* Append the hardcoded settings */}}
 {{- define "multus.harcodedValues" -}}
-
 controller:
   # -- deploy to all nodes
   type: daemonset
@@ -15,11 +14,9 @@ initContainers:
   image: {{ .Values.cni.image.repository }}:{{ .Values.cni.image.tag }}
   pullPolicy: {{ .Values.cni.image.pullPolicy }}
   # -- Mounts host CNI binary folder
-  # @default -- see values.yaml
   volumeMounts:
   - name: cnibin
     mountPath: /host/opt/cni/bin
-
 
 # -- Command used by the Multus installer
 command:
@@ -39,8 +36,6 @@ securityContext:
   privileged: true
 
 # -- Configures volumes used by the multus installer.
-# Set by default for k3s.
-# @default -- see values.yaml
 persistence:
   cni:
     enabled: true
@@ -60,7 +55,6 @@ serviceAccount:
   create: true
 
 # -- Disable probes as installer completes after installing
-# @default -- see values.yaml
 probes:
   liveness:
     enabled: false
@@ -70,11 +64,9 @@ probes:
     enabled: false
 
 # -- Disable probes as installer completes after installing
-# @default -- see values.yaml
 service:
   main:
     enabled: false
-
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "multus.harcodedValues" . | fromYaml) -}}
 
