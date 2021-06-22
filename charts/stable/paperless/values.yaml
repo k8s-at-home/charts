@@ -6,53 +6,78 @@
 #
 
 image:
+  # -- image repository
   repository: jonaswinkler/paperless-ng
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: latest
+  # -- image tag
+  tag: 1.4.5
 
-strategy:
-  type: Recreate
-
-# See the following files for additional environment variables
+# -- See the following files for additional environment variables:
 # https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/
 # https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example
+# @default -- See below
 env:
+  # -- Project name
   COMPOSE_PROJECT_NAME: paperless
+  # -- Redis to use
   PAPERLESS_REDIS: redis://localhost:6379
+  # -- OCR languages to install
   PAPERLESS_OCR_LANGUAGE: eng
   # USERMAP_UID: 1000
   # USERMAP_GID: 1000
   # PAPERLESS_TIME_ZONE: Europe/London
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8000
+  main:
+    ports:
+      http:
+        port: 8000
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 persistence:
+  # -- Configure persistence for data.
+  # @default -- See values.yaml
   data:
     enabled: false
     mountPath: /usr/src/paperless/data
+    accessMode: ReadWriteOnce
     emptyDir:
       enabled: false
+  # -- Configure persistence for media.
+  # @default -- See values.yaml
   media:
     enabled: false
     mountPath: /usr/src/paperless/media
+    accessMode: ReadWriteOnce
     emptyDir:
       enabled: false
+  # -- Configure volume to monitor for new documents.
+  # @default -- See values.yaml
   consume:
     enabled: false
     mountPath: /usr/src/paperless/consume
+    accessMode: ReadWriteOnce
     emptyDir:
       enabled: false
+  # -- Configure export volume.
+  # @default -- See values.yaml
   export:
     enabled: false
     mountPath: /usr/src/paperless/export
+    accessMode: ReadWriteOnce
     emptyDir:
       enabled: false
 
+# -- Deploy local redis instance.
+# @default -- See values.yaml
 additionalContainers:
   - name: broker
     image: redis:6.0
