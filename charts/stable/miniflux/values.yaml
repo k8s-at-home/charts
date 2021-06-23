@@ -10,9 +10,6 @@ image:
   tag: 2.0.31
   pullPolicy: IfNotPresent
 
-# -- Override the command(s) for the default container
-command: ['/usr/bin/miniflux', '-c', '/etc/miniflux.conf']
-
 # -- environment variables. See [miniflux docs](https://miniflux.app/docs/configuration.html) for more details.
 # @default -- See below
 env:

@@ -76,7 +76,6 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| command | list | `["/usr/bin/miniflux","-c","/etc/miniflux.conf"]` | Override the command(s) for the default container |
 | env | object | See below | environment variables. See [miniflux docs](https://miniflux.app/docs/configuration.html) for more details. |
 | env.ADMIN_PASSWORD | string | `"changeme"` | Admin user password, it's used only if `CREATE_ADMIN` is enabled. |
 | env.ADMIN_USERNAME | string | `"admin"` | Admin user login, it's used only if `CREATE_ADMIN` is enabled. |
