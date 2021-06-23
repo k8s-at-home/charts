@@ -1,6 +1,6 @@
 ---
 labels:
-  - name: kind:invalid-template
+  - name: kind:incomplete-template
     labeled:
       issue:
         body: |
@@ -13,7 +13,7 @@ labels:
     labeled:
       issue:
         body: |
-          :wave: @{issue-author}, we use the issue tracker exclusively
+          :wave: @{{ issue.user.login }}, we use the issue tracker exclusively
           for bug reports and feature requests. However, this issue appears
           to be a support request. Please use our support channels
           to get help.
@@ -22,7 +22,7 @@ labels:
           - [GitHub Discussions](https://github.com/k8s-at-home/organization/discussions)
         action: close
 
-  - name: kind:incomplete-pr
+  - name: kind:incomplete-pull-request
     labeled:
       pr:
         body: |

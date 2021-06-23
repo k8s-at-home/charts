@@ -12,7 +12,7 @@ initContainers:
 - name: cni-installer
   # -- CNI installer image
   image: {{ .Values.cni.image.repository }}:{{ .Values.cni.image.tag }}
-  pullPolicy: {{ .Values.cni.image.pullPolicy }}
+  imagePullPolicy: {{ .Values.cni.image.pullPolicy }}
   # -- Mounts host CNI binary folder
   volumeMounts:
   - name: cnibin
