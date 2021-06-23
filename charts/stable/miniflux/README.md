@@ -1,6 +1,6 @@
 # miniflux
 
-![Version: 2.5.1](https://img.shields.io/badge/Version-2.5.1-informational?style=flat-square) ![AppVersion: 2.0.28](https://img.shields.io/badge/AppVersion-2.0.28-informational?style=flat-square)
+![Version: 3.5.1](https://img.shields.io/badge/Version-3.5.1-informational?style=flat-square) ![AppVersion: 2.0.32](https://img.shields.io/badge/AppVersion-2.0.32-informational?style=flat-square)
 
 Miniflux is a minimalist and opinionated feed reader.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,39 +76,39 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| command[0] | string | `"/usr/bin/miniflux"` |  |
-| command[1] | string | `"-c"` |  |
-| command[2] | string | `"/etc/miniflux.conf"` |  |
-| config.admin.password | string | `"miniflux"` |  |
-| config.admin.username | string | `"admin"` |  |
-| env.CREATE_ADMIN | string | `"1"` |  |
-| env.RUN_MIGRATIONS | string | `"1"` |  |
+| command | list | `["/usr/bin/miniflux","-c","/etc/miniflux.conf"]` | Override the command(s) for the default container |
+| env | object | See below | environment variables. See [miniflux docs](https://miniflux.app/docs/configuration.html) for more details. |
+| env.ADMIN_PASSWORD | string | `"changeme"` | Admin user password, it's used only if `CREATE_ADMIN` is enabled. |
+| env.ADMIN_USERNAME | string | `"admin"` | Admin user login, it's used only if `CREATE_ADMIN` is enabled. |
+| env.CREATE_ADMIN | string | `"1"` | Set to `1` to create an admin user from environment variables. |
+| env.DATABASE_URL | string | `"postgres://{{ .Values.postgresql.postgresqlUsername }}:{{ .Values.postgresql.postgresqlPassword }}@{{ include \"common.names.fullname\" .}}-postgresql/{{ .Values.postgresql.postgresqlDatabase }}?sslmode=disable"` | Postgresql connection parameters. See [lib/pq](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters) for more details. |
+| env.RUN_MIGRATIONS | string | `"1"` | Set to `1` to run database migrations during application startup. |
+| env.TZ | string | `"UTC"` | Set the container timezone. |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"miniflux/miniflux"` |  |
-| image.tag | string | `"2.0.28"` |  |
-| ingress.enabled | bool | `false` |  |
-| postgresql | object | `{"enabled":true,"persistence":{"enabled":false},"postgresqlDatabase":"miniflux","postgresqlPassword":"miniflux","postgresqlUsername":"postgres"}` | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
-| postgresql.enabled | bool | `true` | true: use bitnami postgres instance -- false: use your own postgres instance |
-| postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
-| postgresql.postgresqlDatabase | string | `"miniflux"` | Postgres database |
-| postgresql.postgresqlPassword | string | `"miniflux"` | Postgres user password |
-| postgresql.postgresqlUsername | string | `"postgres"` | Postgres user -- Needs to be superuser to create hstore extension |
-| probes.liveness.custom | bool | `true` |  |
-| probes.liveness.enabled | bool | `true` |  |
-| probes.liveness.spec.failureThreshold | int | `3` |  |
-| probes.liveness.spec.httpGet.path | string | `"/healthcheck"` |  |
-| probes.liveness.spec.httpGet.port | int | `8080` |  |
-| probes.liveness.spec.initialDelaySeconds | int | `30` |  |
-| probes.liveness.spec.periodSeconds | int | `10` |  |
-| probes.liveness.spec.timeoutSeconds | int | `1` |  |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.tag | string | `"2.0.31"` |  |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| postgresql | object | Enabled (see values.yaml for more details) | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| probes | object | See values.yaml | Configures the probes for the main Pod. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/charts/tree/master/charts/common/README.md#Changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `2.0.32`.
+
+#### Removed
+
+- **BREAKING**: Removed `config` section, since these values could be set through environment variables.
 
 ### [1.0.0]
 

@@ -5,34 +5,46 @@
 # https://github.com/k8s-at-home/charts/tree/master/charts/common/values.yaml
 #
 
-command: ['/usr/bin/miniflux', '-c', '/etc/miniflux.conf']
-
 image:
   repository: miniflux/miniflux
+  tag: 2.0.31
   pullPolicy: IfNotPresent
-  tag: 2.0.28
 
-strategy:
-  type: Recreate
+# -- Override the command(s) for the default container
+command: ['/usr/bin/miniflux', '-c', '/etc/miniflux.conf']
 
-# See more environment variables in the miniflux documentation
-# https://miniflux.app/docs/configuration.html
+# -- environment variables. See [miniflux docs](https://miniflux.app/docs/configuration.html) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone.
+  TZ: UTC
+  # -- Postgresql connection parameters. See [lib/pq](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters) for more details.
+  DATABASE_URL: postgres://{{ .Values.postgresql.postgresqlUsername }}:{{ .Values.postgresql.postgresqlPassword }}@{{ include "common.names.fullname" .}}-postgresql/{{ .Values.postgresql.postgresqlDatabase }}?sslmode=disable
+  # -- Set to `1` to run database migrations during application startup.
   RUN_MIGRATIONS: '1'
+  # -- Set to `1` to create an admin user from environment variables.
   CREATE_ADMIN: '1'
+  # -- Admin user login, it's used only if `CREATE_ADMIN` is enabled.
+  ADMIN_USERNAME: admin
+  # -- Admin user password, it's used only if `CREATE_ADMIN` is enabled.
+  ADMIN_PASSWORD: changeme
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
-config:
-  admin:
-    username: admin
-    password: miniflux
-
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
 probes:
   liveness:
     enabled: true
@@ -46,19 +58,15 @@ probes:
         path: /healthcheck
         port: 8080
 
-# -- Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- Enabled (see values.yaml for more details)
 postgresql:
-  # -- true: use bitnami postgres instance
-  # -- false: use your own postgres instance
   enabled: true
-  # -- Postgres database
   postgresqlDatabase: miniflux
-  # -- Postgres user
-  # -- Needs to be superuser to create hstore extension
   postgresqlUsername: postgres
-  # -- Postgres user password
   postgresqlPassword: miniflux
   persistence:
-    # -- if database is stored to a PVC. Set to true when you are done testing.
     enabled: false
     # storageClass: ""
+    # size: 8Gi

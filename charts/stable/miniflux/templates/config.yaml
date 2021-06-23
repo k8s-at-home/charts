@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ include "common.names.fullname" . }}-config
-stringData:
-  miniflux.conf: |
-    ADMIN_USERNAME={{ .Values.config.admin.username }}
-    ADMIN_PASSWORD={{ .Values.config.admin.password }}
-    DATABASE_URL=postgres://{{ .Values.postgresql.postgresqlUsername }}:{{ .Values.postgresql.postgresqlPassword }}@{{ include "common.names.fullname" .}}-postgresql/{{ .Values.postgresql.postgresqlDatabase }}?sslmode=disable
