@@ -6,25 +6,35 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/tautulli
+  # -- image tag
+  tag: v2.7.4
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v2.7.0
 
-strategy:
-  type: Recreate
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ: UTC
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8181
+  main:
+    ports:
+      http:
+        port: 8181
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false

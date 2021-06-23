@@ -7,11 +7,9 @@ env:
 persistence:
   config:
     enabled: true
-    emptyDir:
-      enabled: true
+    type: emptyDir
     mountPath: /root/.stash
   media:
     enabled: true
-    emptyDir:
-      enabled: true
+    type: emptyDir
     mountPath: /media

@@ -6,64 +6,30 @@
 #
 
 image:
+  # -- multus installer repostory
   repository: ghcr.io/k8snetworkplumbingwg/multus-cni
+  # -- multus installer tag
   tag: v3.7.1
+  # -- multus installer pull policy
   pullPolicy: IfNotPresent
 
-controllerType: daemonset
+cni:
+  image:
+    # -- CNI installer repostory
+    repository: ghcr.io/k8s-at-home/cni-plugins
+    # -- CNI installer tag
+    tag: v0.9.1
+    # -- CNI installer pull policy
+    pullPolicy: IfNotPresent
 
-serviceAccount:
-  create: true
+  paths:
+    # -- CNI config folder for k3s.
+    # Change to `/etc/cni/net.d` for non k3s
+    config: /var/lib/rancher/k3s/agent/etc/cni/net.d
 
-# -- Init container that install reference CNI plugins
-initContainers:
-- name: cni-installer
-  image: ghcr.io/k8s-at-home/cni-plugins:v0.9.1
-  volumeMounts:
-  - name: cnibin
-    mountPath: /host/opt/cni/bin
+    # -- CNI plugin binaries folder for k3s.
+    # Change to `/opt/cni/bin` for non k3s
+    bin: /var/lib/rancher/k3s/data/current/bin
 
-
-command:
-- /entrypoint.sh
-
-args:
-  - "--multus-conf-file=auto"
-  - "--cleanup-config-on-exit=true"
-  - "--cni-version=0.3.1"
-  - "--multus-kubeconfig-file-host=/var/lib/rancher/k3s/agent/etc/cni/net.d/multus.d/multus.kubeconfig"
-
-securityContext:
-  privileged: true
-
-strategy:
-  type: RollingUpdate
-
-additionalVolumes:
-- name: cni
-  hostPath:
-    # path: /etc/cni/net.d
-    path: /var/lib/rancher/k3s/agent/etc/cni/net.d
-    type: Directory
-- name: cnibin
-  hostPath:
-    # path: /opt/cni/bin
-    path: /var/lib/rancher/k3s/data/current/bin
-    type: Directory
-
-additionalVolumeMounts:
-- name: cni
-  mountPath: /host/etc/cni/net.d
-- name: cnibin
-  mountPath: /host/opt/cni/bin
-
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false
-
-service:
-  enabled: false
+  # -- CNI interface version
+  version: "0.3.1"

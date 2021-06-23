@@ -5,9 +5,10 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
-# # Use an initContainer to delete the rtorrent.lock file when the pod starts
-# # this is only required if `session.use_lock.set = no` is NOT set
-# initContainers:
+# -- Use an initContainer tto delete the rtorrent.lock file when the pod starts
+# this is only required if `session.use_lock.set = no` is NOT set
+# @default -- See values.yaml
+initContainers: []
 # - name: remove-session-lock
 #   image: busybox
 #   command: ["sh", "-c", "rm -rf /config/.local/share/rtorrent/.session/rtorrent.lock"]
@@ -16,61 +17,60 @@
 #     mountPath: /config
 
 image:
+  # -- image repository
   repository: jesec/rtorrent-flood
+  # -- image tag
+  tag: latest@sha256:f0c894ec459e52d85bc69685247ddbd8e8fcf3709b50bf8ee8b0df3bf69b7b49
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: latest@sha256:5ff0125ea0e2befbc2ba2f2143e130819db645cb5ef68b44a0712b8162a16f47
 
-strategy:
-  type: Recreate
-
-# Environment configuration - for more options see:
-# https://github.com/jesec/flood#configuration
+# -- environment variables. See [image docs](https://github.com/jesec/flood#configuration) for more details.
+# @default -- See below
 env:
-  # TZ:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Folder where Flood stores it's configuration
   HOME: "/config"
+  # -- The host that Flood should listen for web connections on
   FLOOD_OPTION_HOST: "0.0.0.0"
+  # -- The port that Flood should listen for web connections on
   FLOOD_OPTION_PORT: "3000"
+  # -- ADVANCED: rTorrent daemon managed by Flood
   FLOOD_OPTION_RTORRENT: "true"
+  # -- Allowed path for file operations
   FLOOD_OPTION_ALLOWEDPATH: "/downloads"
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 3000
-  additionalServices:
-  - enabled: true
-    nameSuffix: bittorrent
+  main:
+    ports:
+      http:
+        port: 3000
+  bittorrent:
+    enabled: false
     type: ClusterIP
-    port:
-      port: 6881
-      name: bittorrent
-      protocol: TCP
-      targetPort: 6881
+    ports:
+      bittorrent:
+        enabled: true
+        port: 6881
+        protocol: TCP
+        targetPort: 6881
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
 
   downloads:
     enabled: false
-    emptyDir:
-      enabled: false
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
 # -- Minimal configuration provided from https://github.com/jesec/rtorrent/blob/master/doc/rtorrent.rc
 # @default -- string
