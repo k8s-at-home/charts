@@ -1,6 +1,6 @@
 # miniflux
 
-![Version: 3.5.1](https://img.shields.io/badge/Version-3.5.1-informational?style=flat-square) ![AppVersion: 2.0.32](https://img.shields.io/badge/AppVersion-2.0.32-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.0.32](https://img.shields.io/badge/AppVersion-2.0.32-informational?style=flat-square)
 
 Miniflux is a minimalist and opinionated feed reader.
 
@@ -114,7 +114,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial chart release
 
-[1.0.0]: https://github.com/k8s-at-home/charts/tree/miniflux-1.0.0/charts/home-assistant
+[3.0.0]: #300
+[1.0.0]: #100
 
 ## Support
 
