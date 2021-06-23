@@ -61149,6 +61149,36 @@ entries:
     version: 1.0.0
   unifi-poller:
   - apiVersion: v2
+    appVersion: 2.1.3
+    created: "2021-06-23T09:26:39.314747847Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Collect ALL UniFi Controller, Site, Device & Client Data - Export
+      to InfluxDB or Prometheus
+    digest: 1c6fb4bfb8a0b50d5008ff73361b4ce6c30065d309510654529b68dafad8b3ba
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi-poller
+    icon: https://raw.githubusercontent.com/wiki/unifi-poller/unifi-poller/images/unifi-poller-logo.png
+    keywords:
+    - unifi
+    - unifi-poller
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: unifi-poller
+    sources:
+    - https://github.com/unifi-poller/unifi-poller
+    - https://hub.docker.com/r/golift/unifi-poller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-poller-8.0.0/unifi-poller-8.0.0.tgz
+    version: 8.0.0
+  - apiVersion: v2
     appVersion: 2.0.1
     created: "2021-05-05T14:51:31.529752619Z"
     dependencies:
@@ -68506,4 +68536,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-23T07:59:51.435341922Z"
+generated: "2021-06-23T09:26:39.32676937Z"
