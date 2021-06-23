@@ -91,7 +91,6 @@ N/A
 | prometheus.serviceMonitor.enabled | bool | `false` | Create a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/design.md#servicemonitor)    for the [unifi-poller prometheus exporter](https://unifipoller.com/docs/dependencies/prometheus)    that is recognized by [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator).    This gets created in this chart's namespace. Note: this only creates a ServiceMonitor, not a prometheus instance. |
 | prometheus.serviceMonitor.interval | string | `"1m"` | Prometheus [endpoint polling interval](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#endpoint)    for this ServiceMonitor (how often unifi-poller will be queried). |
 | service.main.ports.http.port | int | `9130` | The port this prometheus exporter will listen on ([registered as 9130](https://github.com/prometheus/prometheus/wiki/Default-port-allocations)).    This should match unifi-poller's [configured listen port](https://unifipoller.com/docs/install/configuration#prometheus). |
-| strategy | string | `"Recreate"` | [Deployment strategy](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) used to replace old Pods by new ones. |
 
 ## Changelog
 
@@ -107,7 +106,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- Upgrades unifi-poller dependency: k8s-at-home common library from version 2.5.0 to version 3.2.0 - BREAKING CHANGE
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+   Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
 - Change the default influxdb database name to match unifi-poller's default - BREAKING CHANGE
 - Updates default unifi-poller version from 2.0.1 to 2.1.3
 
