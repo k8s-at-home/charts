@@ -1,6 +1,6 @@
 # dnsmadeeasy-webhook
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
 
 Cert-Manager Webhook for DNSMadeEasy
 
@@ -17,6 +17,7 @@ Cert-Manager Webhook for DNSMadeEasy
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.jetstack.io | cert-manager | v1.4.0 |
 | https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
@@ -74,8 +75,10 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| cert-manager.enabled | bool | `false` | Install cert-manager chart as dependency. Usually this is already installed in the cluster and not needed. |
 | certManager.namespace | string | `"cert-manager"` | Namespace where the cert-manager operator was installed to |
 | certManager.serviceAccountName | string | `"cert-manager"` | Service account used by the cert-manager |
+| generateCerts | bool | `true` | Generate dedicated certs instead of re-using the cert-manager webhook certificate. |
 | groupName | string | `"acme.mycompany.com"` | The GroupName here is used to identify your company or business unit that created this webhook. This name will need to be referenced in each Issuer's `webhook` stanza to inform cert-manager of where to send ChallengePayload resources in order to solve the DNS01 challenge. This group name should be **unique**, hence using your own company's domain here is recommended. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/dnsmadeeasy-webhook"` | Image repository |
@@ -87,6 +90,20 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.3.0]
+
+#### Added
+
+- Testcases
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
 
 ### [3.1.0]
 
