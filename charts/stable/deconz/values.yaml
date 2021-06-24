@@ -30,10 +30,9 @@ env:
   DECONZ_VNC_PORT: 5900
   # -- If VNC is enabled (DECONZ_VNC_MODE=1) you can change the default password "changeme" using a Secret.
   DECONZ_VNC_PASSWORD:
-    # envFrom:
-    #   secretKeyRef:
-    #     name: deconz-vnc-password
-    #     key: password
+    # secretKeyRef:
+    #   name: deconz-vnc-password
+    #   key: password
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

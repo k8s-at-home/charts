@@ -1,6 +1,6 @@
 # deconz
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 2.12.01](https://img.shields.io/badge/AppVersion-2.12.01-informational?style=flat-square)
+![Version: 5.1.1](https://img.shields.io/badge/Version-5.1.1-informational?style=flat-square) ![AppVersion: 2.12.01](https://img.shields.io/badge/AppVersion-2.12.01-informational?style=flat-square)
 
 deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort.
 
@@ -100,6 +100,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [5.1.1]
+
+#### Fixed
+
+- Fixed the `DECONZ_VNC_PASSWORD` example.
+
 ### [5.0.0]
 
 #### Changed
@@ -123,6 +129,10 @@ This will preserve all devices, settings and access tokens. The configuration ca
 #### Changed
 
 - Initial release using common chart
+
+[5.1.1]: #511
+[5.0.0]: #500
+[3.0.0]: #300
 
 ## Support
 
