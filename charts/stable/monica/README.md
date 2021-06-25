@@ -79,7 +79,7 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [monica documentation](https://raw.githubusercontent.com/monicahq/monica/master/.env.example) for more details. |
 | env.APP_ENV | string | `"production"` | Use `local` if you want to install Monica as a development version. Use `production` otherwise. |
-| env.APP_KEY | string | `nil` | The encryption key. This is the most important part of the application.  Keep this secure otherwise, everyone will be able to access your application. Must be 32 characters long exactly. Use `php artisan key:generate` or `echo -n 'base64:'; openssl rand -base64 32` to generate a random key. |
+| env.APP_KEY | string | `nil` | The encryption key. This is the most important part of the application. Keep this secure otherwise, everyone will be able to access your application. Must be 32 characters long exactly. Use `php artisan key:generate` or `echo -n 'base64:'; openssl rand -base64 32` to generate a random key. |
 | env.APP_URL | string | `"https://crm.k8s-at-home.com"` | The URL of your application. |
 | env.DB_DATABASE | string | `nil` | Database to connect to |
 | env.DB_HOST | string | `nil` | Database hostname |

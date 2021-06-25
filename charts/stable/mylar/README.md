@@ -82,7 +82,7 @@ N/A
 | env.PUID | string | `"1000"` | Specify the user ID the application will run as |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"ghcr.io/linuxserver/mylar3ghcr.io/linuxserver/mylar3"` | image repository |
+| image.repository | string | `"ghcr.io/linuxserver/mylar3"` | image repository |
 | image.tag | string | `"version-v0.5.3"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
