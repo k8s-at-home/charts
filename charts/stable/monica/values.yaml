@@ -6,40 +6,60 @@
 #
 
 image:
+  # -- image repository
   repository: monica
+  # -- image tag
+  tag: 3.1.1-apache
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 2.19.1-apache
 
-strategy:
-  type: Recreate
+# -- environment variables. See [monica documentation](https://raw.githubusercontent.com/monicahq/monica/master/.env.example) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Use `local` if you want to install Monica as a development version. Use `production` otherwise.
+  APP_ENV: production
+  # -- The encryption key. This is the most important part of the application.
+  # Keep this secure otherwise, everyone will be able to access your application.
+  # Must be 32 characters long exactly.
+  # Use `php artisan key:generate` or `echo -n 'base64:'; openssl rand -base64 32` to generate a random key.
+  APP_KEY:
+  # -- The URL of your application.
+  APP_URL: https://crm.k8s-at-home.com
+  # -- Database hostname
+  DB_HOST:  # monica-mariadb
+  # -- Database to connect to
+  DB_DATABASE:  # monica
+  # -- Database username
+  DB_USERNAME:  # monica
+  # -- Database password
+  DB_PASSWORD:  # monicapass
 
-env: {}
-  # See the Monica documentation for all available options for environment variables: https://raw.githubusercontent.com/monicahq/monica/master/.env.example
-  # APP_ENV: production
-  # Generate a different APP_KEY with `pwgen -s 32 1`
-  # APP_KEY: pG335ncsoY7z18CLdpXOp0JXGYKMtFa1
-  # APP_URL: https://crm.k8s-at-home.com
-  # DB_HOST: monica-mariadb
-  # DB_DATABASE: monica
-  # DB_USERNAME: monica
-  # DB_PASSWORD: monicapass
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /var/www/html/storage
 
-# Enabled mariadb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+# @default -- See values.yaml
 mariadb:
   enabled: false
   architecture: standalone
