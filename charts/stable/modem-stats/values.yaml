@@ -6,14 +6,18 @@
 #
 
 image:
+  # -- image repository
   repository: billimek/sb6183-for-influxdb
+  # -- image tag
   tag: latest
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
-env: {}
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
 # -- modem-stats' config.ini configuration
 # @default -- string
@@ -30,15 +34,3 @@ config: |
   Verify_SSL = False
   [MODEM]
   URL = http://192.168.100.1/RgConnect.asp
-
-service:
-  enabled: false
-
-## Probes configuration
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false
