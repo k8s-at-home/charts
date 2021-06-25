@@ -28067,6 +28067,29 @@ entries:
     version: 1.0.0
   magic-mirror:
   - apiVersion: v2
+    appVersion: v2.15.0
+    created: "2021-06-25T11:53:15.078674829Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: magic-mirror helm package
+    digest: bcf8613326461a91acb1dc4fd608d51fb4f99dfde75c44f78319aa621dde4999
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/magic-mirror
+    keywords:
+    - magic-mirror
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: anders@brujordet.no
+      name: brujoand
+    name: magic-mirror
+    sources:
+    - https://github.com/MichMich/MagicMirror
+    - https://hub.docker.com/r/bastilimbach/docker-magicmirror
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/magic-mirror-3.0.0/magic-mirror-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: v2.14.0
     created: "2021-05-05T14:51:21.916246276Z"
     dependencies:
@@ -28921,6 +28944,30 @@ entries:
   modem-stats:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-06-25T11:53:15.199372699Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: periodic cable modem data collection and save the results to InfluxDB
+    digest: efb716524f180af19f4d5546049a236e714928775b3f3eb3a6e3f52540c37634
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/modem-stats
+    icon: https://i.imgur.com/NprLyFf.png
+    keywords:
+    - sb6183
+    - influxdb
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: modem-stats
+    sources:
+    - https://github.com/k8s-at-home/SB6183-stats-for-influxdb
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/modem-stats-5.0.0/modem-stats-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-05-05T14:51:22.277217366Z"
     dependencies:
     - name: common
@@ -29048,6 +29095,35 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/modem-stats-2.0.0/modem-stats-2.0.0.tgz
     version: 2.0.0
   monica:
+  - apiVersion: v2
+    appVersion: 3.1.1-apache
+    created: "2021-06-25T11:53:15.310576766Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.3.13
+    description: A Personal Relationship Management tool to help you organize your
+      social life
+    digest: b0c8a7755cf1544bb7d73d65421a0932c424e91c6e1b6fe9e6ca02cef22ac6d5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/monica
+    icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
+    keywords:
+    - crm
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: monica
+    sources:
+    - https://github.com/monicahq/monica
+    - https://hub.docker.com/_/monica
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/monica-5.0.0/monica-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v2
     appVersion: v2.19.1
     created: "2021-06-01T04:42:46.227898384Z"
@@ -30550,6 +30626,32 @@ entries:
     version: 1.0.0
   mylar:
   - apiVersion: v2
+    appVersion: version-v0.5.3
+    created: "2021-06-25T11:53:15.415783052Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Mylar is the automated Comic Book downloader (cbr/cbz) for use with
+      various download clients.
+    digest: c82d175d63abf1a9b53e33ca7fcfd7f497f87e178c0d0f9759659ee91bd33ebf
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mylar
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mylar-icon.png
+    keywords:
+    - mylar
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: mylar
+    sources:
+    - https://github.com/mylar3/mylar3
+    - https://github.com/linuxserver/docker-mylar3
+    - https://github.com/k8s-at-home/charts/tree/master/charts/mylar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/mylar-3.0.0/mylar-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 0.4.9.5
     created: "2021-05-05T14:51:22.781939452Z"
     dependencies:
@@ -30836,6 +30938,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/mylar-1.0.0/mylar-1.0.0.tgz
     version: 1.0.0
   navidrome:
+  - apiVersion: v2
+    appVersion: 0.43.0
+    created: "2021-06-25T11:53:15.519602849Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Navidrome is an open source web-based music collection server and
+      streamer
+    digest: df9b9c9844514e69ca2ab7589e9f213246918fc79b7a035f7ea85bc3a912dfd2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/navidrome
+    icon: https://github.com/deluan/navidrome/blob/master/ui/src/icons/android-icon-72x72.png?raw=true
+    keywords:
+    - navidrome
+    - music
+    - streaming
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: navidrome
+    sources:
+    - https://github.com/deluan/navidrome
+    - https://hub.docker.com/r/deluan/navidrome
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/navidrome-5.0.0/navidrome-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v2
     appVersion: 0.39.0
     created: "2021-05-05T14:51:22.967775047Z"
@@ -31395,6 +31524,28 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/navidrome-1.0.0/navidrome-1.0.0.tgz
     version: 1.0.0
   neolink:
+  - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2021-06-25T11:53:15.639821989Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Neolink - RTSP bridge to Reolink IP cameras
+    digest: 71412d44925c40fddd93613307c80160c71bdad7667d2741a953080ce7cef537
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/neolink
+    keywords:
+    - reolink
+    - rtsp
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    name: neolink
+    sources:
+    - https://github.com/thirtythreeforty/neolink
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/neolink-4.0.0/neolink-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 0.3.0
     created: "2021-05-05T14:51:23.130770343Z"
@@ -68619,4 +68770,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-24T12:08:23.833729051Z"
+generated: "2021-06-25T11:53:15.656294436Z"
