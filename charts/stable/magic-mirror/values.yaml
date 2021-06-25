@@ -5,33 +5,47 @@
 #
 
 image:
+  # -- image repository
   repository: bastilimbach/docker-magicmirror
+  # -- image tag
+  tag: v2.15.0
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v2.14.0
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image docs](https://github.com/bastilimbach/docker-MagicMirror) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
     mountPath: "/opt/magic_mirror/modules/custom"
 
-# Contents of your custom.css
-custom_css: ""
-
-# Contents of your config.js
+# -- Contents of your config.js, supports Helm templates.
+# See [application docs](https://docs.magicmirror.builders/getting-started/configuration.html) for more details.
+# @default -- See values.yaml
 config: |
   var config = {
     address: "0.0.0.0",
-    port: 8080,
+    port: {{ .Values.service.main.ports.http.port }},
     ipWhitelist: [],
     language: "en",
     timeFormat: 24,
@@ -42,10 +56,5 @@ config: |
   /*************** DO NOT EDIT THE LINE BELOW ***************/
   if (typeof module !== "undefined") {module.exports = config;}
 
-env: {}
-  ## Optional ENV Vars that can be set.
-  ## All values below are the current default values.
-  # PUID: "1000"
-  # PGID: "1000"
-  # TZ: "Europe/Oslo"
-  # UMASK_SET: "022"
+  # -- Contents of your custom.css
+custom_css: ""

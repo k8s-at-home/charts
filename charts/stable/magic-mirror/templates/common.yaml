@@ -1,53 +1,28 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMaps to the additionalVolumes */}}
-{{- define "magicmirror.configmap.volume" -}}
-name: magic-mirror-config
-configMap:
-  name: {{ template "common.names.fullname" . }}-config
-{{- end -}}
+{{/* Append the hardcoded settings */}}
+{{- define "magic-mirror.harcodedValues" -}}
+persistence:
+  magic-mirror-config:
+    enabled: "true"
+    mountPath: "/opt/magic_mirror/config/config.js"
+    subPath: "config.js"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
 
-{{- define "magicmirror.css.volume" -}}
-name: magic-mirror-css
-configMap:
-  name: {{ template "common.names.fullname" . }}-css
+  magic-mirror-css:
+    enabled: "true"
+    mountPath: "/opt/magic_mirror/css/custom.css"
+    subPath: "custom.css"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-css" (include "common.names.fullname" .) }}
 {{- end -}}
+{{- $_ := mergeOverwrite .Values (include "magic-mirror.harcodedValues" . | fromYaml) -}}
 
-{{- $volume := include "magicmirror.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
-
-{{- $volume := include "magicmirror.css.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
-
-{{/* Append the configMap volumes to the additionalVolumeMounts */}}
-{{- define "magicmirror.configmap.volumeMount" -}}
-name: magic-mirror-config
-mountPath: /opt/magic_mirror/config/config.js
-subPath: config.js
-{{- end -}}
-
-{{- define "magicmirror.css.volumeMount" -}}
-name: magic-mirror-css
-mountPath: /opt/magic_mirror/css/custom.css
-subPath: custom.css
-{{- end -}}
-
-{{- $volumeMount := include "magicmirror.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
-
-{{- $volumeMount := include "magicmirror.css.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
+{{/* Render the templates */}}
 {{ include "common.all" . }}
