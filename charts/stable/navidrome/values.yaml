@@ -6,61 +6,47 @@
 #
 
 image:
+  # -- image repository
   repository: deluan/navidrome
+  # -- image tag
+  tag: 0.43.0
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 0.39.0
 
-strategy:
-  type: Recreate
-
+# -- environment variables. See [navidrome docs](https://www.navidrome.org/docs/usage/configuration-options/#environment-variables) for more details.
+# @default -- See below
 env:
-  ND_SCANINTERVAL: 15m
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Log level. Useful for troubleshooting.
   ND_LOGLEVEL: info
+  # -- How long Navidrome will wait before closing web ui idle sessions
   ND_SESSIONTIMEOUT: 24h
+  # -- Enables transcoding configuration in the UI
   ND_ENABLETRANSCODINGCONFIG: "true"
+  # -- Folder where your music library is stored.
   ND_MUSICFOLDER: /music
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 4533
+  main:
+    ports:
+      http:
+        port: 4533
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /data
-    accessMode: ReadWriteOnce
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
   music:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /music
-    accessMode: ReadWriteOnce
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""

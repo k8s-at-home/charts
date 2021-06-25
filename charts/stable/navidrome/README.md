@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 0.39.0](https://img.shields.io/badge/AppVersion-0.39.0-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 0.43.0](https://img.shields.io/badge/AppVersion-0.43.0-informational?style=flat-square)
 
 Navidrome is an open source web-based music collection server and streamer
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,31 +76,32 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.ND_ENABLETRANSCODINGCONFIG | string | `"true"` |  |
-| env.ND_LOGLEVEL | string | `"info"` |  |
-| env.ND_MUSICFOLDER | string | `"/music"` |  |
-| env.ND_SCANINTERVAL | string | `"15m"` |  |
-| env.ND_SESSIONTIMEOUT | string | `"24h"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"deluan/navidrome"` |  |
-| image.tag | string | `"0.39.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/data"` |  |
-| persistence.music.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.music.emptyDir.enabled | bool | `false` |  |
-| persistence.music.enabled | bool | `false` |  |
-| persistence.music.mountPath | string | `"/music"` |  |
-| service.port.port | int | `4533` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [navidrome docs](https://www.navidrome.org/docs/usage/configuration-options/#environment-variables) for more details. |
+| env.ND_ENABLETRANSCODINGCONFIG | string | `"true"` | Enables transcoding configuration in the UI |
+| env.ND_LOGLEVEL | string | `"info"` | Log level. Useful for troubleshooting. |
+| env.ND_MUSICFOLDER | string | `"/music"` | Folder where your music library is stored. |
+| env.ND_SESSIONTIMEOUT | string | `"24h"` | How long Navidrome will wait before closing web ui idle sessions |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"deluan/navidrome"` | image repository |
+| image.tag | string | `"0.43.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `0.43.0`.
 
 ### [1.0.0]
 
@@ -116,7 +117,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[1.0.0]: #100
 
 ## Support
 

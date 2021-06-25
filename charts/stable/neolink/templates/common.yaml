@@ -1,31 +1,20 @@
+---
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap to the additionalVolumes */}}
-{{- define "neolink.configmap.volume" -}}
-name: neolink-settings
-configMap:
-  name: {{ template "common.names.fullname" . }}-settings
+{{/* Append the hardcoded settings */}}
+{{- define "neolink.harcodedValues" -}}
+persistence:
+  neolink-settings:
+    enabled: "true"
+    mountPath: "/etc/neolink.toml"
+    subPath: "neolink.toml"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-settings" (include "common.names.fullname" .) }}
 {{- end -}}
-
-{{- $volume := include "neolink.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
-
-{{/* Append the configMap volume to the additionalVolumeMounts */}}
-{{- define "neolink.configmap.volumeMount" -}}
-name: neolink-settings
-mountPath: /etc/neolink.toml
-subPath: neolink.toml
-{{- end -}}
-
-{{- $volumeMount := include "neolink.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "neolink.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
