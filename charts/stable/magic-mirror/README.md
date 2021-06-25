@@ -79,7 +79,7 @@ The default login details (change ASAP) are:
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | config | string | See values.yaml | Contents of your config.js, supports Helm templates. See [application docs](https://docs.magicmirror.builders/getting-started/configuration.html) for more details. |
-| custom_css | string | `""` |  |
+| custom_css | string | `""` | Contents of your custom.css |
 | env | object | See below | environment variables. See [image docs](https://github.com/bastilimbach/docker-MagicMirror) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
