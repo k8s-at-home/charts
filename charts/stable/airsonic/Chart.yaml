@@ -2,19 +2,20 @@ apiVersion: v2
 appVersion: 10.6.2
 description: Airsonic is a Free and Open Source community driven media server
 name: airsonic
-version: 3.2.0
+version: 4.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
 - airsonic
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/airsonic
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/airsonic-logo.png
 sources:
-- https://github.com/airsonic/airsonic
-- https://github.com/linuxserver/docker-airsonic
+- https://github.com/airsonic-advanced/airsonic-advanced
 - https://github.com/k8s-at-home/charts/tree/master/charts/airsonic
 maintainers:
 - name: Patricol
   url: https://patricol.co/
+- name: bjw-s
+  email: me@bjw-s.dev
 dependencies:
 - name: common
   repository: https://library-charts.k8s-at-home.com

@@ -1,6 +1,6 @@
 # monica
 
-![Version: 4.4.1](https://img.shields.io/badge/Version-4.4.1-informational?style=flat-square) ![AppVersion: v2.19.1](https://img.shields.io/badge/AppVersion-v2.19.1-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 3.1.1-apache](https://img.shields.io/badge/AppVersion-3.1.1--apache-informational?style=flat-square)
 
 A Personal Relationship Management tool to help you organize your social life
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -77,29 +77,36 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"monica"` |  |
-| image.tag | string | `"2.19.1-apache"` |  |
-| ingress.enabled | bool | `false` |  |
-| mariadb.architecture | string | `"standalone"` |  |
-| mariadb.auth.database | string | `"monica"` |  |
-| mariadb.auth.password | string | `"monicapass"` |  |
-| mariadb.auth.rootPassword | string | `"monicarootpass"` |  |
-| mariadb.auth.username | string | `"monica"` |  |
-| mariadb.enabled | bool | `false` |  |
-| mariadb.primary.persistence.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/var/www/html/storage"` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [monica documentation](https://raw.githubusercontent.com/monicahq/monica/master/.env.example) for more details. |
+| env.APP_ENV | string | `"production"` | Use `local` if you want to install Monica as a development version. Use `production` otherwise. |
+| env.APP_KEY | string | `nil` | The encryption key. This is the most important part of the application. Keep this secure otherwise, everyone will be able to access your application. Must be 32 characters long exactly. Use `php artisan key:generate` or `echo -n 'base64:'; openssl rand -base64 32` to generate a random key. |
+| env.APP_URL | string | `"https://crm.k8s-at-home.com"` | The URL of your application. |
+| env.DB_DATABASE | string | `nil` | Database to connect to |
+| env.DB_HOST | string | `nil` | Database hostname |
+| env.DB_PASSWORD | string | `nil` | Database password |
+| env.DB_USERNAME | string | `nil` | Database username |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"monica"` | image repository |
+| image.tag | string | `"3.1.1-apache"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `3.1.1-apache`.
 
 ### [1.0.0]
 
@@ -115,7 +122,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[1.0.0]: #100
 
 ## Support
 

@@ -25,6 +25,14 @@ tasks:
     - helm dependency update
     silent: true
 
+  dependency-cleanup:
+    desc: clean up chart dependencies
+    dir: "{{.GIT_ROOT}}/charts"
+    cmds:
+    - find {{.GIT_ROOT}}/charts/ -type f -name 'Chart.lock' -mindepth 1 -print0 | xargs -0 rm \;
+    - find {{.GIT_ROOT}}/charts/ -type d -name 'charts' -mindepth 1 -print0 | xargs -0 rm -rf \;
+    silent: true
+
   lint:
     desc: lint your chart code
     dir: "{{.GIT_ROOT}}/charts/{{.CHART_TYPE}}/{{.CHART}}"
@@ -41,7 +49,7 @@ tasks:
     deps:
     - check-chart
     - lint
-  
+
   helm-docs:
     desc: generate helm-docs
     dir: "{{.GIT_ROOT}}/hack"

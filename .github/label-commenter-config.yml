@@ -22,8 +22,16 @@ labels:
           - [GitHub Discussions](https://github.com/k8s-at-home/organization/discussions)
         action: close
 
-  - name: kind:incomplete-pull-request
+  - name: kind:incomplete-docs
     labeled:
       pr:
         body: |
-          :wave: @{{ pull_request.user.login }}, thanks for taking the time to submit this PR. 🙏🏽 Would you mind updating the `version` in `Chart.yaml` per [semver](http://semver.org/) and then update `README_CHANGELOG.md.gotmpl` and run `./hack/gen-helm-docs.sh stable <chart>` again?
+          :wave: @{{ pull_request.user.login }}, thanks for taking the time to submit this PR. 🙏🏽
+
+          We have noticed that the chart documentation has not been completely updated for this PR.
+          Could you please make sure that the following items have been updated:
+          - `version` in `Chart.yaml` has been updated per [semver](http://semver.org/)
+          - `README_CHANGELOG.md.gotmpl` contains a summary of the updates for this new version
+          - [Documentation strings](https://github.com/norwoodj/helm-docs#valuesyaml-metadata) have been added to the keys in `values.yaml`.
+
+          Afterwards you can run `./hack/gen-helm-docs.sh stable <chart>` again to update the chart's `README.md` file.
