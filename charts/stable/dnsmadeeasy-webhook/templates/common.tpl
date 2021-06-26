@@ -15,9 +15,9 @@
 
 {{- define "dnsmadeeasy-webhook.servingCertificate" -}}
 {{- if .Values.generateCerts }}
-{{ printf "%s-webhook-tls" (include "common.names.fullname" .) }}
+{{- printf "%s-webhook-tls" (include "common.names.fullname" .) }}
 {{- else -}}
-{{ printf "%s-cert-manager-webhook-ca" (include "common.names.fullname" .) }}
+{{- printf "%s-cert-manager-webhook-ca" (include "common.names.fullname" .) }}
 {{- end -}}
 {{- end -}}
 
