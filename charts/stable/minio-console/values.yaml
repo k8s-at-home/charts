@@ -21,11 +21,14 @@ env:
   # -- Set the container timezone
   TZ: UTC
   # -- Required: Passphrase to derive keys (generate own)
-  CONSOLE_PBKDF_PASSPHRASE: # D6vpras1xpUgrcFpOIGA4crHvzUDQb48
+  # Example: D6vpras1xpUgrcFpOIGA4crHvzUDQb48
+  CONSOLE_PBKDF_PASSPHRASE:
   # -- Required: Salt for derived keys (generate own)
-  CONSOLE_PBKDF_SALT: # ILy2FWzwjjYi1TeTEpBjEsPrwLfKZxgi
+  # Example: ILy2FWzwjjYi1TeTEpBjEsPrwLfKZxgi
+  CONSOLE_PBKDF_SALT:
   # -- Required: Minio server URL
-  CONSOLE_MINIO_SERVER: # https://minio.server:9000
+  # Example: https://minio.server:9000
+  CONSOLE_MINIO_SERVER:
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
