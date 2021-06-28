@@ -77,7 +77,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://nodered.org/docs/getting-started/docker) for more details. |
-| env.FLOWS | string | `"flows.json"` | Location of the flows configuration file.  If you set `FLOWS: ""` then the flow file can be set via the `flowFile` property in the `settings.js` file. |
+| env.FLOWS | string | `"flows.json"` | Location of the flows configuration file. If you set `FLOWS: ""` then the flow file can be set via the `flowFile` property in the `settings.js` file. |
 | env.NODE_OPTIONS | string | `nil` | Node.js runtime arguments |
 | env.NODE_RED_ENABLE_PROJECTS | string | `nil` | Setting to `true` starts Node-RED with the projects feature enabled |
 | env.NODE_RED_ENABLE_SAFE_MODE | string | `nil` | Setting to `true` starts Node-RED in safe (not running) mode |
