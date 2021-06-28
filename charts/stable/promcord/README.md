@@ -80,7 +80,7 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"biospheere/promcord"` | image repository |
 | image.tag | string | `"latest"` | image tag |
-| prometheus.podMonitor | object | See values.yaml | Enable and configure a Prometheus podMonitor for the chart under this key. See also the notes under `additionalContainers`. |
+| prometheus.podMonitor | object | See values.yaml | Enable and configure a Prometheus podMonitor for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
