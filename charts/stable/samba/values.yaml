@@ -6,48 +6,45 @@
 #
 
 image:
+  # -- image repository
   repository: dperson/samba
+  # -- image tag
   tag: latest
+  # -- image pull policy
   pullPolicy: Always
 
-strategy:
-  type: Recreate
-
-## For all available environment variables and configuration options, please see:
-## https://github.com/dperson/samba/blob/master/README.md
-env: {}
-  # TZ: UTC
+# -- environment variables. See [image docs](https://github.com/dperson/samba/blob/master/README.md) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # SHARE1: share1;/share/samba/share1
   # SHARE2: share2;/share/samba/share2
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    name: tcp
-    port: 445
-  additionalPorts:
-    - name: netbios
-      port: 139
+  main:
+    ports:
+      tcp:
+        enabled: true
+        protocol: TCP
+        port: 445
+      netbios:
+        enabled: true
+        protocol: TCP
+        port: 139
 
 ingress:
-  enabled: false
-
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
     enabled: false
 
-## Configure the volume mounts for your shared folders here.
-additionalVolumeMounts: []
-# - name: my-hostpath-data
-#   mountPath: /share/samba/share1
-# - name: my-pvc-data
-#   mountPath: /share/samba/share2
-
-## Configure the volumes for your shared folders here.
-additionalVolumes: []
-# - name: my-pvc-data
-#   persistentVolumeClaim:
-#     claimName: my-pvc-name
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  my-hostpath:
+    enabled: false
+    type: hostPath
+    hostPath:  /share/samba/share1
