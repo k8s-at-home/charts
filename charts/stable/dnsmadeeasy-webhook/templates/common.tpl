@@ -33,7 +33,6 @@ persistence:
     mountPath: /tls
     readOnly: true
     volumeSpec:
-      name: certs
       secret:
         secretName: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
 
