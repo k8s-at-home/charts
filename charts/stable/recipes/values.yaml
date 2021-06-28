@@ -6,14 +6,26 @@
 #
 
 image:
+  # -- image repository
   repository: vabene1111/recipes
+  # -- image tag
+  tag: 0.16.7
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 0.13.0
 
-strategy:
-  type: Recreate
+sidecar:
+  image:
+    # -- nginx sidecar image repository
+    repository: nginx
+    # -- nginx sidecar image tag
+    tag: 1.19.6
+    # -- nginx sidecar image pull policy
+    pullPolicy: IfNotPresent
 
+# -- environment variables. See [project docs](https://raw.githubusercontent.com/vabene1111/recipes/master/.env.template) for more details.
+# @default -- See below
 env:
+  TIMEZONE: UTC
   DEBUG: "0"
   ALLOWED_HOSTS: "*"
   SECRET_KEY: changeme
@@ -24,76 +36,32 @@ env:
   POSTGRES_DB:
   POSTGRES_PASSWORD:
   GUNICORN_MEDIA: "0"
-  TIMEZONE: America/New_York
   FRACTION_PREF_DEFAULT: "0"
   COMMENT_PREF_DEFAULT: "1"
   SHOPPING_MIN_AUTOSYNC_INTERVAL: "5"
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
   media:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /opt/recipes/mediafiles
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
   static:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /opt/recipes/staticfiles
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
-
-additionalVolumes:
-- name: recipes-config
-  configMap:
-    name: recipes-config
-
-additionalContainers:
-- name: nginx
-  image: nginx:1.19.6
-  ports:
-    - containerPort: 80
-      name: http
-  volumeMounts:
-  ##
-  ## If persistent volumes are enabled ; please uncomment the following lines
-  ##
-  # - name: media
-  #   mountPath: '/media'
-  # - name: static
-  #   mountPath: '/static'
-  - name: recipes-config
-    mountPath: /etc/nginx/nginx.conf
-    subPath: nginx-config
-    readOnly: true
