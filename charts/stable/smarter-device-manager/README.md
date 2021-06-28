@@ -1,6 +1,6 @@
 # smarter-device-manager
 
-![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
 
 Manage hardware resource allocation without a need for privileged containers
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -115,21 +115,28 @@ In this case host device `/dev/ttyUSB-Conbee-2` will be given at the same path, 
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | Refer to values.yaml | Override default configuration See [project repo](https://gitlab.com/arm-research/smarter/smarter-device-manager) for configuration examples |
-| dnsPolicy | string | `"ClusterFirstWithHostNet"` |  |
-| hostNetwork | bool | `true` |  |
-| hostPathMounts | list | Refer to values.yaml | Configures the host paths that are mapped through to the container |
-| image.pullPolicy | string | `"IfNotPresent"` | Configure the image pull policy |
-| image.repository | string | `"registry.gitlab.com/arm-research/smarter/smarter-device-manager"` | Configure the image |
-| image.tag | string | `"v1.20.7"` | Configure the image tag |
-| priorityClassName | string | `"system-node-critical"` | Setting priority class is not necessary, but is recommended. [[Ref]](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) |
-| securityContext | object | Refer to values.yaml | Configure the securityContext for this pod |
+| config | string | See values.yaml | Override default configuration See [project repo](https://gitlab.com/arm-research/smarter/smarter-device-manager) for configuration examples. |
+| dnsPolicy | string | `nil` | Defaults to "ClusterFirst" if hostNetwork is false and "ClusterFirstWithHostNet" if hostNetwork is true. |
+| hostNetwork | bool | `true` | When using hostNetwork make sure you set dnsPolicy to `ClusterFirstWithHostNet` |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"registry.gitlab.com/arm-research/smarter/smarter-device-manager"` | image repository |
+| image.tag | string | `"v1.20.7"` | image tag |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| priorityClassName | string | `"system-node-critical"` | Custom priority class for different treatment by the scheduler Setting this is not necessary, but it is recommended. [[ref]](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) |
+| securityContext | object | See values.yaml | Configure the securityContext for this pod [[ref]](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
 
 ### [4.0.0]
 
@@ -167,9 +174,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[4.0.0]: #4.0.0
-[3.3.2]: #3.3.2
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[4.0.0]: #400
+[3.3.2]: #332
+[1.0.0]: #100
 
 ## Support
 

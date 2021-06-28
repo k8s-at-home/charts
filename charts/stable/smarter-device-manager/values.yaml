@@ -6,50 +6,51 @@
 #
 
 image:
-  # -- Configure the image
+  # -- image repository
   repository: registry.gitlab.com/arm-research/smarter/smarter-device-manager
-  # -- Configure the image tag
+  # -- image tag
   tag: v1.20.7
-  # -- Configure the image pull policy
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
 # -- Override default configuration
-# See [project repo](https://gitlab.com/arm-research/smarter/smarter-device-manager) for configuration examples
-# @default -- Refer to values.yaml
+# See [project repo](https://gitlab.com/arm-research/smarter/smarter-device-manager) for configuration examples.
+# @default -- See values.yaml
 config: |
   - devicematch: ^ttyUSB.*$
     nummaxdevices: 1
 
+# -- When using hostNetwork make sure you set dnsPolicy to `ClusterFirstWithHostNet`
 hostNetwork: true
-dnsPolicy: ClusterFirstWithHostNet
+# -- Defaults to "ClusterFirst" if hostNetwork is false and "ClusterFirstWithHostNet" if hostNetwork is true.
+dnsPolicy:  # ClusterFirstWithHostNet
 
-# -- Configures the host paths that are mapped through to the container
-# @default -- Refer to values.yaml
-hostPathMounts:
-  - name: "devfs"
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  devfs:
     enabled: true
-    emptyDir: false
-    mountPath: "/dev"
-    hostPath: "/dev"
+    type: hostPath
+    hostPath: /dev
     readOnly: true
-  - name: "sysfs"
+  sysfs:
     enabled: true
-    emptyDir: false
-    mountPath: "/sys"
-    hostPath: "/sys"
+    type: hostPath
+    hostPath: /sys
     readOnly: true
-  - name: "kubeletsockets"
+  kubeletsockets:
     enabled: true
-    emptyDir: false
-    mountPath: "/var/lib/kubelet/device-plugins"
+    type: hostPath
     hostPath: "/var/lib/kubelet/device-plugins"
 
-# -- Setting priority class is not necessary, but is recommended.
-# [[Ref]](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/)
+# -- Custom priority class for different treatment by the scheduler
+# Setting this is not necessary, but it is recommended.
+# [[ref]](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/)
 priorityClassName: system-node-critical
 
 # -- Configure the securityContext for this pod
-# @default -- Refer to values.yaml
+# [[ref]](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
+# @default -- See values.yaml
 securityContext:
   capabilities:
     drop:
