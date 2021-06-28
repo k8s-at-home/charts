@@ -75,10 +75,11 @@ See https://hub.docker.com/r/minio/console for configuration required for the co
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| args | list | `["server"]` | Override the args for the default container. |
 | env | object | See below | environment variables. See more environment variables in the [minio-console documentation](https://minio-console.org/docs). |
-| env.CONSOLE_MINIO_SERVER | string | `nil` | Required: Minio server URL |
-| env.CONSOLE_PBKDF_PASSPHRASE | string | `nil` | Required: Passphrase to derive keys (generate own) |
-| env.CONSOLE_PBKDF_SALT | string | `nil` | Required: Salt for derived keys (generate own) |
+| env.CONSOLE_MINIO_SERVER | string | `nil` | Required: Minio server URL Example: https://minio.server:9000 |
+| env.CONSOLE_PBKDF_PASSPHRASE | string | `nil` | Required: Passphrase to derive keys (generate own) Example: D6vpras1xpUgrcFpOIGA4crHvzUDQb48 |
+| env.CONSOLE_PBKDF_SALT | string | `nil` | Required: Salt for derived keys (generate own) Example: ILy2FWzwjjYi1TeTEpBjEsPrwLfKZxgi |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"minio/console"` | image repository |
