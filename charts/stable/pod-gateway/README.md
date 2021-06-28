@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 3.2.2](https://img.shields.io/badge/Version-3.2.2-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -100,17 +100,13 @@ certificates. It does not install it as dependency to avoid conflicts.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | DNS | string | `"172.16.0.1"` | IP address of the DNS server within the vxlan tunnel. All mutated PODs will get this as their DNS server. It must match VXLAN_GATEWAY_IP in settings.sh |
-| addons.vpn.configFileSecret | string | `"openvpn"` |  |
 | addons.vpn.enabled | bool | `false` | Enable the VPN if you want to route through a VPN. You might also want to set VPN_BLOCK_OTHER_TRAFFIC to true for extra safeness in case the VPN does connect |
-| addons.vpn.env | string | `nil` |  |
 | addons.vpn.networkPolicy.egress[0].ports[0].port | int | `443` |  |
 | addons.vpn.networkPolicy.egress[0].ports[0].protocol | string | `"UDP"` |  |
 | addons.vpn.networkPolicy.egress[0].to[0].ipBlock.cidr | string | `"0.0.0.0/0"` |  |
 | addons.vpn.networkPolicy.egress[1].to[0].ipBlock.cidr | string | `"10.0.0.0/8"` |  |
 | addons.vpn.networkPolicy.enabled | bool | `true` |  |
-| addons.vpn.openvpn | string | `nil` |  |
 | addons.vpn.type | string | `"openvpn"` |  |
-| addons.vpn.wireguard | string | `nil` |  |
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy of the gateway and inserted helper cotainers |
 | image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` | image repository of the gateway and inserted helper containers |
@@ -142,6 +138,10 @@ certificates. It does not install it as dependency to avoid conflicts.
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.2.2]
+
+- Remove some default values (`addons.vpn.openvpn`, `addons.vpn.wireguard`, `addons.vpn.env`, `addons.vpn.configFileSecret`) which were interfering with user supplied configuration.
 
 ### [3.0.2]
 
