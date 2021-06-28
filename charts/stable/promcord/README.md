@@ -1,6 +1,6 @@
 # promcord
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Discord bot that provides metrics from a Discord server
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -75,16 +75,13 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | string | `nil` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"biospheere/promcord"` |  |
-| image.tag | string | `"latest"` |  |
-| prometheus.podMonitor.additionalLabels | object | `{}` |  |
-| prometheus.podMonitor.enabled | bool | `false` |  |
-| prometheus.podMonitor.interval | string | `"1m"` |  |
-| prometheus.podMonitor.scrapeTimeout | string | `"30s"` |  |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [application docs](https://github.com/nimarion/promcord/blob/master/README.md) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"biospheere/promcord"` | image repository |
+| image.tag | string | `"latest"` | image tag |
+| prometheus.podMonitor | object | See values.yaml | Enable and configure a Prometheus podMonitor for the chart under this key. See also the notes under `additionalContainers`. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
