@@ -1,6 +1,6 @@
 # network-ups-tools
 
-![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: v2.7.4-2061-g46c7da76](https://img.shields.io/badge/AppVersion-v2.7.4--2061--g46c7da76-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v2.7.4-2474-gb4a58380](https://img.shields.io/badge/AppVersion-v2.7.4--2474--gb4a58380-informational?style=flat-square)
 
 Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -75,18 +75,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.files."nut.conf" | string | `"MODE=netserver\n"` |  |
-| config.files."ups.conf" | string | `"[dummy]\n  driver = dummy-ups\n  port = dummy-ups.dev\n  desc = \"dummy-ups in dummy mode\"\n"` |  |
-| config.files."upsd.conf" | string | `"LISTEN 0.0.0.0\n"` |  |
-| config.mode | string | `"values"` |  |
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"k8sathome/network-ups-tools"` |  |
-| image.tag | string | `"v2.7.4-2061-g46c7da76"` |  |
-| ingress.enabled | bool | `false` |  |
-| service.port.name | string | `"server"` |  |
-| service.port.port | int | `3493` |  |
-| strategy.type | string | `"Recreate"` |  |
+| config.files | object | See values.yaml | See https://github.com/networkupstools/nut/tree/master/conf for config sample files |
+| config.mode | string | `"values"` | If set to 'values', the configuration will be read from these values. Otherwise you have to mount a volume to /etc/nut containing the configuration files. |
+| env | object | See below | environment variables. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"ghcr.io/k8s-at-home/network-ups-tools"` | image repository |
+| image.tag | string | `"v2.7.4-2474-gb4a58380"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -94,11 +91,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image repository to `ghcr.io/k8s-at-home/network-ups-tools`.
+- Changed image tag to `v2.7.4-2474-gb4a58380`.
+
 ### [1.0.0]
 
 #### Added
 
-- N/A
+- Initial version
 
 #### Changed
 
@@ -108,7 +114,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[4.0.0]: #400
+[1.0.0]: #100
 
 ## Support
 
