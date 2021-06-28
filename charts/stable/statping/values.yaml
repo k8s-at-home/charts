@@ -6,16 +6,18 @@
 #
 
 image:
+  # -- image repository
   repository: statping/statping
+  # -- image tag
+  tag: "v0.90.74"
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: "v0.90.65"
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the statping documentation
-# https://github.com/statping/statping/wiki/Config-with-.env-File
+# -- environment variables. See [application docs](https://github.com/statping/statping/wiki/Config-with-.env-File) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone
+  TZ: UTC
   # -- Name of the Statping instance
   NAME: Statping Example
   # -- Description of the Statping instance
@@ -26,18 +28,15 @@ env:
   DB_CONN: postgres
   # -- Postgres database hostname
   # @default -- internal postgresql URL
-  DB_HOST: ""
-  # -- Enable ssl_mode for postgres (To enable use require)
+  DB_HOST: '{{ include "common.names.fullname" .}}-postgresql'
+  # -- Enable ssl_mode for postgres (To enable use `require`)
   POSTGRES_SSLMODE: "disable"
   # -- Postgres database user name
-  # @default -- postgresql.postgresqlUsername value
-  DB_USER: ""
+  DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
   # -- Postgres database password
-  # @default -- postgresql.postgresqlPassword value
-  DB_PASS: ""
+  DB_PASS: "{{ .Values.postgresql.postgresqlPassword }}"
   # -- Postgres database password
-  # @default -- postgresql.postgresqlDatabase value
-  DB_DATABASE: ""
+  DB_DATABASE: "{{ .Values.postgresql.postgresqlDatabase }}"
   # -- Use CDN for static context from third-parties
   USE_CDN: false
   # -- Disable logs from appearing and writing to disk
@@ -49,35 +48,36 @@ env:
   # -- dashboard admin email
   # ADMIN_EMAIL: info@example.com
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
-# -- Generated application config.yaml and logs are written here.
-# Usually does not need to be persisted.
-# @default -- see bellow
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /app
 
-# -- Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
-# @default -- see bellow
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
-  # -- By default uses an internal postgress. Disable if you use your own Postgres.
   enabled: true
-  # -- Postgres database user name
   postgresqlUsername: postgres
-  # -- Postgres database password
   postgresqlPassword: "changeme"
-  # -- Postgres database password
   postgresqlDatabase: postgres
   persistence:
-    # -- if database is stored to a PVC. Set to true when you are done testing.
     enabled: false
     # storageClass: ""
+    # size: 8Gi
