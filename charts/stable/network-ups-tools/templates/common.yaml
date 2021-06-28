@@ -1,35 +1,22 @@
+---
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap to the additionalVolumes */}}
-{{- define "network-ups-tools.configmap.volume" -}}
-name: nut-config
-configMap:
-  name: {{ template "common.names.fullname" . }}-config
-  defaultMode: 256
-  optional: true
+{{/* Append the hardcoded settings */}}
+{{- define "network-ups-tools.harcodedValues" -}}
+persistence:
+  nut-config:
+    enabled: "true"
+    mountPath: "/etc/nut"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+        defaultMode: 256
+        optional: true
 {{- end -}}
-
 {{- if eq .Values.config.mode "values" -}}
-  {{- $volume := include "network-ups-tools.configmap.volume" . | fromYaml -}}
-  {{- if $volume -}}
-      {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-      {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-  {{- end -}}
-{{- end -}}
-
-{{/* Append the configMap volume to the additionalVolumeMounts */}}
-{{- define "network-ups-tools.configmap.volumeMount" -}}
-name: nut-config
-mountPath: /etc/nut
-{{- end -}}
-
-{{- if eq .Values.config.mode "values" -}}
-  {{- $volumeMount := include "network-ups-tools.configmap.volumeMount" . | fromYaml -}}
-  {{- if $volumeMount -}}
-      {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-      {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-  {{- end -}}
+  {{- $_ := mergeOverwrite .Values (include "network-ups-tools.harcodedValues" . | fromYaml) -}}
 {{- end -}}
 
 {{/* Render the templates */}}

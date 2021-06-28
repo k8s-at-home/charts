@@ -1,1 +1,42 @@
+---
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "recipes.harcodedValues" -}}
+persistence:
+  recipes-config:
+    enabled: "true"
+    mountPath: "/app/config.json"
+    subPath: "config.json"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+
+{{ if .Values.service.main.enabled }}
+additionalContainers:
+- name: nginx
+  image: "{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}"
+  imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
+  ports:
+    - containerPort: {{ .Values.service.main.ports.http.port }}
+      name: http
+  volumeMounts:
+  - name: recipes-config
+    mountPath: /etc/nginx/nginx.conf
+    subPath: nginx-config
+    readOnly: true
+  {{ if .Values.persistence.media.enabled }}
+  - name: media
+    mountPath: '/media'
+  {{ end }}
+  {{ if .Values.persistence.static.enabled }}
+  - name: static
+    mountPath: '/static'
+  {{ end }}
+{{ end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "recipes.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}

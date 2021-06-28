@@ -6,37 +6,41 @@
 #
 
 image:
+# -- image repository
   repository: gabekangas/owncast
+  # -- image tag
+  tag: 0.0.7
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 0.0.6
 
-strategy:
-  type: Recreate
 
-# Configuration docs
-# https://owncast.online/docs/configuration/
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
-  additionalServices:
-    - enabled: true
-      nameSuffix: rtmp
-      type: NodePort
-      port:
+  main:
+    ports:
+      http:
+        port: 8080
+  rtmp:
+    enabled: true
+    type: NodePort
+    externalTrafficPolicy: Local
+    ports:
+      rtmp:
+        enabled: true
         port: 1935
-        name: rtmp
         protocol: TCP
         targetPort: 1935
-      externalTrafficPolicy: Local
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
-# Persistence is required for persistent configuration changes
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /app/data

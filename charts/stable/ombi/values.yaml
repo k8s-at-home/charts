@@ -6,27 +6,39 @@
 #
 
 image:
-  repository: linuxserver/ombi
+  # -- image repository
+  repository: ghcr.io/linuxserver/ombi
+  # -- image tag
+  tag: version-v4.0.1430
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: version-v4.0.681
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image docs](https://docs.linuxserver.io/images/docker-ombi#environment-variables-e) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Specify the user ID the application will run as
+  PUID: "1001"
+  # -- Specify the group ID the application will run as
+  PGID: "1001"
 
-env: {}
-  # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 3579
+  main:
+    ports:
+      http:
+        port: 3579
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
