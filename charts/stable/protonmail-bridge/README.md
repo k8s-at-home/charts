@@ -1,6 +1,6 @@
 # protonmail-bridge
 
-![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: 1.5.7-1](https://img.shields.io/badge/AppVersion-1.5.7--1-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.8.7-1](https://img.shields.io/badge/AppVersion-1.8.7--1-informational?style=flat-square)
 
 Container for protonmail bridge to work on the network.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -84,22 +84,28 @@ Once installed do the following to configure the application within the pod:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"shenxn/protonmail-bridge"` |  |
-| image.tag | string | `"1.5.7-1"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `true` |  |
-| persistence.config.mountPath | string | `"/root"` |  |
-| service.port.name | string | `"smtp-service"` |  |
-| service.port.port | int | `25` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"shenxn/protonmail-bridge"` | image repository |
+| image.tag | string | `"1.8.7-1"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `1.8.7-1`.
 
 ### [3.3.2]
 
@@ -129,8 +135,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[3.3.2]: #3.3.2
-[1.0.0]: #1.0.0
+[4.0.0]: #400
+[3.3.2]: #332
+[1.0.0]: #100
 
 ## Support
 
