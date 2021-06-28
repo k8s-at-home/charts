@@ -31980,6 +31980,32 @@ entries:
     version: 1.0.0
   network-ups-tools:
   - apiVersion: v2
+    appVersion: v2.7.4-2474-gb4a58380
+    created: "2021-06-28T12:58:13.309535202Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Network UPS Tools is a collection of programs which provide a common
+      interface for monitoring and administering UPS, PDU and SCD hardware.
+    digest: 35571dfbd75e1f93430630c2fadac570d4f00da1e5f1f75d75e9a22e72483814
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/network-ups-tools
+    icon: https://avatars0.githubusercontent.com/u/3526263?s=400&v=4
+    keywords:
+    - nut
+    - network-ups-tools
+    - ups
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: network-ups-tools
+    sources:
+    - https://github.com/networkupstools/nut
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/network-ups-tools-4.0.0/network-ups-tools-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: v2.7.4-2061-g46c7da76
     created: "2021-05-05T14:51:23.290958239Z"
     dependencies:
@@ -32523,6 +32549,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/node-feature-discovery-1.0.0/node-feature-discovery-1.0.0.tgz
     version: 1.0.0
   node-red:
+  - apiVersion: v2
+    appVersion: 1.3.5
+    created: "2021-06-28T12:58:13.500369809Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Node-RED is low-code programming for event-driven applications
+    digest: 005a01a6e7e08054214c5f4386be8cdb6535919e8190b3129a58e60cc859cd3a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/node-red
+    icon: https://nodered.org/about/resources/media/node-red-icon-2.png
+    keywords:
+    - nodered
+    - node-red
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: node-red
+    sources:
+    - https://github.com/node-red/node-red-docker
+    - https://github.com/k8s-at-home/charts/tree/master/charts/node-red
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/node-red-8.0.0/node-red-8.0.0.tgz
+    version: 8.0.0
   - apiVersion: v2
     appVersion: 1.2.5
     created: "2021-05-05T14:51:23.498123833Z"
@@ -36421,6 +36472,31 @@ entries:
     version: 1.0.0
   omada-controller:
   - apiVersion: v2
+    appVersion: "4.3"
+    created: "2021-06-28T12:58:13.687826805Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Omada enables the network administrators to monitor and manage all
+      the Omada products in the network with a centralized management platform.
+    digest: 7152ff32dc0b905f829605a8fdc28248be46280afcab73e6c83acb6c66b1877c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/omada-controller
+    icon: https://www.tp-link.com/assets/images/icon/logo-white.svg
+    keywords:
+    - omada-controller
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: charlie-haley@users.noreply.github.com
+      name: charlie-haley
+    name: omada-controller
+    sources:
+    - https://github.com/mbentley/docker-omada-controller
+    - https://github.com/k8s-at-home/charts/tree/master/charts/omada-controller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/omada-controller-3.0.0/omada-controller-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 4.2.11
     created: "2021-05-05T14:51:24.173161415Z"
     dependencies:
@@ -36721,6 +36797,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/omada-controller-1.0.0/omada-controller-1.0.0.tgz
     version: 1.0.0
   ombi:
+  - apiVersion: v2
+    appVersion: version-v4.0.1430
+    created: "2021-06-28T12:58:13.883731228Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Want a Movie or TV Show on Plex or Emby? Use Ombi!
+    digest: 3add7156bbf176ca8956f829e171ba607f6889e5cfcf5db9ffa65cc8344dfb42
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ombi
+    icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
+    keywords:
+    - ombi
+    - plex
+    - emby
+    - sonarr
+    - radarr
+    - couchpotato
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ombi
+    sources:
+    - https://github.com/tidusjar/Ombi
+    - https://hub.docker.com/r/linuxserver/ombi
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ombi-10.0.0/ombi-10.0.0.tgz
+    version: 10.0.0
   - apiVersion: v2
     appVersion: 4.0.681
     created: "2021-05-05T14:51:24.32907881Z"
@@ -38260,6 +38365,30 @@ entries:
   organizr:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-06-28T12:58:14.164337721Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: HTPC/Homelab Services Organizer
+    digest: 71124e8238a923f9bc9e77d00d8fddc3ab3af1b71d42aac4832c43a48f58f7c2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/organizr
+    icon: https://github.com/causefx/Organizr/blob/v2-master/plugins/images/organizr/logo.png?raw=true
+    keywords:
+    - organizr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: organizr
+    sources:
+    - https://github.com/causefx/Organizr
+    - https://hub.docker.com/r/organizr/organizr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/organizr-6.0.0/organizr-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-05-05T14:51:24.581684204Z"
     dependencies:
     - name: common
@@ -39490,6 +39619,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/overseerr-1.0.0/overseerr-1.0.0.tgz
     version: 1.0.0
   owncast:
+  - apiVersion: v2
+    appVersion: 0.0.7
+    created: "2021-06-28T12:58:14.343514791Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Take control over your live stream video by running it yourself.
+      Streaming + chat out of the box.
+    digest: 4ef1b95e37f2c4ebbf630970037183746e9a1d98f5d8c128ceca6b8d3011264a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/owncast
+    icon: https://owncast.online/images/owncast-logo-1000x1000.png
+    keywords:
+    - owncast
+    - stream
+    - open source
+    - chat
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: dennis.zhang.nrg@gmail.com
+      name: FlipEnergy
+    name: owncast
+    sources:
+    - https://owncast.online/
+    - https://github.com/owncast/owncast
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/owncast-2.0.0/owncast-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 0.0.6
     created: "2021-05-05T14:51:24.906090295Z"
@@ -40824,6 +40981,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/photoprism-1.0.0/photoprism-1.0.0.tgz
     version: 1.0.0
   piaware:
+  - apiVersion: v2
+    appVersion: v5.0
+    created: "2021-06-28T12:58:14.534306597Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Program for forwarding ADS-B data to FlightAware
+    digest: 5ce85ce465f20369089ab4bb4b71da2d03367fd94a5b5c25599d021b48a77b36
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/piaware
+    icon: https://pbs.twimg.com/profile_images/964269455483088897/mr2UgvfG_400x400.jpg
+    keywords:
+    - piaware
+    - flight-aware
+    - flight-tracker
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: piaware
+    sources:
+    - https://github.com/flightaware/piaware
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/piaware-7.0.0/piaware-7.0.0.tgz
+    version: 7.0.0
   - apiVersion: v2
     appVersion: v4.0
     created: "2021-05-05T14:51:25.43642028Z"
@@ -43873,6 +44055,33 @@ entries:
   pretend-youre-xyzzy:
   - apiVersion: v2
     appVersion: "4"
+    created: "2021-06-28T12:58:14.72069189Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: pretend-youre-xyzzy, a cards against humanity clone
+    digest: 18d2b2bc88c2a24f3fc49e5f52d210b9f31fcdccad929ce342a33772ccd0e8f1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pretend-youre-xyzzy
+    icon: https://apk-google.com/wp-content/uploads/2020/12/Client-for-Pretend-Youre-Xyzzy-open-source-5.0.1.png
+    keywords:
+    - pretend-youre-xyzzy
+    - cards
+    - against
+    - humanity
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: dennis.zhang.nrg@gmail.com
+      name: FlipEnergy
+    name: pretend-youre-xyzzy
+    sources:
+    - https://github.com/ajanata/PretendYoureXyzzy
+    - https://github.com/emcniece/DockerYourXyzzy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/pretend-youre-xyzzy-2.0.0/pretend-youre-xyzzy-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: "4"
     created: "2021-05-05T14:51:25.81817307Z"
     dependencies:
     - name: common
@@ -44032,6 +44241,30 @@ entries:
   promcord:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-06-28T12:58:14.904281374Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Discord bot that provides metrics from a Discord server
+    digest: e816489d919b874a1f661684e758cdd08b60f0a1e6accbe25b44d2b4ada6b3fa
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/promcord
+    keywords:
+    - promcord
+    - discord
+    - metrics
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: hello@chipwolf.uk
+      name: ChipWolf
+    name: promcord
+    sources:
+    - https://github.com/nimarion/promcord
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/promcord-2.0.0/promcord-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-05-05T14:51:25.981512966Z"
     dependencies:
     - name: common
@@ -44127,6 +44360,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/promcord-1.0.0/promcord-1.0.0.tgz
     version: 1.0.0
   prometheus-nut-exporter:
+  - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-06-28T12:58:15.140180924Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Prometheus NUT Exporter a service monitor to send NUT server metrics
+      to a Prometheus instance.
+    digest: 79cb0416d12011efdd3ff758cb71f7ac55efda1b8718a69d2875bdce72d8e684
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prometheus-nut-exporter
+    icon: https://www.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/125-512.png
+    keywords:
+    - nut
+    - prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: prometheus-nut-exporter
+    sources:
+    - https://github.com/HON95/prometheus-nut-exporter
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-3.0.0/prometheus-nut-exporter-3.0.0.tgz
+    version: 3.0.0
   - apiVersion: v2
     appVersion: 1.0.1
     created: "2021-05-05T14:51:26.19710896Z"
@@ -44360,6 +44618,31 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-1.0.0/prometheus-nut-exporter-1.0.0.tgz
     version: 1.0.0
   protonmail-bridge:
+  - apiVersion: v2
+    appVersion: 1.8.7-1
+    created: "2021-06-28T12:58:15.330410529Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Container for protonmail bridge to work on the network.
+    digest: 3695cdbfe649152d982c65ceea5cb7570b4e28fe0138d7542922b5a12a7237c4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/protonmail-bridge
+    icon: https://raw.githubusercontent.com/ProtonMail/proton-bridge/master/icon.iconset/icon_256x256.png
+    keywords:
+    - protonmail
+    - protonmail-bridge
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: my@email.com
+      name: Eagleman7
+    name: protonmail-bridge
+    sources:
+    - https://github.com/shenxn/protonmail-bridge-docker
+    - https://hub.docker.com/r/shenxn/protonmail-bridge
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/protonmail-bridge-4.0.0/protonmail-bridge-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 1.5.7-1
     created: "2021-05-05T14:51:26.370492055Z"
@@ -45060,6 +45343,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/prowlarr-1.0.1/prowlarr-1.0.1.tgz
     version: 1.0.1
   pyload:
+  - apiVersion: v2
+    appVersion: 0.4.20
+    created: "2021-06-28T12:58:15.513375411Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: pyLoad is a Free and Open Source download manager written in Python
+      and designed to be extremely lightweight, easily extensible and fully manageable
+      via web.
+    digest: 67b94c43835ad1ae86164ec64bd6608695e0b6ef3bc00ef40cbe112008105c25
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pyload
+    icon: https://avatars.githubusercontent.com/u/3521496?s=200&v=4
+    keywords:
+    - pyload
+    - download
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: pyload
+    sources:
+    - https://github.com/pyload/pyload
+    - https://hub.docker.com/r/linuxserver/pyload
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/pyload-5.0.0/pyload-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v2
     appVersion: 0.4.20
     created: "2021-05-08T22:16:41.437342289Z"
@@ -48608,6 +48918,33 @@ entries:
     version: 1.0.0
   recipes:
   - apiVersion: v2
+    appVersion: 0.16.7
+    created: "2021-06-28T12:58:15.693610884Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Recipes is a Django application to manage, tag and search recipes
+      using either built in models or external storage providers hosting PDF's, Images
+      or other files.
+    digest: c94ab41d14189c6b51cff114ea4da518a1f2d94b3d3591171496d44d78abca49
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/recipes
+    icon: https://raw.githubusercontent.com/vabene1111/recipes/develop/docs/logo_color.svg
+    keywords:
+    - recipes
+    - cooking
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: recipes
+    sources:
+    - https://github.com/vabene1111/recipes
+    - https://hub.docker.com/r/vabene1111/recipes
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/recipes-5.0.0/recipes-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
     appVersion: 0.13.0
     created: "2021-05-05T14:51:27.411774927Z"
     dependencies:
@@ -49249,6 +49586,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/reg-1.0.0/reg-1.0.0.tgz
     version: 1.0.0
   resilio-sync:
+  - apiVersion: v2
+    appVersion: 2.7.2
+    created: "2021-06-28T12:58:15.887487601Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Resilio Sync is a fast, reliable, and simple file sync and share
+      solution, powered by P2P technology
+    digest: 084dddb1588d2753c51a58d780ed75afd68572f64e8f55b81444f2451686fd81
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/resio-sync
+    icon: https://blog.resilio.com/wp-content/uploads/2016/06/SyncSymbol-260x260px.png
+    keywords:
+    - resilio
+    - sync
+    - btsync
+    - bittorrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: 100800+salekseev@users.noreply.github.com
+      name: salekseev
+    name: resilio-sync
+    sources:
+    - https://github.com/orgs/linuxserver/packages/container/package/resilio-sync
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/resilio-sync-4.0.0/resilio-sync-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 2.7.2
     created: "2021-05-05T14:51:27.759726617Z"
@@ -68854,4 +69218,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-28T08:47:22.433782836Z"
+generated: "2021-06-28T12:58:15.904671055Z"
