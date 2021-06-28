@@ -1,0 +1,46 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: minio/console
+  # -- image tag
+  tag: v0.7.4
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- Override the args for the default container.
+args: ["server"]
+
+# -- environment variables. See more environment variables in the [minio-console documentation](https://minio-console.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Required: Passphrase to derive keys (generate own)
+  # Example: D6vpras1xpUgrcFpOIGA4crHvzUDQb48
+  CONSOLE_PBKDF_PASSPHRASE:
+  # -- Required: Salt for derived keys (generate own)
+  # Example: ILy2FWzwjjYi1TeTEpBjEsPrwLfKZxgi
+  CONSOLE_PBKDF_SALT:
+  # -- Required: Minio server URL
+  # Example: https://minio.server:9000
+  CONSOLE_MINIO_SERVER:
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 9090
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false

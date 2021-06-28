@@ -55,6 +55,7 @@
 | [magic-mirror](stable/magic-mirror) | magic-mirror helm package |
 | [mealie](stable/mealie) | Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. |
 | [miniflux](stable/miniflux) | Miniflux is a minimalist and opinionated feed reader. |
+| [minio-console](stable/minio-console) | A management console for minio server and operator |
 | [modem-stats](stable/modem-stats) | periodic cable modem data collection and save the results to InfluxDB |
 | [monica](stable/monica) | A Personal Relationship Management tool to help you organize your social life |
 | [mosquitto](stable/mosquitto) | Eclipse Mosquitto - An open source MQTT broker |
