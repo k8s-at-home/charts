@@ -6,44 +6,42 @@
 #
 
 image:
-  repository: linuxserver/pyload
+  # -- image repository
+  repository: ghcr.io/linuxserver/pyload
+  # -- image tag
+  tag: version-5de90278
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: version-5f5aaf56
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image docs](https://docs.linuxserver.io/images/docker-pyload#environment-variables-e) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Specify the user ID the application will run as
+  PUID: "1001"
+  # -- Specify the group ID the application will run as
+  PGID: "1001"
 
-env: {}
-  # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8000
+  main:
+    ports:
+      http:
+        port: 8000
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
   downloads:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /downloads
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
