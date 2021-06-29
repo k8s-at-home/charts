@@ -43,30 +43,18 @@ ingress:
   main:
     enabled: false
 
-# -- Deploy a tdarr node.
-# @default -- See values.yaml
-additionalContainers:
-- name: node
-  # -- Node image and tag
-  image: haveagitgat/tdarr_node:2.00.07
-  env:
-    - name: TZ
-      # -- Node Timezone
-      value: UTC
-    - name: nodeID
-      # -- Node name
-      value: node
-    - name: serverIP
-      # -- tdarr server IP/hostname
-      value: "localhost"
-    - name: serverPort
-      # -- tdar server port
-      value: "8266"
-#  volumeMounts:
-#  - name: config
-#    mountPath: /app/configs
-#  - name: media
-#    mountPath: /media
+node:
+  # -- Deploy a tdarr node.
+  enabled: true
+  # -- Node ID
+  id: node
+  image:
+    # -- image repository
+    repository: haveagitgat/tdarr_node
+    # -- image tag
+    tag: 2.00.10
+    # -- image pull policy
+    pullPolicy: IfNotPresent
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See below

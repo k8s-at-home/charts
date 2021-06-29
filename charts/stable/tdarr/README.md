@@ -75,12 +75,6 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers | list | See values.yaml | Deploy a tdarr node. |
-| additionalContainers[0].env[0].value | string | `"UTC"` | Node Timezone |
-| additionalContainers[0].env[1].value | string | `"node"` | Node name |
-| additionalContainers[0].env[2].value | string | `"localhost"` | tdarr server IP/hostname |
-| additionalContainers[0].env[3].value | string | `"8266"` | tdar server port |
-| additionalContainers[0].image | string | `"haveagitgat/tdarr_node:2.00.07"` | Node image and tag |
 | env | object | See below | environment variables. See [image docs](https://hub.docker.com/r/haveagitgat/tdarr) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | env.serverIP | string | `"0.0.0.0"` | tdarr server binding address |
@@ -90,6 +84,11 @@ N/A
 | image.repository | string | `"haveagitgat/tdarr"` | image repository |
 | image.tag | string | `"2.00.10"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| node.enabled | bool | `true` | Deploy a tdarr node. |
+| node.id | string | `"node"` | Node ID |
+| node.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| node.image.repository | string | `"haveagitgat/tdarr_node"` | image repository |
+| node.image.tag | string | `"2.00.10"` | image tag |
 | persistence | object | See below | Configure persistence settings for the chart under this key. |
 | persistence.config | object | See values.yaml | Volume used for configuration |
 | persistence.data | object | See values.yaml | Volume used for tdarr server database |
@@ -109,6 +108,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
   Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
 - Changed image tag to `2.00.10`.
+- Moved the `additionalContainers` section to hardcoded values, instead the creation of a tdarr node is now controlled through the `node` key.
 
 ### [1.0.0]
 
