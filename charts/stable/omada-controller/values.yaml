@@ -6,27 +6,35 @@
 #
 
 image:
+  # -- image repository
   repository: mbentley/omada-controller
+  # -- image tag
+  tag: '4.3'
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 4.2
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image docs](https://github.com/mbentley/docker-omada-controller) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-# See more environment variables in the omada-controller documentation
-# https://github.com/mbentley/docker-omada-controller
-env: {}
-  # TZ:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8043
+  main:
+    ports:
+      http:
+        port: 8043
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false

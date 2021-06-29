@@ -39,12 +39,14 @@
 | [homer](stable/homer) | A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file. |
 | [hyperion-ng](stable/hyperion-ng) | Hyperion is an opensource Bias or Ambient Lighting implementation |
 | [icantbelieveitsnotvaletudo](stable/icantbelieveitsnotvaletudo) | Create live map data from Valetudo powered robots |
+| [icinga2](stable/icinga2) | A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting. |
 | [intel-gpu-plugin](stable/intel-gpu-plugin) | The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware |
 | [jackett](stable/jackett) | API Support for your favorite torrent trackers |
 | [jellyfin](stable/jellyfin) | Jellyfin is a Free Software Media System |
 | [jetbrains-projector](stable/jetbrains-projector) | Projector is a technology to run and access JetBrains IDEs remotely |
 | [joplin-server](stable/joplin-server) | This server allows you to sync any Joplin client |
 | [kanboard](stable/kanboard) | Kanboard is a free and open source Kanban project management software. |
+| [komga](stable/komga) | A comics/mangas server to serve/stream pages via API |
 | [lazylibrarian](stable/lazylibrarian) | A Helm chart for deploying LazyLibrarian |
 | [leaf2mqtt](stable/leaf2mqtt) | Nissan Leaf connected services to MQTT adapter |
 | [librespeed](stable/librespeed) | Librespeed is a HTML5 webpage to test upload and download speeds |
@@ -53,6 +55,7 @@
 | [magic-mirror](stable/magic-mirror) | magic-mirror helm package |
 | [mealie](stable/mealie) | Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. |
 | [miniflux](stable/miniflux) | Miniflux is a minimalist and opinionated feed reader. |
+| [minio-console](stable/minio-console) | A management console for minio server and operator |
 | [modem-stats](stable/modem-stats) | periodic cable modem data collection and save the results to InfluxDB |
 | [monica](stable/monica) | A Personal Relationship Management tool to help you organize your social life |
 | [mosquitto](stable/mosquitto) | Eclipse Mosquitto - An open source MQTT broker |
@@ -73,6 +76,7 @@
 | [organizr](stable/organizr) | HTPC/Homelab Services Organizer |
 | [overseerr](stable/overseerr) | Overseerr is a free and open source software application for managing requests for your media library. It integrates with your existing services such as Sonarr, Radarr and Plex! |
 | [owncast](stable/owncast) | Take control over your live stream video by running it yourself. Streaming + chat out of the box. |
+| [owncloud-ocis](stable/owncloud-ocis) | ownCloud Infinite Scale is a self-hosted file sync and share server. |
 | [paperless](stable/paperless) | Paperless - Index and archive all of your scanned paper documents |
 | [photoprism](stable/photoprism) | PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection |
 | [piaware](stable/piaware) | Program for forwarding ADS-B data to FlightAware |
@@ -131,7 +135,6 @@
 | [youtubedl-material](stable/youtubedl-material) | Self-hosted YouTube downloader built on Material Design |
 | [zalando-postgres-cluster](stable/zalando-postgres-cluster) | Creates a postgres cluster using the Zalando Postgres operator and local storage |
 | [zigbee2mqtt](stable/zigbee2mqtt) | Bridges events and allows you to control your Zigbee devices via MQTT |
-| [zwave2mqtt](stable/zwave2mqtt) | Fully configurable Zwave to MQTT gateway and Control Panel using NodeJS and Vue |
 | [zwavejs2mqtt](stable/zwavejs2mqtt) | Fully configurable Zwave to MQTT Gateway and Control Panel |
 ### Incubator charts:
 | Chart | Description |

@@ -6,92 +6,71 @@
 #
 
 image:
+  # -- image repository
   repository: searx/searx
+  # -- image tag
+  tag: 1.0.0
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 0.18.0
-
-strategy:
-  type: Recreate
 
 searx:
+  # -- Specify an existing secret that contains the environment variables
+  # required for the application configuration.
   existingSecret:
-    enabled: false
-  # external URL
+  # -- External URL where the application is reachable
   baseUrl: "https://searx.DOMAIN"
-  # generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service)
-  # example : `openssl rand -base64 24`
+  # -- Generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service).
+  # Example : `openssl rand -base64 24`
   mortyKey: "changeme"
 
-envFrom:
-- secretRef:
-    name: searx-config
+searxChecker:
+  # -- searx-checker sidecar image repository
+  repository: searx/searx-checker
+  # -- searx-checker sidecar image tag
+  tag: latest
+  # -- searx-checker sidecar image pull policy
+  pullPolicy: Always
 
+filtron:
+  # -- filtron sidecar image repository
+  repository: dalf/filtron
+  # -- filtron sidecar image tag
+  tag: latest
+  # -- filtron sidecar image pull policy
+  pullPolicy: Always
+
+morty:
+  # -- morty sidecar image repository
+  repository: dalf/morty
+  # -- morty sidecar image tag
+  tag: latest
+  # -- morty sidecar image pull policy
+  pullPolicy: Always
+
+caddy:
+  # -- caddy sidecar image repository
+  repository: caddy
+  # -- caddy sidecar image tag
+  tag: 2.2.0-alpine
+  # -- caddy sidecar image pull policy
+  pullPolicy: IfNotPresent
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
-
-additionalContainers:
-- name: caddy
-  image: caddy:2.2.0-alpine
-  ports:
-  - containerPort: 80
-    name: http
-  volumeMounts:
-  - name: searx-config
-    mountPath: /etc/caddy/Caddyfile
-    subPath: Caddyfile
-  - name: searx-checker
-    mountPath: /srv/searx-checker
-- image: dalf/filtron:latest
-  imagePullPolicy: Always
-  name: filtron
-  args:
-    [
-      "-listen",
-      "0.0.0.0:4040",
-      "-api",
-      "0.0.0.0:4041",
-      "-target",
-      "localhost:8080",
-    ]
-  ports:
-  - containerPort: 4040
-    name: filtron
-  - containerPort: 4041
-    name: api
-  volumeMounts:
-  - name: searx-config
-    mountPath: /etc/filtron/rules.json
-    subPath: rules.json
-- image: dalf/morty:latest
-  imagePullPolicy: Always
-  name: morty
-  envFrom:
-  - secretRef:
-      name: searx-config
-  args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
-  ports:
-  - containerPort: 3000
-    name: morty
-- name: searx-checker
-  image: searx/searx-checker:latest
-  args:
-    ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
-  volumeMounts:
-  - name: searx-checker
-    mountPath: /usr/local/searx-checker/html/data
-additionalVolumes:
-- name: searx-config
-  configMap:
-    name: searx-config
-- name: searx-checker
-  emptyDir: {}

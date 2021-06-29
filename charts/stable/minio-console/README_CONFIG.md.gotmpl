@@ -1,0 +1,9 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+See https://hub.docker.com/r/minio/console for configuration required for the console user to login.
+{{- end -}}

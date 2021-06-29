@@ -5,9 +5,10 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
-# Use an initContainer to download the Flood web ui
-# Set UI with env TRANSMISSION_WEB_HOME: /config/flood-for-transmission/
-# initContainers:
+# -- Use an initContainer to download the Flood web ui
+# Set UI with env `TRANSMISSION_WEB_HOME` set to `/config/flood-for-transmission/`
+# @default -- See values.yaml
+initContainers: []
 #  - name: custom-webui
 #    image: curlimages/curl:7.76.1
 #    command:
@@ -22,17 +23,17 @@
 #      runAsGroup: 568
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/transmission
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: v3.00
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
-# To view more enviornment variables see here:
-# https://github.com/k8s-at-home/container-images/tree/main/apps/transmission/settings.json.tmpl
+# -- environment variables. See [image docs](https://github.com/k8s-at-home/container-images/tree/main/apps/transmission/settings.json.tmpl) for more details.
+# @default -- See below
 env:
-  # -- Container timezone
+  # -- Set the container timezone
   TZ: UTC
   # -- Path in container where the Web UI is located
   TRANSMISSION_WEB_HOME: /web
@@ -49,33 +50,36 @@ env:
   # -- Watch directory
   TRANSMISSION_WATCH_DIR: /watch
 
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 9091
-    name: http
-  # additionalServices:
-  # - enabled: true
-  #   nameSuffix: utptcp
-  #   type: ClusterIP
-  #   annotations: {}
-  #   port:
-  #     port: 51413
-  #     name: utptcp
-  #     protocol: TCP
-  #     targetport: 51413
-  # - enabled: true
-  #   nameSuffix: utpudp
-  #   type: ClusterIP
-  #   annotations: {}
-  #   port:
-  #     port: 51413
-  #     name: utpudp
-  #     protocol: UDP
-  #     targetport: 51413
+  main:
+    ports:
+      http:
+        port: 9091
+  utptcp:
+    enabled: false
+    type: ClusterIP
+    ports:
+      utptcp:
+        enabled: true
+        port: 51413
+        protocol: TCP
+        targetPort: 51413
+  utpudp:
+    enabled: false
+    type: ClusterIP
+    ports:
+      utpudp:
+        enabled: true
+        port: 51413
+        protocol: UDP
+        targetPort: 51413
 
-## transmission runs the gui and io on the same thread - heavy bandwith usage
-## may stall the UI and result in restarts.
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
+## transmission runs the GUI and I/O on the same thread.
+## Heavy bandwith usage may stall the UI and result in restarts.
 probes:
   liveness:
     spec:
@@ -85,37 +89,22 @@ probes:
       timeoutSeconds: 30
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
-  ## Directory for storing active torrent files, resume list,
-  ## blocklists and DHT peers
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /config
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 100Mi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
   downloads:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /downloads
 
   watch:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /watch

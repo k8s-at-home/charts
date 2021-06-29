@@ -1,6 +1,6 @@
 # recipes
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 0.13.0](https://img.shields.io/badge/AppVersion-0.13.0-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 0.16.7](https://img.shields.io/badge/AppVersion-0.16.7-informational?style=flat-square)
 
 Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,49 +76,31 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers[0].image | string | `"nginx:1.19.6"` |  |
-| additionalContainers[0].name | string | `"nginx"` |  |
-| additionalContainers[0].ports[0].containerPort | int | `80` |  |
-| additionalContainers[0].ports[0].name | string | `"http"` |  |
-| additionalContainers[0].volumeMounts[0].mountPath | string | `"/etc/nginx/nginx.conf"` |  |
-| additionalContainers[0].volumeMounts[0].name | string | `"recipes-config"` |  |
-| additionalContainers[0].volumeMounts[0].readOnly | bool | `true` |  |
-| additionalContainers[0].volumeMounts[0].subPath | string | `"nginx-config"` |  |
-| additionalVolumes[0].configMap.name | string | `"recipes-config"` |  |
-| additionalVolumes[0].name | string | `"recipes-config"` |  |
-| env.ALLOWED_HOSTS | string | `"*"` |  |
-| env.COMMENT_PREF_DEFAULT | string | `"1"` |  |
-| env.DB_ENGINE | string | `"django.db.backends.sqlite3"` |  |
-| env.DEBUG | string | `"0"` |  |
-| env.FRACTION_PREF_DEFAULT | string | `"0"` |  |
-| env.GUNICORN_MEDIA | string | `"0"` |  |
-| env.POSTGRES_DB | string | `nil` |  |
-| env.POSTGRES_HOST | string | `nil` |  |
-| env.POSTGRES_PASSWORD | string | `nil` |  |
-| env.POSTGRES_PORT | string | `nil` |  |
-| env.POSTGRES_USER | string | `nil` |  |
-| env.SECRET_KEY | string | `"changeme"` |  |
-| env.SHOPPING_MIN_AUTOSYNC_INTERVAL | string | `"5"` |  |
-| env.TIMEZONE | string | `"America/New_York"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"vabene1111/recipes"` |  |
-| image.tag | string | `"0.13.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.media.emptyDir.enabled | bool | `false` |  |
-| persistence.media.enabled | bool | `false` |  |
-| persistence.media.mountPath | string | `"/opt/recipes/mediafiles"` |  |
-| persistence.static.emptyDir.enabled | bool | `false` |  |
-| persistence.static.enabled | bool | `false` |  |
-| persistence.static.mountPath | string | `"/opt/recipes/staticfiles"` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [project docs](https://raw.githubusercontent.com/vabene1111/recipes/master/.env.template) for more details. |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"vabene1111/recipes"` | image repository |
+| image.tag | string | `"0.16.7"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
+| sidecar.image.pullPolicy | string | `"IfNotPresent"` | nginx sidecar image pull policy |
+| sidecar.image.repository | string | `"nginx"` | nginx sidecar image repository |
+| sidecar.image.tag | string | `"1.19.6"` | nginx sidecar image tag |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- **BREAKING**: Moved nginx sidecar configuration to chart hardcoded values.
+- Changed image tag to `0.16.7`.
 
 ### [4.3.2]
 
@@ -148,8 +130,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[4.3.2]: #4.3.2
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[4.3.2]: #432
+[1.0.0]: #100
 
 ## Support
 

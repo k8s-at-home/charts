@@ -1,6 +1,6 @@
 # airsonic
 
-![Version: 3.1.1](https://img.shields.io/badge/Version-3.1.1-informational?style=flat-square) ![AppVersion: 10.6.2](https://img.shields.io/badge/AppVersion-10.6.2-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 10.6.2](https://img.shields.io/badge/AppVersion-10.6.2-informational?style=flat-square)
 
 Airsonic is a Free and Open Source community driven media server
 
@@ -8,8 +8,7 @@ Airsonic is a Free and Open Source community driven media server
 
 ## Source Code
 
-* <https://github.com/airsonic/airsonic>
-* <https://github.com/linuxserver/docker-airsonic>
+* <https://github.com/airsonic-advanced/airsonic-advanced>
 * <https://github.com/k8s-at-home/charts/tree/master/charts/airsonic>
 
 ## Requirements
@@ -20,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.1.1 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -79,17 +78,17 @@ by not constantly monitoring media folders.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [image docs](https://docs.linuxserver.io/images/docker-airsonic#environment-variables-e) for more details. |
-| env.CONTEXT_PATH | string | `nil` | Used to set the base path for reverse proxies eg. /booksonic, /books, etc. |
+| enableServiceLinks | bool | `false` | Enable Kubernetes service links. Disabled by default, since AIRSONIC_* environment vars potentially clash with the application. |
+| env | object | See below | environment variables. |
+| env.CONTEXT_PATH | string | `nil` | Used to set the base path for reverse proxies eg. /airsonic, /music, etc. |
 | env.JAVA_OPTS | string | `nil` | For passing additional java options. For some reverse proxies, you may need to pass `JAVA_OPTS=-Dserver.use-forward-headers=true` for airsonic to generate the proper URL schemes. |
-| env.PGID | string | `"1001"` | Specify the group ID the application will run as |
-| env.PUID | string | `"1001"` | Specify the user ID the application will run as |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"linuxserver/airsonic"` | image repository |
-| image.tag | string | `"version-v10.6.2"` | image tag |
+| image.repository | string | `"airsonicadvanced/airsonic-advanced"` | image repository |
+| image.tag | string | `"latest@sha256:f7cbafac28063dce99b443037547b4fe40ae270b7bc5e47efea9bb5d6751ca9d"` | image tag The specific digest is for the `amd64` image, but arm compatible images are also available. |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes | object | See values.yaml | Configures the probes for the main Pod. |
 | service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 
 ## Changelog
@@ -97,6 +96,16 @@ by not constantly monitoring media folders.
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Changed image from linuxserver.io image to airsonic-advanced (https://github.com/airsonic-advanced/airsonic-advanced).
+
+#### Removed
+
+- Default values for `PGID` and `PUID` environment variables have been removed.
 
 ### [3.0.0]
 
@@ -120,6 +129,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #4.0.0
 [3.0.0]: #3.0.0
 [1.0.0]: #1.0.0
 

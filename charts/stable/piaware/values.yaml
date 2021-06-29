@@ -6,43 +6,50 @@
 #
 
 image:
+  # -- image repository
   repository: mikenye/piaware
+  # -- image tag
+  tag: v5.0
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v4.0
 
-strategy:
-  type: Recreate
+# -- environment variables. See [application docs](https://flightaware.com/adsb/piaware/advanced_configuration) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ:
-  # LAT:
-  # LONG:
-  # FEEDER_ID:
-  # BEASTHOST:
-  # BEASTPORT:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 securityContext:
+  # -- (bool) Privileged securityContext may be required if USB device is accessed directly through the host machine
   privileged: true
 
-# Path to your piaware device in the container
-additionalVolumeMounts:
-  - name: usb
-    mountPath: /dev/bus/usb/001/004
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  # -- Configure a hostPathMount to mount a USB device in the container.
+  # @default -- See values.yaml
+  usb:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/bus/usb/001/004
 
-# Path to your piaware device on the host
-additionalVolumes:
-  - name: usb
-    hostPath:
-      path: /dev/bus/usb/001/004
-
-# affinity:
+# -- Affinity constraint rules to place the Pod on a specific node.
+# [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+affinity: {}
 #   nodeAffinity:
 #     requiredDuringSchedulingIgnoredDuringExecution:
 #       nodeSelectorTerms:

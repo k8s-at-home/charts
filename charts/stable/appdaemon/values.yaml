@@ -6,21 +6,17 @@
 #
 
 image:
+  # -- image repository
   repository: acockburn/appdaemon
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: 4.0.8
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
-service:
-  port:
-    port: 5050
-
-# Environment variables that can be configure can be seen at
-# https://appdaemon.readthedocs.io/en/latest/DOCKER_TUTORIAL.html
-env: {}
-  # TZ:
+# -- environment variables. See [image docs](https://appdaemon.readthedocs.io/en/latest/DOCKER_TUTORIAL.html) for more details.
+# @default -- See below
+env:
+  TZ: UTC
   # LATITUDE:
   # LONGITUDE:
   # ELEVATION:
@@ -28,12 +24,23 @@ env: {}
   # DASH_URL:
   # TOKEN:
 
-ingress:
-  enabled: false
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 5050
 
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /conf

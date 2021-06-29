@@ -6,16 +6,23 @@
 #
 
 image:
+  # -- image repository
   repository: emcniece/dockeryourxyzzy
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: "4"
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false

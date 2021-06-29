@@ -6,64 +6,80 @@
 #
 
 image:
+  # -- image repository
   repository: marthoc/deconz
+    # -- image tag
+  tag: 2.12.01
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: amd64-2.10.03
 
-strategy:
-  type: Recreate
-
-# See https://github.com/marthoc/docker-deconz/blob/master/README.md for more settings for e.g. debug.
+# -- environment variables. See [image docs](https://github.com/marthoc/docker-deconz/blob/master/README.md) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone
   TZ: UTC
-  ## Path to mounted device inside the container.
-  # DECONZ_DEVICE: /dev/conbee
-  ## Do not set the VNC password here directly - use a Secret, see envValueFrom below.
-  # DECONZ_VNC_PASSWORD: changeme
+  # -- Override the location where deCONZ looks for the RaspBee/Conbee device.
+  DECONZ_DEVICE:  # /dev/ttyUSB0
+  # -- Enable VNC access to the container to view the deCONZ ZigBee mesh
   DECONZ_VNC_MODE: 1
+  # -- Web UI listen port
   DECONZ_WEB_PORT: 80
+  # -- Websocket listen port
   DECONZ_WS_PORT: 443
+  # -- VNC server listen port
   DECONZ_VNC_PORT: 5900
+  # -- If VNC is enabled (DECONZ_VNC_MODE=1) you can change the default password "changeme" using a Secret.
+  DECONZ_VNC_PASSWORD:
+    # secretKeyRef:
+    #   name: deconz-vnc-password
+    #   key: password
 
-## If VNC is enabled (DECONZ_VNC_MODE) you can change the default password "changeme" using a Secret.
-# envValueFrom:
-#   DECONZ_VNC_PASSWORD:
-#     secretKeyRef:
-#       name: deconz-vnc-password
-#       key: password
-
-## Privileged context is required to mount devices in container using volumes.
-# securityContext:
-#   privileged: true
-
-## Path to device on the host.
-# additionalVolumes:
-#   - name: conbee
-#     hostPath:
-#       path: /dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_00000000-if00-port0
-
-## Path to mounted device inside the container.
-# additionalVolumeMounts:
-#   - name: conbee
-#     mountPath: /dev/conbee
-
-## The node having the dongle attached should be labeled accordingly.
-# nodeSelector:
-#   feature.node.kubernetes.io/custom-deconz: "true"
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
-  additionalPorts:
-    - name: websocket
-      port: 443
-    - name: vnc
-      port: 5900
+  main:
+    ports:
+      http:
+        port: 80
+      websocket:
+        enabled: true
+        port: 443
+      vnc:
+        enabled: true
+        port: 5900
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+securityContext:
+  # -- (bool) Privileged securityContext may be required if USB controller is accessed directly through the host machine
+  privileged:  # true
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
     mountPath: /root/.local/share/dresden-elektronik/deCONZ
+  # -- Configure a hostPathMount to mount a USB device in the container.
+  # @default -- See values.yaml
+  usb:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2400981-if00
+    mountPath: /dev/ttyUSB0
+
+# -- Affinity constraint rules to place the Pod on a specific node.
+# [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+affinity: {}
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: app
+#           operator: In
+#           values:
+#           - zigbee-controller

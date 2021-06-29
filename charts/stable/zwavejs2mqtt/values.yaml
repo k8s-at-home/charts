@@ -6,107 +6,55 @@
 #
 
 image:
+  # -- image repository
   repository: zwavejs/zwavejs2mqtt
+  # -- image tag
+  tag: 5.0.2
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 3.0.3
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image docs](https://zwave-js.github.io/zwavejs2mqtt/#/guide/env-vars) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Zwave Network key
+  NETWORK_KEY:
 
-# # See more environment variables in the zwavejs2mqtt documentation
-# https://zwave-js.github.io/zwavejs2mqtt/#/guide/env-vars
-env: {}
-  # OZW_NETWORK_KEY:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8091
-  # additionalPorts:
-  #   - name: websocket
-  #     port: 3000
+  main:
+    ports:
+      http:
+        port: 8091
 
 ingress:
-  enabled: false
-
-probes:
-  liveness:
-    enabled: true
-    # custom: true
-    # spec:
-    #   failureThreshold: 5
-    #   httpGet:
-    #     path: /health
-    #     port: http
-    #     httpHeaders:
-    #       - name: Accept
-    #         value: text/plain
-    #   initialDelaySeconds: 30
-    #   periodSeconds: 10
-    #   timeoutSeconds: 10
-  readiness:
-    enabled: true
-    # custom: true
-    # spec:
-    #   failureThreshold: 5
-    #   httpGet:
-    #     path: /health
-    #     port: http
-    #     httpHeaders:
-    #       - name: Accept
-    #         value: text/plain
-    #   initialDelaySeconds: 30
-    #   periodSeconds: 10
-    #   timeoutSeconds: 10
-  startup:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
     enabled: false
-    # custom: true
-    # spec:
-    #   failureThreshold: 5
-    #   httpGet:
-    #     path: /health
-    #     port: http
-    #     httpHeaders:
-    #       - name: Accept
-    #         value: text/plain
-    #   initialDelaySeconds: 30
-    #   periodSeconds: 10
-    #   timeoutSeconds: 10
 
-# Privileged may be required if USB controller is accessed directly through the host machine
-# securityContext:
-#   privileged: true
+securityContext:
+  # -- (bool) Privileged securityContext may be required if USB devices are accessed directly through the host machine
+  privileged: true
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /usr/src/app/store
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
+  # -- Configure a hostPathMount to mount a USB device in the container.
+  # @default -- See values.yaml
+  usb:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/serial/by-id/usb-0658_0200-if00
 
-# Path to your zwave device in the container
-additionalVolumeMounts: []
-#  - name: usb
-#    mountPath: /dev/serial/by-id/usb-0658_0200-if00
-
-# Path to your zwave device on the host
-additionalVolumes: []
-#  - name: usb
-#    hostPath:
-#      path: /dev/serial/by-id/usb-0658_0200-if00
-
-# affinity:
+# -- Affinity constraint rules to place the Pod on a specific node.
+# [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+affinity: {}
 #   nodeAffinity:
 #     requiredDuringSchedulingIgnoredDuringExecution:
 #       nodeSelectorTerms:

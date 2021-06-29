@@ -6,21 +6,30 @@
 #
 
 image:
+  # -- image repository
   repository: hon95/prometheus-nut-exporter
+  # -- image tag
+  tag: 1.1.1
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 1.0.1
 
-strategy:
-  type: Recreate
+# -- environment variables. See [application docs](https://github.com/HON95/prometheus-nut-exporter#environment-variables) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-env: {}
-  # TZ: UTC
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 9995
+  main:
+    ports:
+      http:
+        port: 9995
 
 prometheus:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # @default -- See values.yaml
   serviceMonitor:
     enabled: false
     # Specify the list of NUT servers that should be monitored

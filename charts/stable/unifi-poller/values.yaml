@@ -6,15 +6,16 @@
 #
 
 image:
+  # -- Image to deploy.
   repository: golift/unifi-poller
+  # -- Image [k8s pull policy](https://kubernetes.io/docs/concepts/containers/images/#updating-images).
   pullPolicy: IfNotPresent
-  tag: 2.0.1
+  # -- Image tag to deploy.
+  tag: 2.1.3
 
-strategy:
-  type: Recreate
 
-# # See more environment varaibles in the unifi-poller documentation
-# https://github.com/unifi-poller/unifi-poller/wiki/Configuration
+# -- Environment variable configuration options for unifi-poller ([docs](https://unifipoller.com/docs/install/configuration)).
+#    Note: a [configuration file](https://github.com/unifi-poller/unifi-poller/blob/master/examples/up.conf.example) is also supported.
 env: {}
   # TZ: UTC
   # UP_UNIFI_DEFAULT_URL: "https://127.0.0.1:8443"
@@ -24,27 +25,46 @@ env: {}
   # UP_INFLUXDB_DISABLE: true
 
 service:
-  port:
-    port: 9130
+  main:
+    ports:
+      http:
+        # -- The port this prometheus exporter will listen on ([registered as 9130](https://github.com/prometheus/prometheus/wiki/Default-port-allocations)).
+        #    This should match unifi-poller's [configured listen port](https://unifipoller.com/docs/install/configuration#prometheus).
+        port: 9130
 
 ingress:
-  enabled: false
+  main:
+    # -- Expose [unifi-poller's web interface](https://unifipoller.com/docs/advanced/webserver)
+    #    (if enabled in the configuration) via the k8s ingress by setting this true.
+    enabled: false
 
-# enable a prometheus-operator servicemonitor
 prometheus:
   serviceMonitor:
+    # -- Create a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/design.md#servicemonitor)
+    #    for the [unifi-poller prometheus exporter](https://unifipoller.com/docs/dependencies/prometheus)
+    #    that is recognized by [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator).
+    #    This gets created in this chart's namespace. Note: this only creates a ServiceMonitor, not a prometheus instance.
     enabled: false
+    # -- Prometheus [endpoint polling interval](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#endpoint)
+    #    for this ServiceMonitor (how often unifi-poller will be queried).
     interval: 1m
+    # -- More labels to add to the ServiceMonitor resource.
     additionalLabels: {}
 
-# Enable influxdb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/influxdb
 influxdb:
+  # -- Create an InfluxDB instance as a [unifi-poller storage backend](https://unifipoller.com/docs/dependencies/influxdb).
+  #    See [bitnami/influxdb](https://github.com/bitnami/charts/tree/master/bitnami/influxdb) for more options.
   enabled: false
+  # -- InfluxDB cluster deployment architecture.
   architecture: standalone
-  database: unifi_poller
+  # -- Database name to automatically initialize.
+  #    Be sure to match in unifi-poller's [influxdb config](https://unifipoller.com/docs/install/configuration#influxdb).
+  database: unifi
+  # -- Enable InfluxDB authentication, supported by unifi-poller.
+  #    Be sure to match in unifi-poller's [influxdb config](https://unifipoller.com/docs/install/configuration#influxdb).
   authEnabled: false
   persistence:
+    # -- Enable persistence to store in a PV so data survives pod restarts.
     enabled: false
     # storageClass: ""
     # size: 8Gi

@@ -1,6 +1,6 @@
 # pretend-youre-xyzzy
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 4](https://img.shields.io/badge/AppVersion-4-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 4](https://img.shields.io/badge/AppVersion-4-informational?style=flat-square)
 
 pretend-youre-xyzzy, a cards against humanity clone
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,18 +76,24 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"emcniece/dockeryourxyzzy"` |  |
-| image.tag | string | `"4"` |  |
-| ingress.enabled | bool | `false` |  |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"emcniece/dockeryourxyzzy"` | image repository |
+| image.tag | string | `"4"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
 
 ### [1.1.2]
 
@@ -131,9 +137,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.1.2]: #1.1.2
-[1.0.1]: #1.0.1
-[1.0.0]: #1.0.0
+[2.0.0]: #200
+[1.1.2]: #112
+[1.0.1]: #101
+[1.0.0]: #100
 
 ## Support
 

@@ -1,0 +1,15 @@
+# Until cert-manager moves CRD in the crd folder we
+# cannot use cert-manager CRDs within the chart
+# See: https://github.com/jetstack/cert-manager/issues/3377
+generateCerts: false
+
+cert-manager:
+  enabled: true
+  installCRDs: true
+  webhook:
+    enabled: true
+  extraArgs:
+  - --dns01-recursive-nameservers=1.1.1.1:53
+  - --dns01-recursive-nameservers-only
+  cainjector:
+    replicaCount: 1

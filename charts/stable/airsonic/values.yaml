@@ -7,25 +7,26 @@
 
 image:
   # -- image repository
-  repository: linuxserver/airsonic
+  repository: airsonicadvanced/airsonic-advanced
   # -- image tag
-  tag: version-v10.6.2
+  # The specific digest is for the `amd64` image, but arm compatible images are also available.
+  tag: latest@sha256:f7cbafac28063dce99b443037547b4fe40ae270b7bc5e47efea9bb5d6751ca9d
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables. See [image docs](https://docs.linuxserver.io/images/docker-airsonic#environment-variables-e) for more details.
+# -- environment variables.
 # @default -- See below
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Specify the user ID the application will run as
-  PUID: "1001"
-  # -- Specify the group ID the application will run as
-  PGID: "1001"
-  # -- Used to set the base path for reverse proxies eg. /booksonic, /books, etc.
+  # -- Used to set the base path for reverse proxies eg. /airsonic, /music, etc.
   CONTEXT_PATH:  # "url-base"
   # -- For passing additional java options. For some reverse proxies, you may need to pass `JAVA_OPTS=-Dserver.use-forward-headers=true` for airsonic to generate the proper URL schemes.
   JAVA_OPTS:
+
+# -- Enable Kubernetes service links.
+# Disabled by default, since AIRSONIC_* environment vars potentially clash with the application.
+enableServiceLinks: false
 
 # -- Configures service settings for the chart. Normally this does not need to be modified.
 # @default -- See values.yaml
@@ -58,3 +59,40 @@ persistence:
   media:
     enabled: false
     mountPath: /media
+
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        path: /rest/ping
+        port: http
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+  readiness:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        path: /rest/ping
+        port: http
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        path: /rest/ping
+        port: http
+      initialDelaySeconds: 0
+      periodSeconds: 5
+      timeoutSeconds: 1
+      failureThreshold: 30

@@ -1,28 +1,12 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* use the port specified in the service */}}
-{{- $_ := set .Values.env "VIRTUAL_PORT" .Values.service.port.port -}}
-
-{{- if .Values.postgresql.enabled -}}
-  {{/* if DB_HOST is not set use internal postgres chart */}}
-  {{- if eq .Values.env.DB_HOST "" -}}
-    {{- $_ := set .Values.env "DB_HOST" (printf "%s-postgresql" .Release.Name) -}}
-  {{- end -}}
-  {{/* if DB_USER is not set use internal postgres chart */}}
-  {{- if eq .Values.env.DB_USER "" -}}
-    {{- $_ := set .Values.env "DB_USER" .Values.postgresql.postgresqlUsername -}}
-  {{- end -}}
-  {{/* if DB_PASS is not set use internal postgres chart */}}
-  {{- if eq .Values.env.DB_PASS "" -}}
-    {{- $_ := set .Values.env "DB_PASS" .Values.postgresql.postgresqlPassword -}}
-  {{- end -}}
-  {{/* if DB_DATABASE is not set use internal postgres chart */}}
-  {{- if eq .Values.env.DB_DATABASE "" -}}
-    {{- $_ := set .Values.env "DB_DATABASE" .Values.postgresql.postgresqlDatabase -}}
-  {{- end -}}
+{{/* Append the hardcoded settings */}}
+{{- define "statping.hardcodedValues" -}}
+env:
+  VIRTUAL_PORT: {{ .Values.service.main.ports.http.port }}
 {{- end -}}
+{{- $_ := mergeOverwrite .Values (include "statping.hardcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
-

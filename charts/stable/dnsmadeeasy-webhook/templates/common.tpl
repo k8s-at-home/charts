@@ -14,7 +14,11 @@
 {{- end -}}
 
 {{- define "dnsmadeeasy-webhook.servingCertificate" -}}
-{{ printf "%s-webhook-tls" (include "common.names.fullname" .) }}
+{{- if .Values.generateCerts }}
+{{- printf "%s-webhook-tls" (include "common.names.fullname" .) }}
+{{- else -}}
+{{- printf "%s-cert-manager-webhook-ca" (include "common.names.fullname" .) }}
+{{- end -}}
 {{- end -}}
 
 
@@ -29,7 +33,6 @@ persistence:
     mountPath: /tls
     readOnly: true
     volumeSpec:
-      name: certs
       secret:
         secretName: {{ include "dnsmadeeasy-webhook.servingCertificate" . }}
 

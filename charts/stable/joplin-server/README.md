@@ -1,6 +1,6 @@
 # joplin-server
 
-![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: 1.7.2](https://img.shields.io/badge/AppVersion-1.7.2-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 2.1.2](https://img.shields.io/badge/AppVersion-2.1.2-informational?style=flat-square)
 
 This server allows you to sync any Joplin client
 
@@ -18,7 +18,8 @@ This server allows you to sync any Joplin client
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.4.9 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -75,23 +76,61 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Affinity settings for pod assignment of the GUI |
+| env | object | See below | environment variables. See [image docs](https://github.com/laurent22/joplin) for more details. |
 | env.APP_BASE_URL | string | `"https://joplin.domain"` | joplin-server base URL |
 | env.APP_PORT | int | `22300` | joplin-server listening port (same as Service port) |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"joplin/server"` | joplin-server image |
-| image.tag | string | `"1.7.2"` | joplin-server image tag |
-| nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| podAnnotations | object | `{}` | Pod annotations |
-| resources | object | `{}` |  |
-| service.port.port | int | `22300` | Kubernetes port where the GUI is exposed |
-| tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
+| env.DB_CLIENT | string | `nil` | Use pg for postgres |
+| env.POSTGRES_DATABASE | string | `nil` | Postgres DB name |
+| env.POSTGRES_HOST | string | `nil` | Postgres DB Host |
+| env.POSTGRES_PASSWORD | string | `nil` | Postgres DB password |
+| env.POSTGRES_PORT | string | `nil` | Postgres DB port |
+| env.POSTGRES_USER | string | `nil` | Postgres DB Username |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"joplin/server"` | image repository |
+| image.tag | string | `"2.1.2"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.2.0]
+
+#### Changed
+
+- Updated Joplin Server version to 2.1.2, as 2.0 introduces breaking changes between client and server.
+
+### [3.0.0]
+
+#### Added
+
+- Added support for installing a postgresql database along with this chart.
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.1.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.1.1/charts/stable/common/) for the up-to-date values.
+
+### [1.0.0]
+
+#### Added
+
+- Initial version
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
 
 ## Support
 

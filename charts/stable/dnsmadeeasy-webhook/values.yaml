@@ -26,4 +26,13 @@ image:
   # -- Image pull policy
   pullPolicy: IfNotPresent
   # -- Image tag
-  tag: v1.0.0
+  tag: v1.2.0
+
+# -- Generate dedicated certs instead of re-using the cert-manager
+# webhook certificate.
+generateCerts: true
+
+cert-manager:
+  # -- Install cert-manager chart as dependency.
+  # Usually this is already installed in the cluster and not needed.
+  enabled: false

@@ -6,25 +6,33 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/k8s-at-home/nzbhydra2
+  # -- image tag
+  tag: v3.14.2
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v3.14.0
 
-strategy:
-  type: Recreate
-
-env: {}
-  # TZ: UTC
-  # PUID: 1001
-  # PGID: 1001
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
 service:
-  port:
-    port: 5076
+  main:
+    ports:
+      http:
+        port: 5076
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
 probes:
   liveness:
     custom: true
@@ -60,8 +68,8 @@ probes:
       periodSeconds: 10
       timeoutSeconds: 10
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
