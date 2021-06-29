@@ -1,6 +1,6 @@
 # samba
 
-![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A simple in-cluster Samba server
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -75,21 +75,14 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalVolumeMounts | list | `[]` |  |
-| additionalVolumes | list | `[]` |  |
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"Always"` |  |
-| image.repository | string | `"dperson/samba"` |  |
-| image.tag | string | `"latest"` |  |
-| ingress.enabled | bool | `false` |  |
-| probes.liveness.enabled | bool | `false` |  |
-| probes.readiness.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `false` |  |
-| service.additionalPorts[0].name | string | `"netbios"` |  |
-| service.additionalPorts[0].port | int | `139` |  |
-| service.port.name | string | `"tcp"` |  |
-| service.port.port | int | `445` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [image docs](https://github.com/dperson/samba/blob/master/README.md) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"Always"` | image pull policy |
+| image.repository | string | `"dperson/samba"` | image repository |
+| image.tag | string | `"latest"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -97,11 +90,18 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+
 ### [1.0.0]
 
 #### Added
 
-- N/A
+- Initial version
 
 #### Changed
 
@@ -111,7 +111,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[4.0.0]: #400
+[1.0.0]: #100
 
 ## Support
 

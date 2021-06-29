@@ -1,35 +1,33 @@
-{{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append host paths and the configMap to the additionalVolumes and additionalVolumeMounts */}}
-{{- define "sdm.configmap.volume" -}}
-name: configuration
-configMap:
-  name: {{ template "common.names.fullname" . }}
+{{/* Append the hardcoded settings */}}
+{{- define "sdm.hardcodedValues" -}}
+controller:
+  type: daemonset
+
+persistence:
+  configuration:
+    enabled: "true"
+    mountPath: "/root/config/conf.yaml"
+    subPath: "conf.yaml"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+service:
+  main:
+    enabled: false
 {{- end -}}
-
-{{- $additionalVolumes := .Values.additionalVolumes -}}
-{{- $volume := include "sdm.configmap.volume" . | fromYaml -}}
-{{- $additionalVolumes := append $additionalVolumes $volume -}}
-{{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-
-{{- define "sdm.configmap.volumeMount" -}}
-name: configuration
-mountPath: /root/config/conf.yaml
-subPath: conf.yaml
-{{- end -}}
-
-{{- $additionalVolumeMounts := .Values.additionalVolumeMounts -}}
-{{- $volumeMount := include "sdm.configmap.volumeMount" . | fromYaml -}}
-{{- $additionalVolumeMounts := append $additionalVolumeMounts $volumeMount -}}
-{{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-
-{{/* DaemonSet controller, disabling defaults */}}
-{{- $_ := set .Values "controllerType" "daemonset" }}
-{{- $_ := set .Values.probes.liveness "enabled" false }}
-{{- $_ := set .Values.probes.readiness "enabled" false }}
-{{- $_ := set .Values.probes.startup "enabled" false }}
-{{- $_ := set .Values.service "enabled" false }}
+{{- $_ := mergeOverwrite .Values (include "sdm.hardcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}

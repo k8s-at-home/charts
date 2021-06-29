@@ -6,24 +6,31 @@
 #
 
 image:
+  # -- image repository
   repository: ghcr.io/miguelndecarvalho/speedtest-exporter
+  # -- image tag
+  tag: v3.2.2
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v3.1
 
-strategy:
-  type: Recreate
+# -- environment variables. See [application docs](https://docs.miguelndecarvalho.pt/projects/speedtest-exporter/) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
-# For more configuration options see
-# https://docs.miguelndecarvalho.pt/projects/speedtest-exporter/
-env: {}
-  # TZ: UTC
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 9798
+  main:
+    ports:
+      http:
+        port: 9798
 
-# Enable gathering Prometheus metrics
 prometheus:
+  # -- Enable and configure a Prometheus podMonitor for the chart under this key.
+  # See also the notes under `additionalContainers`.
+  # @default -- See values.yaml
   podMonitor:
     enabled: false
     interval: 1h

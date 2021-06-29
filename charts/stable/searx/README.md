@@ -1,6 +1,6 @@
 # searx
 
-![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: 0.18.0](https://img.shields.io/badge/AppVersion-0.18.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Searx is a privacy-respecting, hackable metasearch engine
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -77,72 +77,42 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers[0].image | string | `"caddy:2.2.0-alpine"` |  |
-| additionalContainers[0].name | string | `"caddy"` |  |
-| additionalContainers[0].ports[0].containerPort | int | `80` |  |
-| additionalContainers[0].ports[0].name | string | `"http"` |  |
-| additionalContainers[0].volumeMounts[0].mountPath | string | `"/etc/caddy/Caddyfile"` |  |
-| additionalContainers[0].volumeMounts[0].name | string | `"searx-config"` |  |
-| additionalContainers[0].volumeMounts[0].subPath | string | `"Caddyfile"` |  |
-| additionalContainers[0].volumeMounts[1].mountPath | string | `"/srv/searx-checker"` |  |
-| additionalContainers[0].volumeMounts[1].name | string | `"searx-checker"` |  |
-| additionalContainers[1].args[0] | string | `"-listen"` |  |
-| additionalContainers[1].args[1] | string | `"0.0.0.0:4040"` |  |
-| additionalContainers[1].args[2] | string | `"-api"` |  |
-| additionalContainers[1].args[3] | string | `"0.0.0.0:4041"` |  |
-| additionalContainers[1].args[4] | string | `"-target"` |  |
-| additionalContainers[1].args[5] | string | `"localhost:8080"` |  |
-| additionalContainers[1].image | string | `"dalf/filtron:latest"` |  |
-| additionalContainers[1].imagePullPolicy | string | `"Always"` |  |
-| additionalContainers[1].name | string | `"filtron"` |  |
-| additionalContainers[1].ports[0].containerPort | int | `4040` |  |
-| additionalContainers[1].ports[0].name | string | `"filtron"` |  |
-| additionalContainers[1].ports[1].containerPort | int | `4041` |  |
-| additionalContainers[1].ports[1].name | string | `"api"` |  |
-| additionalContainers[1].volumeMounts[0].mountPath | string | `"/etc/filtron/rules.json"` |  |
-| additionalContainers[1].volumeMounts[0].name | string | `"searx-config"` |  |
-| additionalContainers[1].volumeMounts[0].subPath | string | `"rules.json"` |  |
-| additionalContainers[2].args[0] | string | `"-listen"` |  |
-| additionalContainers[2].args[1] | string | `"localhost:3000"` |  |
-| additionalContainers[2].args[2] | string | `"-timeout"` |  |
-| additionalContainers[2].args[3] | string | `"6"` |  |
-| additionalContainers[2].args[4] | string | `"ipv6"` |  |
-| additionalContainers[2].envFrom[0].secretRef.name | string | `"searx-config"` |  |
-| additionalContainers[2].image | string | `"dalf/morty:latest"` |  |
-| additionalContainers[2].imagePullPolicy | string | `"Always"` |  |
-| additionalContainers[2].name | string | `"morty"` |  |
-| additionalContainers[2].ports[0].containerPort | int | `3000` |  |
-| additionalContainers[2].ports[0].name | string | `"morty"` |  |
-| additionalContainers[3].args[0] | string | `"-cron"` |  |
-| additionalContainers[3].args[1] | string | `"-o"` |  |
-| additionalContainers[3].args[2] | string | `"html/data/status.json"` |  |
-| additionalContainers[3].args[3] | string | `"http://localhost:8080"` |  |
-| additionalContainers[3].image | string | `"searx/searx-checker:latest"` |  |
-| additionalContainers[3].name | string | `"searx-checker"` |  |
-| additionalContainers[3].volumeMounts[0].mountPath | string | `"/usr/local/searx-checker/html/data"` |  |
-| additionalContainers[3].volumeMounts[0].name | string | `"searx-checker"` |  |
-| additionalVolumes[0].configMap.name | string | `"searx-config"` |  |
-| additionalVolumes[0].name | string | `"searx-config"` |  |
-| additionalVolumes[1].emptyDir | object | `{}` |  |
-| additionalVolumes[1].name | string | `"searx-checker"` |  |
-| envFrom[0].secretRef.name | string | `"searx-config"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"searx/searx"` |  |
-| image.tag | string | `"0.18.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| searx.baseUrl | string | `"https://searx.DOMAIN"` |  |
-| searx.existingSecret.enabled | bool | `false` |  |
-| searx.mortyKey | string | `"changeme"` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| caddy.pullPolicy | string | `"IfNotPresent"` | caddy sidecar image pull policy |
+| caddy.repository | string | `"caddy"` | caddy sidecar image repository |
+| caddy.tag | string | `"2.2.0-alpine"` | caddy sidecar image tag |
+| filtron.pullPolicy | string | `"Always"` | filtron sidecar image pull policy |
+| filtron.repository | string | `"dalf/filtron"` | filtron sidecar image repository |
+| filtron.tag | string | `"latest"` | filtron sidecar image tag |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"searx/searx"` | image repository |
+| image.tag | string | `"1.0.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| morty.pullPolicy | string | `"Always"` | morty sidecar image pull policy |
+| morty.repository | string | `"dalf/morty"` | morty sidecar image repository |
+| morty.tag | string | `"latest"` | morty sidecar image tag |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| searx.baseUrl | string | `"https://searx.DOMAIN"` | External URL where the application is reachable |
+| searx.existingSecret | string | `nil` | Specify an existing secret that contains the environment variables required for the application configuration. |
+| searx.mortyKey | string | `"changeme"` | Generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service). Example : `openssl rand -base64 24` |
+| searxChecker.pullPolicy | string | `"Always"` | searx-checker sidecar image pull policy |
+| searxChecker.repository | string | `"searx/searx-checker"` | searx-checker sidecar image repository |
+| searxChecker.tag | string | `"latest"` | searx-checker sidecar image tag |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- **BREAKING**: The additional containers have been moved to a hardcoded list
+- Changed image tag to `1.0.0`.
 
 ### [1.0.0]
 
@@ -158,7 +128,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[4.0.0]: #400
+[1.0.0]: #100
 
 ## Support
 

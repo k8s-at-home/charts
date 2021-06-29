@@ -1,1 +1,23 @@
+---
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "samba.harcodedValues" -}}
+service:
+  main:
+    ports:
+      http:
+        enabled: false
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "samba.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}

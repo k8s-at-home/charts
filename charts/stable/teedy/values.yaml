@@ -6,45 +6,65 @@
 #
 
 image:
+  # -- image repository
   repository: sismics/docs
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: v1.9
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
+# -- environment variables. See [application docs](https://github.com/sismics/docs) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- The language which will be used as default
+  DOCS_DEFAULT_LANGUAGE: eng
+  # -- The base url used by the application
+  DOCS_BASE_URL:
+  # -- Defines the e-mail-address the admin user should have upon initialization
+  DOCS_ADMIN_EMAIL_INIT:
+  # -- Defines the password the admin user should have upon initialization. Needs to be a bcrypt hash.
+  DOCS_ADMIN_PASSWORD_INIT:
+  # -- The jdbc connection string to be used by hibernate
+  DATABASE_URL:  # "jdbc:postgresql://teedy-postgresql:5432/teedydb"
+  # -- The user which should be used for the database connection
+  DATABASE_USER:  # teedyuser
+  # -- The password to be used for the database connection.
+  DATABASE_PASSWORD:  # "$2y$12$/MehlbYmXDq8sz1xdqOupOOHNUdsVrBLakdev6y5qqTUeHZqicYA6" # teedypassword
+  # --  Hostname of the SMTP-Server to be used by Teedy
+  DOCS_SMTP_HOSTNAME:
+  # -- The port of the SMTP-Server which should be used
+  DOCS_SMTP_PORT:
+  # -- The username of the SMTP-Server which should be used
+  DOCS_SMTP_USERNAME:
+  # -- The password of the SMTP-Server which should be used
+  DOCS_SMTP_PASSWORD:
 
-# See more environment varaibles in the teedy documentation
-# https://github.com/sismics/docs
-env: {}
-  # DOCS_DEFAULT_LANGUAGE: eng
-  # DOCS_BASE_URL:
-  # DOCS_ADMIN_EMAIL_INIT:
-  # DOCS_ADMIN_PASSWORD_INIT:
-  # DATABASE_URL: 'jdbc:postgresql://teedy-postgresql:5432/teedydb"
-  # DATABASE_USER: teedyuser
-  # DATABASE_PASSWORD: "$2y$12$/MehlbYmXDq8sz1xdqOupOOHNUdsVrBLakdev6y5qqTUeHZqicYA6" # teedypassword
-  # DOCS_SMTP_HOSTNAME:
-  # DOCS_SMTP_PORT:
-  # DOCS_SMTP_USERNAME:
-  # DOCS_SMTP_PASSWORD:
-  # TZ:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   data:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /data
 
-# Enables postgres
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
   enabled: false
   postgresqlUsername: teedyuser

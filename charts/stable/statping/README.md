@@ -1,6 +1,6 @@
 # statping
 
-![Version: 3.5.1](https://img.shields.io/badge/Version-3.5.1-informational?style=flat-square) ![AppVersion: v0.90.74](https://img.shields.io/badge/AppVersion-v0.90.74-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v0.90.74](https://img.shields.io/badge/AppVersion-v0.90.74-informational?style=flat-square)
 
 Status page for monitoring your websites and applications
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,36 +76,40 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| env | object | See below | environment variables. See [application docs](https://github.com/statping/statping/wiki/Config-with-.env-File) for more details. |
 | env.DB_CONN | string | `"postgres"` | Type of database to use |
-| env.DB_DATABASE | string | postgresql.postgresqlDatabase value | Postgres database password |
+| env.DB_DATABASE | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` | Postgres database name |
 | env.DB_HOST | string | internal postgresql URL | Postgres database hostname |
-| env.DB_PASS | string | postgresql.postgresqlPassword value | Postgres database password |
-| env.DB_USER | string | postgresql.postgresqlUsername value | Postgres database user name |
+| env.DB_PASS | string | `"{{ .Values.postgresql.postgresqlPassword }}"` | Postgres database password |
+| env.DB_USER | string | `"{{ .Values.postgresql.postgresqlUsername }}"` | Postgres database user name |
 | env.DESCRIPTION | string | `"This is a Statping instance deployed as Helm chart"` | Description of the Statping instance |
 | env.DISABLE_LOGS | bool | `false` | Disable logs from appearing and writing to disk |
 | env.NAME | string | `"Statping Example"` | Name of the Statping instance |
-| env.POSTGRES_SSLMODE | string | `"disable"` | Enable ssl_mode for postgres (To enable use require) |
+| env.POSTGRES_SSLMODE | string | `"disable"` | Enable ssl_mode for postgres (To enable use `require`) |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | env.USE_CDN | bool | `false` | Use CDN for static context from third-parties |
 | env.VIRTUAL_HOST | string | `""` | External URL you use to connect to the statping (the one you enter in your browser) |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"statping/statping"` |  |
-| image.tag | string | `"v0.90.65"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence | object | see bellow | Generated application config.yaml and logs are written here. Usually does not need to be persisted. |
-| postgresql | object | see bellow | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
-| postgresql.enabled | bool | `true` | By default uses an internal postgress. Disable if you use your own Postgres. |
-| postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
-| postgresql.postgresqlDatabase | string | `"postgres"` | Postgres database password |
-| postgresql.postgresqlPassword | string | `"changeme"` | Postgres database password |
-| postgresql.postgresqlUsername | string | `"postgres"` | Postgres database user name |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"statping/statping"` | image repository |
+| image.tag | string | `"v0.90.74"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `v0.90.74`.
 
 ### [3.3.2]
 
@@ -136,8 +140,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[3.3.2]: #3.3.2
-[2.0.0]: #2.0.0
+[4.0.0]: #400
+[3.3.2]: #332
+[2.0.0]: #200
 
 ## Support
 
