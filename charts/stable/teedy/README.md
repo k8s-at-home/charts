@@ -1,6 +1,6 @@
 # teedy
 
-![Version: 3.5.1](https://img.shields.io/badge/Version-3.5.1-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v1.9](https://img.shields.io/badge/AppVersion-v1.9-informational?style=flat-square)
 
 Teedy is an open source, lightweight document management system for individuals and businesses.
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -77,27 +77,39 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"sismics/docs"` |  |
-| image.tag | string | `"v1.9"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/data"` |  |
-| postgresql.enabled | bool | `false` |  |
-| postgresql.persistence.enabled | bool | `false` |  |
-| postgresql.postgresqlDatabase | string | `"teedydb"` |  |
-| postgresql.postgresqlPassword | string | `"teedypassword"` |  |
-| postgresql.postgresqlUsername | string | `"teedyuser"` |  |
-| service.port.port | int | `8080` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [application docs](https://github.com/sismics/docs) for more details. |
+| env.DATABASE_PASSWORD | string | `nil` | The password to be used for the database connection. |
+| env.DATABASE_URL | string | `nil` | The jdbc connection string to be used by hibernate |
+| env.DATABASE_USER | string | `nil` | The user which should be used for the database connection |
+| env.DOCS_ADMIN_EMAIL_INIT | string | `nil` | Defines the e-mail-address the admin user should have upon initialization |
+| env.DOCS_ADMIN_PASSWORD_INIT | string | `nil` | Defines the password the admin user should have upon initialization. Needs to be a bcrypt hash. |
+| env.DOCS_BASE_URL | string | `nil` | The base url used by the application |
+| env.DOCS_DEFAULT_LANGUAGE | string | `"eng"` | The language which will be used as default |
+| env.DOCS_SMTP_HOSTNAME | string | `nil` | Hostname of the SMTP-Server to be used by Teedy |
+| env.DOCS_SMTP_PASSWORD | string | `nil` | The password of the SMTP-Server which should be used |
+| env.DOCS_SMTP_PORT | string | `nil` | The port of the SMTP-Server which should be used |
+| env.DOCS_SMTP_USERNAME | string | `nil` | The username of the SMTP-Server which should be used |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"sismics/docs"` | image repository |
+| image.tag | string | `"v1.9"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
 
 ### [3.4.1]
 
@@ -127,6 +139,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #400
 [3.4.1]: #341
 [1.0.0]: #100
 
