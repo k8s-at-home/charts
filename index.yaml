@@ -1678,6 +1678,35 @@ entries:
   appdaemon:
   - apiVersion: v2
     appVersion: 4.0.8
+    created: "2021-06-29T12:56:17.431877177Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: AppDaemon is a loosely coupled, multi-threaded, sandboxed python
+      execution environment for writing automation apps for various types of Home
+      Automation Software including Home Assistant and MQTT.
+    digest: 97e0466af030ccfa1fa27682417e9ca7b65d7f7e5b7e4cd22113f3c2c48cf700
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/appdaemon
+    icon: https://avatars.githubusercontent.com/u/67876516?s=200&v=4
+    keywords:
+    - appdaemon
+    - home-automation
+    - home-assistant
+    - mqtt
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: appdaemon
+    sources:
+    - https://github.com/AppDaemon/appdaemon
+    - https://hub.docker.com/r/acockburn/appdaemon/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/appdaemon-7.0.0/appdaemon-7.0.0.tgz
+    version: 7.0.0
+  - apiVersion: v2
+    appVersion: 4.0.8
     created: "2021-05-09T07:41:03.090692168Z"
     dependencies:
     - name: common
@@ -51453,6 +51482,29 @@ entries:
   samba:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-06-29T12:56:17.571770784Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: A simple in-cluster Samba server
+    digest: 002448b6608542e0a2787342f092628e41c1b918fb52f36cfd02f0add4b9d241
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/samba
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Samba_logo_2010.svg/500px-Samba_logo_2010.svg.png
+    keywords:
+    - samba
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: samba
+    sources:
+    - https://github.com/dperson/samba
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/samba-4.0.0/samba-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-05-05T14:51:28.289460503Z"
     dependencies:
     - name: common
@@ -51794,6 +51846,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/samba-1.0.0/samba-1.0.0.tgz
     version: 1.0.0
   searx:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-06-29T12:56:17.741359866Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Searx is a privacy-respecting, hackable metasearch engine
+    digest: 54125a6d731b7d52ccf3f1afe63409f3b283602e8bc55803958ae53774b37abf
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/searx
+    icon: https://github.com/searx/searx/blob/master/searx/static/themes/simple/img/logo_searx_a.png?raw=true
+    keywords:
+    - searx
+    - search engine
+    - privacy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: searx
+    sources:
+    - https://github.com/searx/searx
+    - https://searx.github.io/searx/
+    - https://hub.docker.com/r/searx/searx
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/searx-4.0.0/searx-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 0.18.0
     created: "2021-05-05T14:51:28.508916397Z"
@@ -52252,6 +52331,30 @@ entries:
   ser2sock:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-06-29T12:56:17.977178492Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Serial to Socket Redirector
+    digest: 970c8a642b04c0168197a7de256c6178f3b25dd9a0fcda35283ce957f450e800
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ser2sock
+    icon: https://i.imgur.com/GfZ7McO.png
+    keywords:
+    - ser2sock
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: ser2sock
+    sources:
+    - https://github.com/nutechsoftware/ser2sock
+    - https://github.com/tenstartups/ser2sock
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ser2sock-4.0.0/ser2sock-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-05-05T14:51:28.673213793Z"
     dependencies:
     - name: common
@@ -52547,6 +52650,31 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/ser2sock-1.0.0/ser2sock-1.0.0.tgz
     version: 1.0.0
   sharry:
+  - apiVersion: v2
+    appVersion: 1.8.0
+    created: "2021-06-29T12:56:18.199231827Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Sharry allows to share files with others in a simple way. It is a
+      self-hosted web application. The basic concept is to upload files and get a
+      url back that can then be shared.
+    digest: 34dbdbec645258c168dc8f6d92e9a31821741cc841bc92d16785a112226550c7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sharry
+    icon: https://github.com/eikek/sharry/blob/master/artwork/logo.svg?raw=true
+    keywords:
+    - file sharing
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: sharry
+    sources:
+    - https://github.com/eikek/sharry
+    - https://hub.docker.com/r/eikek0/sharry
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sharry-4.0.0/sharry-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: 1.6.0
     created: "2021-05-05T14:51:28.852443388Z"
@@ -53030,6 +53158,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/shlink-1.0.0/shlink-1.0.0.tgz
     version: 1.0.0
   smarter-device-manager:
+  - apiVersion: v2
+    appVersion: 1.20.7
+    created: "2021-06-29T12:56:18.337330757Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Manage hardware resource allocation without a need for privileged
+      containers
+    digest: 09e1352c102ed27fe5f49d11af16588ff1b41ed51b0c87a9795861629cc70a5e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/smarter-device-manager
+    icon: https://assets.gitlab-static.net/uploads/-/system/group/avatar/6339043/smarter-sticker-nologo.png
+    keywords:
+    - kubernetes
+    - cluster
+    - hardware
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    - email: 19270832+lazyoldbear@users.noreply.github.com
+      name: lazyoldbear
+    name: smarter-device-manager
+    sources:
+    - https://gitlab.com/arm-research/smarter/smarter-device-manager/
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/smarter-device-manager-5.0.0/smarter-device-manager-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v2
     appVersion: 1.20.7
     created: "2021-05-19T11:42:11.438690967Z"
@@ -54942,6 +55099,29 @@ entries:
     version: 2.0.0
   speedtest-exporter:
   - apiVersion: v2
+    appVersion: v3.2.2
+    created: "2021-06-29T12:56:18.488281038Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Speedtest Exporter made in python using the official speedtest bin
+    digest: 48b2b29c8792390a6f5b02e66be0900c5f512b9ec7a51be35405fd2d23a04516
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/speedtest-exporter
+    keywords:
+    - speedtest-exporter
+    - speedtest
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: devin.kray@gmail.com
+      name: onedr0p
+    name: speedtest-exporter
+    sources:
+    - https://github.com/MiguelNdeCarvalho/speedtest-exporter/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/speedtest-exporter-2.0.0/speedtest-exporter-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: v3.1
     created: "2021-05-05T14:51:29.422014574Z"
     dependencies:
@@ -55344,6 +55524,37 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/stash-1.0.0/stash-1.0.0.tgz
     version: 1.0.0
   statping:
+  - apiVersion: v2
+    appVersion: v0.90.74
+    created: "2021-06-29T12:56:18.642578564Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.8
+    description: Status page for monitoring your websites and applications
+    digest: 44d1bd2bcbc22941fc87a6dc0fdf27cb0898668d855a38a8ca604bb869d46492
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/statping
+    icon: https://avatars.githubusercontent.com/u/61949049?s=200&v=4
+    keywords:
+    - statping
+    - status
+    - status-page
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    - email: git@angelnu.com
+      name: angelnu
+    name: statping
+    sources:
+    - https://github.com/statping/statping
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/statping-4.0.0/statping-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: v0.90.74
     created: "2021-06-01T04:42:46.762878702Z"
@@ -56070,6 +56281,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/statping-1.0.0/statping-1.0.0.tgz
     version: 1.0.0
   syncthing:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2021-06-29T12:56:18.790703524Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Open Source Continuous File Synchronization
+    digest: 0474788b211f2a34c8cf059f7e6d1e3cdb656f738257c0b1b14a10919cbdb0c3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/syncthing
+    icon: https://github.com/syncthing/syncthing/raw/main/assets/logo-128.png
+    keywords:
+    - syncthing
+    - file sync
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: dennis.zhang.nrg@gmail.com
+      name: FlipEnergy
+    - name: claughinghouse
+    name: syncthing
+    sources:
+    - https://syncthing.net/
+    - https://github.com/syncthing/syncthing
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/syncthing-2.0.0/syncthing-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 1.17.0
     created: "2021-06-05T13:38:56.089371526Z"
@@ -57302,6 +57539,35 @@ entries:
     version: 2.0.0
   tdarr:
   - apiVersion: v2
+    appVersion: 2.00.10
+    created: "2021-06-29T12:56:18.926916073Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Tdarr is a self hosted web-app for automating media library transcode/remux
+      management and making sure your files are exactly how you need them to be in
+      terms of codecs/streams/containers etc.
+    digest: 7e90fabf2708959fa3bf067c885730acad6d24650ac8a2155066c76f37c9e229
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tdarr
+    icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+    keywords:
+    - transcoding
+    - remux
+    - media
+    - video
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: tdarr
+    sources:
+    - https://www.github.com/HaveAGitGat/Tdarr
+    - https://hub.docker.com/r/haveagitgat/tdarr/
+    - https://tdarr.io/docs/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tdarr-3.0.0/tdarr-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 2.00.07
     created: "2021-05-05T14:51:30.297928951Z"
     dependencies:
@@ -57563,6 +57829,37 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/tdarr-1.0.1/tdarr-1.0.1.tgz
     version: 1.0.1
   teedy:
+  - apiVersion: v2
+    appVersion: v1.9
+    created: "2021-06-29T12:56:19.097450596Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.8
+    description: Teedy is an open source, lightweight document management system for
+      individuals and businesses.
+    digest: cc22e966def298ab169aa619c7f11ae129027758f4834f4605f6792daa1b3aae
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teedy
+    icon: https://raw.githubusercontent.com/sismics/docs/v1.9/docs-web/src/main/resources/image/logo.png
+    keywords:
+    - teedy
+    - documents
+    - management
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: teedy
+    sources:
+    - https://github.com/sismics/docs
+    - https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teedy-4.0.0/teedy-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: v1.9
     created: "2021-06-01T04:42:46.88672627Z"
@@ -58211,6 +58508,33 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/teedy-1.0.0/teedy-1.0.0.tgz
     version: 1.0.0
   teslamate:
+  - apiVersion: v2
+    appVersion: v1.23.4
+    created: "2021-06-29T12:56:19.249467923Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.8
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: f394eb06bf7851880c3b7a9a68b69c4544b9a8493c778c0faef1d5facfc44b52
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teslamate-5.0.0/teslamate-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v2
     appVersion: v1.22.0
     created: "2021-06-01T04:42:47.025792133Z"
@@ -60479,6 +60803,31 @@ entries:
     version: 1.0.0
   truecommand:
   - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2021-06-29T12:56:19.408540954Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Central Management of TrueNAS storage systems
+    digest: 95b55a4bda1c561b41a1bcce1a30f5330017386b3997c83ae85f38a3739cc4e4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/truecommand
+    icon: https://www.ixsystems.com/documentation/truecommand/1.2/_static/tv-logo.png
+    keywords:
+    - storage
+    - truenas
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: kjeld@schouten-lebbing.nl
+      name: ornias1993
+    name: truecommand
+    sources:
+    - https://www.truenas.com/truecommand
+    - https://hub.docker.com/r/ixsystems/truecommand
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/truecommand-2.0.0/truecommand-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: 1.3.2
     created: "2021-05-08T22:15:57.904816587Z"
     dependencies:
@@ -61009,6 +61358,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/tt-rss-1.0.6/tt-rss-1.0.6.tgz
     version: 1.0.6
   tvheadend:
+  - apiVersion: v2
+    appVersion: version-eb59284b
+    created: "2021-06-29T12:56:19.682274407Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: TVheadend - a TV streaming server and digital video recorder
+    digest: 309522955c71b08c07334017348b49dc8dbdd275d2d74ecc9ad8ef97e55400b9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tvheadend
+    icon: https://raw.githubusercontent.com/tvheadend/tvheadend/master/src/webui/static/img/satip-icon120.png
+    keywords:
+    - tv
+    - streaming
+    - dvb
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: tvheadend
+    sources:
+    - https://github.com/tvheadend/tvheadend
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tvheadend-4.0.0/tvheadend-4.0.0.tgz
+    version: 4.0.0
   - apiVersion: v2
     appVersion: latest
     created: "2021-05-05T14:51:31.352612223Z"
@@ -69272,4 +69647,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-28T17:25:54.487102283Z"
+generated: "2021-06-29T12:56:19.698600308Z"
