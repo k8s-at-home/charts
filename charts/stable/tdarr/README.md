@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: 2.00.07](https://img.shields.io/badge/AppVersion-2.00.07-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -18,7 +18,7 @@ Tdarr is a self hosted web-app for automating media library transcode/remux mana
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -75,42 +75,57 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers[0].env[0].name | string | `"TZ"` |  |
-| additionalContainers[0].env[0].value | string | `"America/New York"` | Node Timezone |
-| additionalContainers[0].env[1].name | string | `"nodeID"` |  |
+| additionalContainers | list | See values.yaml | Deploy a tdarr node. |
+| additionalContainers[0].env[0].value | string | `"UTC"` | Node Timezone |
 | additionalContainers[0].env[1].value | string | `"node"` | Node name |
-| additionalContainers[0].env[2].name | string | `"serverIP"` |  |
 | additionalContainers[0].env[2].value | string | `"localhost"` | tdarr server IP/hostname |
-| additionalContainers[0].env[3].name | string | `"serverPort"` |  |
 | additionalContainers[0].env[3].value | string | `"8266"` | tdar server port |
 | additionalContainers[0].image | string | `"haveagitgat/tdarr_node:2.00.07"` | Node image and tag |
-| additionalContainers[0].name | string | `"node"` |  |
-| affinity | object | `{}` | Affinity settings for pod assignment of the GUI |
-| env.TZ | string | `"America/New York"` | Timezone |
+| env | object | See below | environment variables. See [image docs](https://hub.docker.com/r/haveagitgat/tdarr) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | env.serverIP | string | `"0.0.0.0"` | tdarr server binding address |
-| env.serverPort | int | `8266` | tdarr server listening port |
-| env.webUIPort | int | `8265` | tdarr web UI listening port (same as Service port) |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"haveagitgat/tdarr"` | tdarr image |
-| image.tag | string | `"2.00.07"` | tdarr image tag |
-| nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| persistence.config | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountpath":"/app/configs"}` | Volume used for configuration |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` | Volume used for tdarr server database |
-| persistence.data.mountpath | string | `"/app/server"` |  |
-| persistence.media.emptyDir.enabled | bool | `false` |  |
-| persistence.media.enabled | bool | `false` | Volume used for media libraries |
-| persistence.media.mountpath | string | `"/media"` |  |
-| podAnnotations | object | `{}` | Pod annotations |
-| resources | object | `{}` |  |
-| service.port.port | int | `8265` | Kubernetes port where the GUI is exposed |
-| tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
+| env.serverPort | string | `"{{ .Values.service.main.ports.server.port }}"` | tdarr server listening port |
+| env.webUIPort | string | `"{{ .Values.service.main.ports.http.port }}"` | tdarr web UI listening port (same as Service port) |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"haveagitgat/tdarr"` | image repository |
+| image.tag | string | `"2.00.10"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See below | Configure persistence settings for the chart under this key. |
+| persistence.config | object | See values.yaml | Volume used for configuration |
+| persistence.data | object | See values.yaml | Volume used for tdarr server database |
+| persistence.media | object | See values.yaml | Volume used for media libraries |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `2.00.10`.
+
+### [1.0.0]
+
+#### Added
+
+- Initial version
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[3.0.0]: #300
+[1.0.0]: #100
 
 ## Support
 

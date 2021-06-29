@@ -1,52 +1,50 @@
-# Default values for tdarr.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
-  # -- tdarr image
+  # -- image repository
   repository: haveagitgat/tdarr
-  # -- tdarr image tag
-  tag: 2.00.07
-  # tdarr image pull policy
+  # -- image tag
+  tag: 2.00.10
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-service:
-  port:
-    # -- Kubernetes port where the GUI is exposed
-    port: 8265
-
+# -- environment variables. See [image docs](https://hub.docker.com/r/haveagitgat/tdarr) for more details.
+# @default -- See below
 env:
-  # -- Timezone
-  TZ: America/New York
+  # -- Set the container timezone
+  TZ: UTC
   # -- tdarr web UI listening port (same as Service port)
-  webUIPort: 8265
+  webUIPort: "{{ .Values.service.main.ports.http.port }}"
   # -- tdarr server binding address
   serverIP: 0.0.0.0
   # -- tdarr server listening port
-  serverPort: 8266
+  serverPort: "{{ .Values.service.main.ports.server.port }}"
 
-# -- Node labels for pod assignment of the GUI
-nodeSelector: {}
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8265
+      server:
+        enabled: true
+        protocol: TCP
+        port: 8266
 
-# -- Toleration labels for pod assignment of the GUI
-tolerations: []
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
-# -- Affinity settings for pod assignment of the GUI
-affinity: {}
-
-# -- Pod annotations
-podAnnotations: {}
-
+# -- Deploy a tdarr node.
+# @default -- See values.yaml
 additionalContainers:
 - name: node
   # -- Node image and tag
@@ -54,7 +52,7 @@ additionalContainers:
   env:
     - name: TZ
       # -- Node Timezone
-      value: "America/New York"
+      value: UTC
     - name: nodeID
       # -- Node name
       value: node
@@ -70,60 +68,23 @@ additionalContainers:
 #  - name: media
 #    mountPath: /media
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See below
 persistence:
-# -- Volume used for configuration
+  # -- Volume used for configuration
+  # @default -- See values.yaml
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountpath: /app/configs
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
+  # -- Volume used for tdarr server database
+  # @default -- See values.yaml
   data:
-# -- Volume used for tdarr server database
     enabled: false
-    emptyDir:
-      enabled: false
     mountpath: /app/server
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
+  # -- Volume used for media libraries
+  # @default -- See values.yaml
   media:
-# -- Volume used for media libraries
     enabled: false
-    emptyDir:
-      enabled: false
     mountpath: /media
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
