@@ -78,7 +78,7 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [application docs](https://github.com/statping/statping/wiki/Config-with-.env-File) for more details. |
 | env.DB_CONN | string | `"postgres"` | Type of database to use |
-| env.DB_DATABASE | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` | Postgres database password |
+| env.DB_DATABASE | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` | Postgres database name |
 | env.DB_HOST | string | internal postgresql URL | Postgres database hostname |
 | env.DB_PASS | string | `"{{ .Values.postgresql.postgresqlPassword }}"` | Postgres database password |
 | env.DB_USER | string | `"{{ .Values.postgresql.postgresqlUsername }}"` | Postgres database user name |
