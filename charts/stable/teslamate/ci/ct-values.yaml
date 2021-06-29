@@ -1,19 +1,6 @@
 ---
 env:
-  DATABASE_USER: "postgres"
-  DATABASE_PASS: "teslamate-pass"
-  DATABASE_NAME: "teslamate"
-  DATABASE_HOST: teslamate-postgresql
   DISABLE_MQTT: "true"
-
-fullnameOverride: teslamate
 
 postgresql:
   enabled: true
-  postgresqlUsername: postgres
-  postgresqlPassword: teslamate-pass
-  postgresqlDatabase: teslamate
-  persistence:
-    enabled: false
-    # storageClass: ""
-  fullnameOverride: teslamate-postgresql

@@ -1,6 +1,6 @@
 # teslamate
 
-![Version: 4.0.1](https://img.shields.io/badge/Version-4.0.1-informational?style=flat-square) ![AppVersion: v1.22.0](https://img.shields.io/badge/AppVersion-v1.22.0-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v1.23.4](https://img.shields.io/badge/AppVersion-v1.23.4-informational?style=flat-square)
 
 A self-hosted data logger for your Tesla 🚘
 
@@ -17,7 +17,7 @@ A self-hosted data logger for your Tesla 🚘
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -74,23 +74,36 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"teslamate/teslamate"` |  |
-| image.tag | string | `"1.22.0"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.import.emptyDir.enabled | bool | `false` |  |
-| persistence.import.enabled | bool | `false` |  |
-| persistence.import.mountPath | string | `"/opt/app/import"` |  |
-| postgresql.enabled | bool | `false` |  |
-| service.port.port | int | `4000` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [teslamate docs](https://docs.teslamate.org/docs/configuration/environment_variables) for more details. |
+| env.DATABASE_HOST | string | `"{{ include \"common.names.fullname\" .}}-postgresql"` | Postgres database hostname |
+| env.DATABASE_NAME | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` | Postgres database password |
+| env.DATABASE_PASS | string | `"{{ .Values.postgresql.postgresqlPassword }}"` | Postgres database password |
+| env.DATABASE_USER | string | `"{{ .Values.postgresql.postgresqlUsername }}"` | Postgres database user name |
+| env.DISABLE_MQTT | string | `"false"` | Disables the MQTT feature if `true` |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"teslamate/teslamate"` | image repository |
+| image.tag | string | `"1.23.4"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `1.23.4`.
+- Provide dynamic default values for database environment vars.
+- Provide sane default values for postgresql chart.
 
 ### [4.0.0]
 
@@ -120,6 +133,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[5.0.0]: #500
 [4.0.0]: #400
 [3.6.1]: #361
 
