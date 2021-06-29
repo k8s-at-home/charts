@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: latest
+appVersion: version-eb59284b
 description: TVheadend - a TV streaming server and digital video recorder
 name: tvheadend
-version: 3.4.0
+version: 4.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
 - tv
@@ -14,7 +14,9 @@ sources:
 - https://github.com/tvheadend/tvheadend
 maintainers:
 - name: mr-onion-2
+- name: bjw-s
+  email: me@bjw-s.dev
 dependencies:
 - name: common
   repository: https://library-charts.k8s-at-home.com
-  version: 2.5.0
+  version: 3.2.0

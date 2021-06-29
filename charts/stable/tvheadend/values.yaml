@@ -6,39 +6,47 @@
 #
 
 image:
-  repository: linuxserver/tvheadend
+  # -- image repository
+  repository: ghcr.io/linuxserver/tvheadend
+  # -- image tag
+  tag: version-eb59284b
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: latest
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image docs](https://docs.linuxserver.io/images/docker-tvheadend#environment-variables-e) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Specify the user ID the application will run as
+  PUID: "1001"
+  # -- Specify the group ID the application will run as
+  PGID: "1001"
 
-# See https://github.com/linuxserver/docker-tvheadend#parameters
-env: {}
-  # PUID: 1000
-  # PGID: 1000
-  # TZ: Europe/London
-  # RUN_OPTS: <run options here>
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 9981
-  # additionalPorts:
-  #   port:
-  #     port: 9982
-  #     name: htsp
+  main:
+    ports:
+      http:
+        port: 9981
+      htsp:
+        enabled: false
+        protocol: TCP
+        port: 9982
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /config
   recordings:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /recordings
