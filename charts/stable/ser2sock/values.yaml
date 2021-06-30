@@ -21,7 +21,7 @@ env:
   # -- Port where ser2sock listens
   LISTENER_PORT: "{{ .Values.service.main.ports.server.port }}"
   # -- Path to the serial device
-  SERIAL_DEVICE: "{{ .Values.persistence.usb.hostPath }}"
+  SERIAL_DEVICE: "{{ .Values.persistence.usb.mountPath }}"
   # -- Serial device baud rate
   BAUD_RATE: 115200
 
@@ -51,7 +51,7 @@ persistence:
   usb:
     enabled: false
     type: hostPath
-    hostPath: /dev/ttyUSB0
+    mountPath: /dev/ttyUSB0
 
 securityContext:
   # -- (bool) Privileged securityContext may be required if USB controller is accessed directly through the host machine
