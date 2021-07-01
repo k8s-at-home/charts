@@ -6,28 +6,40 @@
 #
 
 image:
+  # -- image repository
   repository: billimek/prometheus-uptimerobot-exporter
+  # -- image tag
   tag: 0.0.1
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the uptimerobot-prometheus documentation
-# https://github.com/lekpamartin/uptimerobot_exporter/blob/master/docker-compose.yml
+# -- environment variables. See [application docs](https://github.com/lekpamartin/uptimerobot_exporter/blob/master/docker-compose.yml) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Set the uptimerobot API key
   UPTIMEROBOT_API_KEY: ""
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 9705
+  main:
+    ports:
+      http:
+        port: 9705
 
-# enable a prometheus-operator servicemonitor
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
 prometheus:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # See also the notes under `additionalContainers`.
+  # @default -- See values.yaml
   serviceMonitor:
     enabled: false
     interval: 1m
     additionalLabels: {}
-
-ingress:
-  enabled: false
