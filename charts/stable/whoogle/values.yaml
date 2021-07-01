@@ -6,16 +6,18 @@
 #
 
 image:
+  # -- image repository
   repository: benbusby/whoogle-search
+  # -- image tag
+  tag: 0.5.4
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 0.4.0
 
-strategy:
-  type: Recreate
-
-# See more environment variables in the whoogle documentation
-# https://github.com/benbusby/whoogle-search#environment-variables
+# -- environment variables. See [image docs](https://github.com/benbusby/whoogle-search#environment-variables) for more details.
+# @default -- See below
 env:
+  # -- Set the container timezone
+  TZ: UTC
   # WHOOGLE_CONFIG_COUNTRY:
   # WHOOGLE_CONFIG_DARK: 1
   # WHOOGLE_CONFIG_SAFE:
@@ -26,9 +28,16 @@ env:
   # WHOOGLE_CONFIG_URL: https://<your url>/
   # WHOOGLE_CONFIG_STYLE:
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 5000
+  main:
+    ports:
+      http:
+        port: 5000
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
