@@ -1,6 +1,6 @@
 # wallabag
 
-![Version: 2.6.1](https://img.shields.io/badge/Version-2.6.1-informational?style=flat-square) ![AppVersion: 2.4.1](https://img.shields.io/badge/AppVersion-2.4.1-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 2.4.2](https://img.shields.io/badge/AppVersion-2.4.2-informational?style=flat-square)
 
 A self hostable application for saving web pages, freely.
 
@@ -22,7 +22,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
 | https://charts.bitnami.com/bitnami | redis | 14.1.1 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -79,40 +79,32 @@ Default login is `wallabag:wallabag`.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| controllerType | string | `"statefulset"` |  |
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"wallabag/wallabag"` |  |
-| image.tag | string | `"2.4.1"` |  |
-| ingress.enabled | bool | `false` |  |
-| mariadb.architecture | string | `"standalone"` |  |
-| mariadb.auth.database | string | `"wallabag"` |  |
-| mariadb.auth.password | string | `"wallabag-pass"` |  |
-| mariadb.auth.rootPassword | string | `"wallabag-rootpass"` |  |
-| mariadb.auth.username | string | `"wallabag"` |  |
-| mariadb.enabled | bool | `false` |  |
-| mariadb.primary.persistence.enabled | bool | `false` |  |
-| persistence.cache.emptyDir.enabled | bool | `false` |  |
-| persistence.cache.enabled | bool | `false` |  |
-| persistence.cache.mountPath | string | `"/var/www/wallabag/var/cache"` |  |
-| persistence.images.emptyDir.enabled | bool | `false` |  |
-| persistence.images.enabled | bool | `false` |  |
-| persistence.images.mountPath | string | `"/var/www/wallabag/web/assets/images"` |  |
-| postgresql.enabled | bool | `false` |  |
-| postgresql.persistence.enabled | bool | `false` |  |
-| postgresql.postgresqlDatabase | string | `"wallabag"` |  |
-| postgresql.postgresqlPassword | string | `"wallabag-pass"` |  |
-| postgresql.postgresqlUsername | string | `"wallabag"` |  |
-| redis.auth.enabled | bool | `false` |  |
-| redis.enabled | bool | `false` |  |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"RollingUpdate"` |  |
+| env | object | See below | environment variables. See [image docs](https://github.com/wallabag/docker) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"wallabag/wallabag"` | image repository |
+| image.tag | string | `"2.4.2"` | image tag Note: Upgrading the wallabag version generally requires a migration. https://doc.wallabag.org/en/admin/upgrade.html |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| redis | object | See values.yaml | Enable and configure redis subchart under this key.    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis) |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Removed default controller type
+- Changed image tag to `2.4.2`.
 
 ### [2.4.1]
 
@@ -142,8 +134,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[2.4.1]: #[2.4.1]
-[1.0.0]: #1.0.0
+[3.0.0]: #300
+[2.4.1]: #241
+[1.0.0]: #100
 
 ## Support
 
