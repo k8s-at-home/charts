@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 6.4.0](https://img.shields.io/badge/Version-6.4.0-informational?style=flat-square) ![AppVersion: v0.13](https://img.shields.io/badge/AppVersion-v0.13-informational?style=flat-square)
+![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: v0.14](https://img.shields.io/badge/AppVersion-v0.14-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -75,26 +75,31 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | `"upstream:\n  # these external DNS resolvers will be used. Blocky picks 2 random resolvers from the list for each query\n  # format for resolver: [net:]host:[port][/path]. net could be empty (default, shortcut for tcp+udp), tcp+udp, tcp, udp, tcp-tls or https (DoH). If port is empty, default port will be used (53 for udp and tcp, 853 for tcp-tls, 443 for https (Doh))\n  externalResolvers:\n    - 46.182.19.48\n    - 80.241.218.68\n    - tcp-tls:fdns1.dismail.de:853\n    - https://dns.digitale-gesellschaft.ch/dns-query\n\n# optional: custom IP address for domain name (with all sub-domains)\n# example: query \"printer.lan\" or \"my.printer.lan\" will return 192.168.178.3\ncustomDNS:\n  mapping:\n    printer.lan: 192.168.178.3\n\n# optional: definition, which DNS resolver(s) should be used for queries to the domain (with all sub-domains). Multiple resolvers must be separated by comma\n# Example: Query client.fritz.box will ask DNS server 192.168.178.1. This is necessary for local network, to resolve clients by host name\nconditional:\n  mapping:\n    fritz.box: udp:192.168.178.1\n    lan.net: udp:192.168.178.1,udp:192.168.178.2\n\n# optional: use black and white lists to block queries (for example ads, trackers, adult pages etc.)\nblocking:\n  # definition of blacklist groups. Can be external link (http/https) or local file\n  blackLists:\n    ads:\n      - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt\n      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts\n      - https://mirror1.malwaredomains.com/files/justdomains\n      - http://sysctl.org/cameleon/hosts\n      - https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist\n      - https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt\n    special:\n      - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts\n  # definition of whitelist groups. Attention: if the same group has black and whitelists, whitelists will be used to disable particular blacklist entries. If a group has only whitelist entries -> this means only domains from this list are allowed, all other domains will be blocked\n  whiteLists:\n    ads:\n      - whitelist.txt\n  # definition: which groups should be applied for which client\n  clientGroupsBlock:\n    # default will be used, if no special definition for a client name exists\n    default:\n      - ads\n      - special\n    # use client name (with wildcard support: * - sequence of any characters, [0-9] - range)\n    # or single ip address / client subnet as CIDR notation\n    laptop*:\n      - ads\n    192.168.178.1/24:\n      - special\n  # which response will be sent, if query is blocked:\n  # zeroIp: 0.0.0.0 will be returned (default)\n  # nxDomain: return NXDOMAIN as return code\n  # comma separated list of destination IP adresses (for example: 192.100.100.15, 2001:0db8:85a3:08d3:1319:8a2e:0370:7344). Should contain ipv4 and ipv6 to cover all query types. Useful with running web server on this address to display the \"blocked\" page.\n  blockType: zeroIp\n  # optional: automatically list refresh period in minutes. Default: 4h.\n  # Negative value -> deactivate automatically refresh.\n  # 0 value -> use default\n  refreshPeriod: 0\n\n# optional: configuration for caching of DNS responses\ncaching:\n  # amount in minutes, how long a response must be cached (min value).\n  # If <=0, use response's TTL, if >0 use this value, if TTL is smaller\n  # Default: 0\n  minTime: 5\n  # amount in minutes, how long a response must be cached (max value).\n  # If <0, do not cache responses\n  # If 0, use TTL\n  # If > 0, use this value, if TTL is greater\n  # Default: 0\n  maxTime: -1\n  # if true, will preload DNS results for often used queries (names queried more than 5 times in a 2 hour time window)\n  # this improves the response time for often used queries, but significantly increases external traffic\n  # default: false\n  prefetching: true\n\n# optional: configuration of client name resolution\nclientLookup:\n  # optional: this DNS resolver will be used to perform reverse DNS lookup (typically local router)\n  upstream: udp:192.168.178.1\n  # optional: some routers return multiple names for client (host name and user defined name). Define which single name should be used.\n  # Example: take second name if present, if not take first name\n  singleNameOrder:\n    - 2\n    - 1\n  # optional: custom mapping of client name to IP addresses. Useful if reverse DNS does not work properly or just to have custom client names.\n  clients:\n    laptop:\n      - 192.168.178.29\n\n# optional: configuration for prometheus metrics endpoint\n# prometheus:\n#   # enabled if true\n#   enable: true\n#   # url path, optional (default '/metrics')\n#   path: /metrics\n\n# optional: write query information (question, answer, client, duration etc) to daily csv file\n# queryLog:\n#   # directory (should be mounted as volume in docker)\n#   dir: /logs\n#   # if true, write one file per client. Writes all queries to single file otherwise\n#   perClient: true\n#   # if > 0, deletes log files which are older than ... days\n#   logRetentionDays: 7\n\n# optional: DNS listener port and bind ip address, default 53 (UDP and TCP). Example: 53, :53, 127.0.0.1:53\nport: 53\n# optional: HTTP listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH ...\nhttpPort: 4000\n# optional: HTTPS listener port, default 0 = no http listener. If > 0, will be used for prometheus metrics, pprof, REST API, DoH...\n#httpsPort: 443\n# mandatory, if https port > 0: path to cert and key file for SSL encryption\n#httpsCertFile: server.crt\n#httpsKeyFile: server.key\n# optional: use this DNS server to resolve blacklist urls and upstream DNS servers (DOH). Useful if no DNS resolver is configured and blocky needs to resolve a host name. Format net:IP:port, net must be udp or tcp\nbootstrapDns: tcp:1.1.1.1\n# optional: Log level (one from debug, info, warn, error). Default: info\nlogLevel: info\n# optional: Log format (text or json). Default: text\nlogFormat: text\n"` |  |
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"spx01/blocky"` |  |
-| image.tag | string | `"v0.13"` |  |
-| persistence.logs.emptyDir | bool | `false` |  |
-| persistence.logs.enabled | bool | `false` |  |
-| persistence.logs.mountPath | string | `"/logs"` |  |
-| prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
-| prometheus.serviceMonitor.enabled | bool | `false` |  |
-| prometheus.serviceMonitor.interval | string | `"30s"` |  |
+| config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml |
+| controller.strategy | string | `"RollingUpdate"` | Set the controller upgrade strategy |
+| env | object | See below | environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"spx01/blocky"` | image repository |
+| image.tag | string | `"v0.14"` | image tag |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| prometheus.serviceMonitor | object | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. See also the notes under `additionalContainers`. |
 | replicas | int | `1` | (int) Number of pods to load balance between |
-| service.port.port | int | `4000` |  |
-| strategy.type | string | `"RollingUpdate"` |  |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [7.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image tag to `v0.14`.
 
 ### [6.0.0]
 
@@ -110,7 +115,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[6.0.0]: #6.0.0
+[7.0.0]: #700
+[6.0.0]: #600
 
 ## Support
 

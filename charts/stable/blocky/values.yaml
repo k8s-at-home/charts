@@ -6,69 +6,69 @@
 #
 
 image:
+  # -- image repository
   repository: spx01/blocky
-  tag: v0.13
+  # -- image tag
+  tag: v0.14
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-strategy:
-  type: RollingUpdate
+controller:
+  # -- Set the controller upgrade strategy
+  strategy: RollingUpdate
 
-env: {}
-  # TZ:
+# -- environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
 # -- (int) Number of pods to load balance between
 replicas: 1
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 4000
-  # additionalServices:
-  # - enabled: true
-  #   nameSuffix: dns-tcp
-  #   type: NodePort
-  #   port:
-  #     port: 53
-  #     name: dns-tcp
-  #     protocol: TCP
-  #     targetPort: 53
-  #   externalTrafficPolicy: Local
-  # - enabled: true
-  #   nameSuffix: dns-udp
-  #   type: NodePort
-  #   port:
-  #     port: 53
-  #     name: dns-udp
-  #     protocol: UDP
-  #     targetPort: 53
-  #   externalTrafficPolicy: Local
+  main:
+    ports:
+      http:
+        port: 4000
+  dns-tcp:
+    enabled: false
+    type: ClusterIP
+    externalTrafficPolicy: Local
+    ports:
+      dns-tcp:
+        enabled: true
+        port: 53
+        protocol: TCP
+        targetPort: 53
+  dns-udp:
+    enabled: false
+    type: ClusterIP
+    externalTrafficPolicy: Local
+    ports:
+      dns-udp:
+        enabled: true
+        port: 53
+        protocol: UDP
+        targetPort: 53
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   logs:
     enabled: false
-    emptyDir: false
     mountPath: /logs
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
 
 prometheus:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # See also the notes under `additionalContainers`.
+  # @default -- See values.yaml
   serviceMonitor:
     enabled: false
     interval: 30s
     additionalLabels: {}
-
-# podAnnotations:
-#   prometheus.io/scrape: "true"
-#   prometheus.io/port: "api"
 
 # -- Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
 # @default -- see URL to default config
