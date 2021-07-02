@@ -6,48 +6,52 @@
 #
 
 image:
+  # -- image repository
   repository: tzahi12345/youtubedl-material
+  # -- image tag
+  tag: "4.2"
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: 4.2
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image repo](https://github.com/Tzahi12345/YoutubeDL-Material) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Specify the user ID the application will run as
+  UID: "1000"
+  # -- Specify the group ID the application will run as
+  GID: "1000"
 
-env: {}
-  # TZ:
-  # UID:
-  # GID:
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 17442
+  main:
+    ports:
+      http:
+        port: 17442
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /app/appdata
   audio:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /app/audio
   subscriptions:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /subscriptions
   users:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /users
   video:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /video
