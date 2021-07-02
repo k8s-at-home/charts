@@ -6,14 +6,18 @@
 #
 
 image:
+  # -- image repository
   repository: billimek/comcastusage-for-influxdb
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: latest
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
-env: {}
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
 # -- comcast's config.ini configuration
 # @default -- string
@@ -31,15 +35,3 @@ config: |
   [COMCAST]
   Username = someuser
   Password = somepassword
-
-service:
-  enabled: false
-
-## Probes configuration
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false

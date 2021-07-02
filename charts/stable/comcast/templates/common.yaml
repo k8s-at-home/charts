@@ -1,32 +1,31 @@
----
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap to the additionalVolumes */}}
-{{- define "comcast.configmap.volume" -}}
-name: comcast-settings
-configMap:
-  name: {{ template "common.names.fullname" . }}-config
-{{- end -}}
+{{/* Append the hardcoded settings */}}
+{{- define "comcast.hardcodedValues" -}}
+service:
+  main:
+    enabled: false
 
-{{- $volume := include "comcast.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
 
-{{/* Append the configMap volume to the additionalVolumeMounts */}}
-{{- define "comcast.configmap.volumeMount" -}}
-name: comcast-settings
-mountPath: /src/config.ini
-subPath: config.ini
+persistence:
+  comcast-settings:
+    enabled: "true"
+    mountPath: "/src/config.ini"
+    subPath: "config.ini"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
 {{- end -}}
-
-{{- $volumeMount := include "comcast.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "comcast.hardcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
