@@ -9,9 +9,15 @@ image:
   # -- image repository
   repository: ghcr.io/k8s-at-home/apache-musicindex
   # -- image tag
-  tag: v1.4.1-1
+  tag: v1.4.1-2
   # -- image pull policy
   pullPolicy: IfNotPresent
+
+# -- Allows to start web server on ports 80 and 443
+# @default -- See values.yaml
+securityContext:
+  capabilities:
+    add: ["CAP_NET_BIND_SERVICE"]
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -19,13 +25,23 @@ service:
   main:
     ports:
       http:
-        port: 8080
+        primary: false
+        port: 80
+      https:
+        enabled: true
+        primary: true
+        port: 443
+        protocol: HTTPS
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml
   main:
     enabled: false
+    # If you use https as the backend, you need to enable tell your ingress
+    # annotations:
+    #  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    #  ingress.kubernetes.io/protocol: https
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml

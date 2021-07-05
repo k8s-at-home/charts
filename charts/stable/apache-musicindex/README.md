@@ -1,8 +1,8 @@
 # apache-musicindex
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v1.4.1-1](https://img.shields.io/badge/AppVersion-v1.4.1--1-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: v1.4.1-2](https://img.shields.io/badge/AppVersion-v1.4.1--2-informational?style=flat-square)
 
-Index and steam music using apache-musicindex
+Index and stream music using apache-musicindex and m3u playlists
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -67,7 +67,14 @@ helm install apache-musicindex k8s-at-home/apache-musicindex -f values.yaml
 
 ## Custom configuration
 
-N/A
+### Matching pors
+
+You need to ensure that the ingress and service ports match
+or you will not be able to stream.
+
+This is because the apache-musicindex will use the schema and
+port from the incomming request to generate the URL in the
+playlist.m3u.
 
 ## Values
 
@@ -77,9 +84,10 @@ N/A
 |-----|------|---------|-------------|
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/apache-musicindex"` | image repository |
-| image.tag | string | `"v1.4.1-1"` | image tag |
+| image.tag | string | `"v1.4.1-2"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| securityContext | object | See values.yaml | Allows to start web server on ports 80 and 443 |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -87,6 +95,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.1]
+
+#### Changed
+
+- Fixes streamin - use standard ports to match ingress ports
 
 ### [1.0.0]
 

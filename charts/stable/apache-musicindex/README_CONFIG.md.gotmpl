@@ -5,5 +5,13 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+### Matching pors
+
+You need to ensure that the ingress and service ports match
+or you will not be able to stream.
+
+This is because the apache-musicindex will use the schema and
+port from the incomming request to generate the URL in the
+playlist.m3u.
+
 {{- end -}}
