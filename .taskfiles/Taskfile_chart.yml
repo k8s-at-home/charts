@@ -29,8 +29,8 @@ tasks:
     desc: clean up chart dependencies
     dir: "{{.GIT_ROOT}}/charts"
     cmds:
-    - find {{.GIT_ROOT}}/charts/ -type f -name 'Chart.lock' -mindepth 1 -print0 | xargs -0 rm \;
-    - find {{.GIT_ROOT}}/charts/ -type d -name 'charts' -mindepth 1 -print0 | xargs -0 rm -rf \;
+    - find {{.GIT_ROOT}}/charts/ -type f -name 'Chart.lock' -mindepth 1 -print0 | xargs -r -0 rm
+    - find {{.GIT_ROOT}}/charts/ -type d -name 'charts' -mindepth 1 -print0 | xargs -r -0 rm -rf
     silent: true
 
   lint:

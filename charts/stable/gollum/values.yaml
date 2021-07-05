@@ -6,44 +6,47 @@
 #
 
 image:
-  # -- gollum upstream image
+  # -- image repository
   repository: gollumorg/gollum
+  # -- image tag
   tag: latest
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
-controllerType: statefulset
-strategy:
-  type: RollingUpdate
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  type: ClusterIP
-  port:
-    port: 80
-    name: http
-    targetPort: 4567
+  main:
+    ports:
+      http:
+        port: 4567
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   wiki:
     enabled: false
     mountPath: /wiki
-    accessMode: ReadWriteOnce
-    size: 2Gi
 
 gollum:
   # -- Branch to pull
   gitBranch: master
   # -- Repository URL to pull (accepts access tokens)
-  # Ex: https://user:access-token@git.example.com/user/repo.git
+  # Example: https://user:access-token@git.example.com/user/repo.git
   gitUrl: https://github.com/k8s-at-home/charts.git
   # -- Additional arguments for starting gollum
-  additionalArgs: --h1-title
+  additionalArgs:
+    - --h1-title
   # -- Command run during the sync cron
   syncCommand: git pull && git push
   # -- Gollum config.rb customizations
-  # reference https://github.com/gollum/gollum#config-file
+  # [[ref]](https://github.com/gollum/gollum#config-file)
   config: |
     # Push and pull on commit
     Gollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|

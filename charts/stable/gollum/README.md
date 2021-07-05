@@ -1,6 +1,6 @@
 # gollum
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Gollum is a simple wiki system built on top of Git
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,31 +76,31 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| controllerType | string | `"statefulset"` |  |
-| gollum.additionalArgs | string | `"--h1-title"` | Additional arguments for starting gollum |
-| gollum.config | string | `"# Push and pull on commit\nGollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|\n     committer.wiki.repo.git.pull('origin', committer.wiki.ref)\n     committer.wiki.repo.git.push('origin', committer.wiki.ref)\nend\n"` | Gollum config.rb customizations reference https://github.com/gollum/gollum#config-file |
+| gollum.additionalArgs | list | `["--h1-title"]` | Additional arguments for starting gollum |
+| gollum.config | string | `"# Push and pull on commit\nGollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|\n     committer.wiki.repo.git.pull('origin', committer.wiki.ref)\n     committer.wiki.repo.git.push('origin', committer.wiki.ref)\nend\n"` | Gollum config.rb customizations [[ref]](https://github.com/gollum/gollum#config-file) |
 | gollum.gitBranch | string | `"master"` | Branch to pull |
-| gollum.gitUrl | string | `"https://github.com/k8s-at-home/charts.git"` | Repository URL to pull (accepts access tokens) Ex: https://user:access-token@git.example.com/user/repo.git |
+| gollum.gitUrl | string | `"https://github.com/k8s-at-home/charts.git"` | Repository URL to pull (accepts access tokens) Example: https://user:access-token@git.example.com/user/repo.git |
 | gollum.syncCommand | string | `"git pull && git push"` | Command run during the sync cron |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"gollumorg/gollum"` | gollum upstream image |
-| image.tag | string | `"latest"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.wiki.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.wiki.enabled | bool | `false` |  |
-| persistence.wiki.mountPath | string | `"/wiki"` |  |
-| persistence.wiki.size | string | `"2Gi"` |  |
-| service.port.name | string | `"http"` |  |
-| service.port.port | int | `80` |  |
-| service.port.targetPort | int | `4567` |  |
-| service.type | string | `"ClusterIP"` |  |
-| strategy.type | string | `"RollingUpdate"` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"gollumorg/gollum"` | image repository |
+| image.tag | string | `"latest"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Removed default controller type
 
 ### [1.0.0]
 
@@ -116,7 +116,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[2.0.0]: #200
+[1.0.0]: #100
 
 ## Support
 

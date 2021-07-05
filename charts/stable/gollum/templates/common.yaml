@@ -1,42 +1,83 @@
+{{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Add initContainers */}}
-{{- $initClear := include "gollum.init.clear" . | fromYaml -}}
-{{- $initClone := include "gollum.init.clone" . | fromYaml -}}
-{{- $initContainers := append .Values.initContainers $initClear -}}
-{{- $initContainers = append $initContainers $initClone -}}
-{{- $_ := set .Values "initContainers" $initContainers -}}
+{{/* Append the hardcoded settings */}}
+{{- define "gollum.hardcodedValues" -}}
+command: gollum
+args:
+  - "/wiki"
+  - "--config"
+  - "/config/config.rb"
+  - "--ref"
+  - {{ (required "gollum.gitBranch is required but not set" .Values.gollum.gitBranch) }}
+  {{ with .Values.gollum.additionalArgs }}
+    {{- . | toYaml }}
+  {{ end }}
 
-{{/* Add conatiners */}}
-{{- $contCron := include "gollum.container.cron" . | fromYaml -}}
-{{- $containers := append .Values.additionalContainers $contCron -}}
-{{- $_ := set .Values "additionalContainers" $containers -}}
+initContainers:
+  - name: git-init
+    image: alpine/git
+    args:
+      - clone
+      - -b
+      - {{ (required "gollum.gitBranch is required but not set" .Values.gollum.gitBranch) }}
+      - {{ (required "gollum.gitUrl is required but not set" .Values.gollum.gitUrl)  }}
+      - /wiki
+    volumeMounts:
+      - mountPath: /wiki
+        name: wiki
+  - name: clear-wiki
+    image: alpine
+    command:
+      - sh
+      - -c
+      - rm -fr /wiki/*; rm -fr /wiki/.*; ls -la /wiki/;
+    volumeMounts:
+      - mountPath: /wiki
+        name: wiki
 
-{{/* Add Volumes */}}
-{{- $volSync := include "gollum.volume.sync" . | fromYaml -}}
-{{- $volConfig := include "gollum.volume.config" . | fromYaml -}}
-{{- $volWiki := include "gollum.volume.wiki" . | fromYaml -}}
-{{- $volumes := append .Values.additionalVolumes $volSync -}}
-{{- $volumes = append $volumes $volConfig -}}
-{{- if (not .Values.persistence.wiki.enabled) -}}
-{{- $volumes = append $volumes $volWiki -}}
+additionalContainers:
+- name: cron
+  image: alpine/git
+  command: ["crond", "-f", "-l", "8"]
+  volumeMounts:
+    - mountPath: /etc/periodic/15min/
+      name: git-sync
+    - mountPath: /wiki
+      name: wiki
+
+persistence:
+  gollum-config:
+    enabled: "true"
+    mountPath: "/config"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v" (include "common.names.fullname" .) }}
+        defaultMode: 0755
+        items:
+          - key: config.rb
+            path: config.rb
+
+  git-sync:
+    enabled: "true"
+    mountPath: "-"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v" (include "common.names.fullname" .) }}
+        defaultMode: 0755
+        items:
+          - key: git-sync
+            path: git-sync
+
+  {{- if not .Values.persistence.wiki.enabled }}
+  wiki:
+    enabled: "true"
+    type: "emptyDir"
+  {{- end }}
 {{- end -}}
-{{- $_ := set .Values "additionalVolumes" $volumes -}}
+{{- $_ := mergeOverwrite .Values (include "gollum.hardcodedValues" . | fromYaml) -}}
 
-{{/* Add VolumeMounts */}}
-{{- $mntConfig := include "gollum.volumeMounts.config" . | fromYaml -}}
-{{- $mntWiki := include "gollum.volumeMounts.wiki" . | fromYaml -}}
-{{- $mounts := append .Values.additionalVolumeMounts $mntConfig -}}
-{{- if (not .Values.persistence.wiki.enabled) -}}
-{{- $mounts = append $mounts $mntWiki -}}
-{{- end -}}
-{{- $_ := set .Values "additionalVolumeMounts" $mounts -}}
-
-{{/* Setup the start command */}}
-{{- $command := list "gollum" "/wiki" "--config" "/config/config.rb" "--ref" (required "A branch is requred but unset" .Values.gollum.gitBranch) -}}
-{{- if .Values.gollum.additionalArgs -}}
-{{- $command = append $command .Values.gollum.additionalArgs -}}
-{{- end -}}
-{{- $_ := set .Values "command" $command -}}
-
+{{/* Render the templates */}}
 {{ include "common.all" . }}
