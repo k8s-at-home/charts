@@ -1,6 +1,6 @@
 # kanboard
 
-![Version: 2.5.1](https://img.shields.io/badge/Version-2.5.1-informational?style=flat-square) ![AppVersion: v1.2.18](https://img.shields.io/badge/AppVersion-v1.2.18-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: v1.2.20](https://img.shields.io/badge/AppVersion-v1.2.20-informational?style=flat-square)
 
 Kanboard is a free and open source Kanban project management software.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,37 +76,23 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config.cache.dir | string | `nil` | Cache folder to use if cache driver is "file" |
-| config.cache.driver | string | `"memory"` | Available cache drivers are "file" and "memory" |
-| config.db.driver | string | `"sqlite"` | Database driver: sqlite, mysql or postgres |
-| config.db.runMigrations | bool | `true` | Run automatically database migrations |
-| config.debug | bool | `false` |  |
-| config.files.dir | string | `"data/files"` | Folder for uploaded files |
-| config.logging.driver | string | `"stdout"` | log driver: syslog, stderr, stdout or file |
-| config.mail.bcc | string | `nil` |  |
-| config.mail.enabled | bool | `false` | Enable/disable email configuration from the user interface |
-| config.mail.from | string | `"notifications@kanboard.local"` |  |
-| config.plugins.api.url | string | `"https://kanboard.org/plugins.json"` | default plugin directory URL |
-| config.plugins.dir | string | `"data/plugins"` | Plugin folder |
-| config.plugins.installer | bool | `false` | Enable/disable plugin installation from the user interface |
-| config.session.duration | int | `0` | Session duration in second (0 = until the browser is closed) |
-| config.session.handler | string | `"db"` | Session handler: db or php |
-| config.urlRewrite | bool | `false` |  |
-| env | object | `{}` | https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"kanboard/kanboard"` |  |
-| image.tag | string | `"v1.2.18"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.data | object | `{"accessMode":"ReadWriteOnce","emptyDir":{"enabled":false},"enabled":false,"mountPath":"/var/www/app/data","size":"1Gi"}` | enable data persistence |
-| persistence.ssl | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountPath":"/etc/nginx/ssl"}` | enable SSL persistence |
-| postgresql | object | `{"enabled":false,"persistence":{"enabled":false},"postgresqlDatabase":"kanboard","postgresqlPassword":"kanboard","postgresqlUsername":"kanboard"}` | Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql |
-| postgresql.enabled | bool | `false` | true: use bitnami postgres instance -- false: use your own postgres instance |
-| postgresql.persistence.enabled | bool | `false` | if database is stored to a PVC. Set to true when you are done testing. |
-| postgresql.postgresqlDatabase | string | `"kanboard"` | Postgres database password |
-| postgresql.postgresqlPassword | string | `"kanboard"` | Postgres database password |
-| postgresql.postgresqlUsername | string | `"kanboard"` | Postgres database user name |
-| service.port.port | int | `80` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables)  and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
+| env.DB_DRIVER | string | `"sqlite"` | Database driver: sqlite, mysql or postgres |
+| env.DB_HOSTNAME | string | `nil` | Mysql/Postgres hostname |
+| env.DB_NAME | string | `nil` | Mysql/Postgres database name |
+| env.DB_PASSWORD | string | `nil` | Mysql/Postgres password |
+| env.DB_PORT | string | `nil` | Mysql/Postgres custom port (empty = default port) |
+| env.DB_USERNAME | string | `nil` | Mysql/Postgres username |
+| env.LOG_DRIVER | string | `"stdout"` | log driver: syslog, stderr, stdout or file |
+| env.MAIL_CONFIGURATION | string | `"false"` | Enable/disable email configuration from the user interface |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"kanboard/kanboard"` | image repository |
+| image.tag | string | `"v1.2.20"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -114,13 +100,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- **BREAKING**: Moved app configuration to environment variables.
+- Changed image tag to `1.2.20`.
+
 ### [1.1.0]
 
 #### Added
 
 - Added postgres support
-
-[1.1.0]: https://github.com/k8s-at-home/charts/tree/kanboard-1.1.0/charts/home-assistant
 
 ### [1.0.0]
 
@@ -128,7 +121,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial chart release
 
-[1.0.0]: https://github.com/k8s-at-home/charts/tree/kanboard-1.0.0/charts/home-assistant
+[3.0.0]: #300
+[1.1.0]: #110
+[1.0.0]: #100
 
 ## Support
 
