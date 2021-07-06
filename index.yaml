@@ -1677,6 +1677,32 @@ entries:
     version: 1.0.0
   apache-musicindex:
   - apiVersion: v2
+    appVersion: v1.4.1-2
+    created: "2021-07-06T04:40:42.292185016Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.2.0
+    description: Index and stream music using apache-musicindex and m3u playlists
+    digest: b57254fc238473f9ec6377ef23d0a641e240fff3c72735393d53eb9311b5d006
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/apache-musicindex
+    icon: https://en.wikipedia.org/wiki/Apache_HTTP_Server#/media/File:Apache_HTTP_server_logo_(2019-present).svg
+    keywords:
+    - apache-musicindex
+    - streaming
+    - m3u
+    - playlist
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: apache-musicindex
+    sources:
+    - http://hacks.slashdirt.org/sw/musicindex/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/apache-musicindex-1.0.1/apache-musicindex-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     appVersion: v1.4.1-1
     created: "2021-07-05T19:40:27.667553435Z"
     dependencies:
@@ -69695,4 +69721,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-05T19:40:27.680986502Z"
+generated: "2021-07-06T04:40:42.306088008Z"
