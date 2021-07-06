@@ -1,6 +1,6 @@
 # oauth2-proxy
 
-![Version: 5.0.5](https://img.shields.io/badge/Version-5.0.5-informational?style=flat-square) ![AppVersion: 7.0.1](https://img.shields.io/badge/AppVersion-7.0.1-informational?style=flat-square)
+![Version: 5.0.6](https://img.shields.io/badge/Version-5.0.6-informational?style=flat-square) ![AppVersion: 7.1.3](https://img.shields.io/badge/AppVersion-7.1.3-informational?style=flat-square)
 
 A reverse proxy that provides authentication with Google, Github or other providers
 
@@ -123,7 +123,7 @@ data:
 | httpScheme | string | `"http"` | `http` or `https`. `name` used for port on the deployment. `httpGet` port `name` and `scheme` used for `liveness`- and `readinessProbes`. `name` and `targetPort` used for the service. |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
 | image.repository | string | `"quay.io/oauth2-proxy/oauth2-proxy"` | Image repository |
-| image.tag | string | `"v7.0.1"` | Image tag |
+| image.tag | string | `"v7.1.3"` | Image tag |
 | imagePullSecrets | list | `nil` | Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace. ref: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod |
 | ingress.annotations | object | `{}` | Ingress annotations |
 | ingress.enabled | bool | `false` | Enable Ingress |
@@ -227,6 +227,20 @@ Due to [this issue](https://github.com/helm/helm/issues/6583) there may be error
 #### Fixed
 
 - Update oauth2-proxy website URLs.
+
+### [5.0.6]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- This version upgrade oauth2-proxy to 7.1.3. Please see the [changelog](https://github.com/oauth2-proxy/oauth2-proxy/blob/v7.1.3/CHANGELOG.md) in order to upgrade.
+
+#### Removed
+
+- N/A
 
 [5.0.4]: #5.0.4
 [5.0.1]: #5.0.1
