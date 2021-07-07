@@ -1,6 +1,6 @@
 # jetbrains-projector
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square)
 
 Projector is a technology to run and access JetBrains IDEs remotely
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -79,17 +79,16 @@ helm install jetbrains-projector k8s-at-home/jetbrains-projector -f values.yaml
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | `{}` |  |
+| env | object | See below | environment variables. See [image docs](https://github.com/JetBrains/projector-docker) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | idea | object | `{}` | IDE settings overrides. See the prospective IDE docs (like pycharm)[https://www.jetbrains.com/help/pycharm/tuning-the-ide.html#common-platform-properties] for more info. Default config paths will be /config/* E.G. `idea.system.path=/config/system` |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.registry | string | `"ghcr.io/k8s-at-home"` | registry that hosts the image |
+| image.registry | string | `"ghcr.io/k8s-at-home"` | image registry |
 | image.repository | string | `""` | image repository. *MUST SPECIFY AN IMAGE* |
 | image.tag | string | `"v2021.1"` | image tag |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.mountPath | string | `"/config"` |  |
-| service.port.port | int | `8887` |  |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 | sslGen.certs.crt | string | `"tls.crt"` | key that holds the tls crt |
 | sslGen.certs.key | string | `"tls.key"` | key that holds the tls key |
 | sslGen.certs.secret | string | `""` | name of secret to mount that has the TLS certs |
@@ -97,7 +96,6 @@ helm install jetbrains-projector k8s-at-home/jetbrains-projector -f values.yaml
 | sslGen.jks.dest | string | `"/tmp/cert.jks"` | location of generated cert.jks used |
 | sslGen.properties.existingSecret | string | `""` | pre-existing ssl.properties secret |
 | sslGen.properties.key | string | `"ssl.properties"` | key that holds ssl.properties file |
-| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
@@ -105,13 +103,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+
 ### [1.0.0]
 
 #### Added
 
 - Initial version
 
-[1.0.0]: #1.0.0
+[2.0.0]: #200
+[1.0.0]: #100
 
 ## Support
 
