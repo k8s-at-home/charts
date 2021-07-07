@@ -8,17 +8,13 @@
 image:
   # -- Image repository
   repository: ghcr.io/k8s-at-home/leaf2mqtt
-  # -- Image pull policy
-  pullPolicy: IfNotPresent
   # -- Image tag
   tag: v0.1
+  # -- Image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  # -- Deployment recreation strategy
-  type: Recreate
-
-# See more environment variables in the leaf2mqtt documentation
-# https://github.com/mitsumaui/leaf2mqtt
+# -- environment variables. See [image docs](https://github.com/mitsumaui/leaf2mqtt) for more details.
+# @default -- See below
 env: {}
   # LEAF_USERNAME:
   # LEAF_PASSWORD:
@@ -31,14 +27,3 @@ env: {}
   # UPDATE_INTERVAL_MINUTES:
   # CHARGING_UPDATE_INTERVAL_MINUTES:
   # LOG_LEVEL:
-
-service:
-  enabled: false
-
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false
