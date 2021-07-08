@@ -76,7 +76,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables)  and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
+| env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables) and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
 | env.DB_DRIVER | string | `"sqlite"` | Database driver: sqlite, mysql or postgres |
 | env.DB_HOSTNAME | string | `nil` | Mysql/Postgres hostname |
 | env.DB_NAME | string | `nil` | Mysql/Postgres database name |
