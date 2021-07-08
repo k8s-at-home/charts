@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: v1.4.1-2
+description: Index and stream music using apache-musicindex and m3u playlists
+name: apache-musicindex
+version: 1.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- apache-musicindex
+- streaming
+- m3u
+- playlist
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/apache-musicindex
+icon: https://en.wikipedia.org/wiki/Apache_HTTP_Server#/media/File:Apache_HTTP_server_logo_(2019-present).svg
+sources:
+- http://hacks.slashdirt.org/sw/musicindex/
+maintainers:
+- name: angelnu
+  email: git@angelnu.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 3.2.0

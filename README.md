@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-31-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-32-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -87,6 +87,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/jmmaloney4"><img src="https://avatars.githubusercontent.com/u/5781547?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jack Maloney</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=jmmaloney4" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/zamnuts"><img src="https://avatars.githubusercontent.com/u/4969305?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrew Zammit</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=zamnuts" title="Code">💻</a></td>
     <td align="center"><a href="https://boxingoctop.us"><img src="https://avatars.githubusercontent.com/u/3494484?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ryan Draga</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=TuxOtaku" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jkroepke"><img src="https://avatars.githubusercontent.com/u/1560587?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jan-Otto Kröpke</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=jkroepke" title="Code">💻</a></td>
   </tr>
 </table>
 

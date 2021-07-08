@@ -5,6 +5,7 @@
 | [adguard-home](stable/adguard-home) | DNS proxy as ad-blocker for local network |
 | [airsonic](stable/airsonic) | Airsonic is a Free and Open Source community driven media server |
 | [alertmanager-bot](stable/alertmanager-bot) | Bot for Prometheus Alertmanager |
+| [apache-musicindex](stable/apache-musicindex) | Index and stream music using apache-musicindex and m3u playlists |
 | [appdaemon](stable/appdaemon) | AppDaemon is a loosely coupled, multi-threaded, sandboxed python execution environment for writing automation apps for various types of Home Automation Software including Home Assistant and MQTT. |
 | [baikal](stable/baikal) | Baïkal is a lightweight CalDAV+CardDAV server. It offers a web interface with management of users, address books and calendars. |
 | [bazarr](stable/bazarr) | Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements |
