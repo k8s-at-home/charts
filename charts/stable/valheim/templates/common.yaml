@@ -1,1 +1,16 @@
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "valheim.hardcodedValues" -}}
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "valheim.hardcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}

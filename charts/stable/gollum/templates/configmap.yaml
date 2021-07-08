@@ -7,4 +7,4 @@ data:
     #!/bin/bash
     cd /wiki && {{ .Values.gollum.syncCommand }}
   config.rb: |
-    {{- nindent 4 .Values.gollum.config  }}
+    {{- .Values.gollum.config | nindent 4 }}

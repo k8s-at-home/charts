@@ -1,31 +1,19 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap to the additionalVolumes */}}
-{{- define "blocky.configmap.volume" -}}
-name: blocky-config
-configMap:
-  name: {{ template "common.names.fullname" . }}-config
+{{/* Append the hardcoded settings */}}
+{{- define "blocky.hardcodedValues" -}}
+persistence:
+  blocky-config:
+    enabled: "true"
+    mountPath: "/app/config.yml"
+    subPath: "config.yml"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
 {{- end -}}
-
-{{- $volume := include "blocky.configmap.volume" . | fromYaml -}}
-{{- if $volume -}}
-    {{- $additionalVolumes := append .Values.additionalVolumes $volume }}
-    {{- $_ := set .Values "additionalVolumes" (deepCopy $additionalVolumes) -}}
-{{- end -}}
-
-{{/* Append the configMap volume to the additionalVolumeMounts */}}
-{{- define "blocky.configmap.volumeMount" -}}
-name: blocky-config
-mountPath: /app/config.yml
-subPath: config.yml
-{{- end -}}
-
-{{- $volumeMount := include "blocky.configmap.volumeMount" . | fromYaml -}}
-{{- if $volumeMount -}}
-    {{- $additionalVolumeMounts := append .Values.additionalVolumeMounts $volumeMount }}
-    {{- $_ := set .Values "additionalVolumeMounts" (deepCopy $additionalVolumeMounts) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "blocky.hardcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}

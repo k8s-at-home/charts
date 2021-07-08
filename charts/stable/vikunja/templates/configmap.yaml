@@ -1,16 +1,13 @@
-
-{{/*
-Vikunja Configuration files.
-*/}}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "vikunja-config"
+  name: {{ include "common.names.fullname" . }}-config
   labels:
     {{- include "common.labels" . | nindent 4 }}
 data:
   Caddyfile: |-
-    {{ if .Values.service.port.port }}:{{ .Values.service.port.port }} {
+    {{ if .Values.service.main.ports.http.port }}:{{ .Values.service.main.ports.http.port }} {
         reverse_proxy /api/* localhost:3456
         reverse_proxy /.well-known/* localhost:3456
         reverse_proxy /dav/* localhost:3456

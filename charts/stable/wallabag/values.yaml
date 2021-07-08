@@ -6,18 +6,19 @@
 #
 
 image:
+  # -- image repository
   repository: wallabag/wallabag
+  # -- image tag
+  # Note: Upgrading the wallabag version generally requires a migration. https://doc.wallabag.org/en/admin/upgrade.html
+  tag: 2.4.2
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  # Upgrading the wallabag version generally requires a migration. https://doc.wallabag.org/en/admin/upgrade.html
-  tag: 2.4.1
 
-controllerType: "statefulset"
-strategy:
-  type: RollingUpdate
-
-# See more environment variables in the wallabag documentation
-# https://github.com/wallabag/docker
-env: {}
+# -- environment variables. See [image docs](https://github.com/wallabag/docker) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # MYSQL_ROOT_PASSWORD:
   # POSTGRES_PASSWORD:
   # POSTGRES_USER:
@@ -65,28 +66,34 @@ env: {}
   # SYMFONY__ENV__SENTRY_DSN:
   # SYMFONY__ENV__SERVER_NAME:
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   images:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /var/www/wallabag/web/assets/images
   cache:
     ## Note that if you make cache persistent, you may need to clear it (with `bin/console cache:clear --env=prod`) to apply any changes you make to wallabag's parameters.
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /var/www/wallabag/var/cache
 
-# Enabled mariadb
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+# @default -- See values.yaml
 mariadb:
   enabled: false
   architecture: standalone
@@ -99,8 +106,9 @@ mariadb:
     persistence:
       enabled: false
 
-# Enabled postgres
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
   enabled: false
   postgresqlUsername: wallabag
@@ -109,8 +117,9 @@ postgresql:
   persistence:
     enabled: false
 
-# Enabled redis
-# ... for more options see https://github.com/bitnami/charts/tree/master/bitnami/redis
+# -- Enable and configure redis subchart under this key.
+#    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis)
+# @default -- See values.yaml
 redis:
   enabled: false
   auth:

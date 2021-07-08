@@ -1,4 +1,9 @@
-# Default values for vikunja.
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
   # -- Caddy reverse proxy image and tag
@@ -8,90 +13,58 @@ image:
   # vikunja api image pull policy
   pullPolicy: IfNotPresent
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    # -- Kubernetes port where used by Caddy reverse proxy
-    port: 8080
+  main:
+    ports:
+      http:
+        port: 8080
 
-# -- Node labels for pod assignment of the GUI
-nodeSelector: {}
-
-# -- Toleration labels for pod assignment of the GUI
-tolerations: []
-
-# -- Affinity settings for pod assignment of the GUI
-affinity: {}
-
-# -- Pod annotations
-podAnnotations: {}
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
 additionalContainers:
-- name: api
-# -- Vikunja api image and tag
-  image: vikunja/api:0.16.0
-# You can declare all Vikunja parameters as environment variables
-# Please consult https://vikunja.io/docs/config-options/ to see all parameters
-  imagePullPolicy: IfNotPresent
-  env:
-# -- Vikunja unique secret
-  - name: VIKUNJA_SERVICE_JWTSECRET
-    value: myVeryComplexJWTSecret
-#  - name: VIKUNJA_DATABASE_TYPE
-#    value: "postgres"
-#  - name: VIKUNJA_DATABASE_HOST
-#    value: db
-#  - name: VIKUNJA_DATABASE_DATABASE
-#    value: vikunja
-#  - name: VIKUNJA_DATABASE_USER
-#    value: "vikunja"
-#  - name: VIKUNJA_DATABASE_PASSWORD
-#    value: password
-#  volumeMounts:
-#  - name: files
-#    mountPath: /app/vikunja/files
+  # -- Set up the vikunja API container.
+  # @default -- See values.yaml
+  - name: api
+    # -- Vikunja api image and tag
+    image: vikunja/api:0.17.1
+    imagePullPolicy: IfNotPresent
+    # -- You can declare all Vikunja parameters as environment variables.
+    # Please consult https://vikunja.io/docs/config-options/ to see all parameters.
+    # @default -- See below
+    env:
+      - name: VIKUNJA_SERVICE_JWTSECRET
+        value: myVeryComplexJWTSecret
+      # - name: VIKUNJA_DATABASE_TYPE
+      #   value: "postgres"
+      # - name: VIKUNJA_DATABASE_HOST
+      #   value: db
+      # - name: VIKUNJA_DATABASE_DATABASE
+      #   value: vikunja
+      # - name: VIKUNJA_DATABASE_USER
+      #   value: "vikunja"
+      # - name: VIKUNJA_DATABASE_PASSWORD
+      #   value: password
+    volumeMounts: []
+      # - name: files
+      #   mountPath: /app/vikunja/files
 
-- name: frontend
-  # -- Vikunja frontend image and tag
-  image: vikunja/frontend:0.16.0
-  imagePullPolicy: IfNotPresent
+  # -- Set up the vikunja frontend container.
+  # @default -- See values.yaml
+  - name: frontend
+    # -- Vikunja frontend image and tag
+    image: vikunja/frontend:0.17.0
+    imagePullPolicy: IfNotPresent
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
 # -- Volume used for static files
   files:
     enabled: false
-    emptyDir:
-      enabled: false
     mountpath: /app/vikunja/files
-    ## Persistent Volume Storage Class
-    ## If defined, storageClassName: <storageClass>
-    ## If set to "-", storageClassName: "", which disables dynamic provisioning
-    ## If undefined (the default) or set to null, no storageClassName spec is
-    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-    ##   GKE, AWS & OpenStack)
-    # storageClass: "-"
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    ## Do not delete the pvc upon helm uninstall
-    # skipuninstall: false
-    # existingClaim: ""
-
-additionalVolumes:
-- name: vikunja-config
-  configMap:
-    name: vikunja-config
-additionalVolumeMounts:
-- name: vikunja-config
-  mountPath: /etc/caddy/Caddyfile
-  subPath: Caddyfile

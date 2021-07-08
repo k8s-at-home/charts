@@ -1,6 +1,6 @@
 # uptimerobot-prometheus
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 Prometheus Exporter for the official uptimerobot CLI
 
@@ -17,7 +17,7 @@ Prometheus Exporter for the official uptimerobot CLI
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,22 +76,28 @@ You can find an [example grafana dashboard](https://github.com/lekpamartin/uptim
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env.UPTIMEROBOT_API_KEY | string | `""` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"billimek/prometheus-uptimerobot-exporter"` |  |
-| image.tag | string | `"0.0.1"` |  |
-| ingress.enabled | bool | `false` |  |
-| prometheus.serviceMonitor.additionalLabels | object | `{}` |  |
-| prometheus.serviceMonitor.enabled | bool | `false` |  |
-| prometheus.serviceMonitor.interval | string | `"1m"` |  |
-| service.port.port | int | `9705` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. See [application docs](https://github.com/lekpamartin/uptimerobot_exporter/blob/master/docker-compose.yml) for more details. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| env.UPTIMEROBOT_API_KEY | string | `""` | Set the uptimerobot API key |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"billimek/prometheus-uptimerobot-exporter"` | image repository |
+| image.tag | string | `"0.0.1"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| prometheus.serviceMonitor | object | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. See also the notes under `additionalContainers`. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
 
 ### [3.0.0]
 
@@ -121,6 +127,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #400
 [3.0.0]: #300
 [2.0.2]: #202
 

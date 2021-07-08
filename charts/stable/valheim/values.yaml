@@ -6,16 +6,18 @@
 #
 
 image:
+  # -- image repository
   repository: lloesche/valheim-server
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: latest
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-strategy:
-  type: Recreate
-
-## See more environment varaibles in the valheim-server-docker documentation
-# https://github.com/lloesche/valheim-server-docker#environment-variables
-env: {}
+# -- environment variables. See [image docs](https://github.com/lloesche/valheim-server-docker#environment-variables) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # SERVER_NAME: My Server
   # SERVER_PORT: 2456
   # WORLD_NAME: Dedicated
@@ -35,39 +37,35 @@ env: {}
   # DNS_1: 8.8.8.8
   # DNS_2: 8.8.4.4
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  type: LoadBalancer
-  externalTrafficPolicy: Cluster
-  loadBalancerIP:
-  port:
-    port: 2456
-    protocol: UDP
-  additionalPorts:
-  - name: valheim-2
-    port: 2457
-    protocol: UDP
-    targetPort: 2457
-  - name: valheim-3
-    port: 2458
-    protocol: UDP
-    targetPort: 2458
+  main:
+    type: LoadBalancer
+    externalTrafficPolicy: Cluster
+    loadBalancerIP:
+    ports:
+      http:
+        enabled: false
+      valheim-1:
+        enabled: true
+        port: 2456
+        protocol: UDP
+        targetPort: 2456
+      valheim-2:
+        enabled: false
+        port: 2457
+        protocol: UDP
+        targetPort: 2457
+      valheim-3:
+        enabled: false
+        port: 2458
+        protocol: UDP
+        targetPort: 2458
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
     mountPath: /config
-
-resources:
-  requests:
-    memory: 2048Mi
-    cpu: 300m
-  limits:
-    memory: 4096Mi
-
-probes:
-  liveness:
-    enabled: false
-  readiness:
-    enabled: false
-  startup:
-    enabled: false

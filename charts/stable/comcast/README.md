@@ -1,6 +1,6 @@
 # comcast
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 periodic comcast data usage checks and save the results to InfluxDB
 
@@ -17,7 +17,7 @@ periodic comcast data usage checks and save the results to InfluxDB
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -83,21 +83,24 @@ helm install comcast k8s-at-home/comcast -f values.yaml
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | config | string | string | comcast's config.ini configuration |
-| env | object | `{}` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"billimek/comcastusage-for-influxdb"` |  |
-| image.tag | string | `"latest"` |  |
-| probes.liveness.enabled | bool | `false` |  |
-| probes.readiness.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `false` |  |
-| service.enabled | bool | `false` |  |
-| strategy.type | string | `"Recreate"` |  |
+| env | object | See below | environment variables. |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"billimek/comcastusage-for-influxdb"` | image repository |
+| image.tag | string | `"latest"` | image tag |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
 
 ### [4.0.0]
 
@@ -127,8 +130,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[4.0.0]: #4.0.0
-[3.0.1]: #3.0.1
+[5.0.0]: #500
+[4.0.0]: #400
+[3.0.1]: #301
 
 ## Support
 

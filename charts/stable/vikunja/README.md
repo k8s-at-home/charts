@@ -1,6 +1,6 @@
 # vikunja
 
-![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: 0.16.0](https://img.shields.io/badge/AppVersion-0.16.0-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
 
 The to-do app to organize your life
 
@@ -20,7 +20,7 @@ The to-do app to organize your life
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -77,28 +77,18 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers[0].env[0] | object | `{"name":"VIKUNJA_SERVICE_JWTSECRET","value":"myVeryComplexJWTSecret"}` | Vikunja unique secret |
-| additionalContainers[0].image | string | `"vikunja/api:0.16.0"` | Vikunja api image and tag |
-| additionalContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
-| additionalContainers[0].name | string | `"api"` |  |
-| additionalContainers[1].image | string | `"vikunja/frontend:0.16.0"` | Vikunja frontend image and tag |
-| additionalContainers[1].imagePullPolicy | string | `"IfNotPresent"` |  |
-| additionalContainers[1].name | string | `"frontend"` |  |
-| additionalVolumeMounts[0].mountPath | string | `"/etc/caddy/Caddyfile"` |  |
-| additionalVolumeMounts[0].name | string | `"vikunja-config"` |  |
-| additionalVolumeMounts[0].subPath | string | `"Caddyfile"` |  |
-| additionalVolumes[0].configMap.name | string | `"vikunja-config"` |  |
-| additionalVolumes[0].name | string | `"vikunja-config"` |  |
-| affinity | object | `{}` | Affinity settings for pod assignment of the GUI |
+| additionalContainers[0] | object | See values.yaml | Set up the vikunja API container. |
+| additionalContainers[0].env | list | See below | You can declare all Vikunja parameters as environment variables. Please consult https://vikunja.io/docs/config-options/ to see all parameters. |
+| additionalContainers[0].image | string | `"vikunja/api:0.17.1"` | Vikunja api image and tag |
+| additionalContainers[1] | object | See values.yaml | Set up the vikunja frontend container. |
+| additionalContainers[1].image | string | `"vikunja/frontend:0.17.0"` | Vikunja frontend image and tag |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"caddy"` | Caddy reverse proxy image and tag |
 | image.tag | string | `"2.3.0-alpine"` | vikunja api image tag |
-| nodeSelector | object | `{}` | Node labels for pod assignment of the GUI |
-| persistence.files | object | `{"emptyDir":{"enabled":false},"enabled":false,"mountpath":"/app/vikunja/files"}` | Volume used for static files |
-| podAnnotations | object | `{}` | Pod annotations |
-| resources | object | `{}` |  |
-| service.port.port | int | `8080` | Kubernetes port where used by Caddy reverse proxy |
-| tolerations | list | `[]` | Toleration labels for pod assignment of the GUI |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.files | object | `{"enabled":false,"mountpath":"/app/vikunja/files"}` | Volume used for static files |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -106,21 +96,23 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed api image tag to `0.17.1`.
+- Changed frontend image tag to `0.17.0`.
+
 ### [1.0.0]
 
 #### Added
 
-- N/A
+- Initial version
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
-[1.0.0]: #1.0.0
+[3.0.0]: #300
+[1.0.0]: #100
 
 ## Support
 

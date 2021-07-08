@@ -6,93 +6,69 @@
 #
 
 image:
+  # -- image repository
   repository: kanboard/kanboard
+  # -- image tag
+  tag: v1.2.20
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: v1.2.18
 
-strategy:
-  type: Recreate
+# -- environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables)
+# and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details.
+# @default -- See below (only deviations from the default settings are specified)
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Enable/disable email configuration from the user interface
+  MAIL_CONFIGURATION: "false"
+  # -- log driver: syslog, stderr, stdout or file
+  LOG_DRIVER: stdout
+  # -- Database driver: sqlite, mysql or postgres
+  DB_DRIVER: sqlite
+  # -- Mysql/Postgres hostname
+  DB_HOSTNAME:
+  # -- Mysql/Postgres custom port (empty = default port)
+  DB_PORT:
+  # -- Mysql/Postgres username
+  DB_USERNAME:
+  # -- Mysql/Postgres password
+  DB_PASSWORD:
+  # -- Mysql/Postgres database name
+  DB_NAME:
 
-# -- https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables
-env: {}
-
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  port:
-    port: 80
+  main:
+    ports:
+      http:
+        port: 80
 
 ingress:
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
-  # -- enable data persistence
   data:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /var/www/app/data
-    accessMode: ReadWriteOnce
-    size: 1Gi
 
-  # -- enable SSL persistence
   ssl:
     enabled: false
-    emptyDir:
-      enabled: false
     mountPath: /etc/nginx/ssl
 
-# https://docs.kanboard.org/en/latest/admin_guide/config_file.html
-config:
-  debug: false
-  urlRewrite: false
-  plugins:
-    # -- Enable/disable plugin installation from the user interface
-    installer: false
-    # -- Plugin folder
-    dir: 'data/plugins'
-    api:
-      # -- default plugin directory URL
-      url: 'https://kanboard.org/plugins.json'
-  files:
-    # -- Folder for uploaded files
-    dir: 'data/files'
-  cache:
-    # -- Available cache drivers are "file" and "memory"
-    driver: 'memory'
-    # -- Cache folder to use if cache driver is "file"
-    dir: null
-  mail:
-    # -- Enable/disable email configuration from the user interface
-    enabled: false
-    from: 'notifications@kanboard.local'
-    bcc: null
-  db:
-    # -- Run automatically database migrations
-    runMigrations: true
-    # -- Database driver: sqlite, mysql or postgres
-    driver: sqlite
-
-  logging:
-    # -- log driver: syslog, stderr, stdout or file
-    driver: stdout
-
-  session:
-    # -- Session duration in second (0 = until the browser is closed)
-    duration: 0
-    # -- Session handler: db or php
-    handler: db
-
-# -- Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
-  # -- true: use bitnami postgres instance
-  # -- false: use your own postgres instance
   enabled: false
-  # -- Postgres database user name
   postgresqlUsername: kanboard
-  # -- Postgres database password
   postgresqlPassword: kanboard
-  # -- Postgres database password
   postgresqlDatabase: kanboard
   persistence:
-    # -- if database is stored to a PVC. Set to true when you are done testing.
     enabled: false
     # storageClass: ""

@@ -1,6 +1,6 @@
 # wikijs
 
-![Version: 4.4.1](https://img.shields.io/badge/Version-4.4.1-informational?style=flat-square) ![AppVersion: 2.5.191](https://img.shields.io/badge/AppVersion-2.5.191-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: version-2.5.201](https://img.shields.io/badge/AppVersion-version--2.5.201-informational?style=flat-square)
 
 Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 2.5.0 |
+| https://library-charts.k8s-at-home.com | common | 3.2.0 |
 
 ## TL;DR
 
@@ -76,37 +76,38 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| env | object | See below | environment variables. See [image docs](https://docs.linuxserver.io/images/docker-wikijs#environment-variables-e) for more details. |
 | env.DB_FILEPATH | string | `"/app/wiki/data/db.sqlite"` | Path to the SQLite file |
 | env.DB_NAME | string | `nil` | Database name |
 | env.DB_PASS | string | `nil` | Password to connect to the database |
-| env.DB_PASS_FILE | string | `nil` | Path to the mapped file containing to the database password. (optional, replaces DB_PASS) |
+| env.DB_PASS_FILE | string | `nil` | Path to the mapped file containing to the database password. (optional, replaces `DB_PASS`) |
 | env.DB_PORT | string | `nil` | Port of the database |
 | env.DB_SSL | string | `nil` | Set to either 1 or true to enable. (optional, off if omitted) |
 | env.DB_SSL_CA | string | `nil` | Database CA certificate content, as a single line string (without spaces or new lines), without the prefix and suffix lines. (optional, requires 2.3+) |
 | env.DB_TYPE | string | `"sqlite"` | mysql, postgres, mariadb, mssql or sqlite |
 | env.DB_USER | string | `nil` | Username to connect to the database |
-| env.TZ | string | `nil` | Set the time zone, e.g. Europe/Amsterdam |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"linuxserver/wikijs"` |  |
-| image.tag | string | `"version-2.5.191"` |  |
-| ingress.enabled | bool | `false` |  |
-| persistence.config.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.config.emptyDir.enabled | bool | `false` |  |
-| persistence.config.enabled | bool | `false` |  |
-| persistence.config.size | string | `"1Gi"` |  |
-| persistence.data.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.data.emptyDir.enabled | bool | `false` |  |
-| persistence.data.enabled | bool | `false` |  |
-| persistence.data.mountPath | string | `"/app/wiki/data"` |  |
-| persistence.data.size | string | `"1Gi"` |  |
-| service.port | object | `{"port":3000,"targetPort":3000}` | The default port is 3000 used by wiki.ks |
-| strategy.type | string | `"Recreate"` |  |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"ghcr.io/linuxserver/wikijs"` | image repository |
+| image.tag | string | `"version-2.5.201"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
+  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
+- Changed image repository to `ghcr.io/linuxserver/wikijs`.
+- Changed image tag to `version-2.5.201`.
 
 ### [4.4.1]
 
@@ -124,6 +125,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - `ingress.hosts[0].paths[0].path: "/"`
 - `ingress.hosts[0].paths[0].pathType: "Prefix"`
 
+[5.0.0]: #500
 [4.4.1]: #441
 
 ## Support

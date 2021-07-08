@@ -9,16 +9,18 @@
 
 # -- This is the default, you can also use requarks/wiki
 image:
-  repository: linuxserver/wikijs
+  # -- image repository
+  repository: ghcr.io/linuxserver/wikijs
+  # -- image tag
+  tag: version-2.5.201
+  # -- image pull policy
   pullPolicy: IfNotPresent
-  tag: version-2.5.191
 
-strategy:
-  type: Recreate
-
+# -- environment variables. See [image docs](https://docs.linuxserver.io/images/docker-wikijs#environment-variables-e) for more details.
+# @default -- See below
 env:
-  # -- Set the time zone, e.g. Europe/Amsterdam
-  TZ:
+  # -- Set the container timezone
+  TZ: UTC
   # -- mysql, postgres, mariadb, mssql or sqlite
   DB_TYPE: sqlite
   # -- Path to the SQLite file
@@ -35,30 +37,28 @@ env:
   DB_SSL:
   # -- Database CA certificate content, as a single line string (without spaces or new lines), without the prefix and suffix lines. (optional, requires 2.3+)
   DB_SSL_CA:
-  # -- Path to the mapped file containing to the database password. (optional, replaces DB_PASS)
+  # -- Path to the mapped file containing to the database password. (optional, replaces `DB_PASS`)
   DB_PASS_FILE:
 
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
 service:
-  # -- The default port is 3000 used by wiki.ks
-  port:
-    port: 3000
-    targetPort: 3000
+  main:
+    ports:
+      http:
+        port: 3000
 
 ingress:
-  # enable this if you would like to access you wiki
-  enabled: false
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
 
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    emptyDir:
-      enabled: false
-    accessMode: "ReadWriteOnce"
-    size: "1Gi"
   data:
     enabled: false
-    emptyDir:
-      enabled: false
-    accessMode: "ReadWriteOnce"
     mountPath: /app/wiki/data
-    size: "1Gi"
