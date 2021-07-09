@@ -1,5 +1,4 @@
-# openkm
-
+# OpenKM
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 OpenKM integrates all essential documents management, collaboration and an advanced search functionality into one easy to use solution.
@@ -8,6 +7,7 @@ OpenKM integrates all essential documents management, collaboration and an advan
 
 ## Source Code
 
+* <https://github.com/openkm/openkm-docker>
 * <https://www.openkm.com/>
 * <https://github.com/openkm/document-management-system>
 
@@ -106,8 +106,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Removed
 
 - N/A
-
-[1.0.0]: #100
 
 ## Support
 
