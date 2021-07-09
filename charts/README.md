@@ -74,6 +74,7 @@
 | [omada-controller](stable/omada-controller) | Omada enables the network administrators to monitor and manage all the Omada products in the network with a centralized management platform. |
 | [ombi](stable/ombi) | Want a Movie or TV Show on Plex or Emby? Use Ombi! |
 | [openemr](stable/openemr) | OpenEMR is the most popular open source electronic health records and medical practice management solution. |
+| [openkm](stable/openkm) | OpenKM integrates all essential documents management, collaboration and an advanced search functionality into one easy to use solution. |
 | [organizr](stable/organizr) | HTPC/Homelab Services Organizer |
 | [overseerr](stable/overseerr) | Overseerr is a free and open source software application for managing requests for your media library. It integrates with your existing services such as Sonarr, Radarr and Plex! |
 | [owncast](stable/owncast) | Take control over your live stream video by running it yourself. Streaming + chat out of the box. |
