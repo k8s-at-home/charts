@@ -1,0 +1,30 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: OpenKM integrates all essential documents management, collaboration and an advanced search functionality into one easy to use solution.
+name: openkm
+version: 1.2.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- openkm
+- documentation management
+- docs
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openkm
+icon: https://raw.githubusercontent.com/openkm/document-management-system/master/src/main/webapp/img/logo_favicon.ico
+sources:
+- https://www.openkm.com/
+- https://github.com/openkm/document-management-system
+maintainers:
+- name: carpenike
+  email: ryan@ryanholt.net
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 3.3.0
+- name: postgresql
+  version: 10.5.2
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
+- name: mariadb
+  version: 9.3.16
+  repository: https://charts.bitnami.com/bitnami
+  condition: mariadb.enabled
