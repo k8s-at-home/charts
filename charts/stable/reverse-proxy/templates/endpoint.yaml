@@ -11,7 +11,7 @@ subsets:
   - addresses:
       - ip: {{ .ip }}
     ports:
-      - port: {{ .port }}
+      - port: {{ .port | default 80 }}
 ---
 {{- end }}
 {{- end }}

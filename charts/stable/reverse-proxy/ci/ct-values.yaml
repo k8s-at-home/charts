@@ -1,0 +1,37 @@
+instances:
+- name: example-http
+  # missing ingress url in tet cluster -> dissable test
+  test: false
+  externalName: google.com
+  ingress:
+    hosts:
+    - host: example-http.cluster.local
+- name: example-https
+  # missing ingress url in tet cluster -> dissable test
+  test: false
+  externalName: google.com
+  port: 443
+  ingress:
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    hosts:
+    - host: example-https.cluster.local
+- name: example-ip
+  # missing ingress url in tet cluster -> dissable test
+  test: false
+  ip: 192.168.1.1
+  ingress:
+    hosts:
+    - host: example-ip.cluster.local
+- name: example-custom
+  # missing ingress url in tet cluster -> dissable test
+  test: false
+  ip: 192.168.1.1
+  ingress:
+    tls:
+    - hosts:
+      - example-custom-tls.cluster.local
+      secretName:
+    hosts:
+    - host: example-custom-tls.cluster.local
+      path: /
