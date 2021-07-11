@@ -63,20 +63,8 @@ persistence:
   ssmtp:
     enabled: false
     mountPath: /etc/ssmtp
-
-# -- Enable and configure mariadb database subchart under this key.
-#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
-# @default -- See values.yaml
-mariadb:
-  enabled: false
-  architecture: standalone
-  auth:
-    database: icinga2
-    username: icinga2
-    password: icinga2-pass
-    rootPassword: icinga2rootpass
-  primary:
-    persistence:
-      enabled: false
-      # storageClass: ""
-  fullnameOverride: icinga2-db
+  # -- MariaDb data directory
+  # @default -- Disabled
+  mariadb:
+    enabled: false
+    mountPath: /var/lib/mysql
