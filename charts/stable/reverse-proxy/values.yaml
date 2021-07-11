@@ -44,3 +44,17 @@ instances:
        # -- Path.  Helm template can be passed
        # @default -- /
       path: /
+
+ingressPort:
+  # -- Ingress port for non-TLS
+  http: 80
+  # -- Ingress port for TLS
+  tls: 443
+
+connectionTest:
+  # -- seconds to wait before next retry
+  waitretry: 2
+  # -- second to wait in case no data is received and then try again
+  readtimeout: 2
+  # -- tries to connect
+  tries: 30

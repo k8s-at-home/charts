@@ -77,6 +77,8 @@ N/A
 |-----|------|---------|-------------|
 | generateTLS.enabled | bool | `true` | Enable automatic generation of ingress TLS section based on ingress.hosts.*.host |
 | generateTLS.secretName | string | default ingress TLS certificate | certificate to use |
+| ingressPort.http | int | `80` | Ingress port for non-TLS |
+| ingressPort.tls | int | `443` | Ingress port for TLS |
 | instances[0].enabled | bool | true | enable this reverse proxy. |
 | instances[0].externalName | string | `"google.com"` | host name behind this reverse proxy |
 | instances[0].ingress.annotations | object | `{}` | Provide additional annotations which may be required |

@@ -1,3 +1,4 @@
+{{- $wget_opts := printf "--spider -T %0.f" .Values.connectionTest.readtimeout }}
 {{- range $instance := .Values.instances }}
 {{- if or ( not ( hasKey $instance "enabled" ) ) $instance.enabled }}
 {{- if or ( not ( hasKey $instance "test" ) ) ( $instance.test ) }}
@@ -17,14 +18,25 @@ spec:
       args:
       - '-ecx'
       - |
-      {{- range $host := $instance.ingress.hosts }}
-        {{- if not .paths }}
-          {{- $_ := set . "paths" ( list ( dict "path" "/" ) ) }}
+        {{- range $host := $instance.ingress.hosts }}
+          {{- if not .paths }}
+            {{- $_ := set . "paths" ( list ( dict "path" "/" ) ) }}
+          {{- end }}
+          {{- $schema := "http" }}
+          {{- $ingressPort := $.Values.ingressPort.http }}
+          {{- if or $.Values.generateTLS.enabled (hasKey $instance.ingress "tls" ) }}
+            {{- $schema = "https" }}
+            {{- $ingressPort = $.Values.ingressPort.tls }}
+          {{- end }}
+          {{- range .paths }}
+          for i in $(seq 1 {{ $.Values.connectionTest.tries }}); do
+            [ $i -gt 1 ] && sleep {{ $.Values.connectionTest.waitretry }}
+            wget {{ $wget_opts }} {{ $schema }}://{{ $host.host }}:{{ $ingressPort }}{{ .path }} && s=0 && break || s=$?
+          done
+          [ $s -gt 0 ] && exit $s
+          {{- end }}
         {{- end }}
-        {{- range .paths }}
-        wget --spider http{{ if or $.Values.generateTLS.enabled (hasKey $instance.ingress "tls") }}s{{ end }}://{{ $host.host }}{{ .path }};
-        {{- end }}
-      {{- end }}
+          exit 0
   restartPolicy: Never
 ---
 {{- end }}
