@@ -1,0 +1,32 @@
+{{- range $instance := .Values.instances }}
+{{- if or ( not ( hasKey $instance "enabled" ) ) $instance.enabled }}
+{{- if or ( not ( hasKey $instance "test" ) ) ( $instance.test ) }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "common.names.fullname" $ }}-{{ .name }}-test-connection"
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['sh']
+      args:
+      - '-ecx'
+      - |
+      {{- range $host := $instance.ingress.hosts }}
+        {{- if not .paths }}
+          {{- $_ := set . "paths" ( list ( dict "path" "/" ) ) }}
+        {{- end }}
+        {{- range .paths }}
+        wget --spider http{{ if or $.Values.generateTLS.enabled (hasKey $instance.ingress "tls") }}s{{ end }}://{{ $host.host }}{{ .path }};
+        {{- end }}
+      {{- end }}
+  restartPolicy: Never
+---
+{{- end }}
+{{- end }}
+{{- end }}

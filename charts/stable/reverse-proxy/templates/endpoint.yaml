@@ -1,0 +1,18 @@
+{{- range .Values.instances }}
+{{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
+{{- if .ip -}}
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: {{ include "common.names.fullname" $ }}-{{ .name }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+subsets:
+  - addresses:
+      - ip: {{ .ip }}
+    ports:
+      - port: {{ .port }}
+---
+{{- end }}
+{{- end }}
+{{- end }}

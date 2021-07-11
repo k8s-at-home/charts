@@ -1,0 +1,14 @@
+The following ingress reverse proxies were deployed:
+{{- range $instance := .Values.instances }}
+{{- $reference := printf "%s:%.0f" (default .externalName .ip) .port }}
+{{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
+{{- range $host := $instance.ingress.hosts }}
+  {{- if not .paths }}
+    {{- $_ := set . "paths" ( list ( dict "path" "/" ) ) }}
+  {{- end }}
+  {{- range .paths }}
+- http{{ if or $.Values.generateTLS.enabled (hasKey $instance.ingress "tls") }}s{{ end }}://{{ $host.host }}{{ .path }} -> {{ $reference }}
+  {{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
