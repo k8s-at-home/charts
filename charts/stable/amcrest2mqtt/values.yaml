@@ -1,0 +1,40 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: dchesterton/amcrest2mqtt
+  # -- image tag
+  tag: 1.0.5
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [amcrest2mqtt repo](https://github.com/dchesterton/amcrest2mqtt).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Host name used to connect to the Amcrest device
+  AMCREST_HOST:
+  # -- Port used to connect to the Amcrest device
+  AMCREST_PORT: 80
+  # -- User name used to connect to the Amcrest device
+  AMCREST_USERNAME:
+  # -- Password used to connect to the Amcrest device
+  AMCREST_PASSWORD:
+  # -- Host name used to connect to the MQTT broker
+  MQTT_HOST: 1883
+  # -- Port used to connect to the MQTT broker
+  MQTT_PORT:
+  # -- User name used to connect to the MQTT broker
+  MQTT_USERNAME:
+  # -- Password used to connect to the MQTT broker
+  MQTT_PASSWORD:
+  # -- Enable Home Assistant autodiscovery
+  HOME_ASSISTANT: "false"
+  # -- Home Assistant autodiscovery prefix
+  HOME_ASSISTANT_PREFIX: "homeassistant"
