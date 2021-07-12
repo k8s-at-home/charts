@@ -1,0 +1,60 @@
+{{- range .Values.instances }}
+{{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
+{{- $name := printf "%s-%s" (include "common.names.fullname" $) .name }}
+{{- $svcPort := .port | default 80 }}
+---
+apiVersion: {{ include "common.capabilities.ingress.apiVersion" $ }}
+kind: Ingress
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+  {{- with .ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .ingress.ingressClassName }}
+  ingressClassName: {{ .ingressClassName }}
+  {{- end }}
+  {{- if .ingress.tls }}
+  tls:
+    {{- range .ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ tpl . $ | quote }}
+        {{- end }}
+      {{- if .secretName }}
+      secretName: {{ tpl .secretName $ | quote}}
+      {{- end }}
+    {{- end }}
+  {{- else if $.Values.generateTLS.enabled }}
+  tls:
+    {{- range .ingress.hosts }}
+    - hosts:
+      - {{ tpl .host $ | quote }}
+      {{- if $.Values.generateTLS.secretName }}
+      secretName: {{ tpl $.Values.generateTLS.secretName $ | quote}}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  rules:
+  {{- range .ingress.hosts }}
+    - host: {{ tpl .host $ | quote }}
+      http:
+        paths:
+          {{- if not .paths }}
+          {{- $_ := set . "paths" ( list ( dict "path" "/" ) ) }}
+          {{- end }}
+          {{- range .paths }}
+          - path: {{ tpl .path $ | quote }}
+            pathType: {{ default "Prefix" .pathType }}
+            backend:
+              service:
+                name: {{ $name }}
+                port:
+                  number: {{ $svcPort }}
+          {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}
