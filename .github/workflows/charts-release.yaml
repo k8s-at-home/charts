@@ -131,6 +131,8 @@ jobs:
   generate-summary:
     name: Auto-generate charts summary
     runs-on: ubuntu-20.04
+    needs:
+    - generate-release
     steps:
     - name: Get k8s-at-home token
       id: get-app-token
@@ -143,7 +145,8 @@ jobs:
       uses: actions/checkout@v2
       with:
         token: ${{ steps.get-app-token.outputs.token }}
-        ref: ${{ github.ref }}
+        ref: master
+        fetch-depth: 0
 
     - name: Install yq
       uses: chrisdickinson/setup-yq@latest
