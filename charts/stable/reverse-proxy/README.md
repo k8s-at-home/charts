@@ -75,6 +75,9 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| connectionTest.readtimeout | int | `2` | second to wait in case no data is received and then try again |
+| connectionTest.tries | int | `30` | tries to connect |
+| connectionTest.waitretry | int | `2` | seconds to wait before next retry |
 | generateTLS.enabled | bool | `true` | Enable automatic generation of ingress TLS section based on ingress.hosts.*.host |
 | generateTLS.secretName | string | default ingress TLS certificate | certificate to use |
 | ingressPort.http | int | `80` | Ingress port for non-TLS |
