@@ -1753,6 +1753,30 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/alertmanager-bot-1.0.0/alertmanager-bot-1.0.0.tgz
     version: 1.0.0
+  amcrest2mqtt:
+  - apiVersion: v2
+    appVersion: 1.0.5
+    created: "2021-07-12T22:03:39.803828202Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.3.0
+    description: Expose all events from an Amcrest device to an MQTT broker
+    digest: 531210992067108fb2a245c0c37ba0903f4e171c9ea37c956b050e0d372660c1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/amcrest2mqtt
+    icon: https://raw.githubusercontent.com/k8s-at-home/organization/main/logo/k8s-at-home-400.png
+    keywords:
+    - amcrest2mqtt
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: amcrest2mqtt
+    sources:
+    - https://github.com/dchesterton/amcrest2mqtt
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/amcrest2mqtt-1.0.0/amcrest2mqtt-1.0.0.tgz
+    version: 1.0.0
   apache-musicindex:
   - apiVersion: v2
     appVersion: v1.4.1-2
@@ -73881,4 +73905,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-12T08:42:24.273666186Z"
+generated: "2021-07-12T22:03:39.817519525Z"
