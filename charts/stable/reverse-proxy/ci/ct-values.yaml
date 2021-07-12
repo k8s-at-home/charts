@@ -1,0 +1,55 @@
+# TLS not enabled by default in k3s traefik
+generateTLS:
+  enabled: false
+
+instances:
+- name: example-ipk
+  test: false
+  ip: 1.1.1.1
+  ingress:
+    annotations:
+      # See https://stackoverflow.com/questions/49431284/forward-to-externalname-with-traefik-in-kubernetes-as-the-documenation-suggests
+      traefik.frontend.passHostHeader: "false"
+    hosts:
+    - host: traefik.kube-system
+      # host: nginx-ingress-nginx-controller.nginx
+      paths:
+      - path: /example-ip
+
+- name: example-tls
+  test: false
+  ip: 1.1.1.1
+  port: 443
+  ingress:
+    annotations:
+      traefik.frontend.passHostHeader: "false"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      traefik.ingress.kubernetes.io/redirect-entry-point: https
+    hosts:
+    - host: traefik.kube-system
+      paths:
+      - path: /example-tls
+
+- name: example-http
+  test: false
+  externalName: example.com
+  ingress:
+    annotations:
+      traefik.frontend.passHostHeader: "false"
+    hosts:
+    - host: traefik.kube-system
+      paths:
+      - path: /example-http
+
+- name: example-custom
+  test: false
+  externalName: example.com
+  ingress:
+    annotations:
+      traefik.frontend.passHostHeader: "false"
+    tls:
+    - hosts:
+      - example-custom-tls.cluster.local
+      secretName:
+    hosts:
+    - host: example-custom-tls.cluster.local

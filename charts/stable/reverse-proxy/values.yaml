@@ -1,0 +1,60 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+generateTLS:
+  # -- Enable automatic generation of ingress TLS section
+  # based on ingress.hosts.*.host
+  enabled: true
+  # -- certificate to use
+  # @default -- default ingress TLS certificate
+  secretName: ""
+
+instances:
+- name: example
+  # -- enable this reverse proxy.
+  # @default -- true
+  enabled: false
+  # -- add a test for this reverse proxy.
+  # It can be tested with `helm test <chart_name>`
+  # @default -- true
+  test: true
+  # -- host name behind this reverse proxy
+  externalName: google.com
+  # -- IP address behind this reverse proxy
+  # Has no effect if externalName is set
+  ip: 192.168.1.1
+  # -- Port used by host behind this reverse proxy
+  # @default -- 80
+  port: 80
+  ingress:
+    # -- Provide additional annotations which may be required
+    annotations: {}
+    # -- Configure TLS for the ingress. Both secretName and hosts can process a Helm template.
+    # if not set the generateTLS settigs are used
+    tls:
+    - hosts:
+      - example.cluster.local
+      secretName:
+    hosts:
+    - host: example.cluster.local
+       # -- Path.  Helm template can be passed
+       # @default -- /
+      path: /
+
+ingressPort:
+  # -- Ingress port for non-TLS
+  http: 80
+  # -- Ingress port for TLS
+  tls: 443
+
+connectionTest:
+  # -- seconds to wait before next retry
+  waitretry: 2
+  # -- second to wait in case no data is received and then try again
+  readtimeout: 2
+  # -- tries to connect
+  tries: 30

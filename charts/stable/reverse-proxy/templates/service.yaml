@@ -1,0 +1,19 @@
+{{- range .Values.instances }}
+{{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" $ }}-{{ .name }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+spec:
+  {{- if .externalName }}
+  type: ExternalName
+  externalName: {{ .externalName }}
+  {{- end }}
+  ports:
+    - protocol: TCP
+      port: {{ .port | default 80 }}
+---
+{{- end }}
+{{- end }}
