@@ -132,7 +132,7 @@ jobs:
     name: Auto-generate charts summary
     runs-on: ubuntu-20.04
     needs:
-    - generate-release
+    - release
     steps:
     - name: Get k8s-at-home token
       id: get-app-token
