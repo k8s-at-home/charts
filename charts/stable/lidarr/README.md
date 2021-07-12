@@ -1,6 +1,6 @@
 # lidarr
 
-![Version: 10.2.0](https://img.shields.io/badge/Version-10.2.0-informational?style=flat-square) ![AppVersion: v1.0.0.2226](https://img.shields.io/badge/AppVersion-v1.0.0.2226-informational?style=flat-square)
+![Version: 10.3.0](https://img.shields.io/badge/Version-10.3.0-informational?style=flat-square) ![AppVersion: v1.0.0.2226](https://img.shields.io/badge/AppVersion-v1.0.0.2226-informational?style=flat-square)
 
 Looks and smells like Sonarr but made for music
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.2.0 |
+| https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
 

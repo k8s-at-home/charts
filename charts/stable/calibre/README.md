@@ -1,6 +1,6 @@
 # calibre
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: version-v5.21.0](https://img.shields.io/badge/AppVersion-version--v5.21.0-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: version-v5.21.0](https://img.shields.io/badge/AppVersion-version--v5.21.0-informational?style=flat-square)
 
 Calibre is a powerful and easy to use e-book manager.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.2.0 |
+| https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
 

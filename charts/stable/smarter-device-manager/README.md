@@ -1,6 +1,6 @@
 # smarter-device-manager
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
+![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
 
 Manage hardware resource allocation without a need for privileged containers
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.2.0 |
+| https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
 

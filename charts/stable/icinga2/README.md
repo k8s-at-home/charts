@@ -1,6 +1,6 @@
 # icinga2
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.14 |
-| https://library-charts.k8s-at-home.com | common | 3.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.16 |
+| https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
 
@@ -85,10 +85,10 @@ N/A
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| persistence.config | object | `{"enabled":false,"mountPath":"/etc/icinga2"}` | Icinga2 configuration folder |
-| persistence.data | object | `{"enabled":false,"mountPath":"/var/lib/icinga2"}` | Icinga2 Data |
-| persistence.ssmtp | object | `{"enabled":false,"mountPath":"/etc/ssmtp"}` | ssmtp folder |
-| persistence.web | object | `{"enabled":false,"mountPath":"/etc/icingaweb2"}` | Icingaweb2 configuration folder |
+| persistence.config | object | Disabled | Icinga2 configuration folder |
+| persistence.data | object | Disabled | Icinga2 Data |
+| persistence.ssmtp | object | Disabled | ssmtp folder |
+| persistence.web | object | Disabled | Icingaweb2 configuration folder |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog

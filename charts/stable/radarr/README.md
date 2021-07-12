@@ -1,6 +1,6 @@
 # radarr
 
-![Version: 12.2.0](https://img.shields.io/badge/Version-12.2.0-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
+![Version: 12.3.0](https://img.shields.io/badge/Version-12.3.0-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
 
 A fork of Sonarr to work with movies à la Couchpotato
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.2.0 |
+| https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
 

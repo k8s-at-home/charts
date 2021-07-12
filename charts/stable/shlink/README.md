@@ -1,6 +1,6 @@
 # shlink
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
+![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
 
 A self-hosted and PHP-based URL shortener application with CLI and REST interfaces
 
@@ -18,9 +18,9 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.13 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.4.8 |
-| https://library-charts.k8s-at-home.com | common | 3.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.3.16 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.5.2 |
+| https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
 

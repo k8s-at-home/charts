@@ -1,6 +1,6 @@
 # joplin-server
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 2.1.2](https://img.shields.io/badge/AppVersion-2.1.2-informational?style=flat-square)
+![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: 2.1.2](https://img.shields.io/badge/AppVersion-2.1.2-informational?style=flat-square)
 
 This server allows you to sync any Joplin client
 
@@ -18,8 +18,8 @@ This server allows you to sync any Joplin client
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.4.9 |
-| https://library-charts.k8s-at-home.com | common | 3.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.5.2 |
+| https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
 
