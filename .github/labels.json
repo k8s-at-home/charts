@@ -1,0 +1,24 @@
+{
+  "labels": {
+    "kind:incorrect-title": {
+      "name": "kind:incorrect-title",
+      "colour": "#ffb700",
+      "description": "Incorrect title"
+    }
+  },
+  "pr": {
+    "kind:incorrect-title": {
+      "requires": 2,
+      "conditions": [
+        {
+          "type": "creatorMatches",
+          "pattern": "^(?!renovate).+"
+        },
+        {
+          "type": "titleMatches",
+          "pattern": "^(?!\\[[a-z]+\\]\\s[A-Z].+).+"
+        }
+      ]
+    }
+  }
+}

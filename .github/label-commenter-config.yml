@@ -35,3 +35,15 @@ labels:
           - [Documentation strings](https://github.com/norwoodj/helm-docs#valuesyaml-metadata) have been added to the keys in `values.yaml`.
 
           Afterwards you can run `./hack/gen-helm-docs.sh stable <chart>` again to update the chart's `README.md` file.
+
+  - name: kind:incorrect-title
+    labeled:
+      pr:
+        body: |
+          :wave: @{{ pull_request.user.login }}, thanks for taking the time to submit this PR. 🙏🏽
+
+          We have noticed that the PR title does not adhere to our desired format.
+          Could you please make sure that it follows the pattern `[<lowercase chart name>] <Update description>`?
+          Example: `[radarr] Update image version`.
+
+          Thanks!

@@ -92,9 +92,16 @@ jobs:
     name: Lint charts
     runs-on: ubuntu-20.04
     steps:
+    - uses: getsentry/action-github-app-token@v1
+      id: get-app-token
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{ steps.get-app-token.outputs.token }}
         fetch-depth: 0
 
     - name: Install Helm
@@ -113,15 +120,52 @@ jobs:
       id: lint
       run: ct lint --config .github/ct-lint.yaml
 
+    # CI Passed
+    - name: "add label: ok"
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ success() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "lint:ok"
+
+    - name: "remove label: failed"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ success() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "lint:failed"
+
+    # CI Failed
+    - name: "add label: failed"
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ failure() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "lint:failed"
+
+    - name: "remove label: ok"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ failure() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "lint:ok"
+
   unittest:
     needs:
     - lint
     name: Run unit tests
     runs-on: ubuntu-20.04
     steps:
+    - uses: getsentry/action-github-app-token@v1
+      id: get-app-token
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{ steps.get-app-token.outputs.token }}
         fetch-depth: 0
 
     - name: Install Dev tools
@@ -160,9 +204,16 @@ jobs:
       max-parallel: 15
     runs-on: ubuntu-20.04
     steps:
+    - uses: getsentry/action-github-app-token@v1
+      id: get-app-token
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{ steps.get-app-token.outputs.token }}
         fetch-depth: 0
 
     - name: Install Helm
@@ -198,6 +249,42 @@ jobs:
     name: Install successful
     runs-on: ubuntu-20.04
     steps:
+    - uses: getsentry/action-github-app-token@v1
+      id: get-app-token
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
     - name: Check install matrix status
       if: ${{ needs.changes-install.outputs.detected == 'true' && needs.install.result != 'success' }}
       run: exit 1
+
+    # CI Passed
+    - name: "add label: ok"
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ success() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "install:ok"
+
+    - name: "remove label: failed"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ success() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "install:failed"
+
+    # CI Failed
+    - name: "add label: failed"
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ failure() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "install:failed"
+
+    - name: "remove label: ok"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ failure() }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        labels: "install:ok"
