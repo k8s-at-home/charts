@@ -29,6 +29,7 @@
 | [focalboard](stable/focalboard) | Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana. |
 | [foundryvtt](stable/foundryvtt) | An easy-to-deploy Dockerized Foundry Virtual Tabletop server |
 | [freshrss](stable/freshrss) | FreshRSS is a self-hosted RSS feed aggregator |
+| [frigate](stable/frigate) | NVR With Realtime Object Detection for IP Cameras |
 | [gaps](stable/gaps) | Gaps searches through your Plex Server or local folders for all movies, then queries for known movies in the same collection. |
 | [gollum](stable/gollum) | Gollum is a simple wiki system built on top of Git |
 | [gonic](stable/gonic) | Music streaming server / subsonic server API implementation |
