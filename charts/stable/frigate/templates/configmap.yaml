@@ -6,4 +6,4 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   config.yml: |
-    {{- .Values.config | tpl $ | nindent 4 }}
+    {{- tpl .Values.config $ | nindent 4 }}
