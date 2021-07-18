@@ -87,6 +87,7 @@ N/A
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.cache | object | See values.yaml | Configure a temporary cache. See [docs](https://blakeblackshear.github.io/frigate/) for more details.. |
 | persistence.usb | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
+| resources | object | `{}` | Configure the resource requests and/or limits for the Pod |
 | securityContext.privileged | bool | `true` | (bool) Privileged securityContext may be required if USB devices are accessed directly through the host machine |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
