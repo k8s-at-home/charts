@@ -1,0 +1,106 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: blakeblackshear/frigate
+  # -- image tag
+  tag: 0.8.4-amd64
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [docs](https://blakeblackshear.github.io/frigate/) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Set a RTSP password
+  # @default -- empty
+  FRIGATE_RTSP_PASSWORD: ""
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 5000
+      rtmp:
+        enabled: false
+        port: 1935
+        protocol: TCP
+        targetPort: 1935
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+securityContext:
+  # -- (bool) Privileged securityContext may be required if USB devices are accessed directly through the host machine
+  privileged: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /data
+  media:
+    enabled: false
+    mountPath: /media
+  # -- Configure a hostPathMount to mount a USB device in the container.
+  # @default -- See values.yaml
+  usb:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/bus/usb
+  # -- Configure a temporary cache. See [docs](https://blakeblackshear.github.io/frigate/) for more details..
+  # @default -- See values.yaml
+  cache:
+    enabled: true
+    type: emptyDir
+    medium: Memory
+    sizeLimit: 1Gi
+    mountPath: /dev/shm
+
+# -- Affinity constraint rules to place the Pod on a specific node.
+# [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+affinity: {}
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: app
+#           operator: In
+#           values:
+#           - coral-tpu
+
+# -- Configure the resource requests and/or limits for the Pod
+resources: {}
+  # requests:
+  #   # Hardware acceleration using an Intel iGPU w/ QuickSync and
+  #   # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
+  #   gpu.intel.com/i915: 1
+  #   cpu: 200m
+  #   memory: 256Mi
+  # limits:
+  #   # Hardware acceleration using an Intel iGPU w/ QuickSync and
+  #   # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
+  #   gpu.intel.com/i915: 1
+  #   memory: 4096Mi
+
+# -- See [docs](https://blakeblackshear.github.io/frigate/) for more details.
+# @default -- see URL to default config
+config: |
+  mqtt:
+    host: test.mosquitto.org
+    topic_prefix: frigate
+  detectors:
+    cpu1:
+      type: cpu

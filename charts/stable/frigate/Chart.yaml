@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: v0.8.0
+description: NVR With Realtime Object Detection for IP Cameras
+name: frigate
+version: 5.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- frigate
+- nvr
+- tensorflow
+- coral
+- ml
+- machine-learning
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/frigate
+icon: https://github.com/blakeblackshear/frigate/blob/master/docs/static/img/frigate.png
+sources:
+- https://github.com/blakeblackshear/frigate
+maintainers:
+- name: billimek
+  email: jeff@billimek.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 3.3.0
