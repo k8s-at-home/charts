@@ -1,0 +1,16 @@
+{{- if eq .Values.config.mode "values" -}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-config
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  maddy.conf: |-
+    $(hostname) = {{- .Values.env.MADDY_HOSTNAME }}
+    $(primary_domain) = {{- .Values.env.MADDY_DOMAIN }}
+
+    tls file /etc/ssl/tls.crt /etc/ssl/tls.key
+    {{- .Values.config.config | nindent 4 }}
+{{- end }}

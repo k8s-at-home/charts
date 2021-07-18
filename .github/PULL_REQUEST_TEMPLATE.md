@@ -7,7 +7,7 @@ Before you open the request please review the following guidelines and tips to h
 
 Thank you for contributing! We will try to test and integrate the change as soon as we can. There is no need to bump or check in on a pull request (it will clutter the discussion of the request).
 
-Also don't be worried if the request is closed or not integrated sometimes our priorities might not match the priorities of the pull request. Don't fret, the open source community thrives on forks and GitHub makes it easy to keep your changes in a forked repo.
+Also, don't be worried if the request is closed or not integrated sometimes our priorities might not match the priorities of the pull request. Don't fret, the open-source community thrives on forks and GitHub makes it easy to keep your changes in a forked repo.
 -->
 
 **Description of the change**
@@ -29,11 +29,11 @@ Also don't be worried if the request is closed or not integrated sometimes our p
 
 **Additional information**
 
-<!-- If there's anything else that's important and relevant to your pull request, mention that information here.-->
+<!-- If there's anything else that's important and relevant to your pull request, mention that information here. -->
 
 **Checklist** <!-- [Place an '[X]' (no spaces) in all applicable fields. Please remove unrelated fields.] -->
 - [ ] Chart version bumped in `Chart.yaml` according to [semver](http://semver.org/).
 - [ ] Title of the PR starts with chart name (e.g. `[home-assistant]`)
 - [ ] Variables are documented in the README.md (this can be done with using our helm-docs wrapper `./hack/gen-helm-docs.sh stable <chart>`)
 
-<!-- Keep in mind that if you are submitting a new chart, try to use our [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library as a dependency. This will help maintaining charts here and keep them consistent between each other -->
+<!-- Keep in mind that if you are submitting a new chart, try to use our [common](https://github.com/k8s-at-home/charts/tree/master/charts/common) library as a dependency. This will help to maintain charts here and keep them consistent with each other. -->
