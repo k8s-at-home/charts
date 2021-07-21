@@ -41,7 +41,7 @@ jobs:
       if: steps.filter.outputs.addedOrModified == 'true'
       uses: azure/setup-helm@v1
       with:
-        version: v3.5.3
+        version: v3.6.3
 
     - uses: actions/setup-python@v2
       if: steps.filter.outputs.addedOrModified == 'true'
@@ -117,7 +117,7 @@ jobs:
     - name: Install Helm
       uses: azure/setup-helm@v1
       with:
-        version: v3.5.4
+        version: v3.6.3
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.2.1
