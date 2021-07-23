@@ -4,7 +4,7 @@ metadata:
   name: {{ include "common.names.fullname" . }}
 data:
   git-sync: |
-    #!/bin/bash
+    #!/bin/sh
     cd /wiki && {{ .Values.gollum.syncCommand }}
   config.rb: |
     {{- .Values.gollum.config | nindent 4 }}
