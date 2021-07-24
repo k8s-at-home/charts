@@ -86,7 +86,7 @@ jobs:
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
         script: |
-          var result: Record<string,string> = {}
+          let result = new Object
 
           const wfJobs = await github.actions.listJobsForWorkflowRun({
             owner: context.repo.owner,
@@ -96,9 +96,9 @@ jobs:
 
           for (const job of wfJobs.data.jobs) {
             if (job.name === 'Lint charts') {
-              result.lint = job.conclusion
+              result['lint'] = job.conclusion
             } else if (job.name === 'Install successful') {
-              result.install = job.conclusion
+              result['install'] = job.conclusion
             }
           }
 
