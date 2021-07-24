@@ -43,18 +43,25 @@ jobs:
               LABEL_REMOVE = 'precommit:ok'
             }
 
-            github.issues.addLabels({
+            await github.issues.addLabels({
               issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: [LABEL_ADD]
             })
-            github.issues.removeLabel({
+            await github.issues.removeLabel({
               issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               name: LABEL_REMOVE
             })
+            .catch(err => {
+              // Ignore errors that provide the label is not there
+              if (err.status !== 404 && err.status !== 410) {
+                core.error(`Unexpected error status: ${err.status} with message: ${err.message}`);
+                throw err;
+              }
+            });
 
   label-lint-install:
     name: Label lint and install status
@@ -114,14 +121,14 @@ jobs:
               LABEL_REMOVE = 'lint:ok'
             }
 
-            github.issues.addLabels({
+            await github.issues.addLabels({
               issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: [LABEL_ADD]
             })
             try {
-              github.issues.removeLabel({
+              await github.issues.removeLabel({
                 issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -146,14 +153,14 @@ jobs:
               LABEL_REMOVE = 'install:ok'
             }
 
-            github.issues.addLabels({
+            await github.issues.addLabels({
               issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: [LABEL_ADD]
             })
             try {
-              github.issues.removeLabel({
+              await github.issues.removeLabel({
                 issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
                 owner: context.repo.owner,
                 repo: context.repo.repo,
