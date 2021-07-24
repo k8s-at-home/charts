@@ -86,7 +86,7 @@ jobs:
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
         script: |
-          let result = new Map()
+          let result: {[key: string]: string} = {}
 
           const wfJobs = await github.actions.listJobsForWorkflowRun({
             owner: context.repo.owner,
@@ -94,21 +94,21 @@ jobs:
             run_id: context.payload.workflow_run.id,
           })
 
-          console.log(wfJobs.data.jobs)
-
           for (const job of wfJobs.data.jobs) {
             if (job.name === 'Lint charts') {
-              result.set('lint', job.conclusion)
+              result.lint = job.conclusion
             } else if (job.name === 'Install successful') {
-              result.set('install', job.conclusion)
+              result.install = job.conclusion
             }
           }
 
-          console.log(result)
           return result
 
     - name: Get result
-      run: echo "${{steps.get-workflow-jobs.outputs.result}}"
+      run: |
+        echo "${{steps.get-workflow-jobs.outputs.result}}"
+        echo ""
+        echo "${{steps.get-workflow-jobs.outputs.result.lint}}"
 
     # # CI Passed
     # - name: "add label: ok"
