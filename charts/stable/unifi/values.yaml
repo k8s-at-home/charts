@@ -249,6 +249,11 @@ persistence:
   # -- Do not delete the pvc upon helm uninstall
   skipuninstall: false
 
+extraEnvVars: []
+  ## specify additional env vars to be used by env inside unifi container
+  # - name: MYENV
+  #   value: value_of_my_envvar
+
 extraVolumes: []
   ## specify additional volume to be used by extraVolumeMounts inside unifi container
   # - name: additional-volume

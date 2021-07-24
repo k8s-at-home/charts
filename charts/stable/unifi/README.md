@@ -139,6 +139,7 @@ ingress:
 | discoveryService.port | int | `10001` | Kubernetes port where the service is exposed |
 | discoveryService.type | string | `"NodePort"` | Kubernetes service type |
 | extraConfigFiles | object | `{}` |  |
+| extraEnvVars | list | `[]` |  |
 | extraJvmOpts | list | `[]` |  |
 | extraVolumeMounts | list | `[]` |  |
 | extraVolumes | list | `[]` |  |
