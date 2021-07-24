@@ -26,8 +26,7 @@ jobs:
   label-precommit:
     name: Label pre-commit status
     runs-on: ubuntu-20.04
-    if: |
-      ${{ github.event.workflow.name == 'Pre-commit consistency check' }}
+    if: "${{ github.event.workflow.name == 'Pre-commit consistency check' }}"
     needs:
     - get-info
     steps:
@@ -37,73 +36,70 @@ jobs:
         app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
         private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    - name: "Pre-commit successful"
+    - name: "Pre-commit success"
       uses: actions/github-script@v4
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
         script: |
-          console.log(context)
+            github.issues.addLabels({
+              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['precommit:ok']
+            })
+            github.issues.removeLabel({
+              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['precommit:failed']
+            })
 
-    # - name: "Pre-commit failed"
-    #   uses: actions/github-script@v4
-    #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    #   with:
-    #     github-token: ${{ steps.get-app-token.outputs.token }}
-    #     script: |
-    #         github.issues.addLabels({
-    #           issue_number: context.needs.get-info.outputs.pullRequestNumber,
-    #           owner: context.repo.owner,
-    #           repo: context.repo.repo,
-    #           labels: ['precommit:failed']
-    #         })
-    #         github.issues.removeLabel({
-    #           issue_number: context.needs.get-info.outputs.pullRequestNumber,
-    #           owner: context.repo.owner,
-    #           repo: context.repo.repo,
-    #           labels: ['precommit:ok']
-    #         })
-    #     result-encoding: string
+    - name: "Pre-commit failed"
+      uses: actions/github-script@v4
+      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      with:
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+            github.issues.addLabels({
+              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['precommit:failed']
+            })
+            github.issues.removeLabel({
+              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['precommit:ok']
+            })
 
-  # label-lint-install:
-  #   name: Label lint and install status
-  #   runs-on: ubuntu-20.04
-  #   if: |
-  #     ${{ github.event.workflow.name == 'Charts: Lint and tests' }}
-  #   needs:
-  #   - get-info
-  #   steps:
-  #   - uses: getsentry/action-github-app-token@v1
-  #     id: get-app-token
-  #     with:
-  #       app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
-  #       private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+  label-lint-install:
+    name: Label lint and install status
+    runs-on: ubuntu-20.04
+    if: |
+      ${{ github.event.workflow.name == 'Charts: Lint and tests' }}
+    needs:
+    - get-info
+    steps:
+    - uses: getsentry/action-github-app-token@v1
+      id: get-app-token
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-  #   - name: "Lint successful"
-  #     uses: actions/github-script@v4
-  #     with:
-  #       github-token: ${{ steps.get-app-token.outputs.token }}
-  #       script: |
-  #         const wfJobs = github.actions.listJobsForWorkflowRun({
-  #           owner: context.repo.owner,
-  #           repo: context.repo.repo,
-  #           run_id: context.event.workflow_run.id,
-  #         });
-  #         console.log(wfJobs)
-    #         github.issues.addLabels({
-    #           issue_number: context.needs.get-info.outputs.pullRequestNumber,
-    #           owner: context.repo.owner,
-    #           repo: context.repo.repo,
-    #           labels: ['lint:ok']
-    #         })
-    #         github.issues.removeLabel({
-    #           issue_number: context.needs.get-info.outputs.pullRequestNumber,
-    #           owner: context.repo.owner,
-    #           repo: context.repo.repo,
-    #           labels: ['lint:failed']
-    #         })
+    - name: "Lint successful"
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+          const wfJobs = github.actions.listJobsForWorkflowRun({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            run_id: context.workflow_run.id,
+          });
+          console.log(wfJobs)
 
-    - uses: hmarr/debug-action@v2
 
   #   # # CI Passed
   #   # - name: "add label: ok"
