@@ -133,13 +133,13 @@ jobs:
         script: |
             const { LABEL_OK, LABEL_FAILED } = process.env
             github.issues.addLabels({
-              issue_number: context.needs.get-info.outputs.pullRequestNumber,
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: [LABEL_FAILED]
             })
             github.issues.removeLabel({
-              issue_number: context.needs.get-info.outputs.pullRequestNumber,
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
               name: [LABEL_OK]
