@@ -86,7 +86,7 @@ jobs:
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
         script: |
-          let result: {[key: string]: string} = {}
+          var result: Record<string,string> = {}
 
           const wfJobs = await github.actions.listJobsForWorkflowRun({
             owner: context.repo.owner,
@@ -102,6 +102,7 @@ jobs:
             }
           }
 
+          console.log(result)
           return result
 
     - name: Get result
