@@ -8,7 +8,7 @@ on:
       - edited
       - closed
       - reopened
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - edited
@@ -16,11 +16,6 @@ on:
       - reopened
       - ready_for_review
       - synchronize
-
-permissions:
-  contents: read
-  issues: write
-  pull-requests: write
 
 jobs:
   label:
@@ -33,10 +28,44 @@ jobs:
         app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
         private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    - uses: actions/checkout@v2
+    - uses: Videndum/label-mastermind@2.1.1
       with:
-        token: ${{ steps.get-app-token.outputs.token }}
-
-    - uses: IvanFon/super-labeler-action@v1
-      with:
-        github-token: ${{ steps.get-app-token.outputs.token }}
+        GITHUB_TOKEN: ${{ steps.get-app-token.outputs.token }}
+        configJSON: |
+          {
+            "releaseMastermind": {
+              "labels": {
+                "kind:incorrect-title": {
+                  "name": "kind:incorrect-title",
+                  "colour": "#ffb700",
+                  "description": "Incorrect title"
+                }
+              },
+              "runners": [
+                {
+                  "root": ".",
+                  "versioning": {
+                    "source": "milestones",
+                    "type": "other"
+                  },
+                  "pr": {
+                    "labels": {
+                      "kind:incorrect-title": {
+                        "requires": 2,
+                        "conditions": [
+                          {
+                            "type": "creatorMatches",
+                            "pattern": "^(?!renovate).+"
+                          },
+                          {
+                            "type": "titleMatches",
+                            "pattern": "^(?!\\[[a-z0-9]+\\]\\s[A-Z0-9].+).+"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
