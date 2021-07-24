@@ -85,6 +85,7 @@ jobs:
       id: get-workflow-jobs
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
+        debug: true
         script: |
           let result = new Map()
 
@@ -102,10 +103,7 @@ jobs:
             }
           }
 
-          return {
-            lint: result.get('lint')
-            install: result.get('install')
-          }
+          return result
 
     - name: Get result
       run: echo "${{steps.get-workflow-jobs.outputs.result.lint}}"
