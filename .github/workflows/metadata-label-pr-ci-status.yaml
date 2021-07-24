@@ -101,8 +101,8 @@ jobs:
           }
 
           return {
-            'lint': getJobStatus(result, 'Lint charts'),
-            'install': getJobStatus(result, 'Install successful')
+            lint: getJobStatus(result, 'Lint charts'),
+            install: getJobStatus(result, 'Install successful')
           }
 
     - name: Get result
