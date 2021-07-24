@@ -35,7 +35,7 @@ jobs:
         script: |
             var LABEL_ADD
             var LABEL_REMOVE
-            if (${{ github.event.workflow_run.conclusion }} == 'success') {
+            if ('${{ github.event.workflow_run.conclusion }}' == 'success') {
               LABEL_ADD = 'precommit:ok'
               LABEL_REMOVE = 'precommit:failed'
             } else {
@@ -108,7 +108,7 @@ jobs:
         script: |
             var LABEL_ADD
             var LABEL_REMOVE
-            if (${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint}} == 'success') {
+            if ('${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint}}' == 'success') {
               LABEL_ADD = 'lint:ok'
               LABEL_REMOVE = 'lint:failed'
             } else {
@@ -138,7 +138,7 @@ jobs:
         script: |
             var LABEL_ADD
             var LABEL_REMOVE
-            if (${{ fromJSON(steps.get-workflow-jobs.outputs.result).install}} == 'success') {
+            if ('${{ fromJSON(steps.get-workflow-jobs.outputs.result).install}}' == 'success') {
               LABEL_ADD = 'install:ok'
               LABEL_REMOVE = 'install:failed'
             } else {
