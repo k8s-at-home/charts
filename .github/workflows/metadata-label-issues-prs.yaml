@@ -32,6 +32,7 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ steps.get-app-token.outputs.token }}
         dryRun: true
+        showLogs: true
         configJSON: |
           {
             "labels": {
