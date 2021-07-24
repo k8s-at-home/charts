@@ -32,36 +32,38 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ steps.get-app-token.outputs.token }}
         configJSON: |
-          "labels": {
-            "meta-incorrect-title": {
-              "name": "meta-incorrect-title",
-              "colour": "#ffb700",
-              "description": "Incorrect title"
-            }
-          },
-          "runners": [
-            {
-              "root": ".",
-              "versioning": {
-                "source": "milestones",
-                "type": "other"
-              },
-              "pr": {
-                "labels": {
-                  "meta-incorrect-title": {
-                    "requires": 2,
-                    "conditions": [
-                      {
-                        "type": "creatorMatches",
-                        "pattern": "^(?!renovate).+"
-                      },
-                      {
-                        "type": "titleMatches",
-                        "pattern": "^(?!\\[[a-z0-9]+\\]\\s[A-Z0-9].+).+"
-                      }
-                    ]
+          {
+            "labels": {
+              "kind:incorrect-title": {
+                "name": "kind:incorrect-title",
+                "colour": "#ffb700",
+                "description": "Incorrect title"
+              }
+            },
+            "runners": [
+              {
+                "root": ".",
+                "versioning": {
+                  "source": "milestones",
+                  "type": "other"
+                },
+                "pr": {
+                  "labels": {
+                    "kind:incorrect-title": {
+                      "requires": 2,
+                      "conditions": [
+                        {
+                          "type": "creatorMatches",
+                          "pattern": "^(?!renovate).+"
+                        },
+                        {
+                          "type": "titleMatches",
+                          "pattern": "^(?!\[[a-z0-9]+\]\s[A-Z0-9].+).+"
+                        }
+                      ]
+                    }
                   }
                 }
               }
-            }
-          ]
+            ]
+          }
