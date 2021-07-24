@@ -5,29 +5,15 @@ on:
   workflow_run:
     workflows:
     - "Pre-commit consistency check"
+    - "Charts: Lint and test"
     types:
     - completed
 
 jobs:
-  get-info:
-    name: "Get information about the source run"
-    runs-on: ubuntu-20.04
-    outputs:
-      pullRequestNumber: ${{ steps.source-run-info.outputs.pullRequestNumber }}
-    steps:
-      - name: "Get information about the origin 'CI' run"
-        uses: potiuk/get-workflow-origin@v1_3
-        id: source-run-info
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          sourceRunId: ${{ github.event.workflow_run.id }}
-
   label-precommit:
     name: Label pre-commit status
     runs-on: ubuntu-20.04
-    if: ${{ github.event.workflow.name == 'Pre-commit consistency check' }}
-    needs:
-    - get-info
+    if: "${{ github.event.workflow.name == 'Pre-commit consistency check' }}"
     steps:
     - uses: getsentry/action-github-app-token@v1
       id: get-app-token
@@ -35,34 +21,157 @@ jobs:
         app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
         private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    - uses: hmarr/debug-action@v2
+    - name: "Get information about the origin 'CI' run"
+      uses: potiuk/get-workflow-origin@v1_3
+      id: source-run-info
+      with:
+        token: ${{ steps.get-app-token.outputs.token }}
+        sourceRunId: ${{ github.event.workflow_run.id }}
 
-    # # CI Passed
-    # - name: "add label: ok"
-    #   uses: actions-ecosystem/action-add-labels@v1
-    #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    #   with:
-    #     github_token: ${{ steps.get-app-token.outputs.token }}
-    #     labels: "precommit:ok"
+    - name: "Label precommit status"
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+            var LABEL_ADD
+            var LABEL_REMOVE
+            if ('${{ github.event.workflow_run.conclusion }}' == 'success') {
+              LABEL_ADD = 'precommit:ok'
+              LABEL_REMOVE = 'precommit:failed'
+            } else {
+              LABEL_ADD = 'precommit:failed'
+              LABEL_REMOVE = 'precommit:ok'
+            }
 
-    # - name: "remove label: failed"
-    #   uses: actions-ecosystem/action-remove-labels@v1
-    #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    #   with:
-    #     github_token: ${{ steps.get-app-token.outputs.token }}
-    #     labels: "precommit:failed"
+            await github.issues.addLabels({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [LABEL_ADD]
+            })
+            await github.issues.removeLabel({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: LABEL_REMOVE
+            })
+            .catch(err => {
+              // Ignore errors that provide the label is not there
+              if (err.status !== 404 && err.status !== 410) {
+                core.error(`Unexpected error status: ${err.status} with message: ${err.message}`);
+                throw err;
+              }
+            });
 
-    # # CI Failed
-    # - name: "add label: failed"
-    #   uses: actions-ecosystem/action-add-labels@v1
-    #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    #   with:
-    #     github_token: ${{ steps.get-app-token.outputs.token }}
-    #     labels: "precommit:failed"
+  label-lint-install:
+    name: Label lint and install status
+    runs-on: ubuntu-20.04
+    if: "${{ github.event.workflow.name == 'Charts: Lint and test' }}"
+    steps:
+    - uses: getsentry/action-github-app-token@v1
+      id: get-app-token
+      with:
+        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    # - name: "remove label: ok"
-    #   uses: actions-ecosystem/action-remove-labels@v1
-    #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    #   with:
-    #     github_token: ${{ steps.get-app-token.outputs.token }}
-    #     labels: "precommit:ok"
+    - name: "Get information about the origin 'CI' run"
+      uses: potiuk/get-workflow-origin@v1_3
+      id: source-run-info
+      with:
+        token: ${{ steps.get-app-token.outputs.token }}
+        sourceRunId: ${{ github.event.workflow_run.id }}
+
+    - name: "Get workflow job status"
+      uses: actions/github-script@v4
+      id: get-workflow-jobs
+      with:
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+          let result = new Object
+
+          const wfJobs = await github.actions.listJobsForWorkflowRun({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            run_id: context.payload.workflow_run.id,
+          })
+
+          for (const job of wfJobs.data.jobs) {
+            if (job.name === 'Lint charts') {
+              result['lint'] = job.conclusion
+            } else if (job.name === 'Install successful') {
+              result['install'] = job.conclusion
+            }
+          }
+
+          console.log(result)
+          return result
+
+    - name: "Label lint status"
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+            var LABEL_ADD
+            var LABEL_REMOVE
+            if ('${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint}}' == 'success') {
+              LABEL_ADD = 'lint:ok'
+              LABEL_REMOVE = 'lint:failed'
+            } else {
+              LABEL_ADD = 'lint:failed'
+              LABEL_REMOVE = 'lint:ok'
+            }
+
+            await github.issues.addLabels({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [LABEL_ADD]
+            })
+            await github.issues.removeLabel({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: LABEL_REMOVE
+            })
+            .catch(err => {
+              // Ignore errors that provide the label is not there
+              if (err.status !== 404 && err.status !== 410) {
+                core.error(`Unexpected error status: ${err.status} with message: ${err.message}`);
+                throw err;
+              }
+            });
+
+    - name: "Label install status"
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+            var LABEL_ADD
+            var LABEL_REMOVE
+            if ('${{ fromJSON(steps.get-workflow-jobs.outputs.result).install}}' == 'success') {
+              LABEL_ADD = 'install:ok'
+              LABEL_REMOVE = 'install:failed'
+            } else {
+              LABEL_ADD = 'install:failed'
+              LABEL_REMOVE = 'install:ok'
+            }
+
+            await github.issues.addLabels({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [LABEL_ADD]
+            })
+            await github.issues.removeLabel({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: LABEL_REMOVE
+            })
+            .catch(err => {
+              // Ignore errors that provide the label is not there
+              if (err.status !== 404 && err.status !== 410) {
+                core.error(`Unexpected error status: ${err.status} with message: ${err.message}`);
+                throw err;
+              }
+            });
