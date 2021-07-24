@@ -106,7 +106,7 @@ jobs:
           return result
 
     - name: Get result
-      run: echo "${{steps.get-workflow-jobs.outputs.result.lint}}"
+      run: echo "${{steps.get-workflow-jobs.outputs.result}}"
 
     # # CI Passed
     # - name: "add label: ok"
