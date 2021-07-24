@@ -2,11 +2,12 @@
 name: "Metadata: Label pull requests CI status"
 
 on:
-  workflows:
-  - "Pre-commit consistency check"
-  - "Charts: Lint and test"
-  types:
-  - completed
+  workflow_run:
+    workflows:
+    - "Pre-commit consistency check"
+    - "Charts: Lint and test"
+    types:
+    - completed
 
 jobs:
   get-info:
