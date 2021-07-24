@@ -85,7 +85,6 @@ jobs:
       id: get-workflow-jobs
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
-        debug: true
         script: |
           let result = new Map()
 
@@ -95,6 +94,8 @@ jobs:
             run_id: context.payload.workflow_run.id,
           })
 
+          console.log(wfJobs.data.jobs)
+
           for (const job of wfJobs.data.jobs) {
             if (job.name === 'Lint charts') {
               result.set('lint', job.conclusion)
@@ -103,6 +104,7 @@ jobs:
             }
           }
 
+          console.log(result)
           return result
 
     - name: Get result
