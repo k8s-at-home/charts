@@ -56,10 +56,7 @@ jobs:
                 repo: context.repo.repo,
                 name: [LABEL_REMOVE]
               })
-            }
-            } catch (error) {
-              console.log(e);
-            }
+            } catch (error) {}
 
   label-lint-install:
     name: Label lint and install status
@@ -132,10 +129,7 @@ jobs:
                 repo: context.repo.repo,
                 name: [LABEL_REMOVE]
               })
-            }
-            } catch (error) {
-              console.log(e);
-            }
+            } catch (error) {}
 
     - name: "Label install status"
       uses: actions/github-script@v4
@@ -165,7 +159,4 @@ jobs:
                 repo: context.repo.repo,
                 name: [LABEL_REMOVE]
               })
-            }
-            } catch (error) {
-              console.log(e);
-            }
+            } catch (error) {}
