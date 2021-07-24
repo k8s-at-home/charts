@@ -151,6 +151,7 @@ spec:
             - name: CERT_PRIVATE_NAME
               value: "{{ .Values.customCert.keyName }}"
             {{- end }}
+            {{- if .Values.extraEnvVars }}{{ toYaml .Values.extraEnvVars | trim | nindent 12 }}{{ end }}
           volumeMounts:
             - mountPath: /unifi/data
               name: unifi-data
