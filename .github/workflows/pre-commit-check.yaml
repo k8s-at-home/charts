@@ -13,16 +13,9 @@ jobs:
     name: Run pre-commit checks
     runs-on: ubuntu-20.04
     steps:
-    - uses: getsentry/action-github-app-token@v1
-      id: get-app-token
-      with:
-        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
-        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
-
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        token: ${{ steps.get-app-token.outputs.token }}
         fetch-depth: 0
 
     - uses: dorny/paths-filter@v2
@@ -46,33 +39,3 @@ jobs:
       if: steps.filter.outputs.addedOrModified != 'true'
       with:
         extra_args: --all-files
-
-    # CI Passed
-    - name: "add label: ok"
-      uses: actions-ecosystem/action-add-labels@v1
-      if: ${{ success() }}
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        labels: "precommit:ok"
-
-    - name: "remove label: failed"
-      uses: actions-ecosystem/action-remove-labels@v1
-      if: ${{ success() }}
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        labels: "precommit:failed"
-
-    # CI Failed
-    - name: "add label: failed"
-      uses: actions-ecosystem/action-add-labels@v1
-      if: ${{ failure() }}
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        labels: "precommit:failed"
-
-    - name: "remove label: ok"
-      uses: actions-ecosystem/action-remove-labels@v1
-      if: ${{ failure() }}
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        labels: "precommit:ok"
