@@ -9,10 +9,25 @@ on:
     - completed
 
 jobs:
+  get-info:
+    name: "Get information about the source run"
+    runs-on: ubuntu-20.04
+    outputs:
+      pullRequestNumber: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+    steps:
+      - name: "Get information about the origin 'CI' run"
+        uses: potiuk/get-workflow-origin@v1_3
+        id: source-run-info
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sourceRunId: ${{ github.event.workflow_run.id }}
+
   label-precommit:
     name: Label pre-commit status
     runs-on: ubuntu-20.04
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow.name == 'Pre-commit consistency check' }}
+    needs:
+    - get-info
     steps:
     - uses: getsentry/action-github-app-token@v1
       id: get-app-token
