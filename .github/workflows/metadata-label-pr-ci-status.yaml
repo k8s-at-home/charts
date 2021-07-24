@@ -66,8 +66,6 @@ jobs:
     name: Label lint and install status
     runs-on: ubuntu-20.04
     if: "${{ github.event.workflow.name == 'Charts: Lint and test' }}"
-    needs:
-    - get-info
     steps:
     - uses: getsentry/action-github-app-token@v1
       id: get-app-token
