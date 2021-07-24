@@ -49,16 +49,12 @@ jobs:
               repo: context.repo.repo,
               labels: [LABEL_ADD]
             })
-            try {
-              github.issues.removeLabel({
-                issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: [LABEL_REMOVE]
-              })
-            } catch (error) {
-              console.log(e)
-            }
+            github.issues.removeLabel({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: LABEL_REMOVE
+            })
 
   label-lint-install:
     name: Label lint and install status
@@ -129,7 +125,7 @@ jobs:
                 issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                name: [LABEL_REMOVE]
+                name: LABEL_REMOVE
               })
             } catch (error) {
               console.log(e)
@@ -161,7 +157,7 @@ jobs:
                 issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                name: [LABEL_REMOVE]
+                name: LABEL_REMOVE
               })
             } catch (error) {
               console.log(e)
