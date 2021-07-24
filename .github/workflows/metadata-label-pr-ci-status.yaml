@@ -36,49 +36,44 @@ jobs:
         app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
         private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    - name: "Pre-commit success"
-      uses: actions/github-script@v4
+    # CI Passed
+    - name: "add label: ok"
+      uses: actions-ecosystem/action-add-labels@v1
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
       with:
-        github-token: ${{ steps.get-app-token.outputs.token }}
-        script: |
-            github.issues.addLabels({
-              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['precommit:ok']
-            })
-            github.issues.removeLabel({
-              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['precommit:failed']
-            })
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        number: ${{ needs.get-info.outputs.pullRequestNumber }}
+        labels: "precommit:ok"
 
-    - name: "Pre-commit failed"
-      uses: actions/github-script@v4
+    - name: "remove label: failed"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        number: ${{ needs.get-info.outputs.pullRequestNumber }}
+        labels: "precommit:failed"
+
+    # CI Failed
+    - name: "add label: failed"
+      uses: actions-ecosystem/action-add-labels@v1
       if: ${{ github.event.workflow_run.conclusion == 'failure' }}
       with:
-        github-token: ${{ steps.get-app-token.outputs.token }}
-        script: |
-            github.issues.addLabels({
-              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['precommit:failed']
-            })
-            github.issues.removeLabel({
-              issue_number: ${{ needs.get-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['precommit:ok']
-            })
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        number: ${{ needs.get-info.outputs.pullRequestNumber }}
+        labels: "precommit:failed"
+
+    - name: "remove label: ok"
+      uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      with:
+        github_token: ${{ steps.get-app-token.outputs.token }}
+        number: ${{ needs.get-info.outputs.pullRequestNumber }}
+        labels: "precommit:ok"
 
   label-lint-install:
     name: Label lint and install status
     runs-on: ubuntu-20.04
-    if: |
-      ${{ github.event.workflow.name == 'Charts: Lint and tests' }}
+    if: "${{ github.event.workflow.name == 'Charts: Lint and tests' }}"
     needs:
     - get-info
     steps:
@@ -96,41 +91,40 @@ jobs:
           const wfJobs = github.actions.listJobsForWorkflowRun({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            run_id: context.workflow_run.id,
+            run_id: context.payload.workflow_run.id,
           });
           console.log(wfJobs)
 
+    # # CI Passed
+    # - name: "add label: ok"
+    #   uses: actions-ecosystem/action-add-labels@v1
+    #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    #   with:
+    #     github_token: ${{ steps.get-app-token.outputs.token }}
+    #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
+    #     labels: "lint:ok"
 
-  #   # # CI Passed
-  #   # - name: "add label: ok"
-  #   #   uses: actions-ecosystem/action-add-labels@v1
-  #   #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
-  #   #   with:
-  #   #     github_token: ${{ steps.get-app-token.outputs.token }}
-  #   #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
-  #   #     labels: "lint:ok"
+    # - name: "remove label: failed"
+    #   uses: actions-ecosystem/action-remove-labels@v1
+    #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    #   with:
+    #     github_token: ${{ steps.get-app-token.outputs.token }}
+    #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
+    #     labels: "lint:failed"
 
-  #   # - name: "remove label: failed"
-  #   #   uses: actions-ecosystem/action-remove-labels@v1
-  #   #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
-  #   #   with:
-  #   #     github_token: ${{ steps.get-app-token.outputs.token }}
-  #   #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
-  #   #     labels: "lint:failed"
+    # # CI Failed
+    # - name: "add label: failed"
+    #   uses: actions-ecosystem/action-add-labels@v1
+    #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    #   with:
+    #     github_token: ${{ steps.get-app-token.outputs.token }}
+    #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
+    #     labels: "lint:failed"
 
-  #   # # CI Failed
-  #   # - name: "add label: failed"
-  #   #   uses: actions-ecosystem/action-add-labels@v1
-  #   #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-  #   #   with:
-  #   #     github_token: ${{ steps.get-app-token.outputs.token }}
-  #   #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
-  #   #     labels: "lint:failed"
-
-  #   # - name: "remove label: ok"
-  #   #   uses: actions-ecosystem/action-remove-labels@v1
-  #   #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-  #   #   with:
-  #   #     github_token: ${{ steps.get-app-token.outputs.token }}
-  #   #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
-  #   #     labels: "lint:ok"
+    # - name: "remove label: ok"
+    #   uses: actions-ecosystem/action-remove-labels@v1
+    #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    #   with:
+    #     github_token: ${{ steps.get-app-token.outputs.token }}
+    #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
+    #     labels: "lint:ok"
