@@ -80,7 +80,7 @@ jobs:
         token: ${{ steps.get-app-token.outputs.token }}
         sourceRunId: ${{ github.event.workflow_run.id }}
 
-    - name: "Get workflow jobs"
+    - name: "Get workflow job status"
       uses: actions/github-script@v4
       id: get-workflow-jobs
       with:
@@ -90,11 +90,23 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             run_id: context.payload.workflow_run.id,
-          });
-          return wfJobs.data.jobs
+          })
+
+          function getJobStatus(arrJobs: any[], name: string) {
+            for (const job of arrJobs) {
+              if (job.name === name) {
+                return job.conclusion
+              }
+            }
+          }
+
+          return {
+            'lint': getJobStatus(result, 'Lint charts'),
+            'install': getJobStatus(result, 'Install successful')
+          }
 
     - name: Get result
-      run: echo "${{steps.get-workflow-jobs.outputs.result}}"
+      run: echo "${{steps.get-workflow-jobs.outputs.result.lint}}"
 
     # # CI Passed
     # - name: "add label: ok"
