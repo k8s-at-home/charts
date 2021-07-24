@@ -73,7 +73,8 @@ jobs:
   label-lint:
     name: Label lint status
     runs-on: ubuntu-20.04
-    if: ${{ github.event.workflow.name == 'Charts: Lint and tests' }}
+    if: |
+      ${{ github.event.workflow.name == 'Charts: Lint and tests' }}
     needs:
     - get-info
     steps:
