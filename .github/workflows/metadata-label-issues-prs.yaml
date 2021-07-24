@@ -30,7 +30,7 @@ jobs:
 
     - uses: Videndum/label-mastermind@2.1.1
       with:
-        github-token: ${{ steps.get-app-token.outputs.token }}
+        GITHUB_TOKEN: ${{ steps.get-app-token.outputs.token }}
         configJSON: |
           {
             "labels": {
