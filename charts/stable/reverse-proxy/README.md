@@ -1,6 +1,6 @@
 # reverse-proxy
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Creates ingress reverse-proxies for external hosts with minimum boilerplate
 
@@ -18,6 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | nginx | 9.4.1 |
 | https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
@@ -92,12 +93,28 @@ N/A
 | instances[0].name | string | `"example"` |  |
 | instances[0].port | int | 80 | Port used by host behind this reverse proxy |
 | instances[0].test | bool | true | add a test for this reverse proxy. It can be tested with `helm test <chart_name>` |
+| nginx.enabled | bool | `false` | Deploy a test nginx server for CI |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.1.0]
+
+#### Added
+
+- active testcase with test nginx server
+- externalName might be a template
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
 
 ### [1.0.0]
 

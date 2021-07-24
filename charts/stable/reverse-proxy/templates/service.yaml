@@ -9,7 +9,7 @@ metadata:
 spec:
   {{- if .externalName }}
   type: ExternalName
-  externalName: {{ .externalName }}
+  externalName: {{ tpl .externalName $ }}
   {{- end }}
   ports:
     - protocol: TCP

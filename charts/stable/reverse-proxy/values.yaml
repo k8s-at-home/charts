@@ -58,3 +58,9 @@ connectionTest:
   readtimeout: 2
   # -- tries to connect
   tries: 30
+
+nginx:
+  # -- Deploy a test nginx server for CI
+  enabled: false
+  service:
+    type: ClusterIP

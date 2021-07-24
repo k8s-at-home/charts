@@ -13,7 +13,7 @@ The following ingress reverse proxies were deployed:
     {{- $ingressPort = $.Values.ingressPort.tls }}
   {{- end }}
   {{- range .paths }}
-- {{ $schema }}://{{ $host.host }}:{{ $ingressPort }}{{ .path }} -> {{ $reference }}
+- {{ $schema }}://{{ $host.host }}:{{ $ingressPort }}{{ .path }} -> {{ tpl $reference $ }}
   {{- end }}
 {{- end }}
 {{- end }}
