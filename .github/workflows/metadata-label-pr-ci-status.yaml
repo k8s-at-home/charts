@@ -86,23 +86,25 @@ jobs:
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
         script: |
+          let result = new Map()
+
           const wfJobs = await github.actions.listJobsForWorkflowRun({
             owner: context.repo.owner,
             repo: context.repo.repo,
             run_id: context.payload.workflow_run.id,
           })
 
-          function getJobStatus(arrJobs: any[], name: string) {
-            for (const job of arrJobs) {
-              if (job.name === name) {
-                return job.conclusion
-              }
+          for (const job of wfJobs.data.jobs) {
+            if (job.name === 'Lint charts') {
+              result.set('lint', job.conclusion)
+            } else if (job.name === 'Install successful') {
+              result.set('install', job.conclusion)
             }
           }
 
           return {
-            lint: getJobStatus(result, 'Lint charts'),
-            install: getJobStatus(result, 'Install successful')
+            lint: result.get('lint')
+            install: result.get('install')
           }
 
     - name: Get result
