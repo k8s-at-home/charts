@@ -28,39 +28,36 @@ jobs:
         token: ${{ steps.get-app-token.outputs.token }}
         sourceRunId: ${{ github.event.workflow_run.id }}
 
-    # CI Passed
-    - name: "add label: ok"
-      uses: actions-ecosystem/action-add-labels@v1
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    - name: "Label precommit status"
+      uses: actions/github-script@v4
       with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
-        labels: "precommit:ok"
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+            var LABEL_ADD
+            var LABEL_REMOVE
+            if (${{ github.event.workflow_run.conclusion }} == 'success') {
+              LABEL_ADD = 'precommit:ok'
+              LABEL_REMOVE = 'precommit:failed'
+            } else {
+              LABEL_ADD = 'precommit:failed'
+              LABEL_REMOVE = 'precommit:ok'
+            }
 
-    - name: "remove label: failed"
-      uses: actions-ecosystem/action-remove-labels@v1
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
-        labels: "precommit:failed"
-
-    # CI Failed
-    - name: "add label: failed"
-      uses: actions-ecosystem/action-add-labels@v1
-      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
-        labels: "precommit:failed"
-
-    - name: "remove label: ok"
-      uses: actions-ecosystem/action-remove-labels@v1
-      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
-        number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
-        labels: "precommit:ok"
+            github.issues.addLabels({
+              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [LABEL_ADD]
+            })
+            try {
+              github.issues.removeLabel({
+                issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: [LABEL_REMOVE]
+              })
+            }
+            } catch (error) {}
 
   label-lint-install:
     name: Label lint and install status
@@ -105,42 +102,64 @@ jobs:
           console.log(result)
           return result
 
-    # # CI Passed
-    # - name: "add label: ok"
-    #   uses: actions-ecosystem/action-add-labels@v1
-    #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    #   with:
-    #     github_token: ${{ steps.get-app-token.outputs.token }}
-    #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
-    #     labels: "lint:ok"
-
-    # - name: "remove label: failed"
-    #   uses: actions-ecosystem/action-remove-labels@v1
-    #   if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    #   with:
-    #     github_token: ${{ steps.get-app-token.outputs.token }}
-    #     number: ${{ needs.get-info.outputs.pullRequestNumber }}
-    #     labels: "lint:failed"
-
-    - name: "Lint failed"
+    - name: "Label lint status"
       uses: actions/github-script@v4
-      if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint == 'failure' }}
-      env:
-        LABEL_OK: "lint:ok"
-        LABEL_FAILED: "lint:failed"
       with:
         github-token: ${{ steps.get-app-token.outputs.token }}
         script: |
-            const { LABEL_OK, LABEL_FAILED } = process.env
+            var LABEL_ADD
+            var LABEL_REMOVE
+            if (${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint}} == 'success') {
+              LABEL_ADD = 'lint:ok'
+              LABEL_REMOVE = 'lint:failed'
+            } else {
+              LABEL_ADD = 'lint:failed'
+              LABEL_REMOVE = 'lint:ok'
+            }
+
             github.issues.addLabels({
               issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: [LABEL_FAILED]
+              labels: [LABEL_ADD]
             })
-            github.issues.removeLabel({
+            try {
+              github.issues.removeLabel({
+                issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: [LABEL_REMOVE]
+              })
+            }
+            } catch (error) {}
+
+    - name: "Label install status"
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ steps.get-app-token.outputs.token }}
+        script: |
+            var LABEL_ADD
+            var LABEL_REMOVE
+            if (${{ fromJSON(steps.get-workflow-jobs.outputs.result).install}} == 'success') {
+              LABEL_ADD = 'install:ok'
+              LABEL_REMOVE = 'install:failed'
+            } else {
+              LABEL_ADD = 'install:failed'
+              LABEL_REMOVE = 'install:ok'
+            }
+
+            github.issues.addLabels({
               issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              name: [LABEL_OK]
+              labels: [LABEL_ADD]
             })
+            try {
+              github.issues.removeLabel({
+                issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: [LABEL_REMOVE]
+              })
+            }
+            } catch (error) {}
