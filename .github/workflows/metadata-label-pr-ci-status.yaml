@@ -91,7 +91,7 @@ jobs:
             repo: context.repo.repo,
             run_id: context.payload.workflow_run.id,
           });
-          return wfJobs.jobs
+          return wfJobs.data.jobs
 
     - name: Get result
       run: echo "${{steps.get-workflow-jobs.outputs.result}}"
