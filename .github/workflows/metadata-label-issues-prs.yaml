@@ -31,6 +31,8 @@ jobs:
     - uses: Videndum/label-mastermind@2.1.1
       with:
         GITHUB_TOKEN: ${{ steps.get-app-token.outputs.token }}
+        dryRun: true
+        showLogs: true
         configJSON: |
           {
             "labels": {
