@@ -28,40 +28,23 @@ jobs:
         token: ${{ steps.get-app-token.outputs.token }}
         sourceRunId: ${{ github.event.workflow_run.id }}
 
-    - name: "Label precommit status"
-      uses: actions/github-script@v4
+    - name: Label precommit success
+      uses: andymckay/labeler@1.0.3
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
       with:
-        github-token: ${{ steps.get-app-token.outputs.token }}
-        script: |
-            var LABEL_ADD
-            var LABEL_REMOVE
-            if ('${{ github.event.workflow_run.conclusion }}' == 'success') {
-              LABEL_ADD = 'precommit:ok'
-              LABEL_REMOVE = 'precommit:failed'
-            } else {
-              LABEL_ADD = 'precommit:failed'
-              LABEL_REMOVE = 'precommit:ok'
-            }
+        repo-token: ${{ steps.get-app-token.outputs.token }}
+        issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+        add-labels: "precommit:ok"
+        remove-labels: "precommit:failed"
 
-            await github.issues.addLabels({
-              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: [LABEL_ADD]
-            })
-            await github.issues.removeLabel({
-              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: LABEL_REMOVE
-            })
-            .catch(err => {
-              // Ignore errors that provide the label is not there
-              if (err.status !== 404 && err.status !== 410) {
-                core.error(`Unexpected error status: ${err.status} with message: ${err.message}`);
-                throw err;
-              }
-            });
+    - name: Label precommit failure
+      uses: andymckay/labeler@1.0.3
+      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      with:
+        repo-token: ${{ steps.get-app-token.outputs.token }}
+        issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+        add-labels: "precommit:failed"
+        remove-labels: "precommit:ok"
 
   label-lint-install:
     name: Label lint and install status
@@ -106,72 +89,38 @@ jobs:
           console.log(result)
           return result
 
-    - name: "Label lint status"
-      uses: actions/github-script@v4
+    - name: Label lint success
+      uses: andymckay/labeler@1.0.3
+      if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint == 'success' }}
       with:
-        github-token: ${{ steps.get-app-token.outputs.token }}
-        script: |
-            var LABEL_ADD
-            var LABEL_REMOVE
-            if ('${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint}}' == 'success') {
-              LABEL_ADD = 'lint:ok'
-              LABEL_REMOVE = 'lint:failed'
-            } else {
-              LABEL_ADD = 'lint:failed'
-              LABEL_REMOVE = 'lint:ok'
-            }
+        repo-token: ${{ steps.get-app-token.outputs.token }}
+        issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+        add-labels: "lint:ok"
+        remove-labels: "lint:failed"
 
-            await github.issues.addLabels({
-              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: [LABEL_ADD]
-            })
-            await github.issues.removeLabel({
-              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: LABEL_REMOVE
-            })
-            .catch(err => {
-              // Ignore errors that provide the label is not there
-              if (err.status !== 404 && err.status !== 410) {
-                core.error(`Unexpected error status: ${err.status} with message: ${err.message}`);
-                throw err;
-              }
-            });
-
-    - name: "Label install status"
-      uses: actions/github-script@v4
+    - name: Label lint failure
+      uses: andymckay/labeler@1.0.3
+      if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint == 'failure' }}
       with:
-        github-token: ${{ steps.get-app-token.outputs.token }}
-        script: |
-            var LABEL_ADD
-            var LABEL_REMOVE
-            if ('${{ fromJSON(steps.get-workflow-jobs.outputs.result).install}}' == 'success') {
-              LABEL_ADD = 'install:ok'
-              LABEL_REMOVE = 'install:failed'
-            } else {
-              LABEL_ADD = 'install:failed'
-              LABEL_REMOVE = 'install:ok'
-            }
+        repo-token: ${{ steps.get-app-token.outputs.token }}
+        issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+        add-labels: "lint:failed"
+        remove-labels: "lint:ok"
 
-            await github.issues.addLabels({
-              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: [LABEL_ADD]
-            })
-            await github.issues.removeLabel({
-              issue_number: ${{ steps.source-run-info.outputs.pullRequestNumber }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: LABEL_REMOVE
-            })
-            .catch(err => {
-              // Ignore errors that provide the label is not there
-              if (err.status !== 404 && err.status !== 410) {
-                core.error(`Unexpected error status: ${err.status} with message: ${err.message}`);
-                throw err;
-              }
-            });
+    - name: Label install success
+      uses: andymckay/labeler@1.0.3
+      if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).install == 'success' }}
+      with:
+        repo-token: ${{ steps.get-app-token.outputs.token }}
+        issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+        add-labels: "install:ok"
+        remove-labels: "install:failed"
+
+    - name: Label install failure
+      uses: andymckay/labeler@1.0.3
+      if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).install == 'failure' }}
+      with:
+        repo-token: ${{ steps.get-app-token.outputs.token }}
+        issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+        add-labels: "install:failed"
+        remove-labels: "install:ok"
