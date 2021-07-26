@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 2.0.4](https://img.shields.io/badge/Version-2.0.4-informational?style=flat-square) ![AppVersion: 6.2.25](https://img.shields.io/badge/AppVersion-6.2.25-informational?style=flat-square)
+![Version: 2.0.5](https://img.shields.io/badge/Version-2.0.5-informational?style=flat-square) ![AppVersion: 6.2.25](https://img.shields.io/badge/AppVersion-6.2.25-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -158,12 +158,13 @@ ingress:
 | jvmInitHeapSize | string | `nil` | Java Virtual Machine (JVM) initial, and minimum, heap size Unset value means there is no lower limit |
 | jvmMaxHeapSize | string | `"1024M"` | Java Virtual Machine (JVM) maximum heap size For larger installations a larger value is recommended. For memory constrained system this value can be lowered. |
 | livenessProbe | object | `{"enabled":true,"failureThreshold":3,"initialDelaySeconds":30,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1}` | Liveness probe values Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes |
-| logging | object | `{"promtail":{"enabled":false,"image":{"pullPolicy":"IfNotPresent","repository":"grafana/promtail","tag":"1.6.0"},"loki":{"url":"http://loki.logs.svc.cluster.local:3100/loki/api/v1/push"}}}` | Logging configuration |
+| logging | object | `{"promtail":{"enabled":false,"image":{"pullPolicy":"IfNotPresent","repository":"grafana/promtail","tag":"1.6.0"},"loki":{"url":"http://loki.logs.svc.cluster.local:3100/loki/api/v1/push"}}}` | If you provider your own custom env vars  value: value -- Logging configuration |
 | mongodb | object | `{"databaseName":"unifi","dbUri":"mongodb://mongo/unifi","enabled":false,"statDbUri":"mongodb://mongo/unifi_stat"}` | define an external mongoDB instead of using the built-in mongodb |
 | nodeSelector | object | `{}` |  |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Persistence access modes |
 | persistence.enabled | bool | `false` | Use persistent volume to store data |
 | persistence.existingClaim | string | `nil` | Use an existing PVC to persist data |
+| persistence.hostPath | string | `nil` | Use hostPath and not volume |
 | persistence.size | string | `"5Gi"` | Size of persistent volume claim |
 | persistence.skipuninstall | bool | `false` | Do not delete the pvc upon helm uninstall |
 | persistence.storageClass | string | `nil` | Type of persistent volume claim |
@@ -210,6 +211,21 @@ ingress:
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.5]
+
+#### Added
+
+- Add ExtraEnvVars for unifi controller pod
+- Add HosPath support for unifi controller pod
+
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
 
 ### [2.0.4]
 

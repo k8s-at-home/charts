@@ -253,6 +253,11 @@ persistence:
   size: 5Gi
   # -- Do not delete the pvc upon helm uninstall
   skipuninstall: false
+  # -- Use hostPath and not volume
+  hostPath:
+  #  path: /mylocalfolder
+  #  type: Directory
+
 
 extraEnvVars: []
   ## specify additional env vars to be used by env inside unifi container
