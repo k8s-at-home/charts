@@ -178,11 +178,15 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
         - name: unifi-data
-        {{- if .Values.persistence.enabled }}
+        {{- if and .Values.persistence.hostPath (not (.Values.persistence.enabled)) }}
+{{- toYaml .Values.persistence.hostPath | trim | nindent 10 }}
+        {{- else }}
+        {{- if and .Values.persistence.enabled (not (.Values.persistence.hostPath)) }}
           persistentVolumeClaim:
             claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "unifi.fullname" . }}{{- end }}
         {{- else }}
           emptyDir: {}
+        {{ end }}
         {{ end }}
         {{- if .Values.extraConfigFiles }}
         - name: extra-config
