@@ -47,7 +47,7 @@ spec:
           - mountPath: /unifi/log
             name: unifi-data
             subPath: {{ ternary "log" (printf "%s/%s" .Values.persistence.subPath "log") (empty .Values.persistence.subPath) }}
-      {{- end }}      
+      {{- end }}
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
