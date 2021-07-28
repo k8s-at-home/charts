@@ -1,0 +1,11 @@
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "unifi.harcodedValues" -}}
+env:
+  UNIFI_STDOUT: "true"
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "unifi.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
