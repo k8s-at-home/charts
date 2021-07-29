@@ -16,15 +16,14 @@ image:
 controller:
   # -- Set the controller upgrade strategy
   strategy: RollingUpdate
+  # -- (int) Number of pods to load balance between
+  replicas: 1
 
 # -- environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details.
 # @default -- See below
 env:
   # -- Set the container timezone
   TZ: UTC
-
-# -- (int) Number of pods to load balance between
-replicas: 1
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
