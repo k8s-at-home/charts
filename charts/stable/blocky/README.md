@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 7.1.0](https://img.shields.io/badge/Version-7.1.0-informational?style=flat-square) ![AppVersion: v0.14](https://img.shields.io/badge/AppVersion-v0.14-informational?style=flat-square)
+![Version: 7.1.1](https://img.shields.io/badge/Version-7.1.1-informational?style=flat-square) ![AppVersion: v0.14](https://img.shields.io/badge/AppVersion-v0.14-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -76,6 +76,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml |
+| controller.replicas | int | `1` | (int) Number of pods to load balance between |
 | controller.strategy | string | `"RollingUpdate"` | Set the controller upgrade strategy |
 | env | object | See below | environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
@@ -84,7 +85,6 @@ N/A
 | image.tag | string | `"v0.14"` | image tag |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | prometheus.serviceMonitor | object | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. See also the notes under `additionalContainers`. |
-| replicas | int | `1` | (int) Number of pods to load balance between |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
