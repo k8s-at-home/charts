@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 6.2.25](https://img.shields.io/badge/AppVersion-6.2.25-informational?style=flat-square)
+![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -112,7 +112,7 @@ service:
 | env.UNIFI_UID | string | `"999"` | Specify the user ID the application will run as |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jacobalberty/unifi"` | image repository |
-| image.tag | string | `"6.2.25"` | image tag |
+| image.tag | string | `"v6.2.26"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | ingress.portal | object | See values.yaml | Enable and configure settings for the captive portal ingress under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -137,6 +137,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Changed
 
 - **BREAKING**: Migrated chart to common library. This means that there are many things that work different from before. Please check the `values.yaml` file for the current implementation.
+- Changed image tag to `v6.2.26`.
 
 #### Removed
 
