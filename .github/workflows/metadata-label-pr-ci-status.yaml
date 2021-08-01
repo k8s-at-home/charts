@@ -22,7 +22,7 @@ jobs:
         private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
     - name: "Get information about the origin 'CI' run"
-      uses: potiuk/get-workflow-origin@v1_3
+      uses: potiuk/get-workflow-origin@v1
       id: source-run-info
       with:
         token: ${{ steps.get-app-token.outputs.token }}
@@ -58,7 +58,7 @@ jobs:
         private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
     - name: "Get information about the origin 'CI' run"
-      uses: potiuk/get-workflow-origin@v1_3
+      uses: potiuk/get-workflow-origin@v1
       id: source-run-info
       with:
         token: ${{ steps.get-app-token.outputs.token }}
