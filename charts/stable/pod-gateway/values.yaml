@@ -119,12 +119,13 @@ webhook:
   # **IMPORTANT**: Do not select the namespace where the webhook
   # is deployed to or you will get locking issues.
   namespaceSelector:
-    matchLabels:
-      routed-gateway: "true"
-    # matchExpressions:
-    # - key: notTouch
-    #   operator: NotIn
-    #   values: ["1"]
+    type: label
+    label: "routed-gateway"
+    custom: {}
+      # matchExpressions:
+      # - key: notTouch
+      #   operator: NotIn
+      #   values: ["1"]
 
   # -- default behviour for new PODs in the evaluated namespace
   gatewayDefault: true
