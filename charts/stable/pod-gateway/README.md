@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 3.3.1](https://img.shields.io/badge/Version-3.3.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
