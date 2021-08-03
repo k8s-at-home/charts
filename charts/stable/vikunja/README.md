@@ -21,6 +21,8 @@ The to-do app to organize your life
 | Repository | Name | Version |
 |------------|------|---------|
 | https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.5.3 |
+
 
 ## TL;DR
 
@@ -89,12 +91,17 @@ N/A
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.files | object | `{"enabled":false,"mountpath":"/app/vikunja/files"}` | Volume used for static files |
 | service | object | See values.yaml | Configures service settings for the chart. |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.2.0]
+#### Added
+- Support for Postgresql dependent chart
 
 ### [3.0.0]
 
