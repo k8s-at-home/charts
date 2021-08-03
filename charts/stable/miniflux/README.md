@@ -1,6 +1,6 @@
 # miniflux
 
-![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: 2.0.32](https://img.shields.io/badge/AppVersion-2.0.32-informational?style=flat-square)
+![Version: 3.1.1](https://img.shields.io/badge/Version-3.1.1-informational?style=flat-square) ![AppVersion: 2.0.32](https://img.shields.io/badge/AppVersion-2.0.32-informational?style=flat-square)
 
 Miniflux is a minimalist and opinionated feed reader.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.5.2 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.5.3 |
 | https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
