@@ -68966,6 +68966,40 @@ entries:
   vikunja:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2021-08-03T19:30:48.693731263Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 3.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.5.3
+    description: The to-do app to organize your life
+    digest: 7f8f466eacbaee564a81c26ceb8d035541ce93f11061de5f8afd753fe977c86a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/vikunja
+    icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+    keywords:
+    - vikunja
+    - to-do
+    - tasks
+    - calendar
+    - kanban
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: vikunja
+    sources:
+    - https://kolaente.dev/vikunja/api
+    - https://kolaente.dev/vikunja/frontend
+    - https://hub.docker.com/r/vikunja/api
+    - https://hub.docker.com/r/vikunja/frontend
+    - https://vikunja.io/docs/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/vikunja-3.2.0/vikunja-3.2.0.tgz
+    version: 3.2.0
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2021-07-12T08:42:22.713330882Z"
     dependencies:
     - name: common
@@ -74661,4 +74695,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-03T12:10:29.847268009Z"
+generated: "2021-08-03T19:30:48.712234432Z"
