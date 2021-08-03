@@ -23,7 +23,7 @@ env:
   FRIGATE_RTSP_PASSWORD: ""
 
 # -- Configures service settings for the chart.
-# @default -- See values.yaml
+# @default -- library chart See values.yaml
 service:
   main:
     ports:
@@ -37,7 +37,7 @@ service:
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
-  # @default -- See values.yaml
+  # @default -- See library chart values.yaml
   main:
     enabled: false
 
@@ -46,22 +46,27 @@ securityContext:
   privileged: false
 
 # -- Configure persistence settings for the chart under this key.
-# @default -- See values.yaml
+# @default -- See library chart values.yaml
 persistence:
   data:
+    # used for storage of the sqlite db
     enabled: false
     mountPath: /data
   media:
+    # used for storage of inages and videos
     enabled: false
     mountPath: /media
   # -- Configure a hostPathMount to mount a USB device in the container.
-  # @default -- See values.yaml
+  # to enable a coral device, you need to map in the usb device associated with
+  # the coral. This will map in all usb devices, which could give the container
+  # access to more devices than desired.
+  # @default -- See library chart values.yaml
   usb:
     enabled: false
     type: hostPath
     hostPath: /dev/bus/usb
   # -- Configure a temporary cache. See [docs](https://blakeblackshear.github.io/frigate/) for more details..
-  # @default -- See values.yaml
+  # @default -- See library chart values.yaml
   cache:
     enabled: true
     type: emptyDir
