@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: latest
 description: A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting.
 name: icinga2
-version: 1.1.0
+version: 1.1.1
 kubeVersion: ">=1.16.0-0"
 keywords:
 - icinga2
@@ -20,6 +20,6 @@ dependencies:
   repository: https://library-charts.k8s-at-home.com
   version: 3.3.0
 - name: mariadb
-  version: 9.3.16
+  version: 9.3.19
   repository: https://charts.bitnami.com/bitnami
   condition: mariadb.enabled
