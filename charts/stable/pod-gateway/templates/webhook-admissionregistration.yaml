@@ -10,7 +10,12 @@ webhooks:
 - name: "{{ include "common.names.fullname" . }}.svc.cluster.local"
   namespaceSelector:
   {{- with .Values.webhook.namespaceSelector }}
-    {{ toYaml . | nindent 4 }}
+  {{- if eq .type "label" }}
+    matchLabels:
+      {{ .label }}: "true"
+  {{- else if eq .type "custom" }}
+    {{- toYaml .custom | nindent 4 }}
+  {{- end }}
   {{- end }}
   rules:
   - apiGroups:   [""]

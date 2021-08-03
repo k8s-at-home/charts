@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -129,7 +129,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | webhook.image.pullPolicy | string | `"IfNotPresent"` | image pullPolicy of the webhook |
 | webhook.image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` | image repository of the webhook |
 | webhook.image.tag | string | `"v3.3.2"` | image tag of the webhook |
-| webhook.namespaceSelector | object | `{"matchLabels":{"routed-gateway":"true"}}` | Selector for namespace. All pods in this namespace will get evaluated by the webhook. **IMPORTANT**: Do not select the namespace where the webhook is deployed to or you will get locking issues. |
+| webhook.namespaceSelector | object | `{"custom":{},"label":"routed-gateway","type":"label"}` | Selector for namespace. All pods in this namespace will get evaluated by the webhook. **IMPORTANT**: Do not select the namespace where the webhook is deployed to or you will get locking issues. |
 | webhook.replicas | int | `1` | number of webhook instances to deploy |
 | webhook.strategy | object | `{"type":"RollingUpdate"}` | strategy for updates |
 
@@ -138,6 +138,10 @@ certificates. It does not install it as dependency to avoid conflicts.
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+- Fixed `namespaceSelector` to allow replacing the default label value.
 
 ### [3.2.2]
 
