@@ -21,7 +21,7 @@ The to-do app to organize your life
 | Repository | Name | Version |
 |------------|------|---------|
 | https://library-charts.k8s-at-home.com | common | 3.3.0 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.5.3 | 
+| https://charts.bitnami.com/bitnami | postgresql | 10.5.3 |
 
 
 ## TL;DR
