@@ -9,6 +9,19 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [3.0.0]
+
+#### Changed
+
+- **BREAKING**: Migrated chart to common library. This means that there are many things that work different from before. Please check the `values.yaml` file for the current implementation.
+- Changed image tag to `v6.2.26`.
+
+#### Removed
+
+- **BREAKING**: Removed support for deploying a separate MongoDB instance.
+- **BREAKING**: Removed support for specifying custom configMaps in chart values.
+- **BREAKING**: Removed chart-specific Promtail implementation. This can be replaced by using the common library charts Promtail add-on.
+
 ### [2.0.4]
 
 #### Added
@@ -57,7 +70,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[2.0.2]: #2.0.2
-[2.0.1]: #2.0.1
-[1.5.3]: #1.5.3
+[3.0.0]: #300
+[2.0.4]: #204
+[2.0.2]: #202
+[2.0.1]: #201
+[1.5.3]: #153
 {{- end -}}
