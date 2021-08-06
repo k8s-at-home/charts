@@ -4,6 +4,17 @@
 {{- define "unifi.harcodedValues" -}}
 env:
   UNIFI_STDOUT: "true"
+  {{- if .Values.mongodb.enabled }}
+    {{- if not .Values.env.DB_URI }}
+  DB_URI: mongodb://{{ .Release.Name }}-mongodb:27017/unifi
+    {{- end }}
+    {{- if not .Values.env.STATDB_URI }}
+  STATDB_URI: mongodb://{{ .Release.Name }}-mongodb:27017/unifi_stat
+    {{- end }}
+    {{- if not .Values.env.DB_NAME }}
+  DB_NAME: unifi
+    {{- end }}
+  {{- end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "unifi.harcodedValues" . | fromYaml) -}}
 
