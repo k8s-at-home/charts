@@ -5,6 +5,21 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
+### Running with separate MongoDB
+
+By default the Unifi controller runs an internal MongoDB.
+If you wish to run the chart with a separate MongoDB instance our chart provides the option to enable a MongoDB instance by adding the following in your `values.yaml`:
+
+```yaml
+mongodb:
+  enabled: true
+```
+
+(For more configuration options see the [mongodb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mongodb).)
+
+If you do not specify any other configuration, the required environment variables will be inferred automatically.
+It is also possible to override the environment variables to configure the image. See [here](https://github.com/jacobalberty/unifi-docker#external-mongodb-environment-variables) for more details.
+
 ### Regarding the services
 
 By default it is not possible to combine TCP and UDP ports on a service with `type: LoadBalancer`. This can be solved in a number of ways:

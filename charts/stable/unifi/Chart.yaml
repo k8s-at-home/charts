@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v6.2.26
 description: Ubiquiti Network's Unifi Controller
 name: unifi
-version: 3.0.0
+version: 3.1.0
 keywords:
   - ubiquiti
   - unifi
@@ -19,3 +19,7 @@ dependencies:
 - name: common
   repository: https://library-charts.k8s-at-home.com
   version: 3.3.0
+- name: mongodb
+  version: 10.23.9
+  repository: https://charts.bitnami.com/bitnami
+  condition: mongodb.enabled
