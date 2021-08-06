@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
+![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -16,6 +16,7 @@ Ubiquiti Network's Unifi Controller
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | mongodb | 10.23.9 |
 | https://library-charts.k8s-at-home.com | common | 3.3.0 |
 
 ## TL;DR
@@ -64,6 +65,21 @@ helm install unifi k8s-at-home/unifi -f values.yaml
 ```
 
 ## Custom configuration
+
+### Running with separate MongoDB
+
+By default the Unifi controller runs an internal MongoDB.
+If you wish to run the chart with a separate MongoDB instance our chart provides the option to enable a MongoDB instance by adding the following in your `values.yaml`:
+
+```yaml
+mongodb:
+  enabled: true
+```
+
+(For more configuration options see the [mongodb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mongodb).)
+
+If you do not specify any other configuration, the required environment variables will be inferred automatically.
+It is also possible to override the environment variables to configure the image. See [here](https://github.com/jacobalberty/unifi-docker#external-mongodb-environment-variables) for more details.
 
 ### Regarding the services
 
@@ -115,6 +131,7 @@ service:
 | image.tag | string | `"v6.2.26"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | ingress.portal | object | See values.yaml | Enable and configure settings for the captive portal ingress under this key. |
+| mongodb | object | See values.yaml | Enable and configure mongodb database subchart under this key.    For more options see [mongodb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mongodb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 | service.main.ports.controller | object | See values.yaml | Configure Controller port used for device command/control |
@@ -131,6 +148,16 @@ service:
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.1.0]
+
+#### Added
+
+- Support for running with an external MongoDB instance has been reimplemented.
+
+#### Fixed
+
+- The chart is now compatible again with PVC's that were created with chart versions < 3.0.0.
 
 ### [3.0.0]
 
