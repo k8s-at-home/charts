@@ -63,5 +63,6 @@ persistence:
     enabled: false
     mountPath: /opt/recipes/mediafiles
   static:
-    enabled: false
+    enabled: true
+    type: emptyDir
     mountPath: /opt/recipes/staticfiles
