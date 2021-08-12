@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 9.3.1](https://img.shields.io/badge/Version-9.3.1-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
+![Version: 10.0.0](https://img.shields.io/badge/Version-10.0.0-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
 
 Home Assistant
 
@@ -23,7 +23,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.19 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.5.3 |
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -146,6 +146,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [10.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
+
 ### [9.0.1]
 
 - Removed an incorrect reference to another project's documentation.
@@ -231,14 +237,15 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[10.0.0]: #1000
 [9.0.1]: #901
 [9.0.0]: #900
-[8.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-8.0.0/charts/home-assistant
-[5.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-5.0.0/charts/home-assistant
-[4.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-4.0.0/charts/home-assistant
-[3.1.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.1.0/charts/home-assistant
-[3.0.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-3.0.0/charts/home-assistant
-[2.7.0]: https://github.com/k8s-at-home/charts/tree/home-assistant-2.7.0/charts/home-assistant
+[8.0.0]: #800
+[5.0.0]: #500
+[4.0.0]: #400
+[3.1.0]: #310
+[3.0.0]: #300
+[2.7.0]: #270
 
 ## Support
 

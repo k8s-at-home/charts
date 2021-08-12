@@ -9,6 +9,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
+
 ### [3.0.0]
 
 #### Changed
@@ -23,19 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added icon url
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
 ### [2.0.1]
-
-#### Added
-
-- N/A
 
 #### Changed
 
@@ -51,10 +45,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- Initial commit
+- Initial version
 
-[4.0.0]: #4.0.0
-[3.3.2]: #3.3.2
-[2.0.1]: #2.0.1
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[4.0.0]: #400
+[3.3.2]: #332
+[2.0.1]: #201
+[1.0.0]: #100
 {{- end -}}

@@ -1,6 +1,6 @@
 # recipes
 
-![Version: 5.1.1](https://img.shields.io/badge/Version-5.1.1-informational?style=flat-square) ![AppVersion: 0.16.7](https://img.shields.io/badge/AppVersion-0.16.7-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 0.16.7](https://img.shields.io/badge/AppVersion-0.16.7-informational?style=flat-square)
 
 Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -93,10 +93,11 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [5.0.1]
+### [6.0.0]
 
 #### Changed
 
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
 - Configuring Nginx sidecar MIME types for serving `Recipes` static content.
 - With the current Nginx sidecar config static mount persistence is mandatory so it is the new default value. Without this Nginx throws http 500 status codes when serving `Recipes` static content (eg. CSS).
 
@@ -115,28 +116,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added icon url
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
 ### [1.0.0]
 
 #### Added
 
-- N/A
+- Initial version
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
+[6.0.0]: #600
 [5.0.0]: #500
 [4.3.2]: #432
 [1.0.0]: #100

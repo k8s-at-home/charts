@@ -1,6 +1,6 @@
 # icantbelieveitsnotvaletudo
 
-![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 2021.2.1](https://img.shields.io/badge/AppVersion-2021.2.1-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 2021.2.1](https://img.shields.io/badge/AppVersion-2021.2.1-informational?style=flat-square)
 
 Create live map data from Valetudo powered robots
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -88,6 +88,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
+
 ### [3.0.0]
 
 #### Changed
@@ -102,19 +108,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added icon url
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
 ### [2.0.1]
-
-#### Added
-
-- N/A
 
 #### Changed
 
@@ -130,12 +124,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- Initial commit
+- Initial version
 
-[4.0.0]: #4.0.0
-[3.3.2]: #3.3.2
-[2.0.1]: #2.0.1
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[4.0.0]: #400
+[3.3.2]: #332
+[2.0.1]: #201
+[1.0.0]: #100
 
 ## Support
 

@@ -1,6 +1,6 @@
 # wallabag
 
-![Version: 3.1.1](https://img.shields.io/badge/Version-3.1.1-informational?style=flat-square) ![AppVersion: 2.4.2](https://img.shields.io/badge/AppVersion-2.4.2-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 2.4.2](https://img.shields.io/badge/AppVersion-2.4.2-informational?style=flat-square)
 
 A self hostable application for saving web pages, freely.
 
@@ -22,7 +22,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | mariadb | 9.3.19 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.5.3 |
 | https://charts.bitnami.com/bitnami | redis | 14.6.6 |
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -97,6 +97,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
+
 ### [3.0.0]
 
 #### Changed
@@ -112,28 +118,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Icon url
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
 ### [1.0.0]
 
 #### Added
 
 - Initial version of the chart
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
+[4.0.0]: #400
 [3.0.0]: #300
 [2.4.1]: #241
 [1.0.0]: #100
