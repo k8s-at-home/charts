@@ -139,6 +139,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [5.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
+
 ### [4.0.0]
 
 - Fixed `namespaceSelector` to allow replacing the default label value.
@@ -171,12 +177,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
   Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
 
-#### Removed
-
-- N/A
-
-[2.1.1]: #2.1.1
-
 ### [2.1.0]
 
 #### Added
@@ -184,21 +184,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - set Search and Options when DNSPolicy is "None"
 - update instructions
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
-[2.1.0]: #2.1.0
-
 ### [2.0.0]
-
-#### Added
-
-- N/A
 
 #### Changed
 
@@ -206,28 +192,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - configmap is now a dictionary instead of a long string
 - only modifed settings need to be specified
 
-#### Removed
-
-- N/A
-
-[2.0.0]: #2.0.0
-
 ### [1.0.1]
-
-#### Added
-
-- N/A
 
 #### Changed
 
 - remove test container - sidecar allows exec as well
 - remove hardcoded namespaces for configmaps
-
-#### Removed
-
-- N/A
-
-[1.0.1]: #1.0.1
 
 ### [1.0.0]
 
@@ -238,17 +208,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - gatewaySufix
 - init container uses now an image
 
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
-[3.0.1]: #3.0.1
-[3.0.0]: #3.0.0
-[1.0.0]: #1.0.0
+[5.0.0]: #500
+[4.0.0]: #400
+[3.2.2]: #322
+[3.0.1]: #302
+[3.0.1]: #301
+[3.0.0]: #300
+[2.1.1]: #211
+[2.1.0]: #210
+[2.0.0]: #200
+[1.0.1]: #101
+[1.0.0]: #100
 
 ## Support
 
