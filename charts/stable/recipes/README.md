@@ -98,6 +98,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Changed
 
 - Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
+- Configuring Nginx sidecar MIME types for serving `Recipes` static content.
+- With the current Nginx sidecar config static mount persistence is mandatory so it is the new default value. Without this Nginx throws http 500 status codes when serving `Recipes` static content (eg. CSS).
 
 ### [5.0.0]
 
