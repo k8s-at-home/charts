@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -75,7 +75,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers | list | See values.yaml | Deploy local redis instance. |
+| additionalContainers | object | See values.yaml | Deploy local redis instance. |
 | env | object | See below | See the following files for additional environment variables: https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/ https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example |
 | env.COMPOSE_PROJECT_NAME | string | `"paperless"` | Project name |
 | env.PAPERLESS_OCR_LANGUAGE | string | `"eng"` | OCR languages to install |

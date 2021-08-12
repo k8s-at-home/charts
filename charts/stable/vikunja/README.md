@@ -1,6 +1,6 @@
 # vikunja
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
 
 The to-do app to organize your life
 
@@ -21,7 +21,7 @@ The to-do app to organize your life
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.5.3 |
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -78,11 +78,11 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| additionalContainers[0] | object | See values.yaml | Set up the vikunja API container. |
-| additionalContainers[0].env | list | See below | You can declare all Vikunja parameters as environment variables. Please consult https://vikunja.io/docs/config-options/ to see all parameters. |
-| additionalContainers[0].image | string | `"vikunja/api:0.17.1"` | Vikunja api image and tag |
-| additionalContainers[1] | object | See values.yaml | Set up the vikunja frontend container. |
-| additionalContainers[1].image | string | `"vikunja/frontend:0.17.0"` | Vikunja frontend image and tag |
+| additionalContainers.api | object | See values.yaml | Set up the vikunja API container. |
+| additionalContainers.api.env | list | See below | You can declare all Vikunja parameters as environment variables. Please consult https://vikunja.io/docs/config-options/ to see all parameters. |
+| additionalContainers.api.image | string | `"vikunja/api:0.17.1"` | Vikunja api image and tag |
+| additionalContainers.frontend | object | See values.yaml | Set up the vikunja frontend container. |
+| additionalContainers.frontend.image | string | `"vikunja/frontend:0.17.0"` | Vikunja frontend image and tag |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"caddy"` | Caddy reverse proxy image and tag |
 | image.tag | string | `"2.3.0-alpine"` | vikunja api image tag |

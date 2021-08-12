@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -17,7 +17,7 @@ Ubiquiti Network's Unifi Controller
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mongodb | 10.23.9 |
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 

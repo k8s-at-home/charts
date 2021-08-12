@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 7.1.0](https://img.shields.io/badge/Version-7.1.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
 
 Transmission is a cross-platform BitTorrent client
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -89,7 +89,7 @@ To view more environment variables [see here](https://github.com/k8s-at-home/con
 | image.repository | string | `"ghcr.io/k8s-at-home/transmission"` | image repository |
 | image.tag | string | `"v3.00"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| initContainers | list | See values.yaml | Use an initContainer to download the Flood web ui Set UI with env `TRANSMISSION_WEB_HOME` set to `/config/flood-for-transmission/` |
+| initContainers | object | See values.yaml | Use an initContainer to download the Flood web ui Set UI with env `TRANSMISSION_WEB_HOME` set to `/config/flood-for-transmission/` |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | probes | object | See values.yaml | Configures the probes for the main Pod. |
 | service | object | See values.yaml | Configures service settings for the chart. |

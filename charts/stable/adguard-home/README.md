@@ -1,6 +1,6 @@
 # adguard-home
 
-![Version: 4.3.0](https://img.shields.io/badge/Version-4.3.0-informational?style=flat-square) ![AppVersion: v0.106.3](https://img.shields.io/badge/AppVersion-v0.106.3-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v0.106.3](https://img.shields.io/badge/AppVersion-v0.106.3-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -83,7 +83,7 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"adguard/adguardhome"` | image repository |
 | image.tag | string | `"v0.106.3"` | image tag |
-| initContainers[0] | object | See values.yaml | Configures an initContainer that copies the configmap to the AdGuardHome conf directory It does NOT overwrite when the file already exists. |
+| initContainers.copy-configmap | object | See values.yaml | Configures an initContainer that copies the configmap to the AdGuardHome conf directory It does NOT overwrite when the file already exists. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | prometheus.serviceMonitor | object | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -93,6 +93,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
 
 ### [4.0.1]
 
@@ -128,10 +134,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[4.0.1]: #4.0.1
-[4.0.0]: #4.0.0
-[3.3.1]: #3.3.1
-[3.0.0]: #3.0.0
+[5.0.0]: #500
+[4.0.1]: #401
+[4.0.0]: #400
+[3.3.1]: #331
+[3.0.0]: #300
 
 ## Support
 

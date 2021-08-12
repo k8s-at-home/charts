@@ -1,6 +1,6 @@
 # network-ups-tools
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: v2.7.4-2474-gb4a58380](https://img.shields.io/badge/AppVersion-v2.7.4--2474--gb4a58380-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v2.7.4-2474-gb4a58380](https://img.shields.io/badge/AppVersion-v2.7.4--2474--gb4a58380-informational?style=flat-square)
 
 Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 

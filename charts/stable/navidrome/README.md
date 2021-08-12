@@ -1,6 +1,6 @@
 # navidrome
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 0.43.0](https://img.shields.io/badge/AppVersion-0.43.0-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 0.43.0](https://img.shields.io/badge/AppVersion-0.43.0-informational?style=flat-square)
 
 Navidrome is an open source web-based music collection server and streamer
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 

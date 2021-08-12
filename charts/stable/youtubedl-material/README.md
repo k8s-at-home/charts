@@ -1,6 +1,6 @@
 # youtubedl-material
 
-![Version: 3.1.1](https://img.shields.io/badge/Version-3.1.1-informational?style=flat-square) ![AppVersion: 4.2](https://img.shields.io/badge/AppVersion-4.2-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 4.2](https://img.shields.io/badge/AppVersion-4.2-informational?style=flat-square)
 
 Self-hosted YouTube downloader built on Material Design
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 

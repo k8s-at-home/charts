@@ -1,6 +1,6 @@
 # rtorrent-flood
 
-![Version: 8.1.0](https://img.shields.io/badge/Version-8.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 9.0.0](https://img.shields.io/badge/Version-9.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 rTorrent is a stable, high-performance and low resource consumption BitTorrent client.
 
@@ -21,7 +21,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -90,7 +90,7 @@ N/A
 | image.repository | string | `"jesec/rtorrent-flood"` | image repository |
 | image.tag | string | `"latest@sha256:f0c894ec459e52d85bc69685247ddbd8e8fcf3709b50bf8ee8b0df3bf69b7b49"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| initContainers | list | See values.yaml | Use an initContainer tto delete the rtorrent.lock file when the pod starts this is only required if `session.use_lock.set = no` is NOT set |
+| initContainers | object | See values.yaml | Use an initContainer to delete the rtorrent.lock file when the pod starts this is only required if `session.use_lock.set = no` is NOT set |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
