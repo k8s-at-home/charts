@@ -7,16 +7,17 @@ controller:
   # -- deploy to all nodes
   type: daemonset
 
-# -- Init container that installs reference CNI plugins
 initContainers:
-- name: cni-installer
-  # -- CNI installer image
-  image: {{ .Values.cni.image.repository }}:{{ .Values.cni.image.tag }}
-  imagePullPolicy: {{ .Values.cni.image.pullPolicy }}
-  # -- Mounts host CNI binary folder
-  volumeMounts:
-  - name: cnibin
-    mountPath: /host/opt/cni/bin
+  # -- Init container that installs reference CNI plugins
+  cni-installer:
+    name: cni-installer
+    # -- CNI installer image
+    image: {{ .Values.cni.image.repository }}:{{ .Values.cni.image.tag }}
+    imagePullPolicy: {{ .Values.cni.image.pullPolicy }}
+    # -- Mounts host CNI binary folder
+    volumeMounts:
+    - name: cnibin
+      mountPath: /host/opt/cni/bin
 
 # -- Command used by the Multus installer
 command:

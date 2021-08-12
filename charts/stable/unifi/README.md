@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -17,7 +17,7 @@ Ubiquiti Network's Unifi Controller
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mongodb | 10.23.9 |
-| https://library-charts.k8s-at-home.com | common | 3.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
 
@@ -149,6 +149,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
+
 ### [3.1.0]
 
 #### Added
@@ -174,17 +180,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### [2.0.4]
 
-#### Added
-
-- N/A
-
 #### Changed
 
 - Bump controller version to 6.2.25
-
-#### Removed
-
-- N/A
 
 ### [2.0.2]
 
@@ -194,32 +192,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### [2.0.1]
 
-#### Added
-
-- N/A
-
 #### Changed
 
 - Updated icon url
 
-#### Removed
-
-- N/A
-
 ### [1.5.3]
-
-#### Added
-
-- N/A
 
 #### Changed
 
 - Use helm-docs
 
-#### Removed
-
-- N/A
-
+[4.0.0]: #400
+[3.1.0]: #310
 [3.0.0]: #300
 [2.0.4]: #204
 [2.0.2]: #202

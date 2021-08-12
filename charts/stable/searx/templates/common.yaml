@@ -25,64 +25,68 @@ persistence:
     mountPath: "-"
 
 additionalContainers:
-- name: caddy
-  image: "{{ .Values.caddy.repository }}:{{ .Values.caddy.tag }}"
-  imagePullPolicy: {{ .Values.caddy.pullPolicy }}
-  ports:
-  - containerPort: {{ .Values.service.main.ports.http.port }}
-    name: http
-  volumeMounts:
-  - name: searx-config
-    mountPath: /etc/caddy/Caddyfile
-    subPath: Caddyfile
-  - name: searx-checker
-    mountPath: /srv/searx-checker
+  caddy:
+    name: caddy
+    image: "{{ .Values.caddy.repository }}:{{ .Values.caddy.tag }}"
+    imagePullPolicy: {{ .Values.caddy.pullPolicy }}
+    ports:
+    - containerPort: {{ .Values.service.main.ports.http.port }}
+      name: http
+    volumeMounts:
+    - name: searx-config
+      mountPath: /etc/caddy/Caddyfile
+      subPath: Caddyfile
+    - name: searx-checker
+      mountPath: /srv/searx-checker
 
-- name: searx-checker
-  image: "{{ .Values.searxChecker.repository }}:{{ .Values.searxChecker.tag }}"
-  imagePullPolicy: {{ .Values.searxChecker.pullPolicy }}
-  args:
-    ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
-  volumeMounts:
-  - name: searx-checker
-    mountPath: /usr/local/searx-checker/html/data
+  searx-checker:
+    name: searx-checker
+    image: "{{ .Values.searxChecker.repository }}:{{ .Values.searxChecker.tag }}"
+    imagePullPolicy: {{ .Values.searxChecker.pullPolicy }}
+    args:
+      ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
+    volumeMounts:
+    - name: searx-checker
+      mountPath: /usr/local/searx-checker/html/data
 
-- name: filtron
-  image: "{{ .Values.filtron.repository }}:{{ .Values.filtron.tag }}"
-  imagePullPolicy: {{ .Values.filtron.pullPolicy }}
-  args:
-    [
-      "-listen",
-      "0.0.0.0:4040",
-      "-api",
-      "0.0.0.0:4041",
-      "-target",
-      "localhost:8080",
-    ]
-  ports:
-  - containerPort: 4040
+  filtron:
     name: filtron
-  - containerPort: 4041
-    name: api
-  volumeMounts:
-  - name: searx-config
-    mountPath: /etc/filtron/rules.json
-    subPath: rules.json
+    image: "{{ .Values.filtron.repository }}:{{ .Values.filtron.tag }}"
+    imagePullPolicy: {{ .Values.filtron.pullPolicy }}
+    args:
+      [
+        "-listen",
+        "0.0.0.0:4040",
+        "-api",
+        "0.0.0.0:4041",
+        "-target",
+        "localhost:8080",
+      ]
+    ports:
+    - containerPort: 4040
+      name: filtron
+    - containerPort: 4041
+      name: api
+    volumeMounts:
+    - name: searx-config
+      mountPath: /etc/filtron/rules.json
+      subPath: rules.json
 
-- name: morty
-  image: "{{ .Values.morty.repository }}:{{ .Values.morty.tag }}"
-  imagePullPolicy: {{ .Values.morty.pullPolicy }}
-  envFrom:
-  - secretRef:
-      {{ if not .Values.searx.existingSecret }}
-      name: {{ include "common.names.fullname" . }}-config
-      {{ else }}
-      name: {{ .Values.searx.existingSecret }}
-      {{ end }}
-  args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
-  ports:
-  - containerPort: 3000
+  morty:
     name: morty
+    image: "{{ .Values.morty.repository }}:{{ .Values.morty.tag }}"
+    imagePullPolicy: {{ .Values.morty.pullPolicy }}
+    envFrom:
+    - secretRef:
+        {{ if not .Values.searx.existingSecret }}
+        name: {{ include "common.names.fullname" . }}-config
+        {{ else }}
+        name: {{ .Values.searx.existingSecret }}
+        {{ end }}
+    args: ["-listen", "localhost:3000", "-timeout", "6", "ipv6"]
+    ports:
+    - containerPort: 3000
+      name: morty
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "searx.harcodedValues" . | fromYaml) -}}
 
