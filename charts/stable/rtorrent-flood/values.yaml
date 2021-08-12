@@ -5,16 +5,16 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
-# -- Use an initContainer tto delete the rtorrent.lock file when the pod starts
+# -- Use an initContainer to delete the rtorrent.lock file when the pod starts
 # this is only required if `session.use_lock.set = no` is NOT set
 # @default -- See values.yaml
-initContainers: []
-# - name: remove-session-lock
-#   image: busybox
-#   command: ["sh", "-c", "rm -rf /config/.local/share/rtorrent/.session/rtorrent.lock"]
-#   volumeMounts:
-#   - name: config
-#     mountPath: /config
+initContainers: {}
+  # remove-session-lock:
+  #   image: busybox
+  #   command: ["sh", "-c", "rm -rf /config/.local/share/rtorrent/.session/rtorrent.lock"]
+  #   volumeMounts:
+  #   - name: config
+  #     mountPath: /config
 
 image:
   # -- image repository

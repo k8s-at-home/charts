@@ -1,17 +1,18 @@
 initContainers:
-- name: custom-webui
-  image: curlimages/curl:7.76.1
-  command:
-  - "/bin/sh"
-  - "-c"
-  - "curl -fsSL -o /tmp/flood-for-transmission.tar.gz https://github.com/johman10/flood-for-transmission/releases/download/latest/flood-for-transmission.tar.gz"
-  - "mkdir -p /config/flood"
-  - "tar xf /tmp/flood-for-transmission.tar.gz --strip-components 1 -C /config/flood"
-  volumeMounts:
-  - name: config
-    mountPath: /config
+  custom-webui:
+    name: custom-webui
+    image: curlimages/curl:7.76.1
+    command:
+    - "/bin/sh"
+    - "-c"
+    - "curl -fsSL -o /tmp/flood-for-transmission.tar.gz https://github.com/johman10/flood-for-transmission/releases/download/latest/flood-for-transmission.tar.gz"
+    - "mkdir -p /config/flood"
+    - "tar xf /tmp/flood-for-transmission.tar.gz --strip-components 1 -C /config/flood"
+    volumeMounts:
+    - name: config
+      mountPath: /config
 
-persistence:
-  config:
-    enabled: true
-    type: emptyDir
+  persistence:
+    config:
+      enabled: true
+      type: emptyDir

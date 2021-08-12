@@ -15,7 +15,7 @@ args:
   {{ end }}
 
 initContainers:
-  - name: clear-wiki
+  clear-wiki:
     image: alpine
     command:
       - sh
@@ -24,7 +24,8 @@ initContainers:
     volumeMounts:
       - mountPath: /wiki
         name: wiki
-  - name: git-init
+
+  git-init:
     image: alpine/git
     args:
       - clone
@@ -37,14 +38,14 @@ initContainers:
         name: wiki
 
 additionalContainers:
-- name: cron
-  image: alpine/git
-  command: ["crond", "-f", "-l", "8"]
-  volumeMounts:
-    - mountPath: /etc/periodic/15min/
-      name: git-sync
-    - mountPath: /wiki
-      name: wiki
+  cron:
+    image: alpine/git
+    command: ["crond", "-f", "-l", "8"]
+    volumeMounts:
+      - mountPath: /etc/periodic/15min/
+        name: git-sync
+      - mountPath: /wiki
+        name: wiki
 
 persistence:
   gollum-config:

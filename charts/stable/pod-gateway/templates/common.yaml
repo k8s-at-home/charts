@@ -25,25 +25,26 @@ persistence:
         defaultMode: 0555
 
 initContainers:
-# -- Configures an initContainer that creates a VXLAN
-# In the gateway for client PODs to connect to.
-# iptables migh be (see VPN_BLOCK_OTHER_TRAFFIC) setup
-# to block traffic not going through the VPN
-- name: "routes"
-  # -- Image for the init container
-  image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-  # -- Will be set automatically
-  # @default -- <image.pullPolicy>
-  imagePullPolicy: {{ .Values.image.pullPolicy }}
-  # -- Command starting DHCP server in the gateway
-  command:
-  - /bin/gateway_init.sh
-  securityContext:
-    privileged: true
-  volumeMounts:
-  - name: config
-    mountPath: /config
-    readOnly: true
+  # -- Configures an initContainer that creates a VXLAN
+  # In the gateway for client PODs to connect to.
+  # iptables migh be (see VPN_BLOCK_OTHER_TRAFFIC) setup
+  # to block traffic not going through the VPN
+  routes:
+    name: "routes"
+    # -- Image for the init container
+    image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+    # -- Will be set automatically
+    # @default -- <image.pullPolicy>
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
+    # -- Command starting DHCP server in the gateway
+    command:
+    - /bin/gateway_init.sh
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: config
+      mountPath: /config
+      readOnly: true
 
 probes:
   liveness:
@@ -61,7 +62,6 @@ service:
       http:
         port: 4789
         protocol: UDP
-
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "pod-gateway.harcodedValues" . | fromYaml) -}}
 

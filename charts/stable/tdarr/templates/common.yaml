@@ -4,27 +4,28 @@
 {{- define "tdarr.harcodedValues" -}}
 {{ if .Values.node.enabled }}
 additionalContainers:
-- name: node
-  image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag }}"
-  imagePullPolicy: {{ .Values.node.image.pullPolicy }}
-  env:
-    - name: TZ
-      value: {{ default "UTC" .Values.env.TZ }}
-    - name: nodeID
-      value: {{ default "UTC" .Values.node.id }}
-    - name: serverIP
-      value: "localhost"
-    - name: serverPort
-      value: "{{ .Values.service.main.ports.server.port }}"
-  volumeMounts:
-    {{ if .Values.persistence.config.enabled }}
-    - name: config
-      mountPath: /app/configs
-    {{ end }}
-    {{ if .Values.persistence.media.enabled }}
-    - name: media
-      mountPath: /media
-    {{ end }}
+  node:
+    name: node
+    image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag }}"
+    imagePullPolicy: {{ .Values.node.image.pullPolicy }}
+    env:
+      - name: TZ
+        value: {{ default "UTC" .Values.env.TZ }}
+      - name: nodeID
+        value: {{ default "UTC" .Values.node.id }}
+      - name: serverIP
+        value: "localhost"
+      - name: serverPort
+        value: "{{ .Values.service.main.ports.server.port }}"
+    volumeMounts:
+      {{ if .Values.persistence.config.enabled }}
+      - name: config
+        mountPath: /app/configs
+      {{ end }}
+      {{ if .Values.persistence.media.enabled }}
+      - name: media
+        mountPath: /media
+      {{ end }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "tdarr.harcodedValues" . | fromYaml) -}}

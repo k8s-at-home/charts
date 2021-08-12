@@ -79,6 +79,7 @@ persistence:
 # -- Deploy local redis instance.
 # @default -- See values.yaml
 additionalContainers:
-  - name: broker
+  broker:
+    name: broker
     image: redis:6.0
     imagePullPolicy: IfNotPresent
