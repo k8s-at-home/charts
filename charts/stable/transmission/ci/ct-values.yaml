@@ -12,7 +12,7 @@ initContainers:
     - name: config
       mountPath: /config
 
-  persistence:
-    config:
-      enabled: true
-      type: emptyDir
+persistence:
+  config:
+    enabled: true
+    type: emptyDir
