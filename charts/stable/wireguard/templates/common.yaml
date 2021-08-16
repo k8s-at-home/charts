@@ -1,5 +1,4 @@
 {{/* Make sure all variables are set properly */}}
-
 {{- include "common.values.setup" . }}
 
 {{/* Append the secret volume to the volumes */}}
@@ -13,7 +12,9 @@ volumeSpec:
     defaultMode: 0600
     secretName: {{ include "common.names.fullname" . }}-config
 {{- end -}}
+{{- if .Values.configSecret.enabled -}}
 {{- $_ := set .Values.persistence "wireguard-config" (include "wireguard.secretVolume" . | fromYaml) -}}
+{{- end -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
