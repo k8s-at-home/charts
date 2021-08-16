@@ -5,5 +5,6 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+The container in this chart requires the wg0.conf to be in /etc/wireguard
+for it to run. Either add it under configSecret or under persistence.
 {{- end -}}

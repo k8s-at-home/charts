@@ -68,7 +68,8 @@ helm install wireguard k8s-at-home/wireguard -f values.yaml
 
 ## Custom configuration
 
-N/A
+The container in this chart requires the wg0.conf to be in /etc/wireguard
+for it to run. Either add it under configSecret or under persistence.
 
 ## Values
 
