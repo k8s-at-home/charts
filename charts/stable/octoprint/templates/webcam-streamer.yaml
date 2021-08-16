@@ -1,0 +1,55 @@
+{{- include "common.values.setup" . }}
+{{- define "octoprint.streamer" -}}
+name: webcam-streamer
+{{- if .Values.mjpg_streamer.enabled }}
+image: {{ .Values.mjpg_streamer.image | default "badsmoke/mjpg-streamer" }}:{{ .Values.mjpg_streamer.tag | default "latest" }}
+imagePullPolicy: {{ .Values.mjpg_streamer.imagePullPolicy | default "IfNotPresent" }}
+{{- else }}
+image: {{ .Values.ustreamer.image | default "lib42/ustreamer" }}:{{ .Values.ustreamer.tag | default "latest" }}
+imagePullPolicy: {{ .Values.ustreamer.imagePullPolicy | default "IfNotPresent" }}
+{{- end }}
+securityContext:
+  privileged: true
+ports:
+  - name: http-stream
+    containerPort: 8080
+    protocol: TCP
+command:
+{{- if .Values.mjpg_streamer.enabled }}
+  - /mjpg-streamer/mjpg-streamer-experimental/docker-start.sh
+  - -i
+  - '"./input_uvc.so -u -d {{ .Values.streamer.device | default "/dev/video0"}} -r {{ .Values.streamer.resolution | default "640x480" }} -f {{.Values.mjpg_streamer.framerate | default 15}}"'
+  - -o
+  - '"./output_http.so -p {{ .Values.streamer.port | default 8080 }}"'
+{{- else }}
+  - ./ustreamer
+  - --host=0.0.0.0
+  - --slowdown
+  - --drop-same-frames=30
+  - --device={{ .Values.streamer.device | default "/dev/video0" }}
+  - --encoder={{ .Values.streamer.encoder | default "CPU" }}
+  - --quality={{ .Values.streamer.quality | default 80 }}
+  - --port={{ .Values.streamer.port | default 8080 }}
+  - --desired-fps={{ .Values.streamer.fps | default 15 }}
+  - --format={{ .Values.streamer.format | default "YUYV" }}
+  - --resolution={{ .Values.streamer.resolution | default "640x480" }}
+{{- end }}
+livenessProbe:
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 10
+  failureThreshold: 3
+  timeoutSeconds: 1
+  periodSeconds: 10
+readinessProbe:
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 10
+  failureThreshold: 3
+  timeoutSeconds: 1
+  periodSeconds: 10
+{{- end -}}
+
+{{- if or .Values.mjpg_streamer.enabled .Values.ustreamer.enabled -}}
+{{- $_ := set .Values.additionalContainers "webcam-streamer" (include "octoprint.streamer" . | fromYaml) -}}
+{{- end -}}

@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: octoprint/octoprint
   # -- image tag
-  tag: 1.6.1
+  tag: 1.6.1-minimal
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -18,27 +18,88 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Enable MJPG Streamer
-  # Enable this to ensure camera streaming is enabled you add a video device.
-  ENABLE_MJPG_STREAMER: "true"
-  # -- MJPG Streamer input parameters
-  MJPG_STREAMER_INPUT:  # "-y -n -r 640x480"
-  # -- MJPG Streamer camera device
-  CAMERA_DEV:  # /dev/video0
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
 service:
   main:
+    enabled: true
     ports:
       http:
         port: 80
+        targetPort: 5000
+
+  # Webcam Stream
+  stream:
+    enabled: false
+    ports:
+      http-stream:
+        enabled: true
+        port: 80
+        targetPort: 8080
+
+# Octoprint settings
+octoprint:
+ 
+  # Octoprint Plugins
+  plugins:
+    # Install plugins before starting octoprint?
+    install: false
+
+    # Upgrade installed plugins?
+    upgrade: false
+
+    ## List of plugins to install/upgrade
+    #plugins:
+    #- https://github.com/tg44/OctoPrint-Prometheus-Exporter/archive/master.zip
+    #- https://github.com/LazeMSS/OctoPrint-UICustomizer/archive/main.zip
+    #- https://github.com/NilsRo/OctoPrint-SlicerEstimator/archive/master.zip
+
+# Webcam Streamer config for mjpg & ustreamer
+# Requires to enable one of mjpg_streamer and ustreamer
+streamer:
+  device: /dev/video0
+  resolution: 640x480
+  framerate: 15
+  port: 8080
+  resolution: 640x480
+
+  # ustreamer-only - YUYV, UYVY, RGB565, RGB24, MJPEG, JPEG; default: YUYV
+  format: YUYV
+  encoder: CPU
+  quality: 70
+
+## Choose on of these if you want to stream a webcam feed:
+# mjpg-streamer the old classic
+mjpg_streamer:
+  enabled: false
+
+  image: badsmoke/mjpg-streamer
+  tag: latest
+  imagePullPolicy: IfNotPresent
+
+# ustreamer - new, written in go
+ustreamer:
+  enabled: false
+
+  image: lib42/ustreamer
+  tag: latest
+  imagePullPolicy: IfNotPresent
+
+## Pod annotations e.g. for octoprint prometheus exporter
+#podAnnotations:
+#  prometheus.io/scrape: "true"
+#  prometheus.io/port: "5000"
+#  prometheus.io/path: "/plugin/prometheus_exporter/metrics"
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml
   main:
     enabled: false
+    #annotations:
+    #  # Increased body-size lets you upload bigger gcode
+    #  nginx.ingress.kubernetes.io/proxy-body-size: 100m
 
 securityContext:
   # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
@@ -50,9 +111,18 @@ persistence:
   data:
     enabled: false
     mountPath: /octoprint
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
   # -- Configure a hostPathMount to mount a USB device in the container.
   # @default -- See values.yaml
   printer:
     enabled: false
     type: hostPath
     hostPath: /dev/ttyACM0
+
+  # Device path of webcam
+  camera:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/video0

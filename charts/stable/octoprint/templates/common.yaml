@@ -1,1 +1,34 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "octoprint.init" -}}
+enabled: "true"
+mountPath: "/init.sh"
+subPath: "init.sh"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-init
+    defaultMode: 0755
+{{- end -}}
+{{- define "octoprint.initContainer" -}}
+name: init-octoprint
+image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+imagePullPolicy: {{ .Values.image.pullPolicy }}
+volumeMounts:
+- name: data
+  mountPath: /octoprint
+- name: octoprint-init
+  mountPath: /init.sh
+  subPath: init.sh
+command:
+  - sh
+  - -c
+  - /init.sh
+{{- end -}}
+{{- $_ := set .Values.persistence "octoprint-init" (include "octoprint.init" . | fromYaml) -}}
+{{- $_ := set .Values.initContainers "octoprint-init" (include "octoprint.initContainer" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}

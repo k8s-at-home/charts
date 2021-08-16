@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-init
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  init.sh: |
+    #!/bin/bash
+    if ! octoprint --version 2>/dev/null ; then
+      cd; mkdir tmp; tar xzf ${octoprint_ref}.tar.gz --strip-components 1 -C tmp ; cd tmp; pip install .
+    fi
+{{- if .Values.octoprint.plugins.install }}
+  {{- range .Values.octoprint.plugins.plugins }}
+    pip install{{if $.Values.octoprint.plugins.upgrade }}--upgrade{{ end }} {{.}}
+  {{- end }}
+{{- end }}
