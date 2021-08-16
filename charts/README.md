@@ -135,6 +135,7 @@
 | [wallabag](stable/wallabag) | A self hostable application for saving web pages, freely. |
 | [whoogle](stable/whoogle) | A self-hosted, ad-free, privacy-respecting metasearch engine |
 | [wikijs](stable/wikijs) | Make documentation a joy to write using Wiki.js's beautiful and intuitive interface! |
+| [wireguard](stable/wireguard) | Fast, modern, secure VPN tunnel |
 | [xbackbone](stable/xbackbone) | XBackBone is a simple, self-hosted, lightweight PHP file manager that support the instant sharing tool ShareX and *NIX systems. It supports uploading and displaying images, GIF, video, code, formatted text, and file downloading and uploading. Also have a web UI with multi user management, past uploads history and search support. |
 | [xteve](stable/xteve) | M3U Proxy for Plex DVR and Emby Live TV. |
 | [youtubedl-material](stable/youtubedl-material) | Self-hosted YouTube downloader built on Material Design |
