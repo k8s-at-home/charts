@@ -1,0 +1,19 @@
+{{/* Make sure all variables are set properly */}}
+
+{{- include "common.values.setup" . }}
+
+{{/* Append the secret volume to the volumes */}}
+{{- define "wireguard.secretVolume" -}}
+enabled: "true"
+mountPath: "/etc/wireguard/wg0.conf"
+subPath: "wg0.conf"
+type: "custom"
+volumeSpec:
+  secret:
+    defaultMode: 0600
+    secretName: {{ include "common.names.fullname" . }}-config
+{{- end -}}
+{{- $_ := set .Values.persistence "wireguard-config" (include "wireguard.secretVolume" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
