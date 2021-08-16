@@ -1,0 +1,89 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/k8s-at-home/wireguard
+  # -- image tag
+  tag: v1.0.20210424
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Override the backend used by iptables. Valid values are nft and legacy
+  IPTABLES_BACKEND: nft
+  # -- Enable a killswitch that kills all trafic when the VPN is not connected
+  # @default -- false
+  KILLSWITCH: false
+  # -- A separated list of IPv4 networks that will be excluded from the VPN/killswitch
+  # KILLSWITCH_EXCLUDEDNETWORKS_IPV4:
+  # -- A separated list of IPv6 networks that will be excluded from the VPN/killswitch
+  # KILLSWITCH_EXCLUDEDNETWORKS_IPV6:
+  # -- The separator that is used to split the KILLSWITCH_EXCLUDEDNETWORKS lists
+  # @default -- ;
+  # SEPARATOR: ;
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    enabled: true
+    ports:
+      http:
+        enabled: false
+      vpn:
+        enabled: true
+        port: 51820
+        protocol: UDP
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Security contexts required for container.
+# @default -- see values.yaml
+securityContext:
+  capabilities:
+    add:
+    - NET_ADMIN
+    - SYS_MODULE
+
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
+probes:
+  liveness:
+    enabled: true
+    ## Set this to true if you wish to specify your own livenessProbe
+    custom: true
+    ## The spec field contains the values for the default livenessProbe.
+    ## If you selected custom: true, this field holds the definition of the livenessProbe.
+    spec:
+      exec:
+        command: ["bash", "-c", "if [[ $(curl -s https://ipinfo.io) ]]; then exit 0; else exit $?; fi"]
+      initialDelaySeconds: 0
+      timeoutSeconds: 1
+      periodSeconds: 5
+      failureThreshold: 5
+  readiness:
+     enabled: false
+  startup:
+    enabled: false
+
+# -- If set to 'true', the configuration will be read from these values.
+# -- Otherwise you have to mount a volume to /etc/wireguard containing the wg0.conf.
+# @default -- base64 encoded wg0.conf by running `base64 wg0.conf`
+configSecret:
+  # -- Store Wireguard config as a secret
+  enabled: false
+  # @default -- See values.yaml
+  config: |
+    your base64 encoded wg0.conf
