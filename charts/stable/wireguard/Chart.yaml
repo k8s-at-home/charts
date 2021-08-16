@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: 1.0.20210424
+description: Fast, modern, secure VPN tunnel
+name: wireguard
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- vpn
+- privacy
+- security
+- wireguard
+sources:
+- https://github.com/k8s-at-home/container-images
+- https://github.com/k8s-at-home/charts
+icon: https://avatars.githubusercontent.com/u/13991055?s=200&v=4
+maintainers:
+- name: jr0dd
+  email: j_r0dd@icloud.com
+dependencies:
+- name: common
+  version: 4.0.0
+  repository: https://library-charts.k8s-at-home.com
