@@ -53,10 +53,6 @@ ingress:
             pathType: Prefix
             service:
               port: 3012
-    tls:
-      - secretName: chart-example-local
-        hosts:
-          - chart-example.local
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
