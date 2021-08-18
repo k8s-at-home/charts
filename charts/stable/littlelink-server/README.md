@@ -79,7 +79,7 @@ N/A
 | env | string | `nil` | environment variables. See more environment variables in the [littlelink-server documentation](https://github.com/techno-tim/littlelink-server). |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/techno-tim/littlelink-server"` | image repository |
-| image.tag | string | `"sha256:911fb03a3fb85bacc5ab49c5692f6afc4030d05b442732b5a91468a51fe97ccb"` | image tag |
+| image.tag | string | `"latest"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
