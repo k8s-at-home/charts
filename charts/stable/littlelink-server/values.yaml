@@ -1,0 +1,73 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/techno-tim/littlelink-server
+  # -- image tag
+  tag: sha256:911fb03a3fb85bacc5ab49c5692f6afc4030d05b442732b5a91468a51fe97ccb
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [littlelink-server documentation](https://github.com/techno-tim/littlelink-server).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  # TZ: UTC
+  # META_TITLE: Techno Tim
+  # META_DESCRIPTION: Techno Tim Link page
+  # META_AUTHOR: Techno Tim
+  # THEME: Dark
+  # FAVICON_URL: https://pbs.twimg.com/profile_images/1286144221217316864/qIAsKOpB_200x200.jpg
+  # AVATAR_URL: https://pbs.twimg.com/profile_images/1286144221217316864/qIAsKOpB_200x200.jpg
+  # AVATAR_2X_URL: https://pbs.twimg.com/profile_images/1286144221217316864/qIAsKOpB_400x400.jpg
+  # AVATAR_ALT: Techno Tim Profile Pic
+  # NAME: TechnoTim
+  # BIO: Hey! Just a place where you can connect with me!
+  # GITHUB: https://github.com/timothystewart6
+  # TWITTER: https://twitter.com/TechnoTimLive
+  # INSTAGRAM: https://www.instagram.com/techno.tim
+  # YOUTUBE: https://www.youtube.com/channel/UCOk-gHyjcWZNj3Br4oxwh0A
+  # TWITCH: https://www.twitch.tv/technotim/
+  # DISCORD: https://discord.gg/DJKexrJ
+  # TIKTOK: https://www.tiktok.com/@technotim
+  # KIT: https://kit.co/TechnoTim
+  # FACEBOOK: https://facebook.com
+  # FACEBOOK_MESSENGER: https://facebook.com
+  # LINKED_IN: https://linkedin.com
+  # PRODUCT_HUNT: https://www.producthunt.com/
+  # SNAPCHAT: https://www.snapchat.com/
+  # SPOTIFY: https://www.spotify.com/
+  # REDDIT: https://www.reddit.com/
+  # MEDIUM: https://medium.com
+  # PINTEREST: https://www.pinterest.com/
+  # EMAIL: you@example.com
+  # EMAIL_ALT: you@example.com
+  # SOUND_CLOUD: https://souncloud.com
+  # FIGMA: https://figma.com
+  # TELEGRAM: https://telegram.org/
+  # TUMBLR: https://www.tumblr.com/
+  # STEAM: https://steamcommunity.com/
+  # VIMEO: https://vimeo.com/
+  # WORDPRESS: https://wordpress.com/
+  # GOODREADS: https://www.goodreads.com/
+  # SKOOB: https://www.skoob.com.br/
+  # FOOTER: Thanks for stopping by!
+
+#  -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 3000
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
