@@ -76,7 +76,8 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | string | `nil` | environment variables. See more environment variables in the [littlelink-server documentation](https://github.com/techno-tim/littlelink-server). |
+| env | object | See below | environment variables. See more environment variables in the [littlelink-server documentation](https://github.com/techno-tim/littlelink-server). |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/techno-tim/littlelink-server"` | image repository |
 | image.tag | string | `"latest"` | image tag |
