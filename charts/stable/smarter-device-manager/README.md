@@ -1,6 +1,6 @@
 # smarter-device-manager
 
-![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
+![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
 
 Manage hardware resource allocation without a need for privileged containers
 
@@ -124,12 +124,21 @@ In this case host device `/dev/ttyUSB-Conbee-2` will be given at the same path, 
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | priorityClassName | string | `"system-node-critical"` | Custom priority class for different treatment by the scheduler Setting this is not necessary, but it is recommended. [[ref]](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/) |
 | securityContext | object | See values.yaml | Configure the securityContext for this pod [[ref]](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) |
+| termination.messagePath | string | `"/var/log/termination-log"` | Configure the path at which the file to which the main container's termination message will be written. Overrides the default of `/dev/termination-log` to allow read-only `persistence.devfs` at `/dev`. [[ref](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#lifecycle-1)] |
+| termination.messagePolicy | string | `"FallbackToLogsOnError"` | Indicate how the main container's termination message should be populated. Valid options are `File` and `FallbackToLogsOnError`. smarter-device-manager does not support a termination-log, so use the container's log. [[ref](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#lifecycle-1)] |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [6.1.0]
+
+#### Changed
+
+- Override the default container `terminationMessagePath` to allow mounting `/dev` as read-only. The path is now `/var/log/termination-log`. Fixes #1092.
+- Use the container's error log to populate the container termination message, since smarter-device-manager does not support a k8s `termination-log`.
 
 ### [6.0.0]
 
@@ -164,6 +173,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[6.1.0]: #610
 [6.0.0]: #600
 [5.0.0]: #500
 [4.0.0]: #400
