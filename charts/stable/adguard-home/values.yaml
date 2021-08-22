@@ -15,7 +15,7 @@ initContainers:
 # @default -- See values.yaml
   copy-configmap:
     image: busybox
-    pullPolicy: IfNotPresent
+    imagePullPolicy: IfNotPresent
     command:
     - "sh"
     - "-c"
