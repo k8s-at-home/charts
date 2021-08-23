@@ -1,6 +1,6 @@
 # adguard-home
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v0.106.3](https://img.shields.io/badge/AppVersion-v0.106.3-informational?style=flat-square)
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: v0.106.3](https://img.shields.io/badge/AppVersion-v0.106.3-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -94,6 +94,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [5.0.1]
+
+#### Changed
+
+- Add `pullPolicy` to initContainer
+
 ### [5.0.0]
 
 #### Changed
@@ -134,6 +140,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[5.0.1]: #501
 [5.0.0]: #500
 [4.0.1]: #401
 [4.0.0]: #400

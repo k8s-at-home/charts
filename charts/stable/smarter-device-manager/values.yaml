@@ -25,6 +25,18 @@ hostNetwork: true
 # -- Defaults to "ClusterFirst" if hostNetwork is false and "ClusterFirstWithHostNet" if hostNetwork is true.
 dnsPolicy:  # ClusterFirstWithHostNet
 
+termination:
+  # -- Configure the path at which the file to which the main container's termination message will be written.
+  # Overrides the default of `/dev/termination-log` to allow read-only `persistence.devfs` at `/dev`.
+  # [[ref](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#lifecycle-1)]
+  messagePath: /var/log/termination-log
+
+  # -- Indicate how the main container's termination message should be populated.
+  # Valid options are `File` and `FallbackToLogsOnError`.
+  # smarter-device-manager does not support a termination-log, so use the container's log.
+  # [[ref](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#lifecycle-1)]
+  messagePolicy: FallbackToLogsOnError
+
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
