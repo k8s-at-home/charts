@@ -1,0 +1,14 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+You need a real graphic card in your Kubernetes node to run Games on Whales.
+
+If you use Proxmox you might use PCI pass-through but you also need to ensure
+the host does not load any modules for the graphic card. See the
+[instructions](https://pve.proxmox.com/wiki/Pci_passthrough).
+
+{{- end -}}

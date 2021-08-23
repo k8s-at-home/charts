@@ -1,0 +1,133 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+service:
+  # -- Enable and configure service settings for the chart under this key.
+  # @default -- See values.yaml
+  main: {}
+  # type: LoadBalancer
+  # loadBalancerIP: 192.168.1.129
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  home:
+    enabled: true
+    type: emptyDir
+    mountPath: /home/retro
+
+sunshine:
+  image:
+    # -- sunshine image repository
+    repository: gameonwhales/sunshine
+    # -- sunshine image tag
+    tag: latest
+    # -- sunshine image pull policy
+    pullPolicy: IfNotPresent
+  # -- sunshine web interface user
+  user: admin
+  # -- sunshine web interface pasword
+  password: admin
+  # -- sunshine log level
+  logLevel: info
+  # -- sunshine additional env settings
+  env: {}
+xorg:
+  image:
+    # -- xorg image repository
+    repository: gameonwhales/xorg
+    # -- xorg image tag
+    tag: latest
+    # -- xorg image pull policy
+    pullPolicy: IfNotPresent
+  # -- xorg display ID
+  display: :99
+  # -- xorg refresh rate
+  refreshrate: 60
+  # -- xorg resolution
+  resolution: 1920x1080
+pulseaudio:
+  image:
+    # -- pulseaudio image repository
+    repository: gameonwhales/pulseaudio
+    # -- pulseaudio image tag
+    tag: latest
+    # -- pulseaudio image pull policy
+    pullPolicy: IfNotPresent
+retroarch:
+  # -- enable/disable retroarch container
+  enabled: true
+  image:
+    # -- retroarch image repository
+    repository: gameonwhales/retroarch
+    # -- retroarch image tag
+    tag: latest
+    # -- retroarch image pull policy
+    pullPolicy: IfNotPresent
+  # -- retroarch log level
+  logLevel: info
+  # -- retroarch extra volume mounts
+  volumeMounts: {}
+steam:
+  # -- enable/disable steam container
+  enabled: true
+  image:
+    # -- steam image repository
+    repository: gameonwhales/steam
+    # -- steam image tag
+    tag: latest
+    # -- steam image pull policy
+    pullPolicy: IfNotPresent
+  # -- enable proton log
+  protonLog: 1
+  # -- steam extra volume mounts
+  volumeMounts: {}
+firefox:
+  # -- enable/disable firefox container
+  enabled: true
+  image:
+    # -- image repository
+    repository: andrewmackrodt/firefox-x11
+    # -- image tag
+    tag: latest
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  # -- firefox log level
+  logLevel: info
+  # -- firefox extra volume mounts
+  volumeMounts: {}
+mkhomeretrodirs:
+  image:
+    # -- image repository
+    repository: busybox
+    # -- image tag
+    tag: 1.34.0
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+
+# -- Configure pulse audio settings
+# @default -- See values.yaml
+pulse:
+  config:
+    default.pa: |-
+      .fail
+          load-module module-null-sink sink_name=sunshine
+          set-default-sink sunshine
+          load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/pulse/pulse-socket
+    client.conf: |-
+      default-sink = sink-sunshine-stereo
+      autospawn = no
+      daemon-binary = /bin/true
+    daemon.conf: |-
+      exit-idle-time = -1
+      flat-volumes = yes
