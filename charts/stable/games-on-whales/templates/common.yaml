@@ -1,0 +1,272 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "games-on-whales.harcodedValues" -}}
+
+image:
+  {{ .Values.sunshine.image | toYaml | nindent 2 }}
+
+securityContext:
+  privileged: true
+
+env:
+  DISPLAY: {{ .Values.xorg.display }}
+  LOG_LEVEL: {{ .Values.sunshine.logLevel }}
+  PULSE_SERVER: /tmp/pulse/pulse-socket
+  SUNSHINE_PASS: {{ .Values.sunshine.password }}
+  SUNSHINE_USER: {{ .Values.sunshine.user }}
+  GOW_REQUIRED_DEVICES: /dev/uinput /dev/input/event* /dev/dri/*
+  XDG_RUNTIME_DIR: /tmp/.X11-unix
+  {{- if .Values.sunshine.env }}
+  {{ .Values.sunshine.env | toYaml | nindent 2 }}
+  {{- end }}
+
+initContainers:
+  mkhomeretrodirs:
+    image: {{.Values.mkhomeretrodirs.image.repository }}:{{ .Values.mkhomeretrodirs.image.tag }}
+    imagePullPolicy: {{ .Values.mkhomeretrodirs.image.pullPolicy }}
+    command:
+    - sh
+    - -c
+    - chown -R 1000:1000 /home/retro
+    {{- if .Values.persistence.home.enabled }}
+    volumeMounts:
+    - name: home
+      mountPath: /home/retro
+    {{- end }}
+
+additionalContainers:
+  xorg:
+    image: {{.Values.xorg.image.repository }}:{{ .Values.xorg.image.tag }}
+    imagePullPolicy: {{ .Values.xorg.image.pullPolicy }}
+    securityContext:
+      privileged: true
+    env:
+    - name: DISPLAY
+      value: {{ .Values.xorg.display | quote }}
+    - name: REFRESH_RATE
+      value: {{ .Values.xorg.refreshrate | quote}}
+    - name: RESOLUTION
+      value: {{ .Values.xorg.resolution | quote }}
+    volumeMounts:
+    - name: dev-input
+      mountPath: /dev/input
+      readOnly: true
+    - name: udev
+      mountPath: /run/udev
+      readOnly: true
+    - name: xorg
+      mountPath: /tmp/.X11-unix
+    - name: var-log
+      mountPath: /var/log
+  pulseaudio:
+    image: {{.Values.pulseaudio.image.repository }}:{{ .Values.pulseaudio.image.tag }}
+    imagePullPolicy: {{ .Values.pulseaudio.image.pullPolicy }}
+    volumeMounts:
+    - name: audio-socket
+      mountPath: /tmp/pulse
+    - name: pulse-conf
+      mountPath: /etc/pulse
+  {{- if .Values.retroarch.enabled }}
+  retroarch:
+    image: {{.Values.retroarch.image.repository }}:{{ .Values.retroarch.image.tag }}
+    imagePullPolicy: {{ .Values.retroarch.image.pullPolicy }}
+    securityContext:
+      privileged: true
+    env:
+    - name: DISPLAY
+      value: {{ .Values.xorg.display | quote }}
+    - name: LOG_LEVEL
+      value: {{ .Values.retroarch.logLevel | quote }}
+    - name: PULSE_SERVER
+      value: "/tmp/pulse/pulse-socket"
+    volumeMounts:
+    - name: audio-socket
+      mountPath: /tmp/pulse
+    - name: dev-input
+      mountPath: /dev/input
+      readOnly: true
+    - name: udev
+      mountPath: /run/udev
+      readOnly: true
+    - name: xorg
+      mountPath: /tmp/.X11-unix
+    {{- if .Values.persistence.home.enabled }}
+    - name: home
+      mountPath: /home/retro
+    {{- end }}
+    {{- if .Values.retroarch.volumeMounts }}
+    {{ .Values.retroarch.volumeMounts | toYaml | nindent 4 }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.steam.enabled }}
+  steam:
+    image: {{.Values.steam.image.repository }}:{{ .Values.steam.image.tag }}
+    imagePullPolicy: {{ .Values.steam.image.pullPolicy }}
+    securityContext:
+      privileged: true
+    env:
+    - name: DISPLAY
+      value: {{ .Values.xorg.display | quote }}
+    - name: PROTON_LOG
+      value: {{ .Values.steam.protonLog | quote }}
+    - name: PULSE_SERVER
+      value: "/tmp/pulse/pulse-socket"
+    volumeMounts:
+    - name: audio-socket
+      mountPath: /tmp/pulse
+    - name: dev-input
+      mountPath: /dev/input
+      readOnly: true
+    - name: udev
+      mountPath: /run/udev
+      readOnly: true
+    - name: xorg
+      mountPath: /tmp/.X11-unix
+    {{- if .Values.persistence.home.enabled }}
+    - name: home
+      mountPath: /home/retro
+    {{- end }}
+    # The following is needed by the webview otherwise you'll get Less than 64MB of free space in temporary directory (https://github.com/microsoft/vscode/issues/111729#issuecomment-737399692)
+    - name: dshm
+      mountPath: /dev/shm
+    {{- if .Values.steam.volumeMounts }}
+    {{ .Values.steam.volumeMounts | toYaml | nindent 4 }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.firefox.enabled }}
+  firefox:
+    image: {{.Values.firefox.image.repository }}:{{ .Values.firefox.image.tag }}
+    imagePullPolicy: {{ .Values.firefox.image.pullPolicy }}
+    env:
+    - name: DISPLAY
+      value: {{ .Values.xorg.display | quote }}
+    - name: LOG_LEVEL
+      value: {{ .Values.firefox.logLevel | quote }}
+    - name: PULSE_SERVER
+      value: "/tmp/pulse/pulse-socket"
+    volumeMounts:
+    - name: audio-socket
+      mountPath: /tmp/pulse
+    - name: xorg
+      mountPath: /tmp/.X11-unix
+    {{- if .Values.persistence.home.enabled }}
+    - name: home
+      mountPath: /run/user/1000
+    {{- end }}
+    {{- if .Values.firefox.volumeMounts }}
+    {{ .Values.firefox.volumeMounts | toYaml | nindent 4 }}
+    {{- end }}
+  {{- end }}
+
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    primary: true
+    ports:
+      http:
+        enabled: false
+        primary: false
+      sunshine:
+        enabled: true
+        port: 48010
+        protocol: TCP
+      sunshine-tcp1:
+        enabled: true
+        port: 47984
+        protocol: TCP
+      sunshine-tcp2:
+        enabled: true
+        port: 47985
+        protocol: TCP
+      sunshine-tcp3:
+        enabled: true
+        port: 47986
+        protocol: TCP
+      sunshine-tcp4:
+        enabled: true
+        port: 47987
+        protocol: TCP
+      sunshine-tcp5:
+        enabled: true
+        port: 47988
+        protocol: TCP
+      sunshine-tcp6:
+        enabled: true
+        port: 47989
+        protocol: TCP
+      sunshine-tcp7:
+        enabled: true
+        primary: true
+        port: 47990
+        protocol: HTTPS
+      sunshine-udp1:
+        enabled: true
+        port: 47998
+        protocol: UDP
+      sunshine-udp2:
+        enabled: true
+        port: 47999
+        protocol: UDP
+      sunshine-udp3:
+        enabled: true
+        port: 48000
+        protocol: UDP
+    externalTrafficPolicy: Local
+
+# Required for udev to work
+hostNetwork: true
+
+persistence:
+  dev-input:
+    enabled: true
+    type: hostPath
+    mountPath: /dev/input
+    hostPath: /dev/input
+  udev:
+    enabled: true
+    type: hostPath
+    mountPath: /run/udev
+    hostPath: /run/udev
+  xorg:
+    enabled: true
+    type: hostPath
+    mountPath: /tmp/.X11-unix
+    hostPath: /tmp/.X11-unix
+  var-log:
+    enabled: true
+    type: hostPath
+    mountPath: /var/log
+    hostPath: /var/log
+  audio-socket:
+    enabled: true
+    type: hostPath
+    mountPath: /tmp/pulse
+    hostPath: /tmp/pulse
+  dshm:
+    enabled: true
+    type: emptyDir
+    medium: Memory
+  pulse-conf:
+    enabled: true
+    type: custom
+    volumeSpec:
+      configMap:
+        name: {{ include "common.names.fullname" . }}-pulse
+        items:
+        - key: default.pa
+          path: default.pa
+        - key: client.conf
+          path: client.conf
+        - key: daemon.conf
+          path: daemon.conf
+
+
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "games-on-whales.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
