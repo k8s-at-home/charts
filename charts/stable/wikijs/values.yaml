@@ -24,7 +24,7 @@ env:
   # -- mysql, postgres, mariadb, mssql or sqlite
   DB_TYPE: sqlite
   # -- Path to the SQLite file if using sqlite
-  DB_FILEPATH: /data/db.sqlite
+  DB_FILEPATH: /app/wiki/data/db.sqlite
   # -- Database host address if using a real database, hopefully pgsql. example: 127.0.0.1 or pgsql.pgsql-namespace
   DB_HOST:
   # -- Port of the database
@@ -57,6 +57,7 @@ ingress:
     enabled: false
 
 # -- Configure persistence settings for the chart under this key. A persistence for /data is required.
+# -- Paths listed here will be chowned by the container on startup
 # @default -- See values.yaml
 persistence:
   config:
