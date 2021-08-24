@@ -1,6 +1,6 @@
 # searx
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Searx is a privacy-respecting, hackable metasearch engine
 
@@ -77,6 +77,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| caddy.noTls | bool | `false` | caddy sidecar disable auto tls if behind another loadbalancer or ingress |
 | caddy.pullPolicy | string | `"IfNotPresent"` | caddy sidecar image pull policy |
 | caddy.repository | string | `"caddy"` | caddy sidecar image repository |
 | caddy.tag | string | `"2.2.0-alpine"` | caddy sidecar image tag |
@@ -85,7 +86,7 @@ N/A
 | filtron.tag | string | `"latest"` | filtron sidecar image tag |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"searx/searx"` | image repository |
-| image.tag | string | `"1.0.0"` | image tag |
+| image.tag | string | `"1.0.0-211-968b2899"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | morty.pullPolicy | string | `"Always"` | morty sidecar image pull policy |
 | morty.repository | string | `"dalf/morty"` | morty sidecar image repository |
