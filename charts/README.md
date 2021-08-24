@@ -30,6 +30,7 @@
 | [foundryvtt](stable/foundryvtt) | An easy-to-deploy Dockerized Foundry Virtual Tabletop server |
 | [freshrss](stable/freshrss) | FreshRSS is a self-hosted RSS feed aggregator |
 | [frigate](stable/frigate) | NVR With Realtime Object Detection for IP Cameras |
+| [games-on-whales](stable/games-on-whales) | Streams graphic applications/games (retroarch, firefox, steam) runing on Kubernetes |
 | [gaps](stable/gaps) | Gaps searches through your Plex Server or local folders for all movies, then queries for known movies in the same collection. |
 | [gollum](stable/gollum) | Gollum is a simple wiki system built on top of Git |
 | [gonic](stable/gonic) | Music streaming server / subsonic server API implementation |
@@ -72,7 +73,6 @@
 | [nullserv](stable/nullserv) | A simple null file http and https server |
 | [nzbget](stable/nzbget) | NZBGet is a Usenet downloader client |
 | [nzbhydra2](stable/nzbhydra2) | Usenet meta search |
-| [oauth2-proxy](stable/oauth2-proxy) | A reverse proxy that provides authentication with Google, Github or other providers |
 | [octoprint](stable/octoprint) | OctoPrint is the snappy web interface for your 3D printer |
 | [omada-controller](stable/omada-controller) | Omada enables the network administrators to monitor and manage all the Omada products in the network with a centralized management platform. |
 | [ombi](stable/ombi) | Want a Movie or TV Show on Plex or Emby? Use Ombi! |
