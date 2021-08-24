@@ -46,6 +46,8 @@ caddy:
   tag: 2.2.0-alpine
   # -- caddy sidecar image pull policy
   pullPolicy: IfNotPresent
+  # -- caddy sidecar disable auto tls if behind another loadbalancer or ingress
+  noTls: false
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

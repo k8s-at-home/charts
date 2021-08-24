@@ -10,7 +10,9 @@ data:
   Caddyfile: |-
     {
       admin off
+    {{- if .Values.caddy.noTls }}
       auto_https off
+    {{- end }}
     }
 
     :80 {
