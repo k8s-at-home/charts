@@ -94,9 +94,6 @@ N/A
 | searx.baseUrl | string | `"https://searx.DOMAIN"` | External URL where the application is reachable |
 | searx.existingSecret | string | `nil` | Specify an existing secret that contains the environment variables required for the application configuration. |
 | searx.mortyKey | string | `"changeme"` | Generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service). Example : `openssl rand -base64 24` |
-| searxChecker.pullPolicy | string | `"Always"` | searx-checker sidecar image pull policy |
-| searxChecker.repository | string | `"searx/searx-checker"` | searx-checker sidecar image repository |
-| searxChecker.tag | string | `"latest"` | searx-checker sidecar image tag |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
