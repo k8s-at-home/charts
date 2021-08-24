@@ -78,6 +78,7 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://docs.linuxserver.io/images/docker-wikijs#environment-variables-e) for more details. |
 | env.DB_FILEPATH | string | `"/app/wiki/data/db.sqlite"` | Path to the SQLite file |
+| env.DB_HOST | string | `nil` | Host of SQL server |
 | env.DB_NAME | string | `nil` | Database name |
 | env.DB_PASS | string | `nil` | Password to connect to the database |
 | env.DB_PASS_FILE | string | `nil` | Path to the mapped file containing to the database password. (optional, replaces `DB_PASS`) |
