@@ -10,35 +10,36 @@ data:
   Caddyfile: |-
     {
       admin off
+      auto_https off
     }
 
     :80 {
-      log {
+        log {
             output discard
-      }
+        }
 
-      @api {
+        @api {
             path /config
-        path /status
-      }
+            path /status
+        }
 
-      @static {
+        @static {
             path /static/*
-      }
+        }
 
-      @notstatic {
+        @notstatic {
             not path /static/*
-      }
+        }
 
-      @morty {
+        @morty {
             path /morty/*
-      }
+        }
 
-      @notmorty {
+        @notmorty {
             not path /morty/*
-      }
+        }
 
-      header {
+        header {
             # Enable HTTP Strict Transport Security (HSTS) to force clients to always connect via HTTPS
             Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
@@ -52,6 +53,9 @@ data:
             X-Frame-Options "SAMEORIGIN"
 
             # Disable some features
+            Permissions-Policy "accelerometer=();ambient-light-sensor=(); autoplay=();camera=();encrypted-media=();focus-without-user-activation=(); geolocation=();gyroscope=();magnetometer=();microphone=();midi=();payment=();picture-in-picture=(); speaker=();sync-xhr=();usb=();vr=()"
+
+            # Disable some features (legacy)
             Feature-Policy "accelerometer 'none';ambient-light-sensor 'none'; autoplay 'none';camera 'none';encrypted-media 'none';focus-without-user-activation 'none'; geolocation 'none';gyroscope 'none';magnetometer 'none';microphone 'none';midi 'none';payment 'none';picture-in-picture 'none'; speaker 'none';sync-xhr 'none';usb 'none';vr 'none'"
 
             # Referer
@@ -62,53 +66,52 @@ data:
 
             # Remove Server header
             -Server
-      }
+        }
 
-      header @api {
+        header @api {
             Access-Control-Allow-Methods "GET, OPTIONS"
             Access-Control-Allow-Origin  "*"
-      }
+        }
 
-      # Cache
-      header @static {
+        # Cache
+        header @static {
             # Cache
-        Cache-Control "public, max-age=31536000"
-        defer
-      }
+            Cache-Control "public, max-age=31536000"
+            defer
+        }
 
-      header @notstatic {
+        header @notstatic {
             # No Cache
             Cache-Control "no-cache, no-store"
             Pragma "no-cache"
-      }
+        }
 
-      # CSP (see http://content-security-policy.com/ )
-      header @morty {
-        Content-Security-Policy "default-src 'none'; style-src 'self' 'unsafe-inline'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; img-src 'self' data:; font-src 'self'; frame-src 'self'"
-      }
+        # CSP (see http://content-security-policy.com/ )
+        header @morty {
+            Content-Security-Policy "default-src 'none'; style-src 'self' 'unsafe-inline'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; img-src 'self' data:; font-src 'self'; frame-src 'self'"
+        }
 
-      header @notmorty {
+        header @notmorty {
             Content-Security-Policy "upgrade-insecure-requests; default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'; font-src 'self'; frame-ancestors 'self'; base-uri 'self'; connect-src 'self' https://overpass-api.de; img-src 'self' data: https://*.tile.openstreetmap.org; frame-src https://www.youtube-nocookie.com https://player.vimeo.com https://www.dailymotion.com https://www.deezer.com https://www.mixcloud.com https://w.soundcloud.com https://embed.spotify.com"
         }
 
-      # Morty
-      handle @morty {
+        # Morty
+        handle @morty {
             reverse_proxy localhost:3000
-      }
+        }
 
-      # Filtron
-      handle {
+        # Filtron
+        handle {
             encode zstd gzip
 
             reverse_proxy localhost:4040 {
-                   header_up X-Forwarded-Port {http.request.port}
-                   header_up X-Forwarded-Proto {http.request.scheme}
-                   header_up X-Forwarded-TlsProto {tls_protocol}
-                   header_up X-Forwarded-TlsCipher {tls_cipher}
-                   header_up X-Forwarded-HttpsProto {proto}
+                header_up X-Forwarded-Port {http.request.port}
+                header_up X-Forwarded-Proto {http.request.scheme}
+                header_up X-Forwarded-TlsProto {tls_protocol}
+                header_up X-Forwarded-TlsCipher {tls_cipher}
+                header_up X-Forwarded-HttpsProto {proto}
             }
-      }
-
+        }
     }
   rules.json: |-
     [
@@ -231,7 +234,7 @@ data:
                     "aggregations": ["Header:X-Forwarded-For"],
                     "actions": [
                         {"name": "block",
-            "params": {"message": "Rate limit exceeded, try again later."}}
+                        "params": {"message": "Rate limit exceeded, try again later."}}
                     ]
                 },
                 {
@@ -253,7 +256,7 @@ data:
                     "actions": [
                         {"name": "block",
                         "params": {"message": "Rate limit exceeded, try again later."}}
-        ]
+                    ]
                 }
             ]
         }
