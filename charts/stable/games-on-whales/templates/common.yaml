@@ -203,6 +203,10 @@ service:
         primary: true
         port: 47990
         protocol: HTTPS
+    externalTrafficPolicy: Local
+  udp:
+    enabled: true
+    ports:
       sunshine-udp1:
         enabled: true
         port: 47998

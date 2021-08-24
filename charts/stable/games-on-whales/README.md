@@ -1,6 +1,6 @@
 # games-on-whales
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Streams graphic applications/games (retroarch, firefox, steam) runing on Kubernetes
 
@@ -84,7 +84,7 @@ the host does not load any modules for the graphic card. See the
 | firefox.image.repository | string | `"andrewmackrodt/firefox-x11"` | image repository |
 | firefox.image.tag | string | `"latest"` | image tag |
 | firefox.logLevel | string | `"info"` | firefox log level |
-| firefox.volumeMounts | object | `{}` | firefox extra volume mounts |
+| firefox.volumeMounts | list | `[]` | firefox extra volume mounts |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mkhomeretrodirs.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | mkhomeretrodirs.image.repository | string | `"busybox"` | image repository |
@@ -99,14 +99,15 @@ the host does not load any modules for the graphic card. See the
 | retroarch.image.repository | string | `"gameonwhales/retroarch"` | retroarch image repository |
 | retroarch.image.tag | string | `"latest"` | retroarch image tag |
 | retroarch.logLevel | string | `"info"` | retroarch log level |
-| retroarch.volumeMounts | object | `{}` | retroarch extra volume mounts |
-| service.main | object | See values.yaml | Enable and configure service settings for the chart under this key. |
+| retroarch.volumeMounts | list | `[]` | retroarch extra volume mounts |
+| service.main | object | See values.yaml | Enable and configure TCP service settings for the chart under this key. |
+| service.udp | object | See values.yaml | Enable and configure UDP service settings for the chart under this key. |
 | steam.enabled | bool | `true` | enable/disable steam container |
 | steam.image.pullPolicy | string | `"IfNotPresent"` | steam image pull policy |
 | steam.image.repository | string | `"gameonwhales/steam"` | steam image repository |
 | steam.image.tag | string | `"latest"` | steam image tag |
 | steam.protonLog | int | `1` | enable proton log |
-| steam.volumeMounts | object | `{}` | steam extra volume mounts |
+| steam.volumeMounts | list | `[]` | steam extra volume mounts |
 | sunshine.env | object | `{}` | sunshine additional env settings |
 | sunshine.image.pullPolicy | string | `"IfNotPresent"` | sunshine image pull policy |
 | sunshine.image.repository | string | `"gameonwhales/sunshine"` | sunshine image repository |
@@ -126,6 +127,23 @@ the host does not load any modules for the graphic card. See the
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.1.0]
+
+#### Added
+
+- N/A
+
+#### Changed
+
+- Split tcp and udp services (problems with flux/helm)
+- Fix mount volumes - from map to list
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #100
 
 ### [1.0.0]
 

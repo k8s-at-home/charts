@@ -12,9 +12,15 @@ ingress:
     enabled: false
 
 service:
-  # -- Enable and configure service settings for the chart under this key.
+  # -- Enable and configure TCP service settings for the chart under this key.
   # @default -- See values.yaml
   main: {}
+  # type: LoadBalancer
+  # loadBalancerIP: 192.168.1.129
+
+  # -- Enable and configure UDP service settings for the chart under this key.
+  # @default -- See values.yaml
+  udp: {}
   # type: LoadBalancer
   # loadBalancerIP: 192.168.1.129
 
@@ -77,7 +83,7 @@ retroarch:
   # -- retroarch log level
   logLevel: info
   # -- retroarch extra volume mounts
-  volumeMounts: {}
+  volumeMounts: []
 steam:
   # -- enable/disable steam container
   enabled: true
@@ -91,7 +97,7 @@ steam:
   # -- enable proton log
   protonLog: 1
   # -- steam extra volume mounts
-  volumeMounts: {}
+  volumeMounts: []
 firefox:
   # -- enable/disable firefox container
   enabled: true
@@ -105,7 +111,7 @@ firefox:
   # -- firefox log level
   logLevel: info
   # -- firefox extra volume mounts
-  volumeMounts: {}
+  volumeMounts: []
 mkhomeretrodirs:
   image:
     # -- image repository
