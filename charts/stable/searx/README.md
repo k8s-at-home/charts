@@ -103,6 +103,14 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [5.1.0]
+
+#### Changed
+
+- Removed searx-checker container from Helm chart because it's integrated into Searx.
+- Added the `caddy.noTls` option to disable automatic Let's Encrypt certificates for situations where Searx is running behind another Ingress controller that handles certificates.
+- Changed image tag to `1.0.0-211-968b2899`.
+
 ### [5.0.0]
 
 #### Changed
