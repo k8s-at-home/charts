@@ -16,7 +16,7 @@
   "packageRules": [
     // Setup datasources
     {
-      "datasources": ["helm"],
+      "matchDatasources": ["helm"],
       "commitMessageTopic": "Helm chart {{depName}}",
       "separateMinorPatch": true
     },
