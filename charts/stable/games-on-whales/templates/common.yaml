@@ -81,6 +81,8 @@ additionalContainers:
       value: {{ .Values.retroarch.logLevel | quote }}
     - name: PULSE_SERVER
       value: "/tmp/pulse/pulse-socket"
+    - name: GOW_REQUIRED_DEVICES
+      value: /dev/uinput /dev/input/event* /dev/dri/* /dev/snd/*
     volumeMounts:
     - name: audio-socket
       mountPath: /tmp/pulse
@@ -92,6 +94,9 @@ additionalContainers:
       readOnly: true
     - name: xorg
       mountPath: /tmp/.X11-unix
+    # Default 64MB not enough for some emulators - https://github.com/libretro/dolphin/issues/222
+    - name: dshm
+      mountPath: /dev/shm
     {{- if .Values.persistence.home.enabled }}
     - name: home
       mountPath: /home/retro
