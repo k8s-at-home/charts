@@ -82,7 +82,7 @@ the host does not load any modules for the graphic card. See the
 | firefox.enabled | bool | `true` | enable/disable firefox container |
 | firefox.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | firefox.image.repository | string | `"andrewmackrodt/firefox-x11"` | image repository |
-| firefox.image.tag | string | `"1.0.0"` | image tag |
+| firefox.image.tag | string | `"91.0.2-r1"` | image tag |
 | firefox.logLevel | string | `"info"` | firefox log level |
 | firefox.volumeMounts | list | `[]` | firefox extra volume mounts |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
