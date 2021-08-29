@@ -1,6 +1,6 @@
 # games-on-whales
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Streams graphic applications/games (retroarch, firefox, steam) runing on Kubernetes
 
@@ -67,7 +67,34 @@ helm install games-on-whales k8s-at-home/games-on-whales -f values.yaml
 
 ## Custom configuration
 
-You need a real graphic card in your Kubernetes node to run Games on Whales.
+### GPU
+
+You need a real graphic card in your Kubernetes node to run Games on Whales:
+
+#### Intel
+
+It does not require any custom settings but if you use [intel-gpu-plugin](https://github.com/k8s-at-home/charts/tree/master/charts/stable/intel-gpu-plugin)
+then you might use the `graphic_resources` value to specify the resource limits
+such as:
+
+```
+graphic_resources:
+  gpu.intel.com/i915: 1 # requesting 1 i915 GPU
+```
+
+#### Nvidia
+
+If you use the Nvidia propietary device driver then you will need the
+[Nvidia device plugin](https://github.com/NVIDIA/k8s-device-plugin)
+and set `graphic_resources` value to specify the resource limits.
+Example:
+
+```
+graphic_resources:
+  nvidia.com/gpu: 1 # requesting 1 nvidia GPU
+```
+
+#### Proxmox
 
 If you use Proxmox you might use PCI pass-through but you also need to ensure
 the host does not load any modules for the graphic card. See the
@@ -82,9 +109,10 @@ the host does not load any modules for the graphic card. See the
 | firefox.enabled | bool | `true` | enable/disable firefox container |
 | firefox.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | firefox.image.repository | string | `"andrewmackrodt/firefox-x11"` | image repository |
-| firefox.image.tag | string | `"1.0.0"` | image tag |
+| firefox.image.tag | string | `"91.0.2-r1"` | image tag |
 | firefox.logLevel | string | `"info"` | firefox log level |
 | firefox.volumeMounts | list | `[]` | firefox extra volume mounts |
+| graphic_resources | object | `nil` | Pass GPU resources to Xorg, steam and retroarch containers See Custom configuration section in the Readme |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mkhomeretrodirs.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | mkhomeretrodirs.image.repository | string | `"busybox"` | image repository |
@@ -127,6 +155,13 @@ the host does not load any modules for the graphic card. See the
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.3.0]
+
+#### Added
+
+- support for NVIDIA
+- ABeltramo as maintainer
 
 ### [1.2.0]
 
