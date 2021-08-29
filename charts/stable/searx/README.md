@@ -1,6 +1,6 @@
 # searx
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Searx is a privacy-respecting, hackable metasearch engine
 
@@ -77,6 +77,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| caddy.noTls | bool | `false` | caddy sidecar disable auto tls if behind another loadbalancer or ingress |
 | caddy.pullPolicy | string | `"IfNotPresent"` | caddy sidecar image pull policy |
 | caddy.repository | string | `"caddy"` | caddy sidecar image repository |
 | caddy.tag | string | `"2.2.0-alpine"` | caddy sidecar image tag |
@@ -85,7 +86,7 @@ N/A
 | filtron.tag | string | `"latest"` | filtron sidecar image tag |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"searx/searx"` | image repository |
-| image.tag | string | `"1.0.0"` | image tag |
+| image.tag | string | `"1.0.0-211-968b2899"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | morty.pullPolicy | string | `"Always"` | morty sidecar image pull policy |
 | morty.repository | string | `"dalf/morty"` | morty sidecar image repository |
@@ -94,9 +95,6 @@ N/A
 | searx.baseUrl | string | `"https://searx.DOMAIN"` | External URL where the application is reachable |
 | searx.existingSecret | string | `nil` | Specify an existing secret that contains the environment variables required for the application configuration. |
 | searx.mortyKey | string | `"changeme"` | Generate a random key used by Morty (Privacy aware web content sanitizer proxy as a service). Example : `openssl rand -base64 24` |
-| searxChecker.pullPolicy | string | `"Always"` | searx-checker sidecar image pull policy |
-| searxChecker.repository | string | `"searx/searx-checker"` | searx-checker sidecar image repository |
-| searxChecker.tag | string | `"latest"` | searx-checker sidecar image tag |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -104,6 +102,14 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [5.1.0]
+
+#### Changed
+
+- Removed searx-checker container from Helm chart because it's integrated into Searx.
+- Added the `caddy.noTls` option to disable automatic Let's Encrypt certificates for situations where Searx is running behind another Ingress controller that handles certificates.
+- Changed image tag to `1.0.0-211-968b2899`.
 
 ### [5.0.0]
 

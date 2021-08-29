@@ -35,9 +35,9 @@ persistence:
 sunshine:
   image:
     # -- sunshine image repository
-    repository: gameonwhales/sunshine
+    repository: ghcr.io/games-on-whales/sunshine
     # -- sunshine image tag
-    tag: latest
+    tag: 1.0.0
     # -- sunshine image pull policy
     pullPolicy: IfNotPresent
   # -- sunshine web interface user
@@ -51,9 +51,9 @@ sunshine:
 xorg:
   image:
     # -- xorg image repository
-    repository: gameonwhales/xorg
+    repository: ghcr.io/games-on-whales/xorg
     # -- xorg image tag
-    tag: latest
+    tag: 1.0.0
     # -- xorg image pull policy
     pullPolicy: IfNotPresent
   # -- xorg display ID
@@ -65,9 +65,9 @@ xorg:
 pulseaudio:
   image:
     # -- pulseaudio image repository
-    repository: gameonwhales/pulseaudio
+    repository: ghcr.io/games-on-whales/pulseaudio
     # -- pulseaudio image tag
-    tag: latest
+    tag: 1.0.0
     # -- pulseaudio image pull policy
     pullPolicy: IfNotPresent
 retroarch:
@@ -75,9 +75,9 @@ retroarch:
   enabled: true
   image:
     # -- retroarch image repository
-    repository: gameonwhales/retroarch
+    repository: ghcr.io/games-on-whales/retroarch
     # -- retroarch image tag
-    tag: latest
+    tag: 1.0.0
     # -- retroarch image pull policy
     pullPolicy: IfNotPresent
   # -- retroarch log level
@@ -89,9 +89,9 @@ steam:
   enabled: true
   image:
     # -- steam image repository
-    repository: gameonwhales/steam
+    repository: ghcr.io/games-on-whales/steam
     # -- steam image tag
-    tag: latest
+    tag: 1.0.0
     # -- steam image pull policy
     pullPolicy: IfNotPresent
   # -- enable proton log
@@ -105,7 +105,7 @@ firefox:
     # -- image repository
     repository: andrewmackrodt/firefox-x11
     # -- image tag
-    tag: latest
+    tag: 91.0.2-r1
     # -- image pull policy
     pullPolicy: IfNotPresent
   # -- firefox log level
