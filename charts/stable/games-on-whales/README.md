@@ -1,6 +1,6 @@
 # games-on-whales
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Streams graphic applications/games (retroarch, firefox, steam) runing on Kubernetes
 
@@ -128,38 +128,27 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [1.1.1]
+
+#### Changed
+
+- unlimit /dev/shm for retroarch - needed for [some emulators](https://github.com/libretro/dolphin/issues/222)
+- correct sound devices group in retroarch
+
 ### [1.1.0]
-
-#### Added
-
-- N/A
 
 #### Changed
 
 - Split tcp and udp services (problems with flux/helm)
 - Fix mount volumes - from map to list
 
-#### Removed
-
-- N/A
-
-[1.0.0]: #100
+[1.1.0]: #110
 
 ### [1.0.0]
 
 #### Added
 
 - Initial version
-
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
-[1.0.0]: #100
 
 ## Support
 
