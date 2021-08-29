@@ -130,35 +130,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### [1.1.1]
 
-#### Added
-
-- N/A
-
 #### Changed
 
-- Unlimit /dev/shm for retroarch - needed for [some emulators](https://github.com/libretro/dolphin/issues/222)
+- unlimit /dev/shm for retroarch - needed for [some emulators](https://github.com/libretro/dolphin/issues/222)
 - correct sound devices group in retroarch
 
-#### Removed
-
-- N/A
-
-[1.1.1]: #111
-
 ### [1.1.0]
-
-#### Added
-
-- N/A
 
 #### Changed
 
 - Split tcp and udp services (problems with flux/helm)
 - Fix mount volumes - from map to list
-
-#### Removed
-
-- N/A
 
 [1.1.0]: #110
 
@@ -167,16 +149,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Added
 
 - Initial version
-
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
-
-[1.0.0]: #100
 
 ## Support
 
