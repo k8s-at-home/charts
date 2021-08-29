@@ -1,0 +1,63 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: weetmuts/wmbusmeters
+  # -- image tag
+  tag: release-1.4.1-amd64
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+service:
+  main:
+    enabled: false
+
+securityContext:
+  privileged: true
+
+
+# Set the default config for wmbusmeters, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
+config: |
+  loglevel=normal
+  device=rtlwmbus
+  listento=t1
+  logtelegrams=false
+  format=json
+  meterfiles=/wmbusmeters_data/logs/meter_readings
+  meterfilesaction=overwrite
+  logfile=/wmbusmeters_data/logs/wmbusmeters.log
+  shell=/usr/bin/mosquitto_pub -h localhost -p 1883 -i wmbusmeters -t wmbusmeters/"$METER_ID" -m "$METER_JSON"
+
+# Set the config for individual meters to read, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
+wmbusmeters:
+- name: watermeter
+  config: |
+    name=watermeter
+    type=multical21
+    id=1234567
+    key=000000000000000000000000
+
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  usb:
+    enabled: true
+    type: hostPath
+    hostPath: /dev/
+    mountPath: /dev/
+
+# Example on how to choose the node to run on
+# that actually has a radio dongle
+# nodeSelector:
+#   feature.node.kubernetes.io/custom-rtl: "true"

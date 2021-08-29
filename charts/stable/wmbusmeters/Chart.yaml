@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: 1.4.1
+description: wmbusmeters helm package
+name: wmbusmeters
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- wmbusmeters
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wmbusmeters
+sources:
+- https://github.com/weetmuts/wmbusmeters
+maintainers:
+- name: brujoand
+  email: anders@brujordet.no
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.0
