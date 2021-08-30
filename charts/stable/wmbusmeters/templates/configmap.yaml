@@ -10,9 +10,8 @@ data:
     {{- tpl .Values.config $ | nindent 4 }}
 
 {{- range .Values.wmbusmeters }}
-{{- $name := printf "%s-%s" (include "common.names.fullname" $) .name }}
-{{- $labels := include "common.labels" $ }}
-
+  {{- $name := printf "%s-%s" (include "common.names.fullname" $) .name }}
+  {{- $labels := include "common.labels" $ }}
 ---
 apiVersion: v1
 kind: ConfigMap

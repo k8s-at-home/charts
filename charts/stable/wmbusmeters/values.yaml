@@ -26,7 +26,7 @@ securityContext:
   privileged: true
 
 
-# Set the default config for wmbusmeters, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
+# -- Set the default config for wmbusmeters, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
 config: |
   loglevel=normal
   device=rtlwmbus
@@ -38,7 +38,7 @@ config: |
   logfile=/wmbusmeters_data/logs/wmbusmeters.log
   shell=/usr/bin/mosquitto_pub -h localhost -p 1883 -i wmbusmeters -t wmbusmeters/"$METER_ID" -m "$METER_JSON"
 
-# Set the config for individual meters to read, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
+# -- Set the config for individual meters to read, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
 wmbusmeters:
 - name: watermeter
   config: |
@@ -51,7 +51,7 @@ wmbusmeters:
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
-  usb:
+  host-dev:
     enabled: true
     type: hostPath
     hostPath: /dev/

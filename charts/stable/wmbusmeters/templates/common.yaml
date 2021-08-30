@@ -3,8 +3,6 @@
 
 {{/* Append the hardcoded settings */}}
 {{- define "wmbusmeters.harcodedValues" -}}
-
-
 persistence:
   wmbusmeters-config:
     enabled: "true"
@@ -16,7 +14,6 @@ persistence:
         name: {{ printf "%v-config" (include "common.names.fullname" .) }}
 
 {{- range .Values.wmbusmeters }}
-
   device-{{ .name }}:
     enabled: "true"
     mountPath: "/wmbusmeters_data/etc/wmbusmeters.d/{{ .name }}.conf"
@@ -25,7 +22,6 @@ persistence:
     volumeSpec:
       configMap:
         name: {{ printf "%v-%v" (include "common.names.fullname" $) .name }}
-
 {{- end -}}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "wmbusmeters.harcodedValues" . | fromYaml) -}}
