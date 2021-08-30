@@ -5,7 +5,35 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-You need a real graphic card in your Kubernetes node to run Games on Whales.
+
+### GPU
+
+You need a real graphic card in your Kubernetes node to run Games on Whales:
+
+#### Intel
+
+It does not require any custom settings but if you use [intel-gpu-plugin](https://github.com/k8s-at-home/charts/tree/master/charts/stable/intel-gpu-plugin)
+then you might use the `graphic_resources` value to specify the resource limits
+such as:
+
+```
+graphic_resources:
+  gpu.intel.com/i915: 1 # requesting 1 i915 GPU
+```
+
+#### Nvidia
+
+If you use the Nvidia propietary device driver then you will need the
+[Nvidia device plugin](https://github.com/NVIDIA/k8s-device-plugin)
+and set `graphic_resources` value to specify the resource limits.
+Example:
+
+```
+graphic_resources:
+  nvidia.com/gpu: 1 # requesting 1 nvidia GPU
+```
+
+#### Proxmox
 
 If you use Proxmox you might use PCI pass-through but you also need to ensure
 the host does not load any modules for the graphic card. See the
