@@ -19,11 +19,6 @@ persistence:
       configMap:
         name: {{ printf "%v-config" (include "common.names.fullname" .) }}
 
-  searx-checker:
-    enabled: true
-    type: emptyDir
-    mountPath: "-"
-
 additionalContainers:
   caddy:
     name: caddy
@@ -36,18 +31,6 @@ additionalContainers:
     - name: searx-config
       mountPath: /etc/caddy/Caddyfile
       subPath: Caddyfile
-    - name: searx-checker
-      mountPath: /srv/searx-checker
-
-  searx-checker:
-    name: searx-checker
-    image: "{{ .Values.searxChecker.repository }}:{{ .Values.searxChecker.tag }}"
-    imagePullPolicy: {{ .Values.searxChecker.pullPolicy }}
-    args:
-      ["-cron", "-o", "html/data/status.json", "http://localhost:8080"]
-    volumeMounts:
-    - name: searx-checker
-      mountPath: /usr/local/searx-checker/html/data
 
   filtron:
     name: filtron
