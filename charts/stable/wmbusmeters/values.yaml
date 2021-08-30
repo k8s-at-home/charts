@@ -18,11 +18,8 @@ env:
   # -- Set the container timezone
   TZ: UTC
 
-service:
-  main:
-    enabled: false
-
 securityContext:
+  # -- (bool) Privileged securityContext may be required if USB controller is accessed directly through the host machine
   privileged: true
 
 
@@ -36,7 +33,6 @@ config: |
   meterfiles=/wmbusmeters_data/logs/meter_readings
   meterfilesaction=overwrite
   logfile=/wmbusmeters_data/logs/wmbusmeters.log
-  shell=/usr/bin/mosquitto_pub -h localhost -p 1883 -i wmbusmeters -t wmbusmeters/"$METER_ID" -m "$METER_JSON"
 
 # -- Set the config for individual meters to read, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
 wmbusmeters:
@@ -52,12 +48,7 @@ wmbusmeters:
 # @default -- See values.yaml
 persistence:
   host-dev:
-    enabled: true
+    enabled: false
     type: hostPath
-    hostPath: /dev/
-    mountPath: /dev/
-
-# Example on how to choose the node to run on
-# that actually has a radio dongle
-# nodeSelector:
-#   feature.node.kubernetes.io/custom-rtl: "true"
+    hostPath: /dev/device1
+    mountPath: /dev/device1

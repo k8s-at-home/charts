@@ -3,6 +3,10 @@
 
 {{/* Append the hardcoded settings */}}
 {{- define "wmbusmeters.harcodedValues" -}}
+
+service:
+  main:
+    enabled: false
 persistence:
   wmbusmeters-config:
     enabled: "true"
@@ -12,7 +16,6 @@ persistence:
     volumeSpec:
       configMap:
         name: {{ printf "%v-config" (include "common.names.fullname" .) }}
-
 {{- range .Values.wmbusmeters }}
   device-{{ .name }}:
     enabled: "true"
