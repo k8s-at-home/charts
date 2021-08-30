@@ -32,6 +32,10 @@ persistence:
     type: emptyDir
     mountPath: /home/retro
 
+# -- (object) Pass GPU resources to Xorg, steam and retroarch containers
+# See Custom configuration section in the Readme
+graphic_resources:
+
 sunshine:
   image:
     # -- sunshine image repository

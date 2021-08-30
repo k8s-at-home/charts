@@ -10,6 +10,14 @@ image:
 securityContext:
   privileged: true
 
+{{- if .Values.graphic_resources }}
+resources:
+  requests:
+    {{ .Values.graphic_resources | toYaml | nindent 4 }}
+  limits:
+    {{ .Values.graphic_resources | toYaml | nindent 4 }}
+{{- end }}
+
 env:
   DISPLAY: {{ .Values.xorg.display }}
   LOG_LEVEL: {{ .Values.sunshine.logLevel }}
@@ -42,6 +50,13 @@ additionalContainers:
     imagePullPolicy: {{ .Values.xorg.image.pullPolicy }}
     securityContext:
       privileged: true
+    {{- if .Values.graphic_resources }}
+    resources:
+      requests:
+        {{ .Values.graphic_resources | toYaml | nindent 8 }}
+      limits:
+        {{ .Values.graphic_resources | toYaml | nindent 8 }}
+    {{- end }}
     env:
     - name: DISPLAY
       value: {{ .Values.xorg.display | quote }}
@@ -74,6 +89,13 @@ additionalContainers:
     imagePullPolicy: {{ .Values.retroarch.image.pullPolicy }}
     securityContext:
       privileged: true
+    {{- if .Values.graphic_resources }}
+    resources:
+      requests:
+        {{ .Values.graphic_resources | toYaml | nindent 8 }}
+      limits:
+        {{ .Values.graphic_resources | toYaml | nindent 8 }}
+    {{- end }}
     env:
     - name: DISPLAY
       value: {{ .Values.xorg.display | quote }}
@@ -111,6 +133,13 @@ additionalContainers:
     imagePullPolicy: {{ .Values.steam.image.pullPolicy }}
     securityContext:
       privileged: true
+    {{- if .Values.graphic_resources }}
+    resources:
+      requests:
+        {{ .Values.graphic_resources | toYaml | nindent 8 }}
+      limits:
+        {{ .Values.graphic_resources | toYaml | nindent 8 }}
+    {{- end }}
     env:
     - name: DISPLAY
       value: {{ .Values.xorg.display | quote }}
