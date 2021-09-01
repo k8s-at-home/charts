@@ -146,3 +146,4 @@
 ### Incubator charts:
 | Chart | Description |
 | ----- | ----------- |
+| [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
