@@ -1,15 +1,15 @@
-# traccar
+# changedetection-io
 
-![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: v4.13](https://img.shields.io/badge/AppVersion-v4.13-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.93](https://img.shields.io/badge/AppVersion-0.93-informational?style=flat-square)
 
-Traccar is an open source GPS tracking system.
+changedetection-io helm package
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/traccar/traccar>
-* <https://hub.docker.com/r/traccar/traccar>
+* <https://github.com/dgtlmoon/changedetection.io>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/changedetection-io>
 
 ## Requirements
 
@@ -19,7 +19,6 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.4.4 |
 | https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR
@@ -27,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install traccar k8s-at-home/traccar
+helm install changedetection-io k8s-at-home/changedetection-io
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `traccar`
+To install the chart with the release name `changedetection-io`
 
 ```console
-helm install traccar k8s-at-home/traccar
+helm install changedetection-io k8s-at-home/changedetection-io
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `traccar` deployment
+To uninstall the `changedetection-io` deployment
 
 ```console
-helm uninstall traccar
+helm uninstall changedetection-io
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -56,15 +55,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install traccar \
+helm install changedetection-io \
   --set env.TZ="America/New York" \
-    k8s-at-home/traccar
+    k8s-at-home/changedetection-io
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install traccar k8s-at-home/traccar -f values.yaml
+helm install changedetection-io k8s-at-home/changedetection-io -f values.yaml
 ```
 
 ## Custom configuration
@@ -77,14 +76,12 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [traccar documentation](https://www.traccar.org/configuration-file/) |
-| env.CONFIG_USE_ENVIRONMENT_VARIABLES | bool | `true` | Set application to read environment variables |
-| env.LOGGER_CONSOLE | bool | `true` | Set application to log to stdout |
+| env | object | See below | environment variables. See more environment variables in the [changedetection-io documentation](https://changedetection-io.org/docs). |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"traccar/traccar"` | image repository |
-| image.tag | string | `"4.13"` | image tag |
+| image.repository | string | `"dgtlmoon/changedetection.io"` | image repository |
+| image.tag | string | `"0.39"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb). |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
@@ -94,35 +91,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [6.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [5.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `4.13`.
-
-### [4.3.2]
-
-#### Added
-
-- Added icon url
-
 ### [1.0.0]
 
 #### Added
 
 - Initial version
 
-[6.0.0]: #600
-[5.0.0]: #500
-[4.3.2]: #432
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
 [1.0.0]: #100
 
 ## Support
