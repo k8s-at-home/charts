@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 0.8.0
 description: Baïkal is a lightweight CalDAV+CardDAV server. It offers a web interface with management of users, address books and calendars.
 name: baikal
-version: 3.0.0
+version: 3.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
 - baikal
@@ -23,6 +23,6 @@ dependencies:
   repository: https://library-charts.k8s-at-home.com
   version: 4.0.0
 - name: mariadb
-  version: 9.3.19
+  version: 9.4.4
   repository: https://charts.bitnami.com/bitnami
   condition: mariadb.enabled
