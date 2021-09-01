@@ -13,6 +13,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
+# -- environment variables.
 # @default -- See below
 env:
   # -- Set the container timezone
@@ -21,7 +22,6 @@ env:
 securityContext:
   # -- (bool) Privileged securityContext may be required if USB controller is accessed directly through the host machine
   privileged: true
-
 
 # -- Set the default config for wmbusmeters, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
 config: |
