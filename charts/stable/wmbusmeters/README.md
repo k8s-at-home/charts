@@ -2,7 +2,7 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.4.1](https://img.shields.io/badge/AppVersion-1.4.1-informational?style=flat-square)
 
-wmbusmeters helm package
+Wmbusmeters receives and decodes C1,T1 or S1 telegrams (using the wireless mbus protocol) to acquire utility meter readings.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -67,7 +67,45 @@ helm install wmbusmeters k8s-at-home/wmbusmeters -f values.yaml
 
 ## Custom configuration
 
-N/A
+**IMPORTANT NOTE:** a rtlsdr device must be accessible on the node where this pod runs, in order for this chart to function properly.
+
+Wmbusmeters can auto-discover this dongle, but first you need to give the pod extended privileges:
+
+```
+securityContext:
+  privileged: true
+```
+
+Alternatively you could mount the device directly, if you know what you are doing and can manually configure wmbusmetersto use it:
+
+```yaml
+host-dev:
+  enabled: true
+  type: hostPath
+  hostPath: /dev/device1
+  mountPath: /dev/device1
+```
+
+Second you will need to set a nodeAffinity rule, for example if you are using [node-feature-discovery](https://github.com/kubernetes-sigs/node-feature-discovery):
+
+```yaml
+  nodeSelector:
+    feature.node.kubernetes.io/custom-rtl: "true"
+```
+
+or by simply labeling the node which has the usb dongle:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: app
+          operator: In
+          values:
+          - rtlsdr-dongle
+```
 
 ## Values
 
@@ -75,16 +113,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | `"loglevel=normal\ndevice=rtlwmbus\nlistento=t1\nlogtelegrams=false\nformat=json\nmeterfiles=/wmbusmeters_data/logs/meter_readings\nmeterfilesaction=overwrite\nlogfile=/wmbusmeters_data/logs/wmbusmeters.log\nshell=/usr/bin/mosquitto_pub -h localhost -p 1883 -i wmbusmeters -t wmbusmeters/\"$METER_ID\" -m \"$METER_JSON\"\n"` |  |
+| config | string | `"loglevel=normal\ndevice=rtlwmbus\nlistento=t1\nlogtelegrams=false\nformat=json\nmeterfiles=/wmbusmeters_data/logs/meter_readings\nmeterfilesaction=overwrite\nlogfile=/wmbusmeters_data/logs/wmbusmeters.log\n"` | Set the default config for wmbusmeters, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md |
+| env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"weetmuts/wmbusmeters"` | image repository |
 | image.tag | string | `"release-1.4.1-amd64"` | image tag |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| securityContext.privileged | bool | `true` |  |
-| service.main.enabled | bool | `false` |  |
-| wmbusmeters[0].config | string | `"name=watermeter\ntype=multical21\nid=1234567\nkey=000000000000000000000000\n"` |  |
-| wmbusmeters[0].name | string | `"watermeter"` |  |
+| securityContext.privileged | bool | `true` | (bool) Privileged securityContext may be required if USB controller is accessed directly through the host machine |
+| wmbusmeters | list | `[{"config":"name=watermeter\ntype=multical21\nid=1234567\nkey=000000000000000000000000\n","name":"watermeter"}]` | Set the config for individual meters to read, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md |
 
 ## Changelog
 
@@ -97,14 +134,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Added
 
 - Initial version
-
-#### Changed
-
-- N/A
-
-#### Removed
-
-- N/A
 
 [1.0.0]: #100
 
