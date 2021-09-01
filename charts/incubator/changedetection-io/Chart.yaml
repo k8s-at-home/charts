@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: "0.93"
+description: changedetection-io helm package
+name: changedetection-io
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- changedetection.io
+- urlmonitor
+- website-monitoring
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/changedetection-io
+icon:
+sources:
+- https://github.com/dgtlmoon/changedetection.io
+- https://github.com/k8s-at-home/charts/tree/master/charts/changedetection-io
+maintainers:
+- name: tuxpeople
+  url: https://github.com/tuxpeople
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.0
