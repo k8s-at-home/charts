@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: ghcr.io/k8s-at-home/qbittorrent
   # -- image tag
-  tag: v4.3.5
+  tag: v4.3.8
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -60,3 +60,38 @@ persistence:
   downloads:
     enabled: false
     mountPath: /downloads
+
+prometheus:
+  # -- Enable and configure a Prometheus podMonitor for the chart under this key.
+  # See also the notes under `additionalContainers`.
+  # @default -- See values.yaml
+  podMonitor:
+    enabled: false
+    interval: 15s
+    scrapeTimeout: 5s
+    additionalLabels: {}
+
+# # When using the prometheus.podMonitor the following
+# # container is required
+# additionalContainers:
+#   - name: exporter
+#     image: ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter:v1.2.0
+#     imagePullPolicy: IfNotPresent
+#     env:
+#       - name: QBITTORRENT_HOST
+#         value: "http://localhost"
+#       - name: QBITTORRENT_PORT
+#         value: "8080"
+#       - name: QBITTORRENT_USER
+#         value: "YOUR_QBITTORRENT_USERNAME"
+#       - name: QBITTORRENT_PASS
+#         value: "YOUR_QBITTORRENT_PASSWORD"
+#       - name: EXPORTER_PORT
+#         value: "9022"
+#       - name: EXPORTER_LOG_LEVEL
+#         value: "INFO"
+#       - name: METRICS_PREFIX
+#         value: "qbittorrent"
+#     ports:
+#       - name: metrics
+#         containerPort: 9022
