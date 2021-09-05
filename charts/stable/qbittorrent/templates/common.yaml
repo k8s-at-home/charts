@@ -1,19 +1,45 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap volume to the volumes */}}
-{{- define "qbittorrent.configmapVolume" -}}
-enabled: "true"
-mountPath: "/config/custom-cont-init.d"
-type: "custom"
-volumeSpec:
-  configMap:
-    name: {{ include "common.names.fullname" . }}-scripts
-    defaultMode: 511
+{{/* Append the hardcoded settings */}}
+{{- define "qbittorrent.harcodedValues" -}}
+{{ if and .Values.settings.automaticPortSetup }}
+persistence:
+  qbittorrent-scripts:
+    enabled: "true"
+    mountPath: "/config/custom-cont-init.d"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ include "common.names.fullname" . }}-scripts
+        defaultMode: 511
+{{ end }}
+
+{{ if .Values.exporter.enabled }}
+additionalContainers:
+  exporter:
+    name: exporter
+    image: "{{ .Values.exporter.image.repository }}:{{ .Values.exporter.image.tag }}"
+    imagePullPolicy: {{ .Values.exporter.image.pullPolicy }}
+    env:
+      - name: QBITTORRENT_HOST
+        value: "http://localhost"
+      - name: QBITTORRENT_PORT
+        value: "{{ .Values.service.main.ports.http.port }}"
+      - name: QBITTORRENT_USER
+        value: "{{ .Values.exporter.env.user }}"
+      - name: QBITTORRENT_PASS
+        value: "{{ .Values.exporter.env.password }}"
+      - name: EXPORTER_PORT
+        value: "{{ .Values.exporter.env.port }}"
+      - name: EXPORTER_LOG_LEVEL
+        value: "{{ .Values.exporter.env.log }}"
+    ports:
+      - name: metrics
+        containerPort: {{ .Values.exporter.env.port }}
+{{ end }}
 {{- end -}}
-{{- if and .Values.settings.automaticPortSetup -}}
-  {{- $_ := set .Values.persistence "qbittorrent-scripts" (include "qbittorrent.configmapVolume" . | fromYaml) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "qbittorrent.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}

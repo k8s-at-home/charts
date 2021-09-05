@@ -1,6 +1,6 @@
 # qbittorrent
 
-![Version: 12.0.0](https://img.shields.io/badge/Version-12.0.0-informational?style=flat-square) ![AppVersion: v4.3.5](https://img.shields.io/badge/AppVersion-v4.3.5-informational?style=flat-square)
+![Version: 12.1.0](https://img.shields.io/badge/Version-12.1.0-informational?style=flat-square) ![AppVersion: v4.3.7](https://img.shields.io/badge/AppVersion-v4.3.7-informational?style=flat-square)
 
 qBittorrent is a cross-platform free and open-source BitTorrent client
 
@@ -78,9 +78,20 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://docs.k8s-at-home.com/our-container-images/configuration/) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
+| exporter.enabled | bool | See values.yaml | Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor. |
+| exporter.env.log | string | `"INFO"` | log level [DEBUG|INFO|WARNING|ERROR|CRITICAL] |
+| exporter.env.password | string | `"adminadmin"` | qbittorrent password update value after configuring qbittorrent |
+| exporter.env.port | int | `9022` | metrics port |
+| exporter.env.user | string | `"admin"` | qbittorrent username update value after configuring qbittorrent |
+| exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| exporter.image.repository | string | `"ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter"` | image repository |
+| exporter.image.tag | string | `"v1.2.0"` | image tag |
+| exporter.podMonitor.labels | object | `{}` |  |
+| exporter.podMonitor.interval | string | `"15s"` |  |
+| exporter.podMonitor.scrapeTimeout | string | `"5s"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/qbittorrent"` | image repository |
-| image.tag | string | `"v4.3.5"` | image tag |
+| image.tag | string | `"v4.3.7"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -91,6 +102,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [12.1.0]
+
+#### Added
+
+- Added podMonitor and the ability to use [prometheus-qbittorrent-exporter](https://github.com/esanchezm/prometheus-qbittorrent-exporter) as a sidecar container.
 
 ### [12.0.0]
 
@@ -119,6 +136,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[12.1.0]: #1210
 [12.0.0]: #1200
 [11.0.0]: #1100
 [10.0.0]: #1000
