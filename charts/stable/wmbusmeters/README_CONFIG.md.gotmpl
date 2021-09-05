@@ -1,0 +1,47 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+**IMPORTANT NOTE:** a rtlsdr device must be accessible on the node where this pod runs, in order for this chart to function properly.
+
+Wmbusmeters can auto-discover this dongle, but first you need to give the pod extended privileges:
+
+```
+securityContext:
+  privileged: true
+```
+
+Alternatively you could mount the device directly, if you know what you are doing and can manually configure wmbusmetersto use it:
+
+```yaml
+host-dev:
+  enabled: true
+  type: hostPath
+  hostPath: /dev/device1
+  mountPath: /dev/device1
+```
+
+Second you will need to set a nodeAffinity rule, for example if you are using [node-feature-discovery](https://github.com/kubernetes-sigs/node-feature-discovery):
+
+```yaml
+  nodeSelector:
+    feature.node.kubernetes.io/custom-rtl: "true"
+```
+
+or by simply labeling the node which has the usb dongle:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: app
+          operator: In
+          values:
+          - rtlsdr-dongle
+```
+{{- end -}}

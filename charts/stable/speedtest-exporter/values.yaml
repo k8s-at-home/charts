@@ -28,10 +28,9 @@ service:
         port: 9798
 
 prometheus:
-  # -- Enable and configure a Prometheus podMonitor for the chart under this key.
-  # See also the notes under `additionalContainers`.
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
   # @default -- See values.yaml
-  podMonitor:
+  serviceMonitor:
     enabled: false
     interval: 1h
     scrapeTimeout: 1m

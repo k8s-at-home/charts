@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: 1.4.1
+description: Wmbusmeters receives and decodes C1,T1 or S1 telegrams (using the wireless mbus protocol) to acquire utility meter readings.
+name: wmbusmeters
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- wmbusmeters
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wmbusmeters
+sources:
+- https://github.com/weetmuts/wmbusmeters
+maintainers:
+- name: brujoand
+  email: anders@brujordet.no
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.0

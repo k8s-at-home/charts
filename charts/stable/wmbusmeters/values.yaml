@@ -1,0 +1,54 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: weetmuts/wmbusmeters
+  # -- image tag
+  tag: release-1.4.1-amd64
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+securityContext:
+  # -- (bool) Privileged securityContext may be required if USB controller is accessed directly through the host machine
+  privileged: true
+
+# -- Set the default config for wmbusmeters, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
+config: |
+  loglevel=normal
+  device=rtlwmbus
+  listento=t1
+  logtelegrams=false
+  format=json
+  meterfiles=/wmbusmeters_data/logs/meter_readings
+  meterfilesaction=overwrite
+  logfile=/wmbusmeters_data/logs/wmbusmeters.log
+
+# -- Set the config for individual meters to read, see: https://github.com/weetmuts/wmbusmeters/blob/master/README.md
+wmbusmeters:
+- name: watermeter
+  config: |
+    name=watermeter
+    type=multical21
+    id=1234567
+    key=000000000000000000000000
+
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  host-dev:
+    enabled: false
+    type: hostPath
+    hostPath: /dev/device1
+    mountPath: /dev/device1

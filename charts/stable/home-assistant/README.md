@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 10.0.0](https://img.shields.io/badge/Version-10.0.0-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
+![Version: 10.1.0](https://img.shields.io/badge/Version-10.1.0-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
 
 Home Assistant
 
@@ -21,8 +21,8 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://charts.bitnami.com/bitnami | mariadb | 9.3.19 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.5.3 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.4.4 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.9.4 |
 | https://library-charts.k8s-at-home.com | common | 4.0.0 |
 
 ## TL;DR

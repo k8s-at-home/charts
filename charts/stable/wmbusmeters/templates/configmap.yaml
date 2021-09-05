@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.names.fullname" . }}-config
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  wmbusmeters.conf: |
+    {{- tpl .Values.config $ | nindent 4 }}
+
+{{- range .Values.wmbusmeters }}
+  {{- $name := printf "%s-%s" (include "common.names.fullname" $) .name }}
+  {{- $labels := include "common.labels" $ }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- $labels | nindent 4 }}
+data:
+  device.conf: |
+    {{- .config | nindent 4 }}
+{{- end }}

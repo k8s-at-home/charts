@@ -27,7 +27,7 @@ env:
   GOW_REQUIRED_DEVICES: /dev/uinput /dev/input/event* /dev/dri/*
   XDG_RUNTIME_DIR: /tmp/.X11-unix
   NVIDIA_DRIVER_CAPABILITIES: utility,video,graphics,display
-  GPU_UUID: all
+  NVIDIA_VISIBLE_DEVICES: all
   {{- if .Values.sunshine.env }}
   {{ .Values.sunshine.env | toYaml | nindent 2 }}
   {{- end }}
@@ -68,7 +68,7 @@ additionalContainers:
       value: {{ .Values.xorg.resolution | quote }}
     - name: NVIDIA_DRIVER_CAPABILITIES
       value: all
-    - name: GPU_UUID
+    - name: NVIDIA_VISIBLE_DEVICES
       value: all
     volumeMounts:
     - name: dev-input
@@ -113,7 +113,7 @@ additionalContainers:
       value: /dev/uinput /dev/input/event* /dev/dri/* /dev/snd/*
     - name: NVIDIA_DRIVER_CAPABILITIES
       value: all
-    - name: GPU_UUID
+    - name: NVIDIA_VISIBLE_DEVICES
       value: all
     volumeMounts:
     - name: audio-socket
@@ -159,7 +159,7 @@ additionalContainers:
       value: "/tmp/pulse/pulse-socket"
     - name: NVIDIA_DRIVER_CAPABILITIES
       value: all
-    - name: GPU_UUID
+    - name: NVIDIA_VISIBLE_DEVICES
       value: all
     volumeMounts:
     - name: audio-socket
@@ -196,7 +196,7 @@ additionalContainers:
       value: "/tmp/pulse/pulse-socket"
     - name: NVIDIA_DRIVER_CAPABILITIES
       value: all
-    - name: GPU_UUID
+    - name: NVIDIA_VISIBLE_DEVICES
       value: all
     volumeMounts:
     - name: audio-socket

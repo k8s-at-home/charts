@@ -1,0 +1,33 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "wmbusmeters.harcodedValues" -}}
+
+service:
+  main:
+    enabled: false
+persistence:
+  wmbusmeters-config:
+    enabled: "true"
+    mountPath: "/wmbusmeters_data/etc/wmbusmeters.conf"
+    subPath: "wmbusmeters.conf"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+{{- range .Values.wmbusmeters }}
+  device-{{ .name }}:
+    enabled: "true"
+    mountPath: "/wmbusmeters_data/etc/wmbusmeters.d/{{ .name }}.conf"
+    subPath: "device.conf"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-%v" (include "common.names.fullname" $) .name }}
+{{- end -}}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "wmbusmeters.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
