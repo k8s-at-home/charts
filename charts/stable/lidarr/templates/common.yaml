@@ -19,6 +19,8 @@ additionalContainers:
         value: "{{ .Values.exportarr.env.port }}"
       - name: ENABLE_ADDITIONAL_METRICS
         value: "{{ .Values.exportarr.env.addMetrics }}"
+      - name: ENABLE_UNKNOWN_QUEUE_ITEMS
+        value: "{{ .Values.exportarr.env.unknownItems }}"
     ports:
       - name: metrics
         containerPort: {{ .Values.exportarr.env.port }}
