@@ -86,7 +86,7 @@ N/A
 | exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | exporter.image.repository | string | `"ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter"` | image repository |
 | exporter.image.tag | string | `"v1.2.0"` | image tag |
-| exporter.podMonitor.additionalLabels | object | `{}` |  |
+| exporter.podMonitor.labels | object | `{}` |  |
 | exporter.podMonitor.interval | string | `"15s"` |  |
 | exporter.podMonitor.scrapeTimeout | string | `"5s"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
@@ -103,7 +103,7 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [13.0.0]
+### [12.1.0]
 
 #### Added
 
@@ -136,7 +136,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
-[13.0.0]: #1300
+[12.1.0]: #1210
 [12.0.0]: #1200
 [11.0.0]: #1100
 [10.0.0]: #1000
