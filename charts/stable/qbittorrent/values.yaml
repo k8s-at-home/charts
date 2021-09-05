@@ -61,37 +61,29 @@ persistence:
     enabled: false
     mountPath: /downloads
 
-prometheus:
-  # -- Enable and configure a Prometheus podMonitor for the chart under this key.
-  # See also the notes under `additionalContainers`.
+exporter:
+  # -- Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor.
   # @default -- See values.yaml
+  enabled: false
   podMonitor:
-    enabled: false
     interval: 15s
     scrapeTimeout: 5s
     additionalLabels: {}
-
-# # When using the prometheus.podMonitor the following
-# # container is required
-# additionalContainers:
-#   - name: exporter
-#     image: ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter:v1.2.0
-#     imagePullPolicy: IfNotPresent
-#     env:
-#       - name: QBITTORRENT_HOST
-#         value: "http://localhost"
-#       - name: QBITTORRENT_PORT
-#         value: "8080"
-#       - name: QBITTORRENT_USER
-#         value: "YOUR_QBITTORRENT_USERNAME"
-#       - name: QBITTORRENT_PASS
-#         value: "YOUR_QBITTORRENT_PASSWORD"
-#       - name: EXPORTER_PORT
-#         value: "9022"
-#       - name: EXPORTER_LOG_LEVEL
-#         value: "INFO"
-#       - name: METRICS_PREFIX
-#         value: "qbittorrent"
-#     ports:
-#       - name: metrics
-#         containerPort: 9022
+  image:
+    # -- image repository
+    repository: ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter
+    # -- image tag
+    tag: v1.2.0
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  env:
+    # -- qbittorrent username
+    # update value after configuring qbittorrent
+    user: "admin"
+    # -- qbittorrent password
+    # update value after configuring qbittorrent
+    password: "adminadmin"
+    # -- metrics port
+    port: 9022
+    # -- log level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
+    log: INFO
