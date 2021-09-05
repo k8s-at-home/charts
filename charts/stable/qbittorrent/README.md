@@ -86,8 +86,8 @@ N/A
 | exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | exporter.image.repository | string | `"ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter"` | image repository |
 | exporter.image.tag | string | `"v1.2.0"` | image tag |
-| exporter.podMonitor.labels | object | `{}` |  |
 | exporter.podMonitor.interval | string | `"15s"` |  |
+| exporter.podMonitor.labels | object | `{}` |  |
 | exporter.podMonitor.scrapeTimeout | string | `"5s"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/qbittorrent"` | image repository |
