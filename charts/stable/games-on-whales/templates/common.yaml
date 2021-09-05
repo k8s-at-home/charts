@@ -26,6 +26,8 @@ env:
   SUNSHINE_USER: {{ .Values.sunshine.user }}
   GOW_REQUIRED_DEVICES: /dev/uinput /dev/input/event* /dev/dri/*
   XDG_RUNTIME_DIR: /tmp/.X11-unix
+  NVIDIA_DRIVER_CAPABILITIES: utility,video,graphics,display
+  NVIDIA_VISIBLE_DEVICES: all
   {{- if .Values.sunshine.env }}
   {{ .Values.sunshine.env | toYaml | nindent 2 }}
   {{- end }}
@@ -64,6 +66,10 @@ additionalContainers:
       value: {{ .Values.xorg.refreshrate | quote}}
     - name: RESOLUTION
       value: {{ .Values.xorg.resolution | quote }}
+    - name: NVIDIA_DRIVER_CAPABILITIES
+      value: all
+    - name: NVIDIA_VISIBLE_DEVICES
+      value: all
     volumeMounts:
     - name: dev-input
       mountPath: /dev/input
@@ -105,6 +111,10 @@ additionalContainers:
       value: "/tmp/pulse/pulse-socket"
     - name: GOW_REQUIRED_DEVICES
       value: /dev/uinput /dev/input/event* /dev/dri/* /dev/snd/*
+    - name: NVIDIA_DRIVER_CAPABILITIES
+      value: all
+    - name: NVIDIA_VISIBLE_DEVICES
+      value: all
     volumeMounts:
     - name: audio-socket
       mountPath: /tmp/pulse
@@ -147,6 +157,10 @@ additionalContainers:
       value: {{ .Values.steam.protonLog | quote }}
     - name: PULSE_SERVER
       value: "/tmp/pulse/pulse-socket"
+    - name: NVIDIA_DRIVER_CAPABILITIES
+      value: all
+    - name: NVIDIA_VISIBLE_DEVICES
+      value: all
     volumeMounts:
     - name: audio-socket
       mountPath: /tmp/pulse
@@ -180,6 +194,10 @@ additionalContainers:
       value: {{ .Values.firefox.logLevel | quote }}
     - name: PULSE_SERVER
       value: "/tmp/pulse/pulse-socket"
+    - name: NVIDIA_DRIVER_CAPABILITIES
+      value: all
+    - name: NVIDIA_VISIBLE_DEVICES
+      value: all
     volumeMounts:
     - name: audio-socket
       mountPath: /tmp/pulse
