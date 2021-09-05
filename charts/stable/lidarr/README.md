@@ -78,16 +78,16 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| exportarr.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus podMonitor. |
-| exportarr.env.addMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
-| exportarr.env.port | int | `32123` | metrics port |
-| exportarr.env.unknownItems | bool | `false` | Set to true to enable gathering unknown queue items |
-| exportarr.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| exportarr.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
-| exportarr.image.tag | string | `"v0.6.1"` | image tag |
-| exportarr.podMonitor.interval | string | `"3m"` |  |
-| exportarr.podMonitor.labels | object | `{}` |  |
-| exportarr.podMonitor.scrapeTimeout | string | `"1m"` |  |
+| exporter.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus podMonitor. |
+| exporter.env.addMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
+| exporter.env.port | int | `32123` | metrics port |
+| exporter.env.unknownItems | bool | `false` | Set to true to enable gathering unknown queue items |
+| exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| exporter.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
+| exporter.image.tag | string | `"v0.6.1"` | image tag |
+| exporter.podMonitor.interval | string | `"3m"` |  |
+| exporter.podMonitor.labels | object | `{}` |  |
+| exporter.podMonitor.scrapeTimeout | string | `"1m"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/lidarr"` | image repository |
 | image.tag | string | `"v1.0.0.2255"` | image tag |

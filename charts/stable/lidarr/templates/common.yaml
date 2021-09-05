@@ -2,13 +2,13 @@
 {{- include "common.values.setup" . }}
 
 {{/* Append the hardcoded settings */}}
-{{- define "exportarr.harcodedValues" -}}
-{{ if .Values.exportarr.enabled }}
+{{- define "lidarr.harcodedValues" -}}
+{{ if .Values.exporter.enabled }}
 additionalContainers:
-  exportarr:
-    name: exportarr
-    image: "{{ .Values.exportarr.image.repository }}:{{ .Values.exportarr.image.tag }}"
-    imagePullPolicy: {{ .Values.exportarr.image.pullPolicy }}
+  exporter:
+    name: exporter
+    image: "{{ .Values.exporter.image.repository }}:{{ .Values.exporter.image.tag }}"
+    imagePullPolicy: {{ .Values.exporter.image.pullPolicy }}
     args: ["exportarr", "lidarr"]
     env:
       - name: URL
@@ -16,21 +16,21 @@ additionalContainers:
       - name: CONFIG
         value: "/config/config.xml"
       - name: PORT
-        value: "{{ .Values.exportarr.env.port }}"
+        value: "{{ .Values.exporter.env.port }}"
       - name: ENABLE_ADDITIONAL_METRICS
-        value: "{{ .Values.exportarr.env.addMetrics }}"
+        value: "{{ .Values.exporter.env.addMetrics }}"
       - name: ENABLE_UNKNOWN_QUEUE_ITEMS
-        value: "{{ .Values.exportarr.env.unknownItems }}"
+        value: "{{ .Values.exporter.env.unknownItems }}"
     ports:
       - name: metrics
-        containerPort: {{ .Values.exportarr.env.port }}
+        containerPort: {{ .Values.exporter.env.port }}
     volumeMounts:
       - name: config
         mountPath: /config
         readOnly: true
 {{ end }}
 {{- end -}}
-{{- $_ := mergeOverwrite .Values (include "exportarr.harcodedValues" . | fromYaml) -}}
+{{- $_ := mergeOverwrite .Values (include "lidarr.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
