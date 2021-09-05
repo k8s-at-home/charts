@@ -1,1 +1,34 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "exportarr.harcodedValues" -}}
+{{ if .Values.exportarr.enabled }}
+additionalContainers:
+  exportarr:
+    name: exportarr
+    image: "{{ .Values.exportarr.image.repository }}:{{ .Values.exportarr.image.tag }}"
+    imagePullPolicy: {{ .Values.exportarr.image.pullPolicy }}
+    args: ["exportarr", "lidarr"]
+    env:
+      - name: URL
+        value: "http://localhost"
+      - name: CONFIG
+        value: "/config/config.xml"
+      - name: PORT
+        value: "{{ .Values.exportarr.env.port }}"
+      - name: ENABLE_ADDITIONAL_METRICS
+        value: "{{ .Values.exportarr.env.addMetrics }}"
+    ports:
+      - name: metrics
+        containerPort: {{ .Values.exportarr.env.port }}
+    volumeMounts:
+      - name: config
+        mountPath: /config
+        readOnly: true
+{{ end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "exportarr.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}

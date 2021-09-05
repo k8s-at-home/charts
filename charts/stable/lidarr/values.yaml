@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: ghcr.io/k8s-at-home/lidarr
   # -- image tag
-  tag: v1.0.0.2226
+  tag: v1.0.0.2255
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -66,35 +66,23 @@ persistence:
     enabled: false
     mountPath: /media
 
-prometheus:
-  # -- Enable and configure a Prometheus podMonitor for the chart under this key.
-  # See also the notes under `additionalContainers`.
+exportarr:
+  # -- Enable and configure Exportarr sidecar and Prometheus podMonitor.
   # @default -- See values.yaml
+  enabled: false
   podMonitor:
-    enabled: false
     interval: 3m
     scrapeTimeout: 1m
-    additionalLabels: {}
-
-# # When using the prometheus.podMonitor the following
-# # container is required
-# additionalContainers:
-#   exportarr:
-#     name: exportarr
-#     image: ghcr.io/onedr0p/exportarr:v0.6.0
-#     imagePullPolicy: IfNotPresent
-#     args: ["exportarr", "lidarr"]
-#     env:
-#     - name: PORT
-#       value: "32123"
-#     - name: URL
-#       value: "http://localhost"
-#     - name: CONFIG
-#       value: "/config/config.xml"
-#     ports:
-#     - name: exportarr
-#       containerPort: 32123
-#     volumeMounts:
-#     - name: config
-#       mountPath: /config
-#       readOnly: true
+    labels: {}
+  image:
+    # -- image repository
+    repository: ghcr.io/onedr0p/exportarr
+    # -- image tag
+    tag: v0.6.1
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  env:
+    # -- metrics port
+    port: 32123
+    # -- Set to true to enable gathering of additional metrics (slow)
+    addMetrics: false
