@@ -81,6 +81,7 @@ N/A
 | exportarr.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus podMonitor. |
 | exportarr.env.addMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
 | exportarr.env.port | int | `32123` | metrics port |
+| exportarr.env.unknownItems | bool | `false` | Set to true to enable gathering unknown queue items |
 | exportarr.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | exportarr.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
 | exportarr.image.tag | string | `"v0.6.1"` | image tag |
