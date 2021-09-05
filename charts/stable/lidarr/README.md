@@ -79,9 +79,9 @@ N/A
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | exporter.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus podMonitor. |
-| exporter.env.addMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
+| exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
 | exporter.env.port | int | `32123` | metrics port |
-| exporter.env.unknownItems | bool | `false` | Set to true to enable gathering unknown queue items |
+| exporter.env.unknownQueueItems | bool | `false` | Set to true to enable gathering unknown queue items |
 | exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | exporter.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
 | exporter.image.tag | string | `"v0.6.1"` | image tag |
