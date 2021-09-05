@@ -5,7 +5,7 @@ metadata:
   name: {{ template "common.names.fullname" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
-    {{- with .Values.exporter.podMonitor.additionalLabels }}
+    {{- with .Values.exporter.podMonitor.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
