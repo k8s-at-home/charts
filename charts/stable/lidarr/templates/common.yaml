@@ -25,9 +25,11 @@ additionalContainers:
       - name: metrics
         containerPort: {{ .Values.exporter.env.port }}
     volumeMounts:
+      {{ if .Values.persistence.config.enabled }}
       - name: config
         mountPath: /config
         readOnly: true
+      {{ end }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "lidarr.harcodedValues" . | fromYaml) -}}
