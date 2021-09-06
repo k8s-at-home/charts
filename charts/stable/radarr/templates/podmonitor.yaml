@@ -1,11 +1,11 @@
-{{- if .Values.prometheus.podMonitor.enabled }}
+{{- if .Values.exporter.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: {{ template "common.names.fullname" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
-    {{- with .Values.prometheus.podMonitor.additionalLabels }}
+    {{- with .Values.exporter.podMonitor.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
@@ -13,12 +13,17 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   podMetricsEndpoints:
-  - port: exportarr
-    {{- with .Values.prometheus.podMonitor.interval }}
-    interval: {{ . }}
-    {{- end }}
-    {{- with .Values.prometheus.podMonitor.scrapeTimeout }}
-    scrapeTimeout: {{ . }}
-    {{- end }}
-    path: /metrics
+    - port: metrics
+      {{- with .Values.exporter.podMonitor.interval }}
+      interval: {{ . }}
+      {{- end }}
+      {{- with .Values.exporter.podMonitor.scrapeTimeout }}
+      scrapeTimeout: {{ . }}
+      {{- end }}
+      path: /metrics
+      relabelings:
+        - sourceLabels: ['namespace', 'job']
+          regex: ".+/(.*)"
+          targetLabel: "job"
+          replacement: "$1"
 {{- end }}
