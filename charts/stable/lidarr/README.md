@@ -1,6 +1,6 @@
 # lidarr
 
-![Version: 11.0.0](https://img.shields.io/badge/Version-11.0.0-informational?style=flat-square) ![AppVersion: v1.0.0.2226](https://img.shields.io/badge/AppVersion-v1.0.0.2226-informational?style=flat-square)
+![Version: 12.0.0](https://img.shields.io/badge/Version-12.0.0-informational?style=flat-square) ![AppVersion: v1.0.0.2255](https://img.shields.io/badge/AppVersion-v1.0.0.2255-informational?style=flat-square)
 
 Looks and smells like Sonarr but made for music
 
@@ -78,13 +78,22 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
+| exporter.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus podMonitor. |
+| exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
+| exporter.env.port | int | `32123` | metrics port |
+| exporter.env.unknownQueueItems | bool | `false` | Set to true to enable gathering unknown queue items |
+| exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| exporter.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
+| exporter.image.tag | string | `"v0.6.1"` | image tag |
+| exporter.podMonitor.interval | string | `"3m"` |  |
+| exporter.podMonitor.labels | object | `{}` |  |
+| exporter.podMonitor.scrapeTimeout | string | `"1m"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/lidarr"` | image repository |
-| image.tag | string | `"v1.0.0.2226"` | image tag |
+| image.tag | string | `"v1.0.0.2255"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | probes | object | See values.yaml | Configures the probes for the main Pod. |
-| prometheus.podMonitor | object | See values.yaml | Enable and configure a Prometheus podMonitor for the chart under this key. See also the notes under `additionalContainers`. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -92,6 +101,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [12.0.0]
+
+#### Changed
+
+- Refactoring of the Exportarr sidecar and Prometheus podMonitor. This is a breaking change if it was enabled previously.
 
 ### [11.0.0]
 
@@ -119,6 +134,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[12.0.0]: #1200
 [11.0.0]: #1100
 [10.0.0]: #1000
 [9.0.0]: #900
