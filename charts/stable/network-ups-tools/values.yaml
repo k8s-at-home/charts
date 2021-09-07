@@ -43,9 +43,9 @@ persistence:
   ups:
     enabled: false
     type: hostPath
-    # -- The path of the usb ups on the host. 
+    # -- The path of the usb ups on the host.
     hostPath: /dev/bus/usb/001/001
-    # -- Optional path for ups to mount in the container. 
+    # -- Optional path for ups to mount in the container.
     mountPath: /dev/bus/usb/001/001
     readOnly: false
 
