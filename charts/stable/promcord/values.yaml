@@ -19,6 +19,10 @@ service:
   main:
     ports:
       http:
+        enabled: false
+      metrics:
+        enabled: true
+        protocol: TCP
         port: 8080
 
 # -- environment variables. See [application docs](https://github.com/nimarion/promcord/blob/master/README.md) for more details.
@@ -32,7 +36,7 @@ env:
 prometheus:
   # -- Enable and configure a Prometheus podMonitor for the chart under this key.
   # @default -- See values.yaml
-  podMonitor:
+  serviceMonitor:
     enabled: false
     interval: 1m
     scrapeTimeout: 30s
