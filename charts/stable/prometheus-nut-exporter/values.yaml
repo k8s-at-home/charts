@@ -18,6 +18,8 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
+  # -- log level [info|debug|trace] 
+  RUST_LOG: info
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -25,6 +27,10 @@ service:
   main:
     ports:
       http:
+        enabled: false
+      metrics:
+        enabled: true
+        protocol: TCP
         port: 9995
 
 prometheus:
