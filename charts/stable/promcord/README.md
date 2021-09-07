@@ -1,6 +1,6 @@
 # promcord
 
-![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Discord bot that provides metrics from a Discord server
 
@@ -89,11 +89,11 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.1.0]
+### [4.0.0]
 
 #### Changed
 
-- Switched to serviceMonitor instead of podMonitor
+- Switched to serviceMonitor instead of podMonitor. This is a potential breaking change.
 
 ### [2.0.0]
 
@@ -113,7 +113,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - New chart
 
-[3.1.0]: #310
+[4.0.0]: #400
 [2.0.0]: #200
 [1.0.1]: #101
 [1.0.0]: #100
