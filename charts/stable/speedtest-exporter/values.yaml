@@ -25,6 +25,10 @@ service:
   main:
     ports:
       http:
+        enabled: false
+      metrics:
+        enabled: true
+        protocol: TCP
         port: 9798
 
 prometheus:
