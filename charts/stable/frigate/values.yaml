@@ -99,8 +99,10 @@ resources: {}
 # @default -- see URL to default config
 config: |
   mqtt:
-    host: test.mosquitto.org
+    host: mosquitto
     topic_prefix: frigate
+  database:
+    path: /data/frigate.db
   detectors:
     cpu1:
       type: cpu
