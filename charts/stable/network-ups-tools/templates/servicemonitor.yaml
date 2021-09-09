@@ -1,0 +1,30 @@
+{{- if .Values.exporter.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.exporter.serviceMonitor.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "common.labels.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: metrics
+      {{- with .Values.exporter.serviceMonitor.interval }}
+      interval: {{ . }}
+      {{- end }}
+      {{- with .Values.exporter.serviceMonitor.scrapeTimeout }}
+      scrapeTimeout: {{ . }}
+      {{- end }}
+      path: /metrics
+      params:
+        target:
+          - "localhost:{{ .Values.service.main.ports.server.port }}"
+      relabelings:
+        - sourceLabels: [__param_target]
+          targetLabel: target
+{{- end }}
