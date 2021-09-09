@@ -93,8 +93,8 @@ N/A
 | image.tag | string | `"v2.7.4-2479-g86a32237"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| persistence.ups.hostPath | string | `"/dev/bus/usb/001/001"` | The path of the usb ups on the host.  |
-| persistence.ups.mountPath | string | `"/dev/bus/usb/001/001"` | Optional path for ups to mount in the container.  |
+| persistence.ups.hostPath | string | `"/dev/bus/usb/001/001"` | The path of the usb ups on the host. |
+| persistence.ups.mountPath | string | `"/dev/bus/usb/001/001"` | Optional path for ups to mount in the container. |
 | securityContext | object | See values.yaml | Set to true if using ups connected by usb to the host |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
