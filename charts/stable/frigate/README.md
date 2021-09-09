@@ -67,7 +67,24 @@ helm install frigate k8s-at-home/frigate -f values.yaml
 
 ## Custom configuration
 
-N/A
+### Frigate database directory
+
+It is recommended to set a separate database directory for Frigate.
+
+For example:
+
+```yaml
+persistence:
+  data:
+    enabled: true
+    mountPath: /data
+    # ...
+config: |
+  # ...
+  database:
+    path: /data/frigate.db
+  # ...
+```
 
 ## Values
 
