@@ -14,10 +14,10 @@ spec:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
   {{- range .Values.prometheus.serviceMonitor.targets }}
-  - port: http
+  - port: metrics
     interval: {{ .interval }}
     scrapeTimeout: {{ .scrapeTimeout }}
-    path: /nut
+    path: /metrics
     params:
       target:
       - "{{ .hostname }}:{{ .port }}"

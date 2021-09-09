@@ -1,6 +1,6 @@
 # prometheus-nut-exporter
 
-![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
+![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
 
 Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance.
 
@@ -76,6 +76,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [application docs](https://github.com/HON95/prometheus-nut-exporter#environment-variables) for more details. |
+| env.RUST_LOG | string | `"info"` | log level [info|debug|trace]  |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"hon95/prometheus-nut-exporter"` | image repository |
