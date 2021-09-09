@@ -5,6 +5,25 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
+### HTTP 400 bad request while accessing from your browser
+
+When configuring Home Assistant behind a reverse proxy make sure you configure the [http](https://www.home-assistant.io/integrations/http) component and set `trusted_proxies` correctly and `use_x_forwarded_for` to `true`.
+
+For example:
+
+```yaml
+http:
+  server_host: 0.0.0.0
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  use_x_forwarded_for: true
+  trusted_proxies:
+  # Pod CIDR
+  - 10.69.0.0/16
+  # Node CIDR
+  - 192.168.42.0/24
+```
+
 ### Z-Wave / Zigbee
 
 A Z-Wave and/or Zigbee controller device could be used with Home Assistant if passed through from the host to the pod. Skip this section if you are using zwave2mqtt and/or zigbee2mqtt or plan to.
