@@ -33,10 +33,19 @@ additionalContainers:
       - name: EXPORTER_PORT
         value: "{{ .Values.exporter.env.port }}"
       - name: EXPORTER_LOG_LEVEL
-        value: "{{ .Values.exporter.env.log }}"
+        value: "{{ .Values.exporter.env.logLevel }}"
     ports:
       - name: metrics
         containerPort: {{ .Values.exporter.env.port }}
+
+service:
+  metrics:
+    enabled: true
+    ports:
+      metrics:
+        enabled: true
+        protocol: TCP
+        port: {{ .Values.exporter.env.port }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "qbittorrent.harcodedValues" . | fromYaml) -}}

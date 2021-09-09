@@ -9,6 +9,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [12.2.0]
+
+#### Changed
+
+- Switched to serviceMonitor instead of podMonitor. This would revert scrape intervals and timeouts if changed from default.
+
 ### [12.1.0]
 
 #### Added
@@ -42,6 +48,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[12.2.0]: #1220
 [12.1.0]: #1210
 [12.0.0]: #1200
 [11.0.0]: #1100
