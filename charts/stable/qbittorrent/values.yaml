@@ -65,7 +65,7 @@ exporter:
   # -- Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor.
   # @default -- See values.yaml
   enabled: false
-  podMonitor:
+  serviceMonitor:
     interval: 15s
     scrapeTimeout: 5s
     labels: {}
@@ -86,4 +86,4 @@ exporter:
     # -- metrics port
     port: 9022
     # -- log level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
-    log: INFO
+    logLevel: INFO
