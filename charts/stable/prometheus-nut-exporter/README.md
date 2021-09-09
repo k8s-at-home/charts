@@ -76,7 +76,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [application docs](https://github.com/HON95/prometheus-nut-exporter#environment-variables) for more details. |
-| env.RUST_LOG | string | `"info"` | log level [info|debug|trace]  |
+| env.RUST_LOG | string | `"info"` | log level [info|debug|trace] |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"hon95/prometheus-nut-exporter"` | image repository |
