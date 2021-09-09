@@ -5,5 +5,23 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+### Frigate database directory
+
+It is recommended to set a separate database directory for Frigate.
+
+For example:
+
+```yaml
+persistence:
+  data:
+    enabled: true
+    mountPath: /data
+    # ...
+config: |
+  # ...
+  database:
+    path: /data/frigate.db
+  # ...
+```
+
 {{- end -}}

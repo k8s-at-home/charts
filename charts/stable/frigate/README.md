@@ -1,6 +1,6 @@
 # frigate
 
-![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v0.8.0](https://img.shields.io/badge/AppVersion-v0.8.0-informational?style=flat-square)
+![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: v0.8.0](https://img.shields.io/badge/AppVersion-v0.8.0-informational?style=flat-square)
 
 NVR With Realtime Object Detection for IP Cameras
 
@@ -67,7 +67,24 @@ helm install frigate k8s-at-home/frigate -f values.yaml
 
 ## Custom configuration
 
-N/A
+### Frigate database directory
+
+It is recommended to set a separate database directory for Frigate.
+
+For example:
+
+```yaml
+persistence:
+  data:
+    enabled: true
+    mountPath: /data
+    # ...
+config: |
+  # ...
+  database:
+    path: /data/frigate.db
+  # ...
+```
 
 ## Values
 
