@@ -13,7 +13,7 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-    - port: http
+    - port: metrics
       {{- with .Values.exporter.serviceMonitor.interval }}
       interval: {{ . }}
       {{- end }}
