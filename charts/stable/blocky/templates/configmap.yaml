@@ -1,3 +1,4 @@
+{{- if .Values.configmap.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6,4 +7,5 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   config.yml: |
-    {{- .Values.config | nindent 4 }}
+    {{- .Values.configmap.config | nindent 4 }}
+{{- end }}

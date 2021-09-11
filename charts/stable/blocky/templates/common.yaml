@@ -13,7 +13,9 @@ persistence:
       configMap:
         name: {{ printf "%v-config" (include "common.names.fullname" .) }}
 {{- end -}}
+{{- if .Values.configmap.enabled -}}
 {{- $_ := mergeOverwrite .Values (include "blocky.hardcodedValues" . | fromYaml) -}}
+{{- end -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
