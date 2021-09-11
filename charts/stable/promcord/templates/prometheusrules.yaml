@@ -1,0 +1,27 @@
+{{- if and .Values.metrics.enabled .Values.metrics.prometheusRule.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ template "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.metrics.prometheusRule.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  groups:
+    - name: promcord
+      rules:
+        - alert: PromcordAbsent
+          annotations:
+            description: Promcord has disappeared from Prometheus service discovery.
+            summary: Promcord is down.
+          expr: |
+            absent(up{job=~".*promcord.*"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+        {{- with .Values.metrics.prometheusRule.rules }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+{{- end }}

@@ -33,11 +33,28 @@ env:
   # -- Discord bot token
   # DISCORD_TOKEN:
 
-prometheus:
-  # -- Enable and configure a Prometheus podMonitor for the chart under this key.
+metrics:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
   # @default -- See values.yaml
+  enabled: false
   serviceMonitor:
-    enabled: false
     interval: 1m
     scrapeTimeout: 30s
-    additionalLabels: {}
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: PromcordAbsent
+      #   annotations:
+      #     description: Promcord has disappeared from Prometheus service discovery.
+      #     summary: Promcord is disabled.
+      #   expr: |
+      #     absent(up{job=~".promcord.*"} == 1)
+      #   for: 15m
+      #   labels:
+      #     severity: critical
