@@ -103,7 +103,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- **BREAKING**: Changed configmap to use a boolean to enable in cases of mounting your own. Refactored Prometheus metrics section to add rules. Enabling metrics automatically enbales the serviceMonitor.
+- **BREAKING**: Changed configmap to use a boolean to disable in cases of mounting your own. Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
 
 ### [8.0.0]
 
