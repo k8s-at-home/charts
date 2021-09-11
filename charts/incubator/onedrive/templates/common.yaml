@@ -1,1 +1,30 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "onedrive.hardcodedValues" -}}
+service:
+  main:
+    enabled: false
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+persistence:
+  onedrive-settings:
+    enabled: "true"
+    mountPath: "/onedrive/conf/config"
+    subPath: "config"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "onedrive.hardcodedValues" . | fromYaml) -}}
+
 {{ include "common.all" . }}

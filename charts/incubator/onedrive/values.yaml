@@ -18,8 +18,15 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # ONEDRIVE_UID:
-  # ONEDRIVE_GID:
+  ONEDRIVE_DATA_DIR: /onedrive/conf
+  # ONEDRIVE_UID: 1000
+  # ONEDRIVE_GID: 1000
+  # ONEDRIVE_VERBOSE: 0
+  # ONEDRIVE_DEBUG: 0
+  # ONEDRIVE_DEBUG_HTTPS: 0
+  # ONEDRIVE_RESYNC: 0
+  # ONEDRIVE_DOWNLOADONLY: 0
+  # ONEDRIVE_LOGOUT: 0
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
@@ -29,7 +36,7 @@ persistence:
     mountPath: /onedrive/conf
 
   data:
-    enabled: false
+    enabled: true
     mountPath: /onedrive/data
 
 config: |
@@ -77,4 +84,3 @@ config: |
   # sync_dir_permissions = "700"
   # sync_file_permissions = "600"
   # rate_limit = "131072"
-
