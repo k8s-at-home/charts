@@ -63,7 +63,7 @@ persistence:
 metrics:
   # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
   # @default -- See values.yaml
-  enabled: true
+  enabled: false
   serviceMonitor:
     interval: 30s
     scrapeTimeout: 10s
@@ -71,7 +71,7 @@ metrics:
   # -- Enable and configure Prometheus Rules for the chart under this key.
   # @default -- See values.yaml
   prometheusRule:
-    enabled: true
+    enabled: false
     labels: {}
     # -- Configure additionial rules for the chart under this key.
     # @default -- See prometheusrules.yaml
