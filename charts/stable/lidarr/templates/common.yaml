@@ -37,7 +37,7 @@ service:
     ports:
       metrics:
         enabled: true
-        protocol: HTTP
+        protocol: TCP
         port: {{ .Values.metrics.exporter.env.port }}
 {{ end }}
 {{- end -}}
