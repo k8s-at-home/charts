@@ -1,11 +1,11 @@
-{{- if .Values.prometheus.serviceMonitor.enabled }}
+{{- if .Values.metrics.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
-    {{- with .Values.prometheus.serviceMonitor.additionalLabels }}
+    {{- with .Values.metrics.serviceMonitor.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
@@ -13,20 +13,23 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-  - port: {{ .Values.prometheus.serviceMonitor.portName }}
-    {{- with .Values.prometheus.serviceMonitor.interval }}
-    interval: {{ . }}
-    {{- end }}
-    {{- with .Values.prometheus.serviceMonitor.bearerTokenFile }}
-    bearerTokenFile: {{ . }}
-    {{- end }}
-    {{- with .Values.prometheus.serviceMonitor.bearerTokenSecret }}
-    bearerTokenSecret:
-      name: {{ .name }}
-      key: {{ .key }}
-      {{- with .optional }}
-      optional: {{ . }}
+    - port: http
+      {{- with .Values.metrics.serviceMonitor.interval }}
+      interval: {{ . }}
       {{- end }}
-    {{- end }}
-    path: /api/prometheus
+      {{- with .Values.metrics.serviceMonitor.scrapeTimeout }}
+      scrapeTimeout: {{ . }}
+      {{- end }}
+      path: /api/prometheus
+      {{- with .Values.metrics.serviceMonitor.bearerTokenFile }}
+      bearerTokenFile: {{ . }}
+      {{- end }}
+      {{- with .Values.metrics.serviceMonitor.bearerTokenSecret }}
+      bearerTokenSecret:
+        name: {{ .name }}
+        key: {{ .key }}
+        {{- with .optional }}
+        optional: {{ . }}
+        {{- end }}
+      {{- end }}
 {{- end }}
