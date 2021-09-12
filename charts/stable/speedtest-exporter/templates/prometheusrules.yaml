@@ -41,6 +41,26 @@ spec:
           for: 0m
           labels:
             severity: warning
+        - alert: SpeedtestHighPingLatency
+          annotations:
+            description: Internet ping latency is averaging {{ "{{ humanize $value }}" }} ms.
+            summary: SpeedTest high ping latency.
+          expr: |
+            avg_over_time(speedtest_ping_latency_milliseconds[2h])
+              < 10
+          for: 0m
+          labels:
+            severity: warning
+        - alert: SpeedtestHighJitterLatency
+          annotations:
+            description: Internet jitter latency is averaging {{ "{{ humanize $value }}" }} ms.
+            summary: SpeedTest high jitter latency.
+          expr: |
+            avg_over_time(speedtest_jitter_latency_milliseconds[2h])
+              < 30
+          for: 0m
+          labels:
+            severity: warning
         {{- with .Values.metrics.prometheusRule.rules }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
