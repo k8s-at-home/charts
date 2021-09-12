@@ -75,8 +75,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| configmap | object | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml |
-| configmap.enabled | bool | `false` | If set to 'true', the configuration will be read from these values. |
+| config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml |
 | controller.replicas | int | `1` | (int) Number of pods to load balance between |
 | controller.strategy | string | `"RollingUpdate"` | Set the controller upgrade strategy |
 | env | object | See below | environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details. |
@@ -103,7 +102,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- **BREAKING**: Changed configmap to use a boolean to disable in cases of mounting your own. Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
+- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
 
 ### [8.0.0]
 
