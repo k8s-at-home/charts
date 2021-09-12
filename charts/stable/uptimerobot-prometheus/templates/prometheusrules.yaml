@@ -10,14 +10,14 @@ metadata:
     {{- end }}
 spec:
   groups:
-    - name: uptimerobot-exporter
+    - name: {{ include "common.names.fullname" . }}
       rules:
         - alert: UptimeRobotExporterAbsent
           annotations:
             description: Uptime Robot Exporter has disappeared from Prometheus service discovery.
             summary: Uptime Robot Exporter is down.
           expr: |
-            absent(up{job=~".*uptimerobot.*"} == 1)
+            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: 5m
           labels:
             severity: critical
