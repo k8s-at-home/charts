@@ -10,14 +10,14 @@ metadata:
     {{- end }}
 spec:
   groups:
-    - name: nut-exporter
+    - name: {{ include "common.names.fullname" . }}
       rules:
         - alert: NutExporterAbsent
           annotations:
             description: NUT Exporter has disappeared from Prometheus target discovery.
             summary: NUT Exporter is down.
           expr: |
-            absent(up{job=~".*network-ups-tools.*"} == 1)
+            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: 5m
           labels:
             severity: critical
