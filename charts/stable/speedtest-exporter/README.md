@@ -83,6 +83,8 @@ N/A
 | metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
 | metrics.prometheusRule.downloadLimit | int | `400` | Download speed you want alerts to be triggered in Mbps |
+| metrics.prometheusRule.jitterLimit | int | `30` | Jitter latency you want alerts to be triggered in ms |
+| metrics.prometheusRule.pingLimit | int | `10` | Ping latency you want alerts to be triggered in ms |
 | metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
 | metrics.prometheusRule.uploadLimit | int | `400` | Upload speed you want alerts to be triggered in Mbps |
 | metrics.serviceMonitor.interval | string | `"1h"` |  |
