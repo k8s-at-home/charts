@@ -2,7 +2,7 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: V.2.2.0](https://img.shields.io/badge/AppVersion-V.2.2.0-informational?style=flat-square)
 
-Track your cryptocurrency holdings/portfolio 
+Track your cryptocurrency holdings/portfolio
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
