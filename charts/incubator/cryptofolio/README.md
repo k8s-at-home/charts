@@ -1,6 +1,6 @@
 # cryptofolio
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: V.2.2.0](https://img.shields.io/badge/AppVersion-V.2.2.0-informational?style=flat-square)
 
 cryptofolio helm package
 
@@ -8,7 +8,8 @@ cryptofolio helm package
 
 ## Source Code
 
-* <https://github.com/cryptofolio/cryptofolio-docker>
+* <https://github.com/Xtrendence/cryptofolio>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/cryptofolio>
 
 ## Requirements
 
@@ -55,7 +56,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```console
 helm install cryptofolio \
-  --set env.TZ="America/New York" \
+  --set env.TZ="America/New_York" \
     k8s-at-home/cryptofolio
 ```
 
@@ -78,8 +79,8 @@ N/A
 | env | object | See below | environment variables. See more environment variables in the [cryptofolio documentation](https://cryptofolio.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"cryptofolio/cryptofolio"` | image repository |
-| image.tag | string | `V.2.2.0` | image tag |
+| image.repository | string | `"/cryptofolio"` | image repository |
+| image.tag | string | `"V.2.2.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
