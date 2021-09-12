@@ -77,6 +77,7 @@
 | [octoprint](stable/octoprint) | OctoPrint is the snappy web interface for your 3D printer |
 | [omada-controller](stable/omada-controller) | Omada enables the network administrators to monitor and manage all the Omada products in the network with a centralized management platform. |
 | [ombi](stable/ombi) | Want a Movie or TV Show on Plex or Emby? Use Ombi! |
+| [onedrive](stable/onedrive) | A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365, and SharePoint |
 | [openemr](stable/openemr) | OpenEMR is the most popular open source electronic health records and medical practice management solution. |
 | [openkm](stable/openkm) | OpenKM integrates all essential documents management, collaboration and an advanced search functionality into one easy to use solution. |
 | [organizr](stable/organizr) | HTPC/Homelab Services Organizer |

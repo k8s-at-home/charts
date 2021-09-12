@@ -94,18 +94,6 @@ persistence:
     enabled: false
     mountPath: /opt/adguardhome/work
 
-prometheus:
-  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
-  # @default -- See values.yaml
-  serviceMonitor:
-    enabled: false
-    interval: 30s
-    additionalLabels: {}
-
-# podAnnotations:
-#   prometheus.io/scrape: "true"
-#   prometheus.io/port: "api"
-
 # config -- AdGuard Home configuration. For a full list of options see https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration.
 # @default -- See values.yaml
 config: |
