@@ -16,6 +16,7 @@
 | [calibre-web](stable/calibre-web) | Calibre-Web is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database. |
 | [calibre](stable/calibre) | Calibre is a powerful and easy to use e-book manager. |
 | [comcast](stable/comcast) | periodic comcast data usage checks and save the results to InfluxDB |
+| [cryptofolio](stable/cryptofolio) | Track your cryptocurrency holdings/portfolio |
 | [deconz](stable/deconz) | deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort. |
 | [deluge](stable/deluge) | Deluge is a torrent download client |
 | [dizquetv](stable/dizquetv) | Create live TV channel streams from media on your Plex servers. |

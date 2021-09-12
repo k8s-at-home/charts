@@ -1,14 +1,14 @@
-# blocky
+# cryptofolio
 
-![Version: 9.0.0](https://img.shields.io/badge/Version-9.0.0-informational?style=flat-square) ![AppVersion: v0.15](https://img.shields.io/badge/AppVersion-v0.15-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: V.2.2.0](https://img.shields.io/badge/AppVersion-V.2.2.0-informational?style=flat-square)
 
-DNS proxy as ad-blocker for local network
+Track your cryptocurrency holdings/portfolio
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/0xERR0R/blocky>
+* <https://github.com/Xtrendence/cryptofolio>
 
 ## Requirements
 
@@ -25,23 +25,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install blocky k8s-at-home/blocky
+helm install cryptofolio k8s-at-home/cryptofolio
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `blocky`
+To install the chart with the release name `cryptofolio`
 
 ```console
-helm install blocky k8s-at-home/blocky
+helm install cryptofolio k8s-at-home/cryptofolio
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `blocky` deployment
+To uninstall the `cryptofolio` deployment
 
 ```console
-helm uninstall blocky
+helm uninstall cryptofolio
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install blocky \
+helm install cryptofolio \
   --set env.TZ="America/New York" \
-    k8s-at-home/blocky
+    k8s-at-home/cryptofolio
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install blocky k8s-at-home/blocky -f values.yaml
+helm install cryptofolio k8s-at-home/cryptofolio -f values.yaml
 ```
 
 ## Custom configuration
@@ -75,20 +75,12 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml |
-| controller.replicas | int | `1` | (int) Number of pods to load balance between |
-| controller.strategy | string | `"RollingUpdate"` | Set the controller upgrade strategy |
-| env | object | See below | environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details. |
+| env | object | See below | environment variables. See more environment variables in the [cryptofolio documentation](https://cryptofolio.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"spx01/blocky"` | image repository |
-| image.tag | string | `"v0.15"` | image tag |
-| metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
-| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
-| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
-| metrics.serviceMonitor.interval | string | `"30s"` |  |
-| metrics.serviceMonitor.labels | object | `{}` |  |
-| metrics.serviceMonitor.scrapeTimeout | string | `"10s"` |  |
+| image.repository | string | `"xtrendence/cryptofolio"` | image repository |
+| image.tag | string | `"V.2.2.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
@@ -98,44 +90,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [9.0.0]
-
-#### Changed
-
-- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
-
-### [8.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [7.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `v0.14`.
-
-### [6.0.0]
+### [1.0.0]
 
 #### Added
 
-- N/A
+- Initial version
 
 #### Changed
 
-- **BREAKING** Migrate Blocky to the common library, a lot of configuration has changed.
+- N/A
 
 #### Removed
 
 - N/A
 
-[9.0.0]: #900
-[8.0.0]: #800
-[7.0.0]: #700
-[6.0.0]: #600
+[1.0.0]: #100
 
 ## Support
 
