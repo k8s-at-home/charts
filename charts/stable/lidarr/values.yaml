@@ -72,8 +72,8 @@ metrics:
   # @default -- See values.yaml
   enabled: false
   serviceMonitor:
-    interval: 30s
-    scrapeTimeout: 10s
+    interval: 3m
+    scrapeTimeout: 1m
     labels: {}
   # -- Enable and configure Prometheus Rules for the chart under this key.
   # @default -- See values.yaml
