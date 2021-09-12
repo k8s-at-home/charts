@@ -53,8 +53,11 @@ persistence:
     enabled: true
     # -- Mount location for onedrive data
     mountPath: /onedrive/data
+    type: pvc
+    size: 5Gi
     accessMode: ReadWriteOnce
-
+    readOnly: false
+    retain: false
 
 # @default -- Default config with application_id set. If you update, please be sure to set the application_id
 config: |
