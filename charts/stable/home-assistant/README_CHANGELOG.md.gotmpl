@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [11.0.0]
+
+#### Changed
+
+- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
+
 ### [10.0.0]
 
 #### Changed
@@ -101,6 +107,7 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[11.0.0]: #1100
 [10.0.0]: #1000
 [9.0.1]: #901
 [9.0.0]: #900

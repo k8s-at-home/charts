@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 10.1.1](https://img.shields.io/badge/Version-10.1.1-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
+![Version: 11.0.0](https://img.shields.io/badge/Version-11.0.0-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
 
 Home Assistant
 
@@ -150,10 +150,15 @@ The value derived is the name of the kubernetes service object for home-assistan
 | influxdb | object | See values.yaml | Enable and configure influxdb database subchart under this key.    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb) |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
+| metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
+| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
+| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
+| metrics.serviceMonitor.interval | string | `"1m"` |  |
+| metrics.serviceMonitor.labels | object | `{}` |  |
+| metrics.serviceMonitor.scrapeTimeout | string | `"30s"` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.usb | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
 | postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
-| prometheus.serviceMonitor | object | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | securityContext | object | `{"privileged":null}` | Enable devices to be discoverable hostNetwork: true -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet dnsPolicy: ClusterFirstWithHostNet |
 | securityContext.privileged | bool | `nil` | Privileged securityContext may be required if USB devics are accessed directly through the host machine |
 | service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
@@ -164,6 +169,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [11.0.0]
+
+#### Changed
+
+- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
 
 ### [10.0.0]
 
@@ -256,6 +267,7 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[11.0.0]: #1100
 [10.0.0]: #1000
 [9.0.1]: #901
 [9.0.0]: #900

@@ -43,21 +43,6 @@ securityContext:
   # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
   privileged:  # true
 
-prometheus:
-  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
-  # @default -- See values.yaml
-  serviceMonitor:
-    enabled: false
-    portName: http
-    ## See https://www.home-assistant.io/docs/authentication/ for where to find
-    ## long lived access token creation under your account profile, which is
-    ## needed to monitor Home Assistant
-    # bearerTokenSecret:
-    #   name: ""
-    #   key: ""
-    # interval: 1m
-    # additionalLabels: {}
-
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
@@ -110,3 +95,36 @@ influxdb:
     enabled: false
     # storageClass: ""
     # size: 8Gi
+
+metrics:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # @default -- See values.yaml
+  enabled: false
+  serviceMonitor:
+    interval: 1m
+    scrapeTimeout: 30s
+    labels: {}
+    ## See https://www.home-assistant.io/docs/authentication/ for where to find
+    ## long lived access token creation under your account profile, which is
+    ## needed to monitor Home Assistant
+    # bearerTokenSecret:
+    #   name: ""
+    #   key: ""
+
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: HomeAssistantAbsent
+      #   annotations:
+      #     description: Home Assistant has disappeared from Prometheus service discovery.
+      #     summary: Home Assistant is down.
+      #   expr: |
+      #     absent(up{job=~".*home-assistant.*"} == 1)
+      #   for: 5m
+      #   labels:
+      #     severity: critical
