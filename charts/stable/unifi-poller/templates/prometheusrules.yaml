@@ -10,14 +10,14 @@ metadata:
     {{- end }}
 spec:
   groups:
-    - name: unifi-poller
+    - name: {{ include "common.names.fullname" . }}
       rules:
         - alert: UnifiPollerAbsent
           annotations:
             description: Unifi Poller has disappeared from Prometheus service discovery.
             summary: Unifi Poller is down.
           expr: |
-            absent(up{job=~".*unifi-poller.*"} == 1)
+            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: 5m
           labels:
             severity: critical
