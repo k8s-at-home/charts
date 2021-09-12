@@ -15,22 +15,22 @@ persistence:
         defaultMode: 256
         optional: true
 
-{{ if .Values.exporter.enabled }}
+{{ if .Values.metrics.enabled }}
 additionalContainers:
   exporter:
     name: exporter
-    image: "{{ .Values.exporter.image.repository }}:{{ .Values.exporter.image.tag }}"
-    imagePullPolicy: {{ .Values.exporter.image.pullPolicy }}
+    image: "{{ .Values.metrics.exporter.image.repository }}:{{ .Values.metrics.exporter.image.tag }}"
+    imagePullPolicy: {{ .Values.metrics.exporter.image.pullPolicy }}
     env:
       - name: HTTP_PORT
-        value: "{{ .Values.exporter.env.port }}"
+        value: "{{ .Values.metrics.exporter.env.port }}"
       - name: HTTP_PATH
         value: "/metrics"
       - name: RUST_LOG
-        value: "{{ .Values.exporter.env.logLevel }}"
+        value: "{{ .Values.metrics.exporter.env.logLevel }}"
     ports:
       - name: metrics
-        containerPort: {{ .Values.exporter.env.port }}
+        containerPort: {{ .Values.metrics.exporter.env.port }}
 
 service:
   metrics:
@@ -39,7 +39,7 @@ service:
       metrics:
         enabled: true
         protocol: TCP
-        port: {{ .Values.exporter.env.port }}
+        port: {{ .Values.metrics.exporter.env.port }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "network-ups-tools.harcodedValues" . | fromYaml) -}}
