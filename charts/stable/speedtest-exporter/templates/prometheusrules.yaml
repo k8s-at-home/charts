@@ -10,14 +10,14 @@ metadata:
     {{- end }}
 spec:
   groups:
-    - name: speedtest-exporter
+    - name: {{ include "common.names.fullname" . }}
       rules:
         - alert: SpeedtestExporterAbsent
           annotations:
             description: Speedtest Exporter has disappeared from Prometheus target discovery.
             summary: Speedtest Exporter is down.
           expr: |
-            absent(up{job=~".*speedtest.*"} == 1)
+            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: {{ .Values.metrics.serviceMonitor.interval }}
           labels:
             severity: critical
