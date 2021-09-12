@@ -82,7 +82,7 @@ N/A
 | image.repository | string | `"ghcr.io/k8s-at-home/radarr"` | image repository |
 | image.tag | string | `"v3.2.2.5080"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus podMonitor. |
+| metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus serviceMonitor. |
 | metrics.exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
 | metrics.exporter.env.port | int | `9793` | metrics port |
 | metrics.exporter.env.unknownQueueItems | bool | `false` | Set to true to enable gathering unknown queue items |
@@ -108,7 +108,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Changed
 
-- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
+- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor and exporter sidecar.
 
 ### [14.0.0]
 

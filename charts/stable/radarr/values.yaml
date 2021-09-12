@@ -57,18 +57,18 @@ probes:
       timeoutSeconds: 10
 
 # -- Configure persistence settings for the chart under this key.
+## Config persistence is required for the Prometheus exporter sidecar.
 # @default -- See values.yaml
 persistence:
   config:
-    enabled: true
-    type: emptyDir
+    enabled: false
 
   media:
     enabled: false
     mountPath: /media
 
 metrics:
-  # -- Enable and configure Exportarr sidecar and Prometheus podMonitor.
+  # -- Enable and configure Exportarr sidecar and Prometheus serviceMonitor.
   # @default -- See values.yaml
   enabled: false
   serviceMonitor:
