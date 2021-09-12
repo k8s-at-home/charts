@@ -10,14 +10,14 @@ metadata:
     {{- end }}
 spec:
   groups:
-    - name: promcord
+    - name: {{ include "common.names.fullname" . }}
       rules:
         - alert: PromcordAbsent
           annotations:
             description: Promcord has disappeared from Prometheus service discovery.
             summary: Promcord is down.
           expr: |
-            absent(up{job=~".*promcord.*"} == 1)
+            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: 5m
           labels:
             severity: critical
