@@ -10,7 +10,7 @@ metadata:
     {{- end }}
 spec:
   groups:
-    - name: qbittorrent-exporter
+    - name: {{ include "common.names.fullname" . }}
       rules:
         - alert: qBittorrentExporterAbsent
           annotations:
@@ -18,7 +18,7 @@ spec:
               service discovery.
             summary: qBittorrent Exporter is down.
           expr: |
-            absent(up{job=~".*qbittorrent.*"} == 1)
+            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: 5m
           labels:
             severity: critical
