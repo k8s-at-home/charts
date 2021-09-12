@@ -55,7 +55,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```console
 helm install cryptofolio \
-  --set env.TZ="America/New_York" \
+  --set env.TZ="America/New York" \
     k8s-at-home/cryptofolio
 ```
 
@@ -78,7 +78,7 @@ N/A
 | env | object | See below | environment variables. See more environment variables in the [cryptofolio documentation](https://cryptofolio.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"/cryptofolio"` | image repository |
+| image.repository | string | `"xtrendence/cryptofolio"` | image repository |
 | image.tag | string | `"V.2.2.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -104,7 +104,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.0]: #100
 
 ## Support
 
