@@ -71,7 +71,7 @@ To use this chart, you will need to set an application_id in the `config` sectio
 
 In order to generate an auth-response value you must do the following:
 
-1. Visit the following URL, replacing `<APPLICATION_ID>` with the one you generated above: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=d50ca740-c83f-4d1b-b616-12c519384f0c&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`
+1. Visit the following URL: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=d50ca740-c83f-4d1b-b616-12c519384f0c&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`
 2. Authenticate with your OneDrive account.
 3. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and use that as the `auth-reponse` value in the previously mentioned secret `onedrive-auth`.
 
