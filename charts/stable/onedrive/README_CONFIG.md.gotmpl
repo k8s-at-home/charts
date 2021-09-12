@@ -5,14 +5,12 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-To use this chart, you will need to set an application_id in the `config` section as well as a secret (called `auth-response` by default) with a field called `auth-response` that has the value derrived from the process below.
+To use this chart, you will need to set an application_id in the `config` section as well as a secret (called `onedrive-auth` by default) with a field called `auth-response` that has the value derrived from the process below.
 
 In order to generate an auth-response value you must do the following:
 
-1. Generate an `application_id` and set it in the `config` varaible of values.yaml (see [values.yaml](values.yaml) for a default config).
-    * You can use a tool like [UUID Generator](https://www.uuidgenerator.net/) for this step.
-2. Visit the following URL, replacing `<APPLICATION_ID>` with the one you generated above: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=<APPLICATION_ID>&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`
-3. Authenticate with your OneDrive account.
-4. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and use that as the `auth-reponse` value in the previously mentioned secret `auth-response`.
+1. Visit the following URL, replacing `<APPLICATION_ID>` with the one you generated above: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=d50ca740-c83f-4d1b-b616-12c519384f0c&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`
+2. Authenticate with your OneDrive account.
+3. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and use that as the `auth-reponse` value in the previously mentioned secret `onedrive-auth`.
 
 {{- end -}}
