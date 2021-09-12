@@ -1,6 +1,6 @@
 # qbittorrent
 
-![Version: 12.2.1](https://img.shields.io/badge/Version-12.2.1-informational?style=flat-square) ![AppVersion: v4.3.7](https://img.shields.io/badge/AppVersion-v4.3.7-informational?style=flat-square)
+![Version: 13.0.0](https://img.shields.io/badge/Version-13.0.0-informational?style=flat-square) ![AppVersion: v4.3.7](https://img.shields.io/badge/AppVersion-v4.3.7-informational?style=flat-square)
 
 qBittorrent is a cross-platform free and open-source BitTorrent client
 
@@ -78,21 +78,23 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://docs.k8s-at-home.com/our-container-images/configuration/) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| exporter.enabled | bool | See values.yaml | Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor. |
-| exporter.env.logLevel | string | `"INFO"` | log level [DEBUG|INFO|WARNING|ERROR|CRITICAL] |
-| exporter.env.password | string | `"adminadmin"` | qbittorrent password update value after configuring qbittorrent |
-| exporter.env.port | int | `9022` | metrics port |
-| exporter.env.user | string | `"admin"` | qbittorrent username update value after configuring qbittorrent |
-| exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| exporter.image.repository | string | `"ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter"` | image repository |
-| exporter.image.tag | string | `"v1.2.0"` | image tag |
-| exporter.serviceMonitor.interval | string | `"15s"` |  |
-| exporter.serviceMonitor.labels | object | `{}` |  |
-| exporter.serviceMonitor.scrapeTimeout | string | `"5s"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/qbittorrent"` | image repository |
 | image.tag | string | `"v4.3.7"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| metrics.enabled | bool | See values.yaml | Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor. |
+| metrics.exporter.env.logLevel | string | `"INFO"` | log level [DEBUG|INFO|WARNING|ERROR|CRITICAL] |
+| metrics.exporter.env.password | string | `"adminadmin"` | qbittorrent password update value after configuring qbittorrent |
+| metrics.exporter.env.port | int | `9022` | metrics port |
+| metrics.exporter.env.user | string | `"admin"` | qbittorrent username update value after configuring qbittorrent |
+| metrics.exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| metrics.exporter.image.repository | string | `"ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter"` | image repository |
+| metrics.exporter.image.tag | string | `"v1.2.0"` | image tag |
+| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
+| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
+| metrics.serviceMonitor.interval | string | `"15s"` |  |
+| metrics.serviceMonitor.labels | object | `{}` |  |
+| metrics.serviceMonitor.scrapeTimeout | string | `"5s"` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 | settings.automaticPortSetup | bool | `false` | Enables automatic port configuration at startup This sets the qbittorrent port to the value of `service.bittorrent.ports.bittorrent.port`. |
@@ -102,6 +104,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [13.0.0]
+
+#### Changed
+
+- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
 
 ### [12.2.0]
 
@@ -142,6 +150,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[13.0.0]: #1300
 [12.2.0]: #1220
 [12.1.0]: #1210
 [12.0.0]: #1200

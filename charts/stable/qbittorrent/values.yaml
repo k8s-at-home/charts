@@ -61,7 +61,7 @@ persistence:
     enabled: false
     mountPath: /downloads
 
-exporter:
+metrics:
   # -- Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor.
   # @default -- See values.yaml
   enabled: false
@@ -69,21 +69,39 @@ exporter:
     interval: 15s
     scrapeTimeout: 5s
     labels: {}
-  image:
-    # -- image repository
-    repository: ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter
-    # -- image tag
-    tag: v1.2.0
-    # -- image pull policy
-    pullPolicy: IfNotPresent
-  env:
-    # -- qbittorrent username
-    # update value after configuring qbittorrent
-    user: "admin"
-    # -- qbittorrent password
-    # update value after configuring qbittorrent
-    password: "adminadmin"
-    # -- metrics port
-    port: 9022
-    # -- log level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
-    logLevel: INFO
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: qBittorrentDown
+      #   annotations:
+      #     description: qBittorrent service is down.
+      #     summary: qBittorrent is down.
+      #   expr: |
+      #     qbittorrent_up == 0
+      #   for: 5m
+      #   labels:
+      #     severity: critical
+  exporter:
+    image:
+      # -- image repository
+      repository: ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter
+      # -- image tag
+      tag: v1.2.0
+      # -- image pull policy
+      pullPolicy: IfNotPresent
+    env:
+      # -- qbittorrent username
+      # update value after configuring qbittorrent
+      user: "admin"
+      # -- qbittorrent password
+      # update value after configuring qbittorrent
+      password: "adminadmin"
+      # -- metrics port
+      port: 9022
+      # -- log level [DEBUG|INFO|WARNING|ERROR|CRITICAL]
+      logLevel: INFO
