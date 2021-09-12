@@ -71,9 +71,9 @@ To use this chart, you will need to set an application_id in the `config` sectio
 
 In order to generate an auth-response value you must do the following:
 
-1. Generate an application_id and set it in the `config` varaible of values.yaml (see [values.yaml](values.yaml) for a default config).
+1. Generate an `application_id` and set it in the `config` varaible of values.yaml (see [values.yaml](values.yaml) for a default config).
     * You can use a tool like [UUID Generator](https://www.uuidgenerator.net/) for this step.
-2. Visit the following URL, replacing `<APPLICATION_ID> with the one you generated above: ```https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=<APPLICATION_ID>&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient```
+2. Visit the following URL, replacing `<APPLICATION_ID>` with the one you generated above: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=<APPLICATION_ID>&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`
 3. Authenticate with your OneDrive account.
 4. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and use that as the `auth-reponse` value in the previously mentioned secret `auth-response`.
 
