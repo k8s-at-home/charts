@@ -88,6 +88,8 @@ In order to generate an auth-response value you must do the following:
 | env | object | See below and commented variables in values.yaml | environment variables. |
 | env.ONEDRIVE_AUTHFILES | string | `"/onedrive/auth-request:/onedrive/auth-response"` | Set the auth request and response file locations for OneDrive |
 | env.ONEDRIVE_DATA_DIR | string | `"/onedrive/conf"` | Set the data directory for OneDrive |
+| env.ONEDRIVE_GID | int | `1000` | Set the One Drive Group ID |
+| env.ONEDRIVE_UID | int | `1000` | Set the OneDrive User ID |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/wrmilling/onedrive-docker"` | image repository |
