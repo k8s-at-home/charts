@@ -14,11 +14,13 @@ image:
   pullPolicy: IfNotPresent
 
 # -- environment variables.
-# @default -- See below
+# @default -- See below and commented variables in values.yaml
 env:
   # -- Set the container timezone
   TZ: UTC
+  # -- Set the data directory for OneDrive
   ONEDRIVE_DATA_DIR: /onedrive/conf
+  # -- Set the auth request and response file locations for OneDrive
   ONEDRIVE_AUTHFILES: "/onedrive/auth-request:/onedrive/auth-response"
   # ONEDRIVE_UID: 1000
   # ONEDRIVE_GID: 1000
@@ -27,7 +29,7 @@ env:
   # ONEDRIVE_DEBUG_HTTPS: 0
   # ONEDRIVE_RESYNC: 0
   # ONEDRIVE_DOWNLOADONLY: 0
-  # ONEDRIVE_LOGOUT: 0~/OneDrive
+  # ONEDRIVE_LOGOUT: 0
 
 # -- Configure auth secret for onedrive to initialize with
 # @default -- See values.yaml
@@ -35,16 +37,23 @@ auth:
   existingSecret: "onedrive-auth"
 
 # -- Configure persistence settings for the chart under this key.
-# @default -- See values.yaml
+# @default -- See values.yaml for full listing
 persistence:
+  # -- OneDrive config storage
   config:
+    # -- If config storage should be enabled
     enabled: true
+    # -- Mount location for config
     mountPath: /onedrive/conf
 
+  # -- OneDrive data storage
   data:
+    # -- If data storage should be enabled
     enabled: true
+    # -- Mount location for onedrive data
     mountPath: /onedrive/data
 
+# @default -- Default config with application_id set. If you update, please be sure to set the application_id
 config: |
   # Configuration for OneDrive Linux Client
   # This file contains the list of supported configuration fields

@@ -77,12 +77,20 @@ N/A
 |-----|------|---------|-------------|
 | auth | object | See values.yaml | Configure auth secret for onedrive to initialize with |
 | config | string | `"# Configuration for OneDrive Linux Client\n# This file contains the list of supported configuration fields\n# with their default values.\n# All values need to be enclosed in quotes\n# When changing a config option below, remove the '#' from the start of the line\n# For explanations of all config options below see docs/USAGE.md or the man page.\n#\n# sync_dir = \"/onedrive/data\"\n# skip_file = \"~*|.~*|*.tmp\"\n# monitor_interval = \"300\"\n# skip_dir = \"\"\n# log_dir = \"/var/log/onedrive/\"\n# drive_id = \"\"\n# upload_only = \"false\"\n# check_nomount = \"false\"\n# check_nosync = \"false\"\n# download_only = \"false\"\n# disable_notifications = \"false\"\n# disable_upload_validation = \"false\"\n# enable_logging = \"false\"\n# force_http_2 = \"false\"\n# local_first = \"false\"\n# no_remote_delete = \"false\"\n# skip_symlinks = \"false\"\n# debug_https = \"false\"\n# skip_dotfiles = \"false\"\n# dry_run = \"false\"\n# min_notify_changes = \"5\"\n# monitor_log_frequency = \"5\"\n# monitor_fullscan_frequency = \"10\"\n# sync_root_files = \"false\"\n# classify_as_big_delete = \"1000\"\n# user_agent = \"\"\n# remove_source_files = \"false\"\n# skip_dir_strict_match = \"false\"\napplication_id = \"21c49a0d-d22c-4792-acd1-8f163c982557\"\n# resync = \"false\"\n# bypass_data_preservation = \"false\"\n# azure_ad_endpoint = \"\"\n# azure_tenant_id = \"common\"\n# sync_business_shared_folders = \"false\"\n# sync_dir_permissions = \"700\"\n# sync_file_permissions = \"600\"\n# rate_limit = \"131072\"\n"` |  |
-| env | object | See below | environment variables. |
+| env | object | See below and commented variables in values.yaml | environment variables. |
+| env.ONEDRIVE_AUTHFILES | string | `"/onedrive/auth-request:/onedrive/auth-response"` | Set the auth request and response file locations for OneDrive |
+| env.ONEDRIVE_DATA_DIR | string | `"/onedrive/conf"` | Set the data directory for OneDrive |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/wrmilling/onedrive-docker"` | image repository |
 | image.tag | string | `"stretch-202106142112"` | image tag |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence | object | See values.yaml for full listing | Configure persistence settings for the chart under this key. |
+| persistence.config | object | `{"enabled":true,"mountPath":"/onedrive/conf"}` | OneDrive config storage |
+| persistence.config.enabled | bool | `true` | If config storage should be enabled |
+| persistence.config.mountPath | string | `"/onedrive/conf"` | Mount location for config |
+| persistence.data | object | `{"enabled":true,"mountPath":"/onedrive/data"}` | OneDrive data storage |
+| persistence.data.enabled | bool | `true` | If data storage should be enabled |
+| persistence.data.mountPath | string | `"/onedrive/data"` | Mount location for onedrive data |
 
 ## Changelog
 
