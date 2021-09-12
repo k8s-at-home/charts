@@ -57,6 +57,7 @@ probes:
       timeoutSeconds: 10
 
 # -- Configure persistence settings for the chart under this key.
+## Config persistence is required for the Prometheus exporter sidecar.
 # @default -- See values.yaml
 persistence:
   config:
