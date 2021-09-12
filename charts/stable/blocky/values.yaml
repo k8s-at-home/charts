@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: spx01/blocky
   # -- image tag
-  tag: v0.14
+  tag: v0.15
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -60,14 +60,32 @@ persistence:
     enabled: false
     mountPath: /logs
 
-prometheus:
+metrics:
   # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
-  # See also the notes under `additionalContainers`.
   # @default -- See values.yaml
+  enabled: false
   serviceMonitor:
-    enabled: false
     interval: 30s
-    additionalLabels: {}
+    scrapeTimeout: 10s
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: BlockyDisabled
+      #   annotations:
+      #     description: Blocky's ad blocking has been disabled for 15min.
+      #       Please re-enable protection.
+      #     summary: Blocky is disabled.
+      #   expr: |
+      #     blocky_blocking_enabled == 0
+      #   for: 15m
+      #   labels:
+      #     severity: critical
 
 # -- Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml
 # @default -- see URL to default config
