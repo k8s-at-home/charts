@@ -1,6 +1,6 @@
 # radarr
 
-![Version: 14.0.0](https://img.shields.io/badge/Version-14.0.0-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
+![Version: 15.0.1](https://img.shields.io/badge/Version-15.0.1-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
 
 A fork of Sonarr to work with movies à la Couchpotato
 
@@ -78,20 +78,22 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| exporter.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus podMonitor. |
-| exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
-| exporter.env.port | int | `32123` | metrics port |
-| exporter.env.unknownQueueItems | bool | `false` | Set to true to enable gathering unknown queue items |
-| exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| exporter.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
-| exporter.image.tag | string | `"v0.6.1"` | image tag |
-| exporter.podMonitor.interval | string | `"3m"` |  |
-| exporter.podMonitor.labels | object | `{}` |  |
-| exporter.podMonitor.scrapeTimeout | string | `"1m"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/radarr"` | image repository |
 | image.tag | string | `"v3.2.2.5080"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus serviceMonitor. |
+| metrics.exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
+| metrics.exporter.env.port | int | `9793` | metrics port |
+| metrics.exporter.env.unknownQueueItems | bool | `false` | Set to true to enable gathering unknown queue items |
+| metrics.exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| metrics.exporter.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
+| metrics.exporter.image.tag | string | `"v0.6.1"` | image tag |
+| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
+| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
+| metrics.serviceMonitor.interval | string | `"3m"` |  |
+| metrics.serviceMonitor.labels | object | `{}` |  |
+| metrics.serviceMonitor.scrapeTimeout | string | `"1m"` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | probes | object | See values.yaml | Configures the probes for the main Pod. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -101,6 +103,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [15.0.0]
+
+#### Changed
+
+- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor and exporter sidecar.
 
 ### [14.0.0]
 
@@ -134,6 +142,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[15.0.0]: #1500
 [14.0.0]: #1400
 [13.0.0]: #1300
 [12.0.0]: #1200

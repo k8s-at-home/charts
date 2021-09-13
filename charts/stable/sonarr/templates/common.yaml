@@ -3,12 +3,12 @@
 
 {{/* Append the hardcoded settings */}}
 {{- define "sonarr.harcodedValues" -}}
-{{ if .Values.exporter.enabled }}
+{{ if .Values.metrics.enabled }}
 additionalContainers:
   exporter:
     name: exporter
-    image: "{{ .Values.exporter.image.repository }}:{{ .Values.exporter.image.tag }}"
-    imagePullPolicy: {{ .Values.exporter.image.pullPolicy }}
+    image: "{{ .Values.metrics.exporter.image.repository }}:{{ .Values.metrics.exporter.image.tag }}"
+    imagePullPolicy: {{ .Values.metrics.exporter.image.pullPolicy }}
     args: ["exportarr", "sonarr"]
     env:
       - name: URL
@@ -16,20 +16,29 @@ additionalContainers:
       - name: CONFIG
         value: "/config/config.xml"
       - name: PORT
-        value: "{{ .Values.exporter.env.port }}"
+        value: "{{ .Values.metrics.exporter.env.port }}"
       - name: ENABLE_ADDITIONAL_METRICS
-        value: "{{ .Values.exporter.env.additionalMetrics }}"
+        value: "{{ .Values.metrics.exporter.env.additionalMetrics }}"
       - name: ENABLE_UNKNOWN_QUEUE_ITEMS
-        value: "{{ .Values.exporter.env.unknownQueueItems }}"
+        value: "{{ .Values.metrics.exporter.env.unknownQueueItems }}"
     ports:
       - name: metrics
-        containerPort: {{ .Values.exporter.env.port }}
+        containerPort: {{ .Values.metrics.exporter.env.port }}
     volumeMounts:
       {{ if .Values.persistence.config.enabled }}
       - name: config
         mountPath: /config
         readOnly: true
       {{ end }}
+
+service:
+  metrics:
+    enabled: true
+    ports:
+      metrics:
+        enabled: true
+        protocol: TCP
+        port: {{ .Values.metrics.exporter.env.port }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "sonarr.harcodedValues" . | fromYaml) -}}

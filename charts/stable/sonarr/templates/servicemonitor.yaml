@@ -13,23 +13,12 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-    - port: http
+    - port: metrics
       {{- with .Values.metrics.serviceMonitor.interval }}
       interval: {{ . }}
       {{- end }}
       {{- with .Values.metrics.serviceMonitor.scrapeTimeout }}
       scrapeTimeout: {{ . }}
       {{- end }}
-      path: /api/prometheus
-      {{- with .Values.metrics.serviceMonitor.bearerTokenFile }}
-      bearerTokenFile: {{ . }}
-      {{- end }}
-      {{- with .Values.metrics.serviceMonitor.bearerTokenSecret }}
-      bearerTokenSecret:
-        name: {{ .name }}
-        key: {{ .key }}
-        {{- with .optional }}
-        optional: {{ . }}
-        {{- end }}
-      {{- end }}
+      path: /metrics
 {{- end }}

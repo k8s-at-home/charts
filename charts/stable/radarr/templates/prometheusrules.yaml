@@ -12,12 +12,22 @@ spec:
   groups:
     - name: {{ include "common.names.fullname" . }}
       rules:
-        - alert: PromcordAbsent
+        - alert: ExportarrAbsent
           annotations:
-            description: Promcord has disappeared from Prometheus service discovery.
-            summary: Promcord is down.
+            description: Radarr Exportarr has disappeared from Prometheus
+              service discovery.
+            summary: Exportarr is down.
           expr: |
             absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+        - alert: RadarrDown
+          annotations:
+            description: Radarr service is down.
+            summary: Radarr is down.
+          expr: |
+            radarr_system_status == 0
           for: 5m
           labels:
             severity: critical

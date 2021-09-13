@@ -10,14 +10,14 @@ metadata:
     {{- end }}
 spec:
   groups:
-    - name: blocky
+    - name: {{ include "common.names.fullname" . }}
       rules:
         - alert: BlockyAbsent
           annotations:
             description: Blocky has disappeared from Prometheus service discovery.
             summary: Blocky is down.
           expr: |
-            absent(up{job=~".*blocky.*"} == 1)
+            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: 5m
           labels:
             severity: critical

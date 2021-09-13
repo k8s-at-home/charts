@@ -12,10 +12,10 @@ spec:
   groups:
     - name: {{ include "common.names.fullname" . }}
       rules:
-        - alert: PromcordAbsent
+        - alert: HomeAssistantAbsent
           annotations:
-            description: Promcord has disappeared from Prometheus service discovery.
-            summary: Promcord is down.
+            description: Home Assistant has disappeared from Prometheus service discovery.
+            summary: Home Assistant is down.
           expr: |
             absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
           for: 5m
