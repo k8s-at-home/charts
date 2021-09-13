@@ -35,7 +35,7 @@ spec:
             description: UPS {{ "{{ $labels.ups }}" }} has lost power and is running on battery.
             summary: UPS is running on battery.
           expr: |
-            nut_status == 2
+            nut_status{job=~".*{{ include "common.names.fullname" . }}.*"} == 2
           for: 10s
           labels:
             severity: critical
