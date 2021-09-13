@@ -36,7 +36,8 @@ metrics:
   # @default -- See values.yaml
   enabled: false
   serviceMonitor:
-    interval: 1h
+    # -- The interval field must use minutes for the padding to calculate properly.
+    interval: 60m
     scrapeTimeout: 1m
     labels: {}
   # -- Enable and configure Prometheus Rules for the chart under this key.
@@ -57,11 +58,11 @@ metrics:
     rules: []
       # - alert: SpeedtestSlowInternetDownload
       #   annotations:
-      #     description: Internet download speed is averaging {{ humanize $value }} Mbps.
+      #     description: Internet download speed is averaging {{ "{{ humanize $value }}" }} Mbps.
       #     summary: SpeedTest slow internet download.
       #   expr: |
-      #     avg_over_time(speedtest_download[4h])
-      #       < 420
+      #     avg_over_time(speedtest_download_bits_per_second{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
+      #       < {{ .Values.metrics.prometheusRule.downloadLimit }}
       #   for: 0m
       #   labels:
       #     severity: warning
