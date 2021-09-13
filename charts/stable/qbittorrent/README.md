@@ -88,7 +88,7 @@ N/A
 | metrics.exporter.env.port | int | `9022` | metrics port |
 | metrics.exporter.env.user | string | `"admin"` | qbittorrent username update value after configuring qbittorrent |
 | metrics.exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| metrics.exporter.image.repository | string | `"ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter"` | image repository |
+| metrics.exporter.image.repository | string | `"esanchezm/prometheus-qbittorrent-exporter"` | image repository |
 | metrics.exporter.image.tag | string | `"v1.2.0"` | image tag |
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
 | metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
