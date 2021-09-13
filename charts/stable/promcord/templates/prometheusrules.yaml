@@ -17,7 +17,7 @@ spec:
             description: Promcord has disappeared from Prometheus service discovery.
             summary: Promcord is down.
           expr: |
-            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
+            absent(up{job=~".*{{ include "common.names.fullname" . }}.*"} == 1)
           for: 5m
           labels:
             severity: critical
