@@ -18,7 +18,7 @@ spec:
               service discovery.
             summary: Exportarr is down.
           expr: |
-            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
+            absent(up{job=~".*{{ include "common.names.fullname" . }}.*"} == 1)
           for: 5m
           labels:
             severity: critical
@@ -27,7 +27,7 @@ spec:
             description: Sonarr service is down.
             summary: Sonarr is down.
           expr: |
-            sonarr_system_status == 0
+            sonarr_system_status{job=~".*{{ include "common.names.fullname" . }}.*"} == 0
           for: 5m
           labels:
             severity: critical
