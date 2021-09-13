@@ -27,7 +27,7 @@ spec:
             description: qBittorrent service is down.
             summary: qBittorrent is down.
           expr: |
-            qbittorrent_up == 0
+            qbittorrent_up{job=~".*{{ include "common.names.fullname" . }}.*"} == 0
           for: 5m
           labels:
             severity: critical
