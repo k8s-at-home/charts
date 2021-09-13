@@ -18,7 +18,7 @@ spec:
             summary: Speedtest Exporter is down.
           expr: |
             absent(up{job=~".*{{ include "common.names.fullname" . }}.*"} == 1)
-          for: {{ .Values.metrics.serviceMonitor.interval }}
+          for: {{ trimAll "m" .Values.metrics.serviceMonitor.interval | add 15 }}m
           labels:
             severity: critical
         - alert: SpeedtestSlowInternetDownload
@@ -26,7 +26,7 @@ spec:
             description: Internet download speed is averaging {{ "{{ humanize $value }}" }} Mbps.
             summary: SpeedTest slow internet download.
           expr: |
-            avg_over_time(speedtest_download{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
+            avg_over_time(speedtest_download_bits_per_second{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
               < {{ .Values.metrics.prometheusRule.downloadLimit }}
           for: 0m
           labels:
@@ -36,7 +36,7 @@ spec:
             description: Internet upload speed is averaging {{ "{{ humanize $value }}" }} Mbps.
             summary: SpeedTest slow internet upload.
           expr: |
-            avg_over_time(speedtest_upload{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
+            avg_over_time(speedtest_upload_bits_per_second{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
               < {{ .Values.metrics.prometheusRule.uploadLimit }}
           for: 0m
           labels:
@@ -46,7 +46,7 @@ spec:
             description: Internet ping latency is averaging {{ "{{ humanize $value }}" }} ms.
             summary: SpeedTest high ping latency.
           expr: |
-            avg_over_time(speedtest_ping_latency_milliseconds{job=~".*{{ include "common.names.fullname" . }}.*"}[2h])
+            avg_over_time(speedtest_ping_latency_milliseconds{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
               > {{ .Values.metrics.prometheusRule.pingLimit }}
           for: 0m
           labels:
@@ -56,7 +56,7 @@ spec:
             description: Internet jitter latency is averaging {{ "{{ humanize $value }}" }} ms.
             summary: SpeedTest high jitter latency.
           expr: |
-            avg_over_time(speedtest_jitter_latency_milliseconds{job=~".*{{ include "common.names.fullname" . }}.*"}[2h])
+            avg_over_time(speedtest_jitter_latency_milliseconds{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
               > {{ .Values.metrics.prometheusRule.jitterLimit }}
           for: 0m
           labels:

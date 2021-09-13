@@ -1,6 +1,6 @@
 # speedtest-exporter
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v3.2.2](https://img.shields.io/badge/AppVersion-v3.2.2-informational?style=flat-square)
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: v3.2.2](https://img.shields.io/badge/AppVersion-v3.2.2-informational?style=flat-square)
 
 Speedtest Exporter made in python using the official speedtest bin
 
@@ -84,10 +84,10 @@ N/A
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
 | metrics.prometheusRule.downloadLimit | int | `400` | Download speed you want alerts to be triggered in Mbps |
 | metrics.prometheusRule.jitterLimit | int | `30` | Jitter latency you want alerts to be triggered in ms |
-| metrics.prometheusRule.pingLimit | int | `10` | Ping latency you want alerts to be triggered in ms |
+| metrics.prometheusRule.pingLimit | int | `15` | Ping latency you want alerts to be triggered in ms |
 | metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
 | metrics.prometheusRule.uploadLimit | int | `400` | Upload speed you want alerts to be triggered in Mbps |
-| metrics.serviceMonitor.interval | string | `"1h"` |  |
+| metrics.serviceMonitor.interval | string | `"60m"` | The interval field must use minutes for the padding to calculate properly.  |
 | metrics.serviceMonitor.labels | object | `{}` |  |
 | metrics.serviceMonitor.scrapeTimeout | string | `"1m"` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |
