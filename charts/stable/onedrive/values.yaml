@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: ghcr.io/wrmilling/onedrive-docker
   # -- image tag
-  tag: latest
+  tag: v1.0.0
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -18,14 +18,14 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Set the data directory for OneDrive
-  ONEDRIVE_DATA_DIR: /onedrive/conf
   # -- Set the auth request and response file locations for OneDrive
-  ONEDRIVE_AUTHFILES: "/onedrive/auth-request:/onedrive/auth-response"
+  ONEDRIVE_AUTHFILES: "/onedrive/conf/auth-request:/onedrive/conf/auth-response"
   # -- Set the OneDrive User ID
   ONEDRIVE_UID: 1000
   # -- Set the One Drive Group ID
   ONEDRIVE_GID: 1000
+  # -- Indicate to container to run K8s specific setup
+  KAH_HELM_INSTALL: 1
   # ONEDRIVE_VERBOSE: 0
   # ONEDRIVE_DEBUG: 0
   # ONEDRIVE_DEBUG_HTTPS: 0
@@ -45,7 +45,6 @@ persistence:
   config:
     # -- If config storage should be enabled
     enabled: true
-    # -- Mount location for config
     mountPath: /onedrive/conf
     accessMode: ReadWriteOnce
 
@@ -53,7 +52,6 @@ persistence:
   data:
     # -- If data storage should be enabled
     enabled: true
-    # -- Mount location for onedrive data
     mountPath: /onedrive/data
     type: pvc
     size: 5Gi
@@ -98,7 +96,7 @@ config: |
   # user_agent = ""
   # remove_source_files = "false"
   # skip_dir_strict_match = "false"
-  application_id = ""
+  application_id = "d50ca740-c83f-4d1b-b616-12c519384f0c"
   # resync = "false"
   # bypass_data_preservation = "false"
   # azure_ad_endpoint = ""
