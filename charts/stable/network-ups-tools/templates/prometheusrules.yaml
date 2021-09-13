@@ -1,0 +1,55 @@
+{{- if and .Values.metrics.enabled .Values.metrics.prometheusRule.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.metrics.prometheusRule.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  groups:
+    - name: {{ include "common.names.fullname" . }}
+      rules:
+        - alert: NutExporterAbsent
+          annotations:
+            description: NUT Exporter has disappeared from Prometheus target discovery.
+            summary: NUT Exporter is down.
+          expr: |
+            absent(up{job=~".*{{ include "common.names.fullname" . }}.*"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+        - alert: UpsStatusUnknown
+          annotations:
+            description: UPS {{ "{{ $labels.ups }}" }} is reporting a status of unknown.
+            summary: UPS status unknown.
+          expr: |
+            nut_status{job=~".*{{ include "common.names.fullname" . }}.*"} == 0
+          for: 10s
+          labels:
+            severity: critical
+        - alert: UpsOnBattery
+          annotations:
+            description: UPS {{ "{{ $labels.ups }}" }} has lost power and is running on battery.
+            summary: UPS is running on battery.
+          expr: |
+            nut_status{job=~".*{{ include "common.names.fullname" . }}.*"} == 2
+          for: 10s
+          labels:
+            severity: critical
+        - alert: UpsLowBattery
+          annotations:
+            description: UPS {{ "{{ $labels.ups }}" }} battery is low and the system is getting
+              ready to shutdown.
+            summary: UPS battery is low.
+          expr: |
+            nut_status{job=~".*{{ include "common.names.fullname" . }}.*"} == 3
+          for: 5s
+          labels:
+            severity: critical
+        {{- with .Values.metrics.prometheusRule.rules }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+{{- end }}
