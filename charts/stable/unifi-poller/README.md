@@ -1,6 +1,6 @@
 # unifi-poller
 
-![Version: 9.0.0](https://img.shields.io/badge/Version-9.0.0-informational?style=flat-square) ![AppVersion: 2.1.3](https://img.shields.io/badge/AppVersion-2.1.3-informational?style=flat-square)
+![Version: 10.0.0](https://img.shields.io/badge/Version-10.0.0-informational?style=flat-square) ![AppVersion: 2.1.3](https://img.shields.io/badge/AppVersion-2.1.3-informational?style=flat-square)
 
 Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus
 
@@ -87,16 +87,28 @@ N/A
 | influxdb.enabled | bool | `false` | Create an InfluxDB instance as a [unifi-poller storage backend](https://unifipoller.com/docs/dependencies/influxdb).    See [bitnami/influxdb](https://github.com/bitnami/charts/tree/master/bitnami/influxdb) for more options. |
 | influxdb.persistence.enabled | bool | `false` | Enable persistence to store in a PV so data survives pod restarts. |
 | ingress.main.enabled | bool | `false` | Expose [unifi-poller's web interface](https://unifipoller.com/docs/advanced/webserver)    (if enabled in the configuration) via the k8s ingress by setting this true. |
-| prometheus.serviceMonitor.additionalLabels | object | `{}` | More labels to add to the ServiceMonitor resource. |
-| prometheus.serviceMonitor.enabled | bool | `false` | Create a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/design.md#servicemonitor)    for the [unifi-poller prometheus exporter](https://unifipoller.com/docs/dependencies/prometheus)    that is recognized by [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator).    This gets created in this chart's namespace. Note: this only creates a ServiceMonitor, not a prometheus instance. |
-| prometheus.serviceMonitor.interval | string | `"1m"` | Prometheus [endpoint polling interval](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#endpoint)    for this ServiceMonitor (how often unifi-poller will be queried). |
-| service.main.ports.http.port | int | `9130` | The port this prometheus exporter will listen on ([registered as 9130](https://github.com/prometheus/prometheus/wiki/Default-port-allocations)).    This should match unifi-poller's [configured listen port](https://unifipoller.com/docs/install/configuration#prometheus). |
+| metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
+| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
+| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
+| metrics.serviceMonitor.interval | string | `"30s"` |  |
+| metrics.serviceMonitor.labels | object | `{}` |  |
+| metrics.serviceMonitor.scrapeTimeout | string | `"10s"` |  |
+| service.main.ports.http.enabled | bool | `false` |  |
+| service.main.ports.metrics.enabled | bool | `true` |  |
+| service.main.ports.metrics.port | int | `9130` |  |
+| service.main.ports.metrics.protocol | string | `"TCP"` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [10.0.0]
+
+#### Changed
+
+- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
 
 ### [9.0.0]
 
@@ -113,6 +125,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **BREAKING**: Change the default influxdb database name to match unifi-poller's default
 - Updates default unifi-poller version from 2.0.1 to 2.1.3
 
+[10.0.0]: #1000
 [9.0.0]: #900
 [8.0.0]: #800
 

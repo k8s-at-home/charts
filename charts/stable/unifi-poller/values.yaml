@@ -28,8 +28,10 @@ service:
   main:
     ports:
       http:
-        # -- The port this prometheus exporter will listen on ([registered as 9130](https://github.com/prometheus/prometheus/wiki/Default-port-allocations)).
-        #    This should match unifi-poller's [configured listen port](https://unifipoller.com/docs/install/configuration#prometheus).
+        enabled: false
+      metrics:
+        enabled: true
+        protocol: TCP
         port: 9130
 
 ingress:
@@ -37,19 +39,6 @@ ingress:
     # -- Expose [unifi-poller's web interface](https://unifipoller.com/docs/advanced/webserver)
     #    (if enabled in the configuration) via the k8s ingress by setting this true.
     enabled: false
-
-prometheus:
-  serviceMonitor:
-    # -- Create a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/design.md#servicemonitor)
-    #    for the [unifi-poller prometheus exporter](https://unifipoller.com/docs/dependencies/prometheus)
-    #    that is recognized by [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator).
-    #    This gets created in this chart's namespace. Note: this only creates a ServiceMonitor, not a prometheus instance.
-    enabled: false
-    # -- Prometheus [endpoint polling interval](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#endpoint)
-    #    for this ServiceMonitor (how often unifi-poller will be queried).
-    interval: 1m
-    # -- More labels to add to the ServiceMonitor resource.
-    additionalLabels: {}
 
 influxdb:
   # -- Create an InfluxDB instance as a [unifi-poller storage backend](https://unifipoller.com/docs/dependencies/influxdb).
@@ -68,3 +57,29 @@ influxdb:
     enabled: false
     # storageClass: ""
     # size: 8Gi
+
+metrics:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # @default -- See values.yaml
+  enabled: false
+  serviceMonitor:
+    interval: 1m
+    scrapeTimeout: 30s
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: UnifiPollerAbsent
+      #   annotations:
+      #     description: Unifi Poller has disappeared from Prometheus service discovery.
+      #     summary: Unifi Poller is down.
+      #   expr: |
+      #     absent(up{job=~".*unifi-poller.*"} == 1)
+      #   for: 5m
+      #   labels:
+      #     severity: critical
