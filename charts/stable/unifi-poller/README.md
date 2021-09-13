@@ -90,9 +90,9 @@ N/A
 | metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
 | metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
-| metrics.serviceMonitor.interval | string | `"30s"` |  |
+| metrics.serviceMonitor.interval | string | `"1m"` |  |
 | metrics.serviceMonitor.labels | object | `{}` |  |
-| metrics.serviceMonitor.scrapeTimeout | string | `"10s"` |  |
+| metrics.serviceMonitor.scrapeTimeout | string | `"30s"` |  |
 | service.main.ports.http.enabled | bool | `false` |  |
 | service.main.ports.metrics.enabled | bool | `true` |  |
 | service.main.ports.metrics.port | int | `9130` |  |
