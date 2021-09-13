@@ -31,11 +31,37 @@ service:
         protocol: TCP
         port: 9798
 
-prometheus:
+metrics:
   # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
   # @default -- See values.yaml
+  enabled: false
   serviceMonitor:
-    enabled: false
     interval: 1h
     scrapeTimeout: 1m
-    additionalLabels: {}
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    # -- Download speed you want alerts to be triggered in Mbps
+    downloadLimit: 400
+    # -- Upload speed you want alerts to be triggered in Mbps
+    uploadLimit: 400
+    # -- Ping latency you want alerts to be triggered in ms
+    pingLimit: 10
+    # -- Jitter latency you want alerts to be triggered in ms
+    jitterLimit: 30
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: SpeedtestSlowInternetDownload
+      #   annotations:
+      #     description: Internet download speed is averaging {{ humanize $value }} Mbps.
+      #     summary: SpeedTest slow internet download.
+      #   expr: |
+      #     avg_over_time(speedtest_download[4h])
+      #       < 420
+      #   for: 0m
+      #   labels:
+      #     severity: warning
