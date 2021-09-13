@@ -17,7 +17,7 @@ spec:
             description: Blocky has disappeared from Prometheus service discovery.
             summary: Blocky is down.
           expr: |
-            absent(up{job="{{ include "common.names.fullname" . }}"} == 1)
+            absent(up{job=~".*{{ include "common.names.fullname" . }}.*"} == 1)
           for: 5m
           labels:
             severity: critical
@@ -27,7 +27,7 @@ spec:
               Please re-enable protection.
             summary: Blocky is disabled.
           expr: |
-            blocky_blocking_enabled == 0
+            blocky_blocking_enabled{job=~".*{{ include "common.names.fullname" . }}.*"} == 0
           for: 15m
           labels:
             severity: critical
