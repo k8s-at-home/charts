@@ -51001,6 +51001,30 @@ entries:
   promcord:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-09-13T15:58:31.493795096Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.0
+    description: Discord bot that provides metrics from a Discord server
+    digest: 8d9ac7f9dd3548cda0dca23e40224343868a69a481602bae14b9adf17a552eac
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/promcord
+    keywords:
+    - promcord
+    - discord
+    - metrics
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: hello@chipwolf.uk
+      name: ChipWolf
+    name: promcord
+    sources:
+    - https://github.com/nimarion/promcord
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/promcord-5.0.2/promcord-5.0.2.tgz
+    version: 5.0.2
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-09-12T23:50:06.132343927Z"
     dependencies:
     - name: common
@@ -54274,6 +54298,32 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - apiVersion: v2
+    appVersion: v3.2.2.5080
+    created: "2021-09-13T15:58:31.67279648Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.0
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 264a3b1dace2f939729d005d48054cdb636569f9514a4f1bb5a2b1b7337ba186
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-15.0.2/radarr-15.0.2.tgz
+    version: 15.0.2
   - apiVersion: v2
     appVersion: v3.2.2.5080
     created: "2021-09-12T23:47:38.061573571Z"
@@ -61784,6 +61834,32 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/smarter-device-manager-1.0.0/smarter-device-manager-1.0.0.tgz
     version: 1.0.0
   sonarr:
+  - apiVersion: v2
+    appVersion: v3.0.6.1265
+    created: "2021-09-13T15:58:31.902344801Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: a05811578c5f759462bcb7d319b0d2795b21a84d8698062a8f6c99d7e7dfa669
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-15.0.2/sonarr-15.0.2.tgz
+    version: 15.0.2
   - apiVersion: v2
     appVersion: v3.0.6.1265
     created: "2021-09-12T23:48:46.497003962Z"
@@ -80672,4 +80748,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-13T15:57:13.857397266Z"
+generated: "2021-09-13T15:58:31.922473438Z"
