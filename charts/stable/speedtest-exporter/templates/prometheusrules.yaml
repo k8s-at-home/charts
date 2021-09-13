@@ -56,7 +56,7 @@ spec:
             description: Internet jitter latency is averaging {{ "{{ humanize $value }}" }} ms.
             summary: SpeedTest high jitter latency.
           expr: |
-            avg_over_time(speedtest_jitter_latency_milliseconds[2h])
+            avg_over_time(speedtest_jitter_latency_milliseconds{job=~".*{{ include "common.names.fullname" . }}.*"}[2h])
               > {{ .Values.metrics.prometheusRule.jitterLimit }}
           for: 0m
           labels:
