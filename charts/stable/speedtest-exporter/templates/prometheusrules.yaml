@@ -26,7 +26,7 @@ spec:
             description: Internet download speed is averaging {{ "{{ humanize $value }}" }} Mbps.
             summary: SpeedTest slow internet download.
           expr: |
-            avg_over_time(speedtest_download[4h])
+            avg_over_time(speedtest_download{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
               < {{ .Values.metrics.prometheusRule.downloadLimit }}
           for: 0m
           labels:
