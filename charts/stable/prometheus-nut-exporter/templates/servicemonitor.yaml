@@ -1,11 +1,11 @@
-{{- if .Values.prometheus.serviceMonitor.enabled }}
+{{- if .Values.metrics.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "common.names.fullname" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
-    {{- with .Values.prometheus.serviceMonitor.additionalLabels }}
+    {{- with .Values.metrics.serviceMonitor.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
@@ -13,16 +13,16 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-  {{- range .Values.prometheus.serviceMonitor.targets }}
-  - port: metrics
-    interval: {{ .interval }}
-    scrapeTimeout: {{ .scrapeTimeout }}
-    path: /metrics
-    params:
-      target:
-      - "{{ .hostname }}:{{ .port }}"
-    relabelings:
-    - sourceLabels: [__param_target]
-      targetLabel: target
-  {{- end }}
+    - port: metrics
+    {{- range .Values.metrics.serviceMonitor.targets }}
+      interval: {{ .interval }}
+      scrapeTimeout: {{ .scrapeTimeout }}
+      path: /metrics
+      params:
+        target:
+          - "{{ .hostname }}:{{ .port }}"
+      relabelings:
+        - sourceLabels: [__param_target]
+          targetLabel: target
+    {{- end }}
 {{- end }}

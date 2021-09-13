@@ -33,14 +33,32 @@ service:
         protocol: TCP
         port: 9995
 
-prometheus:
+metrics:
   # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
   # @default -- See values.yaml
+  enabled: false
   serviceMonitor:
-    enabled: false
     # Specify the list of NUT servers that should be monitored
     targets: []
-    # - hostname: nut-server
-    #   port: 3493
-    #   interval: 30s
-    #   scrapeTimeout: 10s
+      # - hostname: nut-server
+      #   port: 3493
+      #   interval: 30s
+      #   scrapeTimeout: 10s
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: UpsStatusUnknown
+      #   annotations:
+      #     description: UPS {{ "{{ $labels.ups }}" }} is reporting a status of unknown.
+      #     summary: UPS status unknown.
+      #   expr: |
+      #     nut_status == 0
+      #   for: 10s
+      #   labels:
+      #     severity: critical
