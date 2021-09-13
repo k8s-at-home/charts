@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: ghcr.io/wrmilling/onedrive-docker
   # -- image tag
-  tag: v1.0.0
+  tag: v2.0.1
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -18,25 +18,18 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Set the auth request and response file locations for OneDrive
-  ONEDRIVE_AUTHFILES: "/onedrive/conf/auth-request:/onedrive/conf/auth-response"
   # -- Set the OneDrive User ID
   ONEDRIVE_UID: 1000
   # -- Set the One Drive Group ID
   ONEDRIVE_GID: 1000
-  # -- Indicate to container to run K8s specific setup
-  KAH_HELM_INSTALL: 1
+  # -- Set the One Drive Authentication Response
+  ONEDRIVE_AUTHRESPONSE: ""
   # ONEDRIVE_VERBOSE: 0
   # ONEDRIVE_DEBUG: 0
   # ONEDRIVE_DEBUG_HTTPS: 0
   # ONEDRIVE_RESYNC: 0
   # ONEDRIVE_DOWNLOADONLY: 0
   # ONEDRIVE_LOGOUT: 0
-
-# -- Configure auth secret for onedrive to initialize with
-# @default -- See values.yaml
-auth:
-  existingSecret: "onedrive-auth"
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml for full listing
@@ -59,7 +52,7 @@ persistence:
     readOnly: false
     retain: false
 
-# @default -- Default config with application_id set. If you update, please be sure to set the application_id
+# @default -- Default config with application_id set.
 config: |
   # Configuration for OneDrive Linux Client
   # This file contains the list of supported configuration fields

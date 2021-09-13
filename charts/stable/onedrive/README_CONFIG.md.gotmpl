@@ -5,12 +5,12 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-To use this chart, you will need to set an application_id in the `config` section as well as a secret (called `onedrive-auth` by default) with a field called `auth-response` that has the value derrived from the process below.
+To use this chart you will need to provide an authentication response from Microsoft for the client to use. This is provided as an environment variable like the claim token is for the plex chart.
 
-In order to generate an auth-response value you must do the following:
+In order to generate an authentication response value you must do the following:
 
-1. Visit the following URL: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=d50ca740-c83f-4d1b-b616-12c519384f0c&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`
-2. Authenticate with your OneDrive account.
-3. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and use that as the `auth-reponse` value in the previously mentioned secret `onedrive-auth`.
+1. Visit the following URL: [Authenticate for OneDrive](https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=d50ca740-c83f-4d1b-b616-12c519384f0c&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient)
+2. Follow the prompts to login and get your token URL.
+3. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and provide it to the chart through the `ONEDRIVE_AUTHRESPONSE` environment variable, preferrably secured through some secret. 
 
 {{- end -}}

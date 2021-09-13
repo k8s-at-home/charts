@@ -9,6 +9,15 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.0.0]
+
+This release moves away from the auth-files approach and uses a custom docker image that allows the responseUrl to be passed directly as an environment variable, similar to how Plex does claim tokens. 
+
+#### Removed
+
+* Removed requirement for `onedrive-auth` secret, you can now provide the `ONEDRIVE_AUTHRESPONSE` however you wish to do so
+* Remove `KAH_HELM_INSTALL` environment variable
+
 ### [1.1.0]
 
 #### Added
