@@ -45,7 +45,7 @@ spec:
               ready to shutdown.
             summary: UPS battery is low.
           expr: |
-            nut_status == 3
+            nut_status{job=~".*{{ include "common.names.fullname" . }}.*"} == 3
           for: 5s
           labels:
             severity: critical
