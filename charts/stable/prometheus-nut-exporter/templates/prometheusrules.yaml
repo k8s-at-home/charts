@@ -26,7 +26,7 @@ spec:
             description: UPS {{ "{{ $labels.ups }}" }} is reporting a status of unknown.
             summary: UPS status unknown.
           expr: |
-            nut_status == 0
+            nut_status{job=~".*{{ include "common.names.fullname" . }}.*"} == 0
           for: 10s
           labels:
             severity: critical
