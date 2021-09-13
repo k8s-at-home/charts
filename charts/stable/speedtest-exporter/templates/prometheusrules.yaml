@@ -46,7 +46,7 @@ spec:
             description: Internet ping latency is averaging {{ "{{ humanize $value }}" }} ms.
             summary: SpeedTest high ping latency.
           expr: |
-            avg_over_time(speedtest_ping_latency_milliseconds[2h])
+            avg_over_time(speedtest_ping_latency_milliseconds{job=~".*{{ include "common.names.fullname" . }}.*"}[2h])
               > {{ .Values.metrics.prometheusRule.pingLimit }}
           for: 0m
           labels:
