@@ -36,7 +36,7 @@ spec:
             description: Internet upload speed is averaging {{ "{{ humanize $value }}" }} Mbps.
             summary: SpeedTest slow internet upload.
           expr: |
-            avg_over_time(speedtest_upload[4h])
+            avg_over_time(speedtest_upload{job=~".*{{ include "common.names.fullname" . }}.*"}[4h])
               < {{ .Values.metrics.prometheusRule.uploadLimit }}
           for: 0m
           labels:
