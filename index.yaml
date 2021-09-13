@@ -51177,6 +51177,31 @@ entries:
   prometheus-nut-exporter:
   - apiVersion: v2
     appVersion: 1.1.1
+    created: "2021-09-13T14:16:24.713571141Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.0
+    description: Prometheus NUT Exporter a service monitor to send NUT server metrics
+      to a Prometheus instance.
+    digest: 2f3ff39c6e79c57defc20e6b58745689742bcae68850ea744385f9e351866fc3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prometheus-nut-exporter
+    icon: https://www.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/125-512.png
+    keywords:
+    - nut
+    - prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: prometheus-nut-exporter
+    sources:
+    - https://github.com/HON95/prometheus-nut-exporter
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-5.0.0/prometheus-nut-exporter-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
+    appVersion: 1.1.1
     created: "2021-09-09T14:51:14.636361015Z"
     dependencies:
     - name: common
@@ -80556,4 +80581,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-13T14:14:58.050611926Z"
+generated: "2021-09-13T14:16:24.730800165Z"
