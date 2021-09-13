@@ -34,7 +34,7 @@ service:
 metrics:
   # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
   # @default -- See values.yaml
-  enabled: true
+  enabled: false
   serviceMonitor:
     # -- The interval field must use minutes for the padding to calculate properly.
     interval: 60m
@@ -43,13 +43,13 @@ metrics:
   # -- Enable and configure Prometheus Rules for the chart under this key.
   # @default -- See values.yaml
   prometheusRule:
-    enabled: true
+    enabled: false
     # -- Download speed you want alerts to be triggered in Mbps
     downloadLimit: 400
     # -- Upload speed you want alerts to be triggered in Mbps
     uploadLimit: 400
     # -- Ping latency you want alerts to be triggered in ms
-    pingLimit: 15
+    pingLimit: 10
     # -- Jitter latency you want alerts to be triggered in ms
     jitterLimit: 30
     labels: {}
