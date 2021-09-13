@@ -15,28 +15,28 @@ persistence:
         defaultMode: 511
 {{ end }}
 
-{{ if .Values.exporter.enabled }}
+{{ if .Values.metrics.enabled }}
 additionalContainers:
   exporter:
     name: exporter
-    image: "{{ .Values.exporter.image.repository }}:{{ .Values.exporter.image.tag }}"
-    imagePullPolicy: {{ .Values.exporter.image.pullPolicy }}
+    image: "{{ .Values.metrics.exporter.image.repository }}:{{ .Values.metrics.exporter.image.tag }}"
+    imagePullPolicy: {{ .Values.metrics.exporter.image.pullPolicy }}
     env:
       - name: QBITTORRENT_HOST
         value: "http://localhost"
       - name: QBITTORRENT_PORT
         value: "{{ .Values.service.main.ports.http.port }}"
       - name: QBITTORRENT_USER
-        value: "{{ .Values.exporter.env.user }}"
+        value: "{{ .Values.metrics.exporter.env.user }}"
       - name: QBITTORRENT_PASS
-        value: "{{ .Values.exporter.env.password }}"
+        value: "{{ .Values.metrics.exporter.env.password }}"
       - name: EXPORTER_PORT
-        value: "{{ .Values.exporter.env.port }}"
+        value: "{{ .Values.metrics.exporter.env.port }}"
       - name: EXPORTER_LOG_LEVEL
-        value: "{{ .Values.exporter.env.logLevel }}"
+        value: "{{ .Values.metrics.exporter.env.logLevel }}"
     ports:
       - name: metrics
-        containerPort: {{ .Values.exporter.env.port }}
+        containerPort: {{ .Values.metrics.exporter.env.port }}
 
 service:
   metrics:
@@ -45,7 +45,7 @@ service:
       metrics:
         enabled: true
         protocol: TCP
-        port: {{ .Values.exporter.env.port }}
+        port: {{ .Values.metrics.exporter.env.port }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "qbittorrent.harcodedValues" . | fromYaml) -}}
