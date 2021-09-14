@@ -1,6 +1,6 @@
 # onedrive
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v2.4.12](https://img.shields.io/badge/AppVersion-v2.4.12-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: v2.4.12](https://img.shields.io/badge/AppVersion-v2.4.12-informational?style=flat-square)
 
 A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365, and SharePoint
 
@@ -67,13 +67,13 @@ helm install onedrive k8s-at-home/onedrive -f values.yaml
 
 ## Custom configuration
 
-To use this chart, you will need to set an application_id in the `config` section as well as a secret (called `onedrive-auth` by default) with a field called `auth-response` that has the value derrived from the process below.
+To use this chart you will need to provide an authentication response from Microsoft for the client to use. This is provided as an environment variable like the claim token is for the plex chart.
 
-In order to generate an auth-response value you must do the following:
+In order to generate an authentication response value you must do the following:
 
-1. Visit the following URL: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=d50ca740-c83f-4d1b-b616-12c519384f0c&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`
-2. Authenticate with your OneDrive account.
-3. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and use that as the `auth-reponse` value in the previously mentioned secret `onedrive-auth`.
+1. Visit the following URL: [Authenticate for OneDrive](https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=d50ca740-c83f-4d1b-b616-12c519384f0c&scope=Files.ReadWrite%20Files.ReadWrite.all%20Sites.ReadWrite.All%20offline_access&response_type=code&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient)
+2. Follow the prompts to login and get your token URL.
+3. Copy the URL when you arrive at the blank page (should look like this: `https://login.microsoftonline.com/common/oauth2/nativeclient?code=<redacted>`) and provide it to the chart through the `ONEDRIVE_AUTHRESPONSE` environment variable, preferrably secured through some secret.
 
 ## Values
 
@@ -81,17 +81,15 @@ In order to generate an auth-response value you must do the following:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| auth | object | See values.yaml | Configure auth secret for onedrive to initialize with |
 | config | string | `"# Configuration for OneDrive Linux Client\n# This file contains the list of supported configuration fields\n# with their default values.\n# All values need to be enclosed in quotes\n# When changing a config option below, remove the '#' from the start of the line\n# For explanations of all config options below see docs/USAGE.md or the man page.\n#\n# sync_dir = \"/onedrive/data\"\n# skip_file = \"~*|.~*|*.tmp\"\n# monitor_interval = \"300\"\n# skip_dir = \"\"\n# log_dir = \"/var/log/onedrive/\"\n# drive_id = \"\"\n# upload_only = \"false\"\n# check_nomount = \"false\"\n# check_nosync = \"false\"\n# download_only = \"false\"\n# disable_notifications = \"false\"\n# disable_upload_validation = \"false\"\n# enable_logging = \"false\"\n# force_http_2 = \"false\"\n# local_first = \"false\"\n# no_remote_delete = \"false\"\n# skip_symlinks = \"false\"\n# debug_https = \"false\"\n# skip_dotfiles = \"false\"\n# dry_run = \"false\"\n# min_notify_changes = \"5\"\n# monitor_log_frequency = \"5\"\n# monitor_fullscan_frequency = \"10\"\n# sync_root_files = \"false\"\n# classify_as_big_delete = \"1000\"\n# user_agent = \"\"\n# remove_source_files = \"false\"\n# skip_dir_strict_match = \"false\"\napplication_id = \"d50ca740-c83f-4d1b-b616-12c519384f0c\"\n# resync = \"false\"\n# bypass_data_preservation = \"false\"\n# azure_ad_endpoint = \"\"\n# azure_tenant_id = \"common\"\n# sync_business_shared_folders = \"false\"\n# sync_dir_permissions = \"700\"\n# sync_file_permissions = \"600\"\n# rate_limit = \"131072\"\n"` |  |
 | env | object | See below and commented variables in values.yaml | environment variables. |
-| env.KAH_HELM_INSTALL | int | `1` | Indicate to container to run K8s specific setup |
-| env.ONEDRIVE_AUTHFILES | string | `"/onedrive/conf/auth-request:/onedrive/conf/auth-response"` | Set the auth request and response file locations for OneDrive |
+| env.ONEDRIVE_AUTHRESPONSE | string | `""` | Set the One Drive Authentication Response |
 | env.ONEDRIVE_GID | int | `1000` | Set the One Drive Group ID |
 | env.ONEDRIVE_UID | int | `1000` | Set the OneDrive User ID |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/wrmilling/onedrive-docker"` | image repository |
-| image.tag | string | `"v1.0.0"` | image tag |
+| image.tag | string | `"v2.0.1"` | image tag |
 | persistence | object | See values.yaml for full listing | Configure persistence settings for the chart under this key. |
 | persistence.config | object | `{"accessMode":"ReadWriteOnce","enabled":true,"mountPath":"/onedrive/conf"}` | OneDrive config storage |
 | persistence.config.enabled | bool | `true` | If config storage should be enabled |
@@ -103,6 +101,15 @@ In order to generate an auth-response value you must do the following:
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+This release moves away from the auth-files approach and uses a custom docker image that allows the responseUrl to be passed directly as an environment variable, similar to how Plex does claim tokens.
+
+#### Removed
+
+* Removed requirement for `onedrive-auth` secret, you can now provide the `ONEDRIVE_AUTHRESPONSE` however you wish to do so
+* Remove `KAH_HELM_INSTALL` environment variable
 
 ### [1.1.0]
 

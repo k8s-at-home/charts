@@ -16,17 +16,6 @@ probes:
     enabled: false
 
 persistence:
-{{- if .Values.auth.existingSecret }}
-  onedrive-auth:
-    enabled: "true"
-    mountPath: "/onedrive/auth-response"
-    subPath: "auth-response"
-    type: "custom"
-    volumeSpec:
-      secret:
-        secretName: {{ .Values.auth.existingSecret }}
-{{- end }}
-
   onedrive-settings:
     enabled: "true"
     mountPath: "/onedrive/conf/config"
