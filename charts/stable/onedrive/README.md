@@ -89,7 +89,7 @@ In order to generate an authentication response value you must do the following:
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/wrmilling/onedrive-docker"` | image repository |
-| image.tag | string | `"v2.0.1"` | image tag |
+| image.tag | string | `"v2.0.2"` | image tag |
 | persistence | object | See values.yaml for full listing | Configure persistence settings for the chart under this key. |
 | persistence.config | object | `{"accessMode":"ReadWriteOnce","enabled":true,"mountPath":"/onedrive/conf"}` | OneDrive config storage |
 | persistence.config.enabled | bool | `true` | If config storage should be enabled |
