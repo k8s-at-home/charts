@@ -1,6 +1,6 @@
 # sonarr
 
-![Version: 15.0.2](https://img.shields.io/badge/Version-15.0.2-informational?style=flat-square) ![AppVersion: v3.0.6.1265](https://img.shields.io/badge/AppVersion-v3.0.6.1265-informational?style=flat-square)
+![Version: 15.0.3](https://img.shields.io/badge/Version-15.0.3-informational?style=flat-square) ![AppVersion: v3.0.6.1265](https://img.shields.io/badge/AppVersion-v3.0.6.1265-informational?style=flat-square)
 
 Smart PVR for newsgroup and bittorrent users
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
 

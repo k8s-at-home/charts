@@ -1,6 +1,6 @@
 # xteve
 
-![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: v2.2.0.200](https://img.shields.io/badge/AppVersion-v2.2.0.200-informational?style=flat-square)
+![Version: 8.0.1](https://img.shields.io/badge/Version-8.0.1-informational?style=flat-square) ![AppVersion: v2.2.0.200](https://img.shields.io/badge/AppVersion-v2.2.0.200-informational?style=flat-square)
 
 M3U Proxy for Plex DVR and Emby Live TV.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
 
