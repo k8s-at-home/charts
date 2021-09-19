@@ -1,6 +1,6 @@
 # valheim
 
-![Version: 4.0.1](https://img.shields.io/badge/Version-4.0.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 4.0.2](https://img.shields.io/badge/Version-4.0.2-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Valheim dedicated gameserver with automatic update and world backup support
 
@@ -79,7 +79,7 @@ N/A
 | env | object | See below | environment variables. See [image docs](https://github.com/lloesche/valheim-server-docker#environment-variables) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"lloesche/valheim-server"` | image repository |
+| image.repository | string | `"ghcr.io/lloesche/valheim-server"` | image repository |
 | image.tag | string | `"latest"` | image tag |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
