@@ -77394,6 +77394,31 @@ entries:
   valheim:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-09-19T13:04:20.554968532Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    description: Valheim dedicated gameserver with automatic update and world backup
+      support
+    digest: 7526bd8e1f3274e7aed22b1a7f416547266dac779feffdbd33d0abbdd83ff50d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/valheim
+    icon: https://raw.githubusercontent.com/lloesche/valheim-server-docker/main/misc/Logo_valheim.png
+    keywords:
+    - valheim
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: owner@russellhall.co.uk
+      name: rust84
+    name: valheim
+    sources:
+    - https://github.com/lloesche/valheim-server-docker
+    - https://hub.docker.com/r/lloesche/valheim-server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/valheim-4.0.2/valheim-4.0.2.tgz
+    version: 4.0.2
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-09-15T19:58:57.049158647Z"
     dependencies:
     - name: common
@@ -84665,4 +84690,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-15T19:58:59.471454531Z"
+generated: "2021-09-19T13:04:20.572987283Z"
