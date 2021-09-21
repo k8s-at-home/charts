@@ -40,6 +40,8 @@ env:
 # @default -- See values.yaml
 service:
   main:
+    annotations:
+      traefik.ingress.kubernetes.io/service.serversscheme: https
     ports:
       # -- Configure Web interface + API port
       # @default -- See values.yaml
@@ -95,7 +97,6 @@ ingress:
     enabled: false
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      traefik.ingress.kubernetes.io/service.serversscheme: https
 
   # -- Enable and configure settings for the captive portal ingress under this key.
   # @default -- See values.yaml
@@ -103,7 +104,6 @@ ingress:
     enabled: false
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      traefik.ingress.kubernetes.io/service.serversscheme: https
 
     ingressClassName:  # "nginx"
 
