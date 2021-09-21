@@ -45,6 +45,7 @@ service:
       # @default -- See values.yaml
       http:
         port: 8443
+        protocol: HTTPS
       # -- Configure Controller port used for device command/control
       # @default -- See values.yaml
       controller:
@@ -95,7 +96,6 @@ ingress:
     enabled: false
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      traefik.ingress.kubernetes.io/service.serversscheme: https
 
   # -- Enable and configure settings for the captive portal ingress under this key.
   # @default -- See values.yaml
@@ -103,7 +103,6 @@ ingress:
     enabled: false
     annotations:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-      traefik.ingress.kubernetes.io/service.serversscheme: https
 
     ingressClassName:  # "nginx"
 
