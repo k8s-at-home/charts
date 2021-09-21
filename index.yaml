@@ -74710,6 +74710,35 @@ entries:
   unifi:
   - apiVersion: v2
     appVersion: v6.2.26
+    created: "2021-09-21T18:12:46.306694074Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.25.1
+    description: Ubiquiti Network's Unifi Controller
+    digest: 9ebe42f2a8aeee2f47348ef9a0361222a635c30dcae46f1ce862d5ad629c7188
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi
+    icon: https://prd-www-cdn.ubnt.com/static/favicon-152.png
+    keywords:
+    - ubiquiti
+    - unifi
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: mike@quadra-tec.net
+      name: mcronce
+    name: unifi
+    sources:
+    - https://github.com/jacobalberty/unifi-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-4.2.2/unifi-4.2.2.tgz
+    version: 4.2.2
+  - apiVersion: v2
+    appVersion: v6.2.26
     created: "2021-09-15T19:58:56.320202185Z"
     dependencies:
     - name: common
@@ -84716,4 +84745,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-21T15:49:39.505576009Z"
+generated: "2021-09-21T18:12:46.32773143Z"
