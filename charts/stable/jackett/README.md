@@ -1,6 +1,6 @@
 # jackett
 
-![Version: 11.1.1](https://img.shields.io/badge/Version-11.0.1-informational?style=flat-square) ![AppVersion: v0.18.791](https://img.shields.io/badge/AppVersion-v0.18.791-informational?style=flat-square)
+![Version: 11.1.1](https://img.shields.io/badge/Version-11.1.1-informational?style=flat-square) ![AppVersion: v0.18.791](https://img.shields.io/badge/AppVersion-v0.18.791-informational?style=flat-square)
 
 API Support for your favorite torrent trackers
 
