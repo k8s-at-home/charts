@@ -47,18 +47,19 @@ ingress:
 persistence:
   config:
     enabled: false
+    mountPath: /var/airsonic
   music:
     enabled: false
-    mountPath: /music
+    mountPath: /var/music
   playlists:
     enabled: false
-    mountPath: /playlists
+    mountPath: /var/playlists
   podcasts:
     enabled: false
-    mountPath: /podcasts
+    mountPath: /var/podcasts
   media:
     enabled: false
-    mountPath: /media
+    mountPath: /var/media
 
 # -- Configures the probes for the main Pod.
 # @default -- See values.yaml

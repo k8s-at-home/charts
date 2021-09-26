@@ -1,6 +1,6 @@
 # airsonic
 
-![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: 10.6.2](https://img.shields.io/badge/AppVersion-10.6.2-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 10.6.2](https://img.shields.io/badge/AppVersion-10.6.2-informational?style=flat-square)
 
 Airsonic is a Free and Open Source community driven media server
 
@@ -96,6 +96,12 @@ by not constantly monitoring media folders.
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [6.0.0]
+
+#### Changed
+
+- Use the default volume mount locations as specified by airsonic-advanced (https://github.com/airsonic-advanced/airsonic-advanced).
 
 ### [5.0.0]
 
