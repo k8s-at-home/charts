@@ -1,0 +1,28 @@
+apiVersion: v2
+appVersion: 2.7.1
+description: A web-based collaborative LaTeX editor
+name: overleaf
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- overleaf
+- sharelatex
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overleaf
+icon: https://avatars.githubusercontent.com/u/6359919?s=200&v=4
+sources:
+- https://github.com/overleaf/overleaf
+maintainers:
+- name: bjw-s
+  email: me@bjw-s.dev
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
+- name: redis
+  version: 14.8.11
+  repository: https://charts.bitnami.com/bitnami
+  condition: redis.enabled
+- name: mongodb
+  version: 10.25.1
+  repository: https://charts.bitnami.com/bitnami
+  condition: mongodb.enabled
