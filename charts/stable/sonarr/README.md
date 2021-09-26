@@ -1,6 +1,6 @@
 # sonarr
 
-![Version: 15.0.3](https://img.shields.io/badge/Version-15.0.3-informational?style=flat-square) ![AppVersion: v3.0.6.1265](https://img.shields.io/badge/AppVersion-v3.0.6.1265-informational?style=flat-square)
+![Version: 15.0.4](https://img.shields.io/badge/Version-15.0.4-informational?style=flat-square) ![AppVersion: v3.0.6.1265](https://img.shields.io/badge/AppVersion-v3.0.6.1265-informational?style=flat-square)
 
 Smart PVR for newsgroup and bittorrent users
 
@@ -84,6 +84,7 @@ N/A
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus serviceMonitor. |
 | metrics.exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
+| metrics.exporter.env.apiKey | string | `""` | Set the api key to connect to lidarr |
 | metrics.exporter.env.port | int | `9794` | metrics port |
 | metrics.exporter.env.unknownQueueItems | bool | `false` | Set to true to enable gathering unknown queue items |
 | metrics.exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
