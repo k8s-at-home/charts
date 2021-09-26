@@ -21,6 +21,10 @@ additionalContainers:
         value: "{{ .Values.metrics.exporter.env.additionalMetrics }}"
       - name: ENABLE_UNKNOWN_QUEUE_ITEMS
         value: "{{ .Values.metrics.exporter.env.unknownQueueItems }}"
+      {{ if .Values.metrics.exporter.env.apiKey }}
+      - name: APIKEY
+        value: "{{ .Values.metrics.exporter.env.apiKey }}"
+      {{ end }}
     ports:
       - name: metrics
         containerPort: {{ .Values.metrics.exporter.env.port }}
