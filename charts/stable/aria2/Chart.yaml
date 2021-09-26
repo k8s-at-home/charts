@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: aira2 helm package
+name: aira2
+version: 2.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- aira2
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/aira2
+icon: https://avatars.githubusercontent.com/u/13545224?s=200&v=4
+sources:
+- https://github.com/P3TERX/Aria2-Pro-Docker
+maintainers:
+- name: rwaltr
+  email: rwalt@pm.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
