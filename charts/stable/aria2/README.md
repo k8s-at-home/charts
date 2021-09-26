@@ -1,14 +1,14 @@
-# ${CHARTNAME}
+# aira2
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-${CHARTNAME} helm package
+aira2 helm package
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/${CHARTNAME}/${CHARTNAME}-docker>
+* <https://github.com/P3TERX/Aria2-Pro-Docker>
 
 ## Requirements
 
@@ -18,30 +18,30 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
 
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install ${CHARTNAME} k8s-at-home/${CHARTNAME}
+helm install aira2 k8s-at-home/aira2
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `${CHARTNAME}`
+To install the chart with the release name `aira2`
 
 ```console
-helm install ${CHARTNAME} k8s-at-home/${CHARTNAME}
+helm install aira2 k8s-at-home/aira2
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `${CHARTNAME}` deployment
+To uninstall the `aira2` deployment
 
 ```console
-helm uninstall ${CHARTNAME}
+helm uninstall aira2
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install ${CHARTNAME} \
+helm install aira2 \
   --set env.TZ="America/New York" \
-    k8s-at-home/${CHARTNAME}
+    k8s-at-home/aira2
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install ${CHARTNAME} k8s-at-home/${CHARTNAME} -f values.yaml
+helm install aira2 k8s-at-home/aira2 -f values.yaml
 ```
 
 ## Custom configuration
@@ -75,11 +75,11 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [${CHARTNAME} documentation](https://${CHARTNAME}.org/docs). |
-| env.TZ | string | `"UTC"` | Set the container timezone |
+| env | object | See below | environment variables. See more environment variables in the [Aira2c documentation](https://github.com/P3TERX/Aria2-Pro-Docker). |
+| env.RPC_SECRET | string | `"ChangemeNow"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"${CHARTNAME}/${CHARTNAME}"` | image repository |
-| image.tag | string | `"1.0.0"` | image tag |
+| image.repository | string | `"p3terx/aria2-pro"` | image repository |
+| image.tag | string | `"latest"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -104,7 +104,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.0]: #100
 
 ## Support
 
