@@ -600,6 +600,32 @@ entries:
   airsonic:
   - apiVersion: v2
     appVersion: 10.6.2
+    created: "2021-09-28T11:58:03.988142615Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    description: Airsonic is a Free and Open Source community driven media server
+    digest: 5ac9d376b5451ad4cbba0f0a38ee1e4ff3f96a6c78956826b1799a98239d0b42
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/airsonic
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/airsonic-logo.png
+    keywords:
+    - airsonic
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: airsonic
+    sources:
+    - https://github.com/airsonic-advanced/airsonic-advanced
+    - https://github.com/k8s-at-home/charts/tree/master/charts/airsonic
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/airsonic-6.0.0/airsonic-6.0.0.tgz
+    version: 6.0.0
+  - apiVersion: v2
+    appVersion: 10.6.2
     created: "2021-09-15T19:58:33.366587581Z"
     dependencies:
     - name: common
@@ -84803,4 +84829,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-26T14:01:23.25054374Z"
+generated: "2021-09-28T11:58:04.005175317Z"
