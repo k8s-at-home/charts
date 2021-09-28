@@ -1,0 +1,68 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: sharelatex/sharelatex
+  # -- image tag
+  tag: 2.7.1
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [overleaf documentation](https://github.com/overleaf/overleaf/wiki/Configuring-Overleaf).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- The URL of the Mongo database to use.
+  SHARELATEX_MONGO_URL:
+  # -- The host name of the Redis instance to use. (Both `SHARELATEX_REDIS_HOST` and `REDIS_HOST` are required)
+  SHARELATEX_REDIS_HOST:
+  # -- The host name of the Redis instance to use. (Both `SHARELATEX_REDIS_HOST` and `REDIS_HOST` are required)
+  REDIS_HOST:
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /var/lib/sharelatex
+
+# -- Enable and configure redis subchart under this key.
+#    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis)
+# @default -- See values.yaml
+redis:
+  enabled: false
+  auth:
+    enabled: false
+
+# -- Enable and configure mongodb database subchart under this key.
+#    For more options see [mongodb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mongodb)
+# @default -- See values.yaml
+mongodb:
+  enabled: false
+  architecture: standalone
+  auth:
+    enabled: false
+  persistence:
+    enabled: false
+    # storageClass: ""
+    # size: 8Gi

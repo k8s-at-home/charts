@@ -1,0 +1,15 @@
+---
+env:
+  SHARELATEX_REDIS_HOST: overleaf-redis-master
+  REDIS_HOST: overleaf-redis-master
+  SHARELATEX_MONGO_URL: mongodb://overleaf-mongodb:27017/sharelatex
+
+redis:
+  enabled: true
+  fullnameOverride: overleaf-redis
+  replica:
+    replicaCount: 1
+
+mongodb:
+  enabled: true
+  fullnameOverride: overleaf-mongodb
