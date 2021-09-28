@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: latest
+description: aria server for downloading web content
+name: aria2
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- aria2
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/aira2
+icon: https://avatars.githubusercontent.com/u/13545224?s=200&v=4
+sources:
+- https://github.com/P3TERX/Aria2-Pro-Docker
+maintainers:
+- name: rwaltr
+  email: rwalt@pm.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
