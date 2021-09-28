@@ -1,8 +1,8 @@
-# aira2
+# aria2
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2021.08.22-1156](https://img.shields.io/badge/AppVersion-2021.08.22--1156-informational?style=flat-square)
 
-aira2 helm package
+aria server for downloading web content
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -25,23 +25,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install aira2 k8s-at-home/aira2
+helm install aria2 k8s-at-home/aria2
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `aira2`
+To install the chart with the release name `aria2`
 
 ```console
-helm install aira2 k8s-at-home/aira2
+helm install aria2 k8s-at-home/aria2
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `aira2` deployment
+To uninstall the `aria2` deployment
 
 ```console
-helm uninstall aira2
+helm uninstall aria2
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install aira2 \
+helm install aria2 \
   --set env.TZ="America/New York" \
-    k8s-at-home/aira2
+    k8s-at-home/aria2
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install aira2 k8s-at-home/aira2 -f values.yaml
+helm install aria2 k8s-at-home/aria2 -f values.yaml
 ```
 
 ## Custom configuration
@@ -75,14 +75,20 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [Aira2c documentation](https://github.com/P3TERX/Aria2-Pro-Docker). |
-| env.RPC_SECRET | string | `"ChangemeNow"` | Set the container timezone |
+| env.RPC_PORT | int | `6800` |  |
+| env.RPC_SECRET | string | `"ChangemeNow"` | Set the container timezone TZ: UTC PUID: 1000 GUID: 1000 UMASK_SET: 022 |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"p3terx/aria2-pro"` | image repository |
-| image.tag | string | `"latest"` | image tag |
+| image.tag | int | `202108221156` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| service | object | See values.yaml | Configures service settings for the chart. |
+| persistence.config.enabled | bool | `false` |  |
+| persistence.config.mountpath | string | `"/config"` |  |
+| persistence.data.enabled | bool | `false` |  |
+| persistence.data.mountpath | string | `"/downloads"` |  |
+| service.main.ports.http.enabled | bool | `true` |  |
+| service.main.ports.http.port | int | `6800` |  |
+| service.main.ports.listen.enabled | bool | `true` |  |
+| service.main.ports.listen.port | int | `6888` |  |
 
 ## Changelog
 
