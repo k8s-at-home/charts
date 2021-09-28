@@ -1,6 +1,6 @@
 # aria2
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2021.08.22-1156](https://img.shields.io/badge/AppVersion-2021.08.22--1156-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 aria server for downloading web content
 
@@ -79,7 +79,7 @@ N/A
 | env.RPC_SECRET | string | `"ChangemeNow"` | Set the container timezone TZ: UTC PUID: 1000 GUID: 1000 UMASK_SET: 022 |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"p3terx/aria2-pro"` | image repository |
-| image.tag | int | `202108221156` | image tag |
+| image.tag | string | `"latest"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence.config.enabled | bool | `false` |  |
 | persistence.config.mountpath | string | `"/config"` |  |
