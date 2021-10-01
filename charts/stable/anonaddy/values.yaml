@@ -18,7 +18,14 @@ strategy:
 
 # -- environment variables. See more environment variables in the [anonaddy documentation](https://github.com/anonaddy/docker#environment-variables).
 # @default -- See below
-env: {}
+env:
+  # -- Application key for encrypter service
+  # You can generate one through `anonaddy key:generate --show` or `echo "base64:$(openssl rand -base64 32)"`
+  APP_KEY:
+  # -- Root domain to receive email from
+  ANONADDY_DOMAIN: chart-example.local
+  # -- Long random string used when hashing data for the anonymous replies
+  ANONADDY_SECRET:
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

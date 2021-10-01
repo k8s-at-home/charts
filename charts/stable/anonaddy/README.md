@@ -78,6 +78,9 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See more environment variables in the [anonaddy documentation](https://github.com/anonaddy/docker#environment-variables). |
+| env.ANONADDY_DOMAIN | string | `"chart-example.local"` | Root domain to receive email from |
+| env.ANONADDY_SECRET | string | `nil` | Long random string used when hashing data for the anonymous replies |
+| env.APP_KEY | string | `nil` | Application key for encrypter service You can generate one through `anonaddy key:generate --show` or `echo "base64:$(openssl rand -base64 32)"` |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"anonaddy/anonaddy"` | image repository |
 | image.tag | string | `"0.8.4"` | image tag |
