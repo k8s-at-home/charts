@@ -72,7 +72,7 @@ jobs:
         script: |
           let result = new Object
 
-          const wfJobs = await github.actions.listJobsForWorkflowRun({
+          const wfJobs = await github.rest.actions.listJobsForWorkflowRun({
             owner: context.repo.owner,
             repo: context.repo.repo,
             run_id: context.payload.workflow_run.id,
