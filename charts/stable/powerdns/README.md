@@ -1,6 +1,6 @@
 # powerdns
 
-![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: v4.3.1](https://img.shields.io/badge/AppVersion-v4.3.1-informational?style=flat-square)
+![Version: 3.4.1](https://img.shields.io/badge/Version-3.4.1-informational?style=flat-square) ![AppVersion: v4.3.1](https://img.shields.io/badge/AppVersion-v4.3.1-informational?style=flat-square)
 
 PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
 
@@ -17,7 +17,7 @@ PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on 
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 9.4.4 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.9.4 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.9.6 |
 
 ## TL;DR
 
