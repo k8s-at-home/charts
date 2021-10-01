@@ -2055,6 +2055,38 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/amcrest2mqtt-1.0.0/amcrest2mqtt-1.0.0.tgz
     version: 1.0.0
+  anonaddy:
+  - apiVersion: v2
+    appVersion: 0.8.4
+    created: "2021-10-01T20:12:23.879815626Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.4.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.4.0
+    description: 'Anonaddy: Anonymous email forwarding'
+    digest: 7e9f31759c51db3208b9691e35c8e555b9d86c6a7a9696019e5bb0f4db87c2b6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/anonaddy
+    icon: https://avatars.githubusercontent.com/u/51450862?s=200&v=4?sanitize=true
+    keywords:
+    - anonaddy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: simon.caron@pm.me
+      name: simoncaron
+    name: anonaddy
+    sources:
+    - https://github.com/anonaddy/docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/anonaddy-1.0.0/anonaddy-1.0.0.tgz
+    version: 1.0.0
   apache-musicindex:
   - apiVersion: v2
     appVersion: v1.4.1-2
@@ -85482,4 +85514,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-01T07:32:02.806445062Z"
+generated: "2021-10-01T20:12:23.901682383Z"
