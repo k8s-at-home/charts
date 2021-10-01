@@ -1,0 +1,35 @@
+---
+env:
+  DB_HOST: anonaddy-mariadb
+  DB_DATABASE: anonaddy
+  DB_USERNAME: anonaddy
+  DB_PASSWORD: anonaddy-pass
+  REDIS_HOST: anonaddy-redis-headless
+  APP_KEY: randomstring
+  ANONADDY_DOMAIN: example.com
+  ANONADDY_SECRET: randomstring
+
+fullnameOverride: anonaddy
+
+mariadb:
+  enabled: true
+  architecture: standalone
+  auth:
+    database: anonaddy
+    username: anonaddy
+    password: anonaddy-pass
+    rootPassword: anonaddyrootpass
+  primary:
+    persistence:
+      enabled: false
+  fullnameOverride: anonaddy-mariadb
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+  fullnameOverride: anonaddy-redis
