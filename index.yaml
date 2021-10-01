@@ -47574,6 +47574,38 @@ entries:
   overleaf:
   - apiVersion: v2
     appVersion: 2.7.1
+    created: "2021-10-01T07:13:42.722176228Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.4.0
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.25.1
+    description: A web-based collaborative LaTeX editor
+    digest: c104022b2b4ecbe47ca5f7954ffd94fb718962d154b63143a1c9080084fe21a2
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overleaf
+    icon: https://avatars.githubusercontent.com/u/6359919?s=200&v=4
+    keywords:
+    - overleaf
+    - sharelatex
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: overleaf
+    sources:
+    - https://github.com/overleaf/overleaf
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/overleaf-2.0.0/overleaf-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 2.7.1
     created: "2021-09-26T14:01:23.229207885Z"
     dependencies:
     - name: common
@@ -84889,4 +84921,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-01T07:12:13.667769354Z"
+generated: "2021-10-01T07:13:42.743636644Z"
