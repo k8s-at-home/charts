@@ -1,0 +1,72 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: anonaddy/anonaddy
+  # -- image tag
+  tag: 0.8.4
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+strategy:
+  type: Recreate
+
+# -- environment variables. See more environment variables in the [anonaddy documentation](https://github.com/anonaddy/docker#environment-variables).
+# @default -- See below
+env: {}
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8000
+      smtp:
+        enabled: true
+        port: 25
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 8000
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
+    emptydir:
+      enabled: false
+
+# https://github.com/bitnami/charts/tree/master/bitnami/mariadb/#installing-the-chart
+mariadb:
+  enabled: false
+  # primary:
+  #   persistence:
+  #     enabled: true
+  # auth:
+  #   username: "username"
+  #   password: "password"
+  #   database: database
+
+# -- Enable and configure redis subchart under this key.
+#    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis)
+# @default -- See values.yaml
+redis:
+  enabled: false
+  # auth:
+  #   enabled: false

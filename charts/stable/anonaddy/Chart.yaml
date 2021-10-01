@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: 0.8.4
+description:  "Anonaddy: Anonymous email forwarding"
+name: anonaddy
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- anonaddy
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/anonaddy
+icon: https://avatars.githubusercontent.com/u/51450862?s=200&v=4?sanitize=true
+sources:
+- https://github.com/anonaddy/docker
+maintainers:
+- name: simoncaron
+  email: simon.caron@pm.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
+- name: mariadb
+  version: 9.4.4
+  repository: https://charts.bitnami.com/bitnami
+  condition: mariadb.enabled
+- name: redis
+  version: 15.4.0
+  repository: https://charts.bitnami.com/bitnami
+  condition: redis.enabled
