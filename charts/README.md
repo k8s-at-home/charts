@@ -6,6 +6,7 @@
 | [airsonic](stable/airsonic) | Airsonic is a Free and Open Source community driven media server |
 | [alertmanager-bot](stable/alertmanager-bot) | Bot for Prometheus Alertmanager |
 | [amcrest2mqtt](stable/amcrest2mqtt) | Expose all events from an Amcrest device to an MQTT broker |
+| [anonaddy](stable/anonaddy) | Anonaddy: Anonymous email forwarding |
 | [apache-musicindex](stable/apache-musicindex) | Index and stream music using apache-musicindex and m3u playlists |
 | [appdaemon](stable/appdaemon) | AppDaemon is a loosely coupled, multi-threaded, sandboxed python execution environment for writing automation apps for various types of Home Automation Software including Home Assistant and MQTT. |
 | [aria2](stable/aria2) | aria server for downloading web content |
