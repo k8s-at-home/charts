@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v0.90.74
 description: Status page for monitoring your websites and applications
 name: statping
-version: 5.1.1
+version: 5.1.2
 kubeVersion: ">=1.16.0-0"
 keywords:
 - statping
@@ -22,6 +22,6 @@ dependencies:
   repository: https://library-charts.k8s-at-home.com
   version: 4.0.1
 - name: postgresql
-  version: 10.9.4
+  version: 10.9.6
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
