@@ -1,6 +1,6 @@
 # focalboard
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: 0.6.7](https://img.shields.io/badge/AppVersion-0.6.7-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 0.9.0](https://img.shields.io/badge/AppVersion-0.9.0-informational?style=flat-square)
 
 Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana.
 
@@ -77,10 +77,11 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [image entrypoint script](https://github.com/FlipEnergy/container-images/blob/main/focalboard/entrypoint.sh) |
+| config | string | `"{\n  \"serverRoot\": \"http://localhost:8000\",\n  \"port\": 8000,\n  \"dbtype\": \"sqlite3\",\n  \"dbconfig\": \"/data/focalboard.db\",\n  \"postgres_dbconfig\": \"dbname=focalboard sslmode=disable\",\n  \"useSSL\": false,\n  \"webpath\": \"./pack\",\n  \"filespath\": \"/data/files\",\n  \"telemetry\": true,\n  \"session_expire_time\": 2592000,\n  \"session_refresh_time\": 18000,\n  \"localOnly\": false,\n  \"enableLocalMode\": true,\n  \"localModeSocketLocation\": \"/var/tmp/focalboard_local.socket\"\n}\n"` |  |
+| env | object | See below | environment variables. |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"flipenergy/focalboard"` | image repository |
-| image.tag | string | `"0.6.7"` | image tag |
+| image.repository | string | `"mattermost/focalboard"` | image repository |
+| image.tag | string | `"0.9.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -90,6 +91,14 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- Changed image to official mattermost/focalboard image
+- Removes unsupported environment variables
+- add configmap for config
 
 ### [3.0.0]
 
