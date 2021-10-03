@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-35-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-36-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -91,6 +91,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/chris-sanders"><img src="https://avatars.githubusercontent.com/u/813115?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chris Sanders</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=chris-sanders" title="Code">💻</a></td>
     <td align="center"><a href="https://waibel.us"><img src="https://avatars.githubusercontent.com/u/7026879?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Waibel</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=alexwaibel" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/simoncaron"><img src="https://avatars.githubusercontent.com/u/8635747?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon Caron</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=simoncaron" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Kimi450"><img src="https://avatars.githubusercontent.com/u/24758074?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Karan Samani</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Kimi450" title="Code">💻</a></td>
   </tr>
 </table>
 
