@@ -1,6 +1,6 @@
 # sonarr
 
-![Version: 15.0.3](https://img.shields.io/badge/Version-15.0.3-informational?style=flat-square) ![AppVersion: v3.0.6.1265](https://img.shields.io/badge/AppVersion-v3.0.6.1265-informational?style=flat-square)
+![Version: 15.1.0](https://img.shields.io/badge/Version-15.1.0-informational?style=flat-square) ![AppVersion: v3.0.6.1342](https://img.shields.io/badge/AppVersion-v3.0.6.1342-informational?style=flat-square)
 
 Smart PVR for newsgroup and bittorrent users
 
@@ -80,7 +80,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/sonarr"` | image repository |
-| image.tag | string | `"v3.0.6.1265"` | image tag |
+| image.tag | string | `"v3.0.6.1342"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus serviceMonitor. |
 | metrics.exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
@@ -103,6 +103,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [15.1.0]
+
+#### Changed
+
+- Uplifted Sonarr version to v3.0.6.1342
 
 ### [15.0.0]
 
@@ -141,6 +147,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[15.1.0]: #1510
 [15.0.0]: #1500
 [14.0.0]: #1400
 [13.0.0]: #1300
