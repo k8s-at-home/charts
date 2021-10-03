@@ -1,6 +1,6 @@
 # jellyfin
 
-![Version: 9.0.1](https://img.shields.io/badge/Version-9.0.1-informational?style=flat-square) ![AppVersion: 10.7.5](https://img.shields.io/badge/AppVersion-10.7.5-informational?style=flat-square)
+![Version: 9.1.0](https://img.shields.io/badge/Version-9.1.0-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
 
 Jellyfin is a Free Software Media System
 
@@ -80,7 +80,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jellyfin/jellyfin"` | image repository |
-| image.tag | string | `"10.7.5"` | image tag |
+| image.tag | string | `"10.7.7"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | podSecurityContext | object | `{}` | Configure the Security Context for the Pod |
@@ -91,6 +91,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [9.1.0]
+
+#### Changed
+
+- Uplifted Jellyfin image version to `10.7.7`.
 
 ### [9.0.0]
 
@@ -150,6 +156,7 @@ Drop browser cache and cookies for your jellyfin URL!
 
 - Replaced LinuxServer.io image with official
 
+[9.1.0]: #910
 [9.0.0]: #900
 [8.0.0]: #800
 [7.3.2]: #732
