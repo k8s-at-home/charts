@@ -13,7 +13,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables. See more environment variables in the [openhab documentation](https://openhab.org/docs).
+# -- environment variables. See more environment variables in the [openhab image documentation](https://hub.docker.com/r/openhab/openhab).
 # @default -- See below
 env:
   # -- Set the container timezone
@@ -43,7 +43,8 @@ ingress:
   main:
     enabled: false
 
-# -- Configure persistence settings for the chart under this key.
+# -- Configure persistence settings for the chart under this key. Choose either
+# -- a single volume for all data or separate volumes for each sub-directory.
 # @default -- See values.yaml
 persistence:
   # -- single volume

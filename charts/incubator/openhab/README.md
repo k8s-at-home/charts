@@ -75,12 +75,14 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | string | `nil` | environment variables. See more environment variables in the [openhab documentation](https://openhab.org/docs). |
+| env | string | `nil` | environment variables. See more environment variables in the [openhab image documentation](https://hub.docker.com/r/openhab/openhab). |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"openhab/openhab"` | image repository |
 | image.tag | string | `"3.1.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Choose either -- a single volume for all data or separate volumes for each sub-directory. |
+| persistence.addons | object | `{"enabled":false,"mountPath":"/openhab/addons"}` | separate volumes |
+| persistence.data | object | `{"enabled":false,"subPath":[{"mountPath":"/openhab/addons","path":"addons"},{"mountPath":"/openhab/conf","path":"conf"},{"mountPath":"/openhab/userdata","path":"userdata"}]}` | single volume |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
