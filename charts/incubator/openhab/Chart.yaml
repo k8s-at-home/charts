@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 3.1.0
+description: openhab helm package
+name: openhab
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- openhab
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openhab
+icon: https://www.openhab.org/openhab-logo-square.png
+sources:
+- https://hub.docker.com/r/openhab/openhab
+maintainers:
+- name: reitermarkus
+  email: me@reitermark.us
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1

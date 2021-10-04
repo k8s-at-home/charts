@@ -1,0 +1,18 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded volumes */}}
+{{- define "openhab.hardcodedValues" -}}
+persistence:
+  init:
+    enabled: true
+    mountPath: /etc/cont-init.d/enable-console-logging.sh
+    subPath: enable-console-logging.sh
+    type: custom
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-init" (include "common.names.fullname" .) }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "openhab.hardcodedValues" . | fromYaml) -}}
+
+{{ include "common.all" . }}
