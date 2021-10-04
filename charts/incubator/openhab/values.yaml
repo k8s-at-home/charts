@@ -46,6 +46,18 @@ ingress:
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
+  # -- single volume
+  data:
+    enabled: false
+    subPath:
+      - mountPath: /openhab/addons
+        path: addons
+      - mountPath: /openhab/conf
+        path: conf
+      - mountPath: /openhab/userdata
+        path: userdata
+
+  # -- separate volumes
   addons:
     enabled: false
     mountPath: /openhab/addons
