@@ -22,28 +22,20 @@ env:
 # @default -- See values.yaml
 service:
   main:
-    enabled: false
-    primary: false
     ports:
       http:
         enabled: false
         primary: false
-  udp:
-    enabled: true
-    primary: false
-    ports:
       voice:
         enabled: true
+        primary: true
         port: 9987
         protocol: UDP
   tcp:
     enabled: true
-    primary: true
-    type: ClusterIP
     ports:
       serverquery:
         enabled: true
-        primary: true
         port: 10011
       filetransfer:
         enabled: true
