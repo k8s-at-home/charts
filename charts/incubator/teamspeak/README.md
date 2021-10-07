@@ -77,7 +77,7 @@ N/A
 |-----|------|---------|-------------|
 | env | string | `nil` | environment variables. See more environment variables in the [teamspeak image documentation](https://hub.docker.com/_/teamspeak). |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"teamspeak/teamspeak"` | image repository |
+| image.repository | string | `"teamspeak"` | image repository |
 | image.tag | string | `"3.13.6"` | image tag |
 | nodeSelector | object | `{"kubernetes.io/arch":"amd64"}` | The TeamSpeak server binary is only available for x86_64. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
