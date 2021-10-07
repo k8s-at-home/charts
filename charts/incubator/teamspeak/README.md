@@ -81,6 +81,12 @@ N/A
 | image.tag | string | `"3.13.6"` | image tag |
 | nodeSelector | object | `{"kubernetes.io/arch":"amd64"}` | The TeamSpeak server binary is only available for x86_64. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes.liveness.custom | bool | `true` |  |
+| probes.liveness.spec.tcpSocket.port | int | `10011` |  |
+| probes.readiness.custom | bool | `true` |  |
+| probes.readiness.spec.tcpSocket.port | int | `10011` |  |
+| probes.startup.custom | bool | `true` |  |
+| probes.startup.spec.tcpSocket.port | int | `10011` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog

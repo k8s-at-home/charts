@@ -41,6 +41,23 @@ service:
         enabled: true
         port: 30033
 
+probes:
+  readiness:
+    custom: true
+    spec:
+      tcpSocket:
+        port: 10011
+  liveness:
+    custom: true
+    spec:
+      tcpSocket:
+        port: 10011
+  startup:
+    custom: true
+    spec:
+      tcpSocket:
+        port: 10011
+
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
