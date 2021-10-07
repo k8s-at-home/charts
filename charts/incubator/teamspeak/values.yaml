@@ -32,7 +32,7 @@ service:
     enabled: true
     primary: false
     ports:
-      teamspeak-voice:
+      voice:
         enabled: true
         port: 9987
   tcp:
@@ -40,11 +40,11 @@ service:
     primary: true
     type: ClusterIP
     ports:
-      teamspeak-serverquery:
+      serverquery:
         enabled: true
         primary: true
         port: 10011
-      teamspeak-filetransfer:
+      filetransfer:
         enabled: true
         port: 30033
 
