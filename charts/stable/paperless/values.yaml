@@ -78,8 +78,9 @@ persistence:
     emptyDir:
       enabled: false
 
-# -- PostgreSQL chart configuration
-# @default -- See https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
 postgresql:
   enabled: false
   postgresqlUsername: paperless
@@ -89,7 +90,8 @@ postgresql:
     enabled: false
     # storageClass: ""
 
-# -- Redit chart configuration
-# @default -- See https://github.com/bitnami/charts/tree/master/bitnami/redis
+# -- Enable and configure redis subchart under this key.
+#    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis)
+# @default -- See values.yaml
 redis:
   enabled: true
