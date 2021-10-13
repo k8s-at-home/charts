@@ -153,3 +153,4 @@
 | Chart | Description |
 | ----- | ----------- |
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
+| [openhab](incubator/openhab) | openhab helm package |
