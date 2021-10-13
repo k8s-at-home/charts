@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 8.0.7
+description: seafile helm package
+name: seafile
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- seafile
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/seafile
+icon: https://manual.seafile.com/media/seafile-transparent-1024.png
+sources:
+- https://github.com/haiwen/seafile-docker
+maintainers:
+- name: phybros
+  email: 1985132+phybros@users.noreply.github.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
+- name: mariadb
+  version: 9.4.4
+  repository: https://charts.bitnami.com/bitnami
+  condition: mariadb.enabled
