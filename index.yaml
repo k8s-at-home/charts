@@ -48054,6 +48054,35 @@ entries:
     version: 1.0.0
   overseerr:
   - apiVersion: v2
+    appVersion: 1.26.1
+    created: "2021-10-15T23:31:19.586960742Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    description: Overseerr is a free and open source software application for managing
+      requests for your media library. It integrates with your existing services such
+      as Sonarr, Radarr and Plex!
+    digest: 94f433aba679553facb1d5da994ffb5776ff5cc36d65964e776c1bfcadf15a33
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overseerr
+    icon: https://i.imgur.com/TMoEG7g.png
+    keywords:
+    - overseerr
+    - plex
+    - sonarr
+    - radarr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: overseerr
+    sources:
+    - https://github.com/sct/overseerr
+    - https://hub.docker.com/r/sctx/overseerr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/overseerr-5.0.2/overseerr-5.0.2.tgz
+    version: 5.0.2
+  - apiVersion: v2
     appVersion: 1.25.0
     created: "2021-09-15T19:58:48.326259859Z"
     dependencies:
@@ -85759,4 +85788,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-13T18:57:09.367607449Z"
+generated: "2021-10-15T23:31:19.606945829Z"
