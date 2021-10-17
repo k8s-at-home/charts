@@ -105,6 +105,7 @@ N/A
 | powerdns.postgres.database | string | `"pdns"` |  |
 | powerdns.postgres.password | string | `"pdnspass"` |  |
 | powerdns.postgres.username | string | `"pdns"` |  |
+| powerdns.additionalEnv | list | `[]` |  |
 | probes.liveness.enabled | bool | `true` |  |
 | probes.liveness.failureThreshold | int | `5` |  |
 | probes.liveness.initialDelaySeconds | int | `30` |  |
