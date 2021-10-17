@@ -87,6 +87,9 @@ spec:
             - name: MYSQL_DNSSEC
               value: {{if (.Values.powerdns.dnssec)}}"yes"{{else}}"no"{{ end }}
 {{ end }}
+{{- with .Values.powerdns.additionalEnv }}
+            {{- toYaml . | nindent 12 }}
+{{- end }}
           ports:
             - name: dns-tcp
               containerPort: 53
