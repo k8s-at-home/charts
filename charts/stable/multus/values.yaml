@@ -13,7 +13,7 @@ image:
   # -- multus installer pull policy
   pullPolicy: IfNotPresent
 
-# use hostNetwork so this pod doesn't depend upon itself to start
+# -- hostNetwork enabled to allow upgrades without dependencies on CNI plugins itself
 hostNetwork: true
 
 cni:
