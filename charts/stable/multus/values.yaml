@@ -13,6 +13,9 @@ image:
   # -- multus installer pull policy
   pullPolicy: IfNotPresent
 
+# use hostNetwork so this pod doesn't depend upon itself to start
+hostNetwork: true
+
 cni:
   image:
     # -- CNI installer repostory
