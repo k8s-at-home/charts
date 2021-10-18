@@ -1,0 +1,70 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: teamspeak
+  # -- image tag
+  tag: 3.13.6
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [teamspeak image documentation](https://hub.docker.com/_/teamspeak).
+# @default -- See below
+env:
+  # TS3SERVER_LICENSE: accept
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        enabled: false
+        primary: false
+      voice:
+        enabled: true
+        primary: true
+        port: 9987
+        protocol: UDP
+  tcp:
+    enabled: true
+    ports:
+      serverquery:
+        enabled: true
+        port: 10011
+      filetransfer:
+        enabled: true
+        port: 30033
+
+probes:
+  readiness:
+    custom: true
+    spec:
+      tcpSocket:
+        port: 10011
+  liveness:
+    custom: true
+    spec:
+      tcpSocket:
+        port: 10011
+  startup:
+    custom: true
+    spec:
+      tcpSocket:
+        port: 10011
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /var/ts3server
+
+# -- The TeamSpeak server binary is only available for x86_64.
+nodeSelector:
+  kubernetes.io/arch: amd64
