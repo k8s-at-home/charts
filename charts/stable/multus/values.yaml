@@ -13,9 +13,6 @@ image:
   # -- multus installer pull policy
   pullPolicy: IfNotPresent
 
-# -- hostNetwork enabled to allow upgrades without dependencies on CNI plugins itself
-hostNetwork: true
-
 cni:
   image:
     # -- CNI installer repostory
