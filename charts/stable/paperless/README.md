@@ -79,7 +79,7 @@ N/A
 | env | object | See below | See the following files for additional environment variables: https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/ https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example |
 | env.COMPOSE_PROJECT_NAME | string | `"paperless"` | Project name |
 | env.PAPERLESS_OCR_LANGUAGE | string | `"eng"` | OCR languages to install |
-| env.PAPERLESS_REDIS | string | `"redis://localhost:6379"` | Redis to use |
+| env.PAPERLESS_REDIS | string | `nil` | Redis to use |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jonaswinkler/paperless-ng"` | image repository |
 | image.tag | string | `"1.5.0"` | image tag |
@@ -88,8 +88,8 @@ N/A
 | persistence.data | object | See values.yaml | Configure persistence for data. |
 | persistence.export | object | See values.yaml | Configure export volume. |
 | persistence.media | object | See values.yaml | Configure persistence for media. |
-| postgresql | object | See https://github.com/bitnami/charts/tree/master/bitnami/postgresql | PostgreSQL chart configuration |
-| redis | object | See https://github.com/bitnami/charts/tree/master/bitnami/redis | Redit chart configuration |
+| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| redis | object | See values.yaml | Enable and configure redis subchart under this key.    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis) |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
