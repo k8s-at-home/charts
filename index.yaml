@@ -37677,6 +37677,29 @@ entries:
   multus:
   - apiVersion: v2
     appVersion: v3.7.1
+    created: "2021-10-18T09:09:46.508861369Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    description: multus CNI allows multiple NICs per pod
+    digest: b99e8bc88409e19dd5f91ef756fd3db0ef1ed7ff6a7f6e8bae9ae79cf7e70ce8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/multus
+    icon: https://multus.org/icon
+    keywords:
+    - multus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: multus
+    sources:
+    - https://github.com/k8snetworkplumbingwg/multus-cni
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/multus-3.1.2/multus-3.1.2.tgz
+    version: 3.1.2
+  - apiVersion: v2
+    appVersion: v3.7.1
     created: "2021-09-15T19:58:45.38772841Z"
     dependencies:
     - name: common
@@ -85841,4 +85864,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-18T07:38:45.405128282Z"
+generated: "2021-10-18T09:09:46.524383316Z"
