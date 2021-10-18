@@ -1,15 +1,14 @@
-# gollum
+# seafile
 
-![Version: 3.0.2](https://img.shields.io/badge/Version-3.0.2-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 8.0.7](https://img.shields.io/badge/AppVersion-8.0.7-informational?style=flat-square)
 
-Gollum is a simple wiki system built on top of Git
+seafile helm package
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/gollum/gollum>
-* <https://github.com/gollum/docker>
+* <https://github.com/haiwen/seafile-docker>
 
 ## Requirements
 
@@ -19,6 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | mariadb | 9.4.4 |
 | https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
@@ -26,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install gollum k8s-at-home/gollum
+helm install seafile k8s-at-home/seafile
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `gollum`
+To install the chart with the release name `seafile`
 
 ```console
-helm install gollum k8s-at-home/gollum
+helm install seafile k8s-at-home/seafile
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `gollum` deployment
+To uninstall the `seafile` deployment
 
 ```console
-helm uninstall gollum
+helm uninstall seafile
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +55,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install gollum \
+helm install seafile \
   --set env.TZ="America/New York" \
-    k8s-at-home/gollum
+    k8s-at-home/seafile
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install gollum k8s-at-home/gollum -f values.yaml
+helm install seafile k8s-at-home/seafile -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,15 +76,18 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| gollum.additionalArgs | list | `["--h1-title"]` | Additional arguments for starting gollum |
-| gollum.config | string | `"# Push and pull on commit\nGollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|\n     committer.wiki.repo.git.pull('origin', committer.wiki.ref)\n     committer.wiki.repo.git.push('origin', committer.wiki.ref)\nend\n"` | Gollum config.rb customizations [[ref]](https://github.com/gollum/gollum#config-file) |
-| gollum.gitBranch | string | `"master"` | Branch to pull |
-| gollum.gitUrl | string | `"https://github.com/k8s-at-home/charts.git"` | Repository URL to pull (accepts access tokens) Example: https://user:access-token@git.example.com/user/repo.git |
-| gollum.syncCommand | string | `"git pull && git push"` | Command run during the sync cron |
+| env | object | See below | environment variables. See more environment variables in the [seafile documentation](https://manual.seafile.com/). |
+| env.DB_HOST | string | `"seafile-mariadb"` | The hostname of your database |
+| env.DB_ROOT_PASSWD | string | `"seafilerootpass"` | The root password for mysql (used for initial setup) |
+| env.SEAFILE_ADMIN_EMAIL | string | `"example@example.com"` | The initial admin user's email |
+| env.SEAFILE_ADMIN_PASSWORD | string | `"seafileadminpass"` | The initial admin user's password |
+| env.SEAFILE_SERVER_HOSTNAME | string | `nil` | The hostname for the server (set to your ingress hostname) |
+| env.TIME_ZONE | string | `"Etc/UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"gollumorg/gollum"` | image repository |
-| image.tag | string | `"latest"` | image tag |
+| image.repository | string | `"seafileltd/seafile-mc"` | image repository |
+| image.tag | string | `"8.0.7"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
@@ -94,37 +97,20 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.0.2]
-
-- Fix `additionalArgs` templating so that more than one extra argument can be supplied.
-
-### [3.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [2.1.1]
-
-- Fixed init script order to clear before cloning not after
-- Switched cron script to be sh not bash, fixing failing crons
-
-### [2.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
-- Removed default controller type
-
 ### [1.0.0]
 
 #### Added
 
 - Initial version
 
-[3.0.0]: #300
-[2.0.0]: #200
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
 [1.0.0]: #100
 
 ## Support

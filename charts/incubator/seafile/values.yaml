@@ -1,0 +1,67 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: seafileltd/seafile-mc
+  # -- image tag
+  tag: 8.0.7
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [seafile documentation](https://manual.seafile.com/).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TIME_ZONE: Etc/UTC
+  # -- The hostname of your database
+  DB_HOST: seafile-mariadb
+  # -- The root password for mysql (used for initial setup)
+  DB_ROOT_PASSWD: seafilerootpass
+  # -- The initial admin user's email
+  SEAFILE_ADMIN_EMAIL: example@example.com
+  # -- The initial admin user's password
+  SEAFILE_ADMIN_PASSWORD: seafileadminpass
+  # -- The hostname for the server (set to your ingress hostname)
+  SEAFILE_SERVER_HOSTNAME:
+  SEAFILE_SERVER_LETSENCRYPT: false
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+# @default -- See values.yaml
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: seafile
+    username: seafile
+    password: seafilepass
+    rootPassword: seafilerootpass
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # shared:
+  #   enabled: false

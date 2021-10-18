@@ -11,7 +11,9 @@ args:
   - "--ref"
   - {{ (required "gollum.gitBranch is required but not set" .Values.gollum.gitBranch) }}
   {{ with .Values.gollum.additionalArgs }}
-    {{- . | toYaml }}
+  {{ range . }}
+  - {{ . | toYaml }}
+  {{ end }}
   {{ end }}
 
 initContainers:
