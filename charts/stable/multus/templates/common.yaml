@@ -7,6 +7,9 @@ controller:
   # -- deploy to all nodes
   type: daemonset
 
+# -- force hostnetwork so upgrades can't fail
+hostNetwork: true
+
 initContainers:
   # -- Init container that installs reference CNI plugins
   cni-installer:
