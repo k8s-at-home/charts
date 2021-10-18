@@ -11,7 +11,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: 1.4.5
+  tag: 1.5.0
 
 # -- See the following files for additional environment variables:
 # https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/
@@ -21,12 +21,14 @@ env:
   # -- Project name
   COMPOSE_PROJECT_NAME: paperless
   # -- Redis to use
-  PAPERLESS_REDIS: redis://localhost:6379
+  PAPERLESS_REDIS:
   # -- OCR languages to install
   PAPERLESS_OCR_LANGUAGE: eng
   # USERMAP_UID: 1000
   # USERMAP_GID: 1000
   # PAPERLESS_TIME_ZONE: Europe/London
+  # -- Database host to use
+  PAPERLESS_DBHOST:
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -76,10 +78,22 @@ persistence:
     emptyDir:
       enabled: false
 
-# -- Deploy local redis instance.
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
 # @default -- See values.yaml
-additionalContainers:
-  broker:
-    name: broker
-    image: redis:6.0
-    imagePullPolicy: IfNotPresent
+postgresql:
+  enabled: false
+  postgresqlUsername: paperless
+  postgresqlPassword: paperless
+  postgresqlDatabase: paperless
+  persistence:
+    enabled: false
+    # storageClass: ""
+
+# -- Enable and configure redis subchart under this key.
+#    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis)
+# @default -- See values.yaml
+redis:
+  enabled: false
+  auth:
+    enabled: false
