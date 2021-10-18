@@ -21,14 +21,14 @@ env:
   # -- Project name
   COMPOSE_PROJECT_NAME: paperless
   # -- Redis to use
-  PAPERLESS_REDIS: redis://localhost:6379
+  PAPERLESS_REDIS:
   # -- OCR languages to install
   PAPERLESS_OCR_LANGUAGE: eng
   # USERMAP_UID: 1000
   # USERMAP_GID: 1000
   # PAPERLESS_TIME_ZONE: Europe/London
-  # -- Database host to use (set if postgresql.enabled)
-  # PAPERLESS_DBHOST: localhost
+  # -- Database host to use
+  PAPERLESS_DBHOST:
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -94,4 +94,6 @@ postgresql:
 #    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis)
 # @default -- See values.yaml
 redis:
-  enabled: true
+  enabled: false
+  auth:
+    enabled: false
