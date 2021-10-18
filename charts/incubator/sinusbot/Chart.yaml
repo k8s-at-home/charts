@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.0.0-beta.14
+description: TeamSpeak & Discord Bot
+name: sinusbot
+version: 0.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- sinusbot
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sinusbot
+icon: https://pbs.twimg.com/profile_images/613423613711122432/fFJZiB_t_400x400.png
+sources:
+- https://github.com/sinusbot/sinusbot-docker
+maintainers:
+- name: reitermarkus
+  email: me@reitermark.us
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
