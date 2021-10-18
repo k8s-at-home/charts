@@ -49016,6 +49016,38 @@ entries:
     version: 1.0.0
   paperless:
   - apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-10-18T17:29:21.504613365Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.12.2
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.0.0
+    description: Paperless - Index and archive all of your scanned paper documents
+    digest: 5864189574bf52f34f95c44413101e81c1b72c7c01e789caeb11ecfa33217e18
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paperless
+    icon: https://avatars.githubusercontent.com/u/47271576?s=200&v=4
+    keywords:
+    - paperless
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    - email: jonathan@jonnobrow.co.uk
+      name: jonnobrow
+    name: paperless
+    sources:
+    - https://github.com/jonaswinkler/paperless-ng
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/paperless-8.0.0/paperless-8.0.0.tgz
+    version: 8.0.0
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2021-09-15T19:58:48.865935562Z"
     dependencies:
@@ -85955,4 +85987,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-18T09:40:33.354231139Z"
+generated: "2021-10-18T17:29:21.52595796Z"
