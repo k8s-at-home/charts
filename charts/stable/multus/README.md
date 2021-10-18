@@ -97,7 +97,6 @@ rm -rf  /var/lib/rancher/k3s/agent/etc/cni/net.d/*multus*
 | cni.paths.bin | string | `"/var/lib/rancher/k3s/data/current/bin"` | CNI plugin binaries folder for k3s. Change to `/opt/cni/bin` for non k3s |
 | cni.paths.config | string | `"/var/lib/rancher/k3s/agent/etc/cni/net.d"` | CNI config folder for k3s. Change to `/etc/cni/net.d` for non k3s |
 | cni.version | string | `"0.3.1"` | CNI interface version |
-| hostNetwork | bool | `true` | hostNetwork enabled to allow upgrades without dependencies on CNI plugins itself |
 | image.pullPolicy | string | `"IfNotPresent"` | multus installer pull policy |
 | image.repository | string | `"ghcr.io/k8snetworkplumbingwg/multus-cni"` | multus installer repostory |
 | image.tag | string | `"v3.7.1"` | multus installer tag |
