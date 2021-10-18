@@ -7,17 +7,17 @@
 
 **IMPORTANT NOTE:** a ser2sock controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
 
-First, you will need to mount your ser2sock device into the pod, you can do so by adding the following to your values:
+First, you will need to mount your ser2sock device into the pod, you can do so by adding the following to your values.
+Be sure to modify the values according to your requirements!
 
 ```yaml
-additionalVolumeMounts:
-  - name: usb
-    mountPath: /path/to/device
-
-additionalVolumes:
-  - name: usb
-    hostPath:
-      path: /path/to/device
+persistence:
+  usb:
+    enabled: true
+    type: hostPath
+    mountPath: /dev/ttyUSB0  # This is an optional field, and defaults to the value of `hostPath`
+    hostPath: /dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DO00DPTS-if00-port0
+    # hostPathType: CharDevice
 ```
 
 Second you will need to set a nodeAffinity rule, for example:

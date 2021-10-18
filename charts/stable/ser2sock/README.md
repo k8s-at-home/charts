@@ -1,6 +1,6 @@
 # ser2sock
 
-![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 5.0.2](https://img.shields.io/badge/Version-5.0.2-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Serial to Socket Redirector
 
@@ -70,17 +70,17 @@ helm install ser2sock k8s-at-home/ser2sock -f values.yaml
 
 **IMPORTANT NOTE:** a ser2sock controller device must be accessible on the node where this pod runs, in order for this chart to function properly.
 
-First, you will need to mount your ser2sock device into the pod, you can do so by adding the following to your values:
+First, you will need to mount your ser2sock device into the pod, you can do so by adding the following to your values.
+Be sure to modify the values according to your requirements!
 
 ```yaml
-additionalVolumeMounts:
-  - name: usb
-    mountPath: /path/to/device
-
-additionalVolumes:
-  - name: usb
-    hostPath:
-      path: /path/to/device
+persistence:
+  usb:
+    enabled: true
+    type: hostPath
+    mountPath: /dev/ttyUSB0  # This is an optional field, and defaults to the value of `hostPath`
+    hostPath: /dev/serial/by-id/usb-FTDI_FT230X_Basic_UART_DO00DPTS-if00-port0
+    # hostPathType: CharDevice
 ```
 
 Second you will need to set a nodeAffinity rule, for example:
@@ -128,6 +128,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### [5.0.0]
 
+#### Fixed
+
+- Fixed chart documentation.
+
+### [5.0.0]
+
 #### Changed
 
 - Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
@@ -157,6 +163,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[5.0.2]: #502
 [5.0.0]: #500
 [4.0.1]: #401
 [4.0.0]: #400
