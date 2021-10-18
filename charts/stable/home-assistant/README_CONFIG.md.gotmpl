@@ -68,4 +68,10 @@ ingress:
 ```
 
 The value derived is the name of the kubernetes service object for home-assistant
+
+### Metrics collection
+
+If metrics collection is enabled through the `metrics.enabled: true` setting, make sure to also enable the Prometheus
+endpoint in your Home-Assistant configuration. See the [official documentation](https://www.home-assistant.io/integrations/prometheus/) for more details on how to set this up.
+
 {{- end -}}
