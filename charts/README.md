@@ -155,4 +155,5 @@
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
 | [openhab](incubator/openhab) | openhab helm package |
 | [seafile](incubator/seafile) | seafile helm package |
+| [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
