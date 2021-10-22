@@ -25,6 +25,8 @@ env: {}
 # @default -- See values.yaml
 service:
   main:
+    # type: LoadBalancer
+    # loadBalancerIP: 192.168.1.80
     ports:
       http:
         port: 80
@@ -32,11 +34,18 @@ service:
         enabled: true
         port: 443
 
-ingress:
-  # -- Enable and configure ingress settings for the chart under this key.
+dns:
+  # -- Enable and configure LanCache DNS sidecar.
   # @default -- See values.yaml
-  main:
-    enabled: false
+  enabled: false
+  env: {}
+  image:
+    # -- image repository
+    repository: lancachenet/lancache-dns
+    # -- image tag
+    tag: latest
+    # -- image pull policy
+    pullPolicy: Always
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml

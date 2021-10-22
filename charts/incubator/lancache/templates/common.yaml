@@ -1,1 +1,57 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "lancache.harcodedValues" -}}
+{{ if .Values.dns.enabled }}
+additionalContainers:
+  dns:
+    name: dns
+    image: "{{ .Values.dns.image.repository }}:{{ .Values.dns.image.tag }}"
+    imagePullPolicy: {{ .Values.dns.image.pullPolicy }}
+    env:
+      {{- if or (not .Values.env.CACHE_MODE) (eq .Values.env.CACHE_MODE "generic") }}
+      - name: USE_GENERIC_CACHE
+        value: 'true'
+      {{- end }}
+      {{- if .Values.dns.env.LANCACHE_IP }}
+      - name: LANCACHE_IP
+        value: {{ .Values.dns.env.LANCACHE_IP | quote }}
+      {{- else if .Values.service.main.loadBalancerIP }}
+      - name: LANCACHE_IP
+        value: {{ .Values.service.main.loadBalancerIP | quote }}
+      {{- else }}
+      - name: LANCACHE_IP
+        value: {{ printf "$(%v_SERVICE_HOST)" (include "common.names.fullname" . | upper | replace "-" "_" ) | quote }}
+      {{- end }}
+      {{- if .Values.env.UPSTREAM_DNS }}
+      - name: UPSTREAM_DNS
+        value: {{ .Values.env.UPSTREAM_DNS | quote }}
+      {{- end }}
+      {{- if .Values.env.CACHE_DOMAINS_REPO }}
+      - name: CACHE_DOMAINS_REPO
+        value: {{ .Values.env.CACHE_DOMAINS_REPO | quote }}
+      {{- end }}
+      {{- if .Values.env.CACHE_DOMAINS_BRANCH }}
+      - name: CACHE_DOMAINS_BRANCH
+        value: {{ .Values.env.CACHE_DOMAINS_BRANCH | quote }}
+      {{- end }}
+    ports:
+      - name: dns
+        containerPort: 53
+        protocol: UDP
+
+service:
+  dns:
+    enabled: true
+    ports:
+      dns:
+        enabled: true
+        protocol: UDP
+        port: 53
+{{ end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "lancache.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}
