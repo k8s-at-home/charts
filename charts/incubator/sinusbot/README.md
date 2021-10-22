@@ -82,7 +82,7 @@ N/A
 | image.repository | string | `"sinusbot/docker"` | image repository |
 | image.tag | string | `"1.0.0-beta.14-dc94a7c"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| nodeSelector | object | `{"kubernetes.io/arch":"amd64"}` | The official SinusBot image is only available for x86_64. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Choose either -- a single volume for all data or separate volumes for each sub-directory. |
 | persistence.data | object | `{"enabled":false,"mountPath":"/opt/sinusbot/data"}` | separate volumes |
 | persistence.sinusbot | object | `{"enabled":false,"subPath":[{"mountPath":"/opt/sinusbot/data","path":"data"},{"mountPath":"/opt/sinusbot/scripts","path":"scripts"}]}` | single volume |
