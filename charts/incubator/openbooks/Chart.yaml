@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: openbooks helm package
+name: openbooks
+version: 2.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- openbooks
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openbooks
+icon: https://openbooks.org/icon
+sources:
+- https://github.com/openbooks/openbooks-docker
+maintainers:
+- name: openbooks
+  email: openbooks@openbooks.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
