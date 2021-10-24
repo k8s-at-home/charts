@@ -36,6 +36,9 @@ service:
 
 # -- LanCache uses custom upstream nameservers, overridable with the `UPSTREAM_DNS` variable.
 dnsPolicy: 'None'
+dnsConfig:
+  nameservers:
+    - 127.0.0.1
 
 dns:
   # -- Enable and configure LanCache DNS sidecar.
