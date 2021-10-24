@@ -164,7 +164,7 @@ Drop browser cache and cookies for your jellyfin URL!
 
 ## Support
 
-- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/introduction/)
 - Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community

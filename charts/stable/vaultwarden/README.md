@@ -130,7 +130,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Support
 
-- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/introduction/)
 - Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
