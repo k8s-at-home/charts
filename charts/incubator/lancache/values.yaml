@@ -13,7 +13,7 @@ image:
   # -- image pull policy
   pullPolicy: Always
 
-# -- environment variables. See more environment variables in the [lancache documentation](https://lancache.org/docs).
+# -- environment variables. See more environment variables in the [LanCache Monolithic documentation](https://lancache.net/docs/containers/monolithic/variables/).
 # @default -- See below
 env: {}
   # UPSTREAM_DNS:
@@ -34,10 +34,15 @@ service:
         enabled: true
         port: 443
 
+# -- LanCache uses custom upstream nameservers, overridable with the `UPSTREAM_DNS` variable.
+dnsPolicy: 'None'
+
 dns:
   # -- Enable and configure LanCache DNS sidecar.
   # @default -- See values.yaml
   enabled: false
+  # -- environment variables. See more environment variables in the [LanCache DNS documentation](https://lancache.net/docs/containers/dns/variables/).
+  # Most are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` if specified.
   env: {}
   image:
     # -- image repository
@@ -46,6 +51,26 @@ dns:
     tag: latest
     # -- image pull policy
     pullPolicy: Always
+
+probes:
+  readiness:
+    custom: true
+    spec:
+      httpGet:
+        path: /lancache-heartbeat
+        port: 80
+  liveness:
+    custom: true
+    spec:
+      httpGet:
+        path: /lancache-heartbeat
+        port: 80
+  startup:
+    custom: true
+    spec:
+      httpGet:
+        path: /lancache-heartbeat
+        port: 80
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml

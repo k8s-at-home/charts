@@ -1,14 +1,16 @@
 # lancache
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-lancache helm package
+LanCache Monolithic
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/lancache/lancache-docker>
+* <https://github.com/lancachenet/monolithic>
+* <https://hub.docker.com/r/lancachenet/monolithic>
+* <https://hub.docker.com/r/lancachenet/lancache-dns>
 
 ## Requirements
 
@@ -18,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
 
@@ -75,13 +77,27 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [lancache documentation](https://lancache.org/docs). |
-| env.TZ | string | `"UTC"` | Set the container timezone |
-| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"lancache/lancache"` | image repository |
-| image.tag | string | `"1.0.0"` | image tag |
-| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| dns.enabled | bool | See values.yaml | Enable and configure LanCache DNS sidecar. |
+| dns.env | object | `{}` | environment variables. See more environment variables in the [LanCache DNS documentation](https://lancache.net/docs/containers/dns/variables/). Most are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` if specified. |
+| dns.image.pullPolicy | string | `"Always"` | image pull policy |
+| dns.image.repository | string | `"lancachenet/lancache-dns"` | image repository |
+| dns.image.tag | string | `"latest"` | image tag |
+| dnsPolicy | string | `"None"` | LanCache uses custom upstream nameservers, overridable with the `UPSTREAM_DNS` variable. |
+| env | object | See below | environment variables. See more environment variables in the [LanCache Monolithic documentation](https://lancache.net/docs/containers/monolithic/variables/). |
+| image.pullPolicy | string | `"Always"` | image pull policy |
+| image.repository | string | `"lancachenet/monolithic"` | image repository |
+| image.tag | string | `"latest"` | image tag |
+| nodeSelector | object | `{"kubernetes.io/arch":"amd64"}` | The official LanCache image is only available for x86_64. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes.liveness.custom | bool | `true` |  |
+| probes.liveness.spec.httpGet.path | string | `"/lancache-heartbeat"` |  |
+| probes.liveness.spec.httpGet.port | int | `80` |  |
+| probes.readiness.custom | bool | `true` |  |
+| probes.readiness.spec.httpGet.path | string | `"/lancache-heartbeat"` |  |
+| probes.readiness.spec.httpGet.port | int | `80` |  |
+| probes.startup.custom | bool | `true` |  |
+| probes.startup.spec.httpGet.path | string | `"/lancache-heartbeat"` |  |
+| probes.startup.spec.httpGet.port | int | `80` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -104,7 +120,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.0]: #100
 
 ## Support
 
