@@ -1,6 +1,6 @@
 # jellyfin
 
-![Version: 9.1.0](https://img.shields.io/badge/Version-9.1.0-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
+![Version: 9.1.1](https://img.shields.io/badge/Version-9.1.1-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
 
 Jellyfin is a Free Software Media System
 

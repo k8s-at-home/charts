@@ -1,6 +1,6 @@
 # xteve
 
-![Version: 8.0.1](https://img.shields.io/badge/Version-8.0.1-informational?style=flat-square) ![AppVersion: v2.2.0.200](https://img.shields.io/badge/AppVersion-v2.2.0.200-informational?style=flat-square)
+![Version: 8.0.2](https://img.shields.io/badge/Version-8.0.2-informational?style=flat-square) ![AppVersion: v2.2.0.200](https://img.shields.io/badge/AppVersion-v2.2.0.200-informational?style=flat-square)
 
 M3U Proxy for Plex DVR and Emby Live TV.
 

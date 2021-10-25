@@ -1,6 +1,6 @@
 # minio-console
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: v0.7.4](https://img.shields.io/badge/AppVersion-v0.7.4-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: v0.7.4](https://img.shields.io/badge/AppVersion-v0.7.4-informational?style=flat-square)
 
 A management console for minio server and operator
 

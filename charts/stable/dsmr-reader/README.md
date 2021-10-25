@@ -1,6 +1,6 @@
 # dsmr-reader
 
-![Version: 5.1.2](https://img.shields.io/badge/Version-5.1.2-informational?style=flat-square) ![AppVersion: 2021.06.01](https://img.shields.io/badge/AppVersion-2021.06.01-informational?style=flat-square)
+![Version: 5.1.3](https://img.shields.io/badge/Version-5.1.3-informational?style=flat-square) ![AppVersion: 2021.06.01](https://img.shields.io/badge/AppVersion-2021.06.01-informational?style=flat-square)
 
 DSMR-protocol reader, telegram data storage and energy consumption visualizer.
 

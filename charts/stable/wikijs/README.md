@@ -1,6 +1,6 @@
 # wikijs
 
-![Version: 6.0.1](https://img.shields.io/badge/Version-6.0.1-informational?style=flat-square) ![AppVersion: version-2.5.201](https://img.shields.io/badge/AppVersion-version--2.5.201-informational?style=flat-square)
+![Version: 6.0.2](https://img.shields.io/badge/Version-6.0.2-informational?style=flat-square) ![AppVersion: version-2.5.201](https://img.shields.io/badge/AppVersion-version--2.5.201-informational?style=flat-square)
 
 Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
 

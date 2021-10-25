@@ -1,6 +1,6 @@
 # onedrive
 
-![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: v2.4.13](https://img.shields.io/badge/AppVersion-v2.4.13-informational?style=flat-square)
+![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![AppVersion: v2.4.13](https://img.shields.io/badge/AppVersion-v2.4.13-informational?style=flat-square)
 
 A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365, and SharePoint
 

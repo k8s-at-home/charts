@@ -1,6 +1,6 @@
 # kanboard
 
-![Version: 4.1.2](https://img.shields.io/badge/Version-4.1.2-informational?style=flat-square) ![AppVersion: v1.2.20](https://img.shields.io/badge/AppVersion-v1.2.20-informational?style=flat-square)
+![Version: 4.1.3](https://img.shields.io/badge/Version-4.1.3-informational?style=flat-square) ![AppVersion: v1.2.20](https://img.shields.io/badge/AppVersion-v1.2.20-informational?style=flat-square)
 
 Kanboard is a free and open source Kanban project management software.
 

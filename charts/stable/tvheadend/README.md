@@ -1,6 +1,6 @@
 # tvheadend
 
-![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: version-eb59284b](https://img.shields.io/badge/AppVersion-version--eb59284b-informational?style=flat-square)
+![Version: 5.0.2](https://img.shields.io/badge/Version-5.0.2-informational?style=flat-square) ![AppVersion: version-eb59284b](https://img.shields.io/badge/AppVersion-version--eb59284b-informational?style=flat-square)
 
 TVheadend - a TV streaming server and digital video recorder
 

@@ -1,6 +1,6 @@
 # shlink
 
-![Version: 3.1.2](https://img.shields.io/badge/Version-3.1.2-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
+![Version: 3.1.3](https://img.shields.io/badge/Version-3.1.3-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
 
 A self-hosted and PHP-based URL shortener application with CLI and REST interfaces
 

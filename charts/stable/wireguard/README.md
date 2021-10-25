@@ -1,6 +1,6 @@
 # wireguard
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.0.20210424](https://img.shields.io/badge/AppVersion-1.0.20210424-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![AppVersion: 1.0.20210424](https://img.shields.io/badge/AppVersion-1.0.20210424-informational?style=flat-square)
 
 Fast, modern, secure VPN tunnel
 

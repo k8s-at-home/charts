@@ -1,6 +1,6 @@
 # promcord
 
-![Version: 5.0.3](https://img.shields.io/badge/Version-5.0.3-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 5.0.4](https://img.shields.io/badge/Version-5.0.4-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Discord bot that provides metrics from a Discord server
 

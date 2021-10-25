@@ -1,6 +1,6 @@
 # network-ups-tools
 
-![Version: 6.0.1](https://img.shields.io/badge/Version-6.0.1-informational?style=flat-square) ![AppVersion: v2.7.4-2479-g86a32237](https://img.shields.io/badge/AppVersion-v2.7.4--2479--g86a32237-informational?style=flat-square)
+![Version: 6.0.2](https://img.shields.io/badge/Version-6.0.2-informational?style=flat-square) ![AppVersion: v2.7.4-2479-g86a32237](https://img.shields.io/badge/AppVersion-v2.7.4--2479--g86a32237-informational?style=flat-square)
 
 Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware.
 
