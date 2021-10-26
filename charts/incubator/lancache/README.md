@@ -85,6 +85,7 @@ N/A
 | dnsConfig.nameservers[0] | string | `"127.0.0.1"` |  |
 | dnsPolicy | string | `"None"` | LanCache uses custom upstream nameservers, overridable with the `UPSTREAM_DNS` variable. |
 | env | object | See below | environment variables. See more environment variables in the [LanCache Monolithic documentation](https://lancache.net/docs/containers/monolithic/variables/). |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"Always"` | image pull policy |
 | image.repository | string | `"lancachenet/monolithic"` | image repository |
 | image.tag | string | `"latest"` | image tag |

@@ -10,6 +10,10 @@ additionalContainers:
     image: "{{ .Values.dns.image.repository }}:{{ .Values.dns.image.tag }}"
     imagePullPolicy: {{ .Values.dns.image.pullPolicy }}
     env:
+      {{- if .Values.env.TZ }}
+      - name: TZ
+        value: {{ .Values.env.TZ | quote }}
+      {{- end }}
       {{- if or (not .Values.env.CACHE_MODE) (eq .Values.env.CACHE_MODE "generic") }}
       - name: USE_GENERIC_CACHE
         value: 'true'

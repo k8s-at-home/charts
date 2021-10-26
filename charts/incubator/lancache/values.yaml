@@ -15,7 +15,9 @@ image:
 
 # -- environment variables. See more environment variables in the [LanCache Monolithic documentation](https://lancache.net/docs/containers/monolithic/variables/).
 # @default -- See below
-env: {}
+env:
+  # -- Set the container timezone
+  TZ: UTC
   # UPSTREAM_DNS:
   # CACHE_MEM_SIZE:
   # CACHE_DISK_SIZE:
