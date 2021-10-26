@@ -49,6 +49,7 @@ service:
         enabled: true
         protocol: UDP
         port: 53
+        containerPort: 53
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "lancache.harcodedValues" . | fromYaml) -}}
