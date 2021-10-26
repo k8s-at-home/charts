@@ -78,7 +78,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | dns.enabled | bool | See values.yaml | Enable and configure LanCache DNS sidecar and service. |
-| dns.env | object | `{}` | environment variables. See more environment variables in the [LanCache DNS documentation](https://lancache.net/docs/containers/dns/variables/). Most are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` if specified. |
+| dns.env | object | `{}` | environment variables. See more environment variables in the [LanCache DNS documentation](https://lancache.net/docs/containers/dns/variables/). Most variables are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` of the `main` service if specified. |
 | dns.image.pullPolicy | string | `"Always"` | image pull policy |
 | dns.image.repository | string | `"lancachenet/lancache-dns"` | image repository |
 | dns.image.tag | string | `"latest"` | image tag |

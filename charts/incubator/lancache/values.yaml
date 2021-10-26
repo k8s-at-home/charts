@@ -25,8 +25,6 @@ env: {}
 # @default -- See values.yaml
 service:
   main:
-    # type: LoadBalancer
-    # loadBalancerIP: 192.168.1.80
     ports:
       http:
         port: 80
@@ -50,7 +48,7 @@ dns:
   # @default -- See values.yaml
   enabled: false
   # -- environment variables. See more environment variables in the [LanCache DNS documentation](https://lancache.net/docs/containers/dns/variables/).
-  # Most are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` if specified.
+  # Most variables are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` of the `main` service if specified.
   env: {}
   image:
     # -- image repository
