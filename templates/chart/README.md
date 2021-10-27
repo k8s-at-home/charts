@@ -1,6 +1,6 @@
 # ${CHARTNAME}
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 ${CHARTNAME} helm package
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
 
@@ -104,11 +104,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.0]: #100
 
 ## Support
 
-- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/introduction/)
 - Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
 - Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
