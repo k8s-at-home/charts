@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-38-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-39-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -96,6 +96,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Kimi450"><img src="https://avatars.githubusercontent.com/u/24758074?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Karan Samani</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Kimi450" title="Code">💻</a></td>
     <td align="center"><a href="http://reitermark.us"><img src="https://avatars.githubusercontent.com/u/1309829?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Markus Reiter</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=reitermarkus" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/brenix"><img src="https://avatars.githubusercontent.com/u/1131159?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paul N</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=brenix" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.varac.net"><img src="https://avatars.githubusercontent.com/u/488213?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Varac</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=varac" title="Code">💻</a></td>
   </tr>
 </table>
 
