@@ -79721,6 +79721,38 @@ entries:
   vaultwarden:
   - apiVersion: v2
     appVersion: 1.22.2
+    created: "2021-11-01T12:18:46.84717287Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.0.1
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.3
+    description: Vaultwarden is a Bitwarden compatable server in Rust
+    digest: c63b7a5428ccc016ee82de2e74026783dcadbaea9f7a8a60afea001c278b2de3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/vaultwarden
+    icon: https://sesoodan.sirv.com/bitwarden_rs.png
+    keywords:
+    - Vaultwarden
+    - bitwardenrs
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rwalt@pm.me
+      name: Rwaltr
+    name: vaultwarden
+    sources:
+    - https://github.com/dani-garcia/vaultwarden
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/vaultwarden-3.2.1/vaultwarden-3.2.1.tgz
+    version: 3.2.1
+  - apiVersion: v2
+    appVersion: 1.22.2
     created: "2021-11-01T10:30:32.59899524Z"
     dependencies:
     - name: common
@@ -86889,4 +86921,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-11-01T10:30:32.896022849Z"
+generated: "2021-11-01T12:18:46.868836297Z"
