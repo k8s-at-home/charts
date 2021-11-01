@@ -142,7 +142,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version, Succeding Bitwarden_RS.
 
-[3.2.1]: #321
 [3.1.3]: #313
 [3.0.0]: #300
 [2.0.0]: #200
