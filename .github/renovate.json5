@@ -20,6 +20,12 @@
       "commitMessageTopic": "Helm chart {{depName}}",
       "separateMinorPatch": true
     },
+    // Custom version schemes
+    {
+      "matchDatasources": ["github-tags"],
+      "matchPackageNames": ["potiuk/get-workflow-origin"],
+      "versioning": "regex:^v(?<major>\\d+)_(?<minor>\\d+)(_(?<patch>\\d+))?$"
+    },
     //
     // Common library dep
     //
