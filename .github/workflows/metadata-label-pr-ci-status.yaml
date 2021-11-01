@@ -29,7 +29,7 @@ jobs:
         sourceRunId: ${{ github.event.workflow_run.id }}
 
     - name: Label precommit success
-      uses: andymckay/labeler@1.0.3
+      uses: andymckay/labeler@1.0.4
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
       with:
         repo-token: ${{ steps.get-app-token.outputs.token }}
@@ -38,7 +38,7 @@ jobs:
         remove-labels: "precommit:failed"
 
     - name: Label precommit failure
-      uses: andymckay/labeler@1.0.3
+      uses: andymckay/labeler@1.0.4
       if: ${{ github.event.workflow_run.conclusion == 'failure' }}
       with:
         repo-token: ${{ steps.get-app-token.outputs.token }}
@@ -90,7 +90,7 @@ jobs:
           return result
 
     - name: Label lint success
-      uses: andymckay/labeler@1.0.3
+      uses: andymckay/labeler@1.0.4
       if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint == 'success' }}
       with:
         repo-token: ${{ steps.get-app-token.outputs.token }}
@@ -99,7 +99,7 @@ jobs:
         remove-labels: "lint:failed"
 
     - name: Label lint failure
-      uses: andymckay/labeler@1.0.3
+      uses: andymckay/labeler@1.0.4
       if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint == 'failure' }}
       with:
         repo-token: ${{ steps.get-app-token.outputs.token }}
@@ -108,7 +108,7 @@ jobs:
         remove-labels: "lint:ok"
 
     - name: Label install success
-      uses: andymckay/labeler@1.0.3
+      uses: andymckay/labeler@1.0.4
       if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).install == 'success' }}
       with:
         repo-token: ${{ steps.get-app-token.outputs.token }}
@@ -117,7 +117,7 @@ jobs:
         remove-labels: "install:failed"
 
     - name: Label install failure
-      uses: andymckay/labeler@1.0.3
+      uses: andymckay/labeler@1.0.4
       if: ${{ fromJSON(steps.get-workflow-jobs.outputs.result).install == 'failure' }}
       with:
         repo-token: ${{ steps.get-app-token.outputs.token }}
