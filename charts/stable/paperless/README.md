@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 8.1.0](https://img.shields.io/badge/Version-8.1.0-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.12.2 |
-| https://charts.bitnami.com/bitnami | redis | 15.0.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.13.3 |
+| https://charts.bitnami.com/bitnami | redis | 15.5.3 |
 | https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR

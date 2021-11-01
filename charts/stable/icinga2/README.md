@@ -1,6 +1,6 @@
 # icinga2
 
-![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.4.4 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.7.0 |
 | https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
