@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 2.4.2
 description: A self hostable application for saving web pages, freely.
 name: wallabag
-version: 5.1.0
+version: 5.1.1
 kubeVersion: ">=1.16.0-0"
 keywords:
 - wallabag
@@ -19,11 +19,11 @@ dependencies:
   repository: https://library-charts.k8s-at-home.com
   version: 4.0.1
 - name: redis
-  version: 15.5.3
+  version: 15.5.4
   repository: https://charts.bitnami.com/bitnami
   condition: redis.enabled
 - name: postgresql
-  version: 10.13.3
+  version: 10.13.4
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: mariadb
