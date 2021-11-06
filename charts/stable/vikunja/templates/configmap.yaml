@@ -40,3 +40,5 @@ data:
             reverse_proxy localhost:80
         }
     }
+  Vikunja.yml: |-
+{{ .Values.vikunja.config | indent 4 }}

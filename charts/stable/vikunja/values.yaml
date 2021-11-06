@@ -17,6 +17,12 @@ caddy:
   # -- Disable auto tls if behind another loadbalancer or ingress
   noTls: false
 
+vikunja:
+  # -- Provide Vikunja config as YAML string
+  config: |-
+    service:
+      jwtsecret: "myVeryComplexJWTSecret"
+
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
 service:
@@ -39,12 +45,13 @@ additionalContainers:
     # -- Vikunja api image and tag
     image: vikunja/api:0.17.1
     imagePullPolicy: IfNotPresent
-    # -- You can declare all Vikunja parameters as environment variables.
+    # -- You can declare most Vikunja parameters as environment variables.
     # Please consult https://vikunja.io/docs/config-options/ to see all parameters.
+    # Note that parameters that are an array cannot be defined as environment variables (like the OpenID Connect settings). Use the vikunja.config Value for that.
     # @default -- See below
-    env:
-      - name: VIKUNJA_SERVICE_JWTSECRET
-        value: myVeryComplexJWTSecret
+    env: []
+      # - name: VIKUNJA_SERVICE_JWTSECRET
+      #   value: myVeryComplexJWTSecret
       # - name: VIKUNJA_DATABASE_TYPE
       #   value: "postgres"
       # - name: VIKUNJA_DATABASE_HOST
@@ -55,7 +62,10 @@ additionalContainers:
       #   value: "vikunja"
       # - name: VIKUNJA_DATABASE_PASSWORD
       #   value: password
-    volumeMounts: []
+    volumeMounts:
+      - name: vikunja-config
+        mountPath: /etc/vikunja/config.yml
+        subPath: Vikunja.yml
       # - name: files
       #   mountPath: /app/vikunja/files
 

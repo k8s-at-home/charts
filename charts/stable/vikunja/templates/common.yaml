@@ -12,6 +12,14 @@ persistence:
     volumeSpec:
       configMap:
         name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+  vikunja-config:
+    enabled: "true"
+    mountPath: /etc/vikunja/config.yml
+    subPath: Vikunja.yaml
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "vikunja.hardcodedValues" . | fromYaml) -}}
 
