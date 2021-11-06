@@ -9,9 +9,13 @@ image:
   # -- Caddy reverse proxy image and tag
   repository: caddy
   # -- vikunja api image tag
-  tag: 2.3.0-alpine
+  tag: 2.4.2-alpine
   # vikunja api image pull policy
   pullPolicy: IfNotPresent
+
+caddy:
+  # -- Disable auto tls if behind another loadbalancer or ingress
+  noTls: false
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

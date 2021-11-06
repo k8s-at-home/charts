@@ -7,10 +7,36 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   Caddyfile: |-
-    {{ if .Values.service.main.ports.http.port }}:{{ .Values.service.main.ports.http.port }} {
-        reverse_proxy /api/* localhost:3456
-        reverse_proxy /.well-known/* localhost:3456
-        reverse_proxy /dav/* localhost:3456
-        reverse_proxy localhost:80
+    {
+      admin off
+    {{- if .Values.caddy.noTls }}
+      auto_https off
+    {{- end }}
     }
-    {{ end }}
+
+    :{{ .Values.service.main.ports.http.port }} {
+        log {
+            output stdout
+        }
+
+        @api {
+            path /api/*
+            path /.well-known/*
+            path /dav/*
+        }
+
+        header {
+            # Remove Server header
+            -Server
+        }
+
+        # API
+        handle @api {
+            reverse_proxy localhost:3456
+        }
+
+        # Filtron
+        handle {
+            reverse_proxy localhost:80
+        }
+    }
