@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: rss-bridge helm package
+name: rss-bridge
+version: 2.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- rss-bridge
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rss-bridge
+icon: https://rss-bridge.org/icon
+sources:
+- https://github.com/rss-bridge/rss-bridge-docker
+maintainers:
+- name: rss-bridge
+  email: rss-bridge@rss-bridge.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
