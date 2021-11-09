@@ -7,9 +7,9 @@
 
 image:
   # -- image repository
-  repository: rss-bridge/rss-bridge
+  repository: rssbridge/rss-bridge
   # -- image tag
-  tag: 1.0.0
+  tag: 2021-04-25
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -25,7 +25,7 @@ service:
   main:
     ports:
       http:
-        port: 1880
+        port: 80
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -35,7 +35,7 @@ ingress:
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
-persistence: {}
-  # data:
-  #   enabled: false
-  #   mountPath: /data
+persistence:
+  config:
+    enabled: true
+    mountPath: /config
