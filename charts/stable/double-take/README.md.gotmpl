@@ -15,6 +15,8 @@ https://k8s-at-home.com/charts/
 {{- end -}}
 
 {{- define "custom.notes" -}}
+Configuration file defined in `Values.config`  will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://github.com/jakowenko/double-take#configuration) for more information.
+
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 {{- end -}}
 
