@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 0.3.17
+description: xbvr helm package
+name: xbvr
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- xbvr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/xbvr
+icon: https://raw.githubusercontent.com/xbapps/xbvr/master/ui/public/icons/xbvr-512.png
+sources:
+- https://github.com/xbapps/xbvr
+maintainers:
+- name: CoolMintChocolate
+  email: name@example.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
