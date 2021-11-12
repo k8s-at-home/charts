@@ -1,8 +1,8 @@
 # double-take
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
-double-take helm package
+Unified UI and API for processing and training images for facial recognition.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
 
@@ -76,13 +76,11 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | config | object | See values.yaml | double-take configuration settings. This will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://github.com/jakowenko/double-take#configuration) for more information. |
-| env | object | See below | environment variables. See more environment variables in the [double-take documentation](https://github.com/jakowenko/double-take). |
-| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jakowenko/double-take"` | image repository |
 | image.tag | string | `"1.6.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. See [API Images](https://github.com/jakowenko/double-take#api-images) for explaination on what data is stored where. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -105,7 +103,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #1.0.0
+[1.0.0]: #100
 
 ## Support
 
