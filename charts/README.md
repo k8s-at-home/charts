@@ -144,6 +144,7 @@
 | [wireguard](stable/wireguard) | Fast, modern, secure VPN tunnel |
 | [wmbusmeters](stable/wmbusmeters) | Wmbusmeters receives and decodes C1,T1 or S1 telegrams (using the wireless mbus protocol) to acquire utility meter readings. |
 | [xbackbone](stable/xbackbone) | XBackBone is a simple, self-hosted, lightweight PHP file manager that support the instant sharing tool ShareX and *NIX systems. It supports uploading and displaying images, GIF, video, code, formatted text, and file downloading and uploading. Also have a web UI with multi user management, past uploads history and search support. |
+| [xbvr](stable/xbvr) | xbvr helm package |
 | [xteve](stable/xteve) | M3U Proxy for Plex DVR and Emby Live TV. |
 | [youtubedl-material](stable/youtubedl-material) | Self-hosted YouTube downloader built on Material Design |
 | [zalando-postgres-cluster](stable/zalando-postgres-cluster) | Creates a postgres cluster using the Zalando Postgres operator and local storage |
