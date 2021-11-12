@@ -1,6 +1,6 @@
 # vaultwarden
 
-![Version: 3.1.3](https://img.shields.io/badge/Version-3.1.3-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
+![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
 
 Vaultwarden is a Bitwarden compatable server in Rust
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.4.4 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.9.6 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.7.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.13.3 |
 | https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
@@ -69,7 +69,15 @@ helm install vaultwarden k8s-at-home/vaultwarden -f values.yaml
 
 ## Custom configuration
 
-N/A
+The Vaultwarden chart requires the `/config` folder to exist. In order to provide this, some type of storage needs to be implemented.
+For testing purposes, the following config snippet will work:
+
+````yaml
+persistence:
+  config:
+    enabled: true
+    type: emptyDir
+````
 
 ## Values
 
@@ -94,6 +102,16 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [3.2.1]
+
+#### Added
+
+- Mentioned that some kind of persistence is required on `/config` mountpoint.
+
+#### Fixed
+
+- Updated ct-values to properly create emptyDir
 
 ### [3.1.3]
 
@@ -124,6 +142,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version, Succeding Bitwarden_RS.
 
+[3.1.3]: #313
 [3.0.0]: #300
 [2.0.0]: #200
 [1.0.0]: #100

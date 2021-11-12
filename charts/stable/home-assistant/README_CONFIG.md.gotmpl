@@ -62,9 +62,14 @@ Using NGINX as an example the following will need to be added to your values:
 
 ```yaml
 ingress:
-  enabled: true
-  annotations:
-    nginx.org/websocket-services: home-assistant
+  main:
+    enabled: true
+    annotations:
+      nginx.org/websocket-services: home-assistant
+    hosts:
+      - host: home-assistant.example.org
+        paths:
+          - path: /
 ```
 
 The value derived is the name of the kubernetes service object for home-assistant

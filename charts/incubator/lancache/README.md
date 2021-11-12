@@ -1,14 +1,16 @@
-# openemr
+# lancache
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 6.1.0](https://img.shields.io/badge/AppVersion-6.1.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-OpenEMR is the most popular open source electronic health records and medical practice management solution.
+LanCache Monolithic - a caching proxy server for game download content
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/openemr/openemr>
+* <https://github.com/lancachenet/monolithic>
+* <https://hub.docker.com/r/lancachenet/monolithic>
+* <https://hub.docker.com/r/lancachenet/lancache-dns>
 
 ## Requirements
 
@@ -18,7 +20,6 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.0 |
 | https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
@@ -26,23 +27,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install openemr k8s-at-home/openemr
+helm install lancache k8s-at-home/lancache
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `openemr`
+To install the chart with the release name `lancache`
 
 ```console
-helm install openemr k8s-at-home/openemr
+helm install lancache k8s-at-home/lancache
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `openemr` deployment
+To uninstall the `lancache` deployment
 
 ```console
-helm uninstall openemr
+helm uninstall lancache
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +56,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install openemr \
+helm install lancache \
   --set env.TZ="America/New York" \
-    k8s-at-home/openemr
+    k8s-at-home/lancache
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install openemr k8s-at-home/openemr -f values.yaml
+helm install lancache k8s-at-home/lancache -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,14 +77,29 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [openemr documentation](https://github.com/openemr/openemr/blob/master/docker/production/docker-compose.yml) |
+| dns.enabled | bool | See values.yaml | Enable and configure LanCache DNS sidecar and service. |
+| dns.env | object | `{}` | environment variables. See more environment variables in the [LanCache DNS documentation](https://lancache.net/docs/containers/dns/variables/). Most variables are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` of the `main` service if specified. |
+| dns.image.pullPolicy | string | `"Always"` | image pull policy |
+| dns.image.repository | string | `"lancachenet/lancache-dns"` | image repository |
+| dns.image.tag | string | `"latest"` | image tag |
+| dnsConfig.nameservers[0] | string | `"127.0.0.1"` |  |
+| dnsPolicy | string | `"None"` | LanCache uses custom upstream nameservers, overridable with the `UPSTREAM_DNS` variable. |
+| env | object | See below | environment variables. See more environment variables in the [LanCache Monolithic documentation](https://lancache.net/docs/containers/monolithic/variables/). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"openemr/openemr"` | image repository |
-| image.tag | string | `"6.1.0"` | image tag |
-| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
+| image.pullPolicy | string | `"Always"` | image pull policy |
+| image.repository | string | `"lancachenet/monolithic"` | image repository |
+| image.tag | string | `"latest"` | image tag |
+| nodeSelector | object | `{"kubernetes.io/arch":"amd64"}` | The official LanCache image is only available for x86_64. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes.liveness.custom | bool | `true` |  |
+| probes.liveness.spec.httpGet.path | string | `"/lancache-heartbeat"` |  |
+| probes.liveness.spec.httpGet.port | int | `80` |  |
+| probes.readiness.custom | bool | `true` |  |
+| probes.readiness.spec.httpGet.path | string | `"/lancache-heartbeat"` |  |
+| probes.readiness.spec.httpGet.port | int | `80` |  |
+| probes.startup.custom | bool | `true` |  |
+| probes.startup.spec.httpGet.path | string | `"/lancache-heartbeat"` |  |
+| probes.startup.spec.httpGet.port | int | `80` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -92,29 +108,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [2.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
-- Updated the image tag to `6.1.0`.
-
-### [1.0.0]
+### [0.1.0]
 
 #### Added
 
 - Initial version
 
-[3.0.0]: #300
-[2.0.0]: #200
-[1.0.0]: #100
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[0.1.0]: #010
 
 ## Support
 

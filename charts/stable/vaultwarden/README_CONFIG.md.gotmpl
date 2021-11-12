@@ -5,5 +5,13 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+The Vaultwarden chart requires the `/config` folder to exist. In order to provide this, some type of storage needs to be implemented.
+For testing purposes, the following config snippet will work:
+
+````yaml
+persistence:
+  config:
+    enabled: true
+    type: emptyDir
+````
 {{- end -}}

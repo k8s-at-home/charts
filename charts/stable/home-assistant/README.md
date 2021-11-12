@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 11.0.5](https://img.shields.io/badge/Version-11.0.5-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
+![Version: 11.1.0](https://img.shields.io/badge/Version-11.1.0-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
 
 Home Assistant
 
@@ -21,8 +21,8 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://charts.bitnami.com/bitnami | mariadb | 9.4.4 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.9.6 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.7.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.13.3 |
 | https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
@@ -129,9 +129,14 @@ Using NGINX as an example the following will need to be added to your values:
 
 ```yaml
 ingress:
-  enabled: true
-  annotations:
-    nginx.org/websocket-services: home-assistant
+  main:
+    enabled: true
+    annotations:
+      nginx.org/websocket-services: home-assistant
+    hosts:
+      - host: home-assistant.example.org
+        paths:
+          - path: /
 ```
 
 The value derived is the name of the kubernetes service object for home-assistant
@@ -174,6 +179,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [11.0.6]
+
+#### Changed
+
+- Fix home-assistant ingress example
 
 ### [11.0.5]
 

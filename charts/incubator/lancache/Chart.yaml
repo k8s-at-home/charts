@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: LanCache Monolithic - a caching proxy server for game download content
+name: lancache
+version: 0.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- lancache
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lancache
+icon: https://avatars.githubusercontent.com/u/16938914
+sources:
+- https://github.com/lancachenet/monolithic
+- https://hub.docker.com/r/lancachenet/monolithic
+- https://hub.docker.com/r/lancachenet/lancache-dns
+maintainers:
+- name: reitermarkus
+  email: me@reitermark.us
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1

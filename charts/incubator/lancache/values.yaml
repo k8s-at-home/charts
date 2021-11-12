@@ -1,0 +1,95 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: lancachenet/monolithic
+  # -- image tag
+  tag: latest
+  # -- image pull policy
+  pullPolicy: Always
+
+# -- environment variables. See more environment variables in the [LanCache Monolithic documentation](https://lancache.net/docs/containers/monolithic/variables/).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # UPSTREAM_DNS:
+  # CACHE_MEM_SIZE:
+  # CACHE_DISK_SIZE:
+  # CACHE_MAX_AGE:
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+      https:
+        enabled: true
+        port: 443
+  dns:
+    enabled: false
+    ports:
+      dns:
+        port: 53
+
+# -- LanCache uses custom upstream nameservers, overridable with the `UPSTREAM_DNS` variable.
+dnsPolicy: 'None'
+dnsConfig:
+  nameservers:
+    - 127.0.0.1
+
+dns:
+  # -- Enable and configure LanCache DNS sidecar and service.
+  # @default -- See values.yaml
+  enabled: false
+  # -- environment variables. See more environment variables in the [LanCache DNS documentation](https://lancache.net/docs/containers/dns/variables/).
+  # Most variables are inherited from the top-level `env`. `LANCACHE_IP` is auto-generated from the `loadBalancerIP` of the `main` service if specified.
+  env: {}
+  image:
+    # -- image repository
+    repository: lancachenet/lancache-dns
+    # -- image tag
+    tag: latest
+    # -- image pull policy
+    pullPolicy: Always
+
+probes:
+  readiness:
+    custom: true
+    spec:
+      httpGet:
+        path: /lancache-heartbeat
+        port: 80
+  liveness:
+    custom: true
+    spec:
+      httpGet:
+        path: /lancache-heartbeat
+        port: 80
+  startup:
+    custom: true
+    spec:
+      httpGet:
+        path: /lancache-heartbeat
+        port: 80
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /data/cache
+  logs:
+    enabled: false
+    mountPath: /data/logs
+
+# -- The official LanCache image is only available for x86_64.
+nodeSelector:
+  kubernetes.io/arch: amd64
