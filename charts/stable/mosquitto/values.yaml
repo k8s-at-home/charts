@@ -24,6 +24,10 @@ service:
         enabled: true
         port: 1883
 
+websocket:
+  # -- http port must be enabled and its port set (see service.main.ports)
+  enabled: false
+
 auth:
   # -- By enabling this, `allow_anonymous` gets set to `false` in the mosquitto config.
   enabled: false

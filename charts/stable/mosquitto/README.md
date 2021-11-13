@@ -76,6 +76,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | auth.enabled | bool | `false` | By enabling this, `allow_anonymous` gets set to `false` in the mosquitto config. |
+| websocket.enabled | bool | `false` | Add a websocket listener. `service.main.ports.http` must be set accordingly. |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"eclipse-mosquitto"` | image repository |
 | image.tag | string | `"2.0.11"` | image tag |
