@@ -1,1 +1,57 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "deepstack.harcodedValues" -}}
+
+{{/* Set port number used by UI */}}
+{{- $uiPortNumber := 8501 }}
+
+{{/* Add port to each defined ingress */}}
+{{- if .Values.ui.enabled }}
+{{- range .Values.ui.ingress.ui.hosts }}
+{{- range .paths }}
+{{- $_ := mergeOverwrite . (dict "service" (dict "port" $uiPortNumber)) -}}
+{{- end }}
+{{- end }}
+
+additionalContainers:
+  ui:
+    image: {{.Values.ui.image.repository }}:{{ .Values.ui.image.tag }}
+    imagePullPolicy: {{ .Values.ui.image.pullPolicy }}
+    env:
+    # -- the IP address of your deepstack instance
+    - name: DEEPSTACK_IP
+      value: localhost
+    # -- the port of your deepstack instance
+    - name: DEEPSTACK_PORT
+      value: {{ .Values.service.main.ports.http.port | quote }}
+    {{- if kindIs "map" .Values.env }}
+    {{- if hasKey .Values.env "ADMIN-KEY" }}
+    - name: DEEPSTACK_API_KEY
+      value : {{ index .Values.env "ADMIN-KEY"  | quote }}
+    {{- end }}
+    {{- end }}
+    {{- if .Values.ui.env }}
+    {{ .Values.ui.env | toYaml | nindent 4 }}
+    {{- end }}
+    ports:
+    - name: ui
+      containerPort: {{ $uiPortNumber }}
+      protocol: TCP
+service:
+  main:
+    enabled: true
+    ports:
+      ui:
+        enabled: true
+        port: {{ $uiPortNumber }}
+ingress:
+{{ .Values.ui.ingress | toYaml | nindent 2 }}
+{{- end }}
+
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "deepstack.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}
