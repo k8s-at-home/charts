@@ -27,9 +27,9 @@ additionalContainers:
     - name: DEEPSTACK_PORT
       value: {{ .Values.service.main.ports.http.port | quote }}
     {{- if kindIs "map" .Values.env }}
-    {{- if hasKey .Values.env "ADMIN-KEY" }}
+    {{- if hasKey .Values.env "API-KEY" }}
     - name: DEEPSTACK_API_KEY
-      value : {{ index .Values.env "ADMIN-KEY"  | quote }}
+      value : {{ index .Values.env "API-KEY"  | quote }}
     {{- end }}
     {{- end }}
     {{- if .Values.ui.env }}
