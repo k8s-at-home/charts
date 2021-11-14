@@ -1,6 +1,6 @@
 # filebrowser
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.17.2](https://img.shields.io/badge/AppVersion-2.17.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.18.0](https://img.shields.io/badge/AppVersion-2.18.0-informational?style=flat-square)
 
 filebrowser helm package
 
@@ -75,11 +75,11 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | `"{\n  \"port\": 80,\n  \"baseURL\": \"\",\n  \"address\": \"\",\n  \"log\": \"stdout\",\n  \"database\": \"/srv/database.db\",\n  \"root\": \"/srv/data\"\n}\n"` |  |
-| env.TIME_ZONE | string | `"Etc/UTC"` | Set the container timezone |
+| config | string | `"{\n  \"port\": 80,\n  \"baseURL\": \"\",\n  \"address\": \"\",\n  \"log\": \"stdout\",\n  \"database\": \"/config/database.db\",\n  \"root\": \"/srv/data\"\n}\n"` |  |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"filebrowser/filebrowser"` | image repository |
-| image.tag | string | `"v2.17.2"` | image tag |
+| image.tag | string | `"v2.18.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
