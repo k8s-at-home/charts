@@ -16,7 +16,7 @@ image:
 # @default -- See below
 env:
   # -- Set the container timezone
-  TIME_ZONE: Etc/UTC
+  TZ: UTC
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -48,10 +48,6 @@ persistence:
   config:
     enabled: false
     mountpath: /config
-    accessMode: ReadWriteOnce
-    size: 5Gi
   data:
     enabled: false
     mountPath: /srv
-    accessMode: ReadWriteOnce
-    size: 5Gi

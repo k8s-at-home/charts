@@ -6,4 +6,4 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   .filebrowser.json: |
-{{ .Values.config | indent 4 }}
+    {{- tpl .Values.config $ | nindent 4 }}
