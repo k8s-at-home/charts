@@ -1,0 +1,17 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "double-take.settingsVolume" -}}
+enabled: "true"
+mountPath: "/.storage/config/config.yml"
+subPath: "config.yml"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- $_ := set .Values.persistence "double-take-settings" (include "double-take.settingsVolume" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
