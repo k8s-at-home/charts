@@ -1,6 +1,6 @@
 # deepstack
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: cpu-2021.09.1](https://img.shields.io/badge/AppVersion-cpu--2021.09.1-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: cpu-2021.09.1](https://img.shields.io/badge/AppVersion-cpu--2021.09.1-informational?style=flat-square)
 
 An AI API engine that serves pre-built models and custom models on multiple edge devices locally or on your private cloud
 
@@ -10,6 +10,7 @@ An AI API engine that serves pre-built models and custom models on multiple edge
 
 * <https://deepstack.cc>
 * <https://github.com/johnolafenwa/DeepStack>
+* <https://github.com/robmarkcole/deepstack-ui>
 
 ## Requirements
 
@@ -84,12 +85,24 @@ N/A
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | securityContext | object | See values.yaml | security context. May be necessary when using GPU image |
 | service | object | See values.yaml | Configures service settings for the chart. |
+| ui.enabled | bool | `true` | enable web UI |
+| ui.env | string | `nil` | environment variables. See more environment variables in the [deepstack-ui README](https://github.com/robmarkcole/deepstack-ui). |
+| ui.image.pullPolicy | string | `"Always"` | image pull policy |
+| ui.image.repository | string | `"robmarkcole/deepstack-ui"` | image repository for ui |
+| ui.image.tag | string | `"latest"` | image tag |
+| ui.ingress.ui | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.1.0]
+
+#### Added
+
+- add [deepstack-ui](https://github.com/robmarkcole/deepstack-ui)
 
 ### [1.0.0]
 

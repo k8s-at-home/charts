@@ -22,6 +22,36 @@ env:
   # VISION-FACE: True
   # -- Enable object detection
   # VISION-DETECTION: True
+  # -- Protect detection and recognition APIs with a key
+  # API-KEY: changeMe
+  # -- Protect admin APIs (such as managing models) with a key
+  # ADMIN-KEY: changeMe
+
+ui:
+  # -- enable web UI
+  enabled: true
+  image:
+    # -- image repository for ui
+    repository: robmarkcole/deepstack-ui
+    # -- image tag
+    tag: latest
+    # -- image pull policy
+    pullPolicy: Always
+  # -- environment variables. See more environment variables in the [deepstack-ui README](https://github.com/robmarkcole/deepstack-ui).
+  # @default -- See below
+  env:
+  # - name: DEEPSTACK_TIMEOUT
+  #   value: the timeout to wait for deepstack, default 30 seconds
+  # - name: DEEPSTACK_CUSTOM_MODEL
+  #   value: the name of a custom model, if you wish to use one
+  # - name: DEEPSTACK_UI_DEBUG_MODE
+  #   value: options `True` or `False` (default). Lowers the minimum confidence threshold to 1%
+  ingress:
+    # -- Enable and configure ingress settings for the chart under this key.
+    # @default -- See values.yaml
+    ui:
+      enabled: false
+      primary: false
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
