@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: v0.5.3
+description: mealie helm package
+name: mealie
+version: 0.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- mealie
+home: https://hay-kot.github.io/mealie/
+sources:
+- https://github.com/hay-kot/mealie
+maintainers:
+- name: roobre
+  email: roobre@roobre.es
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1
