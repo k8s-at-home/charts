@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: 2.18.0
+description: filebrowser provides a file managing interface within a specified directory
+name: filebrowser
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- filebrowser
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/filebrowser
+icon: https://raw.githubusercontent.com/filebrowser/logo/master/icon.png
+sources:
+- https://github.com/filebrowser/filebrowser
+maintainers:
+- name: PixelJonas
+  email: 5434875+PixelJonas@users.noreply.github.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.0.1

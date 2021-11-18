@@ -1,0 +1,14 @@
+{{/* Append the configMap volume to the volumes */}}
+{{- define "filebrowser.configVolume" -}}
+enabled: "true"
+mountPath: "/.filebrowser.json"
+subPath: ".filebrowser.json"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-config
+{{- end -}}
+{{- $_ := set .Values.persistence "filebrowser-config" (include "filebrowser.configVolume" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
