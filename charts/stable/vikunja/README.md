@@ -1,6 +1,6 @@
 # vikunja
 
-![Version: 4.3.0](https://img.shields.io/badge/Version-4.3.0-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
 
 The to-do app to organize your life
 
@@ -99,6 +99,14 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [5.0.0]
+
+#### Changed
+
+- Introduced a new configuration value called `vikunja.config` that allows you to provide configuration to Vikunja in a more straightforward way. Most notably: this allows you to configure all options, including any options that expect a list or array. See the [Vikunja documentation](https://vikunja.io/docs/config-options/) for all options.
+- **Potentially breaking**: The new `vikunja.config` value defaults might conflict with existing `additionalContainers.api.env` configuration. Be sure to double check this before upgrading.
+- Add `caddy.noTls` configuration value to allow suppression of Caddy's Let's Encrypt feature (e.g. to allow an Ingress controller like Traefik to handle this instead).
+
 ### [4.0.0]
 
 #### Changed
@@ -120,6 +128,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial version
 
+[5.0.0]: #500
 [4.0.0]: #400
 [3.0.0]: #300
 [1.0.0]: #100
