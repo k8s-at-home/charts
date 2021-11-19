@@ -7,31 +7,17 @@
 
 image:
   # -- image repository
-  repository: photoprism/photoprism
+  repository: xbapps/xbvr
   # -- image tag
-  tag: "20211018"
+  tag: 0.3.17
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables. See [image docs](https://docs.photoprism.org/getting-started/config-options/) for more details.
+# -- environment variables. See more environment variables in the [xbvr documentation](https://xbvr.org/docs).
 # @default -- See below
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Photoprism storage path
-  PHOTOPRISM_STORAGE_PATH: /photoprism/storage
-  # -- Photoprism originals path
-  PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
-  # -- Initial admin password. **BE SURE TO CHANGE THIS!**
-  PHOTOPRISM_ADMIN_PASSWORD: "please-change"
-  # -- Disable authentication / password protection
-  PHOTOPRISM_PUBLIC: "false"
-  # -- Sets UID Photoprism runs under.
-  UID:  # 1000
-  # -- Sets GID Photoprism runs under.
-  GID:  # 1000
-  # -- Sets UMASK.
-  UMASK:  # 0000
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -39,7 +25,7 @@ service:
   main:
     ports:
       http:
-        port: 2342
+        port: 9999
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -52,8 +38,7 @@ ingress:
 persistence:
   config:
     enabled: false
-    mountPath: /photoprism/storage
-
-  originals:
+    mountPath: /root/.config
+  videos:
     enabled: false
-    mountPath: "/photoprism/originals"
+    mountPath: /videos

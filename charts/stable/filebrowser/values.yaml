@@ -7,31 +7,16 @@
 
 image:
   # -- image repository
-  repository: photoprism/photoprism
+  repository: filebrowser/filebrowser
   # -- image tag
-  tag: "20211018"
+  tag: v2.18.0
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables. See [image docs](https://docs.photoprism.org/getting-started/config-options/) for more details.
 # @default -- See below
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Photoprism storage path
-  PHOTOPRISM_STORAGE_PATH: /photoprism/storage
-  # -- Photoprism originals path
-  PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
-  # -- Initial admin password. **BE SURE TO CHANGE THIS!**
-  PHOTOPRISM_ADMIN_PASSWORD: "please-change"
-  # -- Disable authentication / password protection
-  PHOTOPRISM_PUBLIC: "false"
-  # -- Sets UID Photoprism runs under.
-  UID:  # 1000
-  # -- Sets GID Photoprism runs under.
-  GID:  # 1000
-  # -- Sets UMASK.
-  UMASK:  # 0000
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -39,7 +24,7 @@ service:
   main:
     ports:
       http:
-        port: 2342
+        port: 80
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -47,13 +32,22 @@ ingress:
   main:
     enabled: false
 
+config: |
+  {
+    "port": 80,
+    "baseURL": "",
+    "address": "",
+    "log": "stdout",
+    "database": "/config/database.db",
+    "root": "/srv/data"
+  }
+
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
   config:
     enabled: false
-    mountPath: /photoprism/storage
-
-  originals:
+    mountpath: /config
+  data:
     enabled: false
-    mountPath: "/photoprism/originals"
+    mountPath: /srv

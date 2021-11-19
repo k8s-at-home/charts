@@ -20,13 +20,16 @@
 | [comcast](stable/comcast) | periodic comcast data usage checks and save the results to InfluxDB |
 | [cryptofolio](stable/cryptofolio) | Track your cryptocurrency holdings/portfolio |
 | [deconz](stable/deconz) | deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort. |
+| [deepstack](stable/deepstack) | An AI API engine that serves pre-built models and custom models on multiple edge devices locally or on your private cloud |
 | [deluge](stable/deluge) | Deluge is a torrent download client |
 | [dizquetv](stable/dizquetv) | Create live TV channel streams from media on your Plex servers. |
 | [dnsmadeeasy-webhook](stable/dnsmadeeasy-webhook) | Cert-Manager Webhook for DNSMadeEasy |
+| [double-take](stable/double-take) | Unified UI and API for processing and training images for facial recognition. |
 | [dsmr-reader](stable/dsmr-reader) | DSMR-protocol reader, telegram data storage and energy consumption visualizer. |
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
 | [emby](stable/emby) | Emby Server is a home media server |
 | [esphome](stable/esphome) | ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems. |
+| [filebrowser](stable/filebrowser) | filebrowser provides a file managing interface within a specified directory |
 | [flaresolverr](stable/flaresolverr) | FlareSolverr is a proxy server to bypass Cloudflare protection |
 | [flood](stable/flood) | Flood is a monitoring service for various torrent clients |
 | [focalboard](stable/focalboard) | Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana. |
@@ -144,6 +147,7 @@
 | [wireguard](stable/wireguard) | Fast, modern, secure VPN tunnel |
 | [wmbusmeters](stable/wmbusmeters) | Wmbusmeters receives and decodes C1,T1 or S1 telegrams (using the wireless mbus protocol) to acquire utility meter readings. |
 | [xbackbone](stable/xbackbone) | XBackBone is a simple, self-hosted, lightweight PHP file manager that support the instant sharing tool ShareX and *NIX systems. It supports uploading and displaying images, GIF, video, code, formatted text, and file downloading and uploading. Also have a web UI with multi user management, past uploads history and search support. |
+| [xbvr](stable/xbvr) | xbvr helm package |
 | [xteve](stable/xteve) | M3U Proxy for Plex DVR and Emby Live TV. |
 | [youtubedl-material](stable/youtubedl-material) | Self-hosted YouTube downloader built on Material Design |
 | [zalando-postgres-cluster](stable/zalando-postgres-cluster) | Creates a postgres cluster using the Zalando Postgres operator and local storage |
