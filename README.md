@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-42-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-43-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -100,6 +100,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/CoolMintChocolate"><img src="https://avatars.githubusercontent.com/u/70276626?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CoolMintChocolate</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=CoolMintChocolate" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/PixelJonas"><img src="https://avatars.githubusercontent.com/u/5434875?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jonas Janz</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=PixelJonas" title="Code">💻</a></td>
     <td align="center"><a href="https://twitter.com/ttb_lt"><img src="https://avatars.githubusercontent.com/u/47721?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thibault Cohen</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=titilambert" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://dangmai.net"><img src="https://avatars.githubusercontent.com/u/1305527?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dang Mai</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=dangmai" title="Code">💻</a></td>
   </tr>
 </table>
 
