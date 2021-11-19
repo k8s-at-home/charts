@@ -38,4 +38,45 @@ ingress:
 persistence:
   config:
     enabled: true
-    mountPath: /config
+    type: custom
+    volumeSpec:
+      configMap:
+        name: rssbridge-rss-bridge-config
+    subPath:
+      - path: config.ini.php
+        mountPath: /app/config.ini.php
+  whitelist:
+    enabled: true
+    type: custom
+    volumeSpec:
+      configMap:
+        name: rssbridge-rss-bridge-whitelist
+    subPath:
+      - path: whitelist.txt
+        mountPath: /app/whitelist.txt
+
+# -- Configure rss-bridge.
+# Customize based on [the rss-bridge documentation](https://github.com/RSS-Bridge/rss-bridge/wiki/Custom-Configuration).
+config: |
+  [system]
+  timezone = "Europe/Berlin"
+
+# -- Configure activated bridges.
+# The bridge name must match the filename of the bridge from [the bridges folder](https://github.com/RSS-Bridge/rss-bridge/tree/master/bridges).
+# The name may or may not include the 'Bridge' part.
+bridges: |
+  Bandcamp
+  Cryptome
+  DansTonChat
+  DuckDuckGo
+  Facebook
+  Flickr
+  GoogleSearch
+  Identica
+  Instagram
+  OpenClassrooms
+  Pinterest
+  Scmb
+  Twitter
+  Wikipedia
+  Youtube
