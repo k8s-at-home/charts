@@ -65,4 +65,3 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 ```console
 helm install rss-bridge k8s-at-home/rss-bridge -f values.yaml
 ```
-
