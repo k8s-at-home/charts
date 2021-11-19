@@ -12,6 +12,7 @@
 | [aria2](stable/aria2) | aria server for downloading web content |
 | [baikal](stable/baikal) | Baïkal is a lightweight CalDAV+CardDAV server. It offers a web interface with management of users, address books and calendars. |
 | [bazarr](stable/bazarr) | Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements |
+| [beets](stable/beets) | beets helm package |
 | [blocky](stable/blocky) | DNS proxy as ad-blocker for local network |
 | [booksonic-air](stable/booksonic-air) | Booksonic is a platform for accessing the audibooks you own wherever you are |
 | [bookstack](stable/bookstack) | A simple, self-hosted, easy-to-use platform for organising and storing information. |
