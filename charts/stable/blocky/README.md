@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 9.0.3](https://img.shields.io/badge/Version-9.0.3-informational?style=flat-square) ![AppVersion: v0.15](https://img.shields.io/badge/AppVersion-v0.15-informational?style=flat-square)
+![Version: 9.1.0](https://img.shields.io/badge/Version-9.1.0-informational?style=flat-square) ![AppVersion: v0.15](https://img.shields.io/badge/AppVersion-v0.15-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.1 |
+| https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
 

@@ -1,6 +1,6 @@
 # deepstack
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: cpu-2021.09.1](https://img.shields.io/badge/AppVersion-cpu--2021.09.1-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: cpu-2021.09.1](https://img.shields.io/badge/AppVersion-cpu--2021.09.1-informational?style=flat-square)
 
 An AI API engine that serves pre-built models and custom models on multiple edge devices locally or on your private cloud
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.1 |
+| https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
 
