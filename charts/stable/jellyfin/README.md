@@ -1,6 +1,6 @@
 # jellyfin
 
-![Version: 9.1.0](https://img.shields.io/badge/Version-9.1.0-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
+![Version: 9.2.0](https://img.shields.io/badge/Version-9.2.0-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
 
 Jellyfin is a Free Software Media System
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.1 |
+| https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
 
