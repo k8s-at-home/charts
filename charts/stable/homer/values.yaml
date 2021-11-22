@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: b4bz/homer
   # -- image tag
-  tag: 21.03.2
+  tag: 21.09.2
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -45,9 +45,11 @@ persistence:
     mountPath: /www/assets
 
 configmap:
-  # -- Store homer configuration as a ConfigMap
-  enabled: false
-  # -- Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information.
-  # @default -- See values.yaml
-  config: |
-    externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist
+  config:
+    # -- Store homer configuration as a ConfigMap
+    enabled: false
+    # -- Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information.
+    # @default -- See values.yaml
+    data:
+      config.yml: |
+        externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist
