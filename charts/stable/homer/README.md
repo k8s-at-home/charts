@@ -1,6 +1,6 @@
 # homer
 
-![Version: 6.0.1](https://img.shields.io/badge/Version-6.0.1-informational?style=flat-square) ![AppVersion: 21.03.2](https://img.shields.io/badge/AppVersion-21.03.2-informational?style=flat-square)
+![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: 21.09.2](https://img.shields.io/badge/AppVersion-21.09.2-informational?style=flat-square)
 
 A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.1 |
+| https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
 
@@ -75,15 +75,15 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| configmap.config | string | See values.yaml | Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information. |
-| configmap.enabled | bool | `false` | Store homer configuration as a ConfigMap |
+| configmap.config.data | object | See values.yaml | Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information. |
+| configmap.config.enabled | bool | `false` | Store homer configuration as a ConfigMap |
 | env | object | See below | environment variables. |
 | env.GID | string | `"911"` | Specify the group ID the application will run as |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | env.UID | string | `"911"` | Specify the user ID the application will run as |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"b4bz/homer"` | image repository |
-| image.tag | string | `"21.03.2"` | image tag |
+| image.tag | string | `"21.09.2"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -93,6 +93,13 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [7.0.0]
+
+#### Changed
+
+- Upgraded the common library dependency to version 4.2.0. This introduced (potentially) breaking changes to the way the configMap is passed to the application.
+- Change image tag to `21.09.2`.
 
 ### [6.0.0]
 
@@ -122,6 +129,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 No changelog prior to 3.2.0
 
+[7.0.0]: #700
 [6.0.0]: #600
 [5.0.0]: #500
 [3.2.0]: #320

@@ -1,30 +1,26 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* merge homer specific annotations with podAnnotations*/}}
-{{- define "homer.podAnnotations" -}}
-configmap/checksum: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-{{- end -}}
+{{/* Append the hardcoded settings */}}
+{{- define "homer.harcodedValues" -}}
+  {{- if .Values.configmap.config.enabled }}
+  {{/* merge homer specific annotations with podAnnotations*/}}
+  podAnnotations:
+    configmap/checksum: "{{ .Values.configmap.config.data | toYaml | sha256sum }}"
+  {{- end }}
 
-{{- if .Values.configmap.enabled -}}
-{{- $homerPodAnnotations := include "homer.podAnnotations" . | fromYaml -}}
-{{- $podAnnotations := merge .Values.podAnnotations $homerPodAnnotations -}}
-{{- $_ := set .Values "podAnnotations" (deepCopy $podAnnotations) -}}
+  {{- if .Values.configmap.config.enabled }}
+  {{/* Append the configMap volume to the volumes */}}
+  persistence:
+    config:
+      enabled: true
+      type: "configMap"
+      name: "{{ include "common.names.fullname" . }}-config"
+      mountPath: "/www/assets/config.yml"
+      subPath: "config.yml"
+  {{- end }}
 {{- end -}}
-
-{{/* Append the configMap volume to the volumes */}}
-{{- define "homer.configVolume" -}}
-enabled: "true"
-mountPath: "/www/assets/config.yml"
-subPath: "config.yml"
-type: "custom"
-volumeSpec:
-  configMap:
-    name: {{ include "common.names.fullname" . }}-config
-{{- end -}}
-{{- if .Values.configmap.enabled -}}
-{{- $_ := set .Values.persistence "config" (include "homer.configVolume" . | fromYaml) -}}
-{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "homer.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
