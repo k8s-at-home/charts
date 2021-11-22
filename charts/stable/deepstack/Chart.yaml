@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: cpu-2021.09.1
+description: An AI API engine that serves pre-built models and custom models on multiple edge devices locally or on your private cloud
+name: deepstack
+version: 1.2.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - deepstack
+  - ai
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deepstack
+icon: https://deepquest.sfo2.digitaloceanspaces.com/deepstackcc/static/img/deepstacklogo.png
+sources:
+  - https://deepstack.cc
+  - https://github.com/johnolafenwa/DeepStack
+  - https://github.com/robmarkcole/deepstack-ui
+maintainers:
+  - name: crutonjohn
+    email: crutonjohn@pm.me
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0

@@ -1,0 +1,22 @@
+---
+apiVersion: v2
+appVersion: 1.6.0
+description: Unified UI and API for processing and training images for facial recognition.
+name: double-take
+version: 1.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - double-take
+  - frigate
+  - nvr
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/double-take
+icon: https://double-take.org/icon
+sources:
+  - https://github.com/jakowenko/double-take
+maintainers:
+  - name: crutonjohn
+    email: crutonjohn@pm.me
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0

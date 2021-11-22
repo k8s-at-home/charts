@@ -1,0 +1,20 @@
+apiVersion: v2
+appVersion: 1.5.0
+description: beets helm package
+name: beets
+version: 1.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- beets
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/beets
+icon: https://pbs.twimg.com/profile_images/934307246/logo-square_400x400.png
+sources:
+- https://github.com/beetbox/beets
+- https://github.com/linuxserver/docker-beets
+maintainers:
+- name: dangmai
+  email: contact@dangmai.net
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.2.0

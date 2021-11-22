@@ -1,6 +1,6 @@
 # rtorrent-flood
 
-![Version: 9.0.1](https://img.shields.io/badge/Version-9.0.1-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 9.1.0](https://img.shields.io/badge/Version-9.1.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 rTorrent is a stable, high-performance and low resource consumption BitTorrent client.
 
@@ -21,7 +21,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.1 |
+| https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
 

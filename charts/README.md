@@ -12,6 +12,7 @@
 | [aria2](stable/aria2) | aria server for downloading web content |
 | [baikal](stable/baikal) | Baïkal is a lightweight CalDAV+CardDAV server. It offers a web interface with management of users, address books and calendars. |
 | [bazarr](stable/bazarr) | Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements |
+| [beets](stable/beets) | beets helm package |
 | [blocky](stable/blocky) | DNS proxy as ad-blocker for local network |
 | [booksonic-air](stable/booksonic-air) | Booksonic is a platform for accessing the audibooks you own wherever you are |
 | [bookstack](stable/bookstack) | A simple, self-hosted, easy-to-use platform for organising and storing information. |
@@ -20,13 +21,16 @@
 | [comcast](stable/comcast) | periodic comcast data usage checks and save the results to InfluxDB |
 | [cryptofolio](stable/cryptofolio) | Track your cryptocurrency holdings/portfolio |
 | [deconz](stable/deconz) | deCONZ is an easy to use control software, with which you can set up and control Zigbee networks of any size without further programming effort. |
+| [deepstack](stable/deepstack) | An AI API engine that serves pre-built models and custom models on multiple edge devices locally or on your private cloud |
 | [deluge](stable/deluge) | Deluge is a torrent download client |
 | [dizquetv](stable/dizquetv) | Create live TV channel streams from media on your Plex servers. |
 | [dnsmadeeasy-webhook](stable/dnsmadeeasy-webhook) | Cert-Manager Webhook for DNSMadeEasy |
+| [double-take](stable/double-take) | Unified UI and API for processing and training images for facial recognition. |
 | [dsmr-reader](stable/dsmr-reader) | DSMR-protocol reader, telegram data storage and energy consumption visualizer. |
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
 | [emby](stable/emby) | Emby Server is a home media server |
 | [esphome](stable/esphome) | ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems. |
+| [filebrowser](stable/filebrowser) | filebrowser provides a file managing interface within a specified directory |
 | [flaresolverr](stable/flaresolverr) | FlareSolverr is a proxy server to bypass Cloudflare protection |
 | [flood](stable/flood) | Flood is a monitoring service for various torrent clients |
 | [focalboard](stable/focalboard) | Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana. |
