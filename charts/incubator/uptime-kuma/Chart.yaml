@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: v1.10.2
+description: A fancy self-hosted monitoring tool for your websites and applications
+name: uptime-kuma
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- uptime-kuma
+- status
+- status-page
+- monitoring
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/uptime-kuma
+icon: https://github.com/louislam/uptime-kuma/raw/master/public/icon.svg
+sources:
+  - https://github.com/louislam/uptime-kuma
+maintainers:
+  - name: pysen
+    email: pysen@svartavillan.se
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.2.0
