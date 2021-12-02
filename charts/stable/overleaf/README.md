@@ -1,6 +1,6 @@
 # overleaf
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
+![Version: 2.2.1](https://img.shields.io/badge/Version-2.2.1-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
 
 A web-based collaborative LaTeX editor
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mongodb | 10.28.7 |
-| https://charts.bitnami.com/bitnami | redis | 15.5.3 |
+| https://charts.bitnami.com/bitnami | redis | 15.5.5 |
 | https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR

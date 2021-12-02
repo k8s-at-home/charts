@@ -1,6 +1,6 @@
 # anonaddy
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
 
 Anonaddy: Anonymous email forwarding
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.0 |
-| https://charts.bitnami.com/bitnami | redis | 15.5.3 |
+| https://charts.bitnami.com/bitnami | mariadb | 9.7.1 |
+| https://charts.bitnami.com/bitnami | redis | 15.5.5 |
 | https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
