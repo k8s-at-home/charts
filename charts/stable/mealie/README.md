@@ -19,6 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.13.11 |
 
 ## TL;DR
 
