@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v4.13
 description: Traccar is an open source GPS tracking system.
 name: traccar
-version: 6.3.0
+version: 6.3.1
 kubeVersion: ">=1.16.0-0"
 keywords:
 - traccar
@@ -20,6 +20,6 @@ dependencies:
   repository: https://library-charts.k8s-at-home.com
   version: 4.2.0
 - name: mariadb
-  version: 9.7.0
+  version: 9.7.1
   repository: https://charts.bitnami.com/bitnami
   condition: mariadb.enabled
