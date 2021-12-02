@@ -2159,6 +2159,37 @@ entries:
   anonaddy:
   - apiVersion: v2
     appVersion: 0.8.4
+    created: "2021-12-02T13:46:52.239122744Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.5
+    description: 'Anonaddy: Anonymous email forwarding'
+    digest: 3b9b708cf0ca191c2015b8e90324464546f3fb1319ed9a24e62b7c6d776c318a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/anonaddy
+    icon: https://avatars.githubusercontent.com/u/51450862?s=200&v=4?sanitize=true
+    keywords:
+    - anonaddy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: simon.caron@pm.me
+      name: simoncaron
+    name: anonaddy
+    sources:
+    - https://github.com/anonaddy/docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/anonaddy-1.2.1/anonaddy-1.2.1.tgz
+    version: 1.2.1
+  - apiVersion: v2
+    appVersion: 0.8.4
     created: "2021-11-22T12:48:03.438902837Z"
     dependencies:
     - name: common
@@ -3270,6 +3301,39 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/aria2-1.0.0/aria2-1.0.0.tgz
     version: 1.0.0
   baikal:
+  - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2021-12-02T13:46:52.37260428Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: Baïkal is a lightweight CalDAV+CardDAV server. It offers a web interface
+      with management of users, address books and calendars.
+    digest: 254b4bad9da7c02ca49b547a04aabd12c698ee34dd0be6d0278f68874286f659
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/baikal
+    icon: https://avatars.githubusercontent.com/u/28524376?s=400&v=4
+    keywords:
+    - baikal
+    - caldav
+    - carddav
+    - contacts
+    - calendar
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: baikal
+    sources:
+    - https://github.com/sabre-io/Baikal
+    - https://github.com/ckulka/baikal-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/baikal-3.3.1/baikal-3.3.1.tgz
+    version: 3.3.1
   - apiVersion: v2
     appVersion: 0.8.0
     created: "2021-11-22T12:48:04.484082405Z"
@@ -7230,6 +7294,40 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/booksonic-air-1.0.0/booksonic-air-1.0.0.tgz
     version: 1.0.0
   bookstack:
+  - apiVersion: v2
+    appVersion: v21.05.1
+    created: "2021-12-02T13:46:52.501129974Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: A simple, self-hosted, easy-to-use platform for organising and storing
+      information.
+    digest: bbcced2571849667dfcaf5804a7d3532f3fdff530c149fdc6b70b2dbaef20109
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bookstack
+    icon: https://avatars3.githubusercontent.com/u/20912696?s=400&v=4?sanitize=true
+    keywords:
+    - bookstack
+    - book
+    - stack
+    - organizer
+    - server
+    - hosted
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: bookstack
+    sources:
+    - https://www.bookstackapp.com/
+    - https://hub.docker.com/r/linuxserver/bookstack
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bookstack-3.3.1/bookstack-3.3.1.tgz
+    version: 3.3.1
   - apiVersion: v2
     appVersion: v21.05.1
     created: "2021-11-22T12:48:05.678404576Z"
@@ -13963,6 +14061,36 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/double-take-1.0.0/double-take-1.0.0.tgz
     version: 1.0.0
   dsmr-reader:
+  - apiVersion: v2
+    appVersion: 2021.06.01
+    created: "2021-12-02T13:46:52.632353991Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: DSMR-protocol reader, telegram data storage and energy consumption
+      visualizer.
+    digest: a73c4066b4019b18dee45ec1a085bf84eb8aa2a9593a7d67e995ab88e9fe6397
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dsmr-reader
+    icon: https://avatars2.githubusercontent.com/u/57727360?s=400&v=4
+    keywords:
+    - dsmr-reader
+    - energy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dsmr-reader
+    sources:
+    - https://github.com/dsmrreader/dsmr-reader
+    - https://github.com/xirixiz/dsmr-reader-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dsmr-reader-5.3.1/dsmr-reader-5.3.1.tgz
+    version: 5.3.1
   - apiVersion: v2
     appVersion: 2021.06.01
     created: "2021-11-22T12:48:08.17104735Z"
@@ -23460,6 +23588,45 @@ entries:
   home-assistant:
   - apiVersion: v2
     appVersion: 2021.6.3
+    created: "2021-12-02T13:46:52.774856304Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Home Assistant
+    digest: bcf9b2fd0954928e49628f695ab1aafe298c51ba530bc89005d45dd3aa318fa0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-11.2.1/home-assistant-11.2.1.tgz
+    version: 11.2.1
+  - apiVersion: v2
+    appVersion: 2021.6.3
     created: "2021-11-22T12:48:12.119496848Z"
     dependencies:
     - name: common
@@ -28700,6 +28867,36 @@ entries:
   icinga2:
   - apiVersion: v2
     appVersion: latest
+    created: "2021-12-02T13:46:52.899147462Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: A monitoring system which checks the availability of your network
+      resources, notifies users of outages, and generates performance data for reporting.
+    digest: e0072b8ed510b25c23431d16a4767a2498a0a39a162cef87ec8cbd5aeca0b9d4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/icinga2
+    icon: https://avatars.githubusercontent.com/u/835441?s=200&v=4
+    keywords:
+    - icinga2
+    - monitoring
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: icinga2
+    sources:
+    - https://github.com/jjethwa/icinga2
+    - https://icinga.com/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/icinga2-2.3.1/icinga2-2.3.1.tgz
+    version: 2.3.1
+  - apiVersion: v2
+    appVersion: latest
     created: "2021-11-22T12:48:13.148991516Z"
     dependencies:
     - name: common
@@ -32228,6 +32425,35 @@ entries:
   joplin-server:
   - apiVersion: v2
     appVersion: 2.1.2
+    created: "2021-12-02T13:46:53.095728536Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: This server allows you to sync any Joplin client
+    digest: d85f6545cea290195d7571b7ba393dbdbff9ef13934f0dbf4c6d6cd5cfb351e0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jopplin-server
+    icon: https://raw.githubusercontent.com/laurent22/joplin/master/Assets/LinuxIcons/256x256.png?raw=true
+    keywords:
+    - joplin
+    - notes
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: joplin-server
+    sources:
+    - https://github.com/laurent22/joplin/tree/dev/packages/server
+    - https://github.com/laurent22/joplin
+    - https://hub.docker.com/r/joplin/server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/joplin-server-4.3.1/joplin-server-4.3.1.tgz
+    version: 4.3.1
+  - apiVersion: v2
+    appVersion: 2.1.2
     created: "2021-11-22T12:48:14.239081372Z"
     dependencies:
     - name: common
@@ -32771,6 +32997,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/joplin-server-1.0.1/joplin-server-1.0.1.tgz
     version: 1.0.1
   kanboard:
+  - apiVersion: v2
+    appVersion: v1.2.20
+    created: "2021-12-02T13:46:53.213467138Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: Kanboard is a free and open source Kanban project management software.
+    digest: ec9efbf4d3401e1ab84d09dfe332bb2e32a1b231bca62be999a122d5f5232eef
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/kanboard
+    icon: https://raw.githubusercontent.com/kanboard/website/master/assets/img/icon.svg
+    keywords:
+    - kanboard
+    - kanban
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: kanboard
+    sources:
+    - https://github.com/kanboard/kanboard
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/kanboard-4.3.1/kanboard-4.3.1.tgz
+    version: 4.3.1
   - apiVersion: v2
     appVersion: v1.2.20
     created: "2021-11-22T12:48:14.428168705Z"
@@ -37545,6 +37799,35 @@ entries:
   miniflux:
   - apiVersion: v2
     appVersion: 2.0.32
+    created: "2021-12-02T13:46:53.34178833Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: Miniflux is a minimalist and opinionated feed reader.
+    digest: 12b8a4f8da2e84d2fa4d40b047bdca7cc9d259ca7d66d713f12b7c10c5cabf9b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/miniflux
+    icon: https://raw.githubusercontent.com/miniflux/logo/master/icon.svg
+    keywords:
+    - miniflux
+    - rss
+    - news
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: miniflux
+    sources:
+    - https://github.com/miniflux/v2
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/miniflux-4.3.1/miniflux-4.3.1.tgz
+    version: 4.3.1
+  - apiVersion: v2
+    appVersion: 2.0.32
     created: "2021-11-22T12:48:16.610492184Z"
     dependencies:
     - name: common
@@ -38499,6 +38782,35 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/modem-stats-2.0.0/modem-stats-2.0.0.tgz
     version: 2.0.0
   monica:
+  - apiVersion: v2
+    appVersion: 3.1.1-apache
+    created: "2021-12-02T13:46:53.466762094Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: A Personal Relationship Management tool to help you organize your
+      social life
+    digest: bcffee013b0166c2b53f1a13c67db68c3598a633f8b5b03ce6b52e0342218829
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/monica
+    icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
+    keywords:
+    - crm
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: monica
+    sources:
+    - https://github.com/monicahq/monica
+    - https://hub.docker.com/_/monica
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/monica-6.3.1/monica-6.3.1.tgz
+    version: 6.3.1
   - apiVersion: v2
     appVersion: 3.1.1-apache
     created: "2021-11-22T12:48:17.189724608Z"
@@ -49296,6 +49608,38 @@ entries:
   openemr:
   - apiVersion: v2
     appVersion: 6.1.0
+    created: "2021-12-02T13:46:53.591336054Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: OpenEMR is the most popular open source electronic health records
+      and medical practice management solution.
+    digest: c8c22d92ad356ff050836f4b92b1e4e3f44f2cf1117d6238b5d57d5f521be485
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openemr
+    icon: https://avatars.githubusercontent.com/u/283089?s=200&v=4
+    keywords:
+    - openemr
+    - health
+    - medical
+    - healthcare
+    - emr
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: openemr
+    sources:
+    - https://github.com/openemr/openemr
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/openemr-3.3.1/openemr-3.3.1.tgz
+    version: 3.3.1
+  - apiVersion: v2
+    appVersion: 6.1.0
     created: "2021-11-22T12:48:20.170316449Z"
     dependencies:
     - name: common
@@ -49758,6 +50102,41 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/openhab-1.0.0/openhab-1.0.0.tgz
     version: 1.0.0
   openkm:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-12-02T13:46:53.718284835Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: OpenKM integrates all essential documents management, collaboration
+      and an advanced search functionality into one easy to use solution.
+    digest: e04d7227b0647e0adcd430b104ab89f37f272a744706a338be747f7b7b8df675
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openkm
+    icon: https://raw.githubusercontent.com/openkm/document-management-system/master/src/main/webapp/img/logo_favicon.ico
+    keywords:
+    - openkm
+    - documentation management
+    - docs
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: openkm
+    sources:
+    - https://www.openkm.com/
+    - https://github.com/openkm/document-management-system
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/openkm-2.3.1/openkm-2.3.1.tgz
+    version: 2.3.1
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2021-11-22T12:48:20.569010342Z"
@@ -51029,6 +51408,38 @@ entries:
   overleaf:
   - apiVersion: v2
     appVersion: 2.7.1
+    created: "2021-12-02T13:46:53.86570059Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.5
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.28.7
+    description: A web-based collaborative LaTeX editor
+    digest: a982c056a06ca86a2ef7a0584fe118194f62e1e6286f9ba6b23fd5d5f74b560a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overleaf
+    icon: https://avatars.githubusercontent.com/u/6359919?s=200&v=4
+    keywords:
+    - overleaf
+    - sharelatex
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: overleaf
+    sources:
+    - https://github.com/overleaf/overleaf
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/overleaf-2.2.1/overleaf-2.2.1.tgz
+    version: 2.2.1
+  - apiVersion: v2
+    appVersion: 2.7.1
     created: "2021-11-22T12:48:20.982864502Z"
     dependencies:
     - name: common
@@ -52176,6 +52587,38 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/owncloud-ocis-1.0.0/owncloud-ocis-1.0.0.tgz
     version: 1.0.0
   paperless:
+  - apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-12-02T13:46:54.006346187Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.5
+    description: Paperless - Index and archive all of your scanned paper documents
+    digest: 347838c1c98837e2acbc2cdab34dfc05f600452c4e7a8d2a1c99686b852e392b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paperless
+    icon: https://avatars.githubusercontent.com/u/47271576?s=200&v=4
+    keywords:
+    - paperless
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    - email: jonathan@jonnobrow.co.uk
+      name: jonnobrow
+    name: paperless
+    sources:
+    - https://github.com/jonaswinkler/paperless-ng
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/paperless-8.2.1/paperless-8.2.1.tgz
+    version: 8.2.1
   - apiVersion: v2
     appVersion: 1.5.0
     created: "2021-11-22T12:48:21.719343799Z"
@@ -56417,6 +56860,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/pod-gateway-setter-1.0.0/pod-gateway-setter-1.0.0.tgz
     version: 1.0.0
   powerdns:
+  - apiVersion: v2
+    appVersion: v4.3.1
+    created: "2021-12-02T13:46:54.134931182Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: PowerDNS is a DNS server, written in C++ and licensed under the GPL.
+      It runs on most Unix derivatives. PowerDNS features a large number of different
+      backends ranging from simple BIND style zonefiles to relational databases and
+      load balancing/failover algorithms. A DNS recursor is provided as a separate
+      program.
+    digest: 6f5a657bfbaded6956fc07e7792d4b610b8cad92a0a849a8b07c2c241a45c374
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/powerdns
+    icon: https://avatars.githubusercontent.com/u/1282630?s=200&v=4
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: powerdns
+    sources:
+    - http://www.github.com/PowerDNS/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/powerdns-3.5.1/powerdns-3.5.1.tgz
+    version: 3.5.1
   - apiVersion: v2
     appVersion: v4.3.1
     created: "2021-11-01T10:30:30.091803793Z"
@@ -67036,6 +67508,33 @@ entries:
   seafile:
   - apiVersion: v2
     appVersion: 8.0.7
+    created: "2021-12-02T13:46:54.280633022Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: seafile helm package
+    digest: 9b9c7b2ed854d54fac5f2fbd92a470ba81cb902f9ba03516d6dd9d383162492e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/seafile
+    icon: https://manual.seafile.com/media/seafile-transparent-1024.png
+    keywords:
+    - seafile
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: 1985132+phybros@users.noreply.github.com
+      name: phybros
+    name: seafile
+    sources:
+    - https://github.com/haiwen/seafile-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/seafile-1.2.1/seafile-1.2.1.tgz
+    version: 1.2.1
+  - apiVersion: v2
+    appVersion: 8.0.7
     created: "2021-11-22T12:48:25.685779151Z"
     dependencies:
     - name: common
@@ -68575,6 +69074,39 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/sharry-1.0.0/sharry-1.0.0.tgz
     version: 1.0.0
   shlink:
+  - apiVersion: v2
+    appVersion: 2.7.1
+    created: "2021-12-02T13:46:54.427506873Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: A self-hosted and PHP-based URL shortener application with CLI and
+      REST interfaces
+    digest: b9750254c07be081baaf2f2062fe06a3fa74bac651ab261500d1b874f24054f7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/shlink
+    icon: https://avatars.githubusercontent.com/u/20341790?s=200&v=4
+    keywords:
+    - shlink
+    - url-shortener
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ncwilde43@gmail.com
+      name: nicholaswilde
+    name: shlink
+    sources:
+    - https://github.com/shlinkio/shlink
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/shlink-3.3.1/shlink-3.3.1.tgz
+    version: 3.3.1
   - apiVersion: v2
     appVersion: 2.7.1
     created: "2021-11-22T12:48:26.412865725Z"
@@ -72145,6 +72677,37 @@ entries:
   statping:
   - apiVersion: v2
     appVersion: v0.90.74
+    created: "2021-12-02T13:46:54.550796622Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: Status page for monitoring your websites and applications
+    digest: 489d388a5db58a3969886f891bad108ebad63d78b05d9215442d76d551156b28
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/statping
+    icon: https://avatars.githubusercontent.com/u/61949049?s=200&v=4
+    keywords:
+    - statping
+    - status
+    - status-page
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    - email: git@angelnu.com
+      name: angelnu
+    name: statping
+    sources:
+    - https://github.com/statping/statping
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/statping-5.3.1/statping-5.3.1.tgz
+    version: 5.3.1
+  - apiVersion: v2
+    appVersion: v0.90.74
     created: "2021-11-22T12:48:27.502310995Z"
     dependencies:
     - name: common
@@ -75116,6 +75679,37 @@ entries:
   teedy:
   - apiVersion: v2
     appVersion: v1.9
+    created: "2021-12-02T13:46:54.690845914Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: Teedy is an open source, lightweight document management system for
+      individuals and businesses.
+    digest: 3816e4eb9fb15ba54660357cde8f799e2206831c6b99fadd418dbe9cddbaf9f8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teedy
+    icon: https://raw.githubusercontent.com/sismics/docs/v1.9/docs-web/src/main/resources/image/logo.png
+    keywords:
+    - teedy
+    - documents
+    - management
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: ryan@ryanholt.net
+      name: carpenike
+    name: teedy
+    sources:
+    - https://github.com/sismics/docs
+    - https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teedy-5.3.1/teedy-5.3.1.tgz
+    version: 5.3.1
+  - apiVersion: v2
+    appVersion: v1.9
     created: "2021-11-22T12:48:28.821341331Z"
     dependencies:
     - name: common
@@ -76041,6 +76635,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/teedy-1.0.0/teedy-1.0.0.tgz
     version: 1.0.0
   teslamate:
+  - apiVersion: v2
+    appVersion: v1.23.4
+    created: "2021-12-02T13:46:54.824806555Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: "A self-hosted data logger for your Tesla \U0001F698"
+    digest: 1867a1c5fd4bb936696167f28165c0f2c257153e28deae43948ca3d938ec077e
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teslamate
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/793px-Tesla_Motors.svg.png
+    keywords:
+    - teslamate
+    - tesla
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: teslamate
+    sources:
+    - https://github.com/adriankumpf/teslamate
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/teslamate
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teslamate-6.3.1/teslamate-6.3.1.tgz
+    version: 6.3.1
   - apiVersion: v2
     appVersion: v1.23.4
     created: "2021-11-22T12:48:29.015900424Z"
@@ -77213,6 +77835,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/thelounge-1.0.0/thelounge-1.0.0.tgz
     version: 1.0.0
   traccar:
+  - apiVersion: v2
+    appVersion: v4.13
+    created: "2021-12-02T13:46:54.96994979Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: Traccar is an open source GPS tracking system.
+    digest: 2ebbf5a0faf260753687e11e63c6ab9b25b09cec7ee0ff014b426c74fd227b7f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/traccar
+    icon: https://github.com/traccar/traccar-web/raw/master/web/icon.png
+    keywords:
+    - traccar
+    - gps
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: traccar
+    sources:
+    - https://github.com/traccar/traccar
+    - https://hub.docker.com/r/traccar/traccar
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traccar-6.3.1/traccar-6.3.1.tgz
+    version: 6.3.1
   - apiVersion: v2
     appVersion: v4.13
     created: "2021-11-22T12:48:29.398166282Z"
@@ -79151,6 +79802,34 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/truecommand-1.0.0/truecommand-1.0.0.tgz
     version: 1.0.0
   tt-rss:
+  - apiVersion: v2
+    appVersion: v1.8723.0
+    created: "2021-12-02T13:46:55.089072004Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom)
+      reader and aggregator
+    digest: 3b062c377833fab58ab0c2d03a2fd75d7d35ff16fb7864162ffe13b76f48f654
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tt-rss
+    icon: https://git.tt-rss.org/fox/tt-rss/raw/branch/master/images/favicon-72px.png
+    keywords:
+    - tt-rss
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: tt-rss
+    sources:
+    - https://git.tt-rss.org/fox/tt-rss
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tt-rss-4.3.1/tt-rss-4.3.1.tgz
+    version: 4.3.1
   - apiVersion: v2
     appVersion: v1.8723.0
     created: "2021-11-22T12:48:29.96365406Z"
@@ -83761,6 +84440,38 @@ entries:
   vaultwarden:
   - apiVersion: v2
     appVersion: 1.22.2
+    created: "2021-12-02T13:46:55.214994261Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: Vaultwarden is a Bitwarden compatable server in Rust
+    digest: 44c8ecf836abef4854b05537be22eabba9d54d9a82e02ea6ebdc9a98bef0ffb0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/vaultwarden
+    icon: https://sesoodan.sirv.com/bitwarden_rs.png
+    keywords:
+    - Vaultwarden
+    - bitwardenrs
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rwalt@pm.me
+      name: Rwaltr
+    name: vaultwarden
+    sources:
+    - https://github.com/dani-garcia/vaultwarden
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/vaultwarden-3.3.1/vaultwarden-3.3.1.tgz
+    version: 3.3.1
+  - apiVersion: v2
+    appVersion: 1.22.2
     created: "2021-11-22T12:48:31.313540086Z"
     dependencies:
     - name: common
@@ -84304,6 +85015,40 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/vaultwarden-1.0.0/vaultwarden-1.0.0.tgz
     version: 1.0.0
   vikunja:
+  - apiVersion: v2
+    appVersion: 0.17.0
+    created: "2021-12-02T13:46:55.344520845Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    description: The to-do app to organize your life
+    digest: 6e546b317577276bf7bd650dd6dd2a2472612b2e7f0db8343b193f4b55ee012b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/vikunja
+    icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+    keywords:
+    - vikunja
+    - to-do
+    - tasks
+    - calendar
+    - kanban
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: vikunja
+    sources:
+    - https://kolaente.dev/vikunja/api
+    - https://kolaente.dev/vikunja/frontend
+    - https://hub.docker.com/r/vikunja/api
+    - https://hub.docker.com/r/vikunja/frontend
+    - https://vikunja.io/docs/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/vikunja-5.1.1/vikunja-5.1.1.tgz
+    version: 5.1.1
   - apiVersion: v2
     appVersion: 0.17.0
     created: "2021-11-22T12:48:31.501279053Z"
@@ -84907,6 +85652,42 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/vikunja-1.0.0/vikunja-1.0.0.tgz
     version: 1.0.0
   wallabag:
+  - apiVersion: v2
+    appVersion: 2.4.2
+    created: "2021-12-02T13:46:55.498937314Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.5
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.10
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.1
+    description: A self hostable application for saving web pages, freely.
+    digest: ff21ebbc201efefd8502436204d1d9feb90922e41bef3e3c8abcf3047169cf70
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wallabag
+    icon: https://raw.githubusercontent.com/wallabag/logo/master/app-android/logo-app-android-icon-bg-white-512.png
+    keywords:
+    - wallabag
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Patricol
+      url: https://patricol.co/
+    name: wallabag
+    sources:
+    - https://github.com/wallabag/docker
+    - https://hub.docker.com/wallabag/wallabag
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/wallabag-5.2.1/wallabag-5.2.1.tgz
+    version: 5.2.1
   - apiVersion: v2
     appVersion: 2.4.2
     created: "2021-11-22T12:48:31.70794538Z"
@@ -91404,4 +92185,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-02T13:15:27.525041672Z"
+generated: "2021-12-02T13:46:55.520112456Z"
