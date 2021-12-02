@@ -1,6 +1,6 @@
 # changedetection-io
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 0.93](https://img.shields.io/badge/AppVersion-0.93-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 0.39.3](https://img.shields.io/badge/AppVersion-0.39.3-informational?style=flat-square)
 
 changedetection-io helm package
 
@@ -79,8 +79,8 @@ N/A
 | env | object | See below | environment variables. See more environment variables in the [changedetection-io documentation](https://changedetection-io.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"dgtlmoon/changedetection.io"` | image repository |
-| image.tag | string | `"0.39"` | image tag |
+| image.repository | string | `"ghcr.io/dgtlmoon/changedetection.io"` | image repository |
+| image.tag | string | `"0.39.3"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -91,7 +91,17 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.0.0]
+### [1.2.0]
+
+#### Changed
+
+- Updated the image tag to v0.39.3
+- Switched to GHCR
+- Fixed `appVersion`
+- Fixed changelog
+- Updated readme
+
+### [1.1.0]
 
 #### Added
 
@@ -104,8 +114,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Removed
 
 - N/A
-
-[1.0.0]: #100
 
 ## Support
 
