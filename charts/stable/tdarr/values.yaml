@@ -76,3 +76,9 @@ persistence:
   media:
     enabled: false
     mountpath: /media
+
+  # -- Volume used for shared storage. e.g. emptydir transcode
+  # @default -- See values.yaml
+  shared:
+    enabled: false
+    mountpath: /shared

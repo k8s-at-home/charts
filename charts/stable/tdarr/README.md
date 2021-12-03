@@ -93,6 +93,7 @@ N/A
 | persistence.config | object | See values.yaml | Volume used for configuration |
 | persistence.data | object | See values.yaml | Volume used for tdarr server database |
 | persistence.media | object | See values.yaml | Volume used for media libraries |
+| persistence.shared | object | See values.yaml | Volume used for shared storage |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
