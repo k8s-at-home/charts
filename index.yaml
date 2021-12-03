@@ -37380,6 +37380,35 @@ entries:
   mealie:
   - apiVersion: v2
     appVersion: v0.5.1
+    created: "2021-12-03T20:00:51.671704473Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.13.11
+    description: Mealie is a self hosted recipe manager and meal planner with a RestAPI
+      backend and a reactive frontend application built in Vue for a pleasant user
+      experience for the whole family.
+    digest: 77ec39123e891da2e18e68ce97c039b15e32fb6e2f32c75c91198810be345470
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mealie
+    icon: https://raw.githubusercontent.com/hay-kot/mealie/gh-pages/assets/img/favicon.png
+    keywords:
+    - grocy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: mealie
+    sources:
+    - https://github.com/hay-kot/mealie
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/mealie-3.2.0/mealie-3.2.0.tgz
+    version: 3.2.0
+  - apiVersion: v2
+    appVersion: v0.5.1
     created: "2021-11-22T12:48:16.412070829Z"
     dependencies:
     - name: common
@@ -92185,4 +92214,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-02T13:46:55.520112456Z"
+generated: "2021-12-03T20:00:51.696784682Z"
