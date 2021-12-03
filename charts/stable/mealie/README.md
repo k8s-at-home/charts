@@ -93,6 +93,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [3.2.0]
+
+### Changed
+
+- Add dependency for postgres database as the application now supports it. [Postgres - Mealie](https://hay-kot.github.io/mealie/documentation/getting-started/install/#docker-compose-with-postgres-beta)
+
 ### [3.0.0]
 
 #### Changed
