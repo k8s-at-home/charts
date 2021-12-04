@@ -26,6 +26,10 @@ additionalContainers:
       - name: media
         mountPath: /media
       {{ end }}
+      {{ if .Values.persistence.shared.enabled }}
+      - name: shared
+        mountPath: /shared
+      {{ end }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "tdarr.harcodedValues" . | fromYaml) -}}
