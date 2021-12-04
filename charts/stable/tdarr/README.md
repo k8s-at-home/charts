@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
+![Version: 4.1.1](https://img.shields.io/badge/Version-4.1.1-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -93,7 +93,7 @@ N/A
 | persistence.config | object | See values.yaml | Volume used for configuration |
 | persistence.data | object | See values.yaml | Volume used for tdarr server database |
 | persistence.media | object | See values.yaml | Volume used for media libraries |
-| persistence.shared | object | See values.yaml | Volume used for shared storage |
+| persistence.shared | object | See values.yaml | Volume used for shared storage. e.g. emptydir transcode |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -101,6 +101,14 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.1.1]
+
+#### Changed
+
+- Add shared persistence option to the tdarr node sidecar in order to
+have a local (emptydir) alternative for transcodes between the server
+and node containers.
 
 ### [4.0.0]
 
