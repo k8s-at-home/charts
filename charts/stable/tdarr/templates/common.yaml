@@ -30,6 +30,10 @@ additionalContainers:
       - name: shared
         mountPath: /shared
       {{ end }}
+    {{- with .Values.node.resources }}
+    resources:
+      {{- toYaml . | nindent 2 }}
+    {{- end }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "tdarr.harcodedValues" . | fromYaml) -}}
