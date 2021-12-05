@@ -89,6 +89,7 @@ N/A
 | node.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | node.image.repository | string | `"haveagitgat/tdarr_node"` | image repository |
 | node.image.tag | string | `"2.00.10"` | image tag |
+| node.resources | object | `{}` | Resource definition for the node container |
 | persistence | object | See below | Configure persistence settings for the chart under this key. |
 | persistence.config | object | See values.yaml | Volume used for configuration |
 | persistence.data | object | See values.yaml | Volume used for tdarr server database |
@@ -101,6 +102,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.1.2]
+
+#### Changed
+
+- Allow definition of resources for the Tdarr node.
 
 ### [4.1.1]
 
