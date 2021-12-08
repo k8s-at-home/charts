@@ -1,6 +1,6 @@
 # onedrive
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: v2.4.13](https://img.shields.io/badge/AppVersion-v2.4.13-informational?style=flat-square)
+![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: v2.4.14](https://img.shields.io/badge/AppVersion-v2.4.14-informational?style=flat-square)
 
 A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365, and SharePoint
 
@@ -89,7 +89,7 @@ In order to generate an authentication response value you must do the following:
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/wrmilling/onedrive-docker"` | image repository |
-| image.tag | string | `"v2.0.2"` | image tag |
+| image.tag | string | `"v2.0.5"` | image tag |
 | persistence | object | See values.yaml for full listing | Configure persistence settings for the chart under this key. |
 | persistence.config | object | `{"accessMode":"ReadWriteOnce","enabled":true,"mountPath":"/onedrive/conf"}` | OneDrive config storage |
 | persistence.config.enabled | bool | `true` | If config storage should be enabled |
@@ -126,6 +126,8 @@ This release moves away from the auth-files approach and uses a custom docker im
 
 - Ability to run a abraunegg/onedrive instance
 
+[2.0.0]: #2.0.0
+[1.1.0]: #1.1.0
 [1.0.0]: #1.0.0
 
 ## Support
