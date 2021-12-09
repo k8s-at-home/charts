@@ -137,6 +137,7 @@
 | [unifi-poller](stable/unifi-poller) | Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus |
 | [unifi](stable/unifi) | Ubiquiti Network's Unifi Controller |
 | [unpackerr](stable/unpackerr) | This application runs as a daemon on your download host. It checks for completed downloads and extracts them so Radarr, Lidarr, Sonarr, and Readarr may import them. |
+| [uptime-kuma](stable/uptime-kuma) | A fancy self-hosted monitoring tool for your websites and applications |
 | [uptimerobot-prometheus](stable/uptimerobot-prometheus) | Prometheus Exporter for the official uptimerobot CLI |
 | [uptimerobot](stable/uptimerobot) | A tool to get statistics from Uptime Robot and log it into InfluxDB |
 | [valheim](stable/valheim) | Valheim dedicated gameserver with automatic update and world backup support |
