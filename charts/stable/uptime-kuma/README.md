@@ -1,6 +1,6 @@
 # uptime-kuma
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v1.10.2](https://img.shields.io/badge/AppVersion-v1.10.2-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: v1.11.1](https://img.shields.io/badge/AppVersion-v1.11.1-informational?style=flat-square)
 
 A fancy self-hosted monitoring tool for your websites and applications
 
@@ -79,7 +79,7 @@ N/A
 | env.UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN | int | `0` | Set the custom ssl cert path (string) UPTIME_KUMA_SSL_CERT: -- Set the custom ssl key path (string) UPTIME_KUMA_SSL_KEY: -- Set the frame same-origin policy (int) |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"louislam/uptime-kuma"` | image repository |
-| image.tag | string | `"1.10.2"` | image tag |
+| image.tag | string | `"1.11.1"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -89,6 +89,19 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.1]
+
+#### Changed
+
+- Updated values.yaml to map data persistence to /app/data
+- Update default image to 1.11.1 (most current at time of chnage)
+
+### [1.0.0]
+
+#### Added
+
+- Initial chart version
 
 ## Support
 
