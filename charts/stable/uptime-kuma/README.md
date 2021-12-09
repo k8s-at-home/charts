@@ -76,9 +76,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| env.UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN | int | `0` | Set the frame same-origin policy (int) |
-| env.UPTIME_KUMA_SSL_CERT | string | `nil` | Set the custom ssl cert path (string) |
-| env.UPTIME_KUMA_SSL_KEY | string | `nil` | Set the custom ssl key path (string) |
+| env.UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN | int | `0` | Set the custom ssl cert path (string) UPTIME_KUMA_SSL_CERT: -- Set the custom ssl key path (string) UPTIME_KUMA_SSL_KEY: -- Set the frame same-origin policy (int) |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"louislam/uptime-kuma"` | image repository |
 | image.tag | string | `"1.10.2"` | image tag |
