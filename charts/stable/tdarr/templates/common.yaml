@@ -32,7 +32,7 @@ additionalContainers:
       {{ end }}
     {{- with .Values.node.resources }}
     resources:
-      {{- toYaml . | nindent 2 }}
+      {{- toYaml . | nindent 6 }}
     {{- end }}
 {{ end }}
 {{- end -}}
