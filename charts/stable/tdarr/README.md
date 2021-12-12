@@ -80,6 +80,7 @@ N/A
 | env.serverIP | string | `"0.0.0.0"` | tdarr server binding address |
 | env.serverPort | string | `"{{ .Values.service.main.ports.server.port }}"` | tdarr server listening port |
 | env.webUIPort | string | `"{{ .Values.service.main.ports.http.port }}"` | tdarr web UI listening port (same as Service port) |
+| env.ffmpegPath | string | `""` | Override the pre-compiled ffmpeg binary |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"haveagitgat/tdarr"` | image repository |
 | image.tag | string | `"2.00.10"` | image tag |
@@ -102,6 +103,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.1.4]
+
+#### Changed
+
+- Add an environment override for `ffmpegPath`. If unset, the tdarr node container will use the default binary that ships with tdarr. Using `""` may cause detection issues with hardware passthrough (i915), but will be backwards backwards compatible with the container default.
 
 ### [4.1.3]
 
