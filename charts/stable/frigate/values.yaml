@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: blakeblackshear/frigate
   # -- image tag
-  tag: 0.8.4-amd64
+  tag: 0.9.4-amd64
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -82,7 +82,8 @@ affinity: {}
 #           - coral-tpu
 
 # -- Configure the resource requests and/or limits for the Pod
-resources: {}
+resources:
+  {}
   # requests:
   #   # Hardware acceleration using an Intel iGPU w/ QuickSync and
   #   # using intel-gpu-plugin (https://github.com/intel/intel-device-plugins-for-kubernetes)
