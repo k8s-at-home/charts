@@ -9,6 +9,10 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.2.0]
+- Added `enableServiceLinks: false` to values.yaml which is required for the Pod to start successfully
+- Updated App version to 0.11.0
+
 ### [4.0.0]
 
 #### Changed
@@ -16,7 +20,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Changed image to official mattermost/focalboard image
 - Removes unsupported environment variables
 - add configmap for config
-
 
 ### [3.0.0]
 
@@ -50,6 +53,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - First version of the helm chart for Focalboard
 
+[4.2.0]: #420
+[4.0.0]: #400
 [3.0.0]: #300
 [2.0.0]: #200
 [1.0.2]: #102

@@ -11,7 +11,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: 0.9.0
+  tag: 0.11.0
 
 # -- environment variables.
 # @default -- See below
@@ -36,6 +36,8 @@ config: |
     "localModeSocketLocation": "/var/tmp/focalboard_local.socket"
   }
 
+# -- Required for Pod to launch successfully
+enableServiceLinks: false
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

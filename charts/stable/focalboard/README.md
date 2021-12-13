@@ -1,6 +1,6 @@
 # focalboard
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 0.9.0](https://img.shields.io/badge/AppVersion-0.9.0-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 0.11.0](https://img.shields.io/badge/AppVersion-0.11.0-informational?style=flat-square)
 
 Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana.
 
@@ -78,10 +78,11 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | config | string | `"{\n  \"serverRoot\": \"http://localhost:8000\",\n  \"port\": 8000,\n  \"dbtype\": \"sqlite3\",\n  \"dbconfig\": \"/data/focalboard.db\",\n  \"postgres_dbconfig\": \"dbname=focalboard sslmode=disable\",\n  \"useSSL\": false,\n  \"webpath\": \"./pack\",\n  \"filespath\": \"/data/files\",\n  \"telemetry\": true,\n  \"session_expire_time\": 2592000,\n  \"session_refresh_time\": 18000,\n  \"localOnly\": false,\n  \"enableLocalMode\": true,\n  \"localModeSocketLocation\": \"/var/tmp/focalboard_local.socket\"\n}\n"` |  |
+| enableServiceLinks | bool | `false` | Required for Pod to launch successfully |
 | env | object | See below | environment variables. |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"mattermost/focalboard"` | image repository |
-| image.tag | string | `"0.9.0"` | image tag |
+| image.tag | string | `"0.11.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -91,6 +92,10 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.2.0]
+- Added `enableServiceLinks: false` to values.yaml which is required for the Pod to start successfully
+- Updated App version to 0.11.0
 
 ### [4.0.0]
 
@@ -132,6 +137,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - First version of the helm chart for Focalboard
 
+[4.2.0]: #420
+[4.0.0]: #400
 [3.0.0]: #300
 [2.0.0]: #200
 [1.0.2]: #102
