@@ -9,6 +9,12 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.2.0]
+
+#### Changed
+
+- Add an environment override for `ffmpegPath`. If unset, the tdarr node container will use the default binary that ships with tdarr. Using `""` may cause detection issues with hardware passthrough (i915), but will be backwards backwards compatible with the container default.
+
 ### [4.1.3]
 
 #### Changed
