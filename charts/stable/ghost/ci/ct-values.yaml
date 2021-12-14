@@ -1,8 +1,13 @@
 env:
   url: "http://ghost.k8s-at-home.com"
-  NODE_ENV: development
-  database__client: sqlite
+  database__connection__host: ghost-mariadb
 
 ingress:
   main:
     enabled: true
+
+fullnameOverride: ghost
+
+mariadb:
+  enabled: true
+  fullnameOverride: ghost-mariadb
