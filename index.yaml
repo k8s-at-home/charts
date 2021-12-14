@@ -20648,6 +20648,36 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/gaps-1.0.0/gaps-1.0.0.tgz
     version: 1.0.0
+  ghost:
+  - apiVersion: v2
+    appVersion: 4.27.2
+    created: "2021-12-14T08:51:10.791074079Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.1.0
+    description: Ghost is a blogging and publishing software
+    digest: 7e65fda215364b20ed3e5d72d078a0ef50a3816e87c97ec661fbaf4c7474482f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ghost
+    icon: https://ghost.org/images/logos/logo-black-1.png
+    keywords:
+    - ghost
+    - blogging
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: sm+k8s-at-home+git@samip.fi
+      name: samip5
+    name: ghost
+    sources:
+    - https://github.com/TryGhost/Ghost
+    - https://github.com/TryGhost/Ghost-CLI
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ghost-1.0.0/ghost-1.0.0.tgz
+    version: 1.0.0
   gollum:
   - apiVersion: v2
     appVersion: latest
@@ -92462,4 +92492,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-13T14:01:16.161369058Z"
+generated: "2021-12-14T08:51:10.814953171Z"
