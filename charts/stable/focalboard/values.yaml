@@ -36,8 +36,8 @@ config: |
     "localModeSocketLocation": "/var/tmp/focalboard_local.socket"
   }
 
-# -- Required for Pod to launch successfully
-enableServiceLinks: false
+# -- Change value to false if naming the Pod focalboard in your release
+enableServiceLinks: true
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

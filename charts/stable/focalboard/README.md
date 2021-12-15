@@ -78,7 +78,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | config | string | `"{\n  \"serverRoot\": \"http://localhost:8000\",\n  \"port\": 8000,\n  \"dbtype\": \"sqlite3\",\n  \"dbconfig\": \"/data/focalboard.db\",\n  \"postgres_dbconfig\": \"dbname=focalboard sslmode=disable\",\n  \"useSSL\": false,\n  \"webpath\": \"./pack\",\n  \"filespath\": \"/data/files\",\n  \"telemetry\": true,\n  \"session_expire_time\": 2592000,\n  \"session_refresh_time\": 18000,\n  \"localOnly\": false,\n  \"enableLocalMode\": true,\n  \"localModeSocketLocation\": \"/var/tmp/focalboard_local.socket\"\n}\n"` |  |
-| enableServiceLinks | bool | `false` | Required for Pod to launch successfully |
+| enableServiceLinks | bool | `true` | Change value to false if naming the Pod focalboard in your release |
 | env | object | See below | environment variables. |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"mattermost/focalboard"` | image repository |
