@@ -39,6 +39,7 @@
 | [frigate](stable/frigate) | NVR With Realtime Object Detection for IP Cameras |
 | [games-on-whales](stable/games-on-whales) | Streams graphic applications/games (retroarch, firefox, steam) runing on Kubernetes |
 | [gaps](stable/gaps) | Gaps searches through your Plex Server or local folders for all movies, then queries for known movies in the same collection. |
+| [ghost](stable/ghost) | Ghost is a blogging and publishing software |
 | [gollum](stable/gollum) | Gollum is a simple wiki system built on top of Git |
 | [gonic](stable/gonic) | Music streaming server / subsonic server API implementation |
 | [grocy](stable/grocy) | ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home |

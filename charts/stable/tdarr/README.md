@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 4.1.3](https://img.shields.io/badge/Version-4.1.3-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -77,6 +77,7 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://hub.docker.com/r/haveagitgat/tdarr) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
+| env.ffmpegPath | string | `""` | Allow override for the pre-compiled tdarr ffmpeg binary |
 | env.serverIP | string | `"0.0.0.0"` | tdarr server binding address |
 | env.serverPort | string | `"{{ .Values.service.main.ports.server.port }}"` | tdarr server listening port |
 | env.webUIPort | string | `"{{ .Values.service.main.ports.http.port }}"` | tdarr web UI listening port (same as Service port) |
@@ -102,6 +103,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.2.0]
+
+#### Changed
+
+- Add an environment override for `ffmpegPath`. If unset, the tdarr node container will use the default binary that ships with tdarr. Using `""` may cause detection issues with hardware passthrough (i915), but will be backwards backwards compatible with the container default.
 
 ### [4.1.3]
 
