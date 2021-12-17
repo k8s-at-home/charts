@@ -8,7 +8,7 @@ Facebox detects and identifies faces in photos. You can teach facebox with as li
 
 ## Source Code
 
-* <https://github.com/facebox/facebox>
+* <https://docs.veritone.com/#/developer/machine-box/boxes/facebox-overview>
 * <https://hub.docker.com/r/machinebox/facebox>
 
 ## Requirements
@@ -56,8 +56,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```console
 helm install facebox \
-  --set env.TZ="America/New York"  \
-  --set env.MB_KEY="xxxxxxxxxxxxxxxx"  \
+  --set env.TZ="America/New York" \
     k8s-at-home/facebox
 ```
 
@@ -77,9 +76,9 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [image docs](https://facebox.readthedocs.io/en/latest/DOCKER_TUTORIAL.html) for more details. |
+| env | object | See below | environment variables. See [image docs](https://developer.us-1.veritone.com/machinebox/overview) for more details. |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"acockburn/facebox"` | image repository |
+| image.repository | string | `"machinebox/facebox"` | image repository |
 | image.tag | string | `"latest"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -93,9 +92,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### [1.0.0]
 
+#### Added
+
+- Initial version
+
 #### Changed
 
-- Inital release
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #100
 
 ## Support
 

@@ -77,7 +77,6 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```console
 helm install {{ template "chart.name" . }} \
   --set env.TZ="America/New York" \
-  --set env.MB_KEY="xxxxxxxxxxxxxxxx"  \
     {{ template "custom.helm.path" . }}
 ```
 {{- end -}}
