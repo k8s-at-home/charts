@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: 2021.12.07
+description: filerun helm package
+name: filerun
+version: 2.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- filerun
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/filerun
+icon: https://filerun.com/images/logo-mobile-app.png
+sources:
+- https://github.com/filerun/docker
+maintainers:
+- name: kab1r
+  email: kabir+k8sathome@kwatra.me
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.2.0
+- name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.1.1
+  condition: mariadb.enabled
+- name: mysql
+  repository: https://charts.bitnami.com/bitnami
+  version: 8.8.16
+  condition: mysql.enabled
