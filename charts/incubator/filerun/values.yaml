@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: filerun/filerun
   # -- image tag
-  tag: latest # the only available upstream tag
+  tag: latest  # the only available upstream tag
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -18,7 +18,7 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  FR_DB_HOST: filerun-mariadb # filerun-mysql
+  FR_DB_HOST: filerun-mariadb  # filerun-mysql
   FR_DB_PORT: 3306
   FR_DB_NAME: filerun
   FR_DB_USER: filerun
