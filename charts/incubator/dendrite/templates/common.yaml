@@ -1,12 +1,12 @@
 {{ include "common.values.setup" . }}
 
 {{- define "dendrite.keyVolume" -}}
-enabled: {{ .Values.dendrite.matrix_key_secret.enabled }}
+enabled: {{ .Values.dendrite.matrix_key_secret.enabled | quote }}
 type: "custom"
 volumeSpec:
   secret:
     defaultMode: 0600
-    secretName: {{ .Values.dendrite.matrix_key_secret.secretName }}
+    secretName: {{ default (include "common.names.fullname" .) .Values.dendrite.matrix_key_secret.secretName }}
 subPath:
   - path: {{ .Values.dendrite.matrix_key_secret.key }}
     mountPath: "/etc/dendrite/matrix_key.pem"

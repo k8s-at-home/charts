@@ -1,7 +1,7 @@
 {{- $max_open_conns := default 10 .Values.dendrite.database.max_open_conns }}
 {{- $max_idle_conns := default 2 .Values.dendrite.database.max_idle_conns }}
 {{- $conn_max_lifetime := default -1 .Values.dendrite.database.conn_max_lifetime }}
-{{- $connectionString := "file:dendrite.db" -}}
+{{- $connectionString := "file:" -}}
 {{- if .Values.postgresql.enabled}}
 {{- $connectionString = print "postgresql://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@dendrite-postgresql/" -}}
 {{- end}}
