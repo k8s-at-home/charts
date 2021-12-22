@@ -7,6 +7,18 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   config.yml: |
-{{- with .Values.config }}
-    {{- toYaml . | nindent 4 }}
+{{- range $name, $config := .Values.config }}
+{{- if or (eq $name "detectors") (eq $name "notify") }}
+    {{ $name }}:
+      {{- range $innerName, $innerConfig := $config }}
+        {{- if $innerConfig.enabled }}
+        {{- $newInnerConfig := omit $innerConfig "enabled" }}
+      {{ $innerName }}:
+{{ toYaml $newInnerConfig | indent 8 }}
+        {{- end }}
+      {{- end }}
+{{- else }}
+    {{ $name }}:
+{{ toYaml $config | indent 6 }}
+{{- end }}
 {{- end }}

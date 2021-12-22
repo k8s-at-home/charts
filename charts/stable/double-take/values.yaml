@@ -194,6 +194,9 @@ config:
   # detector settings (default: shown below)
   detectors:
     compreface:
+      # -- enable or disable the compreface detector
+      # @default -- see values.yaml
+      enabled: true
       url:
       # recognition api key
       key:
@@ -206,16 +209,22 @@ config:
       # https://github.com/exadel-inc/CompreFace/blob/master/docs/Face-services-and-plugins.md)
       # face_plugins: mask,gender,age
 
-     # deepstack:
-     #   url:
-     #   key:
-     #   # number of seconds before the request times out and is aborted
-     #   timeout: 15
+    deepstack:
+      # -- enable or disable the compreface detector
+      # @default -- see values.yaml
+      enabled: false
+      url:
+      key:
+      # number of seconds before the request times out and is aborted
+      timeout: 15
 
-     # facebox:
-     #   url:
-     #   # number of seconds before the request times out and is aborted
-     #   timeout: 15
+    facebox:
+      # -- enable or disable the compreface detector
+      # @default -- see values.yaml
+      enabled: false
+      url:
+      # number of seconds before the request times out and is aborted
+      timeout: 15
 
   # schedule settings (default: shown below)
   schedule:
@@ -240,6 +249,9 @@ config:
   # notify settings (default: shown below)
   notify:
     gotify:
+      # -- enable gotify
+      # @default -- see values.yaml
+      enabled: true
       url:
       token:
       priority: 5
