@@ -1,6 +1,6 @@
 # focalboard
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 0.9.0](https://img.shields.io/badge/AppVersion-0.9.0-informational?style=flat-square)
+![Version: 4.1.1](https://img.shields.io/badge/Version-4.1.1-informational?style=flat-square) ![AppVersion: 0.9.0](https://img.shields.io/badge/AppVersion-0.9.0-informational?style=flat-square)
 
 Focalboard is an open source, self-hosted alternative to Trello, Notion, and Asana.
 
@@ -69,7 +69,12 @@ helm install focalboard k8s-at-home/focalboard -f values.yaml
 
 ## Custom configuration
 
-N/A
+By default Kubernetes will create several environment variables called service links (see [here](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service) for more information).
+
+Focalboard can be configured with environment variables, so when you deploy this Helm release with a name of `focalboard`,
+these service links will conflict with the application.
+
+In order to prevent this, you can disable the creation of these service links by setting `enableServiceLinks: false` in your `values.yaml.
 
 ## Values
 
@@ -91,6 +96,12 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.1.1]
+
+#### Changed
+
+- Added information about disablin serviceLinks to the documentation.
 
 ### [4.0.0]
 
@@ -132,6 +143,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - First version of the helm chart for Focalboard
 
+[4.1.1]: #411
+[4.0.0]: #400
 [3.0.0]: #300
 [2.0.0]: #200
 [1.0.2]: #102
