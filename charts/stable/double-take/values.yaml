@@ -195,7 +195,6 @@ config:
   detectors:
     compreface:
       # -- enable or disable the compreface detector
-      # @default -- see values.yaml
       enabled: true
       url:
       # recognition api key
@@ -210,20 +209,18 @@ config:
       # face_plugins: mask,gender,age
 
     deepstack:
-      # -- enable or disable the compreface detector
-      # @default -- see values.yaml
+      # -- enable or disable the deepstack detector
       enabled: false
       url:
       key:
-      # number of seconds before the request times out and is aborted
+      # -- number of seconds before the request times out and is aborted
       timeout: 15
 
     facebox:
-      # -- enable or disable the compreface detector
-      # @default -- see values.yaml
+      # -- enable or disable the facebox detector
       enabled: false
       url:
-      # number of seconds before the request times out and is aborted
+      # -- number of seconds before the request times out and is aborted
       timeout: 15
 
   # schedule settings (default: shown below)

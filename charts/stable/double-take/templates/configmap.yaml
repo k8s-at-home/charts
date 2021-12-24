@@ -13,12 +13,10 @@ data:
       {{- range $innerName, $innerConfig := $config }}
         {{- if $innerConfig.enabled }}
         {{- $newInnerConfig := omit $innerConfig "enabled" }}
-      {{ $innerName }}:
-{{ toYaml $newInnerConfig | indent 8 }}
+      {{ $innerName }}:{{ toYaml $newInnerConfig | nindent 8 }}
         {{- end }}
       {{- end }}
 {{- else }}
-    {{ $name }}:
-{{ toYaml $config | indent 6 }}
+    {{ $name }}:{{ toYaml $config | nindent 6 }}
 {{- end }}
 {{- end }}
