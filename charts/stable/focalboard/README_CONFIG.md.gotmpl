@@ -5,5 +5,10 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+By default Kubernetes will create several environment variables called service links (see [here](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service) for more information).
+
+Focalboard can be configured with environment variables, so when you deploy this Helm release with a name of `focalboard`,
+these service links will conflict with the application.
+
+In order to prevent this, you can disable the creation of these service links by setting `enableServiceLinks: false` in your `values.yaml.
 {{- end -}}
