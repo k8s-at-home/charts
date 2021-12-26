@@ -65571,6 +65571,30 @@ entries:
   reverse-proxy:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2021-12-26T12:50:10.188264048Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    description: Creates ingress reverse-proxies for external hosts with minimum boilerplate
+    digest: a27b44849c581954e3252dd7b4cf943f939c59a53e9688b50a2161e69125e283
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/reverse-proxy
+    icon: https://kubernetes.io/images/wheel.svg
+    keywords:
+    - reverse-proxy
+    - ingress
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: reverse-proxy
+    sources:
+    - https://kubernetes.io/docs/concepts/services-networking/ingress/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/reverse-proxy-2.1.1/reverse-proxy-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2021-11-22T12:48:24.897982703Z"
     dependencies:
     - name: common
@@ -92657,4 +92681,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-24T14:43:30.282316061Z"
+generated: "2021-12-26T12:50:10.207137768Z"
