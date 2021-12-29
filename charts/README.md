@@ -160,6 +160,7 @@
 | Chart | Description |
 | ----- | ----------- |
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
+| [cryptpad](incubator/cryptpad) | cryptpad helm package |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [seafile](incubator/seafile) | seafile helm package |
