@@ -13,7 +13,7 @@ Webhook for Prometheus Alertmanager to listen for notifications and pushes them 
 
 ## Requirements
 
-Kubernetes: `>=1.19.0-0`
+Kubernetes: `>=1.16.0-0`
 
 ## Dependencies
 
@@ -84,8 +84,7 @@ N/A
 | ingress | object | Disabled | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | probes | object | Disabled | Configures probes for the chart. Normally this does not need to be modified. |
-| service.main.enabled | bool | `true` |  |
-| service.main.ports.http.port | int | `9094` |  |
+| service | object | `{"main":{"enabled":true,"ports":{"http":{"port":9094}}}}` | Configures service settings for the chart. Normally this does not need to be modified. |
 
 ## Changelog
 
