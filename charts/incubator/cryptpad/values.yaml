@@ -1,0 +1,78 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+# config.js is derived from this map.
+# See: https://github.com/xwiki-labs/cryptpad/blob/main/config/config.example.js
+# httpUnsafeOrigin and httpSafeOrigin are automatically derived from the first and second host defined in the main
+# ingress, respectively.
+config:
+#  adminKeys:
+#    - "[cryptpad-user1@my.awesome.website/YZgXQxKR0Rcb6r6CmxHPdAGLVludrAF2lEnkbx1vVOo=]"
+  logLevel: info
+  verbose: false
+  logFeedback: false
+  logToStdout: true
+  installMethod: helm
+
+image:
+  # -- image repository
+  repository: promasu/cryptpad
+  # -- image tag (overrides appVersion)
+  tag: ""
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [cryptpad documentation](https://cryptpad.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # Main and sandbox domains are automatically fetched from the first and second host defined in the ingress,
+  # respectively.
+  # These env vars are used in the internal nginx.
+  CPAD_MAIN_DOMAIN: "{{ (index .Values.ingress.main.hosts 0).host }}"
+  CPAD_SANDBOX_DOMAIN: "{{ (index .Values.ingress.main.hosts 1).host }}"
+  # Internal nginx _forces_ http2 rather than offering it, which breaks many ingress controllers.
+  CPAD_HTTP2_DISABLE: "true"
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  main:
+    enabled: false
+    ingressClassName: ""
+    hosts:
+    # You must define two hosts here
+      - host: cryptpad.local
+        paths:
+          - path: /
+      - host: sec.cryptpad.local
+        paths:
+          - path: /
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  # Cryptpad will persist everything here.
+  data:
+    enabled: false
+    type: emptyDir
+    subPath:
+      - path: blob
+        mountPath: /cryptpad/blob
+      - path: block
+        mountPath: /cryptpad/block
+      - path: data
+        mountPath: /cryptpad/data
+      - path: datastore
+        mountPath: /cryptpad/datastore
