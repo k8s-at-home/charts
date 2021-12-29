@@ -65,9 +65,18 @@ metrics:
   # @default -- See values.yaml
   enabled: false
   serviceMonitor:
+    # -- Interval at which Prometheus should scrape metrics
     interval: 30s
+    # -- Timeout after which the scrape is ended
     scrapeTimeout: 10s
+    # -- Additional labels for the Kubernetes `ServiceMonitor` object
     labels: {}
+    # -- The Kubernetes `Endpoints` label to use as the Prometheus job name
+    jobLabel: ""
+    # -- TargetLabels transfers labels from the Kubernetes `Service`` onto the created metrics.
+    targetLabels: []
+    # -- PodTargetLabels transfers labels on the Kubernetes `Pod`` onto the created metrics.
+    podTargetLabels: []
   # -- Enable and configure Prometheus Rules for the chart under this key.
   # @default -- See values.yaml
   prometheusRule:
