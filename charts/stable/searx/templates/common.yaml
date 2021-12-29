@@ -31,6 +31,10 @@ additionalContainers:
     - name: searx-config
       mountPath: /etc/caddy/Caddyfile
       subPath: Caddyfile
+    {{- with .Values.caddy.resources }}
+    resources:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
 
   filtron:
     name: filtron
@@ -54,6 +58,10 @@ additionalContainers:
     - name: searx-config
       mountPath: /etc/filtron/rules.json
       subPath: rules.json
+    {{- with .Values.filtron.resources }}
+    resources:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
 
   morty:
     name: morty
@@ -70,6 +78,10 @@ additionalContainers:
     ports:
     - containerPort: 3000
       name: morty
+    {{- with .Values.morty.resources }}
+    resources:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "searx.harcodedValues" . | fromYaml) -}}
 

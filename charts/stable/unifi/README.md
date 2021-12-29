@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: v6.2.26](https://img.shields.io/badge/AppVersion-v6.2.26-informational?style=flat-square)
+![Version: 4.5.0](https://img.shields.io/badge/Version-4.5.0-informational?style=flat-square) ![AppVersion: v6.5.54](https://img.shields.io/badge/AppVersion-v6.5.54-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -128,7 +128,7 @@ service:
 | env.UNIFI_UID | string | `"999"` | Specify the user ID the application will run as |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jacobalberty/unifi"` | image repository |
-| image.tag | string | `"v6.2.26"` | image tag |
+| image.tag | string | `"v6.5.54"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | ingress.portal | object | See values.yaml | Enable and configure settings for the captive portal ingress under this key. |
 | mongodb | object | See values.yaml | Enable and configure mongodb database subchart under this key.    For more options see [mongodb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mongodb) |
@@ -149,9 +149,15 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [4.5.0]
+
+#### Changed
+
+- Bump controller version to 6.5.54
+
 ### [4.2.2]
 
-### Fixed
+#### Fixed
 
 - Move HTTPS protocol declaration for default web UI port from ingress annotations to service port attribute.
 

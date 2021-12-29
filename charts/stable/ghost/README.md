@@ -1,25 +1,25 @@
-# vaultwarden
+# ghost
 
-![Version: 3.3.2](https://img.shields.io/badge/Version-3.3.2-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 4.27.2](https://img.shields.io/badge/AppVersion-4.27.2-informational?style=flat-square)
 
-Vaultwarden is a Bitwarden compatable server in Rust
+Ghost is a blogging and publishing software
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/dani-garcia/vaultwarden>
+* <https://github.com/TryGhost/Ghost>
+* <https://github.com/TryGhost/Ghost-CLI>
 
 ## Requirements
 
-Kubernetes: `>=1.16.0-0`
+Kubernetes: `>=1.19.0-0`
 
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.1 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.13.10 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.1.0 |
 | https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
@@ -27,23 +27,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install vaultwarden k8s-at-home/vaultwarden
+helm install ghost k8s-at-home/ghost
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `vaultwarden`
+To install the chart with the release name `ghost`
 
 ```console
-helm install vaultwarden k8s-at-home/vaultwarden
+helm install ghost k8s-at-home/ghost
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `vaultwarden` deployment
+To uninstall the `ghost` deployment
 
 ```console
-helm uninstall vaultwarden
+helm uninstall ghost
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -56,28 +56,20 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install vaultwarden \
+helm install ghost \
   --set env.TZ="America/New York" \
-    k8s-at-home/vaultwarden
+    k8s-at-home/ghost
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install vaultwarden k8s-at-home/vaultwarden -f values.yaml
+helm install ghost k8s-at-home/ghost -f values.yaml
 ```
 
 ## Custom configuration
 
-The Vaultwarden chart requires the `/config` folder to exist. In order to provide this, some type of storage needs to be implemented.
-For testing purposes, the following config snippet will work:
-
-````yaml
-persistence:
-  config:
-    enabled: true
-    type: emptyDir
-````
+N/A
 
 ## Values
 
@@ -85,17 +77,26 @@ persistence:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [image docs](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template) for more details. |
-| env.DATA_FOLDER | string | `"config"` | Config dir |
+| env.NODE_ENV | string | `"production"` |  |
+| env.database__client | string | `"mysql"` |  |
+| env.database__connection__database | string | `"ghost"` |  |
+| env.database__connection__host | string | `"mariadb"` |  |
+| env.database__connection__password | string | `"ghost"` |  |
+| env.database__connection__user | string | `"ghost"` |  |
+| env.url | string | `"http://some-ghost.example.com"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"vaultwarden/server"` | image repository |
-| image.tag | string | `"1.22.2"` | image tag |
+| image.repository | string | `"ghost"` | image repository |
+| image.tag | string | `"4.27.2"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb.architecture | string | `"standalone"` |  |
+| mariadb.auth.database | string | `"ghost"` |  |
+| mariadb.auth.password | string | `"ghost"` |  |
+| mariadb.auth.rootPassword | string | `"ghost-rootpass"` |  |
+| mariadb.auth.username | string | `"ghost"` |  |
 | mariadb.enabled | bool | `false` |  |
+| mariadb.primary.persistance.enabled | bool | `false` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| postgresql.enabled | bool | `false` |  |
-| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
-| strategy.type | string | `"Recreate"` |  |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -103,55 +104,21 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [3.3.2]
-
-#### Changed
-
-- Ingress config uses port names. Now there is no need to update port in both service and rember to change it in ingress
-
-### [3.2.1]
-
-#### Added
-
-- Mentioned that some kind of persistence is required on `/config` mountpoint.
-
-#### Fixed
-
-- Updated ct-values to properly create emptyDir
-
-### [3.1.3]
-
-#### Changed
-
-- Bump version to 1.22.2
-
-### [3.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [2.0.0]
-
-#### Added
-
-- Pre-rendered Ingress example (disabled by default)
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.0.1. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.1/charts/stable/common/) for the up-to-date values.
-
 ### [1.0.0]
 
 #### Added
 
-- Initial version, Succeding Bitwarden_RS.
+- Initial version
 
-[3.1.3]: #313
-[3.0.0]: #300
-[2.0.0]: #200
-[1.0.0]: #100
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1309
 
 ## Support
 
