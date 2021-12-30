@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-51-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -112,6 +112,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/marcelloceschia"><img src="https://avatars.githubusercontent.com/u/203448?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marcello Ceschia</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=marcelloceschia" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.carrierlost.net"><img src="https://avatars.githubusercontent.com/u/969721?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roberto Santalla</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=roobre" title="Code">💻</a></td>
   </tr>
 </table>
 
