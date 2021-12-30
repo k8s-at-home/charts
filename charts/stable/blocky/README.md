@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 10.0.0](https://img.shields.io/badge/Version-10.0.0-informational?style=flat-square) ![AppVersion: v0.17](https://img.shields.io/badge/AppVersion-v0.17-informational?style=flat-square)
+![Version: 10.0.1](https://img.shields.io/badge/Version-10.0.1-informational?style=flat-square) ![AppVersion: v0.17](https://img.shields.io/badge/AppVersion-v0.17-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -81,7 +81,7 @@ N/A
 | env | object | See below | environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"spx01/blocky"` | image repository |
+| image.repository | string | `"ghcr.io/0xerr0r/blocky"` | image repository |
 | image.tag | string | `"v0.17"` | image tag |
 | metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
