@@ -1,6 +1,6 @@
 # cryptpad
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: v4.12.0-nginx](https://img.shields.io/badge/AppVersion-v4.12.0--nginx-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![AppVersion: v4.12.0-nginx](https://img.shields.io/badge/AppVersion-v4.12.0--nginx-informational?style=flat-square)
 
 cryptpad helm package
 
@@ -92,6 +92,7 @@ N/A
 | ingress.main.hosts[1].paths[0].path | string | `"/"` |  |
 | ingress.main.ingressClassName | string | `""` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| podSecurityContext.fsGroup | int | `4001` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
