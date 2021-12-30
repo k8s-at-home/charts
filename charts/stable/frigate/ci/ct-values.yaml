@@ -3,3 +3,30 @@ persistence:
     enabled: true
     type: emptyDir
     mountPath: /data
+config: |
+  detectors:
+    cpu1:
+      type: cpu
+      num_threads: 1
+  mqtt:
+    host: 192.168.1.2
+    client_id: frigate
+    user: frigate
+    password: frigate
+  database:
+    path: /data/frigate.db
+  detect:
+    fps: 4
+    height: 360
+    width: 640
+  cameras:
+    camera_1:
+      ffmpeg:
+        inputs:
+          - path: rtsp://admin:admin@192.168.1.3:5554//h264Preview_01_sub
+            roles:
+              - detect
+              - rtmp
+      zones:
+        door:
+          coordinates: 481,42,596,48,565,267,469,228
