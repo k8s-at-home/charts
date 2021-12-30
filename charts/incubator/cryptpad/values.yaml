@@ -76,3 +76,6 @@ persistence:
         mountPath: /cryptpad/data
       - path: datastore
         mountPath: /cryptpad/datastore
+
+podSecurityContext:
+  fsGroup: 4001  # https://github.com/xwiki-labs/cryptpad-docker/blob/72dd7030c1dc1c70b5ff3f53b8451f5af19a2927/Dockerfile-nginx#L25
