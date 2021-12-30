@@ -8,7 +8,7 @@ Unified UI and API for processing and training images for facial recognition.
 
 ## Source Code
 
-- <https://github.com/jakowenko/double-take>
+* <https://github.com/jakowenko/double-take>
 
 ## Requirements
 
@@ -16,9 +16,9 @@ Kubernetes: `>=1.16.0-0`
 
 ## Dependencies
 
-| Repository                             | Name   | Version |
-| -------------------------------------- | ------ | ------- |
-| https://library-charts.k8s-at-home.com | common | 4.2.0   |
+| Repository | Name | Version |
+|------------|------|---------|
+| https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
 
@@ -67,25 +67,27 @@ helm install double-take k8s-at-home/double-take -f values.yaml
 
 ## Custom configuration
 
-**Note**: Configuration file defined in `Values.config` will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://github.com/jakowenko/double-take#configuration) for more information.
+**Note**: Configuration file defined in `Values.config`  will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://github.com/jakowenko/double-take#configuration) for more information.
 
 ## Values
 
 **Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
-| Key                                 | Type   | Default                   | Description                                                                                                                                                                                                                                                                                  |
-| ----------------------------------- | ------ | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| config                              | object | See values.yaml           | double-take configuration settings. This will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://github.com/jakowenko/double-take#configuration) for more information. |
-| config.detectors.compreface.enabled | bool   | see values.yaml           | enable or disable the compreface detector                                                                                                                                                                                                                                                    |
-| config.detectors.deepstack.enabled  | bool   | see values.yaml           | enable or disable the compreface detector                                                                                                                                                                                                                                                    |
-| config.detectors.facebox.enabled    | bool   | see values.yaml           | enable or disable the compreface detector                                                                                                                                                                                                                                                    |
-| config.notify.gotify.enabled        | bool   | see values.yaml           | enable gotify                                                                                                                                                                                                                                                                                |
-| image.pullPolicy                    | string | `"IfNotPresent"`          | image pull policy                                                                                                                                                                                                                                                                            |
-| image.repository                    | string | `"jakowenko/double-take"` | image repository                                                                                                                                                                                                                                                                             |
-| image.tag                           | string | `"1.6.0"`                 | image tag                                                                                                                                                                                                                                                                                    |
-| ingress.main                        | object | See values.yaml           | Enable and configure ingress settings for the chart under this key.                                                                                                                                                                                                                          |
-| persistence                         | object | See values.yaml           | Configure persistence settings for the chart under this key. See [API Images](https://github.com/jakowenko/double-take#api-images) for explaination on what data is stored where.                                                                                                            |
-| service                             | object | See values.yaml           | Configures service settings for the chart.                                                                                                                                                                                                                                                   |
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| config | object | See values.yaml | double-take configuration settings. This will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://github.com/jakowenko/double-take#configuration) for more information. |
+| config.detectors.compreface.enabled | bool | `true` | enable or disable the compreface detector |
+| config.detectors.deepstack.enabled | bool | `false` | enable or disable the deepstack detector |
+| config.detectors.deepstack.timeout | int | `15` | number of seconds before the request times out and is aborted |
+| config.detectors.facebox.enabled | bool | `false` | enable or disable the facebox detector |
+| config.detectors.facebox.timeout | int | `15` | number of seconds before the request times out and is aborted |
+| config.notify.gotify.enabled | bool | `true` | enable gotify |
+| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| image.repository | string | `"jakowenko/double-take"` | image repository |
+| image.tag | string | `"1.6.0"` | image tag |
+| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. See [API Images](https://github.com/jakowenko/double-take#api-images) for explaination on what data is stored where. |
+| service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
@@ -134,6 +136,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Ask a [question](https://github.com/k8s-at-home/organization/discussions)
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
----
-
+----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
