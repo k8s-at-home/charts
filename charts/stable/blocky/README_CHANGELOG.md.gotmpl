@@ -9,6 +9,16 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [10.0.0]
+
+#### Added
+
+- Parameters in `values.yaml` for specifying the `jobLabel`, `targetLabels`, and `podTargetLabels` fields on the Prometheus ServiceMonitor object.
+
+#### Changed
+
+- **BREAKING**: Updated Blocky image and AppVersion to v0.17. This version of Blocky has a few backwards-incompatible `config.yml` differences compared to v0.15. Update your `config` chart values to check the `upstream`, `queryLog`, `certFile`, and `keyFile` settings (if applicable).
+
 ### [9.0.0]
 
 #### Changed

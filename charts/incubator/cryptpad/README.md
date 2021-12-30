@@ -1,14 +1,14 @@
-# openhab
+# cryptpad
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 3.2.0](https://img.shields.io/badge/AppVersion-3.2.0-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: v4.12.0-nginx](https://img.shields.io/badge/AppVersion-v4.12.0--nginx-informational?style=flat-square)
 
-openhab helm package
+cryptpad helm package
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://hub.docker.com/r/openhab/openhab>
+* <https://github.com/xwiki-labs/cryptpad-docker>
 
 ## Requirements
 
@@ -18,30 +18,30 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.0.1 |
 
 ## TL;DR
 
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install openhab k8s-at-home/openhab
+helm install cryptpad k8s-at-home/cryptpad
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `openhab`
+To install the chart with the release name `cryptpad`
 
 ```console
-helm install openhab k8s-at-home/openhab
+helm install cryptpad k8s-at-home/cryptpad
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `openhab` deployment
+To uninstall the `cryptpad` deployment
 
 ```console
-helm uninstall openhab
+helm uninstall cryptpad
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install openhab \
+helm install cryptpad \
   --set env.TZ="America/New York" \
-    k8s-at-home/openhab
+    k8s-at-home/cryptpad
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install openhab k8s-at-home/openhab -f values.yaml
+helm install cryptpad k8s-at-home/cryptpad -f values.yaml
 ```
 
 ## Custom configuration
@@ -75,14 +75,23 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | string | `nil` | environment variables. See more environment variables in the [openhab image documentation](https://hub.docker.com/r/openhab/openhab). |
+| config.installMethod | string | `"helm"` |  |
+| config.logFeedback | bool | `false` |  |
+| config.logLevel | string | `"info"` |  |
+| config.logToStdout | bool | `true` |  |
+| config.verbose | bool | `false` |  |
+| env | object | See below | environment variables. See more environment variables in the [cryptpad documentation](https://cryptpad.org/docs). |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"openhab/openhab"` | image repository |
-| image.tag | string | `"3.2.0"` | image tag |
-| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Choose either -- a single volume for all data or separate volumes for each sub-directory. |
-| persistence.addons | object | `{"enabled":false,"mountPath":"/openhab/addons"}` | separate volumes |
-| persistence.data | object | `{"enabled":false,"subPath":[{"mountPath":"/openhab/addons","path":"addons"},{"mountPath":"/openhab/conf","path":"conf"},{"mountPath":"/openhab/userdata","path":"userdata"}]}` | single volume |
+| image.repository | string | `"promasu/cryptpad"` | image repository |
+| image.tag | string | `""` | image tag (overrides appVersion) |
+| ingress.main.enabled | bool | `false` |  |
+| ingress.main.hosts[0].host | string | `"cryptpad.local"` |  |
+| ingress.main.hosts[0].paths[0].path | string | `"/"` |  |
+| ingress.main.hosts[1].host | string | `"sec.cryptpad.local"` |  |
+| ingress.main.hosts[1].paths[0].path | string | `"/"` |  |
+| ingress.main.ingressClassName | string | `""` |  |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
