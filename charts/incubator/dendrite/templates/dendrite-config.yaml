@@ -1,6 +1,3 @@
-{{- $max_open_conns := default 10 .Values.dendrite.database.max_open_conns }}
-{{- $max_idle_conns := default 2 .Values.dendrite.database.max_idle_conns }}
-{{- $conn_max_lifetime := default -1 .Values.dendrite.database.conn_max_lifetime }}
 {{- $connectionString := "file:" -}}
 {{- if .Values.postgresql.enabled}}
 {{- $connectionString = print "postgresql://" .Values.postgresql.postgresqlUsername ":" .Values.postgresql.postgresqlPassword "@dendrite-postgresql/" -}}
@@ -26,9 +23,9 @@ stringData:
         use_naffka: true
         naffka_database:
           connection_string: {{ $connectionString }}dendrite_naffka?sslmode=disable
-          max_open_conns: {{ $max_open_conns }}
-          max_idle_conns: {{ $max_idle_conns }}
-          conn_max_lifetime: {{ $conn_max_lifetime }}
+          max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+          max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+          conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
       metrics:
         enabled: {{ default false .Values.dendrite.global.metrics.enabled }}
         basic_auth:
@@ -37,46 +34,31 @@ stringData:
       dns_cache:
         enabled: {{ default false .Values.dendrite.global.dns_cache.enabled }}
         cache_size: {{ default 256 .Values.dendrite.global.dns_cache.cache_size }}
-        cache_lifetime: {{ default 300 .Values.dendrite.global.dns_cache.cache_lifetime }}
-    # Configuration for the Appservice API.
+        cache_lifetime: {{ default "5m" .Values.dendrite.global.dns_cache.cache_lifetime }}
     app_service_api:
       internal_api:
         listen: http://0.0.0.0:7777
         connect: http://appservice_api:7777
       database:
         connection_string: {{ $connectionString }}dendrite_appservice?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
-      config_files:
-{{- toYaml .Values.dendrite.components.app_service_api.config_files | nindent 8 }}
-
-    # Configuration for the Client API.
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
+      config_files: {{- toYaml .Values.dendrite.components.app_service_api.config_files | nindent 8 }}
     client_api:
       internal_api:
         listen: http://0.0.0.0:7771
         connect: http://client_api:7771
       external_api:
         listen: http://0.0.0.0:8071
-
       registration_disabled: {{ default false .Values.dendrite.components.client_api.registration_disabled }}
       registration_shared_secret: {{ default "" .Values.dendrite.components.client_api.registration_shared_secret | quote }}
       enable_registration_captcha: {{ default false .Values.dendrite.components.client_api.captcha.enabled }}
-
-
-      # Settings for ReCAPTCHA.
       recaptcha_public_key: {{ default "" .Values.dendrite.components.client_api.captcha.recaptcha_public_key | quote }}
       recaptcha_private_key: {{ default "" .Values.dendrite.components.client_api.captcha.recaptcha_private_key | quote }}
       recaptcha_bypass_secret: {{ default "" .Values.dendrite.components.client_api.captcha.recaptcha_bypass_secret | quote }}
       recaptcha_siteverify_api: {{ default "" .Values.dendrite.components.client_api.captcha.recaptcha_siteverify_api | quote }}
-
-      # TURN server information that this homeserver should send to clients.
-      turn:
-{{- toYaml .Values.dendrite.components.client_api.turn | nindent 8 }}
-
-      # Settings for rate-limited endpoints. Rate limiting will kick in after the
-      # threshold number of "slots" have been taken by requests from a specific
-      # host. Each "slot" will be released after the cooloff time in milliseconds.
+      turn: {{- toYaml .Values.dendrite.components.client_api.turn | nindent 8 }}
       rate_limiting:
         enabled: {{ default true .Values.dendrite.components.client_api.rate_limiting.enabled }}
         threshold: {{ default 5 .Values.dendrite.components.client_api.rate_limiting.threshold }}
@@ -93,23 +75,18 @@ stringData:
         listen: http://0.0.0.0:8072
       database:
         connection_string: {{ $connectionString }}dendrite_federationapi?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
-      federation_certificates:
-{{- toYaml .Values.dendrite.components.federation_api.federation_certificates | nindent 8 }}
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
+      federation_certificates: {{- toYaml .Values.dendrite.components.federation_api.federation_certificates | nindent 8 }}
       send_max_retries: {{ default 16 .Values.dendrite.components.federation_api.send_max_retries }}
       disable_tls_validation: {{ default false .Values.dendrite.components.federation_api.disable_tls_validation }}
-      # Use the following proxy server for outbound federation traffic.
       proxy_outbound:
         enabled: {{ default false .Values.dendrite.components.federation_api.proxy_outbound.enabled }}
-
         protocol: {{ default "http" .Values.dendrite.components.federation_api.proxy_outbound.protocol | quote }}
-
         host: {{ default "localhost" .Values.dendrite.components.federation_api.proxy_outbound.host | quote }}
         port: {{ default 8080 .Values.dendrite.components.federation_api.proxy_outbound.port }}
-      key_perspectives:
-{{- toYaml .Values.dendrite.components.federation_api.key_perspectives | nindent 8 }}
+      key_perspectives: {{- toYaml .Values.dendrite.components.federation_api.key_perspectives | nindent 8 }}
       prefer_direct_fetch: {{ default false .Values.dendrite.components.federation_api.prefer_direct_fetch }}
     key_server:
       internal_api:
@@ -117,9 +94,9 @@ stringData:
         connect: http://key_server:7779
       database:
         connection_string: {{ $connectionString }}dendrite_keyserver?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
     media_api:
       internal_api:
         listen: http://0.0.0.0:7774
@@ -128,24 +105,23 @@ stringData:
         listen: http://0.0.0.0:8074
       database:
         connection_string: {{ $connectionString }}dendrite_mediaapi?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
       base_path: {{ default "/var/dendrite/media" .Values.dendrite.components.media_api.base_path | quote }}
       max_file_size_bytes: {{ default 10485760 .Values.dendrite.components.media_api.max_file_size_bytes }}
       dynamic_thumbnails: {{ default false .Values.dendrite.components.media_api.dynamic_thumbnails }}
       max_thumbnail_generators: {{ default 10 .Values.dendrite.components.media_api.max_thumbnail_generators }}
-      thumbnail_sizes:
-{{- toYaml .Values.dendrite.components.media_api.thumbnail_sizes | nindent 8 }}
+      thumbnail_sizes: {{- toYaml .Values.dendrite.components.media_api.thumbnail_sizes | nindent 8 }}
     room_server:
       internal_api:
         listen: http://0.0.0.0:7770
         connect: http://room_server:7770
       database:
         connection_string: {{ $connectionString }}dendrite_roomserver?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
     sync_api:
       internal_api:
         listen: http://0.0.0.0:7773
@@ -154,26 +130,24 @@ stringData:
           listen: http://0.0.0.0:8073
       database:
         connection_string: {{ $connectionString }}dendrite_syncapi?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
     user_api:
       internal_api:
         listen: http://0.0.0.0:7781
         connect: http://user_api:7781
       account_database:
         connection_string: {{ $connectionString }}dendrite_userapi_accounts?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
       device_database:
         connection_string: {{ $connectionString }}dendrite_userapi_devices?sslmode=disable
-        max_open_conns: {{ $max_open_conns }}
-        max_idle_conns: {{ $max_idle_conns }}
-        conn_max_lifetime: {{ $conn_max_lifetime }}
+        max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
+        max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
+        conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
     tracing:
       enabled: {{ .Values.dendrite.tracing.enabled }}
-      jaeger:
-{{- toYaml .Values.dendrite.tracing.jaeger | nindent 8 }}
-    logging:
-{{- toYaml .Values.dendrite.logging | nindent 6 }}
+      jaeger: {{- toYaml .Values.dendrite.tracing.jaeger | nindent 8 }}
+    logging: {{- toYaml .Values.dendrite.logging | nindent 6 }}

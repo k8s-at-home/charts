@@ -48,7 +48,7 @@ persistence:
     enabled: false
     mountPath: &mediaPath /var/dendrite/media
 
-# Configuratio for Dendrite.
+# -- Configuration for Dendrite.
 # For more information see [the sample
 # denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
 # @default -- See values.yaml
@@ -78,16 +78,12 @@ dendrite:
   # @default -- See values.yaml
   global:
     # -- (required) Configure the server name for the dendrite instance.
-    # @default -- See values.yaml
     server_name: localhost
     # -- Configure the key_validity period
-    # @default -- See values.yaml
     key_validity_period: 168h0m0s
     # -- Configure the well-known server name and optional port
-    # @default -- See values.yaml
     well_known_server_name: ""
     # -- Configure the list of domains the server will trust as identity servers
-    # @default -- See the values.yaml
     trusted_third_party_id_servers:
       - matrix.org
       - vector.im
@@ -107,7 +103,7 @@ dendrite:
       # @default -- See values.yaml
       enabled: false
       cache_size: 256
-      cache_lifetime: 300
+      cache_lifetime: "5m"
   # -- Configure the dendrite components.
   # @default -- See values.yaml
   components:
@@ -118,10 +114,8 @@ dendrite:
     # -- Configure the Client API
     client_api:
       # -- Enable or disable registration for this homeserver.
-      # @default -- See values.yaml
       registration_disabled: false
       # -- Shared secret that allows registration, despite registration_disabled.
-      # @default -- See values.yaml
       registration_shared_secret: ""
       # -- Configure captcha for registration
       # @default -- See values.yaml
