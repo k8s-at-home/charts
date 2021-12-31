@@ -1,6 +1,6 @@
 # double-take
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
 Unified UI and API for processing and training images for facial recognition.
 
@@ -76,6 +76,12 @@ helm install double-take k8s-at-home/double-take -f values.yaml
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | config | object | See values.yaml | double-take configuration settings. This will be copied into the container's persistent storage at first run only. Further configuration should be done in the application itself! See [project documentation](https://github.com/jakowenko/double-take#configuration) for more information. |
+| config.detectors.compreface.enabled | bool | `true` | enable or disable the compreface detector |
+| config.detectors.deepstack.enabled | bool | `false` | enable or disable the deepstack detector |
+| config.detectors.deepstack.timeout | int | `15` | number of seconds before the request times out and is aborted |
+| config.detectors.facebox.enabled | bool | `false` | enable or disable the facebox detector |
+| config.detectors.facebox.timeout | int | `15` | number of seconds before the request times out and is aborted |
+| config.notify.gotify.enabled | bool | `true` | enable gotify |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jakowenko/double-take"` | image repository |
 | image.tag | string | `"1.6.0"` | image tag |
@@ -88,6 +94,24 @@ helm install double-take k8s-at-home/double-take -f values.yaml
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [2.0.0]
+
+#### Added
+
+- Ability to enable/disable detectors and notifiers (gotify).
+
+#### Changed
+
+- **Potentially Breaking**: The `enabled` key in detectors and notifiers is
+  required for the respective configuration to be tangled into the config map.
+  It is added by default in the values file for new installation.
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #100
 
 ### [1.0.0]
 

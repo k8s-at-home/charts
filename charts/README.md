@@ -5,6 +5,7 @@
 | [adguard-home](stable/adguard-home) | DNS proxy as ad-blocker for local network |
 | [airsonic](stable/airsonic) | Airsonic is a Free and Open Source community driven media server |
 | [alertmanager-bot](stable/alertmanager-bot) | Bot for Prometheus Alertmanager |
+| [alertmanager-discord](stable/alertmanager-discord) | Webhook for Prometheus Alertmanager to listen for notifications and pushes them to Discord channel |
 | [amcrest2mqtt](stable/amcrest2mqtt) | Expose all events from an Amcrest device to an MQTT broker |
 | [anonaddy](stable/anonaddy) | Anonaddy: Anonymous email forwarding |
 | [apache-musicindex](stable/apache-musicindex) | Index and stream music using apache-musicindex and m3u playlists |
@@ -160,6 +161,7 @@
 | Chart | Description |
 | ----- | ----------- |
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
+| [cryptpad](incubator/cryptpad) | cryptpad helm package |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [seafile](incubator/seafile) | seafile helm package |
