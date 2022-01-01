@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.1 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
 | https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
@@ -77,7 +77,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [monica documentation](https://raw.githubusercontent.com/monicahq/monica/master/.env.example) for more details. |
+| env | object | See below | environment variables. See [webtrees-docker documentation](https://github.com/NathanVaughn/webtrees-docker#environment-variables) for more details. |
 | env.BASE_URL | string | `"https://webtrees.k8s-at-home.com"` | Base URL of the installation, with protocol. This needs to be in the form of http://webtrees.example.com |
 | env.DB_HOST | string | `nil` | Database hostname |
 | env.DB_NAME | string | `nil` | Database to connect to |
