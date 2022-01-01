@@ -87224,6 +87224,36 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/wallabag-1.0.0/wallabag-1.0.0.tgz
     version: 1.0.0
+  webtrees:
+  - apiVersion: v2
+    appVersion: 2.0.19
+    created: "2022-01-01T14:46:18.449726336Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.2.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    description: Open-source online collaborative genealogy application
+    digest: c49a4a480d0a52fcc87a424918b15993a84954cc0bcccda0e494d7452dbd9afc
+    icon: https://raw.githubusercontent.com/fisharebest/webtrees/main/resources/img/webtrees-icon.png
+    keywords:
+    - webtrees
+    - genealogy
+    - family-tree
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rogerrum@gmail.com
+      name: rogerrum
+    name: webtrees
+    sources:
+    - https://github.com/fisharebest/webtrees
+    - https://github.com/NathanVaughn/webtrees-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/webtrees-1.0.0/webtrees-1.0.0.tgz
+    version: 1.0.0
   whoogle:
   - apiVersion: v2
     appVersion: 0.5.4
@@ -92916,4 +92946,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-30T21:45:58.454266607Z"
+generated: "2022-01-01T14:46:18.470954571Z"
