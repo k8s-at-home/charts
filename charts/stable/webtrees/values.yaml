@@ -1,0 +1,86 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/nathanvaughn/webtrees
+  # -- image tag
+  tag: "2.0.19"
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [monica documentation](https://raw.githubusercontent.com/monicahq/monica/master/.env.example) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Enable pretty URLs
+  PRETTY_URLS: "TRUE"
+  # -- webtrees localization setting
+  LANG: "en-US"
+  # -- Base URL of the installation, with protocol. This needs to be in the form of http://webtrees.example.com
+  BASE_URL: https://webtrees.k8s-at-home.com
+  # -- Database server type
+  DB_TYPE: "mysql"
+  # -- Database hostname
+  DB_HOST: # webtrees-mariadb
+  # -- Database server port
+  DB_PORT: "3306"
+  # -- Database username
+  DB_USER: # webtrees
+  # -- Database password
+  DB_PASS: # webtreespass
+  # -- Database to connect to
+  DB_NAME: # webtrees
+  # -- Prefix to give all tables in the database. Set this to a value of "" to have no table prefix.
+  DB_PREFIX: "wt_"
+  # -- Admin account username
+  WT_USER: # admin
+  # -- Admin account full name
+  WT_NAME:
+  # -- Admin account password
+  WT_PASS: # adminpass
+  # -- Admin account email
+  WT_EMAIL:
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
+    mountPath: /var/www/webtrees/data/
+    # storageClass: ""
+
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+# @default -- See values.yaml
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: webtrees
+    username: webtrees
+    password: webtreespass
+    rootPassword: webtreesrootpass
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
