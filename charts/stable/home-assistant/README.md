@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 11.2.1](https://img.shields.io/badge/Version-11.2.1-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
+![Version: 12.0.0](https://img.shields.io/badge/Version-12.0.0-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
 
 Home Assistant
 
@@ -21,9 +21,9 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.1 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.13.10 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.14.2 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -180,6 +180,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [12.0.0]
+
+#### Changed
+
+- **BREAKING**: Specified the default postgresql version (14.1.0) to comply with Home-Assistant supported versions. Make sure to back up your database before upgrading to this version!
+- Changed image tag to `2021.12.7`.
+- **BREAKING**: Updated `mariadb` chart to version `10.2.0`. Check out the [chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000) to see which values have changed.
+- Updated `postgresql` chart to version `10.14.2`.
+- Updated the common library dependency to version 4.3.0.
+
 ### [11.0.6]
 
 #### Changed
@@ -289,6 +299,9 @@ Any pre-existing StatefulSet will have to be removed before upgrading due to a n
 
 This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
 
+[12.0.0]: #1200
+[11.0.6]: #1106
+[11.0.5]: #1105
 [11.0.0]: #1100
 [10.0.0]: #1000
 [9.0.1]: #901
