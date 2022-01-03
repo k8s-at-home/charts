@@ -12856,6 +12856,38 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/deluge-1.0.0/deluge-1.0.0.tgz
     version: 1.0.0
+  dendrite:
+  - apiVersion: v2
+    appVersion: 0.5.1
+    created: "2022-01-03T16:12:42.79857757Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.14.2
+    description: Dendrite Matrix Homeserver
+    digest: 4b258e00a5d3ce54781b5c459352deaa3aa599d590a4db90c1affa1544c128d0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dendrite
+    keywords:
+    - dendrite
+    - matrix
+    - homeserver
+    - monolith
+    - federation
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jonathan@jonnobrow.co.uk
+      name: jonnobrow
+    name: dendrite
+    sources:
+    - https://github.com/matrix-org/dendrite
+    - https://github.com/matrix-org/dendrite/tree/master/build/docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dendrite-1.0.0/dendrite-1.0.0.tgz
+    version: 1.0.0
   digitalocean-dyndns:
   - apiVersion: v2
     appVersion: "1.0"
@@ -93110,4 +93142,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-03T15:58:48.85533557Z"
+generated: "2022-01-03T16:12:42.824396666Z"
