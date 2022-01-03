@@ -31,6 +31,7 @@
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
 | [emby](stable/emby) | Emby Server is a home media server |
 | [esphome](stable/esphome) | ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems. |
+| [facebox](stable/facebox) | Facebox detects and identifies faces in photos. You can teach facebox with as little as one sample image. |
 | [filebrowser](stable/filebrowser) | filebrowser provides a file managing interface within a specified directory |
 | [flaresolverr](stable/flaresolverr) | FlareSolverr is a proxy server to bypass Cloudflare protection |
 | [flood](stable/flood) | Flood is a monitoring service for various torrent clients |
@@ -146,6 +147,7 @@
 | [vaultwarden](stable/vaultwarden) | Vaultwarden is a Bitwarden compatable server in Rust |
 | [vikunja](stable/vikunja) | The to-do app to organize your life |
 | [wallabag](stable/wallabag) | A self hostable application for saving web pages, freely. |
+| [webtrees](stable/webtrees) | Open-source online collaborative genealogy application |
 | [whoogle](stable/whoogle) | A self-hosted, ad-free, privacy-respecting metasearch engine |
 | [wikijs](stable/wikijs) | Make documentation a joy to write using Wiki.js's beautiful and intuitive interface! |
 | [wireguard](stable/wireguard) | Fast, modern, secure VPN tunnel |

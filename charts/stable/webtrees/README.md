@@ -1,14 +1,15 @@
-# anonaddy
+# webtrees
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.0.19](https://img.shields.io/badge/AppVersion-2.0.19-informational?style=flat-square)
 
-Anonaddy: Anonymous email forwarding
+Open-source online collaborative genealogy application
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/anonaddy/docker>
+* <https://github.com/fisharebest/webtrees>
+* <https://github.com/NathanVaughn/webtrees-docker>
 
 ## Requirements
 
@@ -19,31 +20,30 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
-| https://charts.bitnami.com/bitnami | redis | 15.6.10 |
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
 
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install anonaddy k8s-at-home/anonaddy
+helm install webtrees k8s-at-home/webtrees
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `anonaddy`
+To install the chart with the release name `webtrees`
 
 ```console
-helm install anonaddy k8s-at-home/anonaddy
+helm install webtrees k8s-at-home/webtrees
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `anonaddy` deployment
+To uninstall the `webtrees` deployment
 
 ```console
-helm uninstall anonaddy
+helm uninstall webtrees
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -56,15 +56,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install anonaddy \
+helm install webtrees \
   --set env.TZ="America/New York" \
-    k8s-at-home/anonaddy
+    k8s-at-home/webtrees
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install anonaddy k8s-at-home/anonaddy -f values.yaml
+helm install webtrees k8s-at-home/webtrees -f values.yaml
 ```
 
 ## Custom configuration
@@ -77,39 +77,41 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [anonaddy documentation](https://github.com/anonaddy/docker#environment-variables). |
-| env.ANONADDY_DOMAIN | string | `"chart-example.local"` | Root domain to receive email from |
-| env.ANONADDY_SECRET | string | `nil` | Long random string used when hashing data for the anonymous replies |
-| env.APP_KEY | string | `nil` | Application key for encrypter service You can generate one through `anonaddy key:generate --show` or `echo "base64:$(openssl rand -base64 32)"` |
+| env | object | See below | environment variables. See [webtrees-docker documentation](https://github.com/NathanVaughn/webtrees-docker#environment-variables) for more details. |
+| env.BASE_URL | string | `"https://webtrees.k8s-at-home.com"` | Base URL of the installation, with protocol. This needs to be in the form of http://webtrees.example.com |
+| env.DB_HOST | string | `nil` | Database hostname |
+| env.DB_NAME | string | `nil` | Database to connect to |
+| env.DB_PASS | string | `nil` | Database password |
+| env.DB_PORT | string | `"3306"` | Database server port |
+| env.DB_PREFIX | string | `"wt_"` | Prefix to give all tables in the database. Set this to a value of "" to have no table prefix. |
+| env.DB_TYPE | string | `"mysql"` | Database server type |
+| env.DB_USER | string | `nil` | Database username |
+| env.LANG | string | `"en-US"` | webtrees localization setting |
+| env.PRETTY_URLS | string | `"TRUE"` | Enable pretty URLs |
+| env.TZ | string | `"UTC"` | Set the container timezone |
+| env.WT_EMAIL | string | `nil` | Admin account email |
+| env.WT_NAME | string | `nil` | Admin account full name |
+| env.WT_PASS | string | `nil` | Admin account password |
+| env.WT_USER | string | `nil` | Admin account username |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"anonaddy/anonaddy"` | image repository |
-| image.tag | string | `"0.8.4"` | image tag |
+| image.repository | string | `"ghcr.io/nathanvaughn/webtrees"` | image repository |
+| image.tag | string | `"2.0.19"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| mariadb.enabled | bool | `false` |  |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| redis | object | See values.yaml | Enable and configure redis subchart under this key.    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis) |
 | service | object | See values.yaml | Configures service settings for the chart. |
-| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
-All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/commonREADME.md#Changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-### [2.0.0]
-
-#### Changed
-
-- **BREAKING**: Updated `mariadb` chart to version `10.2.0`. Check out the [chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000) to see which values have changed.
-- Updated the `redis` chart to version 15.6.10.
-- Updated the common library dependency to version 4.3.0.
 
 ### [1.0.0]
 
 #### Added
 
-- Initial version
+- N/A
 
 #### Changed
 
@@ -119,8 +121,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[2.0.0]: #200
-[1.0.0]: #100
+[1.0.0]: #1.0.0
 
 ## Support
 

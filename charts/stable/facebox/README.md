@@ -1,14 +1,15 @@
-# anonaddy
+# facebox
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-Anonaddy: Anonymous email forwarding
+Facebox detects and identifies faces in photos. You can teach facebox with as little as one sample image.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/anonaddy/docker>
+* <https://docs.veritone.com/#/developer/machine-box/boxes/facebox-overview>
+* <https://hub.docker.com/r/machinebox/facebox>
 
 ## Requirements
 
@@ -18,8 +19,6 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
-| https://charts.bitnami.com/bitnami | redis | 15.6.10 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -27,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install anonaddy k8s-at-home/anonaddy
+helm install facebox k8s-at-home/facebox
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `anonaddy`
+To install the chart with the release name `facebox`
 
 ```console
-helm install anonaddy k8s-at-home/anonaddy
+helm install facebox k8s-at-home/facebox
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `anonaddy` deployment
+To uninstall the `facebox` deployment
 
 ```console
-helm uninstall anonaddy
+helm uninstall facebox
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -56,15 +55,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install anonaddy \
+helm install facebox \
   --set env.TZ="America/New York" \
-    k8s-at-home/anonaddy
+    k8s-at-home/facebox
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install anonaddy k8s-at-home/anonaddy -f values.yaml
+helm install facebox k8s-at-home/facebox -f values.yaml
 ```
 
 ## Custom configuration
@@ -77,33 +76,19 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [anonaddy documentation](https://github.com/anonaddy/docker#environment-variables). |
-| env.ANONADDY_DOMAIN | string | `"chart-example.local"` | Root domain to receive email from |
-| env.ANONADDY_SECRET | string | `nil` | Long random string used when hashing data for the anonymous replies |
-| env.APP_KEY | string | `nil` | Application key for encrypter service You can generate one through `anonaddy key:generate --show` or `echo "base64:$(openssl rand -base64 32)"` |
+| env | object | See below | environment variables. See [image docs](https://developer.us-1.veritone.com/machinebox/overview) for more details. |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"anonaddy/anonaddy"` | image repository |
-| image.tag | string | `"0.8.4"` | image tag |
+| image.repository | string | `"machinebox/facebox"` | image repository |
+| image.tag | string | `"latest"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| mariadb.enabled | bool | `false` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| redis | object | See values.yaml | Enable and configure redis subchart under this key.    For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis) |
 | service | object | See values.yaml | Configures service settings for the chart. |
-| strategy.type | string | `"Recreate"` |  |
 
 ## Changelog
 
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-### [2.0.0]
-
-#### Changed
-
-- **BREAKING**: Updated `mariadb` chart to version `10.2.0`. Check out the [chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000) to see which values have changed.
-- Updated the `redis` chart to version 15.6.10.
-- Updated the common library dependency to version 4.3.0.
 
 ### [1.0.0]
 
@@ -119,7 +104,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[2.0.0]: #200
 [1.0.0]: #100
 
 ## Support

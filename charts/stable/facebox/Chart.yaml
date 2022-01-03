@@ -1,0 +1,21 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Facebox detects and identifies faces in photos. You can teach facebox with as little as one sample image.
+name: facebox
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- facebox
+- ai
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/faceblx
+icon: https://static.veritone.com/assets/favicon/favicon.ico
+sources:
+- https://docs.veritone.com/#/developer/machine-box/boxes/facebox-overview
+- https://hub.docker.com/r/machinebox/facebox
+maintainers:
+- name: philipp
+  email: phil@hellmi.de
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
