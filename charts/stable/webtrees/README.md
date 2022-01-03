@@ -1,14 +1,15 @@
-# mealie
+# webtrees
 
-![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: v0.5.1](https://img.shields.io/badge/AppVersion-v0.5.1-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.0.19](https://img.shields.io/badge/AppVersion-2.0.19-informational?style=flat-square)
 
-Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
+Open-source online collaborative genealogy application
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/hay-kot/mealie>
+* <https://github.com/fisharebest/webtrees>
+* <https://github.com/NathanVaughn/webtrees-docker>
 
 ## Requirements
 
@@ -18,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.13.11 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
 | https://library-charts.k8s-at-home.com | common | 4.2.0 |
 
 ## TL;DR
@@ -26,23 +27,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install mealie k8s-at-home/mealie
+helm install webtrees k8s-at-home/webtrees
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `mealie`
+To install the chart with the release name `webtrees`
 
 ```console
-helm install mealie k8s-at-home/mealie
+helm install webtrees k8s-at-home/webtrees
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `mealie` deployment
+To uninstall the `webtrees` deployment
 
 ```console
-helm uninstall mealie
+helm uninstall webtrees
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +56,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install mealie \
+helm install webtrees \
   --set env.TZ="America/New York" \
-    k8s-at-home/mealie
+    k8s-at-home/webtrees
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install mealie k8s-at-home/mealie -f values.yaml
+helm install webtrees k8s-at-home/webtrees -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,58 +77,51 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [image docs](https://hay-kot.github.io/mealie/documentation/getting-started/install/#env-variables) for more details. |
-| env.DB_TYPE | string | `"sqlite"` | Set the application database type |
+| env | object | See below | environment variables. See [webtrees-docker documentation](https://github.com/NathanVaughn/webtrees-docker#environment-variables) for more details. |
+| env.BASE_URL | string | `"https://webtrees.k8s-at-home.com"` | Base URL of the installation, with protocol. This needs to be in the form of http://webtrees.example.com |
+| env.DB_HOST | string | `nil` | Database hostname |
+| env.DB_NAME | string | `nil` | Database to connect to |
+| env.DB_PASS | string | `nil` | Database password |
+| env.DB_PORT | string | `"3306"` | Database server port |
+| env.DB_PREFIX | string | `"wt_"` | Prefix to give all tables in the database. Set this to a value of "" to have no table prefix. |
+| env.DB_TYPE | string | `"mysql"` | Database server type |
+| env.DB_USER | string | `nil` | Database username |
+| env.LANG | string | `"en-US"` | webtrees localization setting |
+| env.PRETTY_URLS | string | `"TRUE"` | Enable pretty URLs |
 | env.TZ | string | `"UTC"` | Set the container timezone |
+| env.WT_EMAIL | string | `nil` | Admin account email |
+| env.WT_NAME | string | `nil` | Admin account full name |
+| env.WT_PASS | string | `nil` | Admin account password |
+| env.WT_USER | string | `nil` | Admin account username |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"hkotel/mealie"` | image repository |
-| image.tag | string | `"v0.5.1"` | image tag |
+| image.repository | string | `"ghcr.io/nathanvaughn/webtrees"` | image repository |
+| image.tag | string | `"2.0.19"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/commonREADME.md#Changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-### [3.2.0]
-
-### Changed
-
-- Add dependency for postgres database as the application now supports it. [Postgres - Mealie](https://hay-kot.github.io/mealie/documentation/getting-started/install/#docker-compose-with-postgres-beta)
-
-### [3.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [2.0.1]
-
-#### Changed
-
-- Bump container version to `v0.5.1`.
-
-### [2.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
 
 ### [1.0.0]
 
 #### Added
 
-- Initial version
+- N/A
 
-[3.0.0]: #300
-[2.0.1]: #201
-[2.0.0]: #200
-[1.0.0]: #100
+#### Changed
+
+- N/A
+
+#### Removed
+
+- N/A
+
+[1.0.0]: #1.0.0
 
 ## Support
 

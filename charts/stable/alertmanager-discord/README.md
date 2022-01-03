@@ -1,14 +1,15 @@
-# openhab
+# alertmanager-discord
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 3.2.0](https://img.shields.io/badge/AppVersion-3.2.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.3](https://img.shields.io/badge/AppVersion-1.0.3-informational?style=flat-square)
 
-openhab helm package
+Webhook for Prometheus Alertmanager to listen for notifications and pushes them to Discord channel
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://hub.docker.com/r/openhab/openhab>
+* <https://github.com/rogerrum/alertmanager-discord>
+* <https://hub.docker.com/r/rogerrum/alertmanager-discord>
 
 ## Requirements
 
@@ -25,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install openhab k8s-at-home/openhab
+helm install alertmanager-discord k8s-at-home/alertmanager-discord
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `openhab`
+To install the chart with the release name `alertmanager-discord`
 
 ```console
-helm install openhab k8s-at-home/openhab
+helm install alertmanager-discord k8s-at-home/alertmanager-discord
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `openhab` deployment
+To uninstall the `alertmanager-discord` deployment
 
 ```console
-helm uninstall openhab
+helm uninstall alertmanager-discord
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -54,15 +55,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install openhab \
+helm install alertmanager-discord \
   --set env.TZ="America/New York" \
-    k8s-at-home/openhab
+    k8s-at-home/alertmanager-discord
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install openhab k8s-at-home/openhab -f values.yaml
+helm install alertmanager-discord k8s-at-home/alertmanager-discord -f values.yaml
 ```
 
 ## Custom configuration
@@ -75,19 +76,19 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | string | `nil` | environment variables. See more environment variables in the [openhab image documentation](https://hub.docker.com/r/openhab/openhab). |
+| env | object | See below | environment variables. See [image docs](https://github.com/metalmatze/alertmanager-bot) for more configuration options. |
+| env.DISCORD_USERNAME | string | `"Alertmanager"` | Discord Username |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"openhab/openhab"` | image repository |
-| image.tag | string | `"3.2.0"` | image tag |
-| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Choose either -- a single volume for all data or separate volumes for each sub-directory. |
-| persistence.addons | object | `{"enabled":false,"mountPath":"/openhab/addons"}` | separate volumes |
-| persistence.data | object | `{"enabled":false,"subPath":[{"mountPath":"/openhab/addons","path":"addons"},{"mountPath":"/openhab/conf","path":"conf"},{"mountPath":"/openhab/userdata","path":"userdata"}]}` | single volume |
-| service | object | See values.yaml | Configures service settings for the chart. |
+| image.repository | string | `"rogerrum/alertmanager-discord"` | image repository |
+| image.tag | string | `"1.0.3"` | image tag |
+| ingress | object | Disabled | Enable and configure ingress settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes | object | Disabled | Configures probes for the chart. Normally this does not need to be modified. |
+| service | object | `{"main":{"enabled":true,"ports":{"http":{"port":9094}}}}` | Configures service settings for the chart. Normally this does not need to be modified. |
 
 ## Changelog
 
-All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
+All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/commonREADME.md#Changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
@@ -95,7 +96,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### Added
 
-- Initial version
+- N/A
 
 #### Changed
 
@@ -105,7 +106,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
-[1.0.0]: #100
+[1.0.0]: #1.0.0
 
 ## Support
 

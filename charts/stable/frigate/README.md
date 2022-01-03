@@ -1,6 +1,6 @@
 # frigate
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v0.8.0](https://img.shields.io/badge/AppVersion-v0.8.0-informational?style=flat-square)
+![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: v0.9.4](https://img.shields.io/badge/AppVersion-v0.9.4-informational?style=flat-square)
 
 NVR With Realtime Object Detection for IP Cameras
 
@@ -99,7 +99,7 @@ config: |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"blakeblackshear/frigate"` | image repository |
-| image.tag | string | `"0.8.4-amd64"` | image tag |
+| image.tag | string | `"0.9.4-amd64"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.cache | object | See values.yaml | Configure a temporary cache. See [docs](https://blakeblackshear.github.io/frigate/) for more details.. |
@@ -113,6 +113,10 @@ config: |
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [7.0.0]
+
+- Upgraded frigate version to 0.9.4. This introduces breaking changes regarding frigate configuration. Please check, that your configuration conforms the format described in the [official docs](https://docs.frigate.video/configuration/index/). When starting the container with a wrong configuration you will get a detailed overview which configuration options you need to adjust.
 
 ### [6.0.0]
 
