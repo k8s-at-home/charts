@@ -31,6 +31,7 @@
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
 | [emby](stable/emby) | Emby Server is a home media server |
 | [esphome](stable/esphome) | ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems. |
+| [facebox](stable/facebox) | Facebox detects and identifies faces in photos. You can teach facebox with as little as one sample image. |
 | [filebrowser](stable/filebrowser) | filebrowser provides a file managing interface within a specified directory |
 | [flaresolverr](stable/flaresolverr) | FlareSolverr is a proxy server to bypass Cloudflare protection |
 | [flood](stable/flood) | Flood is a monitoring service for various torrent clients |
