@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -100,6 +100,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### Changed
 
 - Upgrade to Node Red 2.x (2.1.4) upstream image.
+- Upgrade common dep to 4.3.0.
 
 ### [9.0.0]
 
