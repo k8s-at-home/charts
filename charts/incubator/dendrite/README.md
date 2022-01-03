@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.13.14 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.14.2 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -77,13 +77,14 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| dendrite | object | See values.yaml | Configuration for Dendrite. For more information see [the sample denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | dendrite.components | object | See values.yaml | Configure the dendrite components. |
 | dendrite.components.app_service_api | object | See values.yaml | Configure the App Service API |
 | dendrite.components.client_api | object | `{"captcha":{"enabled":false,"recaptcha_bypass_secret":"","recaptcha_private_key":"","recaptcha_public_key":"","recaptcha_siteverify_api":""},"rate_limiting":{"cooloff_ms":500,"enabled":true,"threshold":5},"registration_disabled":false,"registration_shared_secret":"","turn":{"turn_password":"","turn_shared_secret":"","turn_uris":[],"turn_user_lifetime":"","turn_username":""}}` | Configure the Client API |
 | dendrite.components.client_api.captcha | object | See values.yaml | Configure captcha for registration |
 | dendrite.components.client_api.rate_limiting | object | values.yaml | Configure rate limiting. |
-| dendrite.components.client_api.registration_disabled | bool | See values.yaml | Enable or disable registration for this homeserver. |
-| dendrite.components.client_api.registration_shared_secret | string | See values.yaml | Shared secret that allows registration, despite registration_disabled. |
+| dendrite.components.client_api.registration_disabled | bool | `false` | Enable or disable registration for this homeserver. |
+| dendrite.components.client_api.registration_shared_secret | string | `""` | Shared secret that allows registration, despite registration_disabled. |
 | dendrite.components.client_api.turn | object | See values.yaml | Configure TURN |
 | dendrite.components.federation_api | object | values.yaml | Configure the Federation API |
 | dendrite.components.media_api | object | values.yaml | Configure the Media API |
@@ -91,12 +92,12 @@ N/A
 | dendrite.global | object | See values.yaml | Configure the global settings for dendrite. |
 | dendrite.global.dns_cache | object | See values.yaml | Configure DNS cache. |
 | dendrite.global.dns_cache.enabled | bool | See values.yaml | If enabled, dns cache will be enabled. |
-| dendrite.global.key_validity_period | string | See values.yaml | Configure the key_validity period |
+| dendrite.global.key_validity_period | string | `"168h0m0s"` | Configure the key_validity period |
 | dendrite.global.metrics | object | See values.yaml | Configure prometheus metrics collection for dendrite. |
 | dendrite.global.metrics.enabled | bool | See values.yaml | If enabled, metrics collection will be enabled |
-| dendrite.global.server_name | string | See values.yaml | (required) Configure the server name for the dendrite instance. |
-| dendrite.global.trusted_third_party_id_servers | list | See the values.yaml | Configure the list of domains the server will trust as identity servers |
-| dendrite.global.well_known_server_name | string | See values.yaml | Configure the well-known server name and optional port |
+| dendrite.global.server_name | string | `"localhost"` | (required) Configure the server name for the dendrite instance. |
+| dendrite.global.trusted_third_party_id_servers | list | `["matrix.org","vector.im"]` | Configure the list of domains the server will trust as identity servers |
+| dendrite.global.well_known_server_name | string | `""` | Configure the well-known server name and optional port |
 | dendrite.logging | list | See values.yaml | Configure logging. |
 | dendrite.matrix_key_secret | object | See values.yaml | If enabled, use an existing secret for matrix_key.pem. Otherwise a matrix_key.pem must be mounted to `/etc/dendrite`. |
 | dendrite.tls_secret | object | See values.yaml | If enabled, use an existing secrets for the TLS certificate and key. Otherwise, to enable TLS a `server.crt` and `server.key` must be mounted at `/etc/dendrite`. |
