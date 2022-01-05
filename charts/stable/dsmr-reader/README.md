@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -99,6 +99,7 @@ N/A
 
 #### Changed
 
+* Upgraded `common` chart dependency to version `4.3.0`.
 * Upgraded `postgresql` chart dependency to version `10.14.4`.
 
 #### Fixed
