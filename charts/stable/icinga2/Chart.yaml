@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: latest
 description: A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting.
 name: icinga2
-version: 2.4.0
+version: 3.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - icinga2
@@ -18,12 +18,20 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.2.0
+    version: 4.3.0
   - name: mariadb
-    version: 9.8.1
+    version: 10.2.0
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `9.8.1`.
+      description: "**Breaking:** Updated `mariadb` chart to version `10.2.0`. Check out the chart documentation to see which values have changed."
+      links:
+        - name: Chart documentation
+          url: https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000
+    - kind: changed
+      description: Updated the common library dependency to version `4.3.0`.
+      links:
+        - name: Chart repository
+          url: https://github.com/k8s-at-home/library-charts/tree/common-4.3.0/charts/stable/common

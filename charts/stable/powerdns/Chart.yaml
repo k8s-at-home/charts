@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v4.3.1
 description: PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
 name: powerdns
-version: 3.6.0
+version: 4.0.0
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/powerdns
 sources:
   - http://www.github.com/PowerDNS/
@@ -16,12 +16,15 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: mariadb
-    version: 9.8.1
+    version: 10.2.0
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `9.8.1`.
+      description: "**Breaking:** Updated `mariadb` chart to version `10.2.0`. Check out the chart documentation to see which values have changed."
+      links:
+        - name: Chart documentation
+          url: https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000
     - kind: changed
       description: Upgraded `postgresql` chart dependency to version `10.14.4`.
