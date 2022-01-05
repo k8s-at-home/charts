@@ -41,7 +41,7 @@ jobs:
     - name: Install helm-docs
       if: steps.filter.outputs.addedOrModified == 'true'
       run: |
-        wget -O /tmp/helm-docs.deb  https://github.com/k8s-at-home/helm-docs/releases/download/v0.1.0/helm-docs_0.1.0_Linux_x86_64.deb
+        wget -O /tmp/helm-docs.deb  https://github.com/k8s-at-home/helm-docs/releases/download/v0.1.1/helm-docs_0.1.1_Linux_x86_64.deb
         sudo dpkg -i /tmp/helm-docs.deb
 
     - name: Run against changed charts
@@ -74,5 +74,9 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         push_options: --force
-        commit_message: Auto-generate chart README
+        commit_message: Auto-generate chart README [skip ci]
+
+        commit_user_name: ${GITHUB_ACTOR}
+        commit_user_email: ${GITHUB_ACTOR}@users.noreply.github.com
+
         file_pattern: charts/**/
