@@ -15,9 +15,9 @@ jobs:
     # if: startsWith(github.ref, 'refs/heads/test/')
 
     steps:
-      - name: Run
-        run: |
-          echo $GITHUB_REF
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.1
 
       # - name: Checkout
       #   uses: actions/checkout@v2
