@@ -5,19 +5,23 @@ name: seafile
 version: 1.2.1
 kubeVersion: ">=1.16.0-0"
 keywords:
-- seafile
+  - seafile
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/seafile
 icon: https://manual.seafile.com/media/seafile-transparent-1024.png
 sources:
-- https://github.com/haiwen/seafile-docker
+  - https://github.com/haiwen/seafile-docker
 maintainers:
-- name: phybros
-  email: 1985132+phybros@users.noreply.github.com
+  - name: phybros
+    email: 1985132+phybros@users.noreply.github.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
-- name: mariadb
-  version: 9.7.1
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: mariadb
+    version: 9.7.1
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
