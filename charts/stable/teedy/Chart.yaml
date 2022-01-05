@@ -2,25 +2,29 @@ apiVersion: v2
 appVersion: v1.9
 description: Teedy is an open source, lightweight document management system for individuals and businesses.
 name: teedy
-version: 5.3.1
+version: 5.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- teedy
-- documents
-- management
+  - teedy
+  - documents
+  - management
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/teedy
 icon: https://raw.githubusercontent.com/sismics/docs/v1.9/docs-web/src/main/resources/image/logo.png
 sources:
-- https://github.com/sismics/docs
-- https://github.com/k8s-at-home/charts/tree/master/charts/teedy
+  - https://github.com/sismics/docs
+  - https://github.com/k8s-at-home/charts/tree/master/charts/teedy
 maintainers:
-- name: carpenike
-  email: ryan@ryanholt.net
+  - name: carpenike
+    email: ryan@ryanholt.net
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: postgresql
-  version: 10.13.10
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.

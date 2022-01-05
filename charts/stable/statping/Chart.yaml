@@ -2,26 +2,30 @@ apiVersion: v2
 appVersion: v0.90.74
 description: Status page for monitoring your websites and applications
 name: statping
-version: 5.3.1
+version: 5.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- statping
-- status
-- status-page
+  - statping
+  - status
+  - status-page
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/statping
 icon: https://avatars.githubusercontent.com/u/61949049?s=200&v=4
 sources:
-- https://github.com/statping/statping
+  - https://github.com/statping/statping
 maintainers:
   - name: DirtyCajunRice
     email: nick@cajun.pro
   - name: angelnu
     email: git@angelnu.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: postgresql
-  version: 10.13.10
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.
