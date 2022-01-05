@@ -24,11 +24,13 @@ jobs:
     runs-on: ubuntu-20.04
     needs:
       - get-branch
-    if:
-      startsWith(needs.get-branch.output.branch, 'test/')
-
     steps:
+      - name: debug
+        run: |
+          echo ${{ needs.get-branch.output.branch }}
       - name: Checkout
+        if:
+          startsWith(needs.get-branch.output.branch, 'test/')
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
