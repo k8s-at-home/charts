@@ -68175,6 +68175,45 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/samba-1.0.0/samba-1.0.0.tgz
     version: 1.0.0
   seafile:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: "**Breaking:** Updated `mariadb` chart to version `10.2.0`. Check out the chart documentation to see which values have changed."
+          links:
+            - name: Chart documentation
+              url: https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000
+        - kind: changed
+          description: Updated the common library dependency to version `4.3.0`.
+          links:
+            - name: Chart repository
+              url: https://github.com/k8s-at-home/library-charts/tree/common-4.3.0/charts/stable/common
+    apiVersion: v2
+    appVersion: 8.0.7
+    created: "2022-01-05T18:52:05.935818783Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    description: seafile helm package
+    digest: d3b3a934977ebe8abdc67a4c048b13e3a2ce0e5b01b5ba49dd0de8051865be9c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/seafile
+    icon: https://manual.seafile.com/media/seafile-transparent-1024.png
+    keywords:
+    - seafile
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: 1985132+phybros@users.noreply.github.com
+      name: phybros
+    name: seafile
+    sources:
+    - https://github.com/haiwen/seafile-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/seafile-2.0.0/seafile-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 8.0.7
     created: "2021-12-02T13:46:54.280633022Z"
@@ -93167,4 +93206,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-03T18:07:57.591749772Z"
+generated: "2022-01-05T18:52:05.955580143Z"
