@@ -15,8 +15,7 @@ jobs:
     # if: startsWith(github.ref, 'refs/heads/test/')
 
     steps:
-      - name: Run against changed charts
-        if: steps.filter.outputs.addedOrModified == 'true'
+      - name: Run
         run: |
           echo $GITHUB_REF
 
