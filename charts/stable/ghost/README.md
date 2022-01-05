@@ -20,7 +20,7 @@ Kubernetes: `>=1.19.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -108,6 +108,7 @@ N/A
 
 #### Changed
 
+* Upgraded `common` chart dependency to version `4.3.0`.
 * Upgraded `mariadb` chart dependency to version `10.2.0`.
 
 #### Fixed
