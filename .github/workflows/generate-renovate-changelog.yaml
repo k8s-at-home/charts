@@ -12,31 +12,32 @@ jobs:
     name: Update changelog
     runs-on: ubuntu-20.04
 
-    # if: startsWith(github.ref, 'refs/heads/test/')
-
     steps:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v5.1
 
-      - name: Debug
-        id: debug
+      - name: Check branch
+        id: check-branch
+        if: startsWith(github.ref, 'testz/')
         run: |
-          echo "${{ steps.branch-name.outputs.current_branch }}"
+          echo "Current branch: ${{ steps.branch-name.outputs.current_branch }}"
 
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      #   with:
-      #     fetch-depth: 2
+      - name: Checkout
+        needs:
+          - check-branch
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
-      # - uses: dorny/paths-filter@v2
-      #   id: filter
-      #   with:
-      #     base: ${{ github.ref }}
-      #     list-files: shell
-      #     filters: |
-      #       addedOrModified:
-      #         - added|modified: 'charts/**'
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          base: ${{ github.ref }}
+          list-files: shell
+          filters: |
+            addedOrModified:
+              - added|modified: 'charts/**'
 
       # - name: Run against changed charts
       #   if: steps.filter.outputs.addedOrModified == 'true'
