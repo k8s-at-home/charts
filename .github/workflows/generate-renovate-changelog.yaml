@@ -57,6 +57,7 @@ jobs:
               ./hack/renovate-releasenotes.sh "charts/${chart_parts[0]}"/"${chart_parts[1]}"
             fi
             echo ""
+            cat "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml"
         done
 
     # - name: Create commit
