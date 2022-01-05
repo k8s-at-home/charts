@@ -34,7 +34,7 @@ jobs:
 
     - name: Install Dev tools
       run: |
-        sudo wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O /usr/bin/yq
+        sudo wget https://github.com/mikefarah/yq/releases/download/v4.16.2/yq_linux_amd64 -O /usr/bin/yq
         sudo chmod +x /usr/bin/yq
 
     - name: Run chart-testing (list-changed)
@@ -69,7 +69,7 @@ jobs:
 
     - name: Install Dev tools
       run: |
-        sudo wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O /usr/bin/yq
+        sudo wget https://github.com/mikefarah/yq/releases/download/v4.16.2/yq_linux_amd64 -O /usr/bin/yq
         sudo chmod +x /usr/bin/yq
 
     - name: Run chart-testing (list-changed)
@@ -108,6 +108,11 @@ jobs:
 
     - name: Set up chart-testing
       uses: helm/chart-testing-action@v2.1.0
+
+    - name: Install Dev tools
+      run: |
+        sudo wget https://github.com/mikefarah/yq/releases/download/v4.16.2/yq_linux_amd64 -O /usr/bin/yq
+        sudo chmod +x /usr/bin/yq
 
     - name: Run chart-testing (lint)
       id: lint
