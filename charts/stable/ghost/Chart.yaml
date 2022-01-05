@@ -18,7 +18,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.2.0
+    version: 4.3.0
   - name: mariadb
     version: 10.2.0
     repository: https://charts.bitnami.com/bitnami
@@ -27,3 +27,8 @@ annotations:
   artifacthub.io/changes: |
     - kind: changed
       description: Upgraded `mariadb` chart dependency to version `10.2.0`.
+    - kind: changed
+      description: Updated the common library dependency to version `4.3.0`.
+      links:
+        - name: Chart repository
+          url: https://github.com/k8s-at-home/library-charts/tree/common-4.3.0/charts/stable/common
