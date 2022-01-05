@@ -3,8 +3,9 @@ name: "Charts: Update changelog for Renovate PR"
 concurrency: update-renovate-pr-changelog
 
 on:
-  push:
+  pull_request:
     branches:
+#       - "renovate/**"
       - "test/**"
     paths:
       - "charts/**"
