@@ -25,7 +25,7 @@ jobs:
     needs:
       - get-branch
     if:
-      startsWith(needs.get-branch.output.branch, 'testz/')
+      startsWith(needs.get-branch.output.branch, 'test/')
 
     steps:
       - name: Checkout
