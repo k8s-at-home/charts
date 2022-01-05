@@ -16,10 +16,14 @@ maintainers:
   - name: mcronce
     email: mike@quadra-tec.net
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: mongodb
-  version: 10.30.12
-  repository: https://charts.bitnami.com/bitnami
-  condition: mongodb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: mongodb
+    version: 10.30.12
+    repository: https://charts.bitnami.com/bitnami
+    condition: mongodb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `mongodb` chart dependency to version `10.30.12`.

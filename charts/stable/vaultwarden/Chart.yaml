@@ -5,24 +5,30 @@ name: vaultwarden
 version: 3.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- Vaultwarden
-- bitwardenrs
+  - Vaultwarden
+  - bitwardenrs
 home: "https://github.com/k8s-at-home/charts/tree/master/charts/stable/vaultwarden"
 icon: "https://sesoodan.sirv.com/bitwarden_rs.png"
 sources:
-- https://github.com/dani-garcia/vaultwarden
+  - https://github.com/dani-garcia/vaultwarden
 maintainers:
-- name: Rwaltr
-  email: rwalt@pm.me
+  - name: Rwaltr
+    email: rwalt@pm.me
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: mariadb
-  version: 9.8.1
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
-- name: postgresql
-  version: 10.14.4
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: mariadb
+    version: 9.8.1
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `mariadb` chart dependency to version `9.8.1`.
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.

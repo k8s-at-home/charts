@@ -5,19 +5,23 @@ name: mealie
 version: 3.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- grocy
+  - grocy
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mealie
 icon: https://raw.githubusercontent.com/hay-kot/mealie/gh-pages/assets/img/favicon.png
 sources:
-- https://github.com/hay-kot/mealie
+  - https://github.com/hay-kot/mealie
 maintainers:
-- name: bjw-s
-  email: me@bjw-s.dev
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 10.14.4
-  condition: postgresql.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: postgresql
+    repository: https://charts.bitnami.com/bitnami
+    version: 10.14.4
+    condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.

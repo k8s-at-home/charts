@@ -5,20 +5,24 @@ name: monica
 version: 6.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- crm
+  - crm
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/monica
 icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
 sources:
-- https://github.com/monicahq/monica
-- https://hub.docker.com/_/monica
+  - https://github.com/monicahq/monica
+  - https://hub.docker.com/_/monica
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: mariadb
-  version: 9.8.1
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: mariadb
+    version: 9.8.1
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `mariadb` chart dependency to version `9.8.1`.

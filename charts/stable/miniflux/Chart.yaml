@@ -5,21 +5,25 @@ name: miniflux
 version: 4.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- miniflux
-- rss
-- news
+  - miniflux
+  - rss
+  - news
 home: https://github.com/k8s-at-home/charts/tree/master/charts/miniflux
 icon: https://raw.githubusercontent.com/miniflux/logo/master/icon.svg
 sources:
-- https://github.com/miniflux/v2
+  - https://github.com/miniflux/v2
 maintainers:
-- name: trly
-  email: trly@users.noreply.github.com
+  - name: trly
+    email: trly@users.noreply.github.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: postgresql
-  version: 10.14.4
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.

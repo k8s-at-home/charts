@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 appVersion: v1.23.4
-description: A self-hosted data logger for your Tesla 🚘
+description: "A self-hosted data logger for your Tesla \U0001F698"
 name: teslamate
 version: 6.4.0
 keywords:
@@ -23,3 +23,7 @@ dependencies:
 maintainers:
   - name: billimek
     email: jeff@billimek.com
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.

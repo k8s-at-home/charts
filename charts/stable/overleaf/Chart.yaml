@@ -5,24 +5,30 @@ name: overleaf
 version: 2.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- overleaf
-- sharelatex
+  - overleaf
+  - sharelatex
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overleaf
 icon: https://avatars.githubusercontent.com/u/6359919?s=200&v=4
 sources:
-- https://github.com/overleaf/overleaf
+  - https://github.com/overleaf/overleaf
 maintainers:
-- name: bjw-s
-  email: me@bjw-s.dev
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: redis
-  version: 15.6.10
-  repository: https://charts.bitnami.com/bitnami
-  condition: redis.enabled
-- name: mongodb
-  version: 10.30.12
-  repository: https://charts.bitnami.com/bitnami
-  condition: mongodb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: redis
+    version: 15.6.10
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+  - name: mongodb
+    version: 10.30.12
+    repository: https://charts.bitnami.com/bitnami
+    condition: mongodb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `mongodb` chart dependency to version `10.30.12`.
+    - kind: changed
+      description: Upgraded `redis` chart dependency to version `15.6.10`.

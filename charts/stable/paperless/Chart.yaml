@@ -5,24 +5,30 @@ name: paperless
 version: 8.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- paperless
+  - paperless
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paperless
 icon: https://avatars.githubusercontent.com/u/47271576?s=200&v=4
 sources:
-- https://github.com/jonaswinkler/paperless-ng
+  - https://github.com/jonaswinkler/paperless-ng
 maintainers:
-- name: mr-onion-2
-- name: jonnobrow
-  email: jonathan@jonnobrow.co.uk
+  - name: mr-onion-2
+  - name: jonnobrow
+    email: jonathan@jonnobrow.co.uk
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: postgresql
-  version: 10.14.4
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
-- name: redis
-  version: 15.6.10
-  repository: https://charts.bitnami.com/bitnami
-  condition: redis.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: redis
+    version: 15.6.10
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.
+    - kind: changed
+      description: Upgraded `redis` chart dependency to version `15.6.10`.

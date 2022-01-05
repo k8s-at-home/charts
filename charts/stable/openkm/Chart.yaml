@@ -5,26 +5,32 @@ name: openkm
 version: 2.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- openkm
-- documentation management
-- docs
+  - openkm
+  - documentation management
+  - docs
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/openkm
 icon: https://raw.githubusercontent.com/openkm/document-management-system/master/src/main/webapp/img/logo_favicon.ico
 sources:
-- https://www.openkm.com/
-- https://github.com/openkm/document-management-system
+  - https://www.openkm.com/
+  - https://github.com/openkm/document-management-system
 maintainers:
-- name: carpenike
-  email: ryan@ryanholt.net
+  - name: carpenike
+    email: ryan@ryanholt.net
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: postgresql
-  version: 10.14.4
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
-- name: mariadb
-  version: 9.8.1
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.2.0
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: mariadb
+    version: 9.8.1
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `mariadb` chart dependency to version `9.8.1`.
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.
