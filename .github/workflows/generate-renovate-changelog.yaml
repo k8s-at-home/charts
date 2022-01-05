@@ -5,7 +5,7 @@ concurrency: update-renovate-pr-changelog
 on:
   pull_request:
     paths:
-    - 'charts/**'
+      - "charts/**"
 
 jobs:
   get-branch:
@@ -19,62 +19,53 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v5.1
 
-      - name: debug
-        run: |
-          echo ${{ steps.branch-name.outputs.current_branch }}
-
   update-changelog:
     name: Update changelog
     runs-on: ubuntu-20.04
     needs:
       - get-branch
-    steps:
-      - name: debug
-        run: |
-          echo "Branch: ${{ needs.get-branch.outputs.branch }}"
-          echo "Matches: ${{ startsWith(needs.get-branch.outputs.branch, 'test/') }}"
+    if: startsWith(needs.get-branch.outputs.branch, 'test/')
 
+    steps:
       - name: Checkout
-        if:
-          startsWith(needs.get-branch.outputs.branch, 'test/')
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
 
-      # - uses: dorny/paths-filter@v2
-      #   id: filter
-      #   with:
-      #     base: ${{ github.ref }}
-      #     list-files: shell
-      #     filters: |
-      #       addedOrModified:
-      #         - added|modified: 'charts/**'
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          base: ${{ github.ref }}
+          list-files: shell
+          filters: |
+            addedOrModified:
+              - added|modified: 'charts/**'
 
-      # - name: Run against changed charts
-      #   if: steps.filter.outputs.addedOrModified == 'true'
-      #   run: |
-      #     CHARTS=()
-      #     PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
-      #     # Get only the chart paths
-      #     for i in "${PATHS[@]}"
-      #     do
-      #         IFS='/' read -r -a path_parts <<< "$i"
-      #         CHARTS+=("${path_parts[1]}/${path_parts[2]}")
-      #     done
+      - name: Run against changed charts
+        if: steps.filter.outputs.addedOrModified == 'true'
+        run: |
+          CHARTS=()
+          PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
+          # Get only the chart paths
+          for i in "${PATHS[@]}"
+          do
+              IFS='/' read -r -a path_parts <<< "$i"
+              CHARTS+=("${path_parts[1]}/${path_parts[2]}")
+          done
 
-      #     # Remove duplicates
-      #     CHARTS=( `for i in ${CHARTS[@]}; do echo $i; done | sort -u` )
+          # Remove duplicates
+          CHARTS=( `for i in ${CHARTS[@]}; do echo $i; done | sort -u` )
 
-      #     for i in "${CHARTS[@]}"
-      #     do
-      #         echo "Updating CHANGELOG for chart ${i}"
-      #         IFS='/' read -r -a chart_parts <<< "$i"
-      #         if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
-      #           ./hack/renovate-releasenotes.sh "charts/${chart_parts[0]}"/"${chart_parts[1]}"
-      #         fi
-      #         echo ""
-      #         cat "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml"
-      #     done
+          for i in "${CHARTS[@]}"
+          do
+              echo "Updating CHANGELOG for chart ${i}"
+              IFS='/' read -r -a chart_parts <<< "$i"
+              if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
+                ./hack/renovate-releasenotes.sh "charts/${chart_parts[0]}"/"${chart_parts[1]}"
+              fi
+              echo ""
+              cat "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml"
+          done
 
     # - name: Create commit
     #   if: steps.filter.outputs.addedOrModified == 'true'
