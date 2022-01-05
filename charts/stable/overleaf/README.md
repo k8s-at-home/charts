@@ -95,6 +95,19 @@ N/A
 
 ### Version 2.3.0
 
+#### Added
+
+N/A
+
+#### Changed
+
+* Upgraded `mongodb` chart dependency to version `10.30.12`.
+* Upgraded `redis` chart dependency to version `15.6.10`.
+
+#### Fixed
+
+N/A
+
 ### Older versions
 
 A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/overleaf?modal=changelog)

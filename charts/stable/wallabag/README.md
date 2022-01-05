@@ -95,6 +95,20 @@ Default login is `wallabag:wallabag`.
 
 ### Version 5.3.0
 
+#### Added
+
+N/A
+
+#### Changed
+
+* Upgraded `mariadb` chart dependency to version `9.8.1`.
+* Upgraded `postgresql` chart dependency to version `10.14.4`.
+* Upgraded `redis` chart dependency to version `15.6.10`.
+
+#### Fixed
+
+N/A
+
 ### Older versions
 
 A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/wallabag?modal=changelog)

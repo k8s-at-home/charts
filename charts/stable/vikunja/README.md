@@ -98,6 +98,18 @@ N/A
 
 ### Version 5.2.0
 
+#### Added
+
+N/A
+
+#### Changed
+
+* Upgraded `postgresql` chart dependency to version `10.14.4`.
+
+#### Fixed
+
+N/A
+
 ### Older versions
 
 A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/vikunja?modal=changelog)

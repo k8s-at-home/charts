@@ -98,6 +98,18 @@ N/A
 
 ### Version 6.4.0
 
+#### Added
+
+N/A
+
+#### Changed
+
+* Upgraded `mariadb` chart dependency to version `9.8.1`.
+
+#### Fixed
+
+N/A
+
 ### Older versions
 
 A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/monica?modal=changelog)

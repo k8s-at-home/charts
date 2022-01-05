@@ -147,6 +147,18 @@ service:
 
 ### Version 4.6.0
 
+#### Added
+
+N/A
+
+#### Changed
+
+* Upgraded `mongodb` chart dependency to version `10.30.12`.
+
+#### Fixed
+
+N/A
+
 ### Older versions
 
 A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/unifi?modal=changelog)

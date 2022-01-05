@@ -97,6 +97,19 @@ N/A
 
 ### Version 8.3.0
 
+#### Added
+
+N/A
+
+#### Changed
+
+* Upgraded `postgresql` chart dependency to version `10.14.4`.
+* Upgraded `redis` chart dependency to version `15.6.10`.
+
+#### Fixed
+
+N/A
+
 ### Older versions
 
 A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/paperless?modal=changelog)

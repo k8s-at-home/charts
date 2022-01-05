@@ -102,6 +102,18 @@ N/A
 
 ### Version 1.1.0
 
+#### Added
+
+N/A
+
+#### Changed
+
+* Upgraded `mariadb` chart dependency to version `10.2.0`.
+
+#### Fixed
+
+N/A
+
 ### Older versions
 
 A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/ghost?modal=changelog)
