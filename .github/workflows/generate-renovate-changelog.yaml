@@ -6,10 +6,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-#       - "renovate/**"
       - "test/**"
-    paths:
-      - "charts/**"
 
 jobs:
   update-changelog:
