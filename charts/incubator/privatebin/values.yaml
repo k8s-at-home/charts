@@ -1,0 +1,68 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: privatebin/pdo
+  # -- image tag
+  tag: 1.3.5
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables)
+# and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details.
+# @default -- See below (only deviations from the default settings are specified)
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- log driver: syslog, stderr, stdout or file
+  PHP_TZ: UTC
+  # -- Database driver: mysql or postgres
+  DB_DRIVER: postgres
+  # -- Mysql/Postgres hostname
+  DB_HOSTNAME:
+  # -- Mysql/Postgres custom port (empty = default port)
+  DB_PORT:
+  # -- Mysql/Postgres username
+  DB_USERNAME:
+  # -- Mysql/Postgres password
+  DB_PASSWORD:
+  # -- Mysql/Postgres database name
+  DB_NAME:
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /srv/data
+
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
+postgresql:
+  enabled: false
+  postgresqlUsername: privatebin
+  postgresqlPassword: privatebin
+  postgresqlDatabase: privatebin
+  persistence:
+    enabled: false
+    # storageClass: ""
