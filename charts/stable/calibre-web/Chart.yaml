@@ -5,17 +5,21 @@ name: calibre-web
 version: 8.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- calibre
-- ebook
+  - calibre
+  - ebook
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/calibre-web
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/calibre-web-icon.png
 sources:
-- https://hub.docker.com/r/linuxserver/calibre-web/
-- https://github.com/janeczku/calibre-web
+  - https://hub.docker.com/r/linuxserver/calibre-web/
+  - https://github.com/janeczku/calibre-web
 maintainers:
-- name: wojoinc
-  email: wojoinc@pm.me
+  - name: wojoinc
+    email: wojoinc@pm.me
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

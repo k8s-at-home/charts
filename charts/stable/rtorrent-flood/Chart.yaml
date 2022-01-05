@@ -5,20 +5,24 @@ name: rtorrent-flood
 version: 9.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- rtorrent
-- flood
-- torrent
+  - rtorrent
+  - flood
+  - torrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rtorrent-flood
 icon: https://github.com/jfurrow/flood/blob/master/flood.png?raw=true
 sources:
-- https://github.com/jesec/rtorrent
-- https://github.com/jesec/flood
-- https://hub.docker.com/r/jesec/rtorrent
-- https://hub.docker.com/r/jesec/flood
+  - https://github.com/jesec/rtorrent
+  - https://github.com/jesec/flood
+  - https://hub.docker.com/r/jesec/rtorrent
+  - https://hub.docker.com/r/jesec/flood
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

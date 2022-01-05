@@ -5,19 +5,23 @@ name: focalboard
 version: 4.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- focalboard
-- kanban
-- project management
+  - focalboard
+  - kanban
+  - project management
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/focalboard
 icon: https://github.com/mattermost/focalboard/raw/main/webapp/static/favicon.svg
 sources:
-- https://www.focalboard.com/
-- https://github.com/mattermost/focalboard
-- https://github.com/FlipEnergy/container-images/blob/main/focalboard
+  - https://www.focalboard.com/
+  - https://github.com/mattermost/focalboard
+  - https://github.com/FlipEnergy/container-images/blob/main/focalboard
 maintainers:
-- name: FlipEnergy
-  email: dennis.zhang.nrg@gmail.com
+  - name: FlipEnergy
+    email: dennis.zhang.nrg@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

@@ -5,17 +5,21 @@ name: hyperion-ng
 version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- hyperion-ng
-- hyperion
+  - hyperion-ng
+  - hyperion
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/hyperion-ng
 icon: https://avatars.githubusercontent.com/u/17778452?s=200&v=4
 sources:
-- https://github.com/hyperion-project/hyperion.ng
-- https://hub.docker.com/r/sirfragalot/hyperion.ng
+  - https://github.com/hyperion-project/hyperion.ng
+  - https://hub.docker.com/r/sirfragalot/hyperion.ng
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

@@ -5,19 +5,23 @@ name: thelounge
 version: 3.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- thelounge
-- IRC
-- "The Lounge"
-- docker
-- thelounge-docker
+  - thelounge
+  - IRC
+  - "The Lounge"
+  - docker
+  - thelounge-docker
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/thelounge
 icon: https://avatars.githubusercontent.com/u/14336958?s=200&v=4
 sources:
-- https://github.com/thelounge/thelounge
+  - https://github.com/thelounge/thelounge
 maintainers:
-- name: Rwaltr
-  email: rwalt@pm.me
+  - name: Rwaltr
+    email: rwalt@pm.me
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

@@ -5,17 +5,21 @@ name: xbackbone
 version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- xbackbone
-- xshare
+  - xbackbone
+  - xshare
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/xbackbone
 icon: https://github.com/SergiX44/XBackBone/raw/master/.github/xbackbone.png
 sources:
-- https://github.com/SergiX44/XBackBone
-- https://hub.docker.com/r/pe46dro/xbackbone-docker
+  - https://github.com/SergiX44/XBackBone
+  - https://hub.docker.com/r/pe46dro/xbackbone-docker
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

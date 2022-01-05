@@ -5,19 +5,23 @@ name: searx
 version: 5.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- searx
-- search engine
-- privacy
+  - searx
+  - search engine
+  - privacy
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/searx
 icon: https://github.com/searx/searx/blob/master/searx/static/themes/simple/img/logo_searx_a.png?raw=true
 sources:
-- https://github.com/searx/searx
-- https://searx.github.io/searx/
-- https://hub.docker.com/r/searx/searx
+  - https://github.com/searx/searx
+  - https://searx.github.io/searx/
+  - https://hub.docker.com/r/searx/searx
 maintainers:
-- name: auricom
-  email: k8s-at-home@xpander.eml.cc
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

@@ -5,17 +5,21 @@ name: nzbget
 version: 12.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- nzbget
-- usenet
+  - nzbget
+  - usenet
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nzbget
 icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
 sources:
-- https://nzbget.net/
-- https://github.com/k8s-at-home/container-images
+  - https://nzbget.net/
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

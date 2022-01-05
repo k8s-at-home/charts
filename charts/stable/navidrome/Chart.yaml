@@ -5,18 +5,22 @@ name: navidrome
 version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- navidrome
-- music
-- streaming
+  - navidrome
+  - music
+  - streaming
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/navidrome
 icon: https://github.com/deluan/navidrome/blob/master/ui/src/icons/android-icon-72x72.png?raw=true
 sources:
-- https://github.com/deluan/navidrome
-- https://hub.docker.com/r/deluan/navidrome
+  - https://github.com/deluan/navidrome
+  - https://hub.docker.com/r/deluan/navidrome
 maintainers:
-- name: auricom
-  email: k8s-at-home@xpander.eml.cc
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

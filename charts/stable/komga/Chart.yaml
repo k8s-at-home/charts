@@ -5,19 +5,23 @@ name: komga
 version: 2.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- komga
-- comics
-- mangas
-- server
+  - komga
+  - comics
+  - mangas
+  - server
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/komga
 icon: https://komga.org/assets/media/logo.svg
 sources:
-- https://komga.org/
-- https://github.com/gotson/komga
+  - https://komga.org/
+  - https://github.com/gotson/komga
 maintainers:
-- name: nicholaswilde
-  email: ncwilde43@gmail.com
+  - name: nicholaswilde
+    email: ncwilde43@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

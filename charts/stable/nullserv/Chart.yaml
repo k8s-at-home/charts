@@ -5,14 +5,18 @@ name: nullserv
 version: 2.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- nullserv
+  - nullserv
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nullserv
 sources:
-- https://github.com/bmrzycki/nullserv
+  - https://github.com/bmrzycki/nullserv
 maintainers:
-- name: brandon099
-  email: brandon@clifford.sh
+  - name: brandon099
+    email: brandon@clifford.sh
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

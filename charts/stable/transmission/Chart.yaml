@@ -5,19 +5,23 @@ name: transmission
 version: 8.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- transmission
-- torrent
+  - transmission
+  - torrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/transmission
 icon: https://github.com/transmission/transmission/raw/master/extras/transmission-1920.jpg
 sources:
-- https://github.com/transmission/transmission
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/transmission/transmission
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: ishioni
-  email: helm@movishell.pl
-- name: bjw-s
-  email: me@bjw-s.dev
+  - name: ishioni
+    email: helm@movishell.pl
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

@@ -5,16 +5,20 @@ name: omada-controller
 version: 4.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- omada-controller
+  - omada-controller
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/omada-controller
 icon: https://www.tp-link.com/assets/images/icon/logo-white.svg
 sources:
-- https://github.com/mbentley/docker-omada-controller
-- https://github.com/k8s-at-home/charts/tree/master/charts/omada-controller
+  - https://github.com/mbentley/docker-omada-controller
+  - https://github.com/k8s-at-home/charts/tree/master/charts/omada-controller
 maintainers:
-- name: charlie-haley
-  email: charlie-haley@users.noreply.github.com
+  - name: charlie-haley
+    email: charlie-haley@users.noreply.github.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

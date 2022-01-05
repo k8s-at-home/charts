@@ -5,16 +5,20 @@ name: valheim
 version: 4.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- valheim
+  - valheim
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/valheim
 icon: https://raw.githubusercontent.com/lloesche/valheim-server-docker/main/misc/Logo_valheim.png
 sources:
-- https://github.com/lloesche/valheim-server-docker
-- https://hub.docker.com/r/lloesche/valheim-server
+  - https://github.com/lloesche/valheim-server-docker
+  - https://hub.docker.com/r/lloesche/valheim-server
 maintainers:
-- name: rust84
-  email: owner@russellhall.co.uk
+  - name: rust84
+    email: owner@russellhall.co.uk
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

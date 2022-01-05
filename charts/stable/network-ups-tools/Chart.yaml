@@ -5,17 +5,21 @@ name: network-ups-tools
 version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- nut
-- network-ups-tools
-- ups
+  - nut
+  - network-ups-tools
+  - ups
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/network-ups-tools
 icon: https://avatars0.githubusercontent.com/u/3526263?s=400&v=4
 sources:
-- https://github.com/networkupstools/nut
+  - https://github.com/networkupstools/nut
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

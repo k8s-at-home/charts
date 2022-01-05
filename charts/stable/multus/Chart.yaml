@@ -5,15 +5,19 @@ name: multus
 version: 3.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- multus
+  - multus
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/multus
 icon: https://multus.org/icon
 sources:
-- https://github.com/k8snetworkplumbingwg/multus-cni
+  - https://github.com/k8snetworkplumbingwg/multus-cni
 maintainers:
-- name: angelnu
-  email: git@angelnu.com
+  - name: angelnu
+    email: git@angelnu.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

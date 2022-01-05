@@ -5,17 +5,21 @@ name: protonmail-bridge
 version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- protonmail
-- protonmail-bridge
+  - protonmail
+  - protonmail-bridge
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/protonmail-bridge
 icon: https://raw.githubusercontent.com/ProtonMail/proton-bridge/master/icon.iconset/icon_256x256.png
 sources:
-- https://github.com/shenxn/protonmail-bridge-docker
-- https://hub.docker.com/r/shenxn/protonmail-bridge
+  - https://github.com/shenxn/protonmail-bridge-docker
+  - https://hub.docker.com/r/shenxn/protonmail-bridge
 maintainers:
-- name: Eagleman7
-  email: my@email.com
+  - name: Eagleman7
+    email: my@email.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

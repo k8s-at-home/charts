@@ -5,15 +5,19 @@ name: speedtest-exporter
 version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- speedtest-exporter
-- speedtest
+  - speedtest-exporter
+  - speedtest
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/speedtest-exporter
 sources:
-- https://github.com/MiguelNdeCarvalho/speedtest-exporter/
+  - https://github.com/MiguelNdeCarvalho/speedtest-exporter/
 maintainers:
-- name: onedr0p
-  email: devin.kray@gmail.com
+  - name: onedr0p
+    email: devin.kray@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

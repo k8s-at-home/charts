@@ -5,18 +5,22 @@ name: tvheadend
 version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- tv
-- streaming
-- dvb
+  - tv
+  - streaming
+  - dvb
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tvheadend
 icon: https://raw.githubusercontent.com/tvheadend/tvheadend/master/src/webui/static/img/satip-icon120.png
 sources:
-- https://github.com/tvheadend/tvheadend
+  - https://github.com/tvheadend/tvheadend
 maintainers:
-- name: mr-onion-2
-- name: bjw-s
-  email: me@bjw-s.dev
+  - name: mr-onion-2
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

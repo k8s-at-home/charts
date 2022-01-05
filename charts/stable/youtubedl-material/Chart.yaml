@@ -5,16 +5,20 @@ name: youtubedl-material
 version: 4.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- youtubedl-material
+  - youtubedl-material
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/youtubedl-material
 icon: https://i.imgur.com/IKOlr0N.png
 sources:
-- https://github.com/Tzahi12345/YoutubeDL-Material
-- https://github.com/k8s-at-home/charts/tree/master/charts/youtubedl-material
+  - https://github.com/Tzahi12345/YoutubeDL-Material
+  - https://github.com/k8s-at-home/charts/tree/master/charts/youtubedl-material
 maintainers:
-- name: Patricol
-  url: https://patricol.co/
+  - name: Patricol
+    url: https://patricol.co/
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

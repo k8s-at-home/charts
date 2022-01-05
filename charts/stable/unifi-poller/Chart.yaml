@@ -5,21 +5,25 @@ name: unifi-poller
 version: 10.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- unifi
-- unifi-poller
+  - unifi
+  - unifi-poller
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi-poller
 icon: https://raw.githubusercontent.com/wiki/unifi-poller/unifi-poller/images/unifi-poller-logo.png
 sources:
-- https://github.com/unifi-poller/unifi-poller
-- https://hub.docker.com/r/golift/unifi-poller
+  - https://github.com/unifi-poller/unifi-poller
+  - https://hub.docker.com/r/golift/unifi-poller
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
-- name: influxdb
-  version: 1.1.9
-  repository: https://charts.bitnami.com/bitnami
-  condition: influxdb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: influxdb
+    version: 1.1.9
+    repository: https://charts.bitnami.com/bitnami
+    condition: influxdb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

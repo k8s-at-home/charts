@@ -6,16 +6,20 @@ name: reg
 version: 3.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- reg
+  - reg
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/reg
 icon: https://avatars.githubusercontent.com/u/37218338
 sources:
-- https://github.com/genuinetools/reg
-- https://github.com/k8s-at-home/container-images/
+  - https://github.com/genuinetools/reg
+  - https://github.com/k8s-at-home/container-images/
 maintainers:
-- name: nicholaswilde
-  email: ncwilde43@gmail.com
+  - name: nicholaswilde
+    email: ncwilde43@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

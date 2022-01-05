@@ -5,19 +5,23 @@ name: photoprism
 version: 6.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- photos
-- photoprism
-- pictures
-- sharing
+  - photos
+  - photoprism
+  - pictures
+  - sharing
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/photoprism
 icon: https://demo.photoprism.org/static/img/logo-avatar.svg
 sources:
-- https://github.com/photoprism/photoprism
-- https://hub.docker.com/r/photoprism/photoprism
+  - https://github.com/photoprism/photoprism
+  - https://hub.docker.com/r/photoprism/photoprism
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

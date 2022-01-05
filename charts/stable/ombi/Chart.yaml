@@ -5,21 +5,25 @@ name: ombi
 version: 11.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- ombi
-- plex
-- emby
-- sonarr
-- radarr
-- couchpotato
+  - ombi
+  - plex
+  - emby
+  - sonarr
+  - radarr
+  - couchpotato
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ombi
 icon: https://github.com/tidusjar/Ombi/blob/feature/v4/src/Ombi/wwwroot/images/ms-icon-310x310.png?raw=true
 sources:
-- https://github.com/tidusjar/Ombi
-- https://hub.docker.com/r/linuxserver/ombi
+  - https://github.com/tidusjar/Ombi
+  - https://hub.docker.com/r/linuxserver/ombi
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

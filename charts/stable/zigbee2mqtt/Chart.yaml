@@ -5,19 +5,23 @@ name: zigbee2mqtt
 version: 9.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- zigbee
-- mqtt
-- home-assistant
+  - zigbee
+  - mqtt
+  - home-assistant
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zigbee2mqtt
 icon: https://www.zigbee2mqtt.io/images/logo.png
 sources:
-- https://github.com/Koenkk/zigbee2mqtt
+  - https://github.com/Koenkk/zigbee2mqtt
 maintainers:
-- name: masantiago
-  email: miguelangel.santiago@hotmail.com
-- name: bjw-s
-  email: me@bjw-s.dev
+  - name: masantiago
+    email: miguelangel.santiago@hotmail.com
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

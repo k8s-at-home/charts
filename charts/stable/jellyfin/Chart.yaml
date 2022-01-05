@@ -5,18 +5,22 @@ name: jellyfin
 version: 9.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- jellyfin
-- plex
-- emby
+  - jellyfin
+  - plex
+  - emby
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/Jellyfin
 icon: https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-solid-black.svg
 sources:
-- https://hub.docker.com/r/jellyfin/jellyfin
-- https://github.com/jellyfin/jellyfin
+  - https://hub.docker.com/r/jellyfin/jellyfin
+  - https://github.com/jellyfin/jellyfin
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

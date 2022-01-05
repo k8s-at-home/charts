@@ -5,17 +5,21 @@ name: qbittorrent
 version: 13.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- qbittorrent
-- torrrent
+  - qbittorrent
+  - torrrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/qbittorrent
 icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
 sources:
-- https://github.com/qbittorrent/qBittorrent
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/qbittorrent/qBittorrent
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

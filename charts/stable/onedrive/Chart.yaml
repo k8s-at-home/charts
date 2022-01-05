@@ -5,16 +5,20 @@ name: onedrive
 version: 2.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- onedrive
-- filesync
+  - onedrive
+  - filesync
 home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/onedrive
 icon: https://github.com/abraunegg/abraunegg.github.io/raw/master/images/linux_onedrive_logo.jpg
 sources:
-- https://github.com/abraunegg/onedrive
+  - https://github.com/abraunegg/onedrive
 maintainers:
-- name: wrmilling
-  email: winston@milli.ng
+  - name: wrmilling
+    email: winston@milli.ng
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

@@ -5,17 +5,21 @@ name: sabnzbd
 version: 9.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- sabnzbd
-- usenet
+  - sabnzbd
+  - usenet
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sabnzbd
 icon: https://avatars1.githubusercontent.com/u/960698?s=400&v=4
 sources:
-- https://sabnzbd.org/
-- https://github.com/k8s-at-home/container-images
+  - https://sabnzbd.org/
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

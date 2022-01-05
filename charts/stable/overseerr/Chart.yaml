@@ -5,19 +5,23 @@ name: overseerr
 version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- overseerr
-- plex
-- sonarr
-- radarr
+  - overseerr
+  - plex
+  - sonarr
+  - radarr
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/overseerr
 icon: https://i.imgur.com/TMoEG7g.png
 sources:
-- https://github.com/sct/overseerr
-- https://hub.docker.com/r/sctx/overseerr
+  - https://github.com/sct/overseerr
+  - https://hub.docker.com/r/sctx/overseerr
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

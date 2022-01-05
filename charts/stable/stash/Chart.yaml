@@ -5,16 +5,20 @@ name: stash
 version: 3.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- porn
+  - porn
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/stash
 icon: https://raw.githubusercontent.com/stashapp/website/master/images/stash.svg
 sources:
-- https://github.com/stashapp/stash
-- https://hub.docker.com/r/stashapp/stash
+  - https://github.com/stashapp/stash
+  - https://hub.docker.com/r/stashapp/stash
 maintainers:
-- name: onedr0p
-  email: devin.kray@gmail.com
+  - name: onedr0p
+    email: devin.kray@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

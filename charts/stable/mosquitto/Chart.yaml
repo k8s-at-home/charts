@@ -5,17 +5,21 @@ name: mosquitto
 version: 4.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- mosquitto
-- MQTT
-- eclipse-iot
+  - mosquitto
+  - MQTT
+  - eclipse-iot
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mosquitto
 icon: https://raw.githubusercontent.com/eclipse/mosquitto/master/logo/mosquitto-logo-min.svg
 sources:
-- https://github.com/eclipse/mosquitto
+  - https://github.com/eclipse/mosquitto
 maintainers:
-- name: bjw-s
-  email: me@bjw-s.dev
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

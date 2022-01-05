@@ -5,17 +5,21 @@ name: dizquetv
 version: 4.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- dizqueTV
-- dizquetv
+  - dizqueTV
+  - dizquetv
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dizquetv
 icon: https://github.com/vexorian/dizquetv/raw/main/resources/dizquetv.png?raw=true
 sources:
-- https://github.com/vexorian/dizquetv
-- https://hub.docker.com/r/vexorian/dizquetv
+  - https://github.com/vexorian/dizquetv
+  - https://hub.docker.com/r/vexorian/dizquetv
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

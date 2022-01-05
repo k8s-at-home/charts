@@ -5,17 +5,21 @@ name: homebridge
 version: 4.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- homebridge
-- homekit
+  - homebridge
+  - homekit
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/homebridge
 icon: https://avatars0.githubusercontent.com/u/38217527?s=400&v=4?sanitize=true
 sources:
-- https://homebridge.io/
-- https://github.com/oznu/docker-homebridge
+  - https://homebridge.io/
+  - https://github.com/oznu/docker-homebridge
 maintainers:
-- name: bjw-s
-  email: bjw-s@users.noreply.github.com
+  - name: bjw-s
+    email: bjw-s@users.noreply.github.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
