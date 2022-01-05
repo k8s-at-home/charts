@@ -31,12 +31,12 @@ jobs:
     steps:
       - name: debug
         run: |
-          echo "Branch: ${{ needs.get-branch.output.branch }}"
-          echo "Matches: ${{ startsWith(needs.get-branch.output.branch, 'test/') }}"
+          echo "Branch: ${{ needs.get-branch.outputs.branch }}"
+          echo "Matches: ${{ startsWith(needs.get-branch.outputs.branch, 'test/') }}"
 
       - name: Checkout
         if:
-          startsWith(needs.get-branch.output.branch, 'test/')
+          startsWith(needs.get-branch.outputs.branch, 'test/')
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
