@@ -63,17 +63,16 @@ jobs:
                 ./hack/renovate-releasenotes.sh "charts/${chart_parts[0]}"/"${chart_parts[1]}"
               fi
               echo ""
-              cat "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml"
           done
 
-    # - name: Create commit
-    #   if: steps.filter.outputs.addedOrModified == 'true'
-    #   uses: stefanzweifel/git-auto-commit-action@v4
-    #   with:
-    #     push_options: --force
-    #     commit_message: Auto-generate chart README
+      - name: Create commit
+        if: steps.filter.outputs.addedOrModified == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: --force
+          commit_message: Auto-generate chart changelog annotation
 
-    #     commit_user_name: ${{ github.actor }}
-    #     commit_user_email: ${{ github.actor }}@users.noreply.github.com
+          commit_user_name: ${{ github.actor }}
+          commit_user_email: ${{ github.actor }}@users.noreply.github.com
 
-    #     file_pattern: charts/**/
+          file_pattern: charts/**/Chart.yaml
