@@ -1,6 +1,6 @@
 # vaultwarden
 
-![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
 
 Vaultwarden is a Bitwarden compatable server in Rust
 
@@ -18,9 +18,9 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.8.1 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -99,7 +99,7 @@ persistence:
 
 ## Changelog
 
-### Version 3.4.0
+### Version 4.0.0
 
 #### Added
 
@@ -107,7 +107,8 @@ N/A
 
 #### Changed
 
-* Upgraded `mariadb` chart dependency to version `9.8.1`.
+* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `mariadb` chart dependency to version `10.2.0`.
 * Upgraded `postgresql` chart dependency to version `10.14.4`.
 
 #### Fixed

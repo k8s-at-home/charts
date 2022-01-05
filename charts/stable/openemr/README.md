@@ -1,6 +1,6 @@
 # openemr
 
-![Version: 3.4.0](https://img.shields.io/badge/Version-3.4.0-informational?style=flat-square) ![AppVersion: 6.1.0](https://img.shields.io/badge/AppVersion-6.1.0-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 6.1.0](https://img.shields.io/badge/AppVersion-6.1.0-informational?style=flat-square)
 
 OpenEMR is the most popular open source electronic health records and medical practice management solution.
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.8.1 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -88,7 +88,7 @@ N/A
 
 ## Changelog
 
-### Version 3.4.0
+### Version 4.0.0
 
 #### Added
 
@@ -96,7 +96,8 @@ N/A
 
 #### Changed
 
-* Upgraded `mariadb` chart dependency to version `9.8.1`.
+* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `mariadb` chart dependency to version `10.2.0`.
 
 #### Fixed
 
