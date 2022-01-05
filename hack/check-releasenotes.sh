@@ -29,7 +29,7 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
     CURRENT=$(cat Chart.yaml | yq e '.annotations."artifacthub.io/changes"' -P -)
 
     if [ "$CURRENT" == "" ] || [ "$CURRENT" == "null" ]; then
-      echo "Release notes have not been set for this chart!"
+      echo >&2 "Release notes have not been set for this chart!"
       exit 1
     fi
 
@@ -37,10 +37,10 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
     ORIGINAL=$(git show origin/$DEFAULT_BRANCH:./Chart.yaml | yq e '.annotations."artifacthub.io/changes"' -P -)
 
     if [ "$CURRENT" == "$ORIGINAL" ]; then
-      echo "Release notes have not been updated!"
+      echo >&2 "Release notes have not been updated!"
       exit 1
     fi
 else
-    echo "No chart folder has been specified."
+    echo >&2 "No chart folder has been specified."
     exit 1
 fi
