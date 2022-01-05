@@ -19,6 +19,11 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v5.1
 
+      - name: Debug
+        id: debug
+        run: |
+          echo "${{ steps.branch-name.outputs.current_branch }}"
+
       # - name: Checkout
       #   uses: actions/checkout@v2
       #   with:
