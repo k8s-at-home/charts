@@ -81,7 +81,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"xirixiz/dsmr-reader-docker"` | image repository |
-| image.tag | string | `"latest-2021.06.01-amd64"` | image tag |
+| image.tag | string | `"amd64-2021.12.09"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.p1reader | object | See values.yaml | Set up a local USB p1 reader device. |
