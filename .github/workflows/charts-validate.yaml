@@ -253,7 +253,9 @@ jobs:
   lint_success:
     needs:
     - lint
-    if: ${{ always() }}
+    if: |
+      always() &&
+      needs.lint.result != 'skipped'
     name: Lint successful
     runs-on: ubuntu-20.04
     steps:
@@ -342,7 +344,9 @@ jobs:
     needs:
     - changes-install
     - install
-    if: ${{ always() }}
+    if: |
+      always() &&
+      needs.install.result != 'skipped'
     name: Install successful
     runs-on: ubuntu-20.04
     steps:
