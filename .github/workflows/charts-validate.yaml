@@ -215,11 +215,7 @@ jobs:
     if:
       always() &&
       needs.changes-lint.outputs.detected == 'true'
-    name: Lint charts
-    strategy:
-      matrix: ${{ fromJson(needs.changes-lint.outputs.matrix) }}
-      fail-fast: true
-      max-parallel: 15
+    name: Lint successful
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout
@@ -241,29 +237,14 @@ jobs:
 
     - name: Run chart-testing (lint)
       id: lint
-      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
-
-  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  lint_success:
-    needs:
-    - changes-lint
-    - lint
-    if: |
-      always() &&
-      needs.lint.result != 'skipped'
-    name: Lint successful
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Check lint matrix status
-      if: ${{ needs.changes-lint.outputs.detected == 'true' && needs.lint.result != 'success' }}
-      run: exit 1
+      run: ct lint --config .github/ct-lint.yaml
 
   unittest:
     needs:
-    - lint_success
+    - lint
     if: |
       always() &&
-      needs.lint_success.result == 'success'
+      needs.lint.result == 'success'
     name: Run unit tests
     runs-on: ubuntu-20.04
     steps:
@@ -298,10 +279,10 @@ jobs:
   install:
     needs:
     - changes-install
-    - lint_success
+    - lint
     if:
       always() &&
-      needs.lint_success.result == 'success' &&
+      needs.lint.result == 'success' &&
       needs.changes-install.outputs.detected == 'true'
     name: Install charts
     strategy:
