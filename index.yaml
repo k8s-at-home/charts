@@ -22165,6 +22165,42 @@ entries:
   ghost:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Fixed PVC creation.
+          links:
+            - name: GitHub Issue
+              url: https://github.com/k8s-at-home/charts/issues/1358
+    apiVersion: v2
+    appVersion: 4.27.2
+    created: "2022-01-06T12:38:27.792288071Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    description: Ghost is a blogging and publishing software
+    digest: cec78ded61918f5a4512bdc93a204c89a47c4d7750b86a733aa90b291089051f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ghost
+    icon: https://ghost.org/images/logos/logo-black-1.png
+    keywords:
+    - ghost
+    - blogging
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: sm+k8s-at-home+git@samip.fi
+      name: samip5
+    name: ghost
+    sources:
+    - https://github.com/TryGhost/Ghost
+    - https://github.com/TryGhost/Ghost-CLI
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/ghost-1.1.1/ghost-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
         - kind: changed
@@ -98360,4 +98396,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-06T10:47:10.151921671Z"
+generated: "2022-01-06T12:38:27.813169852Z"
