@@ -213,6 +213,7 @@ jobs:
     needs:
     - changes-lint
     if:
+      always() &&
       needs.changes-lint.outputs.detected == 'true'
     name: Lint charts
     strategy:
@@ -259,6 +260,9 @@ jobs:
   unittest:
     needs:
     - lint_success
+    if: |
+      always() &&
+      needs.lint_success.result == 'success'
     name: Run unit tests
     runs-on: ubuntu-20.04
     steps:
@@ -295,6 +299,8 @@ jobs:
     - changes-install
     - lint_success
     if:
+      always() &&
+      needs.lint_success.result == 'success' &&
       needs.changes-install.outputs.detected == 'true'
     name: Install charts
     strategy:
