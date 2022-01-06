@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-20.04
     outputs:
       branch: ${{ steps.branch-name.outputs.current_branch }}
+      isFork: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
       addedOrModified: ${{ steps.filter.outputs.addedOrModified }}
       addedOrModifiedFiles: ${{ steps.filter.outputs.addedOrModified_files }}
       addedOrModifiedCharts: ${{ steps.filter-charts.outputs.addedOrModified }}
@@ -63,10 +64,28 @@ jobs:
     needs:
       - pr-metadata
     steps:
+      - uses: getsentry/action-github-app-token@v1
+        id: get-app-token
+        if: |
+          needs.pr-metadata.outputs.isFork == 'false'
+        with:
+          app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+          private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
       - name: Checkout
+        if: |
+          needs.pr-metadata.outputs.isFork == 'true'
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: Checkout with app-token
+        if: |
+          needs.pr-metadata.outputs.isFork == 'false'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ steps.get-app-token.outputs.token }}
 
       - uses: yokawasa/action-setup-kube-tools@v0.8.0
         if: |
@@ -161,150 +180,171 @@ jobs:
           echo "::set-output name=detected::true"
         fi
 
-  # changes-install:
-  #   name: Detect changes for install
-  #   runs-on: ubuntu-20.04
-  #   outputs:
-  #     matrix: |
-  #       {
-  #         "chart": ${{ steps.list-changed.outputs.charts }}
-  #       }
-  #     detected: ${{ steps.list-changed.outputs.detected }}
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  changes-install:
+    name: Detect changes for install
+    runs-on: ubuntu-20.04
+    outputs:
+      matrix: |
+        {
+          "chart": ${{ steps.list-changed.outputs.charts }}
+        }
+      detected: ${{ steps.list-changed.outputs.detected }}
+    needs:
+      - pr-metadata
+      - generate-readme
+    if: |
+      needs.generate-readme.outputs.commitHash == ''
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Set up chart-testing
-  #     uses: helm/chart-testing-action@v2.1.0
+    - name: Set up chart-testing
+      uses: helm/chart-testing-action@v2.1.0
 
-  #   - name: Run chart-testing (list-changed)
-  #     id: list-changed
-  #     run: |
-  #       EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-install.yaml)
-  #       CHARTS=$(ct list-changed --config .github/ct-install.yaml)
-  #       CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
-  #       OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
-  #       echo ::set-output name=charts::${OUTPUT_JSON}
-  #       if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
-  #         echo "::set-output name=detected::true"
-  #       fi
+    - name: Run chart-testing (list-changed)
+      id: list-changed
+      run: |
+        EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-install.yaml)
+        CHARTS=$(ct list-changed --config .github/ct-install.yaml)
+        CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
+        OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
+        echo ::set-output name=charts::${OUTPUT_JSON}
+        if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
+          echo "::set-output name=detected::true"
+        fi
 
-  # lint:
-  #   needs:
-  #   - changes-lint
-  #   if:
-  #     needs.changes-lint.outputs.detected == 'true'
-  #   name: Lint charts
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  lint:
+    needs:
+    - changes-lint
+    if:
+      needs.changes-lint.outputs.detected == 'true'
+    name: Lint charts
+    strategy:
+      matrix: ${{ fromJson(needs.changes-lint.outputs.matrix) }}
+      fail-fast: true
+      max-parallel: 15
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.6.3
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.6.3
 
-  #   - uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.7
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
 
-  #   - name: Set up chart-testing
-  #     uses: helm/chart-testing-action@v2.1.0
+    - name: Set up chart-testing
+      uses: helm/chart-testing-action@v2.1.0
 
-  #   - name: Run chart-testing (lint)
-  #     id: lint
-  #     run: ct lint --config .github/ct-lint.yaml
+    - name: Run chart-testing (lint)
+      id: lint
+      run: ct lint --config .github/ct-lint.yaml --charts ${{ matrix.chart }}
 
-  # unittest:
-  #   needs:
-  #   - lint
-  #   name: Run unit tests
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
+  lint_success:
+    needs:
+    - lint
+    if: ${{ always() }}
+    name: Lint successful
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check lint matrix status
+      if: ${{ needs.changes-lint.outputs.detected == 'true' && needs.lint.result != 'success' }}
+      run: exit 1
 
-  #   - name: Install Dev tools
-  #     run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
+  unittest:
+    needs:
+    - lint_success
+    name: Run unit tests
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.6.3
+    - name: Install Dev tools
+      run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
 
-  #   - name: Install Ruby
-  #     uses: ruby/setup-ruby@v1
-  #     with:
-  #       ruby-version: 2.7
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.6.3
 
-  #   - name: Install dependencies
-  #     env:
-  #       RUBYJQ_USE_SYSTEM_LIBRARIES: 1
-  #     run: |
-  #       bundle install
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
 
-  #   - name: Run tests
-  #     run: |
-  #       bundle exec m -r ./test/
+    - name: Install dependencies
+      env:
+        RUBYJQ_USE_SYSTEM_LIBRARIES: 1
+      run: |
+        bundle install
 
-  # install:
-  #   needs:
-  #   - changes-install
-  #   - lint
-  #   if:
-  #     needs.changes-install.outputs.detected == 'true'
-  #   name: Install charts
-  #   strategy:
-  #     matrix: ${{ fromJson(needs.changes-install.outputs.matrix) }}
-  #     fail-fast: true
-  #     max-parallel: 15
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
+    - name: Run tests
+      run: |
+        bundle exec m -r ./test/
 
-  #   - name: Install Helm
-  #     uses: azure/setup-helm@v1
-  #     with:
-  #       version: v3.6.3
+  install:
+    needs:
+    - changes-install
+    - lint_success
+    if:
+      needs.changes-install.outputs.detected == 'true'
+    name: Install charts
+    strategy:
+      matrix: ${{ fromJson(needs.changes-install.outputs.matrix) }}
+      fail-fast: true
+      max-parallel: 15
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-  #   - uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.7
+    - name: Install Helm
+      uses: azure/setup-helm@v1
+      with:
+        version: v3.6.3
 
-  #   - name: Set up chart-testing
-  #     uses: helm/chart-testing-action@v2.1.0
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
 
-  #   - name: Create k3d cluster
-  #     uses: nolar/setup-k3d-k3s@v1
-  #     with:
-  #       version: v1.19
+    - name: Set up chart-testing
+      uses: helm/chart-testing-action@v2.1.0
 
-  #   - name: Remove node taints
-  #     run: |
-  #       kubectl taint --all=true nodes node.cloudprovider.kubernetes.io/uninitialized- || true
+    - name: Create k3d cluster
+      uses: nolar/setup-k3d-k3s@v1
+      with:
+        version: v1.19
 
-  #   - name: Run chart-testing (install)
-  #     run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
+    - name: Remove node taints
+      run: |
+        kubectl taint --all=true nodes node.cloudprovider.kubernetes.io/uninitialized- || true
 
-  # # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
-  # install_success:
-  #   needs:
-  #   - changes-install
-  #   - install
-  #   if: ${{ always() }}
-  #   name: Install successful
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #   - name: Check install matrix status
-  #     if: ${{ needs.changes-install.outputs.detected == 'true' && needs.install.result != 'success' }}
-  #     run: exit 1
+    - name: Run chart-testing (install)
+      run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
+
+  # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
+  install_success:
+    needs:
+    - changes-install
+    - install
+    if: ${{ always() }}
+    name: Install successful
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check install matrix status
+      if: ${{ needs.changes-install.outputs.detected == 'true' && needs.install.result != 'success' }}
+      run: exit 1
