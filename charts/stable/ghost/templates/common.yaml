@@ -3,13 +3,22 @@
 
 {{/* Append the hardcoded settings */}}
 {{- define "ghost.hardcodedValues" -}}
-  {{- if not .Values.persistence.content.enabled }}
+
 persistence:
+  {{- range $index, $persistence := .Values.persistence }}
+    {{- if $persistence.enabled }}
+      {{- printf "%v:" $index | nindent 2 }}
+      {{- toYaml $persistence | nindent 4 }}
+    {{- end }}
+  {{- end }}
+  {{- if not .Values.persistence.content.enabled }}
   content:
-    enabled: true
+    enabled: "true"
     type: "emptyDir"
   {{- end }}
+  
 {{- end -}}
+
 {{- $_ := mergeOverwrite .Values (include "ghost.hardcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
