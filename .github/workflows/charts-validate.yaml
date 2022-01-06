@@ -2,9 +2,7 @@ name: "Charts: Validate"
 
 on:
   workflow_dispatch:
-  push:
-    branches-ignore:
-      - 'master'
+  pull_request:
     paths:
       - "charts/**"
 
@@ -65,26 +63,17 @@ jobs:
       commitHash: ${{ steps.create-commit.outputs.commit_hash }}
     needs:
       - pr-metadata
+    if: |
+      needs.pr-metadata.outputs.isFork == 'false'
     steps:
-      - name: Checkout
-        if: |
-          needs.pr-metadata.outputs.isFork == 'true'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - name: Get app-token
         uses: getsentry/action-github-app-token@v1
         id: get-app-token
-        if: |
-          needs.pr-metadata.outputs.isFork == 'false'
         with:
           app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
       - name: Checkout with app-token
-        if: |
-          needs.pr-metadata.outputs.isFork == 'false'
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -161,6 +150,7 @@ jobs:
       - pr-metadata
       - generate-readme
     if: |
+      always() &&
       needs.generate-readme.outputs.commitHash == ''
     steps:
     - name: Checkout
@@ -196,6 +186,7 @@ jobs:
       - pr-metadata
       - generate-readme
     if: |
+      always() &&
       needs.generate-readme.outputs.commitHash == ''
     steps:
     - name: Checkout
