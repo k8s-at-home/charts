@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-set -eu
+set -e
 
 # Check if release notes have been changed
 # Usage ./check-releasenotes.sh path
 
 # require yq
 command -v yq >/dev/null 2>&1 || {
-    echo >&2 "yq (https://github.com/mikefarah/yq) is not installed. Aborting."
+    printf >&2 "%s\n" "yq (https://github.com/mikefarah/yq) is not installed. Aborting."
     exit 1
 }
 
@@ -19,17 +19,21 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
     root="$1"
     chart_file="${1}/Chart.yaml"
     if [ ! -f "$chart_file" ]; then
-        echo "File ${chart_file} does not exist."
+        printf >&2 "File %s\n does not exist.\n" "${chart_file}"
         exit 1
     fi
 
-    echo "Validating release notes for $root"
-
     cd $root
+
+    if [ -z "$DEFAULT_BRANCH" ]; then
+      DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+    fi
+
+    printf "Checking changelog annotation for chart %s\n" "$root"
     CURRENT=$(cat Chart.yaml | yq e '.annotations."artifacthub.io/changes"' -P -)
 
     if [ "$CURRENT" == "" ] || [ "$CURRENT" == "null" ]; then
-      echo >&2 "Release notes have not been set for this chart!"
+      printf >&2 "%s\n" "Changelog annotation has not been set for this chart!"
       exit 1
     fi
 
@@ -37,10 +41,16 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
     ORIGINAL=$(git show origin/$DEFAULT_BRANCH:./Chart.yaml | yq e '.annotations."artifacthub.io/changes"' -P -)
 
     if [ "$CURRENT" == "$ORIGINAL" ]; then
-      echo >&2 "Release notes have not been updated!"
+      printf >&2 "%s\n" "Changelog annotation has not been updated!"
+      # exit 1
+    fi
+
+    printf "Checking README.md for chart %s\n" "$root"
+    if diff README.md <(git show origin/$DEFAULT_BRANCH:./README.md) >/dev/null; then
+      printf >&2 "%s\n" "README.md has not been updated!"
       exit 1
     fi
 else
-    echo >&2 "No chart folder has been specified."
+    printf >&2 "%s\n" "No chart folder has been specified."
     exit 1
 fi
