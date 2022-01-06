@@ -1,6 +1,6 @@
 # ghost
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 4.27.2](https://img.shields.io/badge/AppVersion-4.27.2-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: 4.27.2](https://img.shields.io/badge/AppVersion-4.27.2-informational?style=flat-square)
 
 Ghost is a blogging and publishing software
 
@@ -100,7 +100,7 @@ N/A
 
 ## Changelog
 
-### Version 1.1.0
+### Version 1.1.1
 
 #### Added
 
@@ -108,12 +108,11 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
-* Upgraded `mariadb` chart dependency to version `10.2.0`.
+N/A
 
 #### Fixed
 
-N/A
+* Fixed PVC creation.
 
 ### Older versions
 
