@@ -246,6 +246,7 @@ jobs:
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   lint_success:
     needs:
+    - changes-lint
     - lint
     if: |
       always() &&
