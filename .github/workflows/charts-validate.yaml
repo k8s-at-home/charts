@@ -2,9 +2,7 @@ name: "Charts: Validate"
 
 on:
   workflow_dispatch:
-  push:
-    branches-ignore:
-      - 'master'
+  pull_request:
     paths:
       - "charts/**"
 
