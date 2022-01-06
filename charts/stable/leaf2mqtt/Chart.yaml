@@ -2,23 +2,27 @@ apiVersion: v2
 appVersion: "0.1"
 description: Nissan Leaf connected services to MQTT adapter
 name: leaf2mqtt
-version: 3.1.0
+version: 3.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- leaf2mqtt
-- leaf
-- nissan
-- kamereon
-- carwings
+  - leaf2mqtt
+  - leaf
+  - nissan
+  - kamereon
+  - carwings
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/leaf2mqtt
 icon: https://www.nissanusa.com/content/dam/Nissan/us/Navigation/nissan-logo-black.svg
 sources:
-- https://github.com/mitsumaui/leaf2mqtt
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/mitsumaui/leaf2mqtt
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: mitsumaui
-  email: jase@oshelp.co.uk
+  - name: mitsumaui
+    email: jase@oshelp.co.uk
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

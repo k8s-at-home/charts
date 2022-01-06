@@ -2,19 +2,23 @@ apiVersion: v2
 appVersion: 1.0.0
 description: Serial to Socket Redirector
 name: ser2sock
-version: 5.1.0
+version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- ser2sock
+  - ser2sock
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ser2sock
 icon: https://i.imgur.com/GfZ7McO.png
 sources:
-- https://github.com/nutechsoftware/ser2sock
-- https://github.com/tenstartups/ser2sock
+  - https://github.com/nutechsoftware/ser2sock
+  - https://github.com/tenstartups/ser2sock
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

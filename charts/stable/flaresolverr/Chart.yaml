@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: v1.2.8
 description: FlareSolverr is a proxy server to bypass Cloudflare protection
 name: flaresolverr
-version: 5.1.0
+version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- flaresolverr
-- jackett
+  - flaresolverr
+  - jackett
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/flaresolverr
 icon: https://raw.githubusercontent.com/FlareSolverr/FlareSolverr/master/resources/flaresolverr_logo.svg
 sources:
-- https://github.com/FlareSolverr/FlareSolverr
-- https://hub.docker.com/r/flaresolverr/flaresolverr
+  - https://github.com/FlareSolverr/FlareSolverr
+  - https://hub.docker.com/r/flaresolverr/flaresolverr
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

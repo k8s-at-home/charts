@@ -2,19 +2,23 @@ apiVersion: v2
 appVersion: 1.2.6
 description: Admision controller to change the default gateway and DNS server of PODs
 name: pod-gateway
-version: 5.1.0
+version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- pod-gateway
+  - pod-gateway
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pod-gateway
 icon: https://pod-gateway.org/icon
 sources:
-- https://github.com/k8s-at-home/gateway-admision-controller
-- https://github.com/k8s-at-home/pod-gateway
+  - https://github.com/k8s-at-home/gateway-admision-controller
+  - https://github.com/k8s-at-home/pod-gateway
 maintainers:
-- name: angelnu
-  email: git@angelnu.com
+  - name: angelnu
+    email: git@angelnu.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

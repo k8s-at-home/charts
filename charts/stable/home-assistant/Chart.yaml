@@ -2,34 +2,38 @@ apiVersion: v2
 appVersion: 2021.12.7
 description: Home Assistant
 name: home-assistant
-version: 12.0.0
+version: 12.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
-- home-assistant
-- hass
-- homeassistant
+  - home-assistant
+  - hass
+  - homeassistant
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
 icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
 sources:
-- https://github.com/home-assistant/home-assistant
-- https://github.com/cdr/code-server
-- https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+  - https://github.com/home-assistant/home-assistant
+  - https://github.com/cdr/code-server
+  - https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
-- name: postgresql
-  version: 10.14.2
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
-- name: mariadb
-  version: 10.2.0
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
-- name: influxdb
-  version: 1.1.9
-  repository: https://charts.bitnami.com/bitnami
-  condition: influxdb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: mariadb
+    version: 10.2.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+  - name: influxdb
+    version: 1.1.9
+    repository: https://charts.bitnami.com/bitnami
+    condition: influxdb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.

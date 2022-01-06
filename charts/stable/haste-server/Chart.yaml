@@ -2,22 +2,26 @@ apiVersion: v2
 appVersion: latest
 description: Simple text sharing
 name: haste-server
-version: 3.1.0
+version: 3.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- haste
-- hastebin
-- haste-server
-- pastebin
+  - haste
+  - hastebin
+  - haste-server
+  - pastebin
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/haste
 icon: https://raw.githubusercontent.com/nicholaswilde/helm-charts/main/images/haste.png
 sources:
-- https://github.com/seejohnrun/haste-server
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/seejohnrun/haste-server
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: rwaltr
-  email: rwalt@pm.me
+  - name: rwaltr
+    email: rwalt@pm.me
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

@@ -2,19 +2,23 @@ apiVersion: v2
 appVersion: 1.0.0
 description: "A lightweight open source alternative to linktree"
 name: littlelink-server
-version: 1.1.0
+version: 1.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- littlelink-server
+  - littlelink-server
 home: "https://github.com/k8s-at-home/charts/tree/master/charts/stable/littlelink-server"
 icon: https://camo.githubusercontent.com/edebb9bce46a8d4a75fa8c4f50f20996c3fe55ace28ecfbfdc5da3794cc90e9a/68747470733a2f2f63646e2e636f74746c652e636c6f75642f6c6974746c656c696e6b2f736f6369616c2d636972636c652e706e67
 sources:
-- https://github.com/techno-tim/littlelink-server
-- https://github.com/sethcottle/littlelink
+  - https://github.com/techno-tim/littlelink-server
+  - https://github.com/sethcottle/littlelink
 maintainers:
-- name: rwaltr
-  email: rwaltr@pm.me
+  - name: rwaltr
+    email: rwaltr@pm.me
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

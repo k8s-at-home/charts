@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: 0.16.7
 description: Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 name: recipes
-version: 6.1.0
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- recipes
-- cooking
+  - recipes
+  - cooking
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/recipes
 icon: https://raw.githubusercontent.com/vabene1111/recipes/develop/docs/logo_color.svg
 sources:
-- https://github.com/vabene1111/recipes
-- https://hub.docker.com/r/vabene1111/recipes
+  - https://github.com/vabene1111/recipes
+  - https://hub.docker.com/r/vabene1111/recipes
 maintainers:
-- name: auricom
-  email: k8s-at-home@xpander.eml.cc
+  - name: auricom
+    email: k8s-at-home@xpander.eml.cc
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

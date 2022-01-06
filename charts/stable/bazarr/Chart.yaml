@@ -2,24 +2,28 @@ apiVersion: v2
 appVersion: v0.9.9
 description: Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements
 name: bazarr
-version: 10.2.0
+version: 10.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- bazarr
-- radarr
-- sonarr
-- subtitles
-- usenet
-- torrent
+  - bazarr
+  - radarr
+  - sonarr
+  - subtitles
+  - usenet
+  - torrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bazarr
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
 sources:
-- https://github.com/morpheus65535/bazarr
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/morpheus65535/bazarr
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
