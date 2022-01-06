@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-set -eu
+set -e
 
 # Check if release notes have been changed
 # Usage ./check-releasenotes.sh path
 
 # require yq
 command -v yq >/dev/null 2>&1 || {
-    echo >&2 "yq (https://github.com/mikefarah/yq) is not installed. Aborting."
+    printf >&2 "%s\n" "yq (https://github.com/mikefarah/yq) is not installed. Aborting."
     exit 1
 }
 
@@ -16,13 +16,16 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
     root="$1"
     chart_file="${1}/Chart.yaml"
     if [ ! -f "$chart_file" ]; then
-        echo "File ${chart_file} does not exist."
+        printf >&2 "File %s does not exist.\n" "${chart_file}"
         exit 1
     fi
     cd $root
-    DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
 
-    echo "Generating release notes for $root"
+    if [ -z "$DEFAULT_BRANCH" ]; then
+      DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+    fi
+
+    printf "Updating changelog annotation for chart %s\n" "$root"
 
     # Loop over all dependencies in current chart version
     NEW_DEPENDENCIES=$(cat Chart.yaml | yq e '.dependencies[].name' -P - | LC_ALL=C sort)
@@ -36,13 +39,13 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
       NEW_VERSION=$(cat Chart.yaml | yq e ".dependencies[] | select(.name == \"$DEP_NAME\") | .version" -P -)
       OLD_VERSION=$(git show origin/$DEFAULT_BRANCH:./Chart.yaml | yq e ".dependencies[] | select(.name == \"$DEP_NAME\") | .version" -P -)
       if [ "${NEW_VERSION}" != "${OLD_VERSION}" ]; then
-        echo "- kind: changed" >> $tmpfile
-        echo "  description: Upgraded \`${DEP_NAME}\` chart dependency to version \`${NEW_VERSION}\`." >> $tmpfile
+        printf "%s\n" "- kind: changed" >> $tmpfile
+        printf "  description: Upgraded \`%s\` chart dependency to version \`%s\`.\n" "${DEP_NAME}" "${NEW_VERSION}" >> $tmpfile
       fi
     done
 
     yq eval-all --inplace 'select(fileIndex == 0).annotations."artifacthub.io/changes" = (select(fileIndex == 1) | to_yaml) | select(fileIndex==0)' Chart.yaml $tmpfile
 else
-    echo >&2 "No chart folder has been specified."
+    printf >&2 "%s\n" "No chart folder has been specified."
     exit 1
 fi
