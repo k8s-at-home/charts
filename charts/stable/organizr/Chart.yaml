@@ -2,19 +2,23 @@ apiVersion: v2
 appVersion: latest
 description: HTPC/Homelab Services Organizer
 name: organizr
-version: 7.1.0
+version: 7.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- organizr
+  - organizr
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/organizr
 icon: https://github.com/causefx/Organizr/blob/v2-master/plugins/images/organizr/logo.png?raw=true
 sources:
-- https://github.com/causefx/Organizr
-- https://hub.docker.com/r/organizr/organizr
+  - https://github.com/causefx/Organizr
+  - https://hub.docker.com/r/organizr/organizr
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

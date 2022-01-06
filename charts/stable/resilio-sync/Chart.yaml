@@ -2,21 +2,25 @@ apiVersion: v2
 appVersion: 2.7.2
 description: Resilio Sync is a fast, reliable, and simple file sync and share solution, powered by P2P technology
 name: resilio-sync
-version: 5.1.0
+version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- resilio
-- sync
-- btsync
-- bittorrent
+  - resilio
+  - sync
+  - btsync
+  - bittorrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/resio-sync
 icon: https://blog.resilio.com/wp-content/uploads/2016/06/SyncSymbol-260x260px.png
 sources:
-- https://github.com/orgs/linuxserver/packages/container/package/resilio-sync
+  - https://github.com/orgs/linuxserver/packages/container/package/resilio-sync
 maintainers:
-- name: salekseev
-  email: 100800+salekseev@users.noreply.github.com
+  - name: salekseev
+    email: 100800+salekseev@users.noreply.github.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

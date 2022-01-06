@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: 1.0.0
 description: LanCache Monolithic - a caching proxy server for game download content
 name: lancache
-version: 0.2.0
+version: 0.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- lancache
+  - lancache
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lancache
 icon: https://avatars.githubusercontent.com/u/16938914
 sources:
-- https://github.com/lancachenet/monolithic
-- https://hub.docker.com/r/lancachenet/monolithic
-- https://hub.docker.com/r/lancachenet/lancache-dns
+  - https://github.com/lancachenet/monolithic
+  - https://hub.docker.com/r/lancachenet/monolithic
+  - https://hub.docker.com/r/lancachenet/lancache-dns
 maintainers:
-- name: reitermarkus
-  email: me@reitermark.us
+  - name: reitermarkus
+    email: me@reitermark.us
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

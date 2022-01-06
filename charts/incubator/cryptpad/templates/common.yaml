@@ -1,0 +1,16 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "cryptpad.configVolume" -}}
+enabled: "true"
+mountPath: "/cryptpad/config/config.js"
+subPath: "config.js"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ template "common.names.fullname" . }}-config
+{{- end -}}
+{{- $_ := set .Values.persistence "cryptpad-config" (include "cryptpad.configVolume" . | fromYaml) -}}
+
+{{ include "common.all" . }}

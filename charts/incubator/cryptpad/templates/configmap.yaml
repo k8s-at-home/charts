@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-config
+  labels:
+  {{- include "common.labels" . | nindent 4 }}
+data:
+  config.js: |
+    module.exports = {
+      {{- if and .Values.ingress.main.enabled .Values.ingress.main.tls }}
+      httpUnsafeOrigin: 'https://{{ (index (.Values.ingress.main.tls | first).hosts 0) }}',
+      httpSafeOrigin:   'https://{{ (index (.Values.ingress.main.tls | first).hosts 1) }}',
+      {{- else if .Values.ingress.main.enabled }}
+      httpUnsafeOrigin: '{{ (index .Values.ingress.main.hosts 0).host }}',
+      httpSafeOrigin:   '{{ (index .Values.ingress.main.hosts 1).host }}',
+      {{- end }}
+
+      httpAddress: '::',
+
+      {{- range $key, $val := .Values.config }}
+      {{ $key }}: {{ $val | toJson }},
+      {{- end }}
+    };

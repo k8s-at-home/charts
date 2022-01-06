@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: version-2.5.201
 description: Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
 name: wikijs
-version: 6.1.0
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- wiki
-- wikijs
+  - wiki
+  - wikijs
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wikijs
 icon: https://static.requarks.io/logo/wikijs-butterfly.svg
 sources:
-- https://hub.docker.com/r/linuxserver/wikijs/
-- https://github.com/Requarks/wiki
+  - https://hub.docker.com/r/linuxserver/wikijs/
+  - https://github.com/Requarks/wiki
 maintainers:
-- name: rolfberkenbosch
-  email: rolf@berkenbosch.nl
+  - name: rolfberkenbosch
+    email: rolf@berkenbosch.nl
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

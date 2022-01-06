@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: v2.0.3-2201906121747
 description: Deluge is a torrent download client
 name: deluge
-version: 5.1.0
+version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- deluge
-- torrent
+  - deluge
+  - torrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deluge
 icon: https://avatars2.githubusercontent.com/u/6733935?v=3&s=200
 sources:
-- https://hub.docker.com/r/linuxserver/deluge/
-- https://deluge-torrent.org/
+  - https://hub.docker.com/r/linuxserver/deluge/
+  - https://deluge-torrent.org/
 maintainers:
-- name: mcmarkj
-  email: mark@markmcw.uk
+  - name: mcmarkj
+    email: mark@markmcw.uk
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

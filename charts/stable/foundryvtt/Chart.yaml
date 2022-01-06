@@ -2,18 +2,22 @@ apiVersion: v2
 appVersion: 0.8.3
 description: An easy-to-deploy Dockerized Foundry Virtual Tabletop server
 name: foundryvtt
-version: 3.1.0
+version: 3.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- foundryvtt
+  - foundryvtt
 home: https://github.com/felddy/foundryvtt-docker
 icon: https://raw.githubusercontent.com/felddy/foundryvtt-docker/develop/assets/logo.png
 sources:
-- https://github.com/felddy/foundryvtt-docker
+  - https://github.com/felddy/foundryvtt-docker
 maintainers:
-- name: rwaltr
-  email: rwalt@pm.me
+  - name: rwaltr
+    email: rwalt@pm.me
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
