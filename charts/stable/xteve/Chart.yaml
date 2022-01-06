@@ -2,22 +2,26 @@ apiVersion: v2
 appVersion: v2.2.0.200
 description: M3U Proxy for Plex DVR and Emby Live TV.
 name: xteve
-version: 8.1.0
+version: 8.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- xteve
-- iptv
-- plex
-- emby
+  - xteve
+  - iptv
+  - plex
+  - emby
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/xteve
 icon: https://raw.githubusercontent.com/xteve-project/xTeVe/master/html/img/logo_b_880x200.jpg
 sources:
-- https://github.com/xteve-project/xTeVe
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/xteve-project/xTeVe
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

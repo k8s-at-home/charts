@@ -2,24 +2,28 @@ apiVersion: v2
 appVersion: 1.2.0
 description: Cert-Manager Webhook for DNSMadeEasy
 name: dnsmadeeasy-webhook
-version: 4.3.0
+version: 4.4.0
 keywords:
-- cert-manager
-- dnsmadeeasy
-- letsencrypt
+  - cert-manager
+  - dnsmadeeasy
+  - letsencrypt
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dnsmadeeasy-webhook
 icon: https://pbs.twimg.com/profile_images/1759911243/dnsmeavatar_400x400.png
 sources:
-- https://github.com/k8s-at-home/dnsmadeeasy-webhook
-- https://cert-manager.io
+  - https://github.com/k8s-at-home/dnsmadeeasy-webhook
+  - https://cert-manager.io
 maintainers:
-- name: angelnu
-  email: git@angelnu.com
+  - name: angelnu
+    email: git@angelnu.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: cert-manager
-  repository: https://charts.jetstack.io
-  version: v1.6.1
-  condition: cert-manager.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: cert-manager
+    repository: https://charts.jetstack.io
+    version: v1.6.1
+    condition: cert-manager.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

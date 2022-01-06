@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: v0.18.791
 description: API Support for your favorite torrent trackers
 name: jackett
-version: 11.2.0
+version: 11.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- jackett
-- torrent
+  - jackett
+  - torrent
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jackett
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
 sources:
-- https://github.com/Jackett/Jackett
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/Jackett/Jackett
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

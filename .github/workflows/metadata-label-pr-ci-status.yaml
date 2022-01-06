@@ -5,7 +5,7 @@ on:
   workflow_run:
     workflows:
     - "Pre-commit consistency check"
-    - "Charts: Lint and test"
+    - "Charts: Validate"
     types:
     - completed
 
@@ -49,7 +49,7 @@ jobs:
   label-lint-install:
     name: Label lint and install status
     runs-on: ubuntu-20.04
-    if: "${{ github.event.workflow.name == 'Charts: Lint and test' }}"
+    if: "${{ github.event.workflow.name == 'Charts: Validate' }}"
     steps:
     - uses: getsentry/action-github-app-token@v1
       id: get-app-token
@@ -79,7 +79,7 @@ jobs:
           })
 
           for (const job of wfJobs.data.jobs) {
-            if (job.name === 'Lint charts') {
+            if (job.name === 'Lint successful') {
               result['lint'] = job.conclusion
             } else if (job.name === 'Install successful') {
               result['install'] = job.conclusion

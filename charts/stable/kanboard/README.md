@@ -1,6 +1,6 @@
 # kanboard
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: v1.2.20](https://img.shields.io/badge/AppVersion-v1.2.20-informational?style=flat-square)
+![Version: 4.5.0](https://img.shields.io/badge/Version-4.5.0-informational?style=flat-square) ![AppVersion: v1.2.20](https://img.shields.io/badge/AppVersion-v1.2.20-informational?style=flat-square)
 
 Kanboard is a free and open source Kanban project management software.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 4.4.0
+### Version 4.5.0
 
 #### Added
 
@@ -104,7 +104,7 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `10.14.4`.
+* Upgraded `common` chart dependency to version `4.3.0`.
 
 #### Fixed
 

@@ -2,21 +2,25 @@ apiVersion: v2
 appVersion: 1.6.1
 description: OctoPrint is the snappy web interface for your 3D printer
 name: octoprint
-version: 6.1.0
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- octoprint
-- 3d
-- printer
+  - octoprint
+  - 3d
+  - printer
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/octoprint
 icon: https://avatars3.githubusercontent.com/u/5982294?s=400&v=4
 sources:
-- https://github.com/OctoPrint/OctoPrint
-- https://hub.docker.com/r/octoprint/octoprint
+  - https://github.com/OctoPrint/OctoPrint
+  - https://hub.docker.com/r/octoprint/octoprint
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
