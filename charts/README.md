@@ -101,6 +101,7 @@
 | [pod-gateway](stable/pod-gateway) | Admision controller to change the default gateway and DNS server of PODs |
 | [powerdns](stable/powerdns) | PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program. |
 | [pretend-youre-xyzzy](stable/pretend-youre-xyzzy) | pretend-youre-xyzzy, a cards against humanity clone |
+| [privatebin](stable/privatebin) | A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack |
 | [promcord](stable/promcord) | Discord bot that provides metrics from a Discord server |
 | [prometheus-nut-exporter](stable/prometheus-nut-exporter) | Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance. |
 | [protonmail-bridge](stable/protonmail-bridge) | Container for protonmail bridge to work on the network. |
