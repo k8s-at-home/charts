@@ -78,13 +78,6 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables) and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
-| env.DB_DRIVER | string | `"postgres"` | Database driver: mysql or postgres |
-| env.DB_HOSTNAME | string | `nil` | Mysql/Postgres hostname |
-| env.DB_NAME | string | `nil` | Mysql/Postgres database name |
-| env.DB_PASSWORD | string | `nil` | Mysql/Postgres password |
-| env.DB_PORT | string | `nil` | Mysql/Postgres custom port (empty = default port) |
-| env.DB_USERNAME | string | `nil` | Mysql/Postgres username |
-| env.LOG_DRIVER | string | `"stdout"` | log driver: syslog, stderr, stdout or file |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"privatebin/pdo"` | image repository |
