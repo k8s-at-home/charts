@@ -79,8 +79,8 @@ N/A
 |-----|------|---------|-------------|
 | config | object | See values.yaml | Application Settings. See https://github.com/PrivateBin/PrivateBin/blob/master/cfg/conf.sample.php for a description of every setting |
 | env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables) and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
-| env.PHP_TZ | string | `"UTC"` | log driver: syslog, stderr, stdout or file |
-| env.TZ | string | `"UTC"` | Set the container timezone |
+| env.PHP_TZ | string | `"UTC"` | PHP timezone (usually should match the containers TZ) |
+| env.TZ | string | `"UTC"` | container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"privatebin/pdo"` | image repository |
 | image.tag | string | `"1.3.5"` | image tag |

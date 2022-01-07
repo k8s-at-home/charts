@@ -16,9 +16,9 @@ image:
 # and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details.
 # @default -- See below (only deviations from the default settings are specified)
 env:
-  # -- Set the container timezone
+  # -- container timezone
   TZ: UTC
-  # -- log driver: syslog, stderr, stdout or file
+  # -- PHP timezone (usually should match the containers TZ)
   PHP_TZ: UTC
 
 # -- Configures service settings for the chart.
