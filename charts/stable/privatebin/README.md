@@ -95,19 +95,15 @@ N/A
 
 #### Added
 
-N/A
+* Initial chart version
 
 #### Changed
 
-* change to a more clear description
-* upstream postgresql chart updated to 10.14.4
-* bump common chart version from 4.2.0 to 4.3.0
+N/A
 
 #### Fixed
 
-* Adhering to current styleguides of kah
-* set Initial version of the chart to 1.0.0
-* moved application specific config to bottom of values.yaml
+N/A
 
 ### Older versions
 
