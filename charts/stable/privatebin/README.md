@@ -1,6 +1,6 @@
 # privatebin
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
 
 A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack
 
@@ -91,7 +91,7 @@ N/A
 
 ## Changelog
 
-### Version 1.0.1
+### Version 1.0.0
 
 #### Added
 
@@ -99,7 +99,6 @@ N/A
 
 #### Changed
 
-* bump version of the chart to 1.0.1
 * change to a more clear description
 * upstream postgresql chart updated to 10.14.4
 * bump common chart version from 4.2.0 to 4.3.0
