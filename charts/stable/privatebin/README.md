@@ -1,8 +1,8 @@
 # privatebin
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
 
-PrivateBin running on an Nginx, php-fpm & Alpine Linux stack
+A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -77,7 +77,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | object | `{"expire":{"default":"1week"},"expire_options":{"10min":600,"1day":86400,"1hour":3600,"1month":2592000,"1week":604800,"1year":31536000,"5min":300,"never":0},"formatter_options":{"markdown":"Markdown","plaintext":"Plain Text","syntaxhighlighting":"Source Code"},"main":{"name":"PrivateBin"},"traffic":{"limit":10}}` | Application Settings. See https://github.com/PrivateBin/PrivateBin/blob/master/cfg/conf.sample.php for a description of every setting |
+| config | object | See values.yaml | Application Settings. See https://github.com/PrivateBin/PrivateBin/blob/master/cfg/conf.sample.php for a description of every setting |
 | env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables) and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
 | env.PHP_TZ | string | `"UTC"` | log driver: syslog, stderr, stdout or file |
 | env.TZ | string | `"UTC"` | Set the container timezone |
@@ -91,7 +91,7 @@ N/A
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.0.1
 
 #### Added
 
@@ -99,11 +99,14 @@ N/A
 
 #### Changed
 
+* bump version of the chart to 1.0.1
+* change to a more clear description
 * upstream postgresql chart updated to 10.14.4
 * bump common chart version from 4.2.0 to 4.3.0
 
 #### Fixed
 
+* Adhering to current styleguides of kah
 * set Initial version of the chart to 1.0.0
 * moved application specific config to bottom of values.yaml
 

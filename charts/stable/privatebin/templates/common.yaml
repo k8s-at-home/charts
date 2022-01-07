@@ -1,16 +1,18 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap volume to the volumes */}}
-{{- define "privatebin.configVolume" -}}
-enabled: "true"
-mountPath: "/srv/cfg/conf.php"
-subPath: "conf.php"
-type: "custom"
-volumeSpec:
-  configMap:
-    name: {{ template "common.names.fullname" . }}-config
+{{/* Append the hardcoded settings */}}
+{{- define "privatebin.harcodedValues" -}}
+  {{/* Append the configMap volume to the volumes */}}
+  persistence:
+    privatebin-config:
+      enabled: true
+      type: "configMap"
+      name: "{{ include "common.names.fullname" . }}-config"
+      mountPath: "/srv/cfg/conf.php"
+      subPath: "conf.php"
+  {{- end }}
 {{- end -}}
-{{- $_ := set .Values.persistence "privatebin-config" (include "privatebin.configVolume" . | fromYaml) -}}
+{{- $_ := mergeOverwrite .Values (include "privatebin.harcodedValues" . | fromYaml) -}}
 
 {{ include "common.all" . }}
