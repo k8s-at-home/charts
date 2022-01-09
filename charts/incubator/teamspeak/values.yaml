@@ -26,20 +26,17 @@ service:
       http:
         enabled: false
         primary: false
-      voice:
-        enabled: true
-        primary: true
-        port: 9987
-        protocol: UDP
-  tcp:
-    enabled: true
-    ports:
       serverquery:
         enabled: true
         port: 10011
       filetransfer:
         enabled: true
         port: 30033
+      voice:
+        enabled: true
+        primary: true
+        port: 9987
+        protocol: UDP
 
 probes:
   readiness:
