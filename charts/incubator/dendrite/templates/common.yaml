@@ -38,13 +38,5 @@ subPath:
 {{- $_ := set .Values.persistence "dendrite-key" (include "dendrite.keyVolume" . | fromYaml) -}}
 {{- $_ := set .Values.persistence "dendrite-config" (include "dendrite.configVolume" . | fromYaml) -}}
 {{- $_ := set .Values.persistence "dendrite-tls" (include "dendrite.tlsVolume" . | fromYaml) -}}
-{{- define "postgresql.initdbScripts" -}}
-create_db.sh: |
-  #!/bin/sh
-  for db in userapi_accounts userapi_devices mediaapi syncapi roomserver keyserver federationapi appservice naffka; do
-  createdb -U dendrite -O dendrite dendrite_$db
-  done
-{{- end -}}
-{{- $_ := set .Values.postgresql "initdbScripts" (include "postgresql.initdbScripts" . | fromYaml) -}}
 
 {{ include "common.all" . }}
