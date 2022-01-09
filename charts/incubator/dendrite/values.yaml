@@ -10,7 +10,7 @@ image:
   # -- image repository
   repository: matrixdotorg/dendrite-monolith
   # -- image tag
-  tag: "v0.5.1"
+  tag: "v0.6.0"
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -47,17 +47,285 @@ persistence:
   media:
     enabled: false
     mountPath: &mediaPath /var/dendrite/media
+    accessMode: ReadWriteOnce
+    size: 5Gi
   # -- Configure Jetsream persistence. This is highly recommended in production.
   # @default -- See values.yaml
   jetstream:
     enabled: false
     mountPath: /var/dendrite/jetstream
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
+# -- Configure the key server.
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- See values.yaml
+keyserver:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7779
+  args: "keyserver"
+
+# -- Configure the app service api.
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- See values.yaml
+appserviceapi:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7777
+  args: "appservice"
+  config:
+    config_files: []
+
+# -- Configuration for the client api component.
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- See values.yaml
+clientapi:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7771
+        external:
+          enabled: true
+          port: 8071
+  args: "clientapi"
+  config:
+    # -- Enable or disable registration for this homeserver.
+    registration_disabled: false
+    # -- Shared secret that allows registration, despite registration_disabled.
+    registration_shared_secret: ""
+    # -- Configure captcha for registration
+    # @default -- See values.yaml
+    captcha:
+      enabled: false
+      recaptcha_public_key: ""
+      recaptcha_private_key: ""
+      recaptcha_bypass_secret: ""
+      recaptcha_siteverify_api: ""
+    # -- Configure TURN
+    # @default -- See values.yaml
+    turn:
+      turn_user_lifetime: ""
+      turn_uris: []
+      turn_shared_secret: ""
+      turn_username: ""
+      turn_password: ""
+    # -- Configure rate limiting.
+    # @default -- values.yaml
+    rate_limiting:
+      enabled: true
+      threshold: 5
+      cooloff_ms: 500
+
+# -- Configure the Federation API
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- values.yaml
+federationapi:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7772
+        external:
+          enabled: true
+          port: 8072
+  args: "federationapi"
+  config:
+    federation-certificates: []
+    send-max_retires: 16
+    disable_tls_validation: false
+    proxy_outbound:
+      enabled: false
+      protocol: http
+      host: localhost
+      port: 8080
+    key_perspectives:
+      - server_name: matrix.org
+        keys:
+          - key_id: ed25519:auto
+            public_key: Noi6WqcDj0QmPxCNQqgezwTlBKrfqehY1u2FyWP9uYw
+          - key_id: ed25519:a_RXGa
+            public_key: l8Hft5qXKn1vfHrg3p4+W8gELQVo8N13JkluMfmn2sQ
+    prefer_direct_fetch: false
+
+# -- Configure the User API
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- values.yaml
+userapi:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7781
+  args: "userapi"
+
+# -- Configure the Sync API
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- values.yaml
+syncapi:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7773
+        external:
+          enabled: true
+          port: 8073
+  args: "syncapi"
+
+# -- Configure the Room Server
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- values.yaml
+roomserver:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7770
+  args: "roomserver"
+
+# -- Configure the edu server
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- values.yaml
+eduserver:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7778
+  args: "eduserver"
+
+# -- Configure the Media API
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# @default -- values.yaml
+mediaapi:
+  image:
+    # -- image repository
+    repository: matrixdotorg/dendrite-polylith
+    # -- image tag
+    tag: "v0.6.0"
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+  service:
+    main:
+      ports:
+        http:
+          enabled: false
+        internal:
+          enabled: true
+          port: 7774
+        external:
+          enabled: true
+          port: 8074
+  args: "mediaapi"
+  config:
+    base_path: *mediaPath
+    max_file_size_bytes: 10485760
+    dynamic_thumbnails: false
+    max_thumbnail_generators: 10
+    thumbnail_sizes:
+      - width: 32
+        height: 32
+        method: crop
+      - width: 96
+        height: 96
+        method: crop
+      - width: 640
+        height: 480
+        method: scale
 
 # -- Configuration for Dendrite.
 # For more information see [the sample
 # denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
 # @default -- See values.yaml
 dendrite:
+  # -- Enable polylith deployment
+  polylithEnabled: false
   # -- If enabled, use an existing secrets for the TLS certificate and key.
   # Otherwise, to enable TLS a `server.crt` and `server.key` must be mounted at
   # `/etc/dendrite`.
@@ -109,77 +377,9 @@ dendrite:
       enabled: false
       cache_size: 256
       cache_lifetime: "5m"
-  # -- Configure the dendrite components.
-  # @default -- See values.yaml
-  components:
-    # -- Configure the App Service API
-    # @default -- See values.yaml
-    app_service_api:
-      config_files: []
-    # -- Configure the Client API
-    client_api:
-      # -- Enable or disable registration for this homeserver.
-      registration_disabled: false
-      # -- Shared secret that allows registration, despite registration_disabled.
-      registration_shared_secret: ""
-      # -- Configure captcha for registration
-      # @default -- See values.yaml
-      captcha:
-        enabled: false
-        recaptcha_public_key: ""
-        recaptcha_private_key: ""
-        recaptcha_bypass_secret: ""
-        recaptcha_siteverify_api: ""
-      # -- Configure TURN
-      # @default -- See values.yaml
-      turn:
-        turn_user_lifetime: ""
-        turn_uris: []
-        turn_shared_secret: ""
-        turn_username: ""
-        turn_password: ""
-      # -- Configure rate limiting.
-      # @default -- values.yaml
-      rate_limiting:
-        enabled: true
-        threshold: 5
-        cooloff_ms: 500
-    # -- Configure the Federation API
-    # @default -- values.yaml
-    federation_api:
-      federation_certificates: []
-      send_max_retires: 16
-      disable_tls_validation: false
-      proxy_outbound:
-        enabled: false
-        protocol: http
-        host: localhost
-        port: 8080
-      key_perspectives:
-        - server_name: matrix.org
-          keys:
-            - key_id: ed25519:auto
-              public_key: Noi6WqcDj0QmPxCNQqgezwTlBKrfqehY1u2FyWP9uYw
-            - key_id: ed25519:a_RXGa
-              public_key: l8Hft5qXKn1vfHrg3p4+W8gELQVo8N13JkluMfmn2sQ
-      prefer_direct_fetch: false
-    # -- Configure the Media API
-    # @default -- values.yaml
-    media_api:
-      base_path: *mediaPath
-      max_file_size_bytes: 10485760
-      dynamic_thumbnails: false
-      max_thumbnail_generators: 10
-      thumbnail_sizes:
-        - width: 32
-          height: 32
-          method: crop
-        - width: 96
-          height: 96
-          method: crop
-        - width: 640
-          height: 480
-          method: scale
+    # -- Configure experimental MSC's
+    mscs: []
+
   # -- Configure opentracing.
   # @default -- See values.yaml
   tracing:
@@ -194,6 +394,7 @@ dendrite:
       headers: null
       baggage_restrictions: null
       throttler: null
+
   # -- Configure logging.
   # @default -- See values.yaml
   logging:
@@ -221,6 +422,7 @@ nats:
   # deployments - an internal NATS server will be used in its place.
   # @default -- See value.yaml
   enabled: false
-  image: nats:2.7.1-alpine
-  jetstream:
-    enabled: true
+  nats:
+    image: nats:2.7.1-alpine
+    jetstream:
+      enabled: true

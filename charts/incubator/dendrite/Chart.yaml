@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 0.6.0
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 2.0.0
+version: 3.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -11,6 +11,7 @@ keywords:
   - homeserver
   - monolith
   - federation
+  - polylith
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dendrite
 sources:
   - https://github.com/matrix-org/dendrite
@@ -30,9 +31,69 @@ dependencies:
     version: 0.12.1
     repository: https://nats-io.github.io/k8s/helm/charts/
     condition: nats.enabled
+  # Client API
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: clientapi
+    condition: dendrite.polylithEnabled
+  # Media API
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: mediaapi
+    condition: dendrite.polylithEnabled
+  # Sync API
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: syncapi
+    condition: dendrite.polylithEnabled
+  # Room Server
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: roomserver
+    condition: dendrite.polylithEnabled
+  # EDU Server
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: eduserver
+    condition: dendrite.polylithEnabled
+  # Federation API
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: federationapi
+    condition: dendrite.polylithEnabled
+  # Key Server
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: keyserver
+    condition: dendrite.polylithEnabled
+  # User API
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: userapi
+    condition: dendrite.polylithEnabled
+  # App Service API
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+    alias: appserviceapi
+    condition: dendrite.polylithEnabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: NATS is now used instead of Kafka
+      description: Refactor values for polylith mode
+    - kind: added
+      description: Add aliased dependencies for each component
     - kind: changed
-      description: App version bumped to v0.6.0
+      description: Split out volume template defintions into separate file
+    - kind: fix
+      description: NAT subchart indentation
+    - kind: fix
+      description: MSC's config and updated config version
