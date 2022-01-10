@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 0.5.1
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 1.0.1
+version: 1.0.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -29,4 +29,8 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.14.4`.
+      description: Upgraded `postgresql` image version to "14.1.0"
+    - kind: fixed
+      description: `initdbScripts` are now actually loaded by `postgresql`
+    - kind: added
+      description: `postgresqlUsername` is used in `initdbScripts` rather than hardcoded value
