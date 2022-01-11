@@ -9,7 +9,7 @@ DokuWiki is a simple to use and highly versatile Open Source wiki software that 
 ## Source Code
 
 * <https://github.com/splitbrain/dokuwiki>
-* <https://github.com/bitnami/bitnami-docker-dokuwiki>
+* <https://github.com/linuxserver/docker-dokuwiki>
 
 ## Requirements
 
@@ -77,22 +77,10 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables) and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
-| env.DOKUWIKI_EMAIL | string | `"user@example.com"` | Wiki Application e-mail |
-| env.DOKUWIKI_FULL_NAME | string | `"Full Name"` | Initial User Full Name |
-| env.DOKUWIKI_PASSWORD | string | `"bitnami1"` | Initial User Password |
-| env.DOKUWIKI_USERNAME | string | `"user"` | Initial Username |
-| env.DOKUWIKI_WIKI_NAME | string | `"Bitnami DokuWiki"` | Wiki Application Name |
-| env.PHP_ENABLE_OPCACHE | bool | `false` | Enable OPcache for PHP scripts |
-| env.PHP_EXPOSE_PHP | bool | `false` | Enables HTTP header with PHP version |
-| env.PHP_MAX_EXECUTION_TIME | int | `60` | Maximum execution time for PHP scripts |
-| env.PHP_MAX_INPUT_TIME | int | `10` | Maximum input time for PHP scripts |
-| env.PHP_MAX_INPUT_VARS | int | `10` | Maximum amount of input variables for PHP scripts |
-| env.PHP_MEMORY_LIMIT | string | `"256M"` | Memory limit for PHP scripts. Default: 256M |
-| env.PHP_POST_MAX_SIZE | string | `"10M"` | Maximum size for PHP POST requests |
-| env.PHP_UPLOAD_MAX_FILESIZE | string | `"10M"` | Maximum file size for PHP uploads |
+| env.TZ | string | `"Europe/London"` | Application Timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"bitnami/dokuwiki"` | image repository |
-| image.tag | string | `"20200729.0.0"` | image tag |
+| image.repository | string | `"linuxserver/dokuwiki"` | image repository |
+| image.tag | string | `"version-2020-07-29"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
