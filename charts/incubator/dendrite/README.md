@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 0.5.1](https://img.shields.io/badge/AppVersion-0.5.1-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![AppVersion: 0.5.1](https://img.shields.io/badge/AppVersion-0.5.1-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -109,6 +109,9 @@ N/A
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | postgresql.enabled | bool | See value.yaml | Enable and configure postgres as the database for dendrite. |
+| postgresql.image.repository | string | `"bitnami/postgresql"` |  |
+| postgresql.image.tag | string | `"14.1.0"` |  |
+| postgresql.initdbScriptsConfigMap | string | `"dendrite-postgresql-init-scripts"` |  |
 | postgresql.persistence.enabled | bool | `false` |  |
 | postgresql.postgresqlDatabase | string | `"dendrite"` |  |
 | postgresql.postgresqlPassword | string | `"changeme"` |  |
@@ -119,19 +122,19 @@ N/A
 
 ## Changelog
 
-### Version 1.0.1
+### Version 1.0.2
 
 #### Added
 
-N/A
+* `postgresqlUsername` is used in `initdbScripts` rather than hardcoded value
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `10.14.4`.
+* Upgraded `postgresql` image version to "14.1.0"
 
 #### Fixed
 
-N/A
+* `initdbScripts` are now actually actually loaded
 
 ### Older versions
 

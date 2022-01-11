@@ -201,8 +201,12 @@ postgresql:
   # -- Enable and configure postgres as the database for dendrite.
   # @default -- See value.yaml
   enabled: false
+  image:
+    repository: bitnami/postgresql
+    tag: "14.1.0"
   postgresqlUsername: dendrite
   postgresqlPassword: changeme
   postgresqlDatabase: dendrite
   persistence:
     enabled: false
+  initdbScriptsConfigMap: "dendrite-postgresql-init-scripts"
