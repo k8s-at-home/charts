@@ -1,0 +1,69 @@
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: bitnami/dokuwiki
+  # -- image tag
+  tag: 20200729.0.0
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables)
+# and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details.
+# @default -- See below (only deviations from the default settings are specified)
+env:
+  # Application Configuration
+  # -- Initial Username
+  DOKUWIKI_USERNAME: user
+  # -- Initial User Full Name
+  DOKUWIKI_FULL_NAME: "Full Name"
+  # -- Initial User Password
+  DOKUWIKI_PASSWORD: bitnami1
+  # -- Wiki Application e-mail
+  DOKUWIKI_EMAIL: user@example.com
+  # -- Wiki Application Name
+  DOKUWIKI_WIKI_NAME: Bitnami DokuWiki
+  # PHP Configuration
+  # -- Enable OPcache for PHP scripts
+  PHP_ENABLE_OPCACHE: false
+  # -- Enables HTTP header with PHP version
+  PHP_EXPOSE_PHP: false
+  # -- Maximum execution time for PHP scripts
+  PHP_MAX_EXECUTION_TIME: 60
+  # -- Maximum input time for PHP scripts
+  PHP_MAX_INPUT_TIME: 10
+  # -- Maximum amount of input variables for PHP scripts
+  PHP_MAX_INPUT_VARS: 10
+  # -- Memory limit for PHP scripts. Default: 256M
+  PHP_MEMORY_LIMIT: 256M
+  # -- Maximum size for PHP POST requests
+  PHP_POST_MAX_SIZE: 10M
+  # -- Maximum file size for PHP uploads
+  PHP_UPLOAD_MAX_FILESIZE: 10M
+
+
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /bitnami/dokuwiki
