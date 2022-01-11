@@ -6,9 +6,9 @@
 
 image:
   # -- image repository
-  repository: bitnami/dokuwiki
+  repository: linuxserver/dokuwiki
   # -- image tag
-  tag: 20200729.0.0
+  tag: version-2020-07-29
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -17,34 +17,8 @@ image:
 # @default -- See below (only deviations from the default settings are specified)
 env:
   # Application Configuration
-  # -- Initial Username
-  DOKUWIKI_USERNAME: user
-  # -- Initial User Full Name
-  DOKUWIKI_FULL_NAME: "Full Name"
-  # -- Initial User Password
-  DOKUWIKI_PASSWORD: bitnami1
-  # -- Wiki Application e-mail
-  DOKUWIKI_EMAIL: user@example.com
-  # -- Wiki Application Name
-  DOKUWIKI_WIKI_NAME: Bitnami DokuWiki
-  # PHP Configuration
-  # -- Enable OPcache for PHP scripts
-  PHP_ENABLE_OPCACHE: false
-  # -- Enables HTTP header with PHP version
-  PHP_EXPOSE_PHP: false
-  # -- Maximum execution time for PHP scripts
-  PHP_MAX_EXECUTION_TIME: 60
-  # -- Maximum input time for PHP scripts
-  PHP_MAX_INPUT_TIME: 10
-  # -- Maximum amount of input variables for PHP scripts
-  PHP_MAX_INPUT_VARS: 10
-  # -- Memory limit for PHP scripts. Default: 256M
-  PHP_MEMORY_LIMIT: 256M
-  # -- Maximum size for PHP POST requests
-  PHP_POST_MAX_SIZE: 10M
-  # -- Maximum file size for PHP uploads
-  PHP_UPLOAD_MAX_FILESIZE: 10M
-
+  # -- Application Timezone
+  TZ: Europe/London
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -52,7 +26,7 @@ service:
   main:
     ports:
       http:
-        port: 8080
+        port: 80
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -65,4 +39,4 @@ ingress:
 persistence:
   data:
     enabled: false
-    mountPath: /bitnami/dokuwiki
+    mountPath: /config
