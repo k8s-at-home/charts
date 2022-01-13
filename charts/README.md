@@ -26,6 +26,7 @@
 | [deluge](stable/deluge) | Deluge is a torrent download client |
 | [dizquetv](stable/dizquetv) | Create live TV channel streams from media on your Plex servers. |
 | [dnsmadeeasy-webhook](stable/dnsmadeeasy-webhook) | Cert-Manager Webhook for DNSMadeEasy |
+| [dokuwiki](stable/dokuwiki) | DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require a database. |
 | [double-take](stable/double-take) | Unified UI and API for processing and training images for facial recognition. |
 | [dsmr-reader](stable/dsmr-reader) | DSMR-protocol reader, telegram data storage and energy consumption visualizer. |
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
