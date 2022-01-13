@@ -15044,6 +15044,37 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/dnsmadeeasy-webhook-1.0.0/dnsmadeeasy-webhook-1.0.0.tgz
     version: 1.0.0
+  dokuwiki:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial chart version
+    apiVersion: v2
+    appVersion: 20200729.0.0
+    created: "2022-01-13T12:04:24.531648735Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: DokuWiki is a simple to use and highly versatile Open Source wiki
+      software that doesn't require a database.
+    digest: afe845542aa53fc71f0e02f0f10662f18ddeefeadb095ff2d9239310f77808ee
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dokuwiki
+    icon: https://www.dokuwiki.org/lib/tpl/dokuwiki/images/logo.png
+    keywords:
+    - dokuwiki
+    - wiki
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: psych0d0g@users.noreply.github.com
+      name: psych0d0g
+    name: dokuwiki
+    sources:
+    - https://github.com/splitbrain/dokuwiki
+    - https://github.com/linuxserver/docker-dokuwiki
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dokuwiki-1.0.0/dokuwiki-1.0.0.tgz
+    version: 1.0.0
   double-take:
   - annotations:
       artifacthub.io/changes: |
@@ -98470,4 +98501,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-10T23:32:47.568690304Z"
+generated: "2022-01-13T12:04:24.557580324Z"
