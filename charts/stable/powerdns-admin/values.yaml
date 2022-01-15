@@ -1,0 +1,52 @@
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ngoduykhanh/powerdns-admin
+  # -- image tag
+  tag: v0.2.4
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [undocumented configs](https://github.com/PowerDNS-Admin/PowerDNS-Admin/blob/master/configs/docker_config.py)
+# and [application docs](# https://github.com/PowerDNS-Admin/PowerDNS-Admin/blob/master/configs/development.py) for more details.
+# @default -- See below (only deviations from the default settings are specified)
+env:
+  # Application Configuration
+  # -- Application Timezone
+  TZ: UTC
+  # -- Unique app Key
+  SECRET_KEY: changeme
+  # -- Database connection string - if not set uses internal sqlite db
+  SQLALCHEMY_DATABASE_URI: mysql://db_user:db_pass@db_host/powerdns_admin
+  # -- Timeout for Gunicorn workers
+  GUNICORN_TIMEOUT: 60
+  # -- How many Gunicorn workers to spawn
+  GUNICORN_WORKERS: 2
+  # -- Gunicorn loglevel to use
+  GUNICORN_LOGLEVEL: DEBUG
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# this persists the internal sqlite DB if no other database is enabled
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
