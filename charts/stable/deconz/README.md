@@ -86,8 +86,8 @@ N/A
 | env.DECONZ_WS_PORT | int | `443` | Websocket listen port |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"marthoc/deconz"` | image repository |
-| image.tag | string | `"2.12.01"` | image tag |
+| image.repository | string | `"deconzcommunity/deconz"` | image repository |
+| image.tag | string | `"2.12.06"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.usb | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
