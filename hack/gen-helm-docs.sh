@@ -6,7 +6,7 @@ set -eu
 
 # require helm-docs
 command -v helm-docs >/dev/null 2>&1 || {
-    echo >&2 "helm-docs (https://github.com/norwoodj/helm-docs) is not installed. Aborting."
+    echo >&2 "helm-docs (https://github.com/k8s-at-home/helm-docs) is not installed. Aborting."
     exit 1
 }
 
