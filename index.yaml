@@ -61694,6 +61694,36 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/powerdns-1.0.0/powerdns-1.0.0.tgz
     version: 1.0.0
+  powerdns-admin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial chart version
+    apiVersion: v2
+    appVersion: v0.2.4
+    created: "2022-01-18T12:47:39.17866992Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: A PowerDNS web interface with advanced features
+    digest: 91e9385e42812f5d1bde79b8a263310581370b593d75dc75c673c14199bf8602
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/powerdns-admin
+    keywords:
+    - powerdns
+    - pdns
+    - powerdns-admin
+    - admin
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: psych0d0g@users.noreply.github.com
+      name: psych0d0g
+    name: powerdns-admin
+    sources:
+    - https://github.com/PowerDNS-Admin/PowerDNS-Admin
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/powerdns-admin-1.0.0/powerdns-admin-1.0.0.tgz
+    version: 1.0.0
   pretend-youre-xyzzy:
   - annotations:
       artifacthub.io/changes: |
@@ -98537,4 +98567,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-18T07:00:56.536831582Z"
+generated: "2022-01-18T12:47:39.198457232Z"
