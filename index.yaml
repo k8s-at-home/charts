@@ -12164,6 +12164,42 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Changed repository from `marthoc/deconz` to `deconzcommunity/deconz`.
+        - kind: changed
+          description: Bumped application version to `2.12.06` from https://phoscon.de/en/changelog/.
+        - kind: changed
+          description: Changed config mounthPath to `/opt/deCONZ` as required by new image.
+    apiVersion: v2
+    appVersion: 2.12.06
+    created: "2022-01-18T07:00:56.518932094Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: deCONZ is an easy to use control software, with which you can set
+      up and control Zigbee networks of any size without further programming effort.
+    digest: d9d68541528d89a3148ba55a7618cf42c4579b1b7a52ecadf4134093a50e651f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deconz
+    icon: https://avatars1.githubusercontent.com/u/4217524?s=400&v=4
+    keywords:
+    - deconz
+    - home-automation
+    - zigbee
+    - conbee
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: deconz
+    sources:
+    - https://github.com/dresden-elektronik/deconz-rest-plugin
+    - https://github.com/deconz-community/deconz-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/deconz-6.3.0/deconz-6.3.0.tgz
+    version: 6.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: 2.12.01
@@ -98501,4 +98537,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-13T12:04:24.557580324Z"
+generated: "2022-01-18T07:00:56.536831582Z"
