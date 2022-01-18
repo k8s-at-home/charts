@@ -100,6 +100,7 @@
 | [piaware](stable/piaware) | Program for forwarding ADS-B data to FlightAware |
 | [plex](stable/plex) | Plex Media Server |
 | [pod-gateway](stable/pod-gateway) | Admision controller to change the default gateway and DNS server of PODs |
+| [powerdns-admin](stable/powerdns-admin) | A PowerDNS web interface with advanced features |
 | [powerdns](stable/powerdns) | PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program. |
 | [pretend-youre-xyzzy](stable/pretend-youre-xyzzy) | pretend-youre-xyzzy, a cards against humanity clone |
 | [privatebin](stable/privatebin) | A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack |
