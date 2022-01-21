@@ -79,7 +79,7 @@ N/A
 | configmap.config.data | object | See values.yaml | Radicale configuration. See [image documentation](https://github.com/tomsquest/docker-radicale#custom-configuration) for more information. |
 | configmap.config.enabled | bool | `false` | Define inline radicale configuration as a ConfigMap. |
 | env | object | See below | environment variables. See more environment variables in the [radicale documentation](https://radicale.org/master.html#configuration). |
-| env.RADICALE_CONFIG | string | `"/config/config"` | Set the location of the configuration file  |
+| env.RADICALE_CONFIG | string | `"/config/config"` | Set the location of the configuration file |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"tomsquest/docker-radicale"` | image repository |
