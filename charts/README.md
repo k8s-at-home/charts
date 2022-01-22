@@ -111,6 +111,7 @@
 | [pyload](stable/pyload) | pyLoad is a Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web. |
 | [qbittorrent](stable/qbittorrent) | qBittorrent is a cross-platform free and open-source BitTorrent client |
 | [radarr](stable/radarr) | A fork of Sonarr to work with movies à la Couchpotato |
+| [radicale](stable/radicale) | A simple CalDAV (calendar) and CardDAV (contact) server. |
 | [readarr](stable/readarr) | A fork of Radarr to work with Books & AudioBooks |
 | [recipes](stable/recipes) | Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files. |
 | [reg](stable/reg) | Docker registry v2 command line client and repo listing generator with security checks. |
