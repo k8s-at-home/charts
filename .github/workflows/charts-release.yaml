@@ -6,82 +6,82 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - master
+      - master
     paths:
-    - 'charts/**'
+      - "charts/**"
 
 jobs:
   release:
     runs-on: ubuntu-20.04
     steps:
-    - name: Get k8s-at-home token
-      id: get-app-token
-      uses: getsentry/action-github-app-token@v1
-      with:
-        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
-        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+          private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        token: ${{ steps.get-app-token.outputs.token }}
-        ref: master
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          ref: master
+          fetch-depth: 0
 
-    - name: Configure Git
-      run: |
-        git config user.name "k8s-at-home[bot]"
-        git config user.email "k8s-at-home[bot]@users.noreply.github.com"
+      - name: Configure Git
+        run: |
+          git config user.name "k8s-at-home[bot]"
+          git config user.email "k8s-at-home[bot]@users.noreply.github.com"
 
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.6.3
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.6.3
 
-    - name: Run chart-releaser
-      uses: helm/chart-releaser-action@v1.2.1
-      with:
-        charts_dir: charts/*
-        charts_repo_url: https://k8s-at-home.com/charts/
-      env:
-        CR_TOKEN: "${{ steps.get-app-token.outputs.token }}"
-        CR_SKIP_EXISTING: "true"
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.1
+        with:
+          charts_dir: charts/*
+          charts_repo_url: https://k8s-at-home.com/charts/
+        env:
+          CR_TOKEN: "${{ steps.generate-token.outputs.token }}"
+          CR_SKIP_EXISTING: "true"
 
   generate-summary:
     name: Auto-generate charts summary
     runs-on: ubuntu-20.04
     needs:
-    - release
+      - release
     steps:
-    - name: Get k8s-at-home token
-      id: get-app-token
-      uses: getsentry/action-github-app-token@v1
-      with:
-        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
-        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+          private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        token: ${{ steps.get-app-token.outputs.token }}
-        ref: master
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          ref: master
+          fetch-depth: 0
 
-    - name: Install yq
-      uses: chrisdickinson/setup-yq@latest
-      with:
-        yq-version: v4.9.3
+      - name: Install yq
+        uses: chrisdickinson/setup-yq@latest
+        with:
+          yq-version: v4.9.3
 
-    - name: Run script
-      run: |
-        ./hack/gen-chart-summary.sh
+      - name: Run script
+        run: |
+          ./hack/gen-chart-summary.sh
 
-    - name: Create Commit
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        push_options: --force
-        commit_message: Auto-generate chart summary [no ci]
-        commit_user_name: k8s-at-home[bot]
-        commit_user_email: k8s-at-home[bot]@users.noreply.github.com
-        commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
-        file_pattern: charts/README.md
+      - name: Create Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          push_options: --force
+          commit_message: Auto-generate chart summary [no ci]
+          commit_user_name: k8s-at-home[bot]
+          commit_user_email: k8s-at-home[bot]@users.noreply.github.com
+          commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
+          file_pattern: charts/README.md

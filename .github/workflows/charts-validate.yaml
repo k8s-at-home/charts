@@ -66,9 +66,9 @@ jobs:
     if: |
       needs.pr-metadata.outputs.isFork == 'false'
     steps:
-      - name: Get app-token
-        uses: getsentry/action-github-app-token@v1
-        id: get-app-token
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
         with:
           app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
@@ -77,7 +77,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: ${{ steps.get-app-token.outputs.token }}
+          token: ${{ steps.generate-token.outputs.token }}
 
       - uses: yokawasa/action-setup-kube-tools@v0.8.0
         if: |
@@ -153,25 +153,25 @@ jobs:
       always() &&
       needs.generate-readme.outputs.commitHash == ''
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.1.0
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.1.0
 
-    - name: Run chart-testing (list-changed)
-      id: list-changed
-      run: |
-        EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-lint.yaml)
-        CHARTS=$(ct list-changed --config .github/ct-lint.yaml)
-        CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
-        OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
-        echo ::set-output name=charts::${OUTPUT_JSON}
-        if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
-          echo "::set-output name=detected::true"
-        fi
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-lint.yaml)
+          CHARTS=$(ct list-changed --config .github/ct-lint.yaml)
+          CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
+          OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
+          echo ::set-output name=charts::${OUTPUT_JSON}
+          if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
+            echo "::set-output name=detected::true"
+          fi
 
   changes-install:
     name: Detect changes for install
@@ -189,99 +189,97 @@ jobs:
       always() &&
       needs.generate-readme.outputs.commitHash == ''
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.1.0
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.1.0
 
-    - name: Run chart-testing (list-changed)
-      id: list-changed
-      run: |
-        EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-install.yaml)
-        CHARTS=$(ct list-changed --config .github/ct-install.yaml)
-        CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
-        OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
-        echo ::set-output name=charts::${OUTPUT_JSON}
-        if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
-          echo "::set-output name=detected::true"
-        fi
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-install.yaml)
+          CHARTS=$(ct list-changed --config .github/ct-install.yaml)
+          CHARTS_JSON=$(echo "${CHARTS}" | jq -R -s -c 'split("\n")[:-1]')
+          OUTPUT_JSON=$(echo "{\"excluded\": ${EXCLUDED}, \"all\": ${CHARTS_JSON}}" | jq -c '.all-.excluded')
+          echo ::set-output name=charts::${OUTPUT_JSON}
+          if [[ $(echo ${OUTPUT_JSON} | jq -c '. | length') -gt 0 ]]; then
+            echo "::set-output name=detected::true"
+          fi
 
   lint:
     needs:
-    - changes-lint
-    if:
-      always() &&
+      - changes-lint
+    if: always() &&
       needs.changes-lint.outputs.detected == 'true'
     name: Lint successful
     runs-on: ubuntu-20.04
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.6.3
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.6.3
 
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
 
-    - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.1.0
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.1.0
 
-    - name: Run chart-testing (lint)
-      id: lint
-      run: ct lint --config .github/ct-lint.yaml
+      - name: Run chart-testing (lint)
+        id: lint
+        run: ct lint --config .github/ct-lint.yaml
 
   unittest:
     needs:
-    - lint
+      - lint
     if: |
       always() &&
       needs.lint.result == 'success'
     name: Run unit tests
     runs-on: ubuntu-20.04
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Install Dev tools
-      run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
+      - name: Install Dev tools
+        run: sudo apt-get update && sudo apt-get install -y jq libjq-dev
 
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.6.3
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.6.3
 
-    - name: Install Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
 
-    - name: Install dependencies
-      env:
-        RUBYJQ_USE_SYSTEM_LIBRARIES: 1
-      run: |
-        bundle install
+      - name: Install dependencies
+        env:
+          RUBYJQ_USE_SYSTEM_LIBRARIES: 1
+        run: |
+          bundle install
 
-    - name: Run tests
-      run: |
-        bundle exec m -r ./test/
+      - name: Run tests
+        run: |
+          bundle exec m -r ./test/
 
   install:
     needs:
-    - changes-install
-    - lint
-    if:
-      always() &&
+      - changes-install
+      - lint
+    if: always() &&
       needs.lint.result == 'success' &&
       needs.changes-install.outputs.detected == 'true'
     name: Install charts
@@ -291,46 +289,46 @@ jobs:
       max-parallel: 15
     runs-on: ubuntu-20.04
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.6.3
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.6.3
 
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
 
-    - name: Set up chart-testing
-      uses: helm/chart-testing-action@v2.1.0
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.1.0
 
-    - name: Create k3d cluster
-      uses: nolar/setup-k3d-k3s@v1
-      with:
-        version: v1.19
+      - name: Create k3d cluster
+        uses: nolar/setup-k3d-k3s@v1
+        with:
+          version: v1.19
 
-    - name: Remove node taints
-      run: |
-        kubectl taint --all=true nodes node.cloudprovider.kubernetes.io/uninitialized- || true
+      - name: Remove node taints
+        run: |
+          kubectl taint --all=true nodes node.cloudprovider.kubernetes.io/uninitialized- || true
 
-    - name: Run chart-testing (install)
-      run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
+      - name: Run chart-testing (install)
+        run: ct install --config .github/ct-install.yaml --charts ${{ matrix.chart }}
 
   # Summarize matrix https://github.community/t/status-check-for-a-matrix-jobs/127354/7
   install_success:
     needs:
-    - changes-install
-    - install
+      - changes-install
+      - install
     if: |
       always() &&
       needs.install.result != 'skipped'
     name: Install successful
     runs-on: ubuntu-20.04
     steps:
-    - name: Check install matrix status
-      if: ${{ needs.changes-install.outputs.detected == 'true' && needs.install.result != 'success' }}
-      run: exit 1
+      - name: Check install matrix status
+        if: ${{ needs.changes-install.outputs.detected == 'true' && needs.install.result != 'success' }}
+        run: exit 1
