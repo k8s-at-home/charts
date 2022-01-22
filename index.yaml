@@ -67448,6 +67448,43 @@ entries:
     urls:
     - https://github.com/billimek/billimek-charts/releases/download/radarr-3.0.0/radarr-3.0.0.tgz
     version: 3.0.0
+  radicale:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial chart version
+      artifacthub.io/links: |
+        - name: Helm source
+          url: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radicale
+        - name: Radicale source
+          url: https://github.com/Kozea/Radicale
+        - name: docker-radicale image source
+          url: https://github.com/tomsquest/docker-radicale
+    apiVersion: v2
+    appVersion: 3.1.1.0
+    created: "2022-01-22T16:12:22.063996162Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: A simple CalDAV (calendar) and CardDAV (contact) server.
+    digest: 6ce21a04a939c8da008983ac8728a566f5016ce5aaf1fbe03f62fdab94356785
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radicale
+    keywords:
+    - radicale
+    - caldav
+    - carddav
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@bjw-s.dev
+      name: bjw-s
+    name: radicale
+    sources:
+    - https://github.com/Kozea/Radicale
+    - https://github.com/tomsquest/docker-radicale
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radicale-1.0.0/radicale-1.0.0.tgz
+    version: 1.0.0
   readarr:
   - annotations:
       artifacthub.io/changes: |
@@ -98567,4 +98604,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-18T12:47:39.198457232Z"
+generated: "2022-01-22T16:12:22.091093324Z"
