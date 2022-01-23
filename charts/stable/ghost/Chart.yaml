@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 4.27.2
 description: Ghost is a blogging and publishing software
 name: ghost
-version: 1.1.1
+version: 1.1.2
 kubeVersion: ">=1.19.0-0"
 keywords:
   - ghost
@@ -26,7 +26,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: fixed
-      description: Fixed PVC creation.
-      links:
-        - name: GitHub Issue
-          url: https://github.com/k8s-at-home/charts/issues/1358
+      description: Fixed database host to match mariadb-svc
