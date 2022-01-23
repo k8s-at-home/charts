@@ -1,0 +1,59 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* if host is not set use internal postgres chart */}}
+{{- if eq .Values.maddy.sql.postgres_dsn.host "" -}}
+  {{- $_ := set .Values.maddy.sql.postgres_dsn "host" (printf "%s-postgresql" .Release.Name) -}}
+{{- end -}}
+{{/* if dbname is not set use internal postgres chart */}}
+{{- if eq .Values.maddy.sql.postgres_dsn.dbname "" -}}
+  {{- $_ := set .Values.maddy.sql.postgres_dsn "dbname" .Values.postgresql.postgresqlDatabase -}}
+{{- end -}}
+{{/* if user is not set use internal postgres chart */}}
+{{- if eq .Values.maddy.sql.postgres_dsn.user "" -}}
+  {{- $_ := set .Values.maddy.sql.postgres_dsn "user" .Values.postgresql.postgresqlUsername -}}
+{{- end -}}
+{{/* if password is not set use internal postgres chart */}}
+{{- if eq .Values.maddy.sql.postgres_dsn.password "" -}}
+  {{- $_ := set .Values.maddy.sql.postgres_dsn "password" .Values.postgresql.postgresqlPassword -}}
+{{- end -}}
+
+{{- define "maddy.postgresDsn" -}}
+{{- range $option, $value := .Values.maddy.sql.postgres_dsn }}{{ $option }}='{{ $value }}' {{ end -}}
+{{- end -}}
+{{- $_ := set .Values.maddy.sql "postgres_dsn_line" (include "maddy.postgresDsn" . | trim | quote) -}}
+
+{{/* Append the hardcoded settings */}}
+{{- define "maddy.harcodedValues" -}}
+
+configmap:
+  config:
+    enabled: true
+    data:
+      maddy.conf: |
+        {{ tpl (.Files.Get "files/maddy.conf") . | nindent 8 }}
+      aliases: |
+        {{ tpl (.Values.maddy.alias) . | nindent 8 }}
+
+persistence:
+  config:
+    enabled: true
+    mountPath: /config
+    type: custom
+    volumeSpec:
+      projected:
+        sources:
+        - configMap:
+            name: {{ include "common.names.fullname" . }}-config
+        - secret:
+            name: {{ tpl (.Values.maddy.tls_secret_name) .}}
+
+command:
+- /bin/maddy
+- -config
+- /config/maddy.conf
+
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "maddy.harcodedValues" . | fromYaml) -}}
+
+{{ include "common.all" . }}
