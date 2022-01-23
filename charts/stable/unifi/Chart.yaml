@@ -26,6 +26,8 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
-    - kind: changed
-      description: Upgraded `mongodb` chart dependency to version `10.30.12`.
+      description: Upgraded `jacobalberty/unifi` image to version `v6.5.55`.
+      links:
+        - name: Update to v6.5.55 to address log4j2 CVE
+          url: https://github.com/k8s-at-home/charts/issues/1382
+  artifacthub.io/containsSecurityUpdates: "true"
