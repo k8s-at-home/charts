@@ -39,14 +39,13 @@ persistence:
   config:
     enabled: true
     mountPath: /config
-    type: custom
-    volumeSpec:
-      projected:
-        sources:
-        - configMap:
-            name: {{ include "common.names.fullname" . }}-config
-        - secret:
-            name: {{ tpl (.Values.maddy.tls_secret_name) .}}
+    type: configMap
+    name: {{ include "common.names.fullname" . }}-config
+  certificates:
+    enabled: true
+    mountPath: /certificates
+    type: secret
+    name: {{ tpl (.Values.maddy.tls_secret_name) .}}
 
 command:
 - /bin/maddy
