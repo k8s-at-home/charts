@@ -1,0 +1,29 @@
+apiVersion: v2
+appVersion: v0.5.2
+description: Maddy Mail Server
+name: maddy
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- maddy
+- mail
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/maddy
+# Project has no icon yet
+# icon: https://maddy.org/icon
+sources:
+- https://github.com/foxcpp/maddy
+maintainers:
+- name: angelnu
+  email: git@angelnu.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+- name: postgresql
+  version: 10.14.4
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
