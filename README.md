@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-55-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-56-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -117,6 +117,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/jlrgraham"><img src="https://avatars.githubusercontent.com/u/2184689?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jlrgraham</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=jlrgraham" title="Code">💻</a></td>
     <td align="center"><a href="https://cronix.cc"><img src="https://avatars.githubusercontent.com/u/181302?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lukas Wingerberg</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=psych0d0g" title="Code">💻</a></td>
     <td align="center"><a href="http://www.djvg.net"><img src="https://avatars.githubusercontent.com/u/17107225?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TheDJVG</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=TheDJVG" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rschoultz"><img src="https://avatars.githubusercontent.com/u/727834?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rickard Schoultz</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rschoultz" title="Code">💻</a></td>
   </tr>
 </table>
 
