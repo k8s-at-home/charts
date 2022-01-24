@@ -86665,6 +86665,43 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded `jacobalberty/unifi` image to version `v6.5.55`.
+          links:
+            - name: Update to v6.5.55 to address log4j2 CVE
+              url: https://github.com/k8s-at-home/charts/issues/1382
+      artifacthub.io/containsSecurityUpdates: "true"
+    apiVersion: v2
+    appVersion: v6.5.55
+    created: "2022-01-24T05:49:24.574924141Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.30.12
+    description: Ubiquiti Network's Unifi Controller
+    digest: 7665042ec22ea5b75ebdc675e8c483ae2980e9af96f9ae90f6dc9c3b60072165
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi
+    icon: https://prd-www-cdn.ubnt.com/static/favicon-152.png
+    keywords:
+    - ubiquiti
+    - unifi
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: mike@quadra-tec.net
+      name: mcronce
+    name: unifi
+    sources:
+    - https://github.com/jacobalberty/unifi-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-4.6.1/unifi-4.6.1.tgz
+    version: 4.6.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
         - kind: changed
           description: Upgraded `mongodb` chart dependency to version `10.30.12`.
@@ -98604,4 +98641,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-22T16:12:22.091093324Z"
+generated: "2022-01-24T05:49:24.59440853Z"
