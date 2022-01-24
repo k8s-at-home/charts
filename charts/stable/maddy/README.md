@@ -80,7 +80,7 @@ about how to do this.
 |-----|------|---------|-------------|
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"foxcpp/maddy"` | image repository |
-| image.tag | string | `"v0.5.2"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | maddy.alias | string | `"## Replace 'cat' with any domain to 'dog'.\n## E.g. cat@example.net -> dog@example.net\n# cat: dog\n\n## Replace cat@example.org with cat@example.com.\n## Takes priority over the previous line.\n#cat@example.org: cat@example.com\n"` | Alias file used in smtp_rule See [alias examples](https://maddy.email/man/_generated_maddy-filters.5/). |
 | maddy.auth.ldap | object | See [See Maddy auth](https://maddy.email/man/_generated_maddy-auth.5/#configuration-directives_5) | If type is ldap the following options are required |
 | maddy.auth.ldap."bind plain" | string | `"\"cn=maddy,ou=people,dc=maddy,dc=test\" \"123456\""` | Specify initial bind credentials. Not required ('bind off') if DN template is used. |
