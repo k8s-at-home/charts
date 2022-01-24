@@ -68,6 +68,7 @@
 | [lidarr](stable/lidarr) | Looks and smells like Sonarr but made for music |
 | [littlelink-server](stable/littlelink-server) | A lightweight open source alternative to linktree |
 | [lychee](stable/lychee) | Lychee is a free photo-management tool, which runs on your server or web-space |
+| [maddy](stable/maddy) | Maddy Mail Server |
 | [magic-mirror](stable/magic-mirror) | magic-mirror helm package |
 | [mealie](stable/mealie) | Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. |
 | [miniflux](stable/miniflux) | Miniflux is a minimalist and opinionated feed reader. |
