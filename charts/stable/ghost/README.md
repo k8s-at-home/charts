@@ -1,6 +1,6 @@
 # ghost
 
-![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: 4.27.2](https://img.shields.io/badge/AppVersion-4.27.2-informational?style=flat-square)
+![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![AppVersion: 4.27.2](https://img.shields.io/badge/AppVersion-4.27.2-informational?style=flat-square)
 
 Ghost is a blogging and publishing software
 
@@ -80,7 +80,7 @@ N/A
 | env.NODE_ENV | string | `"production"` |  |
 | env.database__client | string | `"mysql"` |  |
 | env.database__connection__database | string | `"ghost"` |  |
-| env.database__connection__host | string | `"mariadb"` |  |
+| env.database__connection__host | string | `"ghost-mariadb"` |  |
 | env.database__connection__password | string | `"ghost"` |  |
 | env.database__connection__user | string | `"ghost"` |  |
 | env.url | string | `"http://some-ghost.example.com"` |  |
@@ -100,7 +100,7 @@ N/A
 
 ## Changelog
 
-### Version 1.1.1
+### Version 1.1.2
 
 #### Added
 
@@ -112,7 +112,7 @@ N/A
 
 #### Fixed
 
-* Fixed PVC creation.
+* Fixed database host to match mariadb-svc
 
 ### Older versions
 
