@@ -2,7 +2,7 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.111](https://img.shields.io/badge/AppVersion-1.0.111-informational?style=flat-square)
 
-torrserver helm package
+TorrServer streams torrent to http
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -80,10 +80,10 @@ N/A
 | env.TS_CONF_PATH | string | `"/data"` | Set data dir |
 | env.TS_TORR_DIRL | string | `"/data/torrents"` | Set torrent-tiles dir |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| hostNetwork | bool | `true` | Allowing to use DLNA |
+| hostNetwork | bool | `false` | Set this to `true` to allow using DLNA |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"smailkoz/torrserver"` | image repository |
-| image.tag | string | `"1.0.111"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
