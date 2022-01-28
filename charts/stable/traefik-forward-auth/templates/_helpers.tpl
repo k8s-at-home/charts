@@ -61,3 +61,15 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+If there's an existing secret, reuse it, otherwise generate a new one.
+*/}}
+{{- define "traefik-forward-auth.secret" -}}
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace (include "traefik-forward-auth.fullname" .) ) -}}
+  {{- if $secret -}}
+    {{-  index $secret "data" "secret" -}}
+  {{- else -}}
+    {{- randAlphaNum 16 | b64enc | quote -}}
+  {{- end -}}
+{{- end -}}
