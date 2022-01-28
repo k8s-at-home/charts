@@ -175,3 +175,4 @@
 | [seafile](incubator/seafile) | seafile helm package |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
+| [torrserver](incubator/torrserver) | TorrServer streams torrent to http |
