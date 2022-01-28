@@ -83271,6 +83271,35 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/thelounge-1.0.0/thelounge-1.0.0.tgz
     version: 1.0.0
+  torrserver:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 1.0.111
+    created: "2022-01-28T14:41:28.047799882Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: TorrServer streams torrent to http
+    digest: 829785da7708259befdda2c82b6cdbb8e8ab99973c0303f4a3f87f120b9ab989
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/torrserver
+    icon: https://github.com/YouROK/TorrServer/raw/6868979f1fee009204ffe272f89905fcaa03fb72/server/web/pages/template/pages/apple-touch-icon.png
+    keywords:
+    - torrserver
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mark@glants.xyz
+      name: MGlants
+    name: torrserver
+    sources:
+    - https://github.com/MGlants/docker-torrserver
+    - https://github.com/YouROK/TorrServer
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/torrserver-1.0.0/torrserver-1.0.0.tgz
+    version: 1.0.0
   traccar:
   - annotations:
       artifacthub.io/changes: |
@@ -98706,4 +98735,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-24T11:18:29.184649443Z"
+generated: "2022-01-28T14:41:28.064608096Z"
