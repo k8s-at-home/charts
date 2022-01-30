@@ -1,0 +1,36 @@
+{{- if and .Values.metrics.enabled .Values.metrics.prometheusRule.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+    {{- with .Values.metrics.prometheusRule.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  groups:
+    - name: {{ include "common.names.fullname" . }}
+      rules:
+        - alert: Ts3ExporterAbsent
+          annotations:
+            description: ts3exporter has disappeared from Prometheus service discovery.
+            summary: ts3exporter is down.
+          expr: |
+            absent(up{job=~".*{{ include "common.names.fullname" . }}.*"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+        - alert: TeamSpeakDown
+          annotations:
+            description: TeamSpeak service is down.
+            summary: TeamSpeak is down.
+          expr: |
+            ts3_serverinfo_online{job=~".*{{ include "common.names.fullname" . }}.*"} == 0
+          for: 5m
+          labels:
+            severity: critical
+        {{- with .Values.metrics.prometheusRule.rules }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+{{- end }}
