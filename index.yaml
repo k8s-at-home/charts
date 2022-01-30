@@ -39820,6 +39820,39 @@ entries:
   maddy:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: **Breaking**: `alias` content moved from `maddy.alias` to `maddy.config_files.alias`
+        - kid: added
+          description: additional settings for imap and local_mailboxes under `extra_settings`.
+    apiVersion: v2
+    appVersion: v0.5.2
+    created: "2022-01-30T19:55:26.086689895Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.14.4
+    description: Maddy Mail Server
+    digest: cef4c210c9cbf4909e5fb768b3a169d8b6288f406f0d760046cc536dbc006c53
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/maddy
+    keywords:
+    - maddy
+    - mail
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: maddy
+    sources:
+    - https://github.com/foxcpp/maddy
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/maddy-2.0.0/maddy-2.0.0.tgz
+    version: 2.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Initial version
     apiVersion: v2
@@ -98735,4 +98768,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-28T14:41:28.064608096Z"
+generated: "2022-01-30T19:55:26.109193062Z"
