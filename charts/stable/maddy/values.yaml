@@ -100,16 +100,29 @@ maddy:
       custom: |
         # Rule block example
 
-  # -- Alias file used in smtp_rule
-  # See [alias examples](https://maddy.email/man/_generated_maddy-filters.5/).
-  alias: |
-    ## Replace 'cat' with any domain to 'dog'.
-    ## E.g. cat@example.net -> dog@example.net
-    # cat: dog
+  config_files:
+    # -- Alias file used in smtp_rule
+    # See [alias examples](https://maddy.email/man/_generated_maddy-filters.5/).
+    alias: |
+      ## Replace 'cat' with any domain to 'dog'.
+      ## E.g. cat@example.net -> dog@example.net
+      # cat: dog
 
-    ## Replace cat@example.org with cat@example.com.
-    ## Takes priority over the previous line.
-    #cat@example.org: cat@example.com
+      ## Replace cat@example.org with cat@example.com.
+      ## Takes priority over the previous line.
+      #cat@example.org: cat@example.com
+
+  extra_settings:
+    # -- Additional settings for local_mailboxes storage
+    local_mailboxes: {}
+      # imap_filter: |
+      #   {
+      #       command /etc/maddy/sieve.sh {account_name}
+      #   }
+    # -- Additional settings for imap backend
+    imap: {}
+      # debug: yes
+      # io_debug: yes
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
