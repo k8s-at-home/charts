@@ -1,0 +1,47 @@
+name: "Pull Request: Validate"
+
+on:
+  pull_request:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.head_ref }}-pr-validate
+  # cancel-in-progress: true
+
+jobs:
+  pr-metadata:
+    uses: k8s-at-home/charts/.github/workflows/pr-get-metadata.yaml@master
+
+  pre-commit-check:
+    uses: k8s-at-home/charts/.github/workflows/pre-commit-check.yaml@master
+    needs:
+      - pr-metadata
+    with:
+      modifiedFiles: ${{ needs.pr-metadata.outputs.addedOrModifiedFiles }}
+
+  charts-readme:
+    uses: k8s-at-home/charts/.github/workflows/charts-update-readme.yaml@master
+    needs:
+      - pr-metadata
+      - pre-commit-check
+    with:
+      isRenovatePR: ${{ needs.pr-metadata.outputs.isRenovatePR }}
+      modifiedCharts: ${{ needs.pr-metadata.outputs.addedOrModifiedCharts }}
+
+  charts-lint:
+    uses: k8s-at-home/charts/.github/workflows/charts-lint.yaml@master
+    needs:
+      - pr-metadata
+      - charts-readme
+    with:
+      checkoutCommit: ${{ needs.charts-readme.outputs.commitHash }}
+
+  charts-test:
+    uses: k8s-at-home/charts/.github/workflows/charts-test.yaml@master
+    needs:
+      - pr-metadata
+      - charts-readme
+      - charts-lint
+    with:
+      checkoutCommit: ${{ needs.charts-readme.outputs.commitHash }}
