@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -128,6 +128,18 @@ spec:
 ## Changelog
 
 ### Version 1.0.0
+
+#### Added
+
+* Initial version
+
+#### Changed
+
+N/A
+
+#### Fixed
+
+N/A
 
 ### Older versions
 
