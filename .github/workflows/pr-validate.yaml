@@ -12,3 +12,11 @@ concurrency:
 jobs:
   pr-get-metadata:
     uses: k8s-at-home/charts/.github/workflows/pr-get-metadata.yaml@master
+
+  charts-update-readme:
+    uses: k8s-at-home/charts/.github/workflows/charts-update-readme.yaml@master
+    needs:
+      - pr-get-metadata
+    with:
+      isRenovatePR: ${{ needs.pr-get-metadata.outputs.isRenovatePR }}
+      modifiedCharts: ${{ needs.pr-get-metadata.outputs.addedOrModifiedCharts }}

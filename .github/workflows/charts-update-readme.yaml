@@ -1,0 +1,84 @@
+name: "Charts: Update README"
+
+on:
+  workflow_call:
+    inputs:
+      modifiedCharts:
+        required: true
+        type: string
+      isRenovatePR:
+        required: true
+        type: string
+    outputs:
+      commitHash:
+        description: "The commit hash to use in later jobs"
+        value: ${{ jobs.generate-readme.outputs.commitHash }}
+
+jobs:
+  generate-readme:
+    name: Generate chart README files
+    runs-on: ubuntu-latest
+    outputs:
+      commitHash: ${{ steps.store-commit-hash.outputs.commit_hash }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Kubernetes tools
+        uses: yokawasa/action-setup-kube-tools@v0.8.0
+        with:
+          setup-tools: |
+            yq
+          yq: "4.16.2"
+
+      - name: Install helm-docs
+        run: |
+          wget -O /tmp/helm-docs.deb  https://github.com/k8s-at-home/helm-docs/releases/download/v0.1.1/helm-docs_0.1.1_Linux_x86_64.deb
+          sudo dpkg -i /tmp/helm-docs.deb
+
+      # - name: Annotate Charts.yaml for Renovate PR's
+      #   run: |
+      #     export DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+      #     CHARTS=(${{ inputs.modifiedCharts }})
+      #     for i in "${CHARTS[@]}"
+      #     do
+      #         IFS='/' read -r -a chart_parts <<< "$i"
+      #         if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
+      #           ./hack/renovate-releasenotes.sh "charts/${chart_parts[0]}"/"${chart_parts[1]}"
+      #         fi
+      #         echo ""
+      #     done
+
+      - name: Generate README for changed charts
+        run: |
+          CHARTS=(${{ inputs.modifiedCharts }})
+          for i in "${CHARTS[@]}"
+          do
+              printf "Rendering README for chart %s\n" "${i}"
+              echo " ${i}"
+              IFS='/' read -r -a chart_parts <<< "$i"
+              if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
+                ./hack/gen-helm-docs.sh "${chart_parts[0]}" "${chart_parts[1]}"
+              fi
+              echo ""
+          done
+
+      - name: Create commit
+        id: create-commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: charts/**/
+          commit_message: Auto-update chart metadata and README
+          commit_user_name: ${{ github.actor }}
+          commit_user_email: ${{ github.actor }}@users.noreply.github.com
+
+      - name: Store commit hash
+        id: store-commit-hash
+        run: |
+          if [ "${{ steps.create-commit.outputs.changes_detected }}" == "true"]; then
+            echo '::set-output name=commit_hash::${{ steps.create-commit.outputs.commit_hash }}'
+          else
+            echo "::set-output name=commit_hash::${GITHUB_SHA}"
+          fi
