@@ -1,0 +1,14 @@
+name: "Pull Request: Validate"
+
+on:
+  pull_request:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.head_ref }}-pr-validate
+  # cancel-in-progress: true
+
+jobs:
+  pr-get-metadata:
+    uses: k8s-at-home/charts/.github/workflows/pr-get-metadata.yaml@master
