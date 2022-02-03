@@ -77,7 +77,7 @@ jobs:
       - name: Store commit hash
         id: store-commit-hash
         run: |
-          if [ "${{ steps.create-commit.outputs.changes_detected }}" == "true"]; then
+          if [ "${{ steps.create-commit.outputs.changes_detected }}" == "true" ]; then
             echo '::set-output name=commit_hash::${{ steps.create-commit.outputs.commit_hash }}'
           else
             echo "::set-output name=commit_hash::${GITHUB_SHA}"

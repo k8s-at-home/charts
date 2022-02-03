@@ -10,13 +10,22 @@ concurrency:
   # cancel-in-progress: true
 
 jobs:
-  pr-get-metadata:
+  pr-metadata:
     uses: k8s-at-home/charts/.github/workflows/pr-get-metadata.yaml@master
 
-  charts-update-readme:
+  charts-readme:
     uses: k8s-at-home/charts/.github/workflows/charts-update-readme.yaml@master
     needs:
-      - pr-get-metadata
+      - pr-metadata
     with:
-      isRenovatePR: ${{ needs.pr-get-metadata.outputs.isRenovatePR }}
-      modifiedCharts: ${{ needs.pr-get-metadata.outputs.addedOrModifiedCharts }}
+      isRenovatePR: ${{ needs.pr-metadata.outputs.isRenovatePR }}
+      modifiedCharts: ${{ needs.pr-metadata.outputs.addedOrModifiedCharts }}
+
+  charts-lint:
+    uses: k8s-at-home/charts/.github/workflows/charts-lint.yaml@master
+    needs:
+      - pr-metadata
+      - charts-readme
+    with:
+      checkoutCommit: ${{ needs.charts-readme.outputs.commitHash }}
+      modifiedCharts: ${{ needs.pr-metadata.outputs.addedOrModifiedCharts }}
