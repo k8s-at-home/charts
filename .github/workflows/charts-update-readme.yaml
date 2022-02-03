@@ -11,13 +11,36 @@ on:
         type: string
     outputs:
       commitHash:
-        description: "The commit hash to use in later jobs"
+        description: "The commit hash from the README.md upate"
         value: ${{ jobs.generate-readme.outputs.commitHash }}
 
 jobs:
+  validate-chart:
+    name: Validate chart.yaml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check changelog annotations
+        if: inputs.isRenovatePR != 'true'
+        run: |
+          CHARTS=(${{ inputs.modifiedCharts }})
+          for i in "${CHARTS[@]}"
+          do
+              printf "Checking release notes for chart %s\n" "${i}"
+              IFS='/' read -r -a chart_parts <<< "$i"
+              ./.github/scripts/check-releasenotes.sh "charts/${chart_parts[0]}/${chart_parts[1]}"
+              echo ""
+          done
+
   generate-readme:
     name: Generate chart README files
     runs-on: ubuntu-latest
+    needs:
+      - validate-chart
     outputs:
       commitHash: ${{ steps.store-commit-hash.outputs.commit_hash }}
     steps:
@@ -38,18 +61,17 @@ jobs:
           wget -O /tmp/helm-docs.deb  https://github.com/k8s-at-home/helm-docs/releases/download/v0.1.1/helm-docs_0.1.1_Linux_x86_64.deb
           sudo dpkg -i /tmp/helm-docs.deb
 
-      # - name: Annotate Charts.yaml for Renovate PR's
-      #   run: |
-      #     export DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
-      #     CHARTS=(${{ inputs.modifiedCharts }})
-      #     for i in "${CHARTS[@]}"
-      #     do
-      #         IFS='/' read -r -a chart_parts <<< "$i"
-      #         if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
-      #           ./hack/renovate-releasenotes.sh "charts/${chart_parts[0]}"/"${chart_parts[1]}"
-      #         fi
-      #         echo ""
-      #     done
+      - name: Annotate Charts.yaml for Renovate PR's
+        if: inputs.isRenovatePR == 'true'
+        run: |
+          export DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+          CHARTS=(${{ inputs.modifiedCharts }})
+          for i in "${CHARTS[@]}"
+          do
+              IFS='/' read -r -a chart_parts <<< "$i"
+                ./.github/scripts/renovate-releasenotes.sh "charts/${chart_parts[0]}/${chart_parts[1]}"
+              echo ""
+          done
 
       - name: Generate README for changed charts
         run: |
@@ -57,10 +79,9 @@ jobs:
           for i in "${CHARTS[@]}"
           do
               printf "Rendering README for chart %s\n" "${i}"
-              echo " ${i}"
               IFS='/' read -r -a chart_parts <<< "$i"
               if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
-                ./hack/gen-helm-docs.sh "${chart_parts[0]}" "${chart_parts[1]}"
+                ./.github/scripts/gen-helm-docs.sh "${chart_parts[0]}" "${chart_parts[1]}"
               fi
               echo ""
           done
