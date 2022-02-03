@@ -6,13 +6,10 @@ on:
       checkoutCommit:
         required: true
         type: string
-      modifiedCharts:
-        required: true
-        type: string
 
 jobs:
   lint:
-    name: Lint successful
+    name: Lint charts
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

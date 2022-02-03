@@ -13,10 +13,18 @@ jobs:
   pr-metadata:
     uses: k8s-at-home/charts/.github/workflows/pr-get-metadata.yaml@master
 
+  pre-commit-check:
+    uses: k8s-at-home/charts/.github/workflows/pre-commit-check.yaml@master
+    needs:
+      - pr-metadata
+    with:
+      modifiedFiles: ${{ needs.pr-metadata.outputs.addedOrModifiedFiles }}
+
   charts-readme:
     uses: k8s-at-home/charts/.github/workflows/charts-update-readme.yaml@master
     needs:
       - pr-metadata
+      - pre-commit-check
     with:
       isRenovatePR: ${{ needs.pr-metadata.outputs.isRenovatePR }}
       modifiedCharts: ${{ needs.pr-metadata.outputs.addedOrModifiedCharts }}
@@ -28,4 +36,12 @@ jobs:
       - charts-readme
     with:
       checkoutCommit: ${{ needs.charts-readme.outputs.commitHash }}
-      modifiedCharts: ${{ needs.pr-metadata.outputs.addedOrModifiedCharts }}
+
+  charts-test:
+    uses: k8s-at-home/charts/.github/workflows/charts-test.yaml@master
+    needs:
+      - pr-metadata
+      - charts-readme
+      - charts-lint
+    with:
+      checkoutCommit: ${{ needs.charts-readme.outputs.commitHash }}
