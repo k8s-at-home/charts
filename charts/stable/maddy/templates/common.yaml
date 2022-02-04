@@ -32,8 +32,10 @@ configmap:
     data:
       maddy.conf: |
         {{ tpl (.Files.Get "files/maddy.conf") . | nindent 8 }}
-      aliases: |
-        {{ tpl (.Values.maddy.alias) . | nindent 8 }}
+      {{- range $configfile, $configfilecontent := .Values.maddy.config_files }}
+      {{ tpl $configfile $ }}: |
+        {{ tpl $configfilecontent $ | nindent 8 }}
+      {{- end }}
 
 persistence:
   config:

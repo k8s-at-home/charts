@@ -1,0 +1,48 @@
+name: "Set issue labels based on status"
+description: "Sets / removes issue labels based on CI job status"
+inputs:
+  token:
+    required: true
+    description: "The Github API token to use"
+  issue-number:
+    required: true
+    description: "The issue to label"
+  prefix:
+    required: true
+    description: "The label prefix (e.g. lint, install)"
+  job-status:
+    required: true
+    description: "The status of the CI job"
+  remove-on-skipped:
+    required: false
+    default: false
+    description: "Remove the label if the job was skipped"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Label success
+      uses: andymckay/labeler@1.0.4
+      if: ${{ inputs.job-status == 'success' }}
+      with:
+        repo-token: ${{ inputs.token }}
+        issue-number: ${{ inputs.issue-number }}
+        add-labels: "${{ inputs.prefix }}:ok"
+        remove-labels: "${{ inputs.prefix }}:failed"
+
+    - name: Label failure
+      uses: andymckay/labeler@1.0.4
+      if: ${{ inputs.job-status == 'failure' }}
+      with:
+        repo-token: ${{ inputs.token }}
+        issue-number: ${{ inputs.issue-number }}
+        add-labels: "${{ inputs.prefix }}:failed"
+        remove-labels: "${{ inputs.prefix }}:ok"
+
+    - name: Remove label
+      uses: andymckay/labeler@1.0.4
+      if: ${{ (inputs.job-status == 'skipped') && (inputs.remove-on-skipped == true) }}
+      with:
+        repo-token: ${{ inputs.token }}
+        issue-number: ${{ inputs.issue-number }}
+        remove-labels: "${{ inputs.prefix }}:ok, ${{ inputs.prefix }}:failed"
