@@ -114,7 +114,7 @@ spec:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. |
+| env | object | See below | environment variables. See the [error-pages documentation](https://github.com/tarampampam/error-pages/wiki/HTTP-server) for more info. |
 | env.SHOW_DETAILS | string | `"false"` | Enable details on error pages |
 | env.TEMPLATE_NAME | string | `"l7-dark"` | Set the template |
 | env.TZ | string | `"UTC"` | Set the container timezone |
