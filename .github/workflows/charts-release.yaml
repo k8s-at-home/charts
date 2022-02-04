@@ -46,9 +46,9 @@ jobs:
         id: collect-changes
         uses: ./.github/actions/collect-changes
 
-      - name: Generate README for changed charts in Renovate PR's
+      - name: Generate README for changed charts
         if: |
-          steps.collect-changes.outputs.addedOrModified == 'true'
+          steps.collect-changes.outputs.addedOrModified == true
         run: |
           CHARTS=(${{ steps.collect-changes.outputs.addedOrModifiedCharts }})
           for i in "${CHARTS[@]}"
