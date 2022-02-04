@@ -1,15 +1,14 @@
-# recipes
+# error-pages
 
-![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![AppVersion: 1.0.5.2](https://img.shields.io/badge/AppVersion-1.0.5.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.6.0](https://img.shields.io/badge/AppVersion-2.6.0-informational?style=flat-square)
 
-Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
+Server error pages in the docker image
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/vabene1111/recipes>
-* <https://hub.docker.com/r/vabene1111/recipes>
+* <https://github.com/tarampampam/error-pages>
 
 ## Requirements
 
@@ -26,23 +25,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install recipes k8s-at-home/recipes
+helm install error-pages k8s-at-home/error-pages
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `recipes`
+To install the chart with the release name `error-pages`
 
 ```console
-helm install recipes k8s-at-home/recipes
+helm install error-pages k8s-at-home/error-pages
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `recipes` deployment
+To uninstall the `error-pages` deployment
 
 ```console
-helm uninstall recipes
+helm uninstall error-pages
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,20 +54,59 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install recipes \
+helm install error-pages \
   --set env.TZ="America/New York" \
-    k8s-at-home/recipes
+    k8s-at-home/error-pages
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install recipes k8s-at-home/recipes -f values.yaml
+helm install error-pages k8s-at-home/error-pages -f values.yaml
 ```
 
 ## Custom configuration
 
-N/A
+For use with Traefik you will also need to create a `IngressRoute` and `Middleware`, see the examples below:
+
+```yaml
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: error-pages
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: HostRegexp(`{host:.+}`)
+      priority: 1
+      services:
+        - kind: Service
+          name: error-pages
+          port: 8080
+  tls:
+    secretName: error-pages-tls
+```
+
+```yaml
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: error-pages
+  namespace: networking
+spec:
+  errors:
+    status:
+      - "400-599"
+    query: /{status}.html
+    service:
+      name: error-pages
+      port: 8080
+```
 
 ## Values
 
@@ -76,29 +114,28 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [project docs](https://raw.githubusercontent.com/vabene1111/recipes/master/.env.template) for more details. |
+| env | object | See below | environment variables. See the [error-pages documentation](https://github.com/tarampampam/error-pages/wiki/HTTP-server) for more info. |
+| env.SHOW_DETAILS | string | `"false"` | Enable details on error pages |
+| env.TEMPLATE_NAME | string | `"l7-dark"` | Set the template |
+| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"vabene1111/recipes"` | image repository |
-| image.tag | string | `"1.0.5.2"` | image tag |
+| image.repository | string | `"ghcr.io/tarampampam/error-pages"` | image repository |
+| image.tag | string | `"2.6.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| service | object | See values.yaml | Configures service settings for the chart. |
-| sidecar.config | object | `{"client_max_body_size":"128M"}` | specify nginx related configs |
-| sidecar.image.pullPolicy | string | `"IfNotPresent"` | nginx sidecar image pull policy |
-| sidecar.image.repository | string | `"nginx"` | nginx sidecar image repository |
-| sidecar.image.tag | string | `"1.21.6"` | nginx sidecar image tag |
+| service.main.ports.http.port | int | `8080` |  |
 
 ## Changelog
 
-### Version 6.3.0
+### Version 1.0.0
 
 #### Added
 
-N/A
+* Initial version
 
 #### Changed
 
-* Upgraded `tandoor` to version `1.0.5.2` and `nginx` sidecar `1.21.6`.
+N/A
 
 #### Fixed
 
@@ -106,7 +143,7 @@ N/A
 
 ### Older versions
 
-A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/recipes?modal=changelog)
+A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/error-pages?modal=changelog)
 
 ## Support
 

@@ -1,0 +1,50 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+For use with Traefik you will also need to create a `IngressRoute` and `Middleware`, see the examples below:
+
+```yaml
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: error-pages
+  namespace: networking
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: HostRegexp(`{host:.+}`)
+      priority: 1
+      services:
+        - kind: Service
+          name: error-pages
+          port: 8080
+  tls:
+    secretName: error-pages-tls
+```
+
+```yaml
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: error-pages
+  namespace: networking
+spec:
+  errors:
+    status:
+      - "400-599"
+    query: /{status}.html
+    service:
+      name: error-pages
+      port: 8080
+```
+
+
+{{- end -}}
