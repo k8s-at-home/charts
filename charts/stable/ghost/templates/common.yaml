@@ -3,11 +3,10 @@
 
 {{/* Append the hardcoded settings */}}
 {{- define "ghost.hardcodedValues" -}}
-
-persistence:
   {{- if not .Values.persistence.content.enabled }}
+persistence:
   content:
-    enabled: "true"
+    enabled: true
     type: "emptyDir"
   {{- end }}
 {{- end -}}

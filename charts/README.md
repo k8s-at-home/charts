@@ -26,6 +26,7 @@
 | [deluge](stable/deluge) | Deluge is a torrent download client |
 | [dizquetv](stable/dizquetv) | Create live TV channel streams from media on your Plex servers. |
 | [dnsmadeeasy-webhook](stable/dnsmadeeasy-webhook) | Cert-Manager Webhook for DNSMadeEasy |
+| [dokuwiki](stable/dokuwiki) | DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require a database. |
 | [double-take](stable/double-take) | Unified UI and API for processing and training images for facial recognition. |
 | [dsmr-reader](stable/dsmr-reader) | DSMR-protocol reader, telegram data storage and energy consumption visualizer. |
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
@@ -67,6 +68,7 @@
 | [lidarr](stable/lidarr) | Looks and smells like Sonarr but made for music |
 | [littlelink-server](stable/littlelink-server) | A lightweight open source alternative to linktree |
 | [lychee](stable/lychee) | Lychee is a free photo-management tool, which runs on your server or web-space |
+| [maddy](stable/maddy) | Maddy Mail Server |
 | [magic-mirror](stable/magic-mirror) | magic-mirror helm package |
 | [mealie](stable/mealie) | Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. |
 | [miniflux](stable/miniflux) | Miniflux is a minimalist and opinionated feed reader. |
@@ -99,8 +101,10 @@
 | [piaware](stable/piaware) | Program for forwarding ADS-B data to FlightAware |
 | [plex](stable/plex) | Plex Media Server |
 | [pod-gateway](stable/pod-gateway) | Admision controller to change the default gateway and DNS server of PODs |
+| [powerdns-admin](stable/powerdns-admin) | A PowerDNS web interface with advanced features |
 | [powerdns](stable/powerdns) | PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program. |
 | [pretend-youre-xyzzy](stable/pretend-youre-xyzzy) | pretend-youre-xyzzy, a cards against humanity clone |
+| [privatebin](stable/privatebin) | A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack |
 | [promcord](stable/promcord) | Discord bot that provides metrics from a Discord server |
 | [prometheus-nut-exporter](stable/prometheus-nut-exporter) | Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance. |
 | [protonmail-bridge](stable/protonmail-bridge) | Container for protonmail bridge to work on the network. |
@@ -108,6 +112,7 @@
 | [pyload](stable/pyload) | pyLoad is a Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web. |
 | [qbittorrent](stable/qbittorrent) | qBittorrent is a cross-platform free and open-source BitTorrent client |
 | [radarr](stable/radarr) | A fork of Sonarr to work with movies à la Couchpotato |
+| [radicale](stable/radicale) | A simple CalDAV (calendar) and CardDAV (contact) server. |
 | [readarr](stable/readarr) | A fork of Radarr to work with Books & AudioBooks |
 | [recipes](stable/recipes) | Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files. |
 | [reg](stable/reg) | Docker registry v2 command line client and repo listing generator with security checks. |
@@ -170,3 +175,4 @@
 | [seafile](incubator/seafile) | seafile helm package |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
+| [torrserver](incubator/torrserver) | TorrServer streams torrent to http |

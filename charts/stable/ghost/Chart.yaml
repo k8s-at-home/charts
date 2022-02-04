@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 4.27.2
 description: Ghost is a blogging and publishing software
 name: ghost
-version: 1.1.0
+version: 1.1.2
 kubeVersion: ">=1.19.0-0"
 keywords:
   - ghost
@@ -25,7 +25,5 @@ dependencies:
     condition: mariadb.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
-    - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `10.2.0`.
+    - kind: fixed
+      description: Fixed database host to match mariadb-svc
