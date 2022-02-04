@@ -45,10 +45,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: ${{ github.head_ref }}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
 
       - name: Install Kubernetes tools
         uses: yokawasa/action-setup-kube-tools@v0.8.0
@@ -74,7 +70,8 @@ jobs:
               echo ""
           done
 
-      - name: Generate README for changed charts
+      - name: Generate README for changed charts in Renovate PR's
+        if: inputs.isRenovatePR == 'true'
         run: |
           CHARTS=(${{ inputs.modifiedCharts }})
           for i in "${CHARTS[@]}"
@@ -89,6 +86,7 @@ jobs:
 
       - name: Create commit
         id: create-commit
+        if: inputs.isRenovatePR == 'true'
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: charts/**/
@@ -99,7 +97,7 @@ jobs:
       - name: Store commit hash
         id: store-commit-hash
         run: |
-          if [ "${{ steps.create-commit.outputs.changes_detected }}" == "true" ]; then
+          if [ "${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "true" ]; then
             echo '::set-output name=commit_hash::${{ steps.create-commit.outputs.commit_hash }}'
           else
             echo "::set-output name=commit_hash::${GITHUB_SHA}"
