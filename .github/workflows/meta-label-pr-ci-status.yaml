@@ -23,12 +23,18 @@ jobs:
           app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-      - name: "Get information about the origin 'CI' run"
-        uses: potiuk/get-workflow-origin@v1_3
-        id: source-run-info
+      - name: Download workflow artifact
+        uses: dawidd6/action-download-artifact@v2.11.0
         with:
-          token: ${{ steps.generate-token.outputs.token }}
-          sourceRunId: ${{ github.event.workflow_run.id }}
+          github_token: ${{ steps.generate-token.outputs.token }}
+          workflow: pr-validate.yaml
+          run_id: ${{ github.event.workflow_run.id }}
+
+      - name: Read the pr_number file
+        id: pr_num_reader
+        uses: juliangruber/read-file-action@v1.0.0
+        with:
+          path: ./pr_number/pr_number.txt
 
       - name: "Get workflow job status"
         uses: actions/github-script@v5
@@ -71,7 +77,7 @@ jobs:
         uses: ./.github/actions/label-from-status
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
           prefix: precommit
           job-status: |-
             ${{ fromJSON(steps.get-workflow-jobs.outputs.result).pre-commit-check-run-pre-commit-checks || 'skipped' }}
@@ -81,28 +87,28 @@ jobs:
         uses: ./.github/actions/label-from-status
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
           prefix: changelog
           job-status: |-
             ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-readme-validate-changelog || 'skipped' }}
           remove-on-skipped: true
 
-      # - name: Label lint status
-      #   uses: ./.github/actions/label-from-status
-      #   with:
-      #     token: ${{ steps.generate-token.outputs.token }}
-      #     issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
-      #     prefix: lint
-      #     job-status: |-
-      #       ${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint || 'skipped' }}
-      #     remove-on-skipped: true
+      - name: Label chart lint status
+        uses: ./.github/actions/label-from-status
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
+          prefix: lint
+          job-status: |-
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-lint-lint-charts || 'skipped' }}
+          remove-on-skipped: true
 
-      # - name: Label install status
-      #   uses: ./.github/actions/label-from-status
-      #   with:
-      #     token: ${{ steps.generate-token.outputs.token }}
-      #     issue-number: ${{ steps.source-run-info.outputs.pullRequestNumber }}
-      #     prefix: lint
-      #     job-status: |-
-      #       ${{ fromJSON(steps.get-workflow-jobs.outputs.result).lint || 'skipped' }}
-      #     remove-on-skipped: true
+      - name: Label chart install status
+        uses: ./.github/actions/label-from-status
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
+          prefix: install
+          job-status: |-
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-test-install-successful || 'skipped' }}
+          remove-on-skipped: true
