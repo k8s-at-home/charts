@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 0.5.1
+appVersion: 0.6.0
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 1.0.2
+version: 2.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -26,11 +26,13 @@ dependencies:
     version: 10.14.4
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
+  - name: nats
+    version: 0.12.1
+    repository: https://nats-io.github.io/k8s/helm/charts/
+    condition: nats.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `postgresql` image version to "14.1.0"
-    - kind: fixed
-      description: "`initdbScripts` are now actually actually loaded"
-    - kind: added
-      description: "`postgresqlUsername` is used in `initdbScripts` rather than hardcoded value"
+      description: NATS is now used instead of Kafka
+    - kind: changed
+      description: App version bumped to v0.6.0

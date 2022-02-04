@@ -47,6 +47,11 @@ persistence:
   media:
     enabled: false
     mountPath: &mediaPath /var/dendrite/media
+  # -- Configure Jetsream persistence. This is highly recommended in production.
+  # @default -- See values.yaml
+  jetstream:
+    enabled: false
+    mountPath: /var/dendrite/jetstream
 
 # -- Configuration for Dendrite.
 # For more information see [the sample
@@ -210,3 +215,12 @@ postgresql:
   persistence:
     enabled: false
   initdbScriptsConfigMap: "dendrite-postgresql-init-scripts"
+
+nats:
+  # -- Enable and configure NATS for dendrite. Can be disabled for monolith
+  # deployments - an internal NATS server will be used in its place.
+  # @default -- See value.yaml
+  enabled: false
+  image: nats:2.7.1-alpine
+  jetstream:
+    enabled: true
