@@ -1,6 +1,6 @@
 # grocy
 
-![Version: 8.3.0](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: v3.0.1](https://img.shields.io/badge/AppVersion-v3.0.1-informational?style=flat-square)
+![Version: 8.3.x](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: v3.0.1](https://img.shields.io/badge/AppVersion-v3.0.1-informational?style=flat-square)
 
 ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home
 
