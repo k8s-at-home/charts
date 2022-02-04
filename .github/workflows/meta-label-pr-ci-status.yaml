@@ -30,6 +30,7 @@ jobs:
         with:
           github_token: ${{ steps.generate-token.outputs.token }}
           workflow: pr-validate.yaml
+          run_id: ${{ github.event.workflow_run.id }}
           name: pr_metadata
           path: ./pr_metadata
 
@@ -40,10 +41,11 @@ jobs:
           path: ./pr_metadata/pr_number.txt
 
       - name: Remove workflow artifact
-        uses: philips-labs/action-delete-artifacts@v1.0.0
+        uses: riskledger/delete-artifacts@v1
         with:
           github_token: ${{ steps.generate-token.outputs.token }}
           workflow: pr-validate.yaml
+          run_id: ${{ github.event.workflow_run.id }}
           name: pr_metadata
 
       - name: "Get workflow job status"
