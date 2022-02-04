@@ -7,10 +7,10 @@ outputs:
     value: ${{ steps.filter.outputs.addedOrModified }}
   addedOrModifiedFiles:
     description: "A list of the files changed"
-    value: ${{ steps.filter.outputs.addedOrModified_files || "" }}
+    value: ${{ steps.filter.outputs.addedOrModified_files }}
   addedOrModifiedCharts:
     description: "A list of the charts changed"
-    value: ${{ steps.filter-charts.outputs.addedOrModified || "" }}
+    value: ${{ steps.filter-charts.outputs.addedOrModified }}
 
 runs:
   using: "composite"
@@ -28,6 +28,7 @@ runs:
       if: |
         steps.filter.outputs.addedOrModified == 'true'
       id: filter-charts
+      shell: bash
       run: |
         CHARTS=()
         PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
