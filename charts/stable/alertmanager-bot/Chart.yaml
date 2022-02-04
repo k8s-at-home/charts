@@ -2,22 +2,26 @@ apiVersion: v2
 appVersion: 0.4.3
 description: Bot for Prometheus Alertmanager
 name: alertmanager-bot
-version: 6.1.0
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- alertmanager
-- telegram
-- bot
-- alerting
+  - alertmanager
+  - telegram
+  - bot
+  - alerting
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/alertmanager-bot
 icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
 sources:
-- https://hub.docker.com/r/metalmatze/alertmanager-bot
-- https://github.com/metalmatze/alertmanager-bot
+  - https://hub.docker.com/r/metalmatze/alertmanager-bot
+  - https://github.com/metalmatze/alertmanager-bot
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

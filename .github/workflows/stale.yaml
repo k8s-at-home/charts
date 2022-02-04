@@ -1,0 +1,45 @@
+---
+name: "Mark or close stale issues and PRs"
+on:
+  workflow_dispatch:
+  schedule:
+    # Run the stalebot every day at 8pm UTC
+    - cron: "00 20 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+          private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
+      - name: Check for stale issues and PRs
+        uses: actions/stale@v4
+        with:
+          repo-token: ${{ steps.generate-token.outputs.token }}
+          days-before-issue-stale: 60
+          days-before-pr-stale: 60
+          days-before-close: 14
+          days-before-pr-close: 14
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has not had recent activity.
+            It will be closed in two weeks if no further activity occurs.
+            Thank you for your contributions.
+          stale-pr-message: >
+            This pull request has been automatically marked as stale because it has not had
+            recent activity. It will be closed in two weeks if no further activity occurs.
+            Thank you for your contributions.
+          close-issue-message: >
+            This issue has been automatically closed due to inactivity.
+            Please re-open if this still requires investigation.
+          close-pr-message: >
+            This pull request has been automatically closed due to inactivity.
+            Please re-open if these changes are still required.
+          stale-pr-label: "stale"
+          stale-issue-label: "stale"
+          exempt-issue-labels: "keepalive"
+          exempt-pr-labels: "keepalive"

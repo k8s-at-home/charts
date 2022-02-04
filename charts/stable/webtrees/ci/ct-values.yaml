@@ -1,0 +1,21 @@
+env:
+  BASE_URL: https://webtrees.k8s-at-home.com
+  DB_HOST: webtrees-mariadb
+  DB_NAME: webtrees
+  DB_USER: webtrees
+  DB_PASS: webtreespass
+  WT_USER: admin
+  WT_NAME: Admin
+  WT_PASS: adminpass
+  WT_EMAIL: admin@k8s-at-home.com
+
+
+ingress:
+  main:
+    enabled: true
+
+fullnameOverride: webtrees
+
+mariadb:
+  enabled: true
+  fullnameOverride: webtrees-mariadb

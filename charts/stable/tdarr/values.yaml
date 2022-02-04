@@ -24,6 +24,8 @@ env:
   serverIP: 0.0.0.0
   # -- tdarr server listening port
   serverPort: "{{ .Values.service.main.ports.server.port }}"
+  # -- Allow override for the pre-compiled tdarr ffmpeg binary
+  ffmpegPath: ""
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -55,6 +57,8 @@ node:
     tag: 2.00.10
     # -- image pull policy
     pullPolicy: IfNotPresent
+  # -- Node resources
+  resources: {}
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See below
@@ -76,3 +80,9 @@ persistence:
   media:
     enabled: false
     mountpath: /media
+
+  # -- Volume used for shared storage. e.g. emptydir transcode
+  # @default -- See values.yaml
+  shared:
+    enabled: false
+    mountpath: /shared

@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 9.1.0](https://img.shields.io/badge/Version-9.1.0-informational?style=flat-square) ![AppVersion: v0.15](https://img.shields.io/badge/AppVersion-v0.15-informational?style=flat-square)
+![Version: 10.1.0](https://img.shields.io/badge/Version-10.1.0-informational?style=flat-square) ![AppVersion: v0.17](https://img.shields.io/badge/AppVersion-v0.17-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -75,67 +75,45 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/master/docs/config.yml |
+| config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/v0.17/docs/config.yml |
 | controller.replicas | int | `1` | (int) Number of pods to load balance between |
 | controller.strategy | string | `"RollingUpdate"` | Set the controller upgrade strategy |
 | env | object | See below | environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"spx01/blocky"` | image repository |
-| image.tag | string | `"v0.15"` | image tag |
+| image.repository | string | `"ghcr.io/0xerr0r/blocky"` | image repository |
+| image.tag | string | `"v0.17"` | image tag |
 | metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
 | metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
-| metrics.serviceMonitor.interval | string | `"30s"` |  |
-| metrics.serviceMonitor.labels | object | `{}` |  |
-| metrics.serviceMonitor.scrapeTimeout | string | `"10s"` |  |
+| metrics.serviceMonitor.interval | string | `"30s"` | Interval at which Prometheus should scrape metrics |
+| metrics.serviceMonitor.jobLabel | string | `""` | The Kubernetes `Endpoints` label to use as the Prometheus job name |
+| metrics.serviceMonitor.labels | object | `{}` | Additional labels for the Kubernetes `ServiceMonitor` object |
+| metrics.serviceMonitor.podTargetLabels | list | `[]` | PodTargetLabels transfers labels on the Kubernetes `Pod`` onto the created metrics. |
+| metrics.serviceMonitor.scrapeTimeout | string | `"10s"` | Timeout after which the scrape is ended |
+| metrics.serviceMonitor.targetLabels | list | `[]` | TargetLabels transfers labels from the Kubernetes `Service`` onto the created metrics. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-### [9.0.0]
-
-#### Changed
-
-- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
-
-### [8.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [7.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.2.0. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.2.0/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `v0.14`.
-
-### [6.0.0]
+### Version 10.1.0
 
 #### Added
 
-- N/A
+N/A
 
 #### Changed
 
-- **BREAKING** Migrate Blocky to the common library, a lot of configuration has changed.
+* Upgraded `common` chart dependency to version `4.3.0`.
 
-#### Removed
+#### Fixed
 
-- N/A
+N/A
 
-[9.0.0]: #900
-[8.0.0]: #800
-[7.0.0]: #700
-[6.0.0]: #600
+### Older versions
+
+A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/blocky?modal=changelog)
 
 ## Support
 
@@ -145,4 +123,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
 ----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
+Autogenerated from chart metadata using [helm-docs v0.1.1](https://github.com/k8s-at-home/helm-docs/releases/v0.1.1)

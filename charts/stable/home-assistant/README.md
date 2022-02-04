@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 11.2.0](https://img.shields.io/badge/Version-11.2.0-informational?style=flat-square) ![AppVersion: 2021.6.3](https://img.shields.io/badge/AppVersion-2021.6.3-informational?style=flat-square)
+![Version: 12.0.1](https://img.shields.io/badge/Version-12.0.1-informational?style=flat-square) ![AppVersion: 2021.12.7](https://img.shields.io/badge/AppVersion-2021.12.7-informational?style=flat-square)
 
 Home Assistant
 
@@ -21,9 +21,9 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | influxdb | 1.1.9 |
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.0 |
-| https://charts.bitnami.com/bitnami | postgresql | 10.13.3 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -156,7 +156,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"homeassistant/home-assistant"` | image repository |
-| image.tag | string | `"2021.6.3"` | image tag |
+| image.tag | string | `"2021.12.7"` | image tag |
 | influxdb | object | See values.yaml | Enable and configure influxdb database subchart under this key.    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb) |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
@@ -175,130 +175,23 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 ## Changelog
 
-All notable changes to this project will be documented in this file.
+### Version 12.0.1
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+#### Added
 
-### [11.0.6]
+N/A
 
 #### Changed
 
-- Fix home-assistant ingress example
-
-### [11.0.5]
+* Upgraded `postgresql` chart dependency to version `10.14.4`.
 
 #### Fixed
 
-- Updated chart documentation.
+N/A
 
-### [11.0.0]
+### Older versions
 
-#### Changed
-
-- **BREAKING**: Refactored Prometheus metrics section to add rules. Enabling metrics automatically enables the serviceMonitor.
-
-### [10.0.0]
-
-#### Changed
-
-- Upgraded the common library dependency to version 4.0.0. This introduced (potentially) breaking changes to `initContainers` and `additionalContainers`. Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-4.0.0/charts/stable/common/) for the up-to-date values.
-
-### [9.0.1]
-
-- Removed an incorrect reference to another project's documentation.
-- Fixed the changelog versions.
-
-### [9.0.0]
-
-#### Changed
-
-- **BREAKING**: Upgraded the common library dependency to version 3.0.2. This introduces several breaking changes (`service`, `ingress` and `persistence` keys have been refactored).
-  Be sure to check out the [library chart](https://github.com/k8s-at-home/library-charts/blob/common-3.0.2/charts/stable/common/) for the up-to-date values.
-- Changed image tag to `2021.6.3`.
-- Updated `mariadb` chart to version `9.3.14`.
-- Updated `postgresql` chart to version `10.4.9`.
-
-## [8.3.0]
-
-### Changed
-
-- Updated image tag to version 2021.5.5.
-
-## [8.0.0]
-
-### Changed
-
-- Updated image tag to version 2021.4.4.
-
-### Removed
-
-- Removed support for specifying git Deploykey directly from this chart. This feature has been moved to the [codeserver add-on](http://docs.k8s-at-home.com/our-helm-charts/common-library-add-ons/#code-server).
-
-## [5.0.0]
-
-### Changed
-
-- Migrated chart over to our common library, this version introduces breaking changes. Be sure to back up your config volume incase something goes wrong.
-- Upgraded `home-assistant` container image to `2020.12.1`.
-- Upgraded `postgresql` subchart from version 10.1.3 to version 10.2.0.
-- Upgraded `influxdb` subchart from version 1.1.2 to version 1.1.4.
-- Upgraded `mariadb` subchart from version 9.1.2 to version 9.1.4.
-
-## [4.0.0]
-
-### Changed
-
-- Bumped bitnami/mariadb to 9.1.2 in chart deps
-
-### Removed
-
-- Appdaemon sidecar was removed and replaced by it's own chart at [charts/appdaemon](https://github.com/k8s-at-home/charts/tree/master/charts/appdaemon)
-- Configurator sidecar was removed in favor of the `code-server` sidecar. One configure sidecar to rule them all!
-
-## [3.1.0]
-
-### Changed
-
-- Fixed issue in default postgresql configuration.
-- Bumped bitnami/postgresql to 10.1.1 in chart deps
-
-## [3.0.0]
-
-Any pre-existing StatefulSet will have to be removed before upgrading due to a name change in the chart.
-
-### Changed
-
-- The default `home-assistant` image has been updated to v0.118.3.
-- The default `vscode` image has been updated to 3.7.2.
-- :warning: Upgraded `influxdb` subchart from version 0.6.7 to version 1.0.0.
-- :warning: Upgraded `postgresql` subchart from version 9.1.2 to version 10.1.0.
-  This is a major version update, [requiring changes](https://github.com/bitnami/charts/tree/master/bitnami/postgresql#to-1000) in your `values.yaml` if you use it!
-- :warning: Upgraded `mariadb` subchart from version 7.7.1 to version 9.0.1.
-  This is a major version update, [requiring changes](https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-900) in your `values.yaml` if you use it!
-
-### Removed
-
-- Subchart support for `esphome` was removed as it is really a separate application and integration was only limited to sharing a secrets file.
-
-### Fixed
-
-- Fixed some formatting errors that were causing the pipeline to fail.
-
-## [2.7.0]
-
-This is the last version before starting this changelog. All sorts of cool stuff was changed, but only `git log` remembers what that was :slightly_frowning_face:
-
-[11.0.0]: #1100
-[10.0.0]: #1000
-[9.0.1]: #901
-[9.0.0]: #900
-[8.0.0]: #800
-[5.0.0]: #500
-[4.0.0]: #400
-[3.1.0]: #310
-[3.0.0]: #300
-[2.7.0]: #270
+A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/home-assistant?modal=changelog)
 
 ## Support
 
@@ -308,4 +201,4 @@ This is the last version before starting this changelog. All sorts of cool stuff
 - Join our [Discord](https://discord.gg/sTMX7Vh) community
 
 ----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
+Autogenerated from chart metadata using [helm-docs v0.1.1](https://github.com/k8s-at-home/helm-docs/releases/v0.1.1)

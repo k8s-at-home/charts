@@ -2,19 +2,23 @@ apiVersion: v2
 appVersion: latest
 description: Gaps searches through your Plex Server or local folders for all movies, then queries for known movies in the same collection.
 name: gaps
-version: 5.1.0
+version: 5.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- plex
-- plex-media-server
+  - plex
+  - plex-media-server
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/gaps
 icon: https://raw.githubusercontent.com/JasonHHouse/gaps/master/images/Final-Black.png
 sources:
-- https://github.com/JasonHHouse/gaps
+  - https://github.com/JasonHHouse/gaps
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

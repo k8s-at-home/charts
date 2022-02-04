@@ -2,18 +2,22 @@ apiVersion: v2
 appVersion: 3.13.6
 description: TeamSpeak Server
 name: teamspeak
-version: 0.2.0
+version: 0.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- teamspeak
+  - teamspeak
 home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/teamspeak
 icon: https://teamspeak.com/user/themes/teamspeak/images/logo_inverse.svg
 sources:
-- https://hub.docker.com/_/teamspeak
+  - https://hub.docker.com/_/teamspeak
 maintainers:
-- name: reitermarkus
-  email: me@reitermark.us
+  - name: reitermarkus
+    email: me@reitermark.us
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

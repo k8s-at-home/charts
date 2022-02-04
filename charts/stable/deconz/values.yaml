@@ -7,9 +7,9 @@
 
 image:
   # -- image repository
-  repository: marthoc/deconz
+  repository: deconzcommunity/deconz
     # -- image tag
-  tag: 2.12.01
+  tag: 2.12.06
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -63,7 +63,7 @@ securityContext:
 persistence:
   config:
     enabled: false
-    mountPath: /root/.local/share/dresden-elektronik/deCONZ
+    mountPath: /opt/deCONZ
   # -- Configure a hostPathMount to mount a USB device in the container.
   # @default -- See values.yaml
   usb:

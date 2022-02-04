@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-43-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-56-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -103,6 +103,21 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://dangmai.net"><img src="https://avatars.githubusercontent.com/u/1305527?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dang Mai</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=dangmai" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/larivierec"><img src="https://avatars.githubusercontent.com/u/3633214?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Christopher Larivière</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=larivierec" title="Code">💻</a></td>
+    <td align="center"><a href="https://Winston.Milli.ng"><img src="https://avatars.githubusercontent.com/u/6162814?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Winston R. Milling</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=wrmilling" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/pysen"><img src="https://avatars.githubusercontent.com/u/3030145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arthur</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=pysen" title="Code">💻</a></td>
+    <td align="center"><a href="https://samip.dev"><img src="https://avatars.githubusercontent.com/u/1703002?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Skyler Mäntysaari</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=samip5" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/disconn3ct"><img src="https://avatars.githubusercontent.com/u/397465?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dis</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=disconn3ct" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rogerrum"><img src="https://avatars.githubusercontent.com/u/10350796?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roger Rumao</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rogerrum" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/marcelloceschia"><img src="https://avatars.githubusercontent.com/u/203448?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marcello Ceschia</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=marcelloceschia" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.carrierlost.net"><img src="https://avatars.githubusercontent.com/u/969721?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roberto Santalla</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=roobre" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.greghaskins.com"><img src="https://avatars.githubusercontent.com/u/285310?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Greg Haskins</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=greghaskins" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jlrgraham"><img src="https://avatars.githubusercontent.com/u/2184689?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jlrgraham</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=jlrgraham" title="Code">💻</a></td>
+    <td align="center"><a href="https://cronix.cc"><img src="https://avatars.githubusercontent.com/u/181302?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lukas Wingerberg</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=psych0d0g" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.djvg.net"><img src="https://avatars.githubusercontent.com/u/17107225?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TheDJVG</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=TheDJVG" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rschoultz"><img src="https://avatars.githubusercontent.com/u/727834?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rickard Schoultz</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=rschoultz" title="Code">💻</a></td>
   </tr>
 </table>
 

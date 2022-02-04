@@ -1,0 +1,31 @@
+apiVersion: v2
+appVersion: v0.5.2
+description: Maddy Mail Server
+name: maddy
+version: 2.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- maddy
+- mail
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/maddy
+# Project has no icon yet
+# icon: https://maddy.org/icon
+sources:
+- https://github.com/foxcpp/maddy
+maintainers:
+- name: angelnu
+  email: git@angelnu.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+- name: postgresql
+  version: 10.14.4
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: **Breaking**: `alias` content moved from `maddy.alias` to `maddy.config_files.alias`
+    - kid: added
+      description: additional settings for imap and local_mailboxes under `extra_settings`.

@@ -2,22 +2,26 @@ apiVersion: v2
 appVersion: "4"
 description: pretend-youre-xyzzy, a cards against humanity clone
 name: pretend-youre-xyzzy
-version: 3.1.0
+version: 3.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- pretend-youre-xyzzy
-- cards
-- against
-- humanity
+  - pretend-youre-xyzzy
+  - cards
+  - against
+  - humanity
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pretend-youre-xyzzy
 icon: https://apk-google.com/wp-content/uploads/2020/12/Client-for-Pretend-Youre-Xyzzy-open-source-5.0.1.png
 sources:
-- https://github.com/ajanata/PretendYoureXyzzy
-- https://github.com/emcniece/DockerYourXyzzy
+  - https://github.com/ajanata/PretendYoureXyzzy
+  - https://github.com/emcniece/DockerYourXyzzy
 maintainers:
-- name: FlipEnergy
-  email: dennis.zhang.nrg@gmail.com
+  - name: FlipEnergy
+    email: dennis.zhang.nrg@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
