@@ -26,6 +26,7 @@ jobs:
         with:
           token: ${{ steps.generate-token.outputs.token }}
           ref: master
+          fetch-depth: 0
 
       - name: Install Kubernetes tools
         uses: yokawasa/action-setup-kube-tools@v0.8.0
@@ -87,33 +88,19 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: charts/**/
-          commit_message: Auto-update chart README [ci-skip]
+          commit_message: Auto-update chart README
           commit_user_name: k8s-at-home[bot]
           commit_user_email: k8s-at-home[bot]@users.noreply.github.com
           commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
 
-      - name: Store commit hash
-        id: store-commit-hash
-        run: |
-          if [ "${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "true" ]; then
-            echo '::set-output name=commit_hash::${{ steps.create-commit.outputs.commit_hash }}'
-          else
-            echo "::set-output name=commit_hash::${GITHUB_SHA}"
-          fi
-
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          ref: ${{ steps.store-commit-hash.outputs.commit_hash }}
-          fetch-depth: 0
-
       - name: Configure Git
+        if: ${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "false"
         run: |
           git config user.name "k8s-at-home[bot]"
           git config user.email "k8s-at-home[bot]@users.noreply.github.com"
 
       - name: Run chart-releaser
+        if: ${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "false"
         uses: helm/chart-releaser-action@v1.2.1
         with:
           charts_dir: charts/*
