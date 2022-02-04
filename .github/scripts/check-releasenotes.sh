@@ -29,11 +29,10 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
       DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
     fi
 
-    printf "Checking changelog annotation for chart %s\n" "$root"
     CURRENT=$(cat Chart.yaml | yq e '.annotations."artifacthub.io/changes"' -P -)
 
     if [ "$CURRENT" == "" ] || [ "$CURRENT" == "null" ]; then
-      printf >&2 "%s\n" "Changelog annotation has not been set for this chart!"
+      printf >&2 "Changelog annotation has not been set in %s!\n" "$chart_file"
       exit 1
     fi
 
@@ -41,13 +40,7 @@ if [ $# -ge 1 ] && [ -n "$1" ]; then
     ORIGINAL=$(git show origin/$DEFAULT_BRANCH:./Chart.yaml | yq e '.annotations."artifacthub.io/changes"' -P -)
 
     if [ "$CURRENT" == "$ORIGINAL" ]; then
-      printf >&2 "%s\n" "Changelog annotation has not been updated!"
-      # exit 1
-    fi
-
-    printf "Checking README.md for chart %s\n" "$root"
-    if diff README.md <(git show origin/$DEFAULT_BRANCH:./README.md) >/dev/null; then
-      printf >&2 "%s\n" "README.md has not been updated!"
+      printf >&2 "Changelog annotation has not been updated in %s!\n" "$chart_file"
       exit 1
     fi
 else
