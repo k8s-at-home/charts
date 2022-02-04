@@ -47,7 +47,7 @@ jobs:
     name: Collect PR changes
     runs-on: ubuntu-latest
     outputs:
-      addedOrModified: ${{ steps.collect-changes.outputs.addedOrModified }}
+      addedOrModified: ${{ steps.collect-changes.outputs.changesDetected }}
       addedOrModifiedFiles: ${{ steps.collect-changes.outputs.addedOrModifiedFiles }}
       addedOrModifiedCharts: ${{ steps.collect-changes.outputs.addedOrModifiedCharts }}
     steps:
