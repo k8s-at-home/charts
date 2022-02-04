@@ -20,8 +20,8 @@ jobs:
     with:
       modifiedFiles: ${{ needs.pr-metadata.outputs.addedOrModifiedFiles }}
 
-  charts-readme:
-    uses: k8s-at-home/charts/.github/workflows/charts-readme.yaml@master
+  charts-changelog:
+    uses: k8s-at-home/charts/.github/workflows/charts-changelog.yaml@master
     needs:
       - pr-metadata
       - pre-commit-check
@@ -33,15 +33,15 @@ jobs:
     uses: k8s-at-home/charts/.github/workflows/charts-lint.yaml@master
     needs:
       - pr-metadata
-      - charts-readme
+      - charts-changelog
     with:
-      checkoutCommit: ${{ needs.charts-readme.outputs.commitHash }}
+      checkoutCommit: ${{ needs.charts-changelog.outputs.commitHash }}
 
   charts-test:
     uses: k8s-at-home/charts/.github/workflows/charts-test.yaml@master
     needs:
       - pr-metadata
-      - charts-readme
+      - charts-changelog
       - charts-lint
     with:
-      checkoutCommit: ${{ needs.charts-readme.outputs.commitHash }}
+      checkoutCommit: ${{ needs.charts-changelog.outputs.commitHash }}
