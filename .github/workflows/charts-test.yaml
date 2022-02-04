@@ -127,5 +127,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check install matrix status
-        if: ${{ (needs.changes-generate-install-matrix.outputs.detected == 'true') && (needs.install-charts.result != 'success') }}
+        if: ${{ (needs.generate-install-matrix.outputs.detected == 'true') && (needs.install-charts.result != 'success') }}
         run: exit 1
