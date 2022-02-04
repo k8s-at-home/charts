@@ -14227,6 +14227,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded `cert-manager` chart dependency to version `v1.6.2`.
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2022-02-04T10:10:07.932815517Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: v1.6.2
+    description: Cert-Manager Webhook for DNSMadeEasy
+    digest: 48411a04eead225e6bdc390e4fa918687bd22fda56cc910861fb53e9bdd3ffcf
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dnsmadeeasy-webhook
+    icon: https://pbs.twimg.com/profile_images/1759911243/dnsmeavatar_400x400.png
+    keywords:
+    - cert-manager
+    - dnsmadeeasy
+    - letsencrypt
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: dnsmadeeasy-webhook
+    sources:
+    - https://github.com/k8s-at-home/dnsmadeeasy-webhook
+    - https://cert-manager.io
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dnsmadeeasy-webhook-4.4.1/dnsmadeeasy-webhook-4.4.1.tgz
+    version: 4.4.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: 1.2.0
@@ -98768,4 +98801,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-01-30T19:55:26.109193062Z"
+generated: "2022-02-04T10:10:07.954677012Z"
