@@ -31,6 +31,18 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v5.1
 
+      - name: Save PR data to file
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+        run: |
+          echo $PR_NUMBER > pr_number.txt
+
+      - name: Store pr data in artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pr_metadata
+          path: ./pr_number.txt
+
   pr-changes:
     name: Collect PR changes
     runs-on: ubuntu-latest
