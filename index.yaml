@@ -13517,6 +13517,47 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: NATS is now used instead of Kafka
+        - kind: changed
+          description: App version bumped to v0.6.0
+    apiVersion: v2
+    appVersion: 0.6.0
+    created: "2022-02-04T17:43:21.910150152Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.14.4
+    - condition: nats.enabled
+      name: nats
+      repository: https://nats-io.github.io/k8s/helm/charts/
+      version: 0.12.1
+    description: Dendrite Matrix Homeserver
+    digest: 124c4d16bb9992fd21b963753316d4bae1d214d205dd8b2ac4a99982b5313082
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dendrite
+    keywords:
+    - dendrite
+    - matrix
+    - homeserver
+    - monolith
+    - federation
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jonathan@jonnobrow.co.uk
+      name: jonnobrow
+    name: dendrite
+    sources:
+    - https://github.com/matrix-org/dendrite
+    - https://github.com/matrix-org/dendrite/tree/master/build/docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dendrite-2.0.0/dendrite-2.0.0.tgz
+    version: 2.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `postgresql` image version to "14.1.0"
         - kind: fixed
           description: "`initdbScripts` are now actually actually loaded"
@@ -98861,4 +98902,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-04T14:01:58.954428455Z"
+generated: "2022-02-04T17:43:21.930989333Z"
