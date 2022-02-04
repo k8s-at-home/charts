@@ -40,7 +40,7 @@ jobs:
       - name: Store pr data in artifact
         uses: actions/upload-artifact@v2
         with:
-          name: pr_number
+          name: pr_metadata
           path: ./pr_number.txt
 
   pr-changes:
