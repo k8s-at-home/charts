@@ -102,7 +102,7 @@ jobs:
           issue-number: ${{ steps.pr_num_reader.outputs.content }}
           prefix: changelog
           job-status: |-
-            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-readme-validate-changelog || 'skipped' }}
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-changelog-validate-changelog || 'skipped' }}
           remove-on-skipped: true
 
       - name: Label chart lint status
