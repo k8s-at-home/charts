@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   pr-metadata:
-    uses: k8s-at-home/charts/.github/workflows/pr-get-metadata.yaml@master
+    uses: k8s-at-home/charts/.github/workflows/pr-metadata.yaml@master
 
   pre-commit-check:
     uses: k8s-at-home/charts/.github/workflows/pre-commit-check.yaml@master
@@ -21,7 +21,7 @@ jobs:
       modifiedFiles: ${{ needs.pr-metadata.outputs.addedOrModifiedFiles }}
 
   charts-readme:
-    uses: k8s-at-home/charts/.github/workflows/charts-update-readme.yaml@master
+    uses: k8s-at-home/charts/.github/workflows/charts-readme.yaml@master
     needs:
       - pr-metadata
       - pre-commit-check

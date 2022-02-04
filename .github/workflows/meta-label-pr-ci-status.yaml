@@ -13,9 +13,6 @@ jobs:
     name: Label CI status
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Generate Token
         uses: tibdex/github-app-token@v1
         id: generate-token
@@ -23,12 +20,18 @@ jobs:
           app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+
       - name: Download workflow artifact
         uses: dawidd6/action-download-artifact@v2.11.0
         with:
           github_token: ${{ steps.generate-token.outputs.token }}
           workflow: pr-validate.yaml
           name: pr_metadata
+          path: ./pr_metadata
 
       - name: Read the pr_number file
         id: pr_num_reader
