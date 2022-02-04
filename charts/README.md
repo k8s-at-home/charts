@@ -5,6 +5,7 @@
 | [adguard-home](stable/adguard-home) | DNS proxy as ad-blocker for local network |
 | [airsonic](stable/airsonic) | Airsonic is a Free and Open Source community driven media server |
 | [alertmanager-bot](stable/alertmanager-bot) | Bot for Prometheus Alertmanager |
+| [alertmanager-discord](stable/alertmanager-discord) | Webhook for Prometheus Alertmanager to listen for notifications and pushes them to Discord channel |
 | [amcrest2mqtt](stable/amcrest2mqtt) | Expose all events from an Amcrest device to an MQTT broker |
 | [anonaddy](stable/anonaddy) | Anonaddy: Anonymous email forwarding |
 | [apache-musicindex](stable/apache-musicindex) | Index and stream music using apache-musicindex and m3u playlists |
@@ -25,11 +26,14 @@
 | [deluge](stable/deluge) | Deluge is a torrent download client |
 | [dizquetv](stable/dizquetv) | Create live TV channel streams from media on your Plex servers. |
 | [dnsmadeeasy-webhook](stable/dnsmadeeasy-webhook) | Cert-Manager Webhook for DNSMadeEasy |
+| [dokuwiki](stable/dokuwiki) | DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require a database. |
 | [double-take](stable/double-take) | Unified UI and API for processing and training images for facial recognition. |
 | [dsmr-reader](stable/dsmr-reader) | DSMR-protocol reader, telegram data storage and energy consumption visualizer. |
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
 | [emby](stable/emby) | Emby Server is a home media server |
+| [error-pages](stable/error-pages) | Server error pages in the docker image |
 | [esphome](stable/esphome) | ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems. |
+| [facebox](stable/facebox) | Facebox detects and identifies faces in photos. You can teach facebox with as little as one sample image. |
 | [filebrowser](stable/filebrowser) | filebrowser provides a file managing interface within a specified directory |
 | [flaresolverr](stable/flaresolverr) | FlareSolverr is a proxy server to bypass Cloudflare protection |
 | [flood](stable/flood) | Flood is a monitoring service for various torrent clients |
@@ -39,6 +43,7 @@
 | [frigate](stable/frigate) | NVR With Realtime Object Detection for IP Cameras |
 | [games-on-whales](stable/games-on-whales) | Streams graphic applications/games (retroarch, firefox, steam) runing on Kubernetes |
 | [gaps](stable/gaps) | Gaps searches through your Plex Server or local folders for all movies, then queries for known movies in the same collection. |
+| [ghost](stable/ghost) | Ghost is a blogging and publishing software |
 | [gollum](stable/gollum) | Gollum is a simple wiki system built on top of Git |
 | [gonic](stable/gonic) | Music streaming server / subsonic server API implementation |
 | [grocy](stable/grocy) | ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home |
@@ -64,6 +69,7 @@
 | [lidarr](stable/lidarr) | Looks and smells like Sonarr but made for music |
 | [littlelink-server](stable/littlelink-server) | A lightweight open source alternative to linktree |
 | [lychee](stable/lychee) | Lychee is a free photo-management tool, which runs on your server or web-space |
+| [maddy](stable/maddy) | Maddy Mail Server |
 | [magic-mirror](stable/magic-mirror) | magic-mirror helm package |
 | [mealie](stable/mealie) | Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family. |
 | [miniflux](stable/miniflux) | Miniflux is a minimalist and opinionated feed reader. |
@@ -96,8 +102,10 @@
 | [piaware](stable/piaware) | Program for forwarding ADS-B data to FlightAware |
 | [plex](stable/plex) | Plex Media Server |
 | [pod-gateway](stable/pod-gateway) | Admision controller to change the default gateway and DNS server of PODs |
+| [powerdns-admin](stable/powerdns-admin) | A PowerDNS web interface with advanced features |
 | [powerdns](stable/powerdns) | PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program. |
 | [pretend-youre-xyzzy](stable/pretend-youre-xyzzy) | pretend-youre-xyzzy, a cards against humanity clone |
+| [privatebin](stable/privatebin) | A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack |
 | [promcord](stable/promcord) | Discord bot that provides metrics from a Discord server |
 | [prometheus-nut-exporter](stable/prometheus-nut-exporter) | Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance. |
 | [protonmail-bridge](stable/protonmail-bridge) | Container for protonmail bridge to work on the network. |
@@ -105,6 +113,7 @@
 | [pyload](stable/pyload) | pyLoad is a Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web. |
 | [qbittorrent](stable/qbittorrent) | qBittorrent is a cross-platform free and open-source BitTorrent client |
 | [radarr](stable/radarr) | A fork of Sonarr to work with movies à la Couchpotato |
+| [radicale](stable/radicale) | A simple CalDAV (calendar) and CardDAV (contact) server. |
 | [readarr](stable/readarr) | A fork of Radarr to work with Books & AudioBooks |
 | [recipes](stable/recipes) | Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files. |
 | [reg](stable/reg) | Docker registry v2 command line client and repo listing generator with security checks. |
@@ -137,12 +146,14 @@
 | [unifi-poller](stable/unifi-poller) | Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus |
 | [unifi](stable/unifi) | Ubiquiti Network's Unifi Controller |
 | [unpackerr](stable/unpackerr) | This application runs as a daemon on your download host. It checks for completed downloads and extracts them so Radarr, Lidarr, Sonarr, and Readarr may import them. |
+| [uptime-kuma](stable/uptime-kuma) | A fancy self-hosted monitoring tool for your websites and applications |
 | [uptimerobot-prometheus](stable/uptimerobot-prometheus) | Prometheus Exporter for the official uptimerobot CLI |
 | [uptimerobot](stable/uptimerobot) | A tool to get statistics from Uptime Robot and log it into InfluxDB |
 | [valheim](stable/valheim) | Valheim dedicated gameserver with automatic update and world backup support |
 | [vaultwarden](stable/vaultwarden) | Vaultwarden is a Bitwarden compatable server in Rust |
 | [vikunja](stable/vikunja) | The to-do app to organize your life |
 | [wallabag](stable/wallabag) | A self hostable application for saving web pages, freely. |
+| [webtrees](stable/webtrees) | Open-source online collaborative genealogy application |
 | [whoogle](stable/whoogle) | A self-hosted, ad-free, privacy-respecting metasearch engine |
 | [wikijs](stable/wikijs) | Make documentation a joy to write using Wiki.js's beautiful and intuitive interface! |
 | [wireguard](stable/wireguard) | Fast, modern, secure VPN tunnel |
@@ -158,8 +169,11 @@
 | Chart | Description |
 | ----- | ----------- |
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
+| [cryptpad](incubator/cryptpad) | cryptpad helm package |
+| [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [seafile](incubator/seafile) | seafile helm package |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
+| [torrserver](incubator/torrserver) | TorrServer streams torrent to http |

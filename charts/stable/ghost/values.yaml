@@ -1,0 +1,57 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghost
+  # -- image tag
+  tag: 4.27.2
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# See https://ghost.org/docs/config/#running-ghost-with-config-env-variables
+env:
+  url: "http://some-ghost.example.com"
+  database__client: mysql
+  database__connection__host: ghost-mariadb
+  database__connection__user: ghost
+  database__connection__password: ghost
+  database__connection__database: ghost
+  NODE_ENV: production
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 2368
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  content:
+    enabled: false
+    mountPath: /var/lib/ghost/content
+
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: ghost
+    username: ghost
+    password: ghost
+    rootPassword: ghost-rootpass
+  primary:
+    persistance:
+      enabled: false

@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: 1.18.1
 description: FreshRSS is a self-hosted RSS feed aggregator
 name: freshrss
-version: 6.1.0
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- freshrss
-- rss
+  - freshrss
+  - rss
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/freshrss
 icon: https://avatars.githubusercontent.com/u/9414285?s=200&v=4
 sources:
-- https://github.com/FreshRSS/FreshRSS
-- https://hub.docker.com/r/linuxserver/freshrss
+  - https://github.com/FreshRSS/FreshRSS
+  - https://hub.docker.com/r/linuxserver/freshrss
 maintainers:
-- name: npawelek
-  email: nathan@nathanpawelek.com
+  - name: npawelek
+    email: nathan@nathanpawelek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

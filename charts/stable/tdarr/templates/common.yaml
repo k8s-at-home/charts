@@ -17,6 +17,8 @@ additionalContainers:
         value: "localhost"
       - name: serverPort
         value: "{{ .Values.service.main.ports.server.port }}"
+      - name: ffmpegPath
+        value: {{ default "" .Values.env.ffmpegPath }}
     volumeMounts:
       {{ if .Values.persistence.config.enabled }}
       - name: config
@@ -32,7 +34,7 @@ additionalContainers:
       {{ end }}
     {{- with .Values.node.resources }}
     resources:
-      {{- toYaml . | nindent 2 }}
+      {{- toYaml . | nindent 6 }}
     {{- end }}
 {{ end }}
 {{- end -}}

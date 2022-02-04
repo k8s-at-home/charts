@@ -2,21 +2,25 @@ apiVersion: v2
 appVersion: v1.0.0.2255
 description: Looks and smells like Sonarr but made for music
 name: lidarr
-version: 13.1.0
+version: 13.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- lidarr
-- torrent
-- usenet
+  - lidarr
+  - torrent
+  - usenet
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lidarr
 icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
 sources:
-- https://github.com/Lidarr/Lidarr
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/Lidarr/Lidarr
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

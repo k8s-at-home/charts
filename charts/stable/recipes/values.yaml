@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: vabene1111/recipes
   # -- image tag
-  tag: 0.16.7
+  tag: 1.0.5.2
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -18,9 +18,12 @@ sidecar:
     # -- nginx sidecar image repository
     repository: nginx
     # -- nginx sidecar image tag
-    tag: 1.19.6
+    tag: 1.21.6
     # -- nginx sidecar image pull policy
     pullPolicy: IfNotPresent
+  # -- specify nginx related configs
+  config:
+    client_max_body_size: "128M"
 
 # -- environment variables. See [project docs](https://raw.githubusercontent.com/vabene1111/recipes/master/.env.template) for more details.
 # @default -- See below

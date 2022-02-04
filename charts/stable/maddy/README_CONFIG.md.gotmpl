@@ -1,0 +1,11 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+After you have deployed the Helm chart you need to update your DNS. See
+[Maddy initial setup instructions](https://maddy.email/tutorials/setting-up/)
+about how to do this.
+{{- end -}}

@@ -1,0 +1,182 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: foxcpp/maddy
+  # -- image tag
+  # @default -- chart.appVersion
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+maddy:
+  # -- Hostname the service will listen to (incoming SMTP and IMAP)
+  hostname: mx.example.com
+
+  # -- name of K8S secret containing the cert and key to use by maddy.
+  tls_secret_name: myTLSSecret
+
+  # -- Primary domain - will be included in SMTP protocol
+  primary_domain: example.com
+  # -- Space separated list of additional domains this server handles
+  secondary_domains:
+
+  sql:
+    # -- DB type to use. Supported are `sqlite3` and `postgres`
+    # Database is used to store IMAP indexes and (when not using LDAP) authorized users
+    type: sqlite3
+
+    # -- If type is postgres configure the Data Source Name (DSN)
+    # @default -- See [Go DSN](https://pkg.go.dev/github.com/lib/pq?utm_source=godoc#hdr-Connection_String_Parameters)
+    postgres_dsn:
+      # -- The host to connect to
+      # @default -- host of embedded postgres chart
+      host: ""
+      # -- The name of the DB
+      # @default -- DB name set in embedded postgres chart
+      dbname: ""
+      # -- The DB user
+      # @default -- user set in embedded postgres chart
+      user: ""
+      # -- The DB user password
+      # @default -- user set in embedded postgres chart
+      password: ""
+      # -- SSL model for the DB
+      # disable - No SSL
+      # require - Always SSL (skip verification)
+      # verify-ca - Always SSL (verify that the certificate presented by the
+      #             server was signed by a trusted CA)
+      # verify-full - Always SSL (verify that the certification presented by
+      #               the server was signed by a trusted CA and the server host name
+      #               matches the one in the certificate)
+      sslmode: disable
+
+  auth:
+    # -- Where to store authorised users. Valid values are `sql` and `ldap`
+    type: sql
+
+    # -- If type is ldap the following options are required
+    # @default -- See [See Maddy auth](https://maddy.email/man/_generated_maddy-auth.5/#configuration-directives_5)
+    ldap:
+      # -- URLs of the directory servers to use. First available server is used - no load-balancing is done.
+      urls: ldap://maddy.test:389
+
+      # -- Specify initial bind credentials. Not required ('bind off') if DN template is used.
+      bind plain: '"cn=maddy,ou=people,dc=maddy,dc=test" "123456"'
+
+      # -- Specify DN template to skip lookup.
+      dn_template: '"cn={username},ou=people,dc=maddy,dc=test"'
+
+      # -- Specify base_dn to lookup DN.
+      base_dn: '"ou=people,dc=maddy,dc=test"'
+
+      # -- Specify filter to lookup DN.
+      filter: '"(&(objectClass=posixAccount)(uid={username}))"'
+
+      # -- Whether to upgrade connection to TLS using STARTTLS.
+      starttls: 'off'
+
+      # -- Enable verbose logging. You don't need that unless you are reporting a bug.
+      debug: 'off'
+
+      # -- Timeout for initial connection to the directory server.
+      connect_timeout: 1m
+
+  # -- The main part of the configuration - rules for the smtp pipelines.
+  # You can define multiple blocks. Content comes from the chart when setting `file`
+  # (see files/smtp_rules folder) and/or the custom block
+  # @default -- See values.yaml
+  smtp_rules:
+    default:
+      enabled: true
+      file: default.conf
+    custom_example:
+      enabled: false
+      custom: |
+        # Rule block example
+
+  config_files:
+    # -- Alias file used in smtp_rule
+    # See [alias examples](https://maddy.email/man/_generated_maddy-filters.5/).
+    alias: |
+      ## Replace 'cat' with any domain to 'dog'.
+      ## E.g. cat@example.net -> dog@example.net
+      # cat: dog
+
+      ## Replace cat@example.org with cat@example.com.
+      ## Takes priority over the previous line.
+      #cat@example.org: cat@example.com
+
+  extra_settings:
+    # -- Additional settings for local_mailboxes storage
+    local_mailboxes: {}
+      # imap_filter: |
+      #   {
+      #       command /etc/maddy/sieve.sh {account_name}
+      #   }
+    # -- Additional settings for imap backend
+    imap: {}
+      # debug: yes
+      # io_debug: yes
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    ports:
+      http:
+        enabled: false
+      smtp:
+        enabled: true
+        port: 25
+      imap:
+        enabled: true
+        port: 143
+      imaps:
+        enabled: true
+        port: 993
+      tls:
+        enabled: true
+        port: 465
+      starttls:
+        enabled: true
+        port: 587
+      openmetrics:
+        enabled: false
+        port: 9749
+  openmetrics:
+    ports:
+      # See https://maddy.email/openmetrics/
+      openmetrics:
+        enabled: false
+        port: 9749
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /data
+
+# -- Bitnami postgres chart. For more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
+# @default -- see bellow
+postgresql:
+  # -- Enable if you want to use the embedded postgresql chart (not neeeded if you use your own postgres DB).
+  enabled: false
+  # -- Postgres database user name
+  postgresqlUsername: postgres
+  # -- Postgres database password
+  postgresqlPassword: "changeme"
+  # -- Postgres database password
+  postgresqlDatabase: postgres
+  persistence:
+    # -- if database is stored to a PVC. Set to true when you are done testing.
+    enabled: false
+    # storageClass: ""

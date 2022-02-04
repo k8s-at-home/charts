@@ -1,0 +1,19 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded volumes */}}
+{{- define "radicale.hardcodedValues" -}}
+  {{- if and .Values.configmap.config.enabled (not .Values.persistence.config.enabled) }}
+persistence:
+  config:
+    enabled: true
+    type: configMap
+    name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+    subPath: config.cfg
+    mountPath: /config/config
+    readOnly: true
+  {{- end -}}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "radicale.hardcodedValues" . | fromYaml) -}}
+
+{{ include "common.all" . }}

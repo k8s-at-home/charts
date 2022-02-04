@@ -1,0 +1,29 @@
+apiVersion: v2
+appVersion: 2.0.19
+description: Open-source online collaborative genealogy application
+name: webtrees
+version: 1.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - webtrees
+  - genealogy
+  - family-tree
+icon: https://raw.githubusercontent.com/fisharebest/webtrees/main/resources/img/webtrees-icon.png
+sources:
+  - https://github.com/fisharebest/webtrees
+  - https://github.com/NathanVaughn/webtrees-docker
+maintainers:
+  - name: rogerrum
+    email: rogerrum@gmail.com
+dependencies:
+  - name: common
+    version: 4.3.0
+    repository: https://library-charts.k8s-at-home.com
+  - name: mariadb
+    version: 10.2.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

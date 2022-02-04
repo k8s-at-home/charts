@@ -1,0 +1,38 @@
+---
+apiVersion: v2
+appVersion: 0.6.0
+description: Dendrite Matrix Homeserver
+name: dendrite
+version: 2.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - dendrite
+  - matrix
+  - homeserver
+  - monolith
+  - federation
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dendrite
+sources:
+  - https://github.com/matrix-org/dendrite
+  - https://github.com/matrix-org/dendrite/tree/master/build/docker
+maintainers:
+  - name: jonnobrow
+    email: jonathan@jonnobrow.co.uk
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: nats
+    version: 0.12.1
+    repository: https://nats-io.github.io/k8s/helm/charts/
+    condition: nats.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: NATS is now used instead of Kafka
+    - kind: changed
+      description: App version bumped to v0.6.0

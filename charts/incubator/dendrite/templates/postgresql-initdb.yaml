@@ -1,0 +1,14 @@
+{{- if .Values.postgresql.enabled }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: {{ .Values.postgresql.initdbScriptsConfigMap | quote }}
+data:
+  create-db.sh: |
+    #!/bin/sh
+    for db in userapi_accounts userapi_devices mediaapi syncapi roomserver keyserver federationapi appservice naffka; do
+    createdb -U {{ .Values.postgresql.postgresqlUsername }} -O {{ .Values.postgresql.postgresqlUsername }} dendrite_$db
+    done
+{{- end }}

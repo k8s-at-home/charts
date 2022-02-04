@@ -1,6 +1,6 @@
 # bookstack
 
-![Version: 3.3.1](https://img.shields.io/badge/Version-3.3.1-informational?style=flat-square) ![AppVersion: v21.05.1](https://img.shields.io/badge/AppVersion-v21.05.1-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v21.12](https://img.shields.io/badge/AppVersion-v21.12-informational?style=flat-square)
 
 A simple, self-hosted, easy-to-use platform for organising and storing information.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.1 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image tag |
 | image.repository | string | `"ghcr.io/linuxserver/bookstack"` | image repository |
-| image.tag | string | `"version-v21.05.1"` | image pull policy |
+| image.tag | string | `"version-v21.12"` | image pull policy |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb). |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -92,6 +92,14 @@ N/A
 All notable changes to this application Helm chart will be documented in this file but does not include changes from our common library. To read those click [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#changelog).
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [4.0.0]
+
+#### Changed
+
+- **BREAKING**: Updated `mariadb` chart to version `10.2.0`. Check out the [chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000) to see which values have changed.
+- Updated the common library dependency to version 4.3.0.
+- Changed image tag to `version-v21.12`.
 
 ### [3.0.0]
 
@@ -121,6 +129,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[4.0.0]: #400
 [3.0.0]: #300
 [2.0.0]: #200
 [1.0.0]: #100

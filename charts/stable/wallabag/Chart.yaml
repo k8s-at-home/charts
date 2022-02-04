@@ -2,31 +2,41 @@ apiVersion: v2
 appVersion: 2.4.2
 description: A self hostable application for saving web pages, freely.
 name: wallabag
-version: 5.2.1
+version: 6.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- wallabag
+  - wallabag
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wallabag
 icon: "https://raw.githubusercontent.com/wallabag/logo/master/app-android/logo-app-android-icon-bg-white-512.png"
 sources:
-- https://github.com/wallabag/docker
-- https://hub.docker.com/wallabag/wallabag
+  - https://github.com/wallabag/docker
+  - https://hub.docker.com/wallabag/wallabag
 maintainers:
-- name: Patricol
-  url: https://patricol.co/
+  - name: Patricol
+    url: https://patricol.co/
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
-- name: redis
-  version: 15.5.5
-  repository: https://charts.bitnami.com/bitnami
-  condition: redis.enabled
-- name: postgresql
-  version: 10.13.10
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
-- name: mariadb
-  version: 9.7.1
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: redis
+    version: 15.6.10
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+  - name: postgresql
+    version: 10.14.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: mariadb
+    version: 10.2.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
+    - kind: changed
+      description: Upgraded `mariadb` chart dependency to version `10.2.0`.
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.14.4`.
+    - kind: changed
+      description: Upgraded `redis` chart dependency to version `15.6.10`.
