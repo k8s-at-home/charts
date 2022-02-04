@@ -48,7 +48,7 @@ jobs:
 
       - name: Generate README for changed charts
         if: |
-          steps.collect-changes.outputs.addedOrModified == true
+          steps.collect-changes.outputs.changesDetected == 'true'
         run: |
           CHARTS=(${{ steps.collect-changes.outputs.addedOrModifiedCharts }})
           for i in "${CHARTS[@]}"
