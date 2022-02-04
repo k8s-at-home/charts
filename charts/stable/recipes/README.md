@@ -1,6 +1,6 @@
 # recipes
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: 0.16.7](https://img.shields.io/badge/AppVersion-0.16.7-informational?style=flat-square)
+![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![AppVersion: 1.0.5.2](https://img.shields.io/badge/AppVersion-1.0.5.2-informational?style=flat-square)
 
 Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 
@@ -83,10 +83,10 @@ N/A
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
+| sidecar.config | object | `{"client_max_body_size":"128M"}` | specify nginx related configs |
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | nginx sidecar image pull policy |
 | sidecar.image.repository | string | `"nginx"` | nginx sidecar image repository |
 | sidecar.image.tag | string | `"1.21.6"` | nginx sidecar image tag |
-| sidecar.config.client_max_body_size | string | `"128M"` | nginx config upload size |
 
 ## Changelog
 
