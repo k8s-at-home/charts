@@ -2,23 +2,27 @@ apiVersion: v2
 appVersion: v0.1.0.715
 description: A fork of Radarr to work with Books & AudioBooks
 name: readarr
-version: 6.1.0
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- readarr
-- torrent
-- usenet
-- AudioBooks
-- ebooks
+  - readarr
+  - torrent
+  - usenet
+  - AudioBooks
+  - ebooks
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/readarr
 icon: https://readarr.com/img/logo.png
 sources:
-- https://github.com/Readarr/Readarr
-- https://github.com/k8s-at-home/container-images
+  - https://github.com/Readarr/Readarr
+  - https://github.com/k8s-at-home/container-images
 maintainers:
-- name: mcmarkj
-  email: mark@markmcw.uk
+  - name: mcmarkj
+    email: mark@markmcw.uk
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

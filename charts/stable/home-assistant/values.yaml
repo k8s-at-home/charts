@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: homeassistant/home-assistant
   # -- image tag
-  tag: 2021.6.3
+  tag: 2021.12.7
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -76,6 +76,9 @@ mariadb:
 # @default -- See values.yaml
 postgresql:
   enabled: false
+  image:
+    repository: bitnami/postgresql
+    tag: 14.1.0
   postgresqlUsername: home-assistant
   postgresqlPassword: home-assistant-pass
   postgresqlDatabase: home-assistant

@@ -2,18 +2,22 @@ apiVersion: v2
 appVersion: 1.0.5
 description: Expose all events from an Amcrest device to an MQTT broker
 name: amcrest2mqtt
-version: 2.1.0
+version: 2.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- amcrest2mqtt
+  - amcrest2mqtt
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/amcrest2mqtt
 icon: https://raw.githubusercontent.com/k8s-at-home/organization/main/logo/k8s-at-home-400.png
 sources:
-- https://github.com/dchesterton/amcrest2mqtt
+  - https://github.com/dchesterton/amcrest2mqtt
 maintainers:
-- name: bjw-s
-  email: me@bjw-s.dev
+  - name: bjw-s
+    email: me@bjw-s.dev
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

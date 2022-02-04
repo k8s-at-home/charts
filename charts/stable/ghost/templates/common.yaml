@@ -1,0 +1,16 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "ghost.hardcodedValues" -}}
+  {{- if not .Values.persistence.content.enabled }}
+persistence:
+  content:
+    enabled: true
+    type: "emptyDir"
+  {{- end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "ghost.hardcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}

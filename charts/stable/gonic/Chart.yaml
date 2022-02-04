@@ -2,20 +2,24 @@ apiVersion: v2
 appVersion: v0.13.1
 description: Music streaming server / subsonic server API implementation
 name: gonic
-version: 6.1.0
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- music
-- subsonic
+  - music
+  - subsonic
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/gonic
 icon: https://raw.githubusercontent.com/sentriz/gonic/master/.github/logo.png
 sources:
-- https://github.com/sentriz/gonic
-- https://hub.docker.com/r/sentriz/gonic
+  - https://github.com/sentriz/gonic
+  - https://hub.docker.com/r/sentriz/gonic
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

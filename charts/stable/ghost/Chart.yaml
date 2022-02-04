@@ -1,0 +1,29 @@
+apiVersion: v2
+appVersion: 4.27.2
+description: Ghost is a blogging and publishing software
+name: ghost
+version: 1.1.2
+kubeVersion: ">=1.19.0-0"
+keywords:
+  - ghost
+  - blogging
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ghost
+icon: https://ghost.org/images/logos/logo-black-1.png
+sources:
+  - https://github.com/TryGhost/Ghost
+  - https://github.com/TryGhost/Ghost-CLI
+maintainers:
+  - name: samip5
+    email: sm+k8s-at-home+git@samip.fi
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: mariadb
+    version: 10.2.0
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: fixed
+      description: Fixed database host to match mariadb-svc

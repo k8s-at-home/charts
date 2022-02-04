@@ -17,6 +17,8 @@ additionalContainers:
         value: "localhost"
       - name: serverPort
         value: "{{ .Values.service.main.ports.server.port }}"
+      - name: ffmpegPath
+        value: {{ default "" .Values.env.ffmpegPath }}
     volumeMounts:
       {{ if .Values.persistence.config.enabled }}
       - name: config
@@ -26,6 +28,14 @@ additionalContainers:
       - name: media
         mountPath: /media
       {{ end }}
+      {{ if .Values.persistence.shared.enabled }}
+      - name: shared
+        mountPath: /shared
+      {{ end }}
+    {{- with .Values.node.resources }}
+    resources:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
 {{ end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "tdarr.harcodedValues" . | fromYaml) -}}

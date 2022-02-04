@@ -1,6 +1,6 @@
 # anonaddy
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
 
 Anonaddy: Anonymous email forwarding
 
@@ -18,9 +18,9 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 9.7.0 |
-| https://charts.bitnami.com/bitnami | redis | 15.5.3 |
-| https://library-charts.k8s-at-home.com | common | 4.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://charts.bitnami.com/bitnami | redis | 15.6.10 |
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
 
@@ -97,6 +97,14 @@ All notable changes to this application Helm chart will be documented in this fi
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.0.0]
+
+#### Changed
+
+- **BREAKING**: Updated `mariadb` chart to version `10.2.0`. Check out the [chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1000) to see which values have changed.
+- Updated the `redis` chart to version 15.6.10.
+- Updated the common library dependency to version 4.3.0.
+
 ### [1.0.0]
 
 #### Added
@@ -111,6 +119,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - N/A
 
+[2.0.0]: #200
 [1.0.0]: #100
 
 ## Support

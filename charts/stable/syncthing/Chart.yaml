@@ -2,21 +2,25 @@ apiVersion: v2
 appVersion: 1.18.2
 description: Open Source Continuous File Synchronization
 name: syncthing
-version: 3.2.0
+version: 3.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- syncthing
-- file sync
+  - syncthing
+  - file sync
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/syncthing
 icon: https://github.com/syncthing/syncthing/raw/main/assets/logo-128.png
 sources:
-- https://syncthing.net/
-- https://github.com/syncthing/syncthing
+  - https://syncthing.net/
+  - https://github.com/syncthing/syncthing
 maintainers:
-- name: FlipEnergy
-  email: dennis.zhang.nrg@gmail.com
-- name: claughinghouse
+  - name: FlipEnergy
+    email: dennis.zhang.nrg@gmail.com
+  - name: claughinghouse
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

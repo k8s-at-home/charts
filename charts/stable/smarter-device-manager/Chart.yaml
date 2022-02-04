@@ -2,23 +2,27 @@ apiVersion: v2
 appVersion: 1.20.7
 description: Manage hardware resource allocation without a need for privileged containers
 name: smarter-device-manager
-version: 6.2.0
+version: 6.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- kubernetes
-- cluster
-- hardware
+  - kubernetes
+  - cluster
+  - hardware
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/smarter-device-manager
 icon: https://assets.gitlab-static.net/uploads/-/system/group/avatar/6339043/smarter-sticker-nologo.png
 sources:
-- https://gitlab.com/arm-research/smarter/smarter-device-manager/
-- https://github.com/k8s-at-home/charts
+  - https://gitlab.com/arm-research/smarter/smarter-device-manager/
+  - https://github.com/k8s-at-home/charts
 maintainers:
-- name: bjw-s
-  email: me@bjw-s.dev
-- name: lazyoldbear
-  email: 19270832+lazyoldbear@users.noreply.github.com
+  - name: bjw-s
+    email: me@bjw-s.dev
+  - name: lazyoldbear
+    email: 19270832+lazyoldbear@users.noreply.github.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

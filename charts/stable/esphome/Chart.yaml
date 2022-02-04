@@ -2,19 +2,23 @@ apiVersion: v2
 appVersion: 1.18.0
 description: ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 name: esphome
-version: 8.1.0
+version: 8.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- esphome
-- home-automation
+  - esphome
+  - home-automation
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/esphome
 icon: https://raw.githubusercontent.com/esphome/esphome-docs/v1.16.2/_static/favicon-256x256.png
 sources:
-- https://github.com/esphome/esphome
+  - https://github.com/esphome/esphome
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.2.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.

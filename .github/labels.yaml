@@ -1,0 +1,111 @@
+---
+# CI Status
+- name: "precommit:ok"
+  color: "0E8A16"
+  description: >-
+    CI status: pre-commit validation successful
+- name: "precommit:failed"
+  color: "D93F0B"
+  description: >-
+    CI status: pre-commit validation failed
+- name: "changelog:ok"
+  color: "0E8A16"
+  description: >-
+    CI status: changelog validation successful
+- name: "changelog:failed"
+  color: "D93F0B"
+  description: >-
+    CI status: changelog validation failed
+- name: "lint:ok"
+  color: "0E8A16"
+  description: >-
+    CI status: linting successful
+- name: "lint:failed"
+  color: "D93F0B"
+  description: >-
+    CI status: linting failed
+- name: "install:ok"
+  color: "0E8A16"
+  description: >-
+    CI status: install successful
+- name: "install:failed"
+  color: "D93F0B"
+  description: >-
+    CI status: install failed
+
+# Semantic Type
+- name: type/patch
+  color: "FFEC19"
+- name: type/minor
+  color: "FF9800"
+- name: type/major
+  color: "F6412D"
+
+# Renovate
+- name: renovate/container
+  color: "ffc300"
+- name: renovate/helm
+  color: "ffc300"
+
+# Size
+- name: size/XS
+  color: "009900"
+  description: >-
+    Categorises a PR that changes 0-9 lines, ignoring generated files.
+- name: size/S
+  color: "77bb00"
+  description: >-
+    Categorises a PR that changes 10-29 lines, ignoring generated files.
+- name: size/M
+  color: "eebb00"
+  description: >-
+    Categorises a PR that changes 30-99 lines, ignoring generated files.
+- name: size/L
+  color: "ee9900"
+  description: >-
+    Categorises a PR that changes 100-499 lines, ignoring generated files.
+- name: size/XL
+  color: "ee5500"
+  description: >-
+    Categorises a PR that changes 500-999 lines, ignoring generated files.
+- name: size/XXL
+  color: "ee0000"
+  description: >-
+    Categorises a PR that changes 1000+ lines, ignoring generated files.
+
+# Issue categories
+- name: documentation
+  color: "0075ca"
+- name: bug
+  color: "B60205"
+- name: enhancement
+  color: "a2eeef"
+- name: "help wanted"
+  color: "008672"
+- name: wontfix
+  color: "ffffff"
+- name: "support"
+  color: ffffff
+- name: "incomplete-template"
+  color: ffffff
+
+- name: "new-chart"
+  color: "C2E0C6"
+  description: >-
+    Categorises a PR or issue that references a new Helm chart.
+- name: do-not-merge
+  color: "ee0701"
+  description: >-
+    Categorises a PR that should not be merged in the current state.
+- name: "incomplete-docs"
+  color: B72175
+  description: >-
+    Categorises a PR for which the documentation has not been updated completely.
+- name: keepalive
+  color: "4D28C4"
+  description: >-
+    Categorises a PR or issue that should not be marked as stale.
+- name: stale
+  color: "D4C5F9"
+  description: >-
+    Categorises a PR or issue that has not been active for a specified time.

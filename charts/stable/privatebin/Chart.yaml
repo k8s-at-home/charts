@@ -1,0 +1,29 @@
+apiVersion: v2
+appVersion: 1.3.5
+description: A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack
+name: privatebin
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- privatebin
+- pastebin
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/privatebin
+icon: https://privatebin.info/theme/img/icon.svg
+sources:
+- https://github.com/PrivateBin/PrivateBin
+- https://github.com/PrivateBin/docker-nginx-fpm-alpine
+maintainers:
+- name: psych0d0g
+  email: psych0d0g@users.noreply.github.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+- name: postgresql
+  version: 10.14.4
+  repository: https://charts.bitnami.com/bitnami
+  condition: postgresql.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial chart version
