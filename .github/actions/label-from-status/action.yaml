@@ -41,7 +41,7 @@ runs:
 
     - name: Remove label
       uses: andymckay/labeler@1.0.4
-      if: ${{ (inputs.job-status == 'skipped') && (inputs.remove-on-skipped == true) }}
+      if: ${{ (inputs.job-status == 'skipped') && (inputs.remove-on-skipped == 'true') }}
       with:
         repo-token: ${{ inputs.token }}
         issue-number: ${{ inputs.issue-number }}
