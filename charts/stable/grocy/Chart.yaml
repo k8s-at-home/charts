@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v3.0.1
+appVersion: version-v3.1.3
 description: ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home
 name: grocy
-version: 8.2.0
+version: 8.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - grocy
@@ -20,4 +20,6 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
+      description: Updated application version to v3.1.3.
+    - kind: added
+      description: Added `emptyDir` volume for the viewcache in order to prevent problems when upgrading the image that would require manual intervention.

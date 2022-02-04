@@ -9,7 +9,8 @@ image:
   # -- image repository
   repository: linuxserver/grocy
   # -- image tag
-  tag: version-v3.0.1
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -42,3 +43,10 @@ ingress:
 persistence:
   config:
     enabled: false
+  # Let the viewcache only persist for the lifetime of the pod, otherwise
+  # there will cases of blank pages when upgrading the image that require
+  # manually clearing the directory
+  viewcache:
+    enabled: true
+    type: emptyDir
+    mountPath: /config/data/viewcache
