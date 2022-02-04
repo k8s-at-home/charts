@@ -10,9 +10,9 @@ jobs:
   stale:
     runs-on: ubuntu-20.04
     steps:
-      - name: Get app-token
-        uses: getsentry/action-github-app-token@v1
-        id: get-app-token
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
         with:
           app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
@@ -20,7 +20,7 @@ jobs:
       - name: Check for stale issues and PRs
         uses: actions/stale@v4
         with:
-          repo-token: ${{ steps.get-app-token.outputs.token }}
+          repo-token: ${{ steps.generate-token.outputs.token }}
           days-before-issue-stale: 60
           days-before-pr-stale: 60
           days-before-close: 14

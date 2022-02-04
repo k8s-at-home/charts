@@ -1,5 +1,5 @@
 ---
-name: 'Metadata: Label Commenter'
+name: "Metadata: Label Commenter"
 
 on:
   issues:
@@ -21,17 +21,18 @@ jobs:
     name: Label commenter
     runs-on: ubuntu-20.04
     steps:
-    - uses: getsentry/action-github-app-token@v1
-      id: get-app-token
-      with:
-        app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
-        private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+          private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
-    - uses: actions/checkout@v2
-      with:
-        token: ${{ steps.get-app-token.outputs.token }}
-        ref: master
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          ref: master
 
-    - uses: peaceiris/actions-label-commenter@v1
-      with:
-        github_token: ${{ steps.get-app-token.outputs.token }}
+      - uses: peaceiris/actions-label-commenter@v1
+        with:
+          github_token: ${{ steps.generate-token.outputs.token }}
