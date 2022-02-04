@@ -1,0 +1,42 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/tarampampam/error-pages
+  # -- image tag
+  tag: 2.6.0
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See the [error-pages documentation](https://github.com/tarampampam/error-pages/wiki/HTTP-server) for more info.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Set the template
+  TEMPLATE_NAME: l7-dark
+  # -- Enable details on error pages
+  SHOW_DETAILS: "false"
+
+service:
+  main:
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
