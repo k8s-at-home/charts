@@ -88,19 +88,19 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: charts/**/
-          commit_message: Auto-update chart README
+          commit_message: "chore: Auto-update chart README"
           commit_user_name: k8s-at-home[bot]
           commit_user_email: k8s-at-home[bot]@users.noreply.github.com
           commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
 
       - name: Configure Git
-        if: ${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "false"
+        if: steps.create-commit.outputs.changes_detected == 'false'
         run: |
           git config user.name "k8s-at-home[bot]"
           git config user.email "k8s-at-home[bot]@users.noreply.github.com"
 
       - name: Run chart-releaser
-        if: ${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "false"
+        if: steps.create-commit.outputs.changes_detected == 'false'
         uses: helm/chart-releaser-action@v1.2.1
         with:
           charts_dir: charts/*
