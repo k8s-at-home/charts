@@ -28,17 +28,79 @@ jobs:
           ref: master
           fetch-depth: 0
 
+      - name: Install Kubernetes tools
+        uses: yokawasa/action-setup-kube-tools@v0.8.0
+        with:
+          setup-tools: |
+            helmv3
+            yq
+          helm: 3.6.3
+          yq: "4.16.2"
+
+      - name: Install helm-docs
+        run: |
+          wget -O /tmp/helm-docs.deb  https://github.com/k8s-at-home/helm-docs/releases/download/v0.1.1/helm-docs_0.1.1_Linux_x86_64.deb
+          sudo dpkg -i /tmp/helm-docs.deb
+
+      - name: Collect changed files
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          list-files: shell
+          filters: |
+            addedOrModified:
+              - added|modified: 'charts/**'
+
+      - name: Collect changed charts
+        if: |
+          steps.filter.outputs.addedOrModified == 'true'
+        id: filter-charts
+        run: |
+          CHARTS=()
+          PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
+          # Get only the chart paths
+          for CHARTPATH in "${PATHS[@]}"
+          do
+            IFS='/' read -r -a path_parts <<< "${CHARTPATH}"
+            CHARTS+=("${path_parts[1]}/${path_parts[2]}")
+          done
+
+          # Remove duplicates
+          CHARTS=( `printf "%s\n" "${CHARTS[@]}" | sort -u` )
+          # Set output to changed charts
+          printf "::set-output name=addedOrModified::%s\n" "${CHARTS[*]}"
+
+      - name: Generate README for changed charts in Renovate PR's
+        if: |
+          steps.filter.outputs.addedOrModified == 'true'
+        run: |
+          CHARTS=(${{ steps.filter-charts.outputs.addedOrModified }})
+          for i in "${CHARTS[@]}"
+          do
+              IFS='/' read -r -a chart_parts <<< "$i"
+              if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
+                ./.github/scripts/gen-helm-docs.sh "${chart_parts[0]}" "${chart_parts[1]}"
+              fi
+          done
+
+      - name: Create commit
+        id: create-commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: charts/**/
+          commit_message: "chore: Auto-update chart README"
+          commit_user_name: k8s-at-home[bot]
+          commit_user_email: k8s-at-home[bot]@users.noreply.github.com
+          commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
+
       - name: Configure Git
+        if: steps.create-commit.outputs.changes_detected == 'false'
         run: |
           git config user.name "k8s-at-home[bot]"
           git config user.email "k8s-at-home[bot]@users.noreply.github.com"
 
-      - name: Install Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.6.3
-
       - name: Run chart-releaser
+        if: steps.create-commit.outputs.changes_detected == 'false'
         uses: helm/chart-releaser-action@v1.2.1
         with:
           charts_dir: charts/*

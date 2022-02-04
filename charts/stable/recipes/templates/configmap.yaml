@@ -15,7 +15,7 @@ data:
       server {
         listen 80;
         server_name _;
-        client_max_body_size 16M;
+        client_max_body_size {{ .Values.sidecar.config.client_max_body_size }};
         # serve media files
         location /media/ {
           alias /media/;
