@@ -7,9 +7,9 @@
 
 image:
   # -- image repository
-  repository: dperson/samba
+  repository: ghcr.io/crazy-max/samba
   # -- image tag
-  tag: latest
+  tag: 4.15.5
   # -- image pull policy
   pullPolicy: Always
 
@@ -18,8 +18,13 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # SHARE1: share1;/share/samba/share1
-  # SHARE2: share2;/share/samba/share2
+  #SAMBA_WORKGROUP: NT-Domain-Name or Workgroup-Name. (default WORKGROUP)
+  #SAMBA_SERVER_STRING: Server string is the equivalent of the NT Description field. (default Docker Samba Server)
+  #SAMBA_LOG_LEVEL: Log level. (default 0)
+  #SAMBA_FOLLOW_SYMLINKS: Allow to follow symlinks. (default yes)
+  #SAMBA_WIDE_LINKS: Controls whether or not links in the UNIX file system may be followed by the server. (default yes)
+  #SAMBA_HOSTS_ALLOW: Set of hosts which are permitted to access a service. (default 127.0.0.0/8 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16)
+  #SAMBA_INTERFACES: Allows you to override the default network interfaces list.
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -48,3 +53,37 @@ persistence:
     enabled: false
     type: hostPath
     hostPath: /share/samba/share1
+
+configmap:
+  config:
+    # -- Store samba configuration as a ConfigMap
+    enabled: false
+    # -- Samba configuration. See [image documentation](https://github.com/crazy-max/docker-samba#configuration) for more information.
+    # @default -- See values.yaml
+    data:
+      config.yml: |
+        auth:
+          - user: foo
+            group: foo
+            uid: 1000
+            gid: 1000
+            password: bar
+          - user: baz
+            group: xxx
+            uid: 1100
+            gid: 1200
+            password: foobar
+
+        global:
+          - "force user = foo"
+          - "force group = foo"
+
+        share:
+          - name: foo
+            path: /share/samba/share1
+            browsable: yes
+            readonly: no
+            guestok: no
+            validusers: foo
+            writelist: foo
+            veto: no
