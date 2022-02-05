@@ -71882,6 +71882,33 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Migrated to docker image `crazy-max/samba` in order to fix https://github.com/k8s-at-home/charts/issues/1401
+    apiVersion: v2
+    appVersion: 4.15.5
+    created: "2022-02-05T21:55:56.17002377Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: A simple in-cluster Samba server
+    digest: b510fcbadf5b6b4ccf0144517e6cf8fb8a174a0c05de20695ca989c4e2ddd850
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/samba
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Samba_logo_2010.svg/500px-Samba_logo_2010.svg.png
+    keywords:
+    - samba
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: samba
+    sources:
+    - https://github.com/dperson/samba
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/samba-6.0.0/samba-6.0.0.tgz
+    version: 6.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: latest
@@ -99022,4 +99049,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-05T14:30:30.326211765Z"
+generated: "2022-02-05T21:55:56.185794769Z"
