@@ -42,6 +42,7 @@ jobs:
         with:
           name: pr_metadata
           path: ./pr_number.txt
+          retention-days: 5
 
   pr-changes:
     name: Collect PR changes
