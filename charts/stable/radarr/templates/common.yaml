@@ -9,7 +9,7 @@ additionalContainers:
     name: exporter
     image: "{{ .Values.metrics.exporter.image.repository }}:{{ .Values.metrics.exporter.image.tag }}"
     imagePullPolicy: {{ .Values.metrics.exporter.image.pullPolicy }}
-    args: ["exportarr", "radarr"]
+    args: ["radarr"]
     env:
       - name: URL
         value: "http://localhost"
