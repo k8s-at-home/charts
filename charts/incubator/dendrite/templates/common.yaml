@@ -3,6 +3,9 @@
   {{- range $components }}
     {{- include "common.values.setup" (index $.Subcharts .) }}
     {{- with (index $.Values .) }}
+      {{- if not .persistence }}
+        {{- $_ := set . "persistence" (dict)}}
+      {{- end }}
       {{- $_ := set .persistence "dendrite-key" (include "dendrite.keyVolume" $ | fromYaml) -}}
       {{- $_ := set .persistence "dendrite-config" (include "dendrite.configVolume" $ | fromYaml) -}}
       {{- $_ := set .persistence "dendrite-tls" (include "dendrite.tlsVolume" $ | fromYaml) -}}
