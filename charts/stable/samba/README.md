@@ -1,6 +1,6 @@
 # samba
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A simple in-cluster Samba server
 
@@ -86,7 +86,7 @@ N/A
 
 ## Changelog
 
-### Version 5.2.0
+### Version 6.0.0
 
 #### Added
 
@@ -94,7 +94,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Migrated to docker image `crazy-max/samba` in order to fix https://github.com/k8s-at-home/charts/issues/1401.
 
 #### Fixed
 
