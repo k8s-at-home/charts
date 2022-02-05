@@ -42,42 +42,19 @@ jobs:
         with:
           name: pr_metadata
           path: ./pr_number.txt
+          retention-days: 5
 
   pr-changes:
     name: Collect PR changes
     runs-on: ubuntu-latest
     outputs:
-      addedOrModified: ${{ steps.filter.outputs.addedOrModified }}
-      addedOrModifiedFiles: ${{ steps.filter.outputs.addedOrModified_files }}
-      addedOrModifiedCharts: ${{ steps.filter-charts.outputs.addedOrModified }}
+      addedOrModified: ${{ steps.collect-changes.outputs.changesDetected }}
+      addedOrModifiedFiles: ${{ steps.collect-changes.outputs.addedOrModifiedFiles }}
+      addedOrModifiedCharts: ${{ steps.collect-changes.outputs.addedOrModifiedCharts }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Collect changed files
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          list-files: shell
-          filters: |
-            addedOrModified:
-              - added|modified: 'charts/**'
-
-      - name: Collect changed charts
-        if: |
-          steps.filter.outputs.addedOrModified == 'true'
-        id: filter-charts
-        run: |
-          CHARTS=()
-          PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
-          # Get only the chart paths
-          for CHARTPATH in "${PATHS[@]}"
-          do
-            IFS='/' read -r -a path_parts <<< "${CHARTPATH}"
-            CHARTS+=("${path_parts[1]}/${path_parts[2]}")
-          done
-
-          # Remove duplicates
-          CHARTS=( `printf "%s\n" "${CHARTS[@]}" | sort -u` )
-          # Set output to changed charts
-          printf "::set-output name=addedOrModified::%s\n" "${CHARTS[*]}"
+      - name: Collect changes
+        id: collect-changes
+        uses: ./.github/actions/collect-changes

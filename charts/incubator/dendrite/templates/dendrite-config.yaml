@@ -18,14 +18,16 @@ stringData:
       well_known_server_name: {{ default "" .Values.dendrite.global.well_known_server_name | quote }}
       trusted_third_party_id_servers:
       {{- toYaml .Values.dendrite.global.trusted_third_party_id_servers | nindent 8 }}
-      kafka:
+      jetstream:
+        addresses:
+          {{- if .Values.nats.enabled }}
+          - {{ include "nats.fullname" .Subcharts.nats  }}:4222
+          {{- else }}
+          []
+          {{- end }}
+        in_memory: {{ not .Values.persistence.jetstream.enabled }}
+        storage_path: {{ .Values.persistence.jetstream.mountPath }}
         topic_prefix: "Dendrite"
-        use_naffka: true
-        naffka_database:
-          connection_string: {{ $connectionString }}dendrite_naffka?sslmode=disable
-          max_open_conns: {{ .Values.dendrite.database.max_open_conns }}
-          max_idle_conns: {{ .Values.dendrite.database.max_idle_conns }}
-          conn_max_lifetime: {{ .Values.dendrite.database.conn_max_lifetime }}
       metrics:
         enabled: {{ default false .Values.dendrite.global.metrics.enabled }}
         basic_auth:

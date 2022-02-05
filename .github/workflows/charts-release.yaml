@@ -25,7 +25,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          ref: master
           fetch-depth: 0
 
       - name: Install Kubernetes tools
@@ -42,39 +41,15 @@ jobs:
           wget -O /tmp/helm-docs.deb  https://github.com/k8s-at-home/helm-docs/releases/download/v0.1.1/helm-docs_0.1.1_Linux_x86_64.deb
           sudo dpkg -i /tmp/helm-docs.deb
 
-      - name: Collect changed files
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          list-files: shell
-          filters: |
-            addedOrModified:
-              - added|modified: 'charts/**'
+      - name: Collect changes
+        id: collect-changes
+        uses: ./.github/actions/collect-changes
 
-      - name: Collect changed charts
+      - name: Generate README for changed charts
         if: |
-          steps.filter.outputs.addedOrModified == 'true'
-        id: filter-charts
+          steps.collect-changes.outputs.changesDetected == 'true'
         run: |
-          CHARTS=()
-          PATHS=(${{ steps.filter.outputs.addedOrModified_files }})
-          # Get only the chart paths
-          for CHARTPATH in "${PATHS[@]}"
-          do
-            IFS='/' read -r -a path_parts <<< "${CHARTPATH}"
-            CHARTS+=("${path_parts[1]}/${path_parts[2]}")
-          done
-
-          # Remove duplicates
-          CHARTS=( `printf "%s\n" "${CHARTS[@]}" | sort -u` )
-          # Set output to changed charts
-          printf "::set-output name=addedOrModified::%s\n" "${CHARTS[*]}"
-
-      - name: Generate README for changed charts in Renovate PR's
-        if: |
-          steps.filter.outputs.addedOrModified == 'true'
-        run: |
-          CHARTS=(${{ steps.filter-charts.outputs.addedOrModified }})
+          CHARTS=(${{ steps.collect-changes.outputs.addedOrModifiedCharts }})
           for i in "${CHARTS[@]}"
           do
               IFS='/' read -r -a chart_parts <<< "$i"
@@ -88,19 +63,33 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: charts/**/
-          commit_message: "chore: Auto-update chart README"
+          commit_message: "chore: Auto-update chart README [skip ci]"
           commit_user_name: k8s-at-home[bot]
           commit_user_email: k8s-at-home[bot]@users.noreply.github.com
           commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
 
+      - name: Save commit hash
+        id: save-commit-hash
+        run: |
+          if [ "${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "true" ]; then
+            echo '::set-output name=commit_hash::${{ steps.create-commit.outputs.commit_hash }}'
+          else
+            echo "::set-output name=commit_hash::${GITHUB_SHA}"
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          ref: ${{ steps.save-commit-hash.outputs.commit_hash }}
+          fetch-depth: 0
+
       - name: Configure Git
-        if: steps.create-commit.outputs.changes_detected == 'false'
         run: |
           git config user.name "k8s-at-home[bot]"
           git config user.email "k8s-at-home[bot]@users.noreply.github.com"
 
       - name: Run chart-releaser
-        if: steps.create-commit.outputs.changes_detected == 'false'
         uses: helm/chart-releaser-action@v1.2.1
         with:
           charts_dir: charts/*

@@ -40,14 +40,6 @@ jobs:
         with:
           path: ./pr_metadata/pr_number.txt
 
-      - name: Remove workflow artifact
-        uses: riskledger/delete-artifacts@v1
-        with:
-          github_token: ${{ steps.generate-token.outputs.token }}
-          workflow: pr-validate.yaml
-          run_id: ${{ github.event.workflow_run.id }}
-          name: pr_metadata
-
       - name: "Get workflow job status"
         uses: actions/github-script@v5
         id: get-workflow-jobs
@@ -102,7 +94,7 @@ jobs:
           issue-number: ${{ steps.pr_num_reader.outputs.content }}
           prefix: changelog
           job-status: |-
-            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-readme-validate-changelog || 'skipped' }}
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-changelog-validate-changelog || 'skipped' }}
           remove-on-skipped: true
 
       - name: Label chart lint status
