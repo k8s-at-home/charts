@@ -13,7 +13,7 @@ image:
   # -- image pull policy
   pullPolicy: Always
 
-# -- environment variables. See [image docs](https://github.com/dperson/samba/blob/master/README.md) for more details.
+# -- environment variables. See [image docs](https://github.com/crazy-max/docker-samba#environment-variables) for more details.
 # @default -- See below
 env:
   # -- Set the container timezone
@@ -58,7 +58,7 @@ configmap:
   config:
     # -- Store samba configuration as a ConfigMap
     enabled: false
-    # -- Samba configuration. See [image documentation](https://github.com/crazy-max/docker-samba#environment-variables) for more information.
+    # -- Samba configuration. See [image documentation](https://github.com/crazy-max/docker-samba#configuration) for more information.
     # @default -- See values.yaml
     data:
       config.yml: |
