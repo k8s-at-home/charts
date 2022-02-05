@@ -42,12 +42,13 @@ jobs:
         with:
           name: pr_metadata
           path: ./pr_number.txt
+          retention-days: 5
 
   pr-changes:
     name: Collect PR changes
     runs-on: ubuntu-latest
     outputs:
-      addedOrModified: ${{ steps.collect-changes.outputs.addedOrModified }}
+      addedOrModified: ${{ steps.collect-changes.outputs.changesDetected }}
       addedOrModifiedFiles: ${{ steps.collect-changes.outputs.addedOrModifiedFiles }}
       addedOrModifiedCharts: ${{ steps.collect-changes.outputs.addedOrModifiedCharts }}
     steps:
