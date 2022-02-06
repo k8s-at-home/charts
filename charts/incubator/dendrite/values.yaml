@@ -332,16 +332,19 @@ dendrite:
   # @default -- See values.yaml
   tls_secret:
     enabled: false
-    secretName: "dendrite-tls"
-    crtKey: tls.crt
-    keyKey: tls.key
-  # -- If enabled, use an existing secret for matrix_key.pem. Otherwise a
-  # matrix_key.pem must be mounted to `/etc/dendrite`.
-  # @default -- See values.yaml
+    existingSecret: ""
+    crtPath: tls.crt
+    keyPath: tls.key
   matrix_key_secret:
-    enabled: false
-    secretName: "dendrite-key"
-    key: matrix_key.pem
+    # -- Create matrix_key secret using the keyBody below.
+    create: false
+    # -- New Key Body
+    keyBody: ""
+    # -- Use an existing secret
+    existingSecret: ""
+    # -- Field in the secret to get the key from
+    secretPath: matrix_key.pem
+
   # -- Configure database connection parameters.
   # @default -- See values.yaml
   database:

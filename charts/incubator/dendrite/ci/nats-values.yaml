@@ -1,13 +1,12 @@
 ---
 dendrite:
   matrix_key_secret:
-    enabled: true
-secret:
-  matrix_key.pem: |
-    -----BEGIN MATRIX PRIVATE KEY-----
-    Key-ID: ed25519:P8gZqV
+    create: true
+    keyBody: |
+      -----BEGIN MATRIX PRIVATE KEY-----
+      Key-ID: ed25519:P8gZqV
 
-    qVzy2Cwokt15RjGy8OzFSq6z0JFmI6QX/1Zw1VP73uU=
-    -----END MATRIX PRIVATE KEY-----
+      qVzy2Cwokt15RjGy8OzFSq6z0JFmI6QX/1Zw1VP73uU=
+      -----END MATRIX PRIVATE KEY-----
 nats:
   enabled: true
