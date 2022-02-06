@@ -120,7 +120,10 @@ For more information see:
 | dendrite.global.trusted_third_party_id_servers | list | `["matrix.org","vector.im"]` | Configure the list of domains the server will trust as identity servers |
 | dendrite.global.well_known_server_name | string | `""` | Configure the well-known server name and optional port |
 | dendrite.logging | list | See values.yaml | Configure logging. |
-| dendrite.matrix_key_secret | object | See values.yaml | If enabled, use an existing secret for matrix_key.pem. Otherwise a matrix_key.pem must be mounted to `/etc/dendrite`. |
+| dendrite.matrix_key_secret.create | bool | `false` | Create matrix_key secret using the keyBody below. |
+| dendrite.matrix_key_secret.existingSecret | string | `""` | Use an existing secret |
+| dendrite.matrix_key_secret.keyBody | string | `""` | New Key Body |
+| dendrite.matrix_key_secret.secretPath | string | `"matrix_key.pem"` | Field in the secret to get the key from |
 | dendrite.polylithEnabled | bool | `false` | Enable polylith deployment |
 | dendrite.tls_secret | object | See values.yaml | If enabled, use an existing secrets for the TLS certificate and key. Otherwise, to enable TLS a `server.crt` and `server.key` must be mounted at `/etc/dendrite`. |
 | dendrite.tracing | object | See values.yaml | Configure opentracing. |
@@ -187,6 +190,7 @@ For more information see:
 * Refactored values for polylith mode
 * Split out volume template defintions into separate file
 * Bumped app version to v0.6.2
+* Rename secret fields for consistency
 
 #### Fixed
 
