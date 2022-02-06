@@ -1,6 +1,6 @@
 # grocy
 
-![Version: 8.2.0](https://img.shields.io/badge/Version-8.2.0-informational?style=flat-square) ![AppVersion: v3.0.1](https://img.shields.io/badge/AppVersion-v3.0.1-informational?style=flat-square)
+![Version: 8.3.0](https://img.shields.io/badge/Version-8.3.0-informational?style=flat-square) ![AppVersion: version-v3.1.3](https://img.shields.io/badge/AppVersion-version--v3.1.3-informational?style=flat-square)
 
 ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home
 
@@ -81,22 +81,23 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"linuxserver/grocy"` | image repository |
-| image.tag | string | `"version-v3.0.1"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.viewcache | object | `{"enabled":true,"mountPath":"/config/data/viewcache","type":"emptyDir"}` |  there will cases of blank pages when upgrading the image that require manually clearing the directory |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 8.2.0
+### Version 8.3.0
 
 #### Added
 
-N/A
+* Added `emptyDir` volume for the viewcache in order to prevent problems when upgrading the image that would require manual intervention.
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Updated application version to v3.1.3.
 
 #### Fixed
 

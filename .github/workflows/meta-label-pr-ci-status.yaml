@@ -1,0 +1,118 @@
+---
+name: "Metadata: Label pull requests CI status"
+
+on:
+  workflow_run:
+    workflows:
+      - "Pull Request: Validate"
+    types:
+      - completed
+
+jobs:
+  label-ci-status:
+    name: Label CI status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.K8S_AT_HOME_APP_ID }}
+          private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+
+      - name: Download workflow artifact
+        uses: dawidd6/action-download-artifact@v2.11.0
+        with:
+          github_token: ${{ steps.generate-token.outputs.token }}
+          workflow: pr-validate.yaml
+          run_id: ${{ github.event.workflow_run.id }}
+          name: pr_metadata
+          path: ./pr_metadata
+
+      - name: Read the pr_number file
+        id: pr_num_reader
+        uses: juliangruber/read-file-action@v1.0.0
+        with:
+          path: ./pr_metadata/pr_number.txt
+
+      - name: "Get workflow job status"
+        uses: actions/github-script@v5
+        id: get-workflow-jobs
+        with:
+          github-token: ${{ steps.generate-token.outputs.token }}
+          # https://mhagemann.medium.com/the-ultimate-way-to-slugify-a-url-string-in-javascript-b8e4a0d849e1
+          script: |
+            function slugify(string) {
+              const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
+              const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
+              const p = new RegExp(a.split('').join('|'), 'g')
+
+              return string.toString().toLowerCase()
+                .replace(/\s+/g, '-') // Replace spaces with -
+                .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+                .replace(/&/g, '-and-') // Replace & with 'and'
+                .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+                .replace(/\-\-+/g, '-') // Replace multiple - with single -
+                .replace(/^-+/, '') // Trim - from start of text
+                .replace(/-+$/, '') // Trim - from end of text
+            }
+
+            let result = new Object
+
+            const wfJobs = await github.rest.actions.listJobsForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id,
+            })
+
+            for (const job of wfJobs.data.jobs) {
+              result[slugify(job.name)] = job.conclusion
+            }
+
+            console.log(result)
+            return result
+
+      - name: Label pre-commit status
+        uses: ./.github/actions/label-from-status
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
+          prefix: precommit
+          job-status: |-
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).pre-commit-check-run-pre-commit-checks || 'skipped' }}
+          remove-on-skipped: true
+
+      - name: Label changelog status
+        uses: ./.github/actions/label-from-status
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
+          prefix: changelog
+          job-status: |-
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-changelog-validate-changelog || 'skipped' }}
+          remove-on-skipped: true
+
+      - name: Label chart lint status
+        uses: ./.github/actions/label-from-status
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
+          prefix: lint
+          job-status: |-
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-lint-lint-charts || 'skipped' }}
+          remove-on-skipped: true
+
+      - name: Label chart install status
+        uses: ./.github/actions/label-from-status
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          issue-number: ${{ steps.pr_num_reader.outputs.content }}
+          prefix: install
+          job-status: |-
+            ${{ fromJSON(steps.get-workflow-jobs.outputs.result).charts-test-install-successful || 'skipped' }}
+          remove-on-skipped: true

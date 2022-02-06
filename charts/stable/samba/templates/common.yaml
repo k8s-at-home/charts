@@ -3,6 +3,23 @@
 
 {{/* Append the hardcoded settings */}}
 {{- define "samba.harcodedValues" -}}
+{{- if .Values.configmap.config.enabled }}
+{{/* merge Values specific annotations with podAnnotations*/}}
+podAnnotations:
+  configmap/checksum: "{{ .Values.configmap.config.data | toYaml | sha256sum }}"
+{{- end }}
+
+{{- if .Values.configmap.config.enabled }}
+{{/* Append the configMap volume to the volumes */}}
+persistence:
+  config:
+    enabled: true
+    type: "configMap"
+    name: "{{ include "common.names.fullname" . }}-config"
+    mountPath: "/data/config.yml"
+    subPath: "config.yml"
+{{- end }}
+
 service:
   main:
     ports:

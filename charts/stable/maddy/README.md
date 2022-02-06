@@ -1,6 +1,6 @@
 # maddy
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v0.5.2](https://img.shields.io/badge/AppVersion-v0.5.2-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: v0.5.2](https://img.shields.io/badge/AppVersion-v0.5.2-informational?style=flat-square)
 
 Maddy Mail Server
 
@@ -81,7 +81,6 @@ about how to do this.
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"foxcpp/maddy"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
-| maddy.alias | string | `"## Replace 'cat' with any domain to 'dog'.\n## E.g. cat@example.net -> dog@example.net\n# cat: dog\n\n## Replace cat@example.org with cat@example.com.\n## Takes priority over the previous line.\n#cat@example.org: cat@example.com\n"` | Alias file used in smtp_rule See [alias examples](https://maddy.email/man/_generated_maddy-filters.5/). |
 | maddy.auth.ldap | object | See [See Maddy auth](https://maddy.email/man/_generated_maddy-auth.5/#configuration-directives_5) | If type is ldap the following options are required |
 | maddy.auth.ldap."bind plain" | string | `"\"cn=maddy,ou=people,dc=maddy,dc=test\" \"123456\""` | Specify initial bind credentials. Not required ('bind off') if DN template is used. |
 | maddy.auth.ldap.base_dn | string | `"\"ou=people,dc=maddy,dc=test\""` | Specify base_dn to lookup DN. |
@@ -92,6 +91,9 @@ about how to do this.
 | maddy.auth.ldap.starttls | string | `"off"` | Whether to upgrade connection to TLS using STARTTLS. |
 | maddy.auth.ldap.urls | string | `"ldap://maddy.test:389"` | URLs of the directory servers to use. First available server is used - no load-balancing is done. |
 | maddy.auth.type | string | `"sql"` | Where to store authorised users. Valid values are `sql` and `ldap` |
+| maddy.config_files.alias | string | `"## Replace 'cat' with any domain to 'dog'.\n## E.g. cat@example.net -> dog@example.net\n# cat: dog\n\n## Replace cat@example.org with cat@example.com.\n## Takes priority over the previous line.\n#cat@example.org: cat@example.com\n"` | Alias file used in smtp_rule See [alias examples](https://maddy.email/man/_generated_maddy-filters.5/). |
+| maddy.extra_settings.imap | object | `{}` | Additional settings for imap backend |
+| maddy.extra_settings.local_mailboxes | object | `{}` | Additional settings for local_mailboxes storage |
 | maddy.hostname | string | `"mx.example.com"` | Hostname the service will listen to (incoming SMTP and IMAP) |
 | maddy.primary_domain | string | `"example.com"` | Primary domain - will be included in SMTP protocol |
 | maddy.secondary_domains | string | `nil` | Space separated list of additional domains this server handles |
@@ -115,11 +117,11 @@ about how to do this.
 
 ## Changelog
 
-### Version 1.0.0
+### Version 2.0.0
 
 #### Added
 
-* Initial version
+N/A
 
 #### Changed
 

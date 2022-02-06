@@ -31,6 +31,7 @@
 | [dsmr-reader](stable/dsmr-reader) | DSMR-protocol reader, telegram data storage and energy consumption visualizer. |
 | [duplicati](stable/duplicati) | Store securely encrypted backups on cloud storage services! |
 | [emby](stable/emby) | Emby Server is a home media server |
+| [error-pages](stable/error-pages) | Server error pages in the docker image |
 | [esphome](stable/esphome) | ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems. |
 | [facebox](stable/facebox) | Facebox detects and identifies faces in photos. You can teach facebox with as little as one sample image. |
 | [filebrowser](stable/filebrowser) | filebrowser provides a file managing interface within a specified directory |
@@ -175,3 +176,4 @@
 | [seafile](incubator/seafile) | seafile helm package |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
+| [torrserver](incubator/torrserver) | TorrServer streams torrent to http |

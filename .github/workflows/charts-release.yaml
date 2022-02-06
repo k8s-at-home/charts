@@ -25,18 +25,69 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          ref: master
+          fetch-depth: 0
+
+      - name: Install Kubernetes tools
+        uses: yokawasa/action-setup-kube-tools@v0.8.0
+        with:
+          setup-tools: |
+            helmv3
+            yq
+          helm: "3.8.0"
+          yq: "4.16.2"
+
+      - name: Install helm-docs
+        run: |
+          wget -O /tmp/helm-docs.deb  https://github.com/k8s-at-home/helm-docs/releases/download/v0.1.1/helm-docs_0.1.1_Linux_x86_64.deb
+          sudo dpkg -i /tmp/helm-docs.deb
+
+      - name: Collect changes
+        id: collect-changes
+        uses: ./.github/actions/collect-changes
+
+      - name: Generate README for changed charts
+        if: |
+          steps.collect-changes.outputs.changesDetected == 'true'
+        run: |
+          CHARTS=(${{ steps.collect-changes.outputs.addedOrModifiedCharts }})
+          for i in "${CHARTS[@]}"
+          do
+              IFS='/' read -r -a chart_parts <<< "$i"
+              if [ -f "charts/${chart_parts[0]}"/"${chart_parts[1]}/Chart.yaml" ]; then
+                ./.github/scripts/gen-helm-docs.sh "${chart_parts[0]}" "${chart_parts[1]}"
+              fi
+          done
+
+      - name: Create commit
+        id: create-commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: charts/**/
+          commit_message: "chore: Auto-update chart README [skip ci]"
+          commit_user_name: k8s-at-home[bot]
+          commit_user_email: k8s-at-home[bot]@users.noreply.github.com
+          commit_author: k8s-at-home[bot] <k8s-at-home[bot]@users.noreply.github.com>
+
+      - name: Save commit hash
+        id: save-commit-hash
+        run: |
+          if [ "${{ steps.create-commit.outputs.changes_detected || 'unknown' }}" == "true" ]; then
+            echo '::set-output name=commit_hash::${{ steps.create-commit.outputs.commit_hash }}'
+          else
+            echo "::set-output name=commit_hash::${GITHUB_SHA}"
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          ref: ${{ steps.save-commit-hash.outputs.commit_hash }}
           fetch-depth: 0
 
       - name: Configure Git
         run: |
           git config user.name "k8s-at-home[bot]"
           git config user.email "k8s-at-home[bot]@users.noreply.github.com"
-
-      - name: Install Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.6.3
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1

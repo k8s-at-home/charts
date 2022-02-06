@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![AppVersion: 0.5.1](https://img.shields.io/badge/AppVersion-0.5.1-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 0.6.0](https://img.shields.io/badge/AppVersion-0.6.0-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -21,6 +21,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://nats-io.github.io/k8s/helm/charts/ | nats | 0.12.1 |
 
 ## TL;DR
 
@@ -107,7 +108,11 @@ N/A
 | image.repository | string | `"matrixdotorg/dendrite-monolith"` | image repository |
 | image.tag | string | `"v0.5.1"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| nats.enabled | bool | See value.yaml | Enable and configure NATS for dendrite. Can be disabled for monolith deployments - an internal NATS server will be used in its place. |
+| nats.image | string | `"nats:2.7.1-alpine"` |  |
+| nats.jetstream.enabled | bool | `true` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence.jetstream | object | See values.yaml | Configure Jetsream persistence. This is highly recommended in production. |
 | postgresql.enabled | bool | See value.yaml | Enable and configure postgres as the database for dendrite. |
 | postgresql.image.repository | string | `"bitnami/postgresql"` |  |
 | postgresql.image.tag | string | `"14.1.0"` |  |
@@ -122,19 +127,20 @@ N/A
 
 ## Changelog
 
-### Version 1.0.2
+### Version 2.0.0
 
 #### Added
 
-* `postgresqlUsername` is used in `initdbScripts` rather than hardcoded value
+N/A
 
 #### Changed
 
-* Upgraded `postgresql` image version to "14.1.0"
+* NATS is now used instead of Kafka
+* App version bumped to v0.6.0
 
 #### Fixed
 
-* `initdbScripts` are now actually actually loaded
+N/A
 
 ### Older versions
 

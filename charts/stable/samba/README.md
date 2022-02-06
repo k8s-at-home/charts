@@ -1,6 +1,6 @@
 # samba
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: 4.15.5](https://img.shields.io/badge/AppVersion-4.15.5-informational?style=flat-square)
 
 A simple in-cluster Samba server
 
@@ -75,18 +75,20 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [image docs](https://github.com/dperson/samba/blob/master/README.md) for more details. |
+| configmap.config.data | object | See values.yaml | Samba configuration. See [image documentation](https://github.com/crazy-max/docker-samba#configuration) for more information. |
+| configmap.config.enabled | bool | `false` | Store samba configuration as a ConfigMap |
+| env | object | See below | environment variables. See [image docs](https://github.com/crazy-max/docker-samba#environment-variables) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"Always"` | image pull policy |
-| image.repository | string | `"dperson/samba"` | image repository |
-| image.tag | string | `"latest"` | image tag |
+| image.repository | string | `"ghcr.io/crazy-max/samba"` | image repository |
+| image.tag | string | `"4.15.5"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 5.2.0
+### Version 6.0.0
 
 #### Added
 
@@ -94,7 +96,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Migrated to docker image `crazy-max/samba` in order to fix https://github.com/k8s-at-home/charts/issues/1401
 
 #### Fixed
 
