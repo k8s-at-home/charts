@@ -1,6 +1,6 @@
 # monica
 
-![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: 3.1.1-apache](https://img.shields.io/badge/AppVersion-3.1.1--apache-informational?style=flat-square)
+![Version: 7.0.1](https://img.shields.io/badge/Version-7.0.1-informational?style=flat-square) ![AppVersion: 3.6.1-apache](https://img.shields.io/badge/AppVersion-3.6.1--apache-informational?style=flat-square)
 
 A Personal Relationship Management tool to help you organize your social life
 
@@ -88,7 +88,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"monica"` | image repository |
-| image.tag | string | `"3.1.1-apache"` | image tag |
+| image.tag | string | `"3.6.1-apache"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 7.0.0
+### Version 7.0.1
 
 #### Added
 
@@ -104,8 +104,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
-* Upgraded `mariadb` chart dependency to version `10.2.0`.
+* Upgraded app to version `3.6.1-apache` from `3.1.1-apache`.
 
 #### Fixed
 
