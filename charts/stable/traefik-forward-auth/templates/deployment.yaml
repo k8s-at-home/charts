@@ -116,6 +116,7 @@ spec:
                   name: {{ $fullName }}
                   key: secret
               {{- end }}
+              {{- end }}
             {{- with .Values.providers}}
             {{- if .google.enabled }}
             {{- if .google.clientId }}
@@ -181,7 +182,6 @@ spec:
             {{- if .genericOauth.tokenStyle }}
             - name: PROVIDERS_GENERIC_OAUTH_TOKEN_STYLE
               value: {{ .genericOauth.tokenStyle | quote }}
-          {{- end }}
           {{- end }}
           {{- end }}
           {{- end }}
