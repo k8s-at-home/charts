@@ -16,7 +16,14 @@ image:
 # -- environment variables. See more environment variables in the [teamspeak image documentation](https://hub.docker.com/_/teamspeak).
 # @default -- See below
 env:
+  TZ: UTC
   # TS3SERVER_LICENSE: accept
+  # TS3SERVER_SERVERADMIN_PASSWORD:
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: teamspeak
+  #       key: serveradmin_password
+
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -26,20 +33,17 @@ service:
       http:
         enabled: false
         primary: false
-      voice:
-        enabled: true
-        primary: true
-        port: 9987
-        protocol: UDP
-  tcp:
-    enabled: true
-    ports:
       serverquery:
         enabled: true
         port: 10011
       filetransfer:
         enabled: true
         port: 30033
+      voice:
+        enabled: true
+        primary: true
+        port: 9987
+        protocol: UDP
 
 probes:
   readiness:
@@ -64,6 +68,45 @@ persistence:
   data:
     enabled: false
     mountPath: /var/ts3server
+
+metrics:
+  # -- Enable and configure ts3exporter sidecar and Prometheus serviceMonitor.
+  # @default -- See values.yaml
+  enabled: false
+  serviceMonitor:
+    interval: 1m
+    scrapeTimeout: 30s
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: TeamSpeakDown
+      #   annotations:
+      #     description: Teamspeak service is down.
+      #     summary: Teamspeak is down.
+      #   expr: |
+      #     ts3_serverinfo_online == 0
+      #   for: 5m
+      #   labels:
+      #     severity: critical
+  exporter:
+    image:
+      # -- image repository
+      repository: quay.io/ricardbejarano/ts3exporter
+      # -- image tag
+      tag: 0.0.7
+      # -- image pull policy
+      pullPolicy: IfNotPresent
+    env:
+      # -- metrics port
+      port: 9189
+      # -- Set to true to enable gathering of channel metrics
+      enableChannelMetrics: false
 
 # -- The TeamSpeak server binary is only available for x86_64.
 nodeSelector:

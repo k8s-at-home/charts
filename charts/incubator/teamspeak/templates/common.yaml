@@ -1,1 +1,79 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/*
+If there's an existing secret, reuse it, otherwise generate a new one.
+*/}}
+{{- define "teamspeak.serveradmin-password" -}}
+{{- $secret := (lookup "v1" "Secret" .Release.Namespace (include "common.names.fullname" .) ) -}}
+  {{- if $secret -}}
+    {{-  index $secret "data" "serveradmin_password" -}}
+  {{- else -}}
+    {{- randAlphaNum 32 | b64enc | quote -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Append the hardcoded settings */}}
+{{- define "teamspeak.harcodedValues" -}}
+{{- if not .Values.env.TS3SERVER_SERVERADMIN_PASSWORD }}
+env:
+  TS3SERVER_SERVERADMIN_PASSWORD:
+    valueFrom:
+      secretKeyRef:
+        name: {{ include "common.names.fullname" . }}
+        key: serveradmin_password
+{{- end }}
+{{- if .Values.metrics.enabled }}
+additionalContainers:
+  exporter:
+    name: exporter
+    image: "{{ .Values.metrics.exporter.image.repository }}:{{ .Values.metrics.exporter.image.tag }}"
+    imagePullPolicy: {{ .Values.metrics.exporter.image.pullPolicy }}
+    args:
+      - -listen
+      - :{{ .Values.metrics.exporter.env.port }}
+      {{- if .Values.metrics.exporter.env.enableChannelMetrics }}
+      - -enablechannelmetrics
+      {{- end }}
+    env:
+      - name: SERVERQUERY_PASSWORD
+        {{- $value := .Values.env.TS3SERVER_SERVERADMIN_PASSWORD }}
+        {{- if $value }}
+        {{- if kindIs "map" $value -}}
+          {{- if hasKey $value "value" }}
+            {{- $value = $value.value -}}
+          {{- else if hasKey $value "valueFrom" }}
+            {{- toYaml $value | nindent 8 }}
+          {{- else }}
+            {{- dict "valueFrom" $value | toYaml | nindent 8 }}
+          {{- end }}
+        {{- else }}
+          {{- if kindIs "string" $value }}
+            {{- $value = tpl $value $ }}
+          {{- end }}
+        value: {{ quote $value }}
+        {{- end }}
+        {{- else }}
+        valueFrom:
+          secretKeyRef:
+            name: {{ include "common.names.fullname" . }}
+            key: serveradmin_password
+        {{- end }}
+    ports:
+      - name: metrics
+        containerPort: {{ .Values.metrics.exporter.env.port }}
+
+service:
+  metrics:
+    enabled: true
+    ports:
+      metrics:
+        enabled: true
+        protocol: TCP
+        port: {{ .Values.metrics.exporter.env.port }}
+{{- end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "teamspeak.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}
