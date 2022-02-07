@@ -15,8 +15,14 @@ image:
 
 # -- environment variables. See more environment variables in the [teamspeak image documentation](https://hub.docker.com/_/teamspeak).
 # @default -- See below
-env: {}
+env:
+  TZ: UTC
   # TS3SERVER_LICENSE: accept
+  # TS3SERVER_SERVERADMIN_PASSWORD:
+  #   secretKeyRef:
+  #     name: teamspeak
+  #     key: serveradmin_password
+
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
