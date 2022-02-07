@@ -18,9 +18,10 @@ If there's an existing secret, reuse it, otherwise generate a new one.
 {{- if not .Values.env.TS3SERVER_SERVERADMIN_PASSWORD }}
 env:
   TS3SERVER_SERVERADMIN_PASSWORD:
-    secretKeyRef:
-      name: {{ include "common.names.fullname" . }}
-      key: serveradmin_password
+    valueFrom:
+      secretKeyRef:
+        name: {{ include "common.names.fullname" . }}
+        key: serveradmin_password
 {{- end }}
 {{- if .Values.metrics.enabled }}
 additionalContainers:
@@ -36,14 +37,28 @@ additionalContainers:
       {{- end }}
     env:
       - name: SERVERQUERY_PASSWORD
-        valueFrom:
-          {{- if .Values.env.TS3SERVER_SERVERADMIN_PASSWORD }}
-          {{- toYaml .Values.env.TS3SERVER_SERVERADMIN_PASSWORD | indent 10 }}
+        {{- $value := .Values.env.TS3SERVER_SERVERADMIN_PASSWORD }}
+        {{- if $value }}
+        {{- if kindIs "map" $value -}}
+          {{- if hasKey $value "value" }}
+            {{- $value = $value.value -}}
+          {{- else if hasKey $value "valueFrom" }}
+            {{- toYaml $value | nindent 8 }}
           {{- else }}
+            {{- dict "valueFrom" $value | toYaml | nindent 8 }}
+          {{- end }}
+        {{- else }}
+          {{- if kindIs "string" $value }}
+            {{- $value = tpl $value $ }}
+          {{- end }}
+        value: {{ quote $value }}
+        {{- end }}
+        {{- else }}
+        valueFrom:
           secretKeyRef:
             name: {{ include "common.names.fullname" . }}
             key: serveradmin_password
-          {{- end }}
+        {{- end }}
     ports:
       - name: metrics
         containerPort: {{ .Values.metrics.exporter.env.port }}

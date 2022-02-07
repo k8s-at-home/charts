@@ -19,9 +19,10 @@ env:
   TZ: UTC
   # TS3SERVER_LICENSE: accept
   # TS3SERVER_SERVERADMIN_PASSWORD:
-  #   secretKeyRef:
-  #     name: teamspeak
-  #     key: serveradmin_password
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: teamspeak
+  #       key: serveradmin_password
 
 
 # -- Configures service settings for the chart.
