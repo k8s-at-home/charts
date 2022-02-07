@@ -81192,6 +81192,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Merged ports into single service.
+        - kind: added
+          description: Added metrics sidecar.
+    apiVersion: v2
+    appVersion: 3.13.6
+    created: "2022-02-07T19:14:01.302038197Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: TeamSpeak Server
+    digest: 7c61afd1e854fda4989c1132f3d2982a330a1df662c929eb398f60d78d4a7ed9
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/teamspeak
+    icon: https://teamspeak.com/user/themes/teamspeak/images/logo_inverse.svg
+    keywords:
+    - teamspeak
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@reitermark.us
+      name: reitermarkus
+    name: teamspeak
+    sources:
+    - https://hub.docker.com/_/teamspeak
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/teamspeak-0.4.0/teamspeak-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: 3.13.6
@@ -99049,4 +99078,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-05T21:55:56.185794769Z"
+generated: "2022-02-07T19:14:01.323232631Z"
