@@ -1,6 +1,6 @@
 # teamspeak
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![AppVersion: 3.13.6](https://img.shields.io/badge/AppVersion-3.13.6-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 3.13.6](https://img.shields.io/badge/AppVersion-3.13.6-informational?style=flat-square)
 
 TeamSpeak Server
 
@@ -67,7 +67,29 @@ helm install teamspeak k8s-at-home/teamspeak -f values.yaml
 
 ## Custom configuration
 
-N/A
+### Regarding the services
+
+By default, it is not yet possible to combine TCP and UDP ports on a service with `type: LoadBalancer`. This can be solved in a number of ways:
+
+1. Create a separate service containing the UDP ports. This could be done by disabling the UDP ports under `service.main.ports` and adding the following in your `values.yaml`:
+
+```yaml
+service:
+  udp:
+    enabled: true
+    type: LoadBalancer
+    # <your other service configuration>
+    ports:
+      voice:
+        enabled: true
+        port: 9987
+        protocol: UDP
+```
+
+2. Since Kubernetes 1.20 there is a feature gate that can be enabled to allow TCP and UDP ports to coexist on Services with `type: Loadbalancer`.
+   You will need to enable the `MixedProtocolLBService` feature gate in order to achieve this.
+
+   For more information about feature gates, please see [the docs](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/).
 
 ## Values
 
@@ -75,10 +97,21 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | string | See below | environment variables. See more environment variables in the [teamspeak image documentation](https://hub.docker.com/_/teamspeak). |
+| env | object | See below | environment variables. See more environment variables in the [teamspeak image documentation](https://hub.docker.com/_/teamspeak). |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"teamspeak"` | image repository |
 | image.tag | string | `"3.13.6"` | image tag |
+| metrics.enabled | bool | See values.yaml | Enable and configure ts3exporter sidecar and Prometheus serviceMonitor. |
+| metrics.exporter.env.enableChannelMetrics | bool | `false` | Set to true to enable gathering of channel metrics |
+| metrics.exporter.env.port | int | `9189` | metrics port |
+| metrics.exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
+| metrics.exporter.image.repository | string | `"quay.io/ricardbejarano/ts3exporter"` | image repository |
+| metrics.exporter.image.tag | string | `"0.0.7"` | image tag |
+| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
+| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
+| metrics.serviceMonitor.interval | string | `"1m"` |  |
+| metrics.serviceMonitor.labels | object | `{}` |  |
+| metrics.serviceMonitor.scrapeTimeout | string | `"30s"` |  |
 | nodeSelector | object | `{"kubernetes.io/arch":"amd64"}` | The TeamSpeak server binary is only available for x86_64. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | probes.liveness.custom | bool | `true` |  |
@@ -91,15 +124,15 @@ N/A
 
 ## Changelog
 
-### Version 0.3.0
+### Version 0.4.0
 
 #### Added
 
-N/A
+* Added metrics sidecar.
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Merged ports into single service.
 
 #### Fixed
 
