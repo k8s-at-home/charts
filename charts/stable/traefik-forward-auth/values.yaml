@@ -1,190 +1,68 @@
-# Default values for traefik-forward-auth.
-
-
-replicaCount: 1
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
 
 image:
+  # -- image repository
   repository: thomseddon/traefik-forward-auth
-  pullPolicy: IfNotPresent
+  # -- image tag
   tag: ""
+  # -- image pull policy
+  pullPolicy: IfNotPresent
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+# -- environment variables. See more environment variables in the [traefik-forward-auth documentation](https://github.com/thomseddon/traefik-forward-auth#configuration)
+# @default -- See below
+env:
+  TZ: UTC
+  # LOG_LEVEL: warn # [trace|debug|info|warn|error|fatal|panic]
+  # LOG_FORMAT: text # [text|json|pretty]
+  # AUTH_HOST: oauth.example.org
+  # DOMAIN: example.org # Only allow given email domains. (Comma delimited)
+  # WHITELIST: auth@example.org # Only allow given email addresses. (Comma delimited)
+  # LIFETIME: '43200' # Lifetime in seconds
+  # COOKIE_DOMAIN: example.org # Domain(s) to set auth cookie on. (Comma delimited)
+  # INSECURE_COOKIE: 'false' # Use insecure cookies
+  # COOKIE_NAME: _forward_auth # Cookie name
+  # CSRF_COOKIE_NAME: _forward_auth_csrf # CSRF cookie name
+  # SECRET: # Secret used for signing. If unset, one will be generated.
+  #   valueFrom:
+  #     secretKeyRef: traefik-forward-auth
+  # URL_PATH: /_oauth # Callback URL path
+  # LOGOUT_REDIRECT: '' # URL to redirect to following logout
+  # DEFAULT_ACTION: auth # [auth|allow]
+  # DEFAULT_PROVIDER: google # [google|oidc|generic-oauth]
+  #
+  # PROVIDERS_GOOGLE_CLIENT_ID: '' # Client ID
+  # PROVIDERS_GOOGLE_CLIENT_SECRET: '' # Client Secret
+  # PROVIDERS_GOOGLE_PROMPT: '' # Space separated list of OpenID prompt options
+  #
+  # PROVIDERS_OIDC_ISSUER_URL: '' # Issuer URL
+  # PROVIDERS_OIDC_CLIENT_ID: '' # Client ID
+  # PROVIDERS_OIDC_CLIENT_SECRET: '' # Client Secret
+  # PROVIDERS_OIDC_RESOURCE: '' # Optional resource indicator
+  #
+  # PROVIDERS_GENERIC_OAUTH_AUTH_URL: '' # Auth/Login URL
+  # PROVIDERS_GENERIC_OAUTH_TOKEN_URL: '' # Token URL
+  # PROVIDERS_GENERIC_OAUTH_USER_URL: '' # URL used to retrieve user info
+  # PROVIDERS_GENERIC_OAUTH_CLIENT_ID: '' # Client ID
+  # PROVIDERS_GENERIC_OAUTH_CLIENT_SECRET: '' # Client Secret
+  # PROVIDERS_GENERIC_OAUTH_RESOURCE: '' # Optional resource indicator
+  # PROVIDERS_GENERIC_OAUTH_SCOPE: '' # Scopes (default: profile, email)
+  # PROVIDERS_GENERIC_OAUTH_TOKEN_STYLE: '' # How token is presented when querying the User URL
 
-logging:
-  # logging.level -- [trace|debug|info|warn|error|fatal|panic] Log level (default: warn)
-  level: ""
-  # logging.format -- [text|json|pretty] Log format (default: text)
-  format: ""
-# authHost -- Single host to use when returning from 3rd party auth
-authHost: ""
-restrictions:
-  # restrictions.domain -- Only allow given email domains. (Comma delimited)
-  domain: ""
-  # restrictions.whitelist -- Only allow given email addresses. (Comma delimited)
-  whitelist: ""
-# lifetime -- Lifetime in seconds (default: 43200)
-lifetime: ""
-cookie:
-  # cookie.domain -- Domain(s) to set auth cookie on. (Comma delimited)
-  domain: ""
-  # cookie.insecure -- Use insecure cookies
-  insecure: ""
-  # cookie.name -- Cookie Name (default: _forward_auth)
-  name: ""
-  # cookie.csrfName -- CSRF Cookie Name (default: _forward_auth_csrf)
-  csrfName: ""
-  # cookie.secret -- Cookie Secret used for authentication across multiple instances / clusters (default: randomly generated)
-  secret: ""
-default:
-  # default.action -- [auth|allow] Default action (default: auth)
-  action: ""
-  # default.provider -- [google|oidc|generic-oauth] Default provider (default: google)
-  provider: ""
-# logoutRedirect -- URL to redirect to following logout
-logoutRedirect: ""
-# urlPath -- Callback URL Path (default: /_oauth)
-urlPath: ""
-# secret -- Secret used for signing. If empty, one will be generated. If specifying your own in env use "-"
-secret: ""
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 4181
 
 middleware:
-  # middleware.enabled -- Enable to deploy a preconfigured middleware
-  enabled: false
-  # middleware.name -- Name for the middleware
-  name: ""
-providers:
-  google:
-    # providers.google.enabled -- Enable the google provider
-    enabled: false
-    # providers.google.clientId -- Client ID
-    clientId: ""
-    # providers.google.clientSecret -- Client Secret
-    clientSecret: ""
-    # providers.google.prompt -- Space separated list of OpenID prompt options
-    prompt: ""
-  oidc:
-    # providers.oidc.enabled -- Enable the generic OIDC provider
-    enabled: false
-    # providers.oidc.issuerUrl -- Issuer URL
-    issuerUrl: ""
-    # providers.oidc.clientId -- Client ID
-    clientId: ""
-    # providers.oidc.clientSecret -- Client Secret
-    clientSecret: ""
-    # providers.oidc.resource -- Optional resource indicator
-    resource: ""
-  genericOauth:
-    # providers.genericOauth.enabled -- Enable the generic OAUTH2 provider
-    enabled: false
-    # providers.genericOauth.authUrl -- Auth/Login URL
-    authUrl: ""
-    # providers.genericOauth.tokenUrl -- Token URL
-    tokenUrl: ""
-    # providers.genericOauth.userUrl -- URL used to retrieve user info
-    userUrl: ""
-    # providers.genericOauth.clientId -- Client ID
-    clientId: ""
-    # providers.genericOauth.clientSecret -- Client Secret
-    clientSecret: ""
-    # providers.genericOauth.scope -- Scopes (default: profile, email)
-    scope: ""
-    # providers.genericOauth.tokenStyle -- How token is presented when querying the User URL
-    tokenStyle: ""
-    # providers.genericOauth.resource -- Optional resource indicator
-    resource: ""
-
-env: []
-envFrom:
-# - secretRef:
-#     name:
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-# livenessProbe -- Liveness probe configuration
-# @default -- {"periodSeconds":20,"tcpSocket":{"port":"http"}}
-livenessProbe:
-  # livenessProbe.enabled -- Enable liveness probe
+  # -- Enable a preconfigured middleware.
   enabled: true
-  tcpSocket:
-    port: http
-  periodSeconds: 20
-
-# readinessProbe -- Readiness probe configuration
-# @default -- {"periodSeconds":10,"tcpSocket":{"port":"http"}}
-readinessProbe:
-  # readinessProbe.enabled -- Enable readiness probe
-  enabled: true
-  tcpSocket:
-    port: http
-  periodSeconds: 10
-
-service:
-  type: ClusterIP
-  port: 4181
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  additionalSpec: {}
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+  # -- Override the middleware name.
+  nameOverride: ""

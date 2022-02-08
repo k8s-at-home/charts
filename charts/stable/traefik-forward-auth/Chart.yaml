@@ -1,9 +1,9 @@
 apiVersion: v2
-name: traefik-forward-auth
-description: A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
-type: application
-version: 1.0.11
 appVersion: 2.2.0
+description: A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
+name: traefik-forward-auth
+version: 2.0.0
+kubeVersion: ">=1.16.0-0"
 keywords:
   - traefik
   - traefik-forward-auth
@@ -17,7 +17,13 @@ sources:
 maintainers:
   - name: DirtyCajunRice
     email: nick@cajun.pro
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: Added `common` chart dependency.
     - kind: changed
       description: Reuse existing secret if present.
