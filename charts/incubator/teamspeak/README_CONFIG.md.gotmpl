@@ -5,5 +5,27 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+### Regarding the services
+
+By default, it is not yet possible to combine TCP and UDP ports on a service with `type: LoadBalancer`. This can be solved in a number of ways:
+
+1. Create a separate service containing the UDP ports. This could be done by disabling the UDP ports under `service.main.ports` and adding the following in your `values.yaml`:
+
+```yaml
+service:
+  udp:
+    enabled: true
+    type: LoadBalancer
+    # <your other service configuration>
+    ports:
+      voice:
+        enabled: true
+        port: 9987
+        protocol: UDP
+```
+
+2. Since Kubernetes 1.20 there is a feature gate that can be enabled to allow TCP and UDP ports to coexist on Services with `type: Loadbalancer`.
+   You will need to enable the `MixedProtocolLBService` feature gate in order to achieve this.
+
+   For more information about feature gates, please see [the docs](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/).
 {{- end -}}
