@@ -24,6 +24,8 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: Added `common` chart dependency.
+      description: >
+        **BREAKING** Added `common` chart dependency.
+        This will likely require you to update your chart values.
     - kind: changed
       description: Reuse existing secret if present.
