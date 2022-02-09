@@ -1,6 +1,6 @@
 # monica
 
-![Version: 7.0.1](https://img.shields.io/badge/Version-7.0.1-informational?style=flat-square) ![AppVersion: 3.6.1-apache](https://img.shields.io/badge/AppVersion-3.6.1--apache-informational?style=flat-square)
+![Version: 7.0.1](https://img.shields.io/badge/Version-7.0.1-informational?style=flat-square) ![AppVersion: 3.7.0-apache](https://img.shields.io/badge/AppVersion-3.7.0--apache-informational?style=flat-square)
 
 A Personal Relationship Management tool to help you organize your social life
 
@@ -88,7 +88,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"monica"` | image repository |
-| image.tag | string | `"3.6.1-apache"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -104,7 +104,7 @@ N/A
 
 #### Changed
 
-* Upgraded app to version `3.6.1-apache` from `3.1.1-apache`.
+* Upgraded app to version `3.7.0-apache` from `3.1.1-apache`.
 
 #### Fixed
 
