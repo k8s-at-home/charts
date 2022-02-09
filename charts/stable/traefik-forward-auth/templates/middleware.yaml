@@ -2,10 +2,10 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: {{ .Values.middleware.name | default "traefik-forward-auth" }}
+  name: {{ default (include "common.names.fullname" .) .Values.middleware.nameOverride }}
 spec:
   forwardAuth:
-    address: "http://{{ include "traefik-forward-auth.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.port }}"
+    address: "http://{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.main.ports.http.port }}"
     authResponseHeaders:
       - X-Forwarded-User
-  {{- end }}
+{{- end }}
