@@ -1,5 +1,6 @@
 ---
 dendrite:
+  polylithEnabled: true
   matrix_key_secret:
     create: true
     keyBody: |
@@ -8,3 +9,10 @@ dendrite:
 
       qVzy2Cwokt15RjGy8OzFSq6z0JFmI6QX/1Zw1VP73uU=
       -----END MATRIX PRIVATE KEY-----
+nats:
+  enabled: true
+persistence:
+  jetstream:
+    enabled: true
+postgresql:
+  enabled: true
