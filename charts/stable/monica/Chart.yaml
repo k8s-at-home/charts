@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 3.1.1-apache
+appVersion: 3.7.0-apache
 description: A Personal Relationship Management tool to help you organize your social life
 name: monica
-version: 7.0.0
+version: 7.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - crm
@@ -25,6 +25,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
-    - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `10.2.0`.
+      description: Upgraded app to version `3.7.0-apache` from `3.1.1-apache`.
