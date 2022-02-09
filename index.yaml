@@ -84848,6 +84848,42 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/traccar-1.0.0/traccar-1.0.0.tgz
     version: 1.0.0
   traefik-forward-auth:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: >
+            **BREAKING** Added `common` chart dependency.
+            This will likely require you to update your chart values.
+        - kind: changed
+          description: Reuse existing secret if present.
+    apiVersion: v2
+    appVersion: 2.2.0
+    created: "2022-02-09T18:57:02.718321575Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: A minimal forward authentication service that provides OAuth/SSO
+      login and authentication for the traefik reverse proxy/load balancer
+    digest: 3b3a431b16ef427e60b838e1695d0b1242324a0bfdaefaf76a2d0868c7360df4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/traefik-forward-auth
+    keywords:
+    - traefik
+    - traefik-forward-auth
+    - oauth
+    - oauth2
+    - oidc
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: traefik-forward-auth
+    sources:
+    - https://github.com/thomseddon/traefik-forward-auth
+    - https://hub.docker.com/r/thomseddon/traefik-forward-auth
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/traefik-forward-auth-2.0.0/traefik-forward-auth-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: 2.2.0
     created: "2021-04-16T09:38:07.138179291Z"
@@ -99208,4 +99244,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-09T09:30:34.475396113Z"
+generated: "2022-02-09T18:57:02.735085434Z"
