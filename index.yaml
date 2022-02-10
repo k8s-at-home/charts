@@ -72520,6 +72520,35 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/samba-1.0.0/samba-1.0.0.tgz
     version: 1.0.0
+  scrypted:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 0.0.138
+    created: "2022-02-10T22:39:50.51380859Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: scrypted helm package
+    digest: a09161607de5ca1d7d02444fb58e0155ed15b90dc7d4d59fbc96a43ce018d155
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/scrypted
+    icon: https://scrypted.org/icon
+    keywords:
+    - scrypted
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: koush@scrypted.com
+      name: scrypted
+    name: scrypted
+    sources:
+    - https://github.com/koush/scrypted
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/scrypted-0.1.0/scrypted-0.1.0.tgz
+    version: 0.1.0
   seafile:
   - annotations:
       artifacthub.io/changes: |
@@ -99244,4 +99273,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-09T18:57:02.735085434Z"
+generated: "2022-02-10T22:39:50.531821297Z"
