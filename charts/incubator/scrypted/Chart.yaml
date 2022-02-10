@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: 0.0.138
+description: scrypted helm package
+name: scrypted
+type: application
+version: 0.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - scrypted
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/scrypted
+icon: https://scrypted.org/icon
+sources:
+  - https://github.com/koush/scrypted
+maintainers:
+  - name: scrypted
+    email: koush@scrypted.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
