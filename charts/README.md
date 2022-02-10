@@ -173,6 +173,7 @@
 | [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
+| [scrypted](incubator/scrypted) | scrypted helm package |
 | [seafile](incubator/seafile) | seafile helm package |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
