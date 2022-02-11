@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 0.6.2
+appVersion: 0.6.3
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 3.0.0
+version: 3.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -88,16 +88,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Refactored values for polylith mode
-    - kind: changed
-      description: Split out volume template defintions into separate file
-    - kind: fix
-      description: NAT subchart indentation
-    - kind: fix
-      description: MSC's config and updated config version
-    - kind: changed
-      description: Bumped app version to v0.6.2
-    - kind: added
-      description: Support for polylith deployment
-    - kind: changed
-      description: Rename secret fields for consistency
+      description: Bumped app version to v0.6.3
