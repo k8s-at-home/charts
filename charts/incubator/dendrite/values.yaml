@@ -10,7 +10,8 @@ image:
   # -- image repository
   repository: matrixdotorg/dendrite-monolith
   # -- image tag
-  tag: "v0.6.2"
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -65,7 +66,8 @@ keyserver:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -86,7 +88,8 @@ appserviceapi:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -109,7 +112,8 @@ clientapi:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -160,7 +164,8 @@ federationapi:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -201,7 +206,8 @@ userapi:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -222,7 +228,8 @@ syncapi:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -246,7 +253,8 @@ roomserver:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -267,7 +275,8 @@ eduserver:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -288,7 +297,8 @@ mediaapi:
     # -- image repository
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
-    tag: "v0.6.2"
+    # @default -- chart.appVersion
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
