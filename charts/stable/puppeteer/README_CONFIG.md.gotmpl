@@ -1,11 +1,18 @@
 {{- define "custom.custom.configuration.header" -}}
-## Sample code to connect to Puppeteer
+## Special Instructions
 {{- end -}}
 
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
+### **Important!**
 
+```console
+You may need special headers to connect from outside of the cluster. Intra cluster works fine.
 ```
+
+### Sample code to connect to Puppeteer
+
+```javascript
 const puppeteer = require('puppeteer-core')
 const dns = require('dns').promises;
 
@@ -28,5 +35,16 @@ const dns = require('dns').promises;
       console.error(err)
     })
 })()
+```
+
+### Default chromium flags in image
+
+```javascript
+'--disable-dev-shm-usage',
+'--disable-setuid-sandbox',
+'--no-sandbox',
+'--remote-debugging-address=0.0.0.0',
+'--remote-debugging-port=4000',
+'--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS  X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ 85.0.4183.121 Safari/537.36'
 ```
 {{- end -}}
