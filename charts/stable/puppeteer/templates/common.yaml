@@ -5,7 +5,7 @@
 {{- define "puppeteer.hardcodedValues" -}}
 {{- $primaryService := get .Values.service (include "common.service.primary" .) -}}
 {{- $defaultServicePort := get $primaryService.ports (include "common.classes.service.ports.primary" (dict "values" $primaryService)) -}}
-command: 
+command:
   - node
   - server.js
 args:
