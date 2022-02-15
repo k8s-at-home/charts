@@ -1,6 +1,6 @@
 # puppeteer
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v13.3.2](https://img.shields.io/badge/AppVersion-v13.3.2-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: v13.3.2](https://img.shields.io/badge/AppVersion-v13.3.2-informational?style=flat-square)
 
 Headless Chrome Node.js API
 
@@ -66,9 +66,16 @@ Alternatively, a YAML file that specifies the values for the above parameters ca
 helm install puppeteer k8s-at-home/puppeteer -f values.yaml
 ```
 
-## Sample code to connect to Puppeteer
+## Special Instructions
+### **Important!**
 
+```console
+You may need special headers to connect from outside of the cluster. Intra cluster works fine.
 ```
+
+### Sample code to connect to Puppeteer
+
+```javascript
 const puppeteer = require('puppeteer-core')
 const dns = require('dns').promises;
 
@@ -93,6 +100,17 @@ const dns = require('dns').promises;
 })()
 ```
 
+### Default chromium flags in image
+
+```javascript
+'--disable-dev-shm-usage',
+'--disable-setuid-sandbox',
+'--no-sandbox',
+'--remote-debugging-address=0.0.0.0',
+'--remote-debugging-port=4000',
+'--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS  X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ 85.0.4183.121 Safari/537.36'
+```
+
 ## Values
 
 **Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
@@ -111,7 +129,7 @@ const dns = require('dns').promises;
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.0.1
 
 #### Added
 
@@ -119,7 +137,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Updated README.
 
 #### Fixed
 
