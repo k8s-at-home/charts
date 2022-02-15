@@ -110,6 +110,7 @@
 | [prometheus-nut-exporter](stable/prometheus-nut-exporter) | Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance. |
 | [protonmail-bridge](stable/protonmail-bridge) | Container for protonmail bridge to work on the network. |
 | [prowlarr](stable/prowlarr) | Indexer manager/proxy built on the popular arr net base stack to integrate with your various PVR apps. |
+| [puppeteer](stable/puppeteer) | Headless Chrome Node.js API |
 | [pyload](stable/pyload) | pyLoad is a Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web. |
 | [qbittorrent](stable/qbittorrent) | qBittorrent is a cross-platform free and open-source BitTorrent client |
 | [radarr](stable/radarr) | A fork of Sonarr to work with movies à la Couchpotato |
