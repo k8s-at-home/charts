@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: v13.3.2
+description: Headless Chrome Node.js API
+name: puppeteer
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - puppeteer
+  - headless chrome
+  - nodejs
+  - dev-tools
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/puppeteer
+icon: https://avatars.githubusercontent.com/u/6906516?s=200&v=4
+sources:
+  - https://github.com/jr0dd/container-images/tree/main/apps/puppeteer
+  - https://github.com/puppeteer/puppeteer
+maintainers:
+  - name: jr0dd
+    email: j_r0dd@icloud.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0

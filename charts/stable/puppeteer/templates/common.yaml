@@ -1,0 +1,30 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "puppeteer.hardcodedValues" -}}
+{{- $primaryService := get .Values.service (include "common.service.primary" .) -}}
+{{- $defaultServicePort := get $primaryService.ports (include "common.classes.service.ports.primary" (dict "values" $primaryService)) -}}
+command: 
+  - node
+  - server.js
+args:
+  {{ with .Values.chromium.args }}
+  {{ range . }}
+  - {{ . }}
+  {{ end }}
+  {{ end }}
+  - --remote-debugging-port={{ $defaultServicePort.port }}
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        path: /json/list
+        port: {{ $defaultServicePort.port }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "puppeteer.hardcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}

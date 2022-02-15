@@ -1,0 +1,32 @@
+{{- define "custom.custom.configuration.header" -}}
+## Sample code to connect to Puppeteer
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+```
+const puppeteer = require('puppeteer-core')
+const dns = require('dns').promises;
+
+(async () => {
+  // these dns options are not needed if using an load balancer or ingress
+  const options = {
+    family: 4,
+    hints: dns.ADDRCONFIG | dns.V4MAPPED
+  }
+  const { address: host } = await dns.lookup('puppeteer', options, (address) => {
+    return address
+  })
+  const browser = await puppeteer.connect({
+    browserURL: `http://${host}:4000`
+  })
+  const page = await browser.newPage()
+  await page.goto('https://example.com', { waitUntil: 'networkidle0' })
+  await page.close()
+    .catch((err) => {
+      console.error(err)
+    })
+})()
+```
+{{- end -}}

@@ -1,0 +1,53 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/jr0dd/puppeteer
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+  # -- image tag
+  tag: v13.3.2
+
+chromium:
+  # -- chromium args. You can find more chromium expiremental flags [chromium switches](https://peter.sh/experiments/chromium-command-line-switches/).
+  # @default -- See below
+  args:
+    # disable gpu functions
+    - '--disable-gpu'
+    - '--disable-software-rasterizer'
+    - '--no-zygote'
+    # cors handling
+    - '--disable-features=IsolateOrigins,site-per-process'
+    - '--disable-site-isolation-trials'
+    - '--disable-web-security'
+
+# -- environment variables. See more environment variables in the [puppeteer documentation](https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#environment-variables).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 4000
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
