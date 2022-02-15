@@ -12,7 +12,7 @@ args:
   - {{ (required "gollum.gitBranch is required but not set" .Values.gollum.gitBranch) }}
   {{ with .Values.gollum.additionalArgs }}
   {{ range . }}
-  - {{ . | toYaml | squote }}
+  - {{ . | toYaml }}
   {{ end }}
   {{ end }}
 
