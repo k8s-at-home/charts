@@ -3,6 +3,9 @@
   {{- range $components }}
     {{- include "common.values.setup" (index $.Subcharts .) }}
     {{- with (index $.Values .) }}
+      {{- with .image }}
+        {{- $_ := set . "tag" (default .tag $.Chart.AppVersion) -}}
+      {{- end -}}
       {{- if not .persistence }}
         {{- $_ := set . "persistence" (dict)}}
       {{- end }}

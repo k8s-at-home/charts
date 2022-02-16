@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![AppVersion: 0.6.2](https://img.shields.io/badge/AppVersion-0.6.2-informational?style=flat-square)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: v0.6.3](https://img.shields.io/badge/AppVersion-v0.6.3-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -97,7 +97,7 @@ For more information see:
 | appserviceapi | object | See values.yaml | Configure the app service api. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | appserviceapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | appserviceapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| appserviceapi.image.tag | string | `"v0.6.2"` | image tag |
+| appserviceapi.image.tag | string | chart.appVersion | image tag |
 | clientapi | object | See values.yaml | Configuration for the client api component. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | clientapi.config.captcha | object | See values.yaml | Configure captcha for registration |
 | clientapi.config.rate_limiting | object | values.yaml | Configure rate limiting. |
@@ -106,7 +106,7 @@ For more information see:
 | clientapi.config.turn | object | See values.yaml | Configure TURN |
 | clientapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | clientapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| clientapi.image.tag | string | `"v0.6.2"` | image tag |
+| clientapi.image.tag | string | chart.appVersion | image tag |
 | dendrite | object | See values.yaml | Configuration for Dendrite. For more information see [the sample denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | dendrite.database | object | See values.yaml | Configure database connection parameters. |
 | dendrite.global | object | See values.yaml | Configure the global settings for dendrite. |
@@ -130,24 +130,24 @@ For more information see:
 | eduserver | object | values.yaml | Configure the edu server For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | eduserver.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | eduserver.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| eduserver.image.tag | string | `"v0.6.2"` | image tag |
+| eduserver.image.tag | string | chart.appVersion | image tag |
 | federationapi | object | values.yaml | Configure the Federation API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | federationapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | federationapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| federationapi.image.tag | string | `"v0.6.2"` | image tag |
-| image | object | `{"pullPolicy":"IfNotPresent","repository":"matrixdotorg/dendrite-monolith","tag":"v0.6.2"}` |  IMPORTANT NOTE This chart inherits from our common library chart. You can check the default values/options here: https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml |
+| federationapi.image.tag | string | chart.appVersion | image tag |
+| image | object | `{"pullPolicy":"IfNotPresent","repository":"matrixdotorg/dendrite-monolith","tag":null}` |  IMPORTANT NOTE This chart inherits from our common library chart. You can check the default values/options here: https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"matrixdotorg/dendrite-monolith"` | image repository |
-| image.tag | string | `"v0.6.2"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | keyserver | object | See values.yaml | Configure the key server. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | keyserver.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | keyserver.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| keyserver.image.tag | string | `"v0.6.2"` | image tag |
+| keyserver.image.tag | string | chart.appVersion | image tag |
 | mediaapi | object | values.yaml | Configure the Media API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | mediaapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | mediaapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| mediaapi.image.tag | string | `"v0.6.2"` | image tag |
+| mediaapi.image.tag | string | chart.appVersion | image tag |
 | nats.enabled | bool | See value.yaml | Enable and configure NATS for dendrite. Can be disabled for monolith deployments - an internal NATS server will be used in its place. |
 | nats.nats.image | string | `"nats:2.7.1-alpine"` |  |
 | nats.nats.jetstream.enabled | bool | `true` |  |
@@ -164,33 +164,30 @@ For more information see:
 | roomserver | object | values.yaml | Configure the Room Server For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | roomserver.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | roomserver.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| roomserver.image.tag | string | `"v0.6.2"` | image tag |
+| roomserver.image.tag | string | chart.appVersion | image tag |
 | service | object | See values.yaml | If added dendrite will start a HTTP and HTTPS listener args:   - "--tls-cert=server.crt"   - "--tls-key=server.key" -- Configures service settings for the chart. |
 | service.main.ports.http | object | See values.yaml | Configures the default HTTP listener for dendrite |
 | service.main.ports.https | object | See values.yaml | Configures the HTTPS listener for dendrite |
 | syncapi | object | values.yaml | Configure the Sync API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | syncapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | syncapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| syncapi.image.tag | string | `"v0.6.2"` | image tag |
+| syncapi.image.tag | string | chart.appVersion | image tag |
 | userapi | object | values.yaml | Configure the User API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | userapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | userapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| userapi.image.tag | string | `"v0.6.2"` | image tag |
+| userapi.image.tag | string | chart.appVersion | image tag |
 
 ## Changelog
 
-### Version 3.0.0
+### Version 3.0.1
 
 #### Added
 
-* Support for polylith deployment
+N/A
 
 #### Changed
 
-* Refactored values for polylith mode
-* Split out volume template defintions into separate file
-* Bumped app version to v0.6.2
-* Rename secret fields for consistency
+* Bumped app version to v0.6.3
 
 #### Fixed
 
