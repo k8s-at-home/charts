@@ -101,6 +101,7 @@ N/A
 
 #### Changed
 
+* Moved chart from from incubator to stable
 
 #### Fixed
 
