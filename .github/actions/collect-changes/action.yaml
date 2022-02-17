@@ -22,7 +22,7 @@ runs:
         list-files: shell
         filters: |
           addedOrModified:
-            - added|modified: 'charts/**'
+            - added|modified: 'charts/*/**'
 
     - name: Collect changed charts
       if: |
