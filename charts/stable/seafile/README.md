@@ -1,6 +1,6 @@
 # seafile
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 8.0.7](https://img.shields.io/badge/AppVersion-8.0.7-informational?style=flat-square)
+![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: 8.0.7](https://img.shields.io/badge/AppVersion-8.0.7-informational?style=flat-square)
 
 seafile helm package
 
@@ -88,12 +88,12 @@ N/A
 | image.tag | string | `"8.0.7"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Note that `shared` is a reserved keyword in the common-chart, make sure you choose a diffrent key for persistance. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 2.0.0
+### Version 2.0.1
 
 #### Added
 
@@ -101,12 +101,11 @@ N/A
 
 #### Changed
 
-* **Breaking:** Updated `mariadb` chart to version `10.2.0`. Check out the chart documentation to see which values have changed.
-* Updated the common library dependency to version `4.3.0`.
+* Moved chart from from incubator to stable
 
 #### Fixed
 
-N/A
+* Add warning about naming collision when adding persistance.
 
 ### Older versions
 
