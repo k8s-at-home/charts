@@ -88,7 +88,7 @@ N/A
 | image.tag | string | `"8.0.7"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Note that `shared` is a reserved keyword in the common-chart, make sure you choose a diffrent key for persistance. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. Note that `shared` is a reserved keyword in the common-chart, make sure you use a diffrent key for persistance. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
@@ -101,7 +101,7 @@ N/A
 
 #### Changed
 
-* Moved chart from from incubator to stable
+* Moved chart from from incubator to stable.
 
 #### Fixed
 
