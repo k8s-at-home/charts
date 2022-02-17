@@ -72700,6 +72700,39 @@ entries:
   seafile:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Add warning about naming collision when adding persistance.
+        - kind: changed
+          description: Moved chart from from incubator to stable.
+    apiVersion: v2
+    appVersion: 8.0.7
+    created: "2022-02-17T08:58:12.59363756Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    description: seafile helm package
+    digest: 38b7c385052e2ab4866bdea82d4404e2c47d51d22d63f0656110cf8d834c1034
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/seafile
+    icon: https://manual.seafile.com/media/seafile-transparent-1024.png
+    keywords:
+    - seafile
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: 1985132+phybros@users.noreply.github.com
+      name: phybros
+    name: seafile
+    sources:
+    - https://github.com/haiwen/seafile-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/seafile-2.0.1/seafile-2.0.1.tgz
+    version: 2.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "**Breaking:** Updated `mariadb` chart to version `10.2.0`. Check out the chart documentation to see which values have changed."
           links:
@@ -99457,4 +99490,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-15T19:38:22.975802204Z"
+generated: "2022-02-17T08:58:12.612722986Z"
