@@ -29,6 +29,9 @@ additionalContainers:
       - name: config
         mountPath: /config
         readOnly: true
+        {{ if .Values.persistence.config.subPath }}
+        subPath: {{ .Values.persistence.config.subPath }}
+        {{ end }}
       {{ end }}
 
 service:
