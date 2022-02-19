@@ -31640,6 +31640,34 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/icinga2-1.0.0/icinga2-1.0.0.tgz
     version: 1.0.0
+  influxdb-exporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 0.8.1
+    created: "2022-02-19T01:28:39.144511095Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: influxdb-exporter helm package
+    digest: 48c61d46f8592331ab758a505c28ef723ee0fcb1fccfa190bcfe3f92b5d8b241
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/influxdb-exporter
+    icon: https://influxdata.github.io/branding/img/downloads/influxdata-logo--symbol--pool.jpg
+    keywords:
+    - influxdb-exporter
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: admin@aste.tools
+      name: Aste88
+    name: influxdb-exporter
+    sources:
+    - https://github.com/prometheus/influxdb_exporter
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/influxdb-exporter-1.0.0/influxdb-exporter-1.0.0.tgz
+    version: 1.0.0
   intel-gpu-plugin:
   - annotations:
       artifacthub.io/changes: |
@@ -99490,4 +99518,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-17T08:58:12.612722986Z"
+generated: "2022-02-19T01:28:39.169536799Z"
