@@ -122,6 +122,7 @@
 | [resilio-sync](stable/resilio-sync) | Resilio Sync is a fast, reliable, and simple file sync and share solution, powered by P2P technology |
 | [reverse-proxy](stable/reverse-proxy) | Creates ingress reverse-proxies for external hosts with minimum boilerplate |
 | [rtorrent-flood](stable/rtorrent-flood) | rTorrent is a stable, high-performance and low resource consumption BitTorrent client. |
+| [rtsp-to-web](stable/rtsp-to-web) | RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE |
 | [sabnzbd](stable/sabnzbd) | Free and easy binary newsreader |
 | [samba](stable/samba) | A simple in-cluster Samba server |
 | [seafile](stable/seafile) | seafile helm package |
