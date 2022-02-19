@@ -104,7 +104,7 @@ N/A
 
 #### Added
 
-N/A
+* Supported persistence.config.subPath in metrics exporter
 
 #### Changed
 
