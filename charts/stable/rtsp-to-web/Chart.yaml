@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: RTSPtoWeb helm package
+name: rtsp-to-web
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- rtsp-to-web
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rtsp-to-web
+icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/WebRTC_Logo.svg/440px-WebRTC_Logo.svg.png
+sources:
+- https://github.com/deepch/RTSPtoWeb/
+maintainers:
+- name: allenporter
+  email: allen.porter@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
