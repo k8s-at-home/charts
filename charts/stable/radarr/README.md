@@ -1,6 +1,6 @@
 # radarr
 
-![Version: 16.0.0](https://img.shields.io/badge/Version-16.0.0-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
+![Version: 16.0.1](https://img.shields.io/badge/Version-16.0.1-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
 
 A fork of Sonarr to work with movies à la Couchpotato
 
@@ -100,11 +100,11 @@ N/A
 
 ## Changelog
 
-### Version 16.0.0
+### Version 16.0.1
 
 #### Added
 
-N/A
+* Supported persistence.config.subPath in metrics exporter
 
 #### Changed
 
