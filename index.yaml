@@ -66467,6 +66467,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Inherit persistence.config.subPath in metrics exporter
+    apiVersion: v2
+    appVersion: v3.2.2.5080
+    created: "2022-02-20T10:27:47.909451611Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: c8e644e43bb63a8427f495e66be4c70f69a39064cdb0ca38a8f410613b5489ac
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-16.0.1/radarr-16.0.1.tgz
+    version: 16.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Updated exportarr to v1.0.0
     apiVersion: v2
     appVersion: v3.2.2.5080
@@ -99606,4 +99636,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-20T10:26:37.058734818Z"
+generated: "2022-02-20T10:27:48.022577858Z"
