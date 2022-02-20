@@ -104,11 +104,11 @@ N/A
 
 #### Added
 
-* Supported persistence.config.subPath in metrics exporter
+N/A
 
 #### Changed
 
-* Updated exportarr to v1.0.0
+* Inherit persistence.config.subPath in metrics exporter
 
 #### Fixed
 
