@@ -85,7 +85,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone. |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"miniflux/miniflux"` |  |
-| image.tag | string | `"2.0.31"` |  |
+| image.tag | string | `"2.0.35"` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | postgresql | object | Enabled (see values.yaml for more details) | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
 | probes | object | See values.yaml | Configures the probes for the main Pod. |
