@@ -1,15 +1,14 @@
-# radarr
+# rtsp-to-web
 
-![Version: 16.0.1](https://img.shields.io/badge/Version-16.0.1-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-A fork of Sonarr to work with movies à la Couchpotato
+RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/Radarr/Radarr>
-* <https://github.com/k8s-at-home/container-images>
+* <https://github.com/deepch/RTSPtoWeb/>
 
 ## Requirements
 
@@ -26,23 +25,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install radarr k8s-at-home/radarr
+helm install rtsp-to-web k8s-at-home/rtsp-to-web
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `radarr`
+To install the chart with the release name `rtsp-to-web`
 
 ```console
-helm install radarr k8s-at-home/radarr
+helm install rtsp-to-web k8s-at-home/rtsp-to-web
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `radarr` deployment
+To uninstall the `rtsp-to-web` deployment
 
 ```console
-helm uninstall radarr
+helm uninstall rtsp-to-web
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install radarr \
+helm install rtsp-to-web \
   --set env.TZ="America/New York" \
-    k8s-at-home/radarr
+    k8s-at-home/rtsp-to-web
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install radarr k8s-at-home/radarr -f values.yaml
+helm install rtsp-to-web k8s-at-home/rtsp-to-web -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,39 +75,26 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. |
+| env | object | See below | environment variables. See more environment variables in the [rtsp-to-web documentation](https://rtsp-to-web.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"ghcr.io/k8s-at-home/radarr"` | image repository |
-| image.tag | string | `"v3.2.2.5080"` | image tag |
+| image.repository | string | `"ghcr.io/deepch/rtsptoweb"` | image repository |
+| image.tag | string | `"v1.0.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus serviceMonitor. |
-| metrics.exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
-| metrics.exporter.env.port | int | `9793` | metrics port |
-| metrics.exporter.env.unknownQueueItems | bool | `false` | Set to true to enable gathering unknown queue items |
-| metrics.exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| metrics.exporter.image.repository | string | `"ghcr.io/onedr0p/exportarr"` | image repository |
-| metrics.exporter.image.tag | string | `"v1.0.0"` | image tag |
-| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
-| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
-| metrics.serviceMonitor.interval | string | `"3m"` |  |
-| metrics.serviceMonitor.labels | object | `{}` |  |
-| metrics.serviceMonitor.scrapeTimeout | string | `"1m"` |  |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| probes | object | See values.yaml | Configures the probes for the main Pod. |
+| persistence | object | See values.yaml | Enable WebRTC and other video protocols hostNetwork: true -- Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 16.0.1
+### Version 1.0.0
 
 #### Added
 
-N/A
+* Initial version
 
 #### Changed
 
-* Inherit persistence.config.subPath in metrics exporter
+N/A
 
 #### Fixed
 
@@ -116,7 +102,7 @@ N/A
 
 ### Older versions
 
-A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/radarr?modal=changelog)
+A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/rtsp-to-web?modal=changelog)
 
 ## Support
 

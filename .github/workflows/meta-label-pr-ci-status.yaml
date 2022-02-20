@@ -41,7 +41,7 @@ jobs:
           path: ./pr_metadata/pr_number.txt
 
       - name: "Get workflow job status"
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         id: get-workflow-jobs
         with:
           github-token: ${{ steps.generate-token.outputs.token }}

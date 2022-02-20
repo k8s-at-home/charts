@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 0.8.1
+description: influxdb-exporter helm package
+name: influxdb-exporter
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - influxdb-exporter
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/influxdb-exporter
+icon: https://influxdata.github.io/branding/img/downloads/influxdata-logo--symbol--pool.jpg
+sources:
+  - https://github.com/prometheus/influxdb_exporter
+maintainers:
+  - name: Aste88
+    email: admin@aste.tools
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version

@@ -60,8 +60,9 @@ mariadb:
       enabled: false
       # storageClass: ""
 
-# -- Configure persistence settings for the chart under this key.
+# -- Configure persistence settings for the chart under this key. Note that `shared` is a reserved keyword in the common-chart, make sure you use a diffrent key for persistance.
 # @default -- See values.yaml
 persistence: {}
-  # shared:
+  # data:
   #   enabled: false
+  #   mountPath: /shared
