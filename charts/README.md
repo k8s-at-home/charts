@@ -56,6 +56,7 @@
 | [hyperion-ng](stable/hyperion-ng) | Hyperion is an opensource Bias or Ambient Lighting implementation |
 | [icantbelieveitsnotvaletudo](stable/icantbelieveitsnotvaletudo) | Create live map data from Valetudo powered robots |
 | [icinga2](stable/icinga2) | A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting. |
+| [influxdb-exporter](stable/influxdb-exporter) | influxdb-exporter helm package |
 | [intel-gpu-plugin](stable/intel-gpu-plugin) | The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware |
 | [jackett](stable/jackett) | API Support for your favorite torrent trackers |
 | [jellyfin](stable/jellyfin) | Jellyfin is a Free Software Media System |
@@ -110,6 +111,7 @@
 | [prometheus-nut-exporter](stable/prometheus-nut-exporter) | Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance. |
 | [protonmail-bridge](stable/protonmail-bridge) | Container for protonmail bridge to work on the network. |
 | [prowlarr](stable/prowlarr) | Indexer manager/proxy built on the popular arr net base stack to integrate with your various PVR apps. |
+| [puppeteer](stable/puppeteer) | Headless Chrome Node.js API |
 | [pyload](stable/pyload) | pyLoad is a Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web. |
 | [qbittorrent](stable/qbittorrent) | qBittorrent is a cross-platform free and open-source BitTorrent client |
 | [radarr](stable/radarr) | A fork of Sonarr to work with movies à la Couchpotato |
@@ -120,8 +122,10 @@
 | [resilio-sync](stable/resilio-sync) | Resilio Sync is a fast, reliable, and simple file sync and share solution, powered by P2P technology |
 | [reverse-proxy](stable/reverse-proxy) | Creates ingress reverse-proxies for external hosts with minimum boilerplate |
 | [rtorrent-flood](stable/rtorrent-flood) | rTorrent is a stable, high-performance and low resource consumption BitTorrent client. |
+| [rtsp-to-web](stable/rtsp-to-web) | RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE |
 | [sabnzbd](stable/sabnzbd) | Free and easy binary newsreader |
 | [samba](stable/samba) | A simple in-cluster Samba server |
+| [seafile](stable/seafile) | seafile helm package |
 | [searx](stable/searx) | Searx is a privacy-respecting, hackable metasearch engine |
 | [ser2sock](stable/ser2sock) | Serial to Socket Redirector |
 | [sharry](stable/sharry) | Sharry allows to share files with others in a simple way. It is a self-hosted web application. The basic concept is to upload files and get a url back that can then be shared. |
@@ -173,7 +177,7 @@
 | [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
-| [seafile](incubator/seafile) | seafile helm package |
+| [scrypted](incubator/scrypted) | scrypted helm package |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
 | [torrserver](incubator/torrserver) | TorrServer streams torrent to http |

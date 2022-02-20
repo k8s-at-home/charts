@@ -1,0 +1,47 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: prom/influxdb-exporter
+  # -- image tag
+  tag: v0.8.1
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [influxdb-exporter documentation](https://influxdb-exporter.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    type: ClusterIP
+    ports:
+      http:
+        port: 9122
+  udp:
+    enabled: true
+    type: LoadBalancer
+    ports:
+      udp:
+        enabled: true
+        port: 9122
+        protocol: UDP
+        targetPort: 9122
+
+metrics:
+  # -- Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor.
+  # @default -- See values.yaml
+  enabled: false
+  serviceMonitor:
+    interval: 15s
+    scrapeTimeout: 5s
+    labels: {}

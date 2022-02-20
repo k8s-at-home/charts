@@ -1,0 +1,50 @@
+{{- define "custom.custom.configuration.header" -}}
+## Special Instructions
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+### **Important!**
+
+```console
+You may need special headers to connect from outside of the cluster. Intra cluster works fine.
+```
+
+### Sample code to connect to Puppeteer
+
+```javascript
+const puppeteer = require('puppeteer-core')
+const dns = require('dns').promises;
+
+(async () => {
+  // these dns options are not needed if using an load balancer or ingress
+  const options = {
+    family: 4,
+    hints: dns.ADDRCONFIG | dns.V4MAPPED
+  }
+  const { address: host } = await dns.lookup('puppeteer', options, (address) => {
+    return address
+  })
+  const browser = await puppeteer.connect({
+    browserURL: `http://${host}:4000`
+  })
+  const page = await browser.newPage()
+  await page.goto('https://example.com', { waitUntil: 'networkidle0' })
+  await page.close()
+    .catch((err) => {
+      console.error(err)
+    })
+})()
+```
+
+### Default chromium flags in image
+
+```javascript
+'--disable-dev-shm-usage',
+'--disable-setuid-sandbox',
+'--no-sandbox',
+'--remote-debugging-address=0.0.0.0',
+'--remote-debugging-port=4000',
+'--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS  X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ 85.0.4183.121 Safari/537.36'
+```
+{{- end -}}

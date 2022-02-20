@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v3.0.6.1342
 description: Smart PVR for newsgroup and bittorrent users
 name: sonarr
-version: 16.0.0
+version: 16.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - sonarr
@@ -23,4 +23,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Updated exportarr to v1.0.0
+      description: Inherit persistence.config.subPath in metrics exporter
