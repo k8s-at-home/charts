@@ -106,12 +106,15 @@ configmap:
     data:
       config.yml: |
         mqtt:
-          host: test.mosquitto.org
-          topic_prefix: frigate
-        database:
-          path: /data/frigate.db
-        detectors:
-          cpu1:
-            type: cpu
+          host: mqtt.server.com
         cameras:
-          my-camera:
+          back:
+            ffmpeg:
+              inputs:
+                - path: rtsp://demo:demo@ipvmdemo.dyndns.org:5541/onvif-media/media.amp?profile=profile_1_h264&sessiontimeout=60&streamtype=unicast
+                  roles:
+                    - detect
+                    - rtmp
+            detect:
+              width: 1280
+              height: 720
