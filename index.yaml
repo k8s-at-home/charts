@@ -31643,6 +31643,34 @@ entries:
   influxdb-exporter:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Add the description and custom configuration to the README.md
+    apiVersion: v2
+    appVersion: 0.8.1
+    created: "2022-02-21T18:35:35.13658379Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: An exporter for metrics in the InfluxDB format, transforms them and
+      exposes them for consumption by Prometheus.
+    digest: b4f090bff23844910bd23c24e4ff4e96b1afde2eb029fa274b36d32f92e2c0c8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/influxdb-exporter
+    icon: https://influxdata.github.io/branding/img/downloads/influxdata-logo--symbol--pool.jpg
+    keywords:
+    - influxdb-exporter
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: admin@aste.tools
+      name: Aste88
+    name: influxdb-exporter
+    sources:
+    - https://github.com/prometheus/influxdb_exporter
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/influxdb-exporter-1.0.1/influxdb-exporter-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Initial version
     apiVersion: v2
@@ -99669,4 +99697,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-20T20:54:09.95545752Z"
+generated: "2022-02-21T18:35:35.157196147Z"
