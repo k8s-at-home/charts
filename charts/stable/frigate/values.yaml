@@ -101,10 +101,6 @@ configmap:
     # -- Store frigate configuration as a ConfigMap
     enabled: true
 
-    # -- Specify an existing configMap that contains the settings under the `config.yml` key.
-    # This will overrule any settings specified under the `data` key.
-    existingConfigMap:
-
     # -- See [docs](https://blakeblackshear.github.io/frigate/) for more details.
     # @default -- see URL to default config
     data:
@@ -117,3 +113,5 @@ configmap:
         detectors:
           cpu1:
             type: cpu
+        cameras:
+          my-camera:

@@ -1,38 +1,19 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Determine the configMap hash */}}
-{{- define "frigate.configMapHash" -}}
-  {{- if .Values.configmap.config.existingConfigMap -}}
-    {{- $configMap := (lookup "v1" "ConfigMap" .Release.Namespace .Values.configmap.config.existingConfigMap ) -}}
-    {{- if $configMap -}}
-      {{- index $configMap "data" "config.yml" | toYaml | sha256sum -}}
-    {{- end -}}
-  {{- else -}}
-    {{ .Values.configmap.config.data | toYaml | sha256sum }}
-  {{- end -}}
-{{- end -}}
-
-{{/* Determine the configMap name */}}
-{{- define "frigate.configMapName" -}}
-  {{- .Values.configmap.config.existingConfigMap | default (printf "%v-config" (include "common.names.fullname" .)) -}}
-{{- end -}}
-
 {{/* Append the hardcoded settings */}}
 {{- define "frigate.harcodedValues" -}}
   {{- if .Values.configmap.config.enabled }}
   {{/* merge frigate specific annotations with podAnnotations*/}}
-  {{- if (include "frigate.configMapHash" .) }}
   podAnnotations:
-    configmap/checksum: "{{ include "frigate.configMapHash" . }}"
-  {{- end }}
+    configmap/checksum: "{{ .Values.configmap.config.data | toYaml | sha256sum }}"
 
   {{/* Append the configMap volume to the volumes */}}
   persistence:
     config:
       enabled: true
       type: "configMap"
-      name: "{{ include "frigate.configMapName" . }}"
+      name: "{{ printf "%v-config" (include "common.names.fullname" .) }}"
       mountPath: "/config/config.yml"
       subPath: "config.yml"
   {{- end }}
