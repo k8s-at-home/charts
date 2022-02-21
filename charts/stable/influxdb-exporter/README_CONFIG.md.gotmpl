@@ -5,5 +5,21 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
-N/A
+Override the default container `args:` with optons:
+
+    --web.listen-address=":9122"
+                          Address on which to expose metrics and web interface.
+    --web.telemetry-path="/metrics"
+                          Path under which to expose Prometheus metrics.
+    --web.exporter-telemetry-path="/metrics/exporter"
+                          Path under which to expose exporter metrics.
+    --influxdb.sample-expiry=5m
+                          How long a sample is valid for.
+    --udp.bind-address=":9122"
+                          Address on which to listen for udp packets.
+    --timestamps         Export timestamps of points.
+    --log.level=info     Only log messages with the given severity or above. One of: [debug, info, warn, error]
+    --log.format=logfmt  Output format of log messages. One of: [logfmt, json]
+
+(adapt service address/path/port accordingly)
 {{- end -}}

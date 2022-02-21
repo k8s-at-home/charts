@@ -1,8 +1,8 @@
 apiVersion: v2
 appVersion: 0.8.1
-description: influxdb-exporter helm package
+description: An exporter for metrics in the InfluxDB format, transforms them and exposes them for consumption by Prometheus.
 name: influxdb-exporter
-version: 1.0.0
+version: 1.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - influxdb-exporter
@@ -19,5 +19,5 @@ dependencies:
     version: 4.3.0
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Initial version
+    - kind: fixed
+      description: Add the description and custom configuration to the README.md
