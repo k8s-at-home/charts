@@ -3597,6 +3597,36 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/aria2-1.0.0/aria2-1.0.0.tgz
     version: 1.0.0
+  audiobookshelf:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 1.6.69
+    created: "2022-02-21T20:16:46.591471666Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Self-hosted audiobook server for managing and playing your audiobooks
+    digest: a22e218542035d8c45c88188b75163d00835fca99b869148e4d987eb8084f696
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/audiobookshelf
+    icon: https://github.com/advplyr/audiobookshelf/blob/master/static/Logo.png
+    keywords:
+    - audiobookshelf
+    - books
+    - audiobooks
+    kubeVersion: '>= 1.16.0-0'
+    maintainers:
+    - email: tvories@gmail.com
+      name: tvories
+    name: audiobookshelf
+    sources:
+    - https://github.com/advplyr/audiobookshelf
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/audiobookshelf-1.0.0/audiobookshelf-1.0.0.tgz
+    version: 1.0.0
   baikal:
   - apiVersion: v2
     appVersion: 0.8.0
@@ -99697,4 +99727,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-21T18:35:35.157196147Z"
+generated: "2022-02-21T20:16:46.607970672Z"
