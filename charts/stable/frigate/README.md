@@ -1,6 +1,6 @@
 # frigate
 
-![Version: 7.1.0](https://img.shields.io/badge/Version-7.1.0-informational?style=flat-square) ![AppVersion: v0.9.4](https://img.shields.io/badge/AppVersion-v0.9.4-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: 0.10.0-amd64](https://img.shields.io/badge/AppVersion-0.10.0--amd64-informational?style=flat-square)
 
 NVR With Realtime Object Detection for IP Cameras
 
@@ -93,13 +93,14 @@ config: |
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity constraint rules to place the Pod on a specific node. [[ref]](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) |
-| config | string | see URL to default config | See [docs](https://blakeblackshear.github.io/frigate/) for more details. |
+| configmap.config.data | object | see URL to default config | See [docs](https://blakeblackshear.github.io/frigate/) for more details. |
+| configmap.config.enabled | bool | `true` | Store frigate configuration as a ConfigMap |
 | env | object | See below | environment variables. See [docs](https://blakeblackshear.github.io/frigate/) for more details. |
 | env.FRIGATE_RTSP_PASSWORD | string | empty | Set a RTSP password |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"blakeblackshear/frigate"` | image repository |
-| image.tag | string | `"0.9.4-amd64"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.cache | object | See values.yaml | Configure a temporary cache. See [docs](https://blakeblackshear.github.io/frigate/) for more details.. |
@@ -110,7 +111,7 @@ config: |
 
 ## Changelog
 
-### Version 7.1.0
+### Version 8.0.0
 
 #### Added
 
@@ -118,7 +119,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+N/A
 
 #### Fixed
 
