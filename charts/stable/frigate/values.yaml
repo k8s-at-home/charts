@@ -9,7 +9,8 @@ image:
   # -- image repository
   repository: blakeblackshear/frigate
   # -- image tag
-  tag: 0.9.4-amd64
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -95,14 +96,25 @@ resources: {}
   #   gpu.intel.com/i915: 1
   #   memory: 4096Mi
 
-# -- See [docs](https://blakeblackshear.github.io/frigate/) for more details.
-# @default -- see URL to default config
-config: |
-  mqtt:
-    host: test.mosquitto.org
-    topic_prefix: frigate
-  database:
-    path: /data/frigate.db
-  detectors:
-    cpu1:
-      type: cpu
+configmap:
+  config:
+    # -- Store frigate configuration as a ConfigMap
+    enabled: true
+
+    # -- See [docs](https://blakeblackshear.github.io/frigate/) for more details.
+    # @default -- see URL to default config
+    data:
+      config.yml: |
+        mqtt:
+          host: mqtt.server.com
+        cameras:
+          back:
+            ffmpeg:
+              inputs:
+                - path: rtsp://demo:demo@ipvmdemo.dyndns.org:5541/onvif-media/media.amp?profile=profile_1_h264&sessiontimeout=60&streamtype=unicast
+                  roles:
+                    - detect
+                    - rtmp
+            detect:
+              width: 1280
+              height: 720

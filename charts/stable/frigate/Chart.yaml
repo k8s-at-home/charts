@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v0.9.4
+appVersion: 0.10.0-amd64
 description: NVR With Realtime Object Detection for IP Cameras
 name: frigate
-version: 7.1.0
+version: 8.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - frigate
@@ -27,4 +27,9 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
+      description: **Breaking:** Updated image tag to version `0.10.0-amd64`. See the application release notes for the breaking changes.
+      links:
+        - name: Application release notes
+          url: https://github.com/blakeblackshear/frigate/releases/tag/v0.10.0
+    - kind: changed
+      description: **Breaking:** Use the common library built-in configMap for configuration.

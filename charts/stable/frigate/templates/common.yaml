@@ -2,18 +2,23 @@
 {{- include "common.values.setup" . }}
 
 {{/* Append the hardcoded settings */}}
-{{- define "frigate.configValues" -}}
-persistence:
-  frigate-config:
-    enabled: "true"
-    mountPath: "/config/config.yml"
-    subPath: "config.yml"
-    type: "custom"
-    volumeSpec:
-      configMap:
-        name: {{ printf "%v-config" (include "common.names.fullname" .) }}
+{{- define "frigate.harcodedValues" -}}
+  {{- if .Values.configmap.config.enabled }}
+  {{/* merge frigate specific annotations with podAnnotations*/}}
+  podAnnotations:
+    configmap/checksum: "{{ .Values.configmap.config.data | toYaml | sha256sum }}"
+
+  {{/* Append the configMap volume to the volumes */}}
+  persistence:
+    config:
+      enabled: true
+      type: "configMap"
+      name: "{{ printf "%v-config" (include "common.names.fullname" .) }}"
+      mountPath: "/config/config.yml"
+      subPath: "config.yml"
+  {{- end }}
 {{- end -}}
-{{- $_ := mergeOverwrite .Values (include "frigate.configValues" . | fromYaml) -}}
+{{- $_ := mergeOverwrite .Values (include "frigate.harcodedValues" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
