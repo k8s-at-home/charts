@@ -47,10 +47,8 @@ Chart releases must be immutable. Any change to a chart warrants a chart version
 
 The chart `version` should follow [semver](https://semver.org/).
 
-Charts should start at `1.0.0`. Any breaking (backwards incompatible) changes to a chart should:
+Charts should start at `1.0.0`. Any any breaking (backwards incompatible) changes should Bump the MAJOR version, and should describe the manual steps necessary to upgrade. All changes should be described in in the [Chart metadata](https://docs.k8s-at-home.com/our-helm-charts/development/creating-a-new-chart/#chart-metadata).
 
-1. Bump the MAJOR version
-2. In the README, under a section called "Upgrading", describe the manual steps necessary to upgrade to the new (specified) MAJOR version
 
 ### Pre-commit
 

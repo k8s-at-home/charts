@@ -11,6 +11,7 @@
 | [apache-musicindex](stable/apache-musicindex) | Index and stream music using apache-musicindex and m3u playlists |
 | [appdaemon](stable/appdaemon) | AppDaemon is a loosely coupled, multi-threaded, sandboxed python execution environment for writing automation apps for various types of Home Automation Software including Home Assistant and MQTT. |
 | [aria2](stable/aria2) | aria server for downloading web content |
+| [audiobookshelf](stable/audiobookshelf) | Self-hosted audiobook server for managing and playing your audiobooks |
 | [baikal](stable/baikal) | Baïkal is a lightweight CalDAV+CardDAV server. It offers a web interface with management of users, address books and calendars. |
 | [bazarr](stable/bazarr) | Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements |
 | [beets](stable/beets) | beets helm package |
@@ -56,7 +57,7 @@
 | [hyperion-ng](stable/hyperion-ng) | Hyperion is an opensource Bias or Ambient Lighting implementation |
 | [icantbelieveitsnotvaletudo](stable/icantbelieveitsnotvaletudo) | Create live map data from Valetudo powered robots |
 | [icinga2](stable/icinga2) | A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting. |
-| [influxdb-exporter](stable/influxdb-exporter) | influxdb-exporter helm package |
+| [influxdb-exporter](stable/influxdb-exporter) | An exporter for metrics in the InfluxDB format, transforms them and exposes them for consumption by Prometheus. |
 | [intel-gpu-plugin](stable/intel-gpu-plugin) | The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware |
 | [jackett](stable/jackett) | API Support for your favorite torrent trackers |
 | [jellyfin](stable/jellyfin) | Jellyfin is a Free Software Media System |
