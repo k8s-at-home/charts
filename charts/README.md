@@ -180,5 +180,6 @@
 | [openhab](incubator/openhab) | openhab helm package |
 | [scrypted](incubator/scrypted) | scrypted helm package |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
+| [strongswan](incubator/strongswan) | strongSwan – the OpenSource IPsec-based VPN Solution |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
 | [torrserver](incubator/torrserver) | TorrServer streams torrent to http |
