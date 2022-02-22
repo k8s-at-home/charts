@@ -26,6 +26,10 @@ env:
   serverPort: "{{ .Values.service.main.ports.server.port }}"
   # -- Allow override for the pre-compiled tdarr ffmpeg binary
   ffmpegPath: ""
+  # -- Set the container user id
+  PUID: "1000"
+  # -- Set the container group id
+  PGID: "1000"
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -59,10 +63,6 @@ node:
     pullPolicy: IfNotPresent
   # -- Node resources
   resources: {}
-  # -- Set the container user id
-  PUID: "1000"
-  # -- Set the container group id
-  PGID: "1000"
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See below
