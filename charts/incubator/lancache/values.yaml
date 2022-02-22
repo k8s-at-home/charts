@@ -40,7 +40,7 @@ service:
         port: 53
 
 # -- LanCache uses custom upstream nameservers, overridable with the `UPSTREAM_DNS` variable.
-dnsPolicy: 'None'
+dnsPolicy: None
 dnsConfig:
   nameservers:
     - 127.0.0.1
