@@ -59,8 +59,9 @@ node:
     pullPolicy: IfNotPresent
   # -- Node resources
   resources: {}
-  # User running Tdarr
+  # -- Set the container user id
   PUID: "1000"
+  # -- Set the container group id
   PGID: "1000"
 
 # -- Configure persistence settings for the chart under this key.
