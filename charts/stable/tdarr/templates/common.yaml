@@ -19,6 +19,10 @@ additionalContainers:
         value: "{{ .Values.service.main.ports.server.port }}"
       - name: ffmpegPath
         value: {{ default "" .Values.env.ffmpegPath }}
+      - name: PUID
+        value: {{ default "1000" .Values.node.PUID }}
+      - name: PGID
+        value: {{ default "1000" .Values.node.PGID }}
     volumeMounts:
       {{ if .Values.persistence.config.enabled }}
       - name: config
