@@ -20,9 +20,9 @@ additionalContainers:
       - name: ffmpegPath
         value: {{ default "" .Values.env.ffmpegPath }}
       - name: PUID
-        value: {{ (.Values.node.PUID | quote) }}
+        value: {{ (.Values.env.PUID | quote) }}
       - name: PGID
-        value: {{ (.Values.node.PGID | quote) }}
+        value: {{ (.Values.env.PGID | quote) }}
     volumeMounts:
       {{ if .Values.persistence.config.enabled }}
       - name: config
