@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 4.3.1](https://img.shields.io/badge/Version-4.3.1-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
+![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -76,6 +76,8 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://hub.docker.com/r/haveagitgat/tdarr) for more details. |
+| env.PGID | string | `"1000"` | Set the container group id |
+| env.PUID | string | `"1000"` | Set the container user id |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | env.ffmpegPath | string | `""` | Allow override for the pre-compiled tdarr ffmpeg binary |
 | env.serverIP | string | `"0.0.0.0"` | tdarr server binding address |
@@ -100,7 +102,7 @@ N/A
 
 ## Changelog
 
-### Version 4.3.1
+### Version 4.4.0
 
 #### Added
 
@@ -112,7 +114,7 @@ N/A
 
 #### Fixed
 
-* Fixed server container mountPath so that persistence actually works.
+N/A
 
 ### Older versions
 
