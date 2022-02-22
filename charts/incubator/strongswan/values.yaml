@@ -56,15 +56,27 @@ securityContext:
 hostNetwork: true
 dnsPolicy: ClusterFirstWithHostNet
 
-# -- Configures probes for the chart. Normally this does not need to be modified.
-# @default -- Disabled
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
 probes:
   liveness:
-    enabled: false
+    enabled: true
+    custom: true
+    spec:
+      exec:
+        command: [ipsec, status]
   readiness:
-    enabled: false
+    enabled: true
+    custom: true
+    spec:
+      exec:
+        command: [ipsec, status]
   startup:
-    enabled: false
+    enabled: true
+    custom: true
+    spec:
+      exec:
+        command: [ipsec, status]
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
