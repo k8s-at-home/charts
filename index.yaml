@@ -36721,6 +36721,35 @@ entries:
   lancache:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Added probes for LanCache DNS container.
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-02-22T16:01:40.16985064Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: LanCache Monolithic - a caching proxy server for game download content
+    digest: 2354dead62ea76caa1b37b89f258eec91a7bb7bb744668d0f460b0cdc63805e1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lancache
+    icon: https://avatars.githubusercontent.com/u/16938914
+    keywords:
+    - lancache
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@reitermark.us
+      name: reitermarkus
+    name: lancache
+    sources:
+    - https://github.com/lancachenet/monolithic
+    - https://hub.docker.com/r/lancachenet/monolithic
+    - https://hub.docker.com/r/lancachenet/lancache-dns
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lancache-0.4.0/lancache-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
@@ -99860,4 +99889,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-22T15:28:50.448053Z"
+generated: "2022-02-22T16:01:40.192454659Z"
