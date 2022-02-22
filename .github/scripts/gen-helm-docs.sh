@@ -35,8 +35,6 @@ fi
 for chart in ${charts}; do
     chart_directory="$(dirname "${chart}")"
     echo "-] Copying templates to ${chart_directory}"
-    # Copy README template into each Chart directory, overwrite if exists
-    cp "${readme_template}" "${chart_directory}"
     # Copy CONFIG template to each Chart directory, do not overwrite if exists
     cp -n "${readme_config_template}" "${chart_directory}" || true
 done
@@ -44,6 +42,6 @@ done
 # Run helm-docs for charts using the common library and the common library itself
 helm-docs \
     --ignore-file="${repository}/.helmdocsignore" \
-    --template-files="$(basename "${readme_template}")" \
+    --template-files="${readme_template}" \
     --template-files="$(basename "${readme_config_template}")" \
     --chart-search-root="${root}"
