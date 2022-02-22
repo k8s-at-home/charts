@@ -59,6 +59,9 @@ node:
     pullPolicy: IfNotPresent
   # -- Node resources
   resources: {}
+  # User running Tdarr
+  PUID: "1000"
+  PGID: "1000"
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See below
