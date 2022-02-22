@@ -59,7 +59,7 @@ helm install tdarr \
     k8s-at-home/tdarr
 ```
 
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
+Alternatively,  a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
 helm install tdarr k8s-at-home/tdarr -f values.yaml
