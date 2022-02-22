@@ -79677,6 +79677,34 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/statping-1.0.0/statping-1.0.0.tgz
     version: 1.0.0
+  strongswan:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-02-22T15:28:50.4330572Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: strongSwan – the OpenSource IPsec-based VPN Solution
+    digest: 8a1bceb7b2481d8b96e8d1ce448e813e3c33b6d05c1fc194699db8dedb08dee5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/strongswan
+    icon: https://strongswan.org/images/strongswan_neu.png
+    keywords:
+    - strongswan
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: me@reitermark.us
+      name: reitermarkus
+    name: strongswan
+    sources:
+    - https://github.com/reitermarkus/strongswan
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/strongswan-0.1.0/strongswan-0.1.0.tgz
+    version: 0.1.0
   syncthing:
   - annotations:
       artifacthub.io/changes: |
@@ -99832,4 +99860,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-22T13:37:15.155193457Z"
+generated: "2022-02-22T15:28:50.448053Z"
