@@ -1,6 +1,6 @@
 # lancache
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 LanCache Monolithic - a caching proxy server for game download content
 
@@ -104,15 +104,15 @@ N/A
 
 ## Changelog
 
-### Version 0.3.0
+### Version 0.4.0
 
 #### Added
 
-N/A
+* Added probes for LanCache DNS container.
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+N/A
 
 #### Fixed
 
