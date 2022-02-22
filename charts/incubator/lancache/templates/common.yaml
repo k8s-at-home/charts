@@ -44,6 +44,45 @@ additionalContainers:
       - name: dns
         containerPort: 53
         protocol: UDP
+    livenessProbe:
+      exec:
+        command:
+          - bash
+          - -c
+          - |
+            set -euo pipefail
+
+            # Check if LanCache DNS entries are set up.
+            dig @127.0.0.1 "${LANCACHE_DNSDOMAIN}" SOA | grep localhost
+
+            # Check if upstream DNS server is reachable.
+            dig "${LANCACHE_DNSDOMAIN}" SOA
+    readinessProbe:
+      exec:
+        command:
+          - bash
+          - -c
+          - |
+            set -euo pipefail
+
+            # Check if LanCache DNS entries are set up.
+            dig @127.0.0.1 "${LANCACHE_DNSDOMAIN}" SOA | grep localhost
+
+            # Check if upstream DNS server is reachable.
+            dig "${LANCACHE_DNSDOMAIN}" SOA
+    startupProbe:
+      exec:
+        command:
+          - bash
+          - -c
+          - |
+            set -euo pipefail
+
+            # Check if LanCache DNS entries are set up.
+            dig @127.0.0.1 "${LANCACHE_DNSDOMAIN}" SOA | grep localhost
+
+            # Check if upstream DNS server is reachable.
+            dig "${LANCACHE_DNSDOMAIN}" SOA
 
 service:
   dns:
