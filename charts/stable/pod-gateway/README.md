@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 5.2.1](https://img.shields.io/badge/Version-5.2.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -100,6 +100,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | DNS | string | `"172.16.0.1"` | IP address of the DNS server within the vxlan tunnel. All mutated PODs will get this as their DNS server. It must match VXLAN_GATEWAY_IP in settings.sh |
+| DNSPolicy | string | `"None"` | The DNSPolicy to apply to the POD. Only when set to "None" will the DNS value above apply. To avoid altering POD DNS (i.e., to allow initContainers to use DNS before the the VXLAN is up), set to "ClusterFirst" |
 | addons | object | `{"vpn":{"enabled":false,"networkPolicy":{"egress":[{"ports":[{"port":443,"protocol":"UDP"}],"to":[{"ipBlock":{"cidr":"0.0.0.0/0"}}]},{"to":[{"ipBlock":{"cidr":"10.0.0.0/8"}}]}],"enabled":true},"type":"openvpn"}}` |    IP: 10   ports:   - type: udp     port: 18289   - type: tcp     port: 18289 |
 | addons.vpn.enabled | bool | `false` | Enable the VPN if you want to route through a VPN. You might also want to set VPN_BLOCK_OTHER_TRAFFIC to true for extra safeness in case the VPN does connect |
 | addons.vpn.networkPolicy | object | `{"egress":[{"ports":[{"port":443,"protocol":"UDP"}],"to":[{"ipBlock":{"cidr":"0.0.0.0/0"}}]},{"to":[{"ipBlock":{"cidr":"10.0.0.0/8"}}]}],"enabled":true}` |  wireguard: env: configFileSecret: openvpn |
@@ -131,7 +132,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 
 ## Changelog
 
-### Version 5.2.0
+### Version 5.2.1
 
 #### Added
 
@@ -139,7 +140,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Added option to override mutated pod's DNSPolicy.
 
 #### Fixed
 
