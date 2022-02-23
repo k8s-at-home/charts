@@ -50,7 +50,7 @@ spec:
             # Static
             - --tls-cert-file-path=/tls/tls.crt
             - --tls-key-file-path=/tls/tls.key
-            - --DNSPolicy=None
+            - --DNSPolicy={{ .Values.DNSPolicy }}
             # Init container
             - --initImage={{ .Values.image.repository }}:{{ .Values.image.tag }}
             - --initImagePullPol={{ .Values.image.pullPolicy }}
