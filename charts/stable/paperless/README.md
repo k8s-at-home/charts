@@ -8,7 +8,7 @@ Paperless - Index and archive all of your scanned paper documents
 
 ## Source Code
 
-* <https://github.com/jonaswinkler/paperless-ng>
+* <https://github.com/paperless-ngx/paperless-ngx>
 
 ## Requirements
 
