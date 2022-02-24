@@ -1,6 +1,6 @@
 # rtsp-to-web
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: v2.2.0](https://img.shields.io/badge/AppVersion-v2.2.0-informational?style=flat-square)
 
 RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE
 
@@ -75,22 +75,22 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [rtsp-to-web documentation](https://rtsp-to-web.org/docs). |
+| env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/deepch/rtsptoweb"` | image repository |
-| image.tag | string | `"v1.0.0"` | image tag |
+| image.tag | string | `nil` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | object | See values.yaml | Enable WebRTC and other video protocols hostNetwork: true -- Configure persistence settings for the chart under this key. |
+| persistence | object | See values.yaml | Enable WebRTC and other video protocols hostNetwork: true -- Configure persistence settings for the chart under this key. See https://github.com/deepch/RTSPtoWeb#configuration for /config/config.json settings and examples. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 1.0.0
+### Version 2.0.0
 
 #### Added
 
-* Initial version
+N/A
 
 #### Changed
 
