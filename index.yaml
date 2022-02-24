@@ -71374,6 +71374,35 @@ entries:
   rtsp-to-web:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Upgrade RTSPtoWeb to v2.2.0
+        - kind: changed
+          description: **BREAKING** The config directory is now located at `/config/config.json`
+    apiVersion: v2
+    appVersion: v2.2.0
+    created: "2022-02-24T02:15:36.836830305Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE
+    digest: 2cc4461b3a4bcf4f06868824a57e24b064c449433c4af839a2e05b5bf989b166
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rtsp-to-web
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/WebRTC_Logo.svg/440px-WebRTC_Logo.svg.png
+    keywords:
+    - rtsp-to-web
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: allen.porter@gmail.com
+      name: allenporter
+    name: rtsp-to-web
+    sources:
+    - https://github.com/deepch/RTSPtoWeb/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/rtsp-to-web-2.0.0/rtsp-to-web-2.0.0.tgz
+    version: 2.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Initial version
     apiVersion: v2
@@ -99918,4 +99947,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-23T22:28:51.679652742Z"
+generated: "2022-02-24T02:15:36.854442467Z"
