@@ -9,11 +9,11 @@ image:
   # -- image repository
   repository: ghcr.io/deepch/rtsptoweb
   # -- image tag
-  tag: v1.0.0
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables. See more environment variables in the [rtsp-to-web documentation](https://rtsp-to-web.org/docs).
+# -- environment variables.
 # @default -- See below
 env:
   # -- Set the container timezone
@@ -36,9 +36,10 @@ ingress:
 # -- Enable WebRTC and other video protocols
 # hostNetwork: true
 
-# -- Configure persistence settings for the chart under this key.
+# -- Configure persistence settings for the chart under this key. See https://github.com/deepch/RTSPtoWeb#configuration
+# for /config/config.json settings and examples.
 # @default -- See values.yaml
 persistence: {}
-  # data:
+  # config:
   #   enabled: false
-  #   mountPath: /data
+  #   mountPath: /config
