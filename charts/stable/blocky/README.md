@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 10.1.0](https://img.shields.io/badge/Version-10.1.0-informational?style=flat-square) ![AppVersion: v0.17](https://img.shields.io/badge/AppVersion-v0.17-informational?style=flat-square)
+![Version: 10.1.1](https://img.shields.io/badge/Version-10.1.1-informational?style=flat-square) ![AppVersion: v0.18](https://img.shields.io/badge/AppVersion-v0.18-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -82,7 +82,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/0xerr0r/blocky"` | image repository |
-| image.tag | string | `"v0.17"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
 | metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
@@ -97,7 +97,7 @@ N/A
 
 ## Changelog
 
-### Version 10.1.0
+### Version 10.1.1
 
 #### Added
 
@@ -105,7 +105,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `appversion` to version `0.18` and made it use Chart.appversion by default for ease of maintenance.
 
 #### Fixed
 
