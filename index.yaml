@@ -6133,6 +6133,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded `appversion` to version `0.18` and made it use Chart.appversion by default for ease of maintenance.
+    apiVersion: v2
+    appVersion: v0.18
+    created: "2022-02-26T21:27:58.00236692Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: DNS proxy as ad-blocker for local network
+    digest: 91aa9cbbeaaa9166a1e556694fe780ddb09545e4c6f55543e573fe3e9631c5c8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/blocky
+    icon: https://github.com/0xERR0R/blocky/raw/master/docs/blocky.svg?sanitize=true
+    keywords:
+    - blocky
+    - adblock
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: blocky
+    sources:
+    - https://github.com/0xERR0R/blocky
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/blocky-10.1.1/blocky-10.1.1.tgz
+    version: 10.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: v0.17
@@ -99947,4 +99976,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-02-24T02:15:36.854442467Z"
+generated: "2022-02-26T21:27:58.027333259Z"
