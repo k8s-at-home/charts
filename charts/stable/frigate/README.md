@@ -119,7 +119,9 @@ N/A
 
 #### Changed
 
-N/A
+* **Breaking:** Updated image tag to version `0.10.0-amd64`. See the application release notes for the breaking changes.
+
+* **Breaking:** Use the common library built-in configMap for configuration.
 
 #### Fixed
 
