@@ -82,6 +82,11 @@ N/A
 | env.PHOTOPRISM_ORIGINALS_PATH | string | `"/photoprism/originals"` | Photoprism originals path |
 | env.PHOTOPRISM_PUBLIC | string | `"false"` | Disable authentication / password protection |
 | env.PHOTOPRISM_STORAGE_PATH | string | `"/photoprism/storage"` | Photoprism storage path |
+| env.PHOTOPRISM_DATABASE_DRIVER | string | `"sqlite"` | Database driver (sqlite, mysql) |
+| env.PHOTOPRISM_DATABASE_SERVER | string | `"photoprism-mariadb:3306"` | Database host incl. port |
+| env.PHOTOPRISM_DATABASE_NAME | string | `"photoprism"` | Database schema name |
+| env.PHOTOPRISM_DATABASE_USER | string | `"photoprism"` | Database user name |
+| env.PHOTOPRISM_DATABASE_PASSWORD | string | `"photoprism"` | Database user password |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | env.UID | string | `nil` | Sets UID Photoprism runs under. |
 | env.UMASK | string | `nil` | Sets UMASK. |
@@ -89,6 +94,7 @@ N/A
 | image.repository | string | `"photoprism/photoprism"` | image repository |
 | image.tag | string | `"20211018"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
