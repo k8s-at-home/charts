@@ -125,7 +125,7 @@ N/A
 
 #### Changed
 
-N/A
+* **Breaking**: `alias` content moved from `maddy.alias` to `maddy.config_files.alias`
 
 #### Fixed
 

@@ -94,7 +94,8 @@ N/A
 
 #### Changed
 
-N/A
+* Upgrade RTSPtoWeb to v2.2.0
+* **BREAKING** The config directory is now located at `/config/config.json`
 
 #### Fixed
 
