@@ -1,0 +1,25 @@
+apiVersion: v2
+appVersion: v0.9
+description: The Archive Team Warrior is a virtual archiving appliance. You can run it to help with the Archive Team archiving efforts. It will download sites and upload them to our archive—and it’s really easy to do!
+name: warrior
+version: v0.9
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - warrior
+  - archiveteam
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/warrior
+# icon: https://avatars1.githubusercontent.com/u/3368377?s=400&v=4
+sources:
+  - https://wiki.archiveteam.org/index.php/ArchiveTeam_Warrior
+  - https://github.com/ArchiveTeam/warrior-dockerfile
+maintainers:
+  - name: stimmerman
+    email: sander@red9.nl
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `common` chart dependency to version `4.3.0`.
