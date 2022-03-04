@@ -1,6 +1,6 @@
 # ghost
 
-![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![AppVersion: 4.27.2](https://img.shields.io/badge/AppVersion-4.27.2-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 4.37.0](https://img.shields.io/badge/AppVersion-4.37.0-informational?style=flat-square)
 
 Ghost is a blogging and publishing software
 
@@ -86,7 +86,7 @@ N/A
 | env.url | string | `"http://some-ghost.example.com"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghost"` | image repository |
-| image.tag | string | `"4.27.2"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb.architecture | string | `"standalone"` |  |
 | mariadb.auth.database | string | `"ghost"` |  |
@@ -100,7 +100,7 @@ N/A
 
 ## Changelog
 
-### Version 1.1.2
+### Version 1.2.0
 
 #### Added
 
@@ -108,11 +108,11 @@ N/A
 
 #### Changed
 
-N/A
+* Upgrade `appversion` from 4.27.2 to 4.37.0.
 
 #### Fixed
 
-* Fixed database host to match mariadb-svc
+N/A
 
 ### Older versions
 
