@@ -2,18 +2,20 @@ apiVersion: v2
 appVersion: 1.5.0
 description: Paperless - Index and archive all of your scanned paper documents
 name: paperless
-version: 8.3.0
+version: 8.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - paperless
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paperless
 icon: https://avatars.githubusercontent.com/u/47271576?s=200&v=4
 sources:
-  - https://github.com/jonaswinkler/paperless-ng
+  - https://github.com/paperless-ngx/paperless-ngx
 maintainers:
   - name: mr-onion-2
   - name: jonnobrow
     email: jonathan@jonnobrow.co.uk
+  - name: morremeyer
+    email: charts@mor.re
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
@@ -29,8 +31,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
-    - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.14.4`.
-    - kind: changed
-      description: Upgraded `redis` chart dependency to version `15.6.10`.
+      description: Changed image and source links to the community fork paperless-ngx. See https://github.com/jonaswinkler/paperless-ng/issues/1599 and https://github.com/jonaswinkler/paperless-ng/issues/1632.
