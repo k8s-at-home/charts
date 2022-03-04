@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 8.3.0](https://img.shields.io/badge/Version-8.3.0-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 8.4.0](https://img.shields.io/badge/Version-8.4.0-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -8,7 +8,7 @@ Paperless - Index and archive all of your scanned paper documents
 
 ## Source Code
 
-* <https://github.com/jonaswinkler/paperless-ng>
+* <https://github.com/paperless-ngx/paperless-ngx>
 
 ## Requirements
 
@@ -76,14 +76,14 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | See the following files for additional environment variables: https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/ https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example |
+| env | object | See below | See the following files for additional environment variables: https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose/ https://github.com/paperless-ngx/paperless-ngx/blob/main/paperless.conf.example |
 | env.COMPOSE_PROJECT_NAME | string | `"paperless"` | Project name |
 | env.PAPERLESS_DBHOST | string | `nil` | Database host to use |
 | env.PAPERLESS_OCR_LANGUAGE | string | `"eng"` | OCR languages to install |
 | env.PAPERLESS_REDIS | string | `nil` | Redis to use |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"jonaswinkler/paperless-ng"` | image repository |
-| image.tag | string | `"1.5.0"` | image tag |
+| image.repository | string | `"ghcr.io/paperless-ngx/paperless-ngx"` | image repository |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence.consume | object | See values.yaml | Configure volume to monitor for new documents. |
 | persistence.data | object | See values.yaml | Configure persistence for data. |
@@ -95,7 +95,7 @@ N/A
 
 ## Changelog
 
-### Version 8.3.0
+### Version 8.4.0
 
 #### Added
 
@@ -103,9 +103,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
-* Upgraded `postgresql` chart dependency to version `10.14.4`.
-* Upgraded `redis` chart dependency to version `15.6.10`.
+* Changed image and source links to the community fork paperless-ngx. See https://github.com/jonaswinkler/paperless-ng/issues/1599 and https://github.com/jonaswinkler/paperless-ng/issues/1632.
 
 #### Fixed
 

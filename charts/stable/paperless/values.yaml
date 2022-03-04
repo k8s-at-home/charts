@@ -7,15 +7,16 @@
 
 image:
   # -- image repository
-  repository: jonaswinkler/paperless-ng
+  repository: ghcr.io/paperless-ngx/paperless-ngx
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: 1.5.0
+  # @default -- chart.appVersion
+  tag:
 
 # -- See the following files for additional environment variables:
-# https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/
-# https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example
+# https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose/
+# https://github.com/paperless-ngx/paperless-ngx/blob/main/paperless.conf.example
 # @default -- See below
 env:
   # -- Project name
