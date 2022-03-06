@@ -9,9 +9,10 @@ image:
   # -- image repository
   repository: atdr.meo.ws/archiveteam/warrior-dockerfile
   # -- image tag
-  tag: latest
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
