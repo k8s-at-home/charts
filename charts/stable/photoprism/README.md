@@ -1,6 +1,6 @@
 # photoprism
 
-![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![AppVersion: 20211018](https://img.shields.io/badge/AppVersion-20211018-informational?style=flat-square)
+![Version: 6.4.0](https://img.shields.io/badge/Version-6.4.0-informational?style=flat-square) ![AppVersion: 20220121](https://img.shields.io/badge/AppVersion-20220121-informational?style=flat-square)
 
 PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
 
@@ -19,6 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -79,6 +80,11 @@ N/A
 | env | object | See below | environment variables. See [image docs](https://docs.photoprism.org/getting-started/config-options/) for more details. |
 | env.GID | string | `nil` | Sets GID Photoprism runs under. |
 | env.PHOTOPRISM_ADMIN_PASSWORD | string | `"please-change"` | Initial admin password. **BE SURE TO CHANGE THIS!** |
+| env.PHOTOPRISM_DATABASE_DRIVER | string | `"sqlite"` | Database driver (sqlite, mysql) |
+| env.PHOTOPRISM_DATABASE_NAME | string | `"photoprism"` | Database schema name |
+| env.PHOTOPRISM_DATABASE_PASSWORD | string | `"photoprism"` | Database user password |
+| env.PHOTOPRISM_DATABASE_SERVER | string | `"photoprism-mariadb:3306"` | Database host incl. port |
+| env.PHOTOPRISM_DATABASE_USER | string | `"photoprism"` | Database user name |
 | env.PHOTOPRISM_ORIGINALS_PATH | string | `"/photoprism/originals"` | Photoprism originals path |
 | env.PHOTOPRISM_PUBLIC | string | `"false"` | Disable authentication / password protection |
 | env.PHOTOPRISM_STORAGE_PATH | string | `"/photoprism/storage"` | Photoprism storage path |
@@ -87,22 +93,23 @@ N/A
 | env.UMASK | string | `nil` | Sets UMASK. |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"photoprism/photoprism"` | image repository |
-| image.tag | string | `"20211018"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 6.3.0
+### Version 6.4.0
 
 #### Added
 
-N/A
+* Added MariaDB database support.
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Bumped application version to `20220121`.
 
 #### Fixed
 
