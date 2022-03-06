@@ -1,0 +1,62 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: thetorproject/obfs4-bridge
+  # -- image tag
+  tag: "0.10"
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# @default -- See below
+env:
+  # -- Your bridge's Tor port.
+  # @default -- 9001
+  OR_PORT: 9001
+  # -- Your bridge's obfs4 port.
+  # @default -- 993
+  PT_PORT: 993
+  # -- Your email address.
+  # @default -- someone@example.com
+  EMAIL: someone@example.com
+  # -- If you want, you could change the nickname of your bridge
+  # @default -- DockerObfs4Bridge
+  NICKNAME: DockerObfs4Bridge
+  # -- Activate additional variables processing
+  # @default -- 1 (true)
+  OBFS4_ENABLE_ADDITIONAL_VARIABLES: 1
+  # -- Disable IPv6 for the bridge
+  # @default -- 1 (true)
+  OBFS4V_AddressDisableIPv6: 1
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    enabled: true
+    ports:
+      http:
+        enabled: false
+      or-tcp:
+        enabled: true
+        port: 9001
+        protocol: TCP
+        targetPort: 9001
+      pt-tcp:
+        enabled: true
+        port: 993
+        protocol: TCP
+        targetPort: 993
+    externalTrafficPolicy: Local
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: true
+    mountPath: /var/lib/tor

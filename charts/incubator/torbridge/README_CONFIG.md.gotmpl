@@ -1,0 +1,18 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+Make sure that both ports are forwarded in your firewall for the Tor bridge to work.
+To use your new bridge in Tor Browser, you need its "bridge line". Here's how you can get your bridge line:
+
+`kubectl exec POD_NAME -- get-bridge-line`
+
+This will return a string similar to the following:
+```
+obfs4 1.2.3.4:1234 B0E566C9031657EA7ED3FC9D248E8AC4F37635A4 cert=OYWq67L7MDApdJCctUAF7rX8LHvMxvIBPHOoAp0+YXzlQdsxhw6EapaMNwbbGICkpY8CPQ iat-mode=0
+```
+
+{{- end -}}

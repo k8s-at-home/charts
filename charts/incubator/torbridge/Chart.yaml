@@ -1,0 +1,26 @@
+apiVersion: v2
+appVersion: "0.10"
+description: Tor obfs4 bridge to help censored users connect to the Tor network.
+name: torbridge
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - bridge
+  - privacy
+  - security
+  - tor
+sources:
+  - https://community.torproject.org/relay/setup/bridge/docker/
+  - https://gitlab.torproject.org/tpo/anti-censorship/docker-obfs4-bridge/
+icon: https://community.torproject.org/static/images/tor-logo@2x.png?h=16ad42bc
+maintainers:
+  - name: stimmerman
+    email: sander@red9.nl
+dependencies:
+  - name: common
+    version: 4.3.0
+    repository: https://library-charts.k8s-at-home.com
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial chart version.
