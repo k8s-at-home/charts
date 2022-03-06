@@ -183,3 +183,4 @@
 | [strongswan](incubator/strongswan) | strongSwan – the OpenSource IPsec-based VPN Solution |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
 | [torrserver](incubator/torrserver) | TorrServer streams torrent to http |
+| [warrior](incubator/warrior) | The Archive Team Warrior is a virtual archiving appliance. You can run it to help with the Archive Team archiving efforts. It will download sites and upload them to our archive—and it’s really easy to do! |
