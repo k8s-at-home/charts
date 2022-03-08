@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 12.0.1](https://img.shields.io/badge/Version-12.0.1-informational?style=flat-square) ![AppVersion: 2021.12.7](https://img.shields.io/badge/AppVersion-2021.12.7-informational?style=flat-square)
+![Version: 12.1.0](https://img.shields.io/badge/Version-12.1.0-informational?style=flat-square) ![AppVersion: 2022.3.2](https://img.shields.io/badge/AppVersion-2022.3.2-informational?style=flat-square)
 
 Home Assistant
 
@@ -155,8 +155,8 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"homeassistant/home-assistant"` | image repository |
-| image.tag | string | `"2021.12.7"` | image tag |
+| image.repository | string | `"ghcr.io/home-assistant/home-assistant"` | image repository |
+| image.tag | string | chart.appVersion | image tag |
 | influxdb | object | See values.yaml | Enable and configure influxdb database subchart under this key.    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb) |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
@@ -175,7 +175,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 ## Changelog
 
-### Version 12.0.1
+### Version 12.1.0
 
 #### Added
 
@@ -183,7 +183,8 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `10.14.4`.
+* Easier maintainability by having to change appversion in one place.
+* Upgraded `appVersion` to version `2022.3.2`.
 
 #### Fixed
 
