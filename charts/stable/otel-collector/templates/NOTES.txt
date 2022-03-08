@@ -1,0 +1,6 @@
+Send telemetry to this pod via the clusterIP:
+
+1. http://{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.otlpports.ports.otlpgrpc.port }}
+2. GRPC to {{ include "common.names.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.otlpports.ports.otlphttp.port }}
+
+It will then be processed and sent to exporters based on the configFile or configFileSecret.

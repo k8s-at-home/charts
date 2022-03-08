@@ -1,0 +1,99 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+The open telemetry collector is used to receive, process, and deliver open telemetry traces to a backend.
+There are many backends that can be used by setting "exporter" configurations.
+The example configuration in the repository sends data to [Honeycomb.io](https://honeycomb.io) since they provide a free plan with 50,000,000 events per month.
+See the values.yaml file for an example configuration and reference the [Open Telemetry docs](https://opentelemetry.io/docs/collector/configuration/) for additional options.
+
+Be sure to replace all configurations in the values file which are encased in double brackets like `[[something]]`.
+The example below has many different telemetry system configurations for example purposes.
+Most people will have only one telemetry backend, though the example shows how to send to multiple.
+If you do not wish to use a service, for example to remove NewRelic delete the exporter called `otlp/newrelic` and then remove pipeline `traces/2` which sends to that exporter and remove the `otlp/newrelic` exporter from the metrics pipeline.
+
+```yaml
+configFile: |-
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
+  processors:
+    batch:
+    memory_limiter:
+      # 80% of maximum memory up to 2G
+      limit_mib: 1500
+      # 25% of limit up to 2G
+      spike_limit_mib: 512
+      check_interval: 5s
+
+  extensions:
+    health_check:
+      endpoint: 0.0.0.0:13133
+    zpages: {}
+    memory_ballast:
+      # Memory Ballast size should be max 1/3 to 1/2 of memory.
+      size_mib: 683
+  exporters:
+    logging:
+      logLevel: debug
+
+    otlp/honeycombtraces:
+      endpoint: api.honeycomb.io:443
+      headers:
+        x-honeycomb-team: [[YourAPIKeyHere]]
+        x-honeycomb-dataset: [[YouApplicationDataSetHere]]
+
+    otlp/newrelic:
+      endpoint: otlp.nr-data.net:4317
+      headers:
+        api-key: [[YourTokenHere]]
+
+    otlp/lightstep:
+      endpoint: ingest.lightstep.com:443
+      headers:
+        {"lightstep-access-token": "[[YourTokenHere]]"}
+
+    otlp/sapm:
+      access_token: [[YourTokenHere]]
+      access_token_passthrough: true
+      endpoint: https://ingest.us0.otlp/signalfx.com/v2/trace
+      max_connections: 100
+      num_workers: 8
+
+    otlp/signalfx:
+      access_token: [[YourTokenHere]]
+      realm: us0
+      correlation:
+  
+  service:
+    extensions: [zpages, memory_ballast, health_check]
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [memory_limiter, batch]
+        exporters: [otlp/honeycombtraces]
+
+      traces/2:
+        receivers: [otlp]
+        processors: [memory_limiter, batch]
+        exporters: [otlp/newrelic]
+
+      traces/3:
+        receivers: [otlp]
+        processors: [memory_limiter, attributes, batch]
+        exporters: [otlp/sapm, otlp/signalfx]
+
+      traces/4:
+        receivers: [otlp]
+        processors: [memory_limiter, batch]
+        exporters: [otlp/lightstep] 
+
+```
+{{- end -}}
