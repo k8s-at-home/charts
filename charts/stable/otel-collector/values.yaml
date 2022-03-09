@@ -13,8 +13,14 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
+# -- command is set to `otelcol` when using otel/opentelemetry-collector image but should be 
+# changed to `otelcontribcol` if the image is changed to otel/opentelemetry-collector-contrib.
+# @default -- otelcol
 command:
 - "/otelcol"
+
+# -- args is set to the config file which is mounted via the configFileSecret or configFile
+# @default -- Set to the hard-coded volume mount.
 args:
 - "--config=/conf/otel-collector-config.yaml"
 
@@ -25,7 +31,7 @@ env:
   TZ: UTC
 
 # -- Configures service settings for the chart.
-# @default -- See values.yaml
+# @default -- The defaults expose the services needed to receive http and otlp traces
 service:
   main:
     enabled: false
@@ -52,6 +58,8 @@ service:
         port: 8888
         targetPort: 8888
 
+# probes is configured to use an otel extension to get health information from the pod
+# @default -- expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133` 
 probes:
   liveness:
     enabled: true
@@ -71,12 +79,14 @@ probes:
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
+  # This OTEL Collector is built to trust items within the same cluster so
+  # exposing externally will allow unauthenticated traces to be processed.
   # @default -- See values.yaml
   main:
     enabled: false
 
 # -- Configure persistence settings for the chart under this key.
-# @default -- See values.yaml
+# @default -- This application does not require persistence aside from the mounted secret
 persistence: {}
   # data:
   #   enabled: false
@@ -87,82 +97,83 @@ persistence: {}
 # The secret needs a single key inside it called `otelConfigFile`
 configFileSecret:
 
-# -- Create a new secret with the following multi-line spec.
-configFile: |-
-  receivers:
-    otlp:
-      protocols:
-        grpc:
-          endpoint: "0.0.0.0:4317"
-        http:
-          endpoint: "0.0.0.0:4318"
-  processors:
-    batch:
-    memory_limiter:
-      # 80% of maximum memory up to 2G
-      limit_mib: 1500
-      # 25% of limit up to 2G
-      spike_limit_mib: 512
-      check_interval: 5s
-
-  extensions:
-    health_check:
-      endpoint: 0.0.0.0:13133
-    zpages: {}
-    memory_ballast:
-      # Memory Ballast size should be max 1/3 to 1/2 of memory.
-      size_mib: 683
-  exporters:
-    logging:
-      logLevel: debug
-
-    otlp/honeycombtraces:
-      endpoint: api.honeycomb.io:443
-      headers:
-        x-honeycomb-team: [[YourAPIKeyHere]]
-        x-honeycomb-dataset: [[YouApplicationDataSetHere]]
-
-    otlp/newrelic:
-      endpoint: otlp.nr-data.net:4317
-      headers:
-        api-key: [[YourTokenHere]]
-
-    otlp/lightstep:
-      endpoint: ingest.lightstep.com:443
-      headers:
-        {"lightstep-access-token": "[[YourTokenHere]]"}
-
-    otlp/sapm:
-      access_token: [[YourTokenHere]]
-      access_token_passthrough: true
-      endpoint: https://ingest.us0.otlp/signalfx.com/v2/trace
-      max_connections: 100
-      num_workers: 8
-
-    otlp/signalfx:
-      access_token: [[YourTokenHere]]
-      realm: us0
-      correlation:
-
-  service:
-    extensions: [zpages, memory_ballast, health_check]
-    pipelines:
-      traces:
-        receivers: [otlp]
-        processors: [memory_limiter, batch]
-        exporters: [otlp/honeycombtraces]
-
-      traces/2:
-        receivers: [otlp]
-        processors: [memory_limiter, batch]
-        exporters: [otlp/newrelic]
-
-      traces/3:
-        receivers: [otlp]
-        processors: [memory_limiter, attributes, batch]
-        exporters: [otlp/sapm, otlp/signalfx]
-
-      traces/4:
-        receivers: [otlp]
-        processors: [memory_limiter, batch]
-        exporters: [otlp/lightstep]
+# -- Create a new secret with the following multi-line spec which gets mounted
+# to /conf/otel-collector-config.yamls
+configFile: # |-
+#  receivers:
+#    otlp:
+#      protocols:
+#        grpc:
+#          endpoint: "0.0.0.0:4317"
+#        http:
+#          endpoint: "0.0.0.0:4318"
+#  processors:
+#    batch:
+#    memory_limiter:
+#      # 80% of maximum memory up to 2G
+#      limit_mib: 1500
+#      # 25% of limit up to 2G
+#      spike_limit_mib: 512
+#      check_interval: 5s
+#
+#  extensions:
+#    health_check:
+#      endpoint: 0.0.0.0:13133
+#    zpages: {}
+#    memory_ballast:
+#      # Memory Ballast size should be max 1/3 to 1/2 of memory.
+#      size_mib: 683
+#  exporters:
+#    logging:
+#      logLevel: debug
+#
+#    otlp/honeycombtraces:
+#      endpoint: api.honeycomb.io:443
+#      headers:
+#        x-honeycomb-team: [[YourAPIKeyHere]]
+#        x-honeycomb-dataset: [[YouApplicationDataSetHere]]
+#
+#    otlp/newrelic:
+#      endpoint: otlp.nr-data.net:4317
+#      headers:
+#        api-key: [[YourTokenHere]]
+#
+#    otlp/lightstep:
+#      endpoint: ingest.lightstep.com:443
+#      headers:
+#        {"lightstep-access-token": "[[YourTokenHere]]"}
+#
+#    otlp/sapm:
+#      access_token: [[YourTokenHere]]
+#      access_token_passthrough: true
+#      endpoint: https://ingest.us0.otlp/signalfx.com/v2/trace
+#      max_connections: 100
+#      num_workers: 8
+#
+#    otlp/signalfx:
+#      access_token: [[YourTokenHere]]
+#      realm: us0
+#      correlation:
+#
+#  service:
+#    extensions: [zpages, memory_ballast, health_check]
+#    pipelines:
+#      traces:
+#        receivers: [otlp]
+#        processors: [memory_limiter, batch]
+#        exporters: [otlp/honeycombtraces]
+#
+#      traces/2:
+#        receivers: [otlp]
+#        processors: [memory_limiter, batch]
+#        exporters: [otlp/newrelic]
+#
+#      traces/3:
+#        receivers: [otlp]
+#        processors: [memory_limiter, attributes, batch]
+#        exporters: [otlp/sapm, otlp/signalfx]
+#
+#      traces/4:
+#        receivers: [otlp]
+#        processors: [memory_limiter, batch]
+#        exporters: [otlp/lightstep]
