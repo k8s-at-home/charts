@@ -71,7 +71,7 @@ configFile: |-
       access_token: [[YourTokenHere]]
       realm: us0
       correlation:
-  
+
   service:
     extensions: [zpages, memory_ballast, health_check]
     pipelines:
@@ -93,7 +93,7 @@ configFile: |-
       traces/4:
         receivers: [otlp]
         processors: [memory_limiter, batch]
-        exporters: [otlp/lightstep] 
+        exporters: [otlp/lightstep]
 
 ```
 {{- end -}}
