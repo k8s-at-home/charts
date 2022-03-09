@@ -58,7 +58,7 @@ service:
         port: 8888
         targetPort: 8888
 
-# probes is configured to use an otel extension to get health information from the pod
+# -- probes is configured to use an otel extension to get health information from the pod
 # @default -- expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133` 
 probes:
   liveness:
@@ -81,7 +81,7 @@ ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # This OTEL Collector is built to trust items within the same cluster so
   # exposing externally will allow unauthenticated traces to be processed.
-  # @default -- See values.yaml
+  # @default -- disabled
   main:
     enabled: false
 

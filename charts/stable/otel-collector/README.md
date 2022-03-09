@@ -37,18 +37,9 @@ Kubernetes: `>=1.16.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"otel/opentelemetry-collector"` | image repository |
 | image.tag | string | `"0.46.0"` | image tag |
-| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. This OTEL Collector is built to trust items within the same cluster so exposing externally will allow unauthenticated traces to be processed. |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| probes.liveness.custom | bool | `true` |  |
-| probes.liveness.enabled | bool | `true` |  |
-| probes.liveness.spec.failureThreshold | int | `3` |  |
-| probes.liveness.spec.httpGet.path | string | `"/"` |  |
-| probes.liveness.spec.httpGet.port | int | `13133` |  |
-| probes.liveness.spec.initialDelaySeconds | int | `30` |  |
-| probes.liveness.spec.periodSeconds | int | `10` |  |
-| probes.liveness.spec.timeoutSeconds | int | `1` |  |
-| probes.readiness.enabled | bool | `false` |  |
-| probes.startup.enabled | bool | `false` |  |
+| ingress.main | object | disabled | Enable and configure ingress settings for the chart under this key. This OTEL Collector is built to trust items within the same cluster so exposing externally will allow unauthenticated traces to be processed. |
+| persistence | object | This application does not require persistence aside from the mounted secret | Configure persistence settings for the chart under this key. |
+| probes | object | expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133`  | probes is configured to use an otel extension to get health information from the pod |
 | service | object | The defaults expose the services needed to receive http and otlp traces | Configures service settings for the chart. |
 
 ----------------------------------------------
