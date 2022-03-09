@@ -2,9 +2,15 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-otel-collector helm package
+OpenTelemetry collector helm package
 
-**This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
+**Homepage:** <https://github.com/k8s-at-home/charts/tree/master/charts/stable/otel-collector>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| Mike Terhar | mike@terhar.com |  |
 
 ## Source Code
 
@@ -14,98 +20,36 @@ otel-collector helm package
 
 Kubernetes: `>=1.16.0-0`
 
-## Dependencies
-
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.0.0 |
-
-## TL;DR
-
-```console
-helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm repo update
-helm install otel-collector k8s-at-home/otel-collector
-```
-
-## Installing the Chart
-
-To install the chart with the release name `otel-collector`
-
-```console
-helm install otel-collector k8s-at-home/otel-collector
-```
-
-## Uninstalling the Chart
-
-To uninstall the `otel-collector` deployment
-
-```console
-helm uninstall otel-collector
-```
-
-The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
-
-## Configuration
-
-Read through the [values.yaml](./values.yaml) file. It has several commented out suggested values.
-Other values may be used from the [values.yaml](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml) from the [common library](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common).
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
-
-```console
-helm install otel-collector \
-  --set env.TZ="America/New York" \
-    k8s-at-home/otel-collector
-```
-
-Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
-
-```console
-helm install otel-collector k8s-at-home/otel-collector -f values.yaml
-```
-
-## Custom configuration
-
-N/A
+| https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## Values
 
-**Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
-
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| args[0] | string | `"--config=/conf/otel-collector-config.yaml"` |  |
+| command[0] | string | `"/otelcol"` |  |
+| configFile | string | `"receivers:\n  otlp:\n    protocols:\n      grpc:\n        endpoint: \"0.0.0.0:4317\"\n      http:\n        endpoint: \"0.0.0.0:4318\"\nprocessors:\n  batch:\n  memory_limiter:\n    # 80% of maximum memory up to 2G\n    limit_mib: 1500\n    # 25% of limit up to 2G\n    spike_limit_mib: 512\n    check_interval: 5s\n\nextensions:\n  health_check:\n    endpoint: 0.0.0.0:13133\n  zpages: {}\n  memory_ballast:\n    # Memory Ballast size should be max 1/3 to 1/2 of memory.\n    size_mib: 683\nexporters:\n  logging:\n    logLevel: debug\n\n  otlp/honeycombtraces:\n    endpoint: api.honeycomb.io:443\n    headers:\n      x-honeycomb-team: [[YourAPIKeyHere]]\n      x-honeycomb-dataset: [[YouApplicationDataSetHere]]\n\n  otlp/newrelic:\n    endpoint: otlp.nr-data.net:4317\n    headers:\n      api-key: [[YourTokenHere]]\n\n  otlp/lightstep:\n    endpoint: ingest.lightstep.com:443\n    headers:\n      {\"lightstep-access-token\": \"[[YourTokenHere]]\"}\n\n  otlp/sapm:\n    access_token: [[YourTokenHere]]\n    access_token_passthrough: true\n    endpoint: https://ingest.us0.otlp/signalfx.com/v2/trace\n    max_connections: 100\n    num_workers: 8\n\n  otlp/signalfx:\n    access_token: [[YourTokenHere]]\n    realm: us0\n    correlation:\n\nservice:\n  extensions: [zpages, memory_ballast, health_check]\n  pipelines:\n    traces:\n      receivers: [otlp]\n      processors: [memory_limiter, batch]\n      exporters: [otlp/honeycombtraces]\n\n    traces/2:\n      receivers: [otlp]\n      processors: [memory_limiter, batch]\n      exporters: [otlp/newrelic]\n\n    traces/3:\n      receivers: [otlp]\n      processors: [memory_limiter, attributes, batch]\n      exporters: [otlp/sapm, otlp/signalfx]\n\n    traces/4:\n      receivers: [otlp]\n      processors: [memory_limiter, batch]\n      exporters: [otlp/lightstep]"` | Create a new secret with the following multi-line spec. |
+| configFileSecret | string | `nil` | Configure the open telemetry secret using an existing secret or create a configuration file using the `configFile` below The secret needs a single key inside it called `otelConfigFile` |
 | env | object | See below | environment variables. See more environment variables in the [otel-collector documentation](https://otel-collector.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"otel-collector/otel-collector"` | image repository |
-| image.tag | string | `"1.0.0"` | image tag |
+| image.repository | string | `"otel/opentelemetry-collector"` | image repository |
+| image.tag | string | `"0.46.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| probes.liveness.custom | bool | `true` |  |
+| probes.liveness.enabled | bool | `true` |  |
+| probes.liveness.spec.failureThreshold | int | `3` |  |
+| probes.liveness.spec.httpGet.path | string | `"/"` |  |
+| probes.liveness.spec.httpGet.port | int | `13133` |  |
+| probes.liveness.spec.initialDelaySeconds | int | `30` |  |
+| probes.liveness.spec.periodSeconds | int | `10` |  |
+| probes.liveness.spec.timeoutSeconds | int | `1` |  |
+| probes.readiness.enabled | bool | `false` |  |
+| probes.startup.enabled | bool | `false` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
-## Changelog
-
-### Version 1.0.0
-
-#### Added
-
-- Initial version
-
-#### Changed
-
-N/A
-
-#### Fixed
-
-N/A
-
-## Support
-
-- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
-- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
-- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
-- Join our [Discord](https://discord.gg/sTMX7Vh) community
-
 ----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
+Autogenerated from chart metadata using [helm-docs v1.7.0](https://github.com/norwoodj/helm-docs/releases/v1.7.0)
