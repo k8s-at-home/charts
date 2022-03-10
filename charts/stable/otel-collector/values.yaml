@@ -13,7 +13,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- command is set to `otelcol` when using otel/opentelemetry-collector image but should be 
+# -- command is set to `otelcol` when using otel/opentelemetry-collector image but should be
 # changed to `otelcontribcol` if the image is changed to otel/opentelemetry-collector-contrib.
 # @default -- otelcol
 command:
@@ -59,7 +59,7 @@ service:
         targetPort: 8888
 
 # -- probes is configured to use an otel extension to get health information from the pod
-# @default -- expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133` 
+# @default -- expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133`
 probes:
   liveness:
     enabled: true
