@@ -1,0 +1,25 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Dockerized Signal Messenger REST API
+name: signal-cli-rest-api
+version: "0.57"
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - signal-cli-rest-api
+  - signal-messenger
+  - signal
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/signal-cli-rest-api
+icon: https://signal-cli-rest-api.org/icon
+sources:
+  - https://github.com/bbernhard/signal-cli-rest-api
+maintainers:
+  - name: vargat
+    url: https://github.com/tamasv
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
