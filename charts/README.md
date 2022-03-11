@@ -179,6 +179,7 @@
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [scrypted](incubator/scrypted) | scrypted helm package |
+| [signal-cli-rest-api](incubator/signal-cli-rest-api) | Dockerized Signal Messenger REST API |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [strongswan](incubator/strongswan) | strongSwan – the OpenSource IPsec-based VPN Solution |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
