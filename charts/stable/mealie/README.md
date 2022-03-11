@@ -1,6 +1,6 @@
 # mealie
 
-![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: v0.5.1](https://img.shields.io/badge/AppVersion-v0.5.1-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v0.5.6](https://img.shields.io/badge/AppVersion-v0.5.6-informational?style=flat-square)
 
 Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
 
@@ -77,11 +77,11 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://hay-kot.github.io/mealie/documentation/getting-started/install/#env-variables) for more details. |
-| env.DB_TYPE | string | `"sqlite"` | Set the application database type |
+| env.DB_ENGINE | string | `"sqlite"` | Set the application database type |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"hkotel/mealie"` | image repository |
-| image.tag | string | `"v0.5.1"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
@@ -89,7 +89,7 @@ N/A
 
 ## Changelog
 
-### Version 3.3.0
+### Version 4.0.0
 
 #### Added
 
@@ -97,8 +97,8 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
-* Upgraded `postgresql` chart dependency to version `10.14.4`.
+* Upgraded app version `v0.5.6`.
+* Removed deprecated DB_TYPE environment variable in favour of DB_ENGINE.
 
 #### Fixed
 
