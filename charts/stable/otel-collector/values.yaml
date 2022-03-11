@@ -154,3 +154,30 @@ configFile:  # |-
 #        receivers: [otlp]
 #        processors: [memory_limiter, batch]
 #        exporters: [otlp/lightstep]
+
+metrics:
+  # -- Configure Prometheus serviceMonitor for the built-in exporter.
+  # @default -- enabled: false is set so it can scrape itself but
+  # circular dependencies are never good enable this for a secondary scraper
+  enabled: false
+  serviceMonitor:
+    interval: 3m
+    scrapeTimeout: 1m
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: OtelCollectorDown
+      #   annotations:
+      #     description: Otel Collector service is down.
+      #     summary: Otel Collector is down.
+      #   expr: |
+      #     up == 0
+      #   for: 5m
+      #   labels:
+      #     severity: critical

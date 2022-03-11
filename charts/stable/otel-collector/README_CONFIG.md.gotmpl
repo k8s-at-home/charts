@@ -94,6 +94,12 @@ configFile: |-
         receivers: [otlp]
         processors: [memory_limiter, batch]
         exporters: [otlp/lightstep]
-
 ```
+
+To get the secret for troubleshooting, you can use a command like:
+
+```bash
+kubectl get secret -A --selector=configsecret=otelcollector -o go-template='{{range .items}}{{"----\n# "}}{{ .metadata.name }}{{"."}}{{ .metadata.namespace }}{{":"}}{{"\n"}}{{.data.otelConfigFile|base64decode}}{{end}}'
+```
+
 {{- end -}}
