@@ -77,6 +77,11 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See more environment variables in the [signal-cli-rest-api documentation](https://signal-cli-rest-api.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
+| env.MODE | string | `"native"` | Set the Execution mode. See https://github.com/bbernhard/signal-cli-rest-api#execution-modes |
+| env.AUTO_RECEIVE_SCHEDULE | string | `"0 22 * * *"` | Set the Auto receive schedule. See https://github.com/bbernhard/signal-cli-rest-api#auto-receive-schedule |
+| env.SIGNAL_CLI_CONFIG_DIR | string | `"/home/.local/share/signal-cli"` |  Set the config directory for the application. See https://github.com/bbernhard/signal-cli-rest-api#advanced-settings |
+| env.SIGNAL_CLI_UID | string | `"1000"` | Specifies the uid of the signal-api user inside the docker container. Defaults to 1000 |
+| env.SIGNAL_CLI_GID | string | `"1000"` | Specifies the gid of the signal-api group inside the docker container. Defaults to 1000 |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"signal-cli-rest-api/signal-cli-rest-api"` | image repository |
 | image.tag | string | `"1.0.0"` | image tag |
