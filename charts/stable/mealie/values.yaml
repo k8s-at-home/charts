@@ -9,7 +9,8 @@ image:
   # -- image repository
   repository: hkotel/mealie
   # -- image tag
-  tag: v0.5.1
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -19,7 +20,7 @@ env:
   # -- Set the container timezone
   TZ: UTC
   # -- Set the application database type
-  DB_TYPE: sqlite
+  DB_ENGINE: sqlite
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

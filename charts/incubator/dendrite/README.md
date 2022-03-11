@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![AppVersion: v0.6.3](https://img.shields.io/badge/AppVersion-v0.6.3-informational?style=flat-square)
+![Version: 3.0.2](https://img.shields.io/badge/Version-3.0.2-informational?style=flat-square) ![AppVersion: v0.6.3](https://img.shields.io/badge/AppVersion-v0.6.3-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -179,7 +179,7 @@ For more information see:
 
 ## Changelog
 
-### Version 3.0.1
+### Version 3.0.2
 
 #### Added
 
@@ -187,11 +187,11 @@ N/A
 
 #### Changed
 
-* Bumped app version to v0.6.3
+N/A
 
 #### Fixed
 
-N/A
+* Fixed image tag not being followed in polylith deployments
 
 ### Older versions
 

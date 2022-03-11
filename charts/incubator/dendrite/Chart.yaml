@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.6.3
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 3.0.1
+version: 3.0.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -87,5 +87,5 @@ dependencies:
     condition: dendrite.polylithEnabled
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Bumped app version to v0.6.3
+    - kind: fixed
+      description: Fixed image tag not being followed in polylith deployments
