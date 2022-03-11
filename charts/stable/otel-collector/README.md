@@ -1,6 +1,6 @@
 # otel-collector
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.46.0](https://img.shields.io/badge/AppVersion-0.46.0-informational?style=flat-square)
 
 OpenTelemetry collector helm package
 
@@ -10,7 +10,7 @@ OpenTelemetry collector helm package
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Mike Terhar | mike@terhar.com |  |
+| mterhar | mike@terhar.com |  |
 
 ## Source Code
 
@@ -28,18 +28,14 @@ Kubernetes: `>=1.16.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| args | list | Set to the hard-coded volume mount. | args is set to the config file which is mounted via the configFileSecret or configFile |
-| command | list | otelcol | command is set to `otelcol` when using otel/opentelemetry-collector image but should be  changed to `otelcontribcol` if the image is changed to otel/opentelemetry-collector-contrib. |
-| configFile | string | `nil` | Create a new secret with the following multi-line spec which gets mounted to /conf/otel-collector-config.yamls |
+| command | list | otelcol | command is set to `otelcol` when using otel/opentelemetry-collector image but should be changed to `otelcontribcol` if the image is changed to otel/opentelemetry-collector-contrib. |
+| configFile | string | `nil` | Create a new secret with the following multi-line spec which gets mounted to /conf/otel-collector-config.yaml. For more information, see the [otel docs](https://opentelemetry.io/docs/collector/configuration/) |
 | configFileSecret | string | `nil` | Configure the open telemetry secret using an existing secret or create a configuration file using the `configFile` below The secret needs a single key inside it called `otelConfigFile` |
-| env | object | See below | environment variables. See more environment variables in the [otel-collector documentation](https://otel-collector.org/docs). |
-| env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"otel/opentelemetry-collector"` | image repository |
-| image.tag | string | `"0.46.0"` | image tag |
+| image.tag | string | `nil` | image tag |
 | ingress.main | object | disabled | Enable and configure ingress settings for the chart under this key. This OTEL Collector is built to trust items within the same cluster so exposing externally will allow unauthenticated traces to be processed. |
-| persistence | object | This application does not require persistence aside from the mounted secret | Configure persistence settings for the chart under this key. |
-| probes | object | expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133`  | probes is configured to use an otel extension to get health information from the pod |
+| probes | object | expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133` | probes is configured to use an otel extension to get health information from the pod |
 | service | object | The defaults expose the services needed to receive http and otlp traces | Configures service settings for the chart. |
 
 ----------------------------------------------

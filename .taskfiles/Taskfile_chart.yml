@@ -52,7 +52,7 @@ tasks:
 
   helm-docs:
     desc: generate helm-docs
-    dir: "{{.GIT_ROOT}}/hack"
+    dir: "{{.GIT_ROOT}}/.github/scripts"
     cmds:
     - ./gen-helm-docs.sh "{{.CHART_TYPE}}" "{{.CHART}}"
     deps:

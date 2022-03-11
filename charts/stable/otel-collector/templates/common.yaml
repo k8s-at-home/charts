@@ -1,20 +1,30 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{- define "otel-collector.configVolume" -}}
-{{/* Append the secret volume to the volumes */}}
-enabled: true
-mountPath: "/conf/otel-collector-config.yaml"
-subPath: "otelConfigFile"
-type: "custom"
-volumeSpec:
-  secret:
-    {{- if .Values.configFileSecret }}
-    secretName: "{{ .Values.configSecretName }}"
-    {{- else }}
-    secretName: "{{ include "common.names.fullname" . }}-otelconfig"
-    {{- end }}
+{{/* Append the hardcoded settings */}}
+{{- define "otel-collector.harcodedValues" -}}
+  {{/* merge config file path argument which is hard coded*/}}
+  args:
+  - "--config=/conf/otel-collector-config.yaml"
+
+  {{- if or .Values.configSecret .Values.configSecretName }}
+  {{/* Append the config secret volume to the volumes */}}
+  persistence:
+    otel-config-file:
+      enabled: true
+      type: "custom"
+      mountPath: "/conf/otel-collector-config.yaml"
+      subPath: "otelConfigFile"
+      volumeSpec:
+        secret:
+          {{- if .Values.configFileSecret }}
+          secretName: "{{ .Values.configSecretName }}"
+          {{- else }}
+          secretName: "{{ include "common.names.fullname" . }}-otelconfig"
+          {{- end }}
+  {{- end }}
 {{- end -}}
-{{- $_ := set .Values.persistence "otel-config-file" (include "otel-collector.configVolume" . | fromYaml) -}}
+{{- $_ := mergeOverwrite .Values (include "otel-collector.harcodedValues" . | fromYaml) -}}
+
 
 {{ include "common.all" . }}
