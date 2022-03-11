@@ -1,0 +1,50 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: bbernhard/signal-cli-rest-api
+  # -- image tag
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [signal-cli-rest-api documentation](https://github.com/bbernhard/signal-cli-rest-api).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Set the Execution mode. See https://github.com/bbernhard/signal-cli-rest-api#execution-modes
+  MODE: native
+  # -- Set the Auto receive schedule. See https://github.com/bbernhard/signal-cli-rest-api#auto-receive-schedule
+  # AUTO_RECEIVE_SCHEDULE="0 22 * * *"
+  # -- Set the config directory for the application. See https://github.com/bbernhard/signal-cli-rest-api#advanced-settings
+  # SIGNAL_CLI_CONFIG_DIR: "/home/.local/share/signal-cli"
+  # --  Specifies the uid of the signal-api user inside the docker container. Defaults to 1000
+  # SIGNAL_CLI_UID: 1000
+  # -- Specifies the gid of the signal-api group inside the docker container. Defaults to 1000
+  # SIGNAL_CLI_GID: 1000
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
+    mountPath: /home/.local/share/signal-cli
