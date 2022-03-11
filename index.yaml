@@ -75576,6 +75576,36 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/shlink-1.0.0/shlink-1.0.0.tgz
     version: 1.0.0
+  signal-cli-rest-api:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: "0.57"
+    created: "2022-03-11T13:13:05.09985939Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Dockerized Signal Messenger REST API
+    digest: 8c265109de4630ba4315694aea6ddaf59dab08ad9255d5f12488b46871be9314
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/signal-cli-rest-api
+    icon: https://signal-cli-rest-api.org/icon
+    keywords:
+    - signal-cli-rest-api
+    - signal-messenger
+    - signal
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: vargat
+      url: https://github.com/tamasv
+    name: signal-cli-rest-api
+    sources:
+    - https://github.com/bbernhard/signal-cli-rest-api
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/signal-cli-rest-api-1.0.0/signal-cli-rest-api-1.0.0.tgz
+    version: 1.0.0
   sinusbot:
   - annotations:
       artifacthub.io/changes: |
@@ -100200,4 +100230,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-11T10:57:48.257919349Z"
+generated: "2022-03-11T13:13:05.117123115Z"
