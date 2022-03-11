@@ -7,7 +7,6 @@
   args:
   - "--config=/conf/otel-collector-config.yaml"
 
-  {{- if or .Values.configSecret .Values.configSecretName }}
   {{/* Append the config secret volume to the volumes */}}
   persistence:
     otel-config-file:
@@ -22,7 +21,6 @@
           {{- else }}
           secretName: "{{ include "common.names.fullname" . }}-otelconfig"
           {{- end }}
-  {{- end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "otel-collector.harcodedValues" . | fromYaml) -}}
 

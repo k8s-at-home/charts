@@ -7,17 +7,11 @@
 
 image:
   # -- image repository
-  repository: otel/opentelemetry-collector
+  repository: otel/opentelemetry-collector-contrib
   # -- image tag
   tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
-
-# -- command is set to `otelcol` when using otel/opentelemetry-collector image but should be
-# changed to `otelcontribcol` if the image is changed to otel/opentelemetry-collector-contrib.
-# @default -- otelcol
-command:
-- "/otelcol"
 
 # -- Configures service settings for the chart.
 # @default -- The defaults expose the services needed to receive http and otlp traces
