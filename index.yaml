@@ -57102,6 +57102,44 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgrade to 1.6.0 and set default value for PAPERLESS_PORT to prevent CrashLoopBackoff. See https://github.com/paperless-ngx/paperless-ngx/issues/264.
+    apiVersion: v2
+    appVersion: 1.6.0
+    created: "2022-03-11T10:57:48.237833106Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.14.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.6.10
+    description: Paperless - Index and archive all of your scanned paper documents
+    digest: 6e2e41cb3860868926ef2922924a9a6aa83a03444a8bab6ca99c0c0c8490d0b7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paperless
+    icon: https://avatars.githubusercontent.com/u/47271576?s=200&v=4
+    keywords:
+    - paperless
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    - email: jonathan@jonnobrow.co.uk
+      name: jonnobrow
+    - email: charts@mor.re
+      name: morremeyer
+    name: paperless
+    sources:
+    - https://github.com/paperless-ngx/paperless-ngx
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/paperless-8.5.0/paperless-8.5.0.tgz
+    version: 8.5.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Changed image and source links to the community fork paperless-ngx. See https://github.com/jonaswinkler/paperless-ng/issues/1599 and https://github.com/jonaswinkler/paperless-ng/issues/1632.
     apiVersion: v2
     appVersion: 1.5.0
@@ -100162,4 +100200,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-07T18:51:48.014390496Z"
+generated: "2022-03-11T10:57:48.257919349Z"
