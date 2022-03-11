@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 8.4.0](https://img.shields.io/badge/Version-8.4.0-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 8.5.0](https://img.shields.io/badge/Version-8.5.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -80,6 +80,7 @@ N/A
 | env.COMPOSE_PROJECT_NAME | string | `"paperless"` | Project name |
 | env.PAPERLESS_DBHOST | string | `nil` | Database host to use |
 | env.PAPERLESS_OCR_LANGUAGE | string | `"eng"` | OCR languages to install |
+| env.PAPERLESS_PORT | int | `8000` | Port to use |
 | env.PAPERLESS_REDIS | string | `nil` | Redis to use |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/paperless-ngx/paperless-ngx"` | image repository |
@@ -95,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 8.4.0
+### Version 8.5.0
 
 #### Added
 
@@ -103,7 +104,7 @@ N/A
 
 #### Changed
 
-* Changed image and source links to the community fork paperless-ngx. See https://github.com/jonaswinkler/paperless-ng/issues/1599 and https://github.com/jonaswinkler/paperless-ng/issues/1632.
+* Upgrade to 1.6.0 and set default value for PAPERLESS_PORT to prevent CrashLoopBackoff. See https://github.com/paperless-ngx/paperless-ngx/issues/264.
 
 #### Fixed
 
