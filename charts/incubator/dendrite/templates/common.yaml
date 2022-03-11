@@ -4,7 +4,7 @@
     {{- include "common.values.setup" (index $.Subcharts .) }}
     {{- with (index $.Values .) }}
       {{- with .image }}
-        {{- $_ := set . "tag" (default .tag $.Chart.AppVersion) -}}
+        {{- $_ := set . "tag" (default $.Chart.AppVersion .tag) -}}
       {{- end -}}
       {{- if not .persistence }}
         {{- $_ := set . "persistence" (dict)}}
