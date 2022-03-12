@@ -76,84 +76,41 @@ configFileSecret:
 # -- Create a new secret with the following multi-line spec which gets mounted
 # to /conf/otel-collector-config.yaml. For more information, see the
 # [otel docs](https://opentelemetry.io/docs/collector/configuration/)
-configFile:  # |-
-#  receivers:
-#    otlp:
-#      protocols:
-#        grpc:
-#          endpoint: "0.0.0.0:4317"
-#        http:
-#          endpoint: "0.0.0.0:4318"
-#  processors:
-#    batch:
-#    memory_limiter:
-#      # 80% of maximum memory up to 2G
-#      limit_mib: 1500
-#      # 25% of limit up to 2G
-#      spike_limit_mib: 512
-#      check_interval: 5s
-#
-#  extensions:
-#    health_check:
-#      endpoint: 0.0.0.0:13133
-#    zpages: {}
-#    memory_ballast:
-#      # Memory Ballast size should be max 1/3 to 1/2 of memory.
-#      size_mib: 683
-#  exporters:
-#    logging:
-#      logLevel: debug
-#
-#    otlp/honeycombtraces:
-#      endpoint: api.honeycomb.io:443
-#      headers:
-#        x-honeycomb-team: [[YourAPIKeyHere]]
-#        x-honeycomb-dataset: [[YouApplicationDataSetHere]]
-#
-#    otlp/newrelic:
-#      endpoint: otlp.nr-data.net:4317
-#      headers:
-#        api-key: [[YourTokenHere]]
-#
-#    otlp/lightstep:
-#      endpoint: ingest.lightstep.com:443
-#      headers:
-#        {"lightstep-access-token": "[[YourTokenHere]]"}
-#
-#    otlp/sapm:
-#      access_token: [[YourTokenHere]]
-#      access_token_passthrough: true
-#      endpoint: https://ingest.us0.otlp/signalfx.com/v2/trace
-#      max_connections: 100
-#      num_workers: 8
-#
-#    otlp/signalfx:
-#      access_token: [[YourTokenHere]]
-#      realm: us0
-#      correlation:
-#
-#  service:
-#    extensions: [zpages, memory_ballast, health_check]
-#    pipelines:
-#      traces:
-#        receivers: [otlp]
-#        processors: [memory_limiter, batch]
-#        exporters: [otlp/honeycombtraces]
-#
-#      traces/2:
-#        receivers: [otlp]
-#        processors: [memory_limiter, batch]
-#        exporters: [otlp/newrelic]
-#
-#      traces/3:
-#        receivers: [otlp]
-#        processors: [memory_limiter, attributes, batch]
-#        exporters: [otlp/sapm, otlp/signalfx]
-#
-#      traces/4:
-#        receivers: [otlp]
-#        processors: [memory_limiter, batch]
-#        exporters: [otlp/lightstep]
+configFile: |-
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
+  processors:
+    batch:
+    memory_limiter:
+      # 80% of maximum memory up to 2G
+      limit_mib: 1500
+      # 25% of limit up to 2G
+      spike_limit_mib: 512
+      check_interval: 5s
+
+  extensions:
+    health_check:
+      endpoint: 0.0.0.0:13133
+    zpages: {}
+    memory_ballast:
+      # Memory Ballast size should be max 1/3 to 1/2 of memory.
+      size_mib: 683
+  exporters:
+    logging:
+      logLevel: debug
+
+  service:
+    extensions: [zpages, memory_ballast, health_check]
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [memory_limiter, batch]
+        exporters: [logging]
 
 metrics:
   # -- Configure Prometheus serviceMonitor for the built-in exporter.
