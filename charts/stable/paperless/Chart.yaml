@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 1.5.0
+appVersion: 1.6.0
 description: Paperless - Index and archive all of your scanned paper documents
 name: paperless
-version: 8.4.0
+version: 8.5.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - paperless
@@ -31,4 +31,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Changed image and source links to the community fork paperless-ngx. See https://github.com/jonaswinkler/paperless-ng/issues/1599 and https://github.com/jonaswinkler/paperless-ng/issues/1632.
+      description: Upgrade to 1.6.0 and set default value for PAPERLESS_PORT to prevent CrashLoopBackoff. See https://github.com/paperless-ngx/paperless-ngx/issues/264.

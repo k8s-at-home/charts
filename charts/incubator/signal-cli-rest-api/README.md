@@ -1,14 +1,14 @@
-# mealie
+# signal-cli-rest-api
 
-![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v0.5.6](https://img.shields.io/badge/AppVersion-v0.5.6-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 0.57](https://img.shields.io/badge/AppVersion-0.57-informational?style=flat-square)
 
-Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
+Dockerized Signal Messenger REST API
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/hay-kot/mealie>
+* <https://github.com/bbernhard/signal-cli-rest-api>
 
 ## Requirements
 
@@ -18,7 +18,6 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -26,23 +25,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install mealie k8s-at-home/mealie
+helm install signal-cli-rest-api k8s-at-home/signal-cli-rest-api
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `mealie`
+To install the chart with the release name `signal-cli-rest-api`
 
 ```console
-helm install mealie k8s-at-home/mealie
+helm install signal-cli-rest-api k8s-at-home/signal-cli-rest-api
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `mealie` deployment
+To uninstall the `signal-cli-rest-api` deployment
 
 ```console
-helm uninstall mealie
+helm uninstall signal-cli-rest-api
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install mealie \
+helm install signal-cli-rest-api \
   --set env.TZ="America/New York" \
-    k8s-at-home/mealie
+    k8s-at-home/signal-cli-rest-api
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install mealie k8s-at-home/mealie -f values.yaml
+helm install signal-cli-rest-api k8s-at-home/signal-cli-rest-api -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,29 +75,27 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [image docs](https://hay-kot.github.io/mealie/documentation/getting-started/install/#env-variables) for more details. |
-| env.DB_ENGINE | string | `"sqlite"` | Set the application database type |
+| env | object | See below | environment variables. See more environment variables in the [signal-cli-rest-api documentation](https://github.com/bbernhard/signal-cli-rest-api). |
+| env.MODE | string | `"native"` | Set the Execution mode. See https://github.com/bbernhard/signal-cli-rest-api#execution-modes |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"hkotel/mealie"` | image repository |
-| image.tag | string | chart.appVersion | image tag |
+| image.repository | string | `"bbernhard/signal-cli-rest-api"` | image repository |
+| image.tag | string | `nil` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 4.0.0
+### Version 1.0.0
 
 #### Added
 
-N/A
+* Initial version
 
 #### Changed
 
-* Upgraded app version `v0.5.6`.
-* Removed deprecated DB_TYPE environment variable in favour of DB_ENGINE.
+N/A
 
 #### Fixed
 
@@ -106,7 +103,7 @@ N/A
 
 ### Older versions
 
-A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/mealie?modal=changelog)
+A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/signal-cli-rest-api?modal=changelog)
 
 ## Support
 
