@@ -55897,6 +55897,34 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/organizr-1.0.0/organizr-1.0.0.tgz
     version: 1.0.0
+  otel-collector:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 0.46.0
+    created: "2022-03-14T19:13:43.750158475Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: OpenTelemetry collector helm package
+    digest: 9d6ec3414fb7f018494d89161372d93cd85daf74f8717f670af16fe555dddbc7
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/otel-collector
+    icon: https://otel-collector.org/icon
+    keywords:
+    - otel-collector, open telemetry, tracing
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: mike@terhar.com
+      name: mterhar
+    name: otel-collector
+    sources:
+    - https://github.com/otel-collector/otel-collector-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/otel-collector-1.0.0/otel-collector-1.0.0.tgz
+    version: 1.0.0
   overleaf:
   - annotations:
       artifacthub.io/changes: |
@@ -100350,4 +100378,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-11T17:12:05.566828578Z"
+generated: "2022-03-14T19:13:43.768264421Z"
