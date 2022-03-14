@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 0.46.0
+description: OpenTelemetry collector helm package
+name: otel-collector
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- otel-collector, open telemetry, tracing
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/otel-collector
+icon: https://otel-collector.org/icon
+sources:
+- https://github.com/otel-collector/otel-collector-docker
+maintainers:
+- name: mterhar
+  email: mike@terhar.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version

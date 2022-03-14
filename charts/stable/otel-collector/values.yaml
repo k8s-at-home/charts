@@ -1,0 +1,151 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: otel/opentelemetry-collector-contrib
+  # -- image tag
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- Configures service settings for the chart.
+# @default -- The defaults expose the services needed to receive http and otlp traces
+service:
+  main:
+    enabled: false
+  otlpports:
+    enabled: true
+    type: ClusterIP
+    ports:
+      # Default endpoint for OpenTelemetry gRPC receiver.
+      otlpgrpc:
+        enabled: true
+        protocol: TCP
+        port: 4317
+        targetPort: 4317
+      # Default endpoint for OpenTelemetry HTTP receiver.
+      otlphttp:
+        enabled: true
+        protocol: TCP
+        port: 4318
+        targetPort: 4318
+      # Default endpoint for querying metrics.
+      metrics:
+        enabled: true
+        protocol: TCP
+        port: 8888
+        targetPort: 8888
+
+# -- probes is configured to use an otel extension to get health information from the pod
+# @default -- expects config to include `extensions:health_check:endpoint: 0.0.0.0:13133`
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: 13133
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # This OTEL Collector is built to trust items within the same cluster so
+  # exposing externally will allow unauthenticated traces to be processed.
+  # @default -- disabled
+  main:
+    enabled: false
+
+# -- Configure the open telemetry secret using an existing secret or create
+# a configuration file using the `configFile` below
+# The secret needs a single key inside it called `otelConfigFile`
+configFileSecret:
+
+# -- Create a new secret with the following multi-line spec which gets mounted
+# to /conf/otel-collector-config.yaml. For more information, see the
+# [otel docs](https://opentelemetry.io/docs/collector/configuration/)
+configFile: |-
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
+  processors:
+    batch:
+    memory_limiter:
+      # 80% of maximum memory up to 2G
+      limit_mib: 1500
+      # 25% of limit up to 2G
+      spike_limit_mib: 512
+      check_interval: 5s
+
+  extensions:
+    health_check:
+      endpoint: 0.0.0.0:13133
+    zpages: {}
+    memory_ballast:
+      # Memory Ballast size should be max 1/3 to 1/2 of memory.
+      size_mib: 683
+  exporters:
+    logging:
+      logLevel: debug
+
+  service:
+    extensions: [zpages, memory_ballast, health_check]
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [memory_limiter, batch]
+        exporters: [logging]
+
+metrics:
+  # -- Configure Prometheus serviceMonitor for the built-in exporter.
+  # @default -- enabled: false is set so it can scrape itself but
+  # circular dependencies are never good enable this for a secondary scraper
+  enabled: false
+  serviceMonitor:
+    interval: 3m
+    scrapeTimeout: 1m
+    labels: {}
+  # -- Enable and configure Prometheus Rules for the chart under this key.
+  # @default -- See values.yaml
+  prometheusRule:
+    enabled: false
+    labels: {}
+    # -- Configure additionial rules for the chart under this key.
+    # @default -- See prometheusrules.yaml
+    rules: []
+      # - alert: OtelCollectorDown
+      #   annotations:
+      #     description: Otel Collector service is down.
+      #     summary: Otel Collector is down.
+      #   expr: |
+      #     up == 0
+      #   for: 5m
+      #   labels:
+      #     severity: critical
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+
+  # -- Annotations to add to the service account
+  annotations: {}
+
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""

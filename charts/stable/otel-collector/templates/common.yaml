@@ -1,0 +1,28 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "otel-collector.harcodedValues" -}}
+  {{/* merge config file path argument which is hard coded*/}}
+  args:
+  - "--config=/conf/otel-collector-config.yaml"
+
+  {{/* Append the config secret volume to the volumes */}}
+  persistence:
+    otel-config-file:
+      enabled: true
+      type: "custom"
+      mountPath: "/conf/otel-collector-config.yaml"
+      subPath: "otelConfigFile"
+      volumeSpec:
+        secret:
+          {{- if .Values.configFileSecret }}
+          secretName: "{{ .Values.configSecretName }}"
+          {{- else }}
+          secretName: "{{ include "common.names.fullname" . }}-otelconfig"
+          {{- end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "otel-collector.harcodedValues" . | fromYaml) -}}
+
+
+{{ include "common.all" . }}
