@@ -31,6 +31,7 @@ service:
     ports:
       http:
         port: 9122
+        targetPort: 9122
   udp:
     enabled: true
     type: LoadBalancer
@@ -38,8 +39,8 @@ service:
     ports:
       udp:
         enabled: true
-        port: 9123
         protocol: UDP
+        port: 9123
         targetPort: 9123
 
 metrics:
