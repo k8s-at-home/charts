@@ -21,24 +21,15 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- mysql, postgres, mariadb, mssql or sqlite
-  DB_TYPE: sqlite
-  # -- Path to the SQLite file
-  DB_FILEPATH: /app/wiki/data/db.sqlite
-  # -- Port of the database
-  DB_PORT:
-  # -- Username to connect to the database
-  DB_USER:
-  # -- Password to connect to the database
-  DB_PASS:
-  # -- Database name
-  DB_NAME:
-  # -- Set to either 1 or true to enable. (optional, off if omitted)
-  DB_SSL:
-  # -- Database CA certificate content, as a single line string (without spaces or new lines), without the prefix and suffix lines. (optional, requires 2.3+)
-  DB_SSL_CA:
-  # -- Path to the mapped file containing to the database password. (optional, replaces `DB_PASS`)
-  DB_PASS_FILE:
+  # DB_TYPE -- mysql, postgres, mariadb, mssql or sqlite
+  # DB_FILEPATH -- Path to the SQLite file
+  # DB_PORT -- Port of the database
+  # DB_USER -- Username to connect to the database
+  # DB_PASS -- Password to connect to the database
+  # DB_NAME -- Database name
+  # DB_SSL -- Set to either 1 or true to enable. (optional, off if omitted)
+  # DB_SSL_CA -- Database CA certificate content, as a single line string (without spaces or new lines), without the prefix and suffix lines. (optional, requires 2.3+)
+  # DB_PASS_FILE -- Path to the mapped file containing to the database password. (optional, replaces `DB_PASS`)
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
