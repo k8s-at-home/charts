@@ -94654,6 +94654,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Removed the forced env {} so they can be populated elsewhere (envFrom secrets for example)
+    apiVersion: v2
+    appVersion: version-2.5.201
+    created: "2022-03-19T11:16:27.993486855Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Make documentation a joy to write using Wiki.js's beautiful and intuitive
+      interface!
+    digest: 63c3815e125b0ec65b04649d5b404afc9d2334647dccf5a538fd1ddbd36ded7f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/wikijs
+    icon: https://static.requarks.io/logo/wikijs-butterfly.svg
+    keywords:
+    - wiki
+    - wikijs
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: rolf@berkenbosch.nl
+      name: rolfberkenbosch
+    name: wikijs
+    sources:
+    - https://hub.docker.com/r/linuxserver/wikijs/
+    - https://github.com/Requarks/wiki
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/wikijs-6.2.1/wikijs-6.2.1.tgz
+    version: 6.2.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: version-2.5.201
@@ -100378,4 +100408,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-14T19:13:43.768264421Z"
+generated: "2022-03-19T11:16:28.015413132Z"
