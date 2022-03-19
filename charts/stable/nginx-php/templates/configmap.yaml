@@ -7,19 +7,19 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
 {{- with (index .Values.config "nginx-server.conf") -}}
-{{- if . }}  
+{{- if . }}
   nginx-server.conf: |
 {{- . | nindent 4 -}}
 {{- end -}}
 {{- end -}}
 {{- with (index .Values.config "php-settings.ini") -}}
-{{- if . }}  
+{{- if . }}
   php-settings.ini: |
 {{- . | nindent 4 -}}
 {{- end -}}
 {{- end -}}
 {{- with (index .Values.config "php-fpm-server.conf") -}}
-{{- if . }}  
+{{- if . }}
   php-fpm-server.conf: |
 {{- . | nindent 4 -}}
 {{- end -}}
