@@ -1,0 +1,37 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+There are keys in this charts yaml that allows the user to overwrite the following config files in the container.  This allows for control over:
+
+* Nginx configuration (/etc/nginx/conf.d/server.conf)
+* PHP configuration (/etc/php8/conf.d/settings.ini)
+* PHP-FPM configuration (/etc/php8/php-fpm.d/server.conf)
+
+And can be found under `config:` in this charts [values.yaml](values.yaml)
+```yaml
+config:
+  nginx-server.conf: {}
+
+  php-settings.ini: {}
+
+  php-fpm-server.conf: {}
+```
+
+
+This is achieved in the helm chart by creating a configmap, which is then mounted to the file locations in the pod.
+
+An example of using this feature would be adding the following to your `values.yaml`
+```yaml
+config:
+  nginx-server.conf: |
+    [Date]
+    date.timezone="Australia/Melbourne"
+```
+
+The defauls for these files can be found at [https://github.com/TrafeX/docker-php-nginx/tree/master/config](https://github.com/TrafeX/docker-php-nginx/tree/master/config)
+
+{{- end -}}

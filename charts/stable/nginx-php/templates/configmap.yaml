@@ -1,0 +1,27 @@
+{{- if .Values.config -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-settings
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+{{- with (index .Values.config "nginx-server.conf") -}}
+{{- if . }}  
+  nginx-server.conf: |
+{{- . | nindent 4 -}}
+{{- end -}}
+{{- end -}}
+{{- with (index .Values.config "php-settings.ini") -}}
+{{- if . }}  
+  php-settings.ini: |
+{{- . | nindent 4 -}}
+{{- end -}}
+{{- end -}}
+{{- with (index .Values.config "php-fpm-server.conf") -}}
+{{- if . }}  
+  php-fpm-server.conf: |
+{{- . | nindent 4 -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
