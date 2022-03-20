@@ -42622,6 +42622,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Removed the forced env {} so they can be populated elsewhere (envFrom secrets for example)
+    apiVersion: v2
+    appVersion: 3.7.0-apache
+    created: "2022-03-20T21:23:22.305812112Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.0
+    description: A Personal Relationship Management tool to help you organize your
+      social life
+    digest: 5b77daa7349fc3b7baf4c1b3e39ab2a0931f46f132cd679ccdfe72006df012cd
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/monica
+    icon: https://pbs.twimg.com/profile_images/951820722191720450/mtCNuIXX.jpg
+    keywords:
+    - crm
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: monica
+    sources:
+    - https://github.com/monicahq/monica
+    - https://hub.docker.com/_/monica
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/monica-7.0.2/monica-7.0.2.tgz
+    version: 7.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded app to version `3.7.0-apache` from `3.1.1-apache`.
     apiVersion: v2
     appVersion: 3.7.0-apache
@@ -100408,4 +100441,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-19T11:16:28.015413132Z"
+generated: "2022-03-20T21:23:22.33032285Z"
