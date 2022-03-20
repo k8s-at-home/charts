@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 3.7.0-apache
 description: A Personal Relationship Management tool to help you organize your social life
 name: monica
-version: 7.0.1
+version: 7.0.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - crm
@@ -25,4 +25,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded app to version `3.7.0-apache` from `3.1.1-apache`.
+      description: Removed the forced env {} so they can be populated elsewhere (envFrom secrets for example)
