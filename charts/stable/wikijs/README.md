@@ -1,6 +1,6 @@
 # wikijs
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: version-2.5.201](https://img.shields.io/badge/AppVersion-version--2.5.201-informational?style=flat-square)
+![Version: 6.2.1](https://img.shields.io/badge/Version-6.2.1-informational?style=flat-square) ![AppVersion: version-2.5.201](https://img.shields.io/badge/AppVersion-version--2.5.201-informational?style=flat-square)
 
 Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
 
@@ -77,15 +77,6 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://docs.linuxserver.io/images/docker-wikijs#environment-variables-e) for more details. |
-| env.DB_FILEPATH | string | `"/app/wiki/data/db.sqlite"` | Path to the SQLite file |
-| env.DB_NAME | string | `nil` | Database name |
-| env.DB_PASS | string | `nil` | Password to connect to the database |
-| env.DB_PASS_FILE | string | `nil` | Path to the mapped file containing to the database password. (optional, replaces `DB_PASS`) |
-| env.DB_PORT | string | `nil` | Port of the database |
-| env.DB_SSL | string | `nil` | Set to either 1 or true to enable. (optional, off if omitted) |
-| env.DB_SSL_CA | string | `nil` | Database CA certificate content, as a single line string (without spaces or new lines), without the prefix and suffix lines. (optional, requires 2.3+) |
-| env.DB_TYPE | string | `"sqlite"` | mysql, postgres, mariadb, mssql or sqlite |
-| env.DB_USER | string | `nil` | Username to connect to the database |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image | object | `{"pullPolicy":"IfNotPresent","repository":"ghcr.io/linuxserver/wikijs","tag":"version-2.5.201"}` | This is the default, you can also use requarks/wiki |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
@@ -97,7 +88,7 @@ N/A
 
 ## Changelog
 
-### Version 6.2.0
+### Version 6.2.1
 
 #### Added
 
@@ -105,7 +96,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Removed the forced env {} so they can be populated elsewhere (envFrom secrets for example)
 
 #### Fixed
 
