@@ -1,6 +1,6 @@
 # influxdb-exporter
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 0.8.1](https://img.shields.io/badge/AppVersion-0.8.1-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![AppVersion: v0.9.0](https://img.shields.io/badge/AppVersion-v0.9.0-informational?style=flat-square)
 
 An exporter for metrics in the InfluxDB format, transforms them and exposes them for consumption by Prometheus.
 
@@ -91,11 +91,12 @@ Override the default container `args:` with optons:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| args | list | `["--udp.bind-address=0.0.0.0:9123"]` | Override the args for the default container |
 | env | object | See below | environment variables. See more environment variables in the [influxdb-exporter documentation](https://influxdb-exporter.org/docs). |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"prom/influxdb-exporter"` | image repository |
-| image.tag | string | `"v0.8.1"` | image tag |
+| image.tag | string | `"v0.9.0"` | image tag |
 | metrics.enabled | bool | See values.yaml | Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor. |
 | metrics.serviceMonitor.interval | string | `"15s"` |  |
 | metrics.serviceMonitor.labels | object | `{}` |  |
@@ -104,7 +105,7 @@ Override the default container `args:` with optons:
 
 ## Changelog
 
-### Version 1.0.1
+### Version 1.0.2
 
 #### Added
 
@@ -116,7 +117,7 @@ N/A
 
 #### Fixed
 
-* Add the description and custom configuration to the README.md
+* Update image to 0.9.0 (InfluxDB v2 clients support), use differnt port for UDP.
 
 ### Older versions
 
