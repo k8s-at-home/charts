@@ -21,21 +21,16 @@ env:
   TZ: UTC
   # -- Use `local` if you want to install Monica as a development version. Use `production` otherwise.
   APP_ENV: production
-  # -- The encryption key. This is the most important part of the application.
+  # APP_KEY -- The encryption key. This is the most important part of the application.
   # Keep this secure otherwise, everyone will be able to access your application.
   # Must be 32 characters long exactly.
   # Use `php artisan key:generate` or `echo -n 'base64:'; openssl rand -base64 32` to generate a random key.
-  APP_KEY:
   # -- The URL of your application.
   APP_URL: https://crm.k8s-at-home.com
-  # -- Database hostname
-  DB_HOST:  # monica-mariadb
-  # -- Database to connect to
-  DB_DATABASE:  # monica
-  # -- Database username
-  DB_USERNAME:  # monica
-  # -- Database password
-  DB_PASSWORD:  # monicapass
+  # DB_HOST -- Database hostname
+  # DB_DATABASE -- Database to connect to
+  # DB_USERNAME -- Database username
+  # DB_PASSWORD -- Database password
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
