@@ -1,0 +1,91 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/master/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: gotify/server
+  # -- image tag
+  tag: 2.1.4
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Set the port gotify container is listening on
+  GOTIFY_SERVER_PORT: 80
+  # -- Server keep alive period
+  GOTIFY_SERVER_KEEPALIVEPERIODSECONDS: 0
+  # -- Address server is listening on
+  GOTIFY_SERVER_LISTENADDR:
+  # -- SSL Enabled
+  GOTIFY_SERVER_SSL_ENABLED: false
+  # -- Redirect http to https
+  GOTIFY_SERVER_SSL_REDIRECTTOHTTPS: true
+  # -- Server ssl listening address
+  GOTIFY_SERVER_SSL_LISTENADDR:
+  # -- SSL Server port
+  GOTIFY_SERVER_SSL_PORT: 443
+  # -- SSL Certificate file
+  GOTIFY_SERVER_SSL_CERTFILE:
+  # -- SSL certificate key file
+  GOTIFY_SERVER_SSL_CERTKEY:
+  # -- Enable letsencrypt integration
+  GOTIFY_SERVER_SSL_LETSENCRYPT_ENABLED: false
+  # -- Accept the tos from letsencrypt
+  GOTIFY_SERVER_SSL_LETSENCRYPT_ACCEPTTOS: false
+  # -- Directory to use as letsencrypt cache
+  GOTIFY_SERVER_SSL_LETSENCRYPT_CACHE: certs
+  # -- The hosts for which letsencrypt should request certificates
+  # GOTIFY_SERVER_SSL_LETSENCRYPT_HOSTS: - mydomain.tld\n- myotherdomain.tld
+  # -- Response headers are added to every response (default: none)
+  # GOTIFY_SERVER_RESPONSEHEADERS: "X-Custom-Header: \"custom value\""
+  # --  Sets cors headers
+  # GOTIFY_SERVER_CORS_ALLOWORIGINS: "- \".+.example.com\"\n- \"otherdomain.com\""
+  # GOTIFY_SERVER_CORS_ALLOWMETHODS: "- \"GET\"\n- \"POST\""
+  # GOTIFY_SERVER_CORS_ALLOWHEADERS: "- \"Authorization\"\n- \"content-type\""
+  # GOTIFY_SERVER_STREAM_ALLOWEDORIGINS: "- \".+.example.com\"\n- \"otherdomain.com\""
+  # -- The interval in which websocket pings will be sent
+  GOTIFY_SERVER_STREAM_PINGPERIODSECONDS: 45
+  # -- Database type (se https://gotify.net/docs/config#database)
+  GOTIFY_DATABASE_DIALECT: sqlite3
+  # -- Database connection string (se: https://gotify.net/docs/config#database)
+  GOTIFY_DATABASE_CONNECTION: data/gotify.db
+  # -- Default user created on database creation
+  GOTIFY_DEFAULTUSER_NAME: admin
+  # -- Password set for default user on database creation
+  GOTIFY_DEFAULTUSER_PASS: admin
+  # -- The bcrypt password strength (higher = better but also slower)
+  GOTIFY_PASSSTRENGTH: 10
+  # -- The directory for storing uploaded images
+  GOTIFY_UPLOADEDIMAGESDIR: data/images
+  # -- The directory where plugin resides (leave empty to disable plugins)
+  GOTIFY_PLUGINSDIR: data/plugins
+  # -- Enable user registration
+  GOTIFY_REGISTRATION: false
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+persistence:
+  data:
+    enabled: false
+    type: emptyDir
+    mountPath: /app/data

@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: "2.1.4"
+description: A simple server for sending and receiving messages
+name: gotify
+version: 1.0.0
+keywords:
+  - gotify
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/gotify/
+icon: https://avatars.githubusercontent.com/u/36410427?s=200&v=4
+maintainers:
+  - name: jonas
+    email: barregargamel@gmail.com
+sources:
+  - https://github.com/gotify/server
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
