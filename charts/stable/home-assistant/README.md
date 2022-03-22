@@ -76,7 +76,7 @@ helm install home-assistant k8s-at-home/home-assistant -f values.yaml
 
 When configuring Home Assistant behind a reverse proxy make sure you configure the [http](https://www.home-assistant.io/integrations/http) component and set `trusted_proxies` correctly and `use_x_forwarded_for` to `true`.
 
-For example:
+For example edit the configuration.yaml hosted in your pod:
 
 ```yaml
 http:
