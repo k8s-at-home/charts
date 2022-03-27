@@ -1,6 +1,6 @@
 # recipes
 
-![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![AppVersion: 1.0.5.2](https://img.shields.io/badge/AppVersion-1.0.5.2-informational?style=flat-square)
+![Version: 6.4.0](https://img.shields.io/badge/Version-6.4.0-informational?style=flat-square) ![AppVersion: 1.0.5.2](https://img.shields.io/badge/AppVersion-1.0.5.2-informational?style=flat-square)
 
 Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 
@@ -83,22 +83,23 @@ N/A
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
-| sidecar.config | object | `{"client_max_body_size":"128M"}` | specify nginx related configs |
+| sidecar.config.client_max_body_size | string | `"128M"` | define the max body size to allow larger files to be uploaded |
+| sidecar.config.reverse_proxy_header_username | string | `"x_authentik_username"` | define the name of the variable in the header containing the authenticated user. It is used together with enabling `REVERSE_PROXY_AUTH` |
 | sidecar.image.pullPolicy | string | `"IfNotPresent"` | nginx sidecar image pull policy |
 | sidecar.image.repository | string | `"nginx"` | nginx sidecar image repository |
 | sidecar.image.tag | string | `"1.21.6"` | nginx sidecar image tag |
 
 ## Changelog
 
-### Version 6.3.0
+### Version 6.4.0
 
 #### Added
 
-N/A
+* Support for reverse proxy authentication.
 
 #### Changed
 
-* Upgraded `tandoor` to version `1.0.5.2` and `nginx` sidecar `1.21.6`.
+N/A
 
 #### Fixed
 
