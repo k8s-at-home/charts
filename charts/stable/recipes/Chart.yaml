@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 1.0.5.2
 description: Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 name: recipes
-version: 6.3.0
+version: 6.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - recipes
@@ -21,5 +21,5 @@ dependencies:
     version: 4.3.0
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Upgraded `tandoor` to version `1.0.5.2` and `nginx` sidecar `1.21.6`.
+    - kind: added
+      description: Support for reverse proxy authentication.
