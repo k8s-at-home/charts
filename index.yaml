@@ -69520,6 +69520,37 @@ entries:
   recipes:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Support for reverse proxy authentication.
+    apiVersion: v2
+    appVersion: 1.0.5.2
+    created: "2022-03-28T07:32:24.020958316Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Recipes is a Django application to manage, tag and search recipes
+      using either built in models or external storage providers hosting PDF's, Images
+      or other files.
+    digest: 9b8289da4493d4137542c42ebfb2ed4206d40bc677498069507ff1bf4c623feb
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/recipes
+    icon: https://raw.githubusercontent.com/vabene1111/recipes/develop/docs/logo_color.svg
+    keywords:
+    - recipes
+    - cooking
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: recipes
+    sources:
+    - https://github.com/vabene1111/recipes
+    - https://hub.docker.com/r/vabene1111/recipes
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/recipes-6.4.0/recipes-6.4.0.tgz
+    version: 6.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgraded `tandoor` to version `1.0.5.2` and `nginx` sidecar `1.21.6`.
     apiVersion: v2
@@ -100469,4 +100500,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-20T21:24:28.188023647Z"
+generated: "2022-03-28T07:32:24.044574955Z"
