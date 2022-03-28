@@ -27,6 +27,7 @@ data:
         # pass requests for dynamic content to gunicorn
         location / {
           proxy_set_header Host $host;
+          proxy_set_header REMOTE-USER $http_{{ .Values.sidecar.config.reverse_proxy_header_username }};
           proxy_pass http://localhost:8080;
         }
       }

@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: prom/influxdb-exporter
   # -- image tag
-  tag: v0.8.1
+  tag: v0.9.0
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -19,6 +19,10 @@ env:
   # -- Set the container timezone
   TZ: UTC
 
+# -- Override the args for the default container
+args:
+  - "--udp.bind-address=0.0.0.0:9123"
+
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
 service:
@@ -27,15 +31,17 @@ service:
     ports:
       http:
         port: 9122
+        targetPort: 9122
   udp:
     enabled: true
     type: LoadBalancer
+    loadBalancerIP: ""
     ports:
       udp:
         enabled: true
-        port: 9122
         protocol: UDP
-        targetPort: 9122
+        port: 9123
+        targetPort: 9123
 
 metrics:
   # -- Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor.
