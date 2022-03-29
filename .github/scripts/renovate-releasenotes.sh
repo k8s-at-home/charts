@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+set -x #echo on
 
 # Check if release notes have been changed
 # Usage ./check-releasenotes.sh path
