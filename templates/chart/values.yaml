@@ -9,7 +9,8 @@ image:
   # -- image repository
   repository: ${CHARTNAME}/${CHARTNAME}
   # -- image tag
-  tag: 1.0.0
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
