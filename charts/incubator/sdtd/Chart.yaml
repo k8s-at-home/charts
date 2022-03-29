@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: main
+description: Dedicated server for 7 Days to Die
+name: sdtd
+version: 0.1.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - 7d2d
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/7d2d
+icon: https://7daystodie.com/wp-content/uploads/2016/04/7dtd_site_icon.png
+sources:
+  - https://github.com/reitermarkus/7d2d
+maintainers:
+  - name: reitermarkus
+    email: me@reitermark.us
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
