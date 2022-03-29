@@ -47,6 +47,7 @@
 | [ghost](stable/ghost) | Ghost is a blogging and publishing software |
 | [gollum](stable/gollum) | Gollum is a simple wiki system built on top of Git |
 | [gonic](stable/gonic) | Music streaming server / subsonic server API implementation |
+| [gotify](stable/gotify) | A simple server for sending and receiving messages |
 | [grocy](stable/grocy) | ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home |
 | [haste-server](stable/haste-server) | Simple text sharing |
 | [healthchecks](stable/healthchecks) | Healthchecks is a cron job monitoring service. It listens for HTTP requests and email messages ("pings") from your cron jobs and scheduled tasks ("checks"). When a ping does not arrive on time, Healthchecks sends out alerts. |
