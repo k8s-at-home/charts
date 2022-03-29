@@ -52,7 +52,7 @@ jobs:
         with:
           setup-tools: |
             yq
-          yq: "4.16.2"
+          yq: "4.20.1"
 
       - name: Annotate Charts.yaml for Renovate PR's
         if: inputs.isRenovatePR == 'true'
