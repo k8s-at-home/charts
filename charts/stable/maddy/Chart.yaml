@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v0.5.2
 description: Maddy Mail Server
 name: maddy
-version: 2.0.0
+version: 2.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
 - maddy
@@ -20,7 +20,7 @@ dependencies:
   repository: https://library-charts.k8s-at-home.com
   version: 4.3.0
 - name: postgresql
-  version: 10.14.4
+  version: 10.16.2
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 annotations:
