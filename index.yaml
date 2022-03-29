@@ -47713,6 +47713,37 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/network-ups-tools-1.0.0/network-ups-tools-1.0.0.tgz
     version: 1.0.0
+  nginx-php:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 2.4.0
+    created: "2022-03-29T21:54:59.742982852Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Nginx and PHP FPM for running PHP applications
+    digest: e5cb6570085694dea9a72a1d4df513c055f06493bde55daaa1b785b11ab4ffa4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nginx-php
+    icon: https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg
+    keywords:
+    - nginx-php
+    - nginx
+    - php
+    - php-fpm
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nat@natallan.com
+      name: Truxnell
+    name: nginx-php
+    sources:
+    - https://github.com/TrafeX/docker-php-nginx
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nginx-php-1.0.0/nginx-php-1.0.0.tgz
+    version: 1.0.0
   node-feature-discovery:
   - apiVersion: v2
     appVersion: 0.7.0
@@ -101812,4 +101843,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-29T16:58:11.43010527Z"
+generated: "2022-03-29T21:54:59.768054327Z"
