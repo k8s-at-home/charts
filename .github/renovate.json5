@@ -5,7 +5,6 @@
   "assigneesFromCodeOwners": true,
   "reviewersFromCodeOwners": true,
   "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
   "prConcurrentLimit": 5,
   "helm-values": {
     "enabled": false
@@ -33,7 +32,6 @@
       "matchManagers": ["github-actions"],
       "automerge": true,
       "automergeType": "branch",
-      "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"]
     },
     //
