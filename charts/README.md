@@ -66,6 +66,7 @@
 | [joplin-server](stable/joplin-server) | This server allows you to sync any Joplin client |
 | [kanboard](stable/kanboard) | Kanboard is a free and open source Kanban project management software. |
 | [komga](stable/komga) | A comics/mangas server to serve/stream pages via API |
+| [kube-ops-view](stable/kube-ops-view) | kube-ops-view helm package |
 | [lazylibrarian](stable/lazylibrarian) | A Helm chart for deploying LazyLibrarian |
 | [leaf2mqtt](stable/leaf2mqtt) | Nissan Leaf connected services to MQTT adapter |
 | [librespeed](stable/librespeed) | Librespeed is a HTML5 webpage to test upload and download speeds |
