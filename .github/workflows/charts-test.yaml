@@ -6,6 +6,9 @@ on:
       checkoutCommit:
         required: true
         type: string
+      chartChangesDetected:
+        required: true
+        type: string
 
 jobs:
   unit-test:
@@ -63,6 +66,7 @@ jobs:
 
       - name: Run chart-testing (list-changed)
         id: list-changed
+        if: inputs.chartChangesDetected == 'true'
         run: |
           EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-install.yaml)
           CHARTS=$(ct list-changed --config .github/ct-install.yaml)

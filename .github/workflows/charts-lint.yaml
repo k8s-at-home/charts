@@ -6,6 +6,9 @@ on:
       checkoutCommit:
         required: true
         type: string
+      chartChangesDetected:
+        required: true
+        type: string
 
 jobs:
   lint:
@@ -34,6 +37,7 @@ jobs:
 
       - name: Collect changes
         id: list-changed
+        if: inputs.chartChangesDetected == 'true'
         run: |
           EXCLUDED=$(yq eval -o=json '.excluded-charts // []' .github/ct-lint.yaml)
           CHARTS=$(ct list-changed --config .github/ct-lint.yaml)
