@@ -5,24 +5,28 @@ name: baikal
 version: 4.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- baikal
-- caldav
-- carddav
-- contacts
-- calendar
+  - baikal
+  - caldav
+  - carddav
+  - contacts
+  - calendar
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/baikal
 icon: https://avatars.githubusercontent.com/u/28524376?s=400&v=4
 sources:
-- https://github.com/sabre-io/Baikal
-- https://github.com/ckulka/baikal-docker
+  - https://github.com/sabre-io/Baikal
+  - https://github.com/ckulka/baikal-docker
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
-- name: mariadb
-  version: 10.4.4
-  repository: https://charts.bitnami.com/bitnami
-  condition: mariadb.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: mariadb
+    version: 10.4.4
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: Upgraded `mariadb` chart dependency to version `10.4.4`.

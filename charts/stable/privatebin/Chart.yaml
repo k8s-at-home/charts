@@ -5,25 +5,25 @@ name: privatebin
 version: 1.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- privatebin
-- pastebin
+  - privatebin
+  - pastebin
 home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/privatebin
 icon: https://privatebin.info/theme/img/icon.svg
 sources:
-- https://github.com/PrivateBin/PrivateBin
-- https://github.com/PrivateBin/docker-nginx-fpm-alpine
+  - https://github.com/PrivateBin/PrivateBin
+  - https://github.com/PrivateBin/docker-nginx-fpm-alpine
 maintainers:
-- name: psych0d0g
-  email: psych0d0g@users.noreply.github.com
+  - name: psych0d0g
+    email: psych0d0g@users.noreply.github.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
-- name: postgresql
-  version: 10.16.2
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+  - name: postgresql
+    version: 10.16.2
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Initial chart version
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
