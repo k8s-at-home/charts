@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.6.3
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 3.0.2
+version: 3.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -24,11 +24,11 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.3.0
   - name: postgresql
-    version: 10.14.4
+    version: 10.16.2
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: nats
-    version: 0.12.1
+    version: 0.15.0
     repository: https://nats-io.github.io/k8s/helm/charts/
     condition: nats.enabled
   # Client API
@@ -87,5 +87,7 @@ dependencies:
     condition: dendrite.polylithEnabled
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Fixed image tag not being followed in polylith deployments
+    - kind: changed
+      description: Upgraded `nats` chart dependency to version `0.15.0`.
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version `10.16.2`.

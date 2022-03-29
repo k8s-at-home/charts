@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 1.6.0
 description: Paperless - Index and archive all of your scanned paper documents
 name: paperless
-version: 8.5.0
+version: 8.6.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - paperless
@@ -21,14 +21,16 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.3.0
   - name: postgresql
-    version: 10.14.4
+    version: 10.16.2
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: redis
-    version: 15.6.10
+    version: 15.7.6
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgrade to 1.6.0 and set default value for PAPERLESS_PORT to prevent CrashLoopBackoff. See https://github.com/paperless-ngx/paperless-ngx/issues/264.
+      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+    - kind: changed
+      description: Upgraded `redis` chart dependency to version `15.7.6`.
