@@ -21,7 +21,7 @@ jobs:
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
 

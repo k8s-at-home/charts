@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -44,7 +44,7 @@ jobs:
       commitHash: ${{ steps.save-commit-hash.outputs.commit_hash }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Kubernetes tools
         if: inputs.isRenovatePR == 'true'
