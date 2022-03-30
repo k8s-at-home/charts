@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v1.11.1
+appVersion: 1.13.1
 description: A fancy self-hosted monitoring tool for your websites and applications
 name: uptime-kuma
-version: 1.1.0
+version: 1.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - uptime-kuma
@@ -21,6 +21,7 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.3.0
 annotations:
+  artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
+      description: Update appVersion to v1.13.1, including a security fix in v1.11.4 ('Update vulnerable packages') and v1.12.1 ('Update axios to 0.26.0 due to vulnerability')
