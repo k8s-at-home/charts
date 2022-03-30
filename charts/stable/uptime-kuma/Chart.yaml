@@ -21,6 +21,7 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.3.0
 annotations:
+  artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
+      description: Update appVersion to v1.13.1, including a security fix in v1.11.4 ('Update vulnerable packages') and v1.12.1 ('Update axios to 0.26.0 due to vulnerability')
