@@ -1,6 +1,6 @@
 # privatebin
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 1.3.5](https://img.shields.io/badge/AppVersion-1.3.5-informational?style=flat-square)
 
 A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -91,15 +91,15 @@ N/A
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.1.0
 
 #### Added
 
-* Initial chart version
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `postgresql` chart dependency to version `10.16.2`.
 
 #### Fixed
 

@@ -22,7 +22,7 @@ jobs:
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
           fetch-depth: 0
@@ -78,7 +78,7 @@ jobs:
           fi
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
           ref: ${{ steps.save-commit-hash.outputs.commit_hash }}
@@ -90,7 +90,7 @@ jobs:
           git config user.email "k8s-at-home[bot]@users.noreply.github.com"
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.2.1
+        uses: helm/chart-releaser-action@v1.3.0
         with:
           charts_dir: charts/*
           charts_repo_url: https://k8s-at-home.com/charts/
@@ -112,7 +112,7 @@ jobs:
           private_key: ${{ secrets.K8S_AT_HOME_APP_PRIVATE_KEY }}
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ steps.generate-token.outputs.token }}
           ref: master

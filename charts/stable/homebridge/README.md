@@ -1,6 +1,6 @@
 # homebridge
 
-![Version: 4.3.0](https://img.shields.io/badge/Version-4.3.0-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
+![Version: 4.3.1](https://img.shields.io/badge/Version-4.3.1-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
 
 A lightweight NodeJS server that emulates the iOS HomeKit API
 
@@ -92,7 +92,7 @@ N/A
 
 ## Changelog
 
-### Version 4.3.0
+### Version 4.3.1
 
 #### Added
 
@@ -100,11 +100,11 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+N/A
 
 #### Fixed
 
-N/A
+* Set permissions for startup.sh to be executable
 
 ### Older versions
 

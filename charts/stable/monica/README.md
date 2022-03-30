@@ -1,6 +1,6 @@
 # monica
 
-![Version: 7.0.2](https://img.shields.io/badge/Version-7.0.2-informational?style=flat-square) ![AppVersion: 3.7.0-apache](https://img.shields.io/badge/AppVersion-3.7.0--apache-informational?style=flat-square)
+![Version: 7.1.0](https://img.shields.io/badge/Version-7.1.0-informational?style=flat-square) ![AppVersion: 3.7.0-apache](https://img.shields.io/badge/AppVersion-3.7.0--apache-informational?style=flat-square)
 
 A Personal Relationship Management tool to help you organize your social life
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.4.4 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 7.0.2
+### Version 7.1.0
 
 #### Added
 
@@ -98,7 +98,7 @@ N/A
 
 #### Changed
 
-* Removed the forced env {} so they can be populated elsewhere (envFrom secrets for example)
+* Upgraded `mariadb` chart dependency to version `10.4.4`.
 
 #### Fixed
 

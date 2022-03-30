@@ -5,7 +5,6 @@
   "assigneesFromCodeOwners": true,
   "reviewersFromCodeOwners": true,
   "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
   "prConcurrentLimit": 5,
   "helm-values": {
     "enabled": false
@@ -26,10 +25,20 @@
       "matchPackageNames": ["potiuk/get-workflow-origin"],
       "versioning": "regex:^v(?<major>\\d+)_(?<minor>\\d+)(_(?<patch>\\d+))?$"
     },
+    ///
+    /// Automatically update minor/patch Github Actions
+    ///
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true,
+      "automergeType": "branch",
+      "matchUpdateTypes": ["minor", "patch"]
+    },
     //
     // Common library dep
     //
     {
+      "matchDatasources": ["helm"],
       "commitMessagePrefix": "[{{{parentDir}}}]",
       "branchTopic": "{{{parentDir}}}-{{{depNameSanitized}}}-{{{newMajor}}}{{#if isPatch}}.{{{newMinor}}}{{/if}}.x{{#if isLockfileUpdate}}-lockfile{{/if}}",
       "updateTypes": ["major"],
@@ -39,6 +48,7 @@
       "groupName": ["common library major"]
     },
     {
+      "matchDatasources": ["helm"],
       "updateTypes": ["minor"],
       "bumpVersion": "minor",
       "labels": ["type/minor"],
@@ -46,6 +56,7 @@
       "groupName": ["common library minor"]
     },
     {
+      "matchDatasources": ["helm"],
       "updateTypes": ["patch"],
       "bumpVersion": "patch",
       "labels": ["type/patch"],
@@ -53,9 +64,10 @@
       "groupName": ["common library patch"]
     },
     //
-    // Other library deps
+    // Other external chart deps
     //
     {
+      "matchDatasources": ["helm"],
       "commitMessagePrefix": "[{{{parentDir}}}]",
       "branchTopic": "{{{parentDir}}}-{{{depNameSanitized}}}-{{{newMajor}}}{{#if isPatch}}.{{{newMinor}}}{{/if}}.x{{#if isLockfileUpdate}}-lockfile{{/if}}",
       "updateTypes": ["major"],
@@ -67,6 +79,7 @@
       ]
     },
     {
+      "matchDatasources": ["helm"],
       "updateTypes": ["minor"],
       "bumpVersion": "minor",
       "labels": ["type/minor"],
@@ -77,6 +90,7 @@
       ]
     },
     {
+      "matchDatasources": ["helm"],
       "updateTypes": ["patch"],
       "bumpVersion": "patch",
       "labels": ["type/patch"],
