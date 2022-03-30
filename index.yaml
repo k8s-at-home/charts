@@ -29781,6 +29781,35 @@ entries:
   homebridge:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Set permissions for startup.sh to be executable
+    apiVersion: v2
+    appVersion: 4.0.0
+    created: "2022-03-30T01:24:49.213161934Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: A lightweight NodeJS server that emulates the iOS HomeKit API
+    digest: 11663c9a6e023ed0ffa60c0a7b0c018f403a415a744f21dcbda206b3db16e13f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/homebridge
+    icon: https://avatars0.githubusercontent.com/u/38217527?s=400&v=4?sanitize=true
+    keywords:
+    - homebridge
+    - homekit
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: bjw-s@users.noreply.github.com
+      name: bjw-s
+    name: homebridge
+    sources:
+    - https://homebridge.io/
+    - https://github.com/oznu/docker-homebridge
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/homebridge-4.3.1/homebridge-4.3.1.tgz
+    version: 4.3.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
@@ -101871,4 +101900,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-29T21:57:00.586978176Z"
+generated: "2022-03-30T01:24:49.23774648Z"
