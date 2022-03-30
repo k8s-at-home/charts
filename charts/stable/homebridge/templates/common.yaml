@@ -10,6 +10,7 @@ type: "custom"
 volumeSpec:
   configMap:
     name: {{ include "common.names.fullname" . }}-config
+    defaultMode: 0755
 {{- end -}}
 {{- $_ := set .Values.persistence "homebridge-config" (include "homebridge.configVolume" . | fromYaml) -}}
 
