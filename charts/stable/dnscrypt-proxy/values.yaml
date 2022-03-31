@@ -1,0 +1,95 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: klutchell/dnscrypt-proxy
+  # -- image tag
+  # @default -- chart.appVersion
+  tag: 2.1.1
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [dnscrypt-proxy documentation](https://dnscrypt-proxy.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    enabled: false
+  dns-udp:
+    enabled: true
+    type: LoadBalancer
+    ports:
+      dns-udp:
+        enabled: true
+        port: 53
+        targetPort: 5353
+        protocol: UDP
+  dns-tcp:
+    enabled: true
+    type: ClusterIP
+    primary: true
+    ports:
+      dns-tcp:
+        enabled: true
+        port: 53
+        targetPort: 5353
+        protocol: TCP
+        primary: true
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # data:
+  #   enabled: false
+  #   mountPath: /data
+
+controller:
+  replicas: 1
+
+# -- Configure dnscrypt-proxy
+config:
+  # -- Enable chart's configuration. If set to false, you need to mount a /config containing dnscrypt-proxy.toml by yourself
+  enabled: true
+
+  # -- Configuration
+  # This is a simple configuration. You can find a sample config here :
+  # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
+  # And the manual : https://github.com/DNSCrypt/dnscrypt-proxy/wiki
+  values: |
+    listen_addresses = ['0.0.0.0:5353']
+    log_level = 1
+
+    ipv4_servers = true
+    ipv6_servers = false
+    dnscrypt_servers = true
+    doh_servers = false
+    odoh_servers = false
+    bootstrap_resolvers = ['9.9.9.11:53', '8.8.8.8:53']
+    lb_strategy = 'p2'
+
+    require_nolog = true
+    require_nofilter = true
+
+    [sources]
+      [sources.public-resolvers]
+        urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/public-resolvers.md']
+        cache_file = 'public-resolvers.md'
+        minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+        refresh_delay = 72
+        prefix = ''

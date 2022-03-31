@@ -1,0 +1,23 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "dnscryptproxy.configVolume" -}}
+enabled: "true"
+mountPath: "/config/dnscrypt-proxy.toml"
+subPath: "dnscrypt-proxy.toml"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}
+{{- end -}}
+
+
+{{- if .Values.config.enabled }}
+    {{/* To force pod restart on config update */}}
+    {{- $_ := set .Values.persistence "config" (include "dnscryptproxy.configVolume" . | fromYaml) -}}
+    {{- $_ := set .Values.podAnnotations "config/hash" (.Values.config.values | sha256sum ) -}}
+{{- end }}
+
+
+{{ include "common.all" . }}

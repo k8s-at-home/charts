@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: 2.1.1
+description: A flexible DNS proxy, with support for encrypted DNS protocols.
+name: dnscrypt-proxy
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- dnscrypt-proxy
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dnscrypt-proxy
+icon: https://dnscrypt.info/_nuxt/img/dnscrypt.4efc293.png
+sources:
+- https://github.com/DNSCrypt/dnscrypt-proxy
+- https://github.com/klutchell/dnscrypt-proxy-docker
+maintainers:
+- name: obeone
+  email: obeone@obeone.org
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version

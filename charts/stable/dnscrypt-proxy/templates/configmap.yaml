@@ -1,0 +1,13 @@
+{{- if .Values.config.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  dnscrypt-proxy.toml: |
+{{- with .Values.config.values }}
+    {{- . | nindent 4 }}
+{{- end }}
+{{ end }}
