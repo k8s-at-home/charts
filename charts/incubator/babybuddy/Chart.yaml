@@ -1,0 +1,25 @@
+apiVersion: v2
+appVersion: 1.10.2
+description: A buddy for babies! Helps caregivers track sleep, feedings, diaper changes, tummy time and more to learn about and predict baby's needs without (as much) guess work.
+name: babybuddy
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - babybuddy
+  - baby
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/babybuddy
+icon: https://github.com/babybuddy/babybyddy/blob/master/babybuddy/static_src/logo/icon.png?raw=true
+sources:
+  - https://github.com/babybuddy/babybuddy
+  - https://hub.docker.com/r/linuxserver/babybuddy
+maintainers:
+  - name: brianporeilly
+    email: brianporeilly@gmail.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
