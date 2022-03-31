@@ -177,6 +177,7 @@
 ### Incubator charts:
 | Chart | Description |
 | ----- | ----------- |
+| [babybuddy](incubator/babybuddy) | A buddy for babies! Helps caregivers track sleep, feedings, diaper changes, tummy time and more to learn about and predict baby's needs without (as much) guess work. |
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
 | [cryptpad](incubator/cryptpad) | cryptpad helm package |
 | [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
