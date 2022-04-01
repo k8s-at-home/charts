@@ -15892,6 +15892,40 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded `postgresql` chart dependency to version `11.1.12`.
+    apiVersion: v2
+    appVersion: 2021.06.01
+    created: "2022-04-01T18:05:46.601604594Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.12
+    description: DSMR-protocol reader, telegram data storage and energy consumption
+      visualizer.
+    digest: 67d8c31108823f9e73e405d50b4add364cc8c7af16e1d0a5ddc6e5c031d7f3d5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dsmr-reader
+    icon: https://avatars2.githubusercontent.com/u/57727360?s=400&v=4
+    keywords:
+    - dsmr-reader
+    - energy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: dsmr-reader
+    sources:
+    - https://github.com/dsmrreader/dsmr-reader
+    - https://github.com/xirixiz/dsmr-reader-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dsmr-reader-6.0.0/dsmr-reader-6.0.0.tgz
+    version: 6.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `postgresql` chart dependency to version `10.16.2`.
     apiVersion: v2
     appVersion: 2021.06.01
@@ -101963,4 +101997,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-31T10:10:31.489254176Z"
+generated: "2022-04-01T18:05:46.623870825Z"
