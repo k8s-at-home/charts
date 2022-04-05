@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 2022.3.2
 description: Home Assistant
 name: home-assistant
-version: 12.2.0
+version: 13.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - home-assistant
@@ -22,7 +22,7 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.3.0
   - name: postgresql
-    version: 10.16.2
+    version: 11.1.13
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: mariadb
@@ -30,12 +30,15 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
   - name: influxdb
-    version: 1.1.9
+    version: 4.0.8
     repository: https://charts.bitnami.com/bitnami
     condition: influxdb.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `10.4.4`.
+      description: "**Breaking**: Upgraded `influxdb` chart dependency to version `4.0.8`. Be sure to check out the documentation on how to set up the integration."
+      links:
+        - name: Integration documentation
+          url: https://www.home-assistant.io/integrations/influxdb/
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+      description: Upgraded `postgresql` chart dependency to version `11.1.13`.
