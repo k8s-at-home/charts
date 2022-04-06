@@ -13755,6 +13755,91 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded `postgresql` chart dependency to version `11.1.15`.
+    apiVersion: v2
+    appVersion: v0.6.3
+    created: "2022-04-06T04:44:10.898793917Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.15
+    - condition: nats.enabled
+      name: nats
+      repository: https://nats-io.github.io/k8s/helm/charts/
+      version: 0.15.1
+    - alias: clientapi
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: mediaapi
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: syncapi
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: roomserver
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: eduserver
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: federationapi
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: keyserver
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: userapi
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - alias: appserviceapi
+      condition: dendrite.polylithEnabled
+      name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Dendrite Matrix Homeserver
+    digest: 2ab3c3a21dfad57701f0b29a011b559e96af9f3d08d4aabce5a78854a1cfd37f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/dendrite
+    keywords:
+    - dendrite
+    - matrix
+    - homeserver
+    - monolith
+    - federation
+    - polylith
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jonathan@jonnobrow.co.uk
+      name: jonnobrow
+    name: dendrite
+    sources:
+    - https://github.com/matrix-org/dendrite
+    - https://github.com/matrix-org/dendrite/tree/master/build/docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/dendrite-4.0.0/dendrite-4.0.0.tgz
+    version: 4.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `nats` chart dependency to version `0.15.1`.
     apiVersion: v2
     appVersion: v0.6.3
@@ -102198,4 +102283,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-06T04:42:59.49367012Z"
+generated: "2022-04-06T04:44:10.917520065Z"
