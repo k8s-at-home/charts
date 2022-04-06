@@ -2336,6 +2336,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded `redis` chart dependency to version `16.8.2`.
+    apiVersion: v2
+    appVersion: 0.8.4
+    created: "2022-04-06T04:42:59.477558812Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.8.2
+    description: 'Anonaddy: Anonymous email forwarding'
+    digest: bfc77291d6fb3efece2dd5aa7351d40e6045d2b38efa748c1081321fae34b25a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/anonaddy
+    icon: https://avatars.githubusercontent.com/u/51450862?s=200&v=4?sanitize=true
+    keywords:
+    - anonaddy
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: simon.caron@pm.me
+      name: simoncaron
+    name: anonaddy
+    sources:
+    - https://github.com/anonaddy/docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/anonaddy-3.0.0/anonaddy-3.0.0.tgz
+    version: 3.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `mariadb` chart dependency to version `10.4.4`.
         - kind: changed
           description: Upgraded `redis` chart dependency to version `15.7.6`.
@@ -102163,4 +102198,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-06T04:41:47.06421079Z"
+generated: "2022-04-06T04:42:59.49367012Z"
