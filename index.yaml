@@ -36063,6 +36063,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded `postgresql` chart dependency to version `11.1.15`.
+    apiVersion: v2
+    appVersion: 2.1.2
+    created: "2022-04-06T04:41:47.048479388Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.15
+    description: This server allows you to sync any Joplin client
+    digest: d16f6043658029caa3db568b49f5a5867a567ab6346fb71bb5d3746bb132dcd8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jopplin-server
+    icon: https://raw.githubusercontent.com/laurent22/joplin/master/Assets/LinuxIcons/256x256.png?raw=true
+    keywords:
+    - joplin
+    - notes
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: joplin-server
+    sources:
+    - https://github.com/laurent22/joplin/tree/dev/packages/server
+    - https://github.com/laurent22/joplin
+    - https://hub.docker.com/r/joplin/server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/joplin-server-5.0.0/joplin-server-5.0.0.tgz
+    version: 5.0.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `postgresql` chart dependency to version `10.16.2`.
     apiVersion: v2
     appVersion: 2.1.2
@@ -102130,4 +102163,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-05T17:59:33.813058812Z"
+generated: "2022-04-06T04:41:47.06421079Z"
