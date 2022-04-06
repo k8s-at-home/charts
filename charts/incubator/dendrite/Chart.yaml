@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.6.3
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 3.1.1
+version: 4.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -24,7 +24,7 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.3.0
   - name: postgresql
-    version: 10.16.2
+    version: 11.1.15
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: nats
@@ -88,4 +88,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `nats` chart dependency to version `0.15.1`.
+      description: Upgraded `postgresql` chart dependency to version `11.1.15`.
