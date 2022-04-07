@@ -26672,6 +26672,52 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Upgraded image version to latest upstream release - 2022.4.0"
+          links:
+            - name: Upstream release notes
+              url: https://www.home-assistant.io/blog/2022/04/06/release-20224/
+    apiVersion: v2
+    appVersion: 2022.4.0
+    created: "2022-04-07T05:43:43.603285615Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.13
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.4
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 4.0.8
+    description: Home Assistant
+    digest: 554ae7f081ac04e48b2bcc04ddcf67b7d432a423d5c22b21f54ab527854b58d1
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-13.0.1/home-assistant-13.0.1.tgz
+    version: 13.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "**Breaking**: Upgraded `influxdb` chart dependency to version `4.0.8`. Be sure to check out the documentation on how to set up the integration."
           links:
             - name: Integration documentation
@@ -102283,4 +102329,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-06T04:44:10.917520065Z"
+generated: "2022-04-07T05:43:43.621669354Z"
