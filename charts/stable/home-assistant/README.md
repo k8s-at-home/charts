@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 13.0.0](https://img.shields.io/badge/Version-13.0.0-informational?style=flat-square) ![AppVersion: 2022.3.2](https://img.shields.io/badge/AppVersion-2022.3.2-informational?style=flat-square)
+![Version: 13.0.1](https://img.shields.io/badge/Version-13.0.1-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
 
 Home Assistant
 
@@ -175,7 +175,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 ## Changelog
 
-### Version 13.0.0
+### Version 13.0.1
 
 #### Added
 
@@ -183,8 +183,7 @@ N/A
 
 #### Changed
 
-* **Breaking**: Upgraded `influxdb` chart dependency to version `4.0.8`. Be sure to check out the documentation on how to set up the integration.
-* Upgraded `postgresql` chart dependency to version `11.1.13`.
+* Upgraded image version to latest upstream release - 2022.4.0
 
 #### Fixed
 
