@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 2022.3.2
+appVersion: 2022.4.0
 description: Home Assistant
 name: home-assistant
-version: 13.0.0
+version: 13.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - home-assistant
@@ -36,9 +36,7 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: "**Breaking**: Upgraded `influxdb` chart dependency to version `4.0.8`. Be sure to check out the documentation on how to set up the integration."
+      description: "Upgraded image version to latest upstream release - 2022.4.0"
       links:
-        - name: Integration documentation
-          url: https://www.home-assistant.io/integrations/influxdb/
-    - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `11.1.13`.
+        - name: Upstream release notes
+          url: https://www.home-assistant.io/blog/2022/04/06/release-20224/
