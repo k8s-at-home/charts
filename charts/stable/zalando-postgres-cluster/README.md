@@ -1,6 +1,6 @@
 # zalando-postgres-cluster
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 3.2.1](https://img.shields.io/badge/Version-3.2.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Creates a postgres cluster using the Zalando Postgres operator and local storage
 
@@ -115,7 +115,7 @@ Features added by this wrapper:
 
 ## Changelog
 
-### Version 3.2.0
+### Version 3.2.1
 
 #### Added
 
@@ -123,7 +123,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* documented that operator has to be installed before this chart.
 
 #### Fixed
 
