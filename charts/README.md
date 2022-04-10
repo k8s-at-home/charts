@@ -146,6 +146,7 @@
 | [teedy](stable/teedy) | Teedy is an open source, lightweight document management system for individuals and businesses. |
 | [teslamate](stable/teslamate) | A self-hosted data logger for your Tesla 🚘 |
 | [thelounge](stable/thelounge) | The Lounge, modern web IRC client designed for self-hosting |
+| [theme-park](stable/theme-park) | theme-park helm package |
 | [traccar](stable/traccar) | Traccar is an open source GPS tracking system. |
 | [traefik-forward-auth](stable/traefik-forward-auth) | A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer |
 | [transmission](stable/transmission) | Transmission is a cross-platform BitTorrent client |
