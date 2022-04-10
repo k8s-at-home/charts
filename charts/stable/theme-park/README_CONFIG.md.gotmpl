@@ -1,0 +1,9 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+Note that this helm uses the k@h container image, not the developers image.  The k@h container is a non-s6-overlay and rootless build, aimed for a k8s cluster.
+{{- end -}}
