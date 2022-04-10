@@ -7,11 +7,11 @@
 
 ### Keeping server up to date
 
-By default, this helm chart will follow `Factoriotools/Factorio:stable`.  Game servers need to be kept up to date regularly, but you might not want it updating during gameplay with traffic being forwarded from your router through open ports  
+By default, this helm chart will follow `Factoriotools/Factorio:stable`.  Game servers need to be kept up to date regularly, but you might not want it updating during gameplay with traffic being forwarded from your router through open ports
 The author recommends a approach of setting a `tag:` in your values.yaml to pin a specific version, and using a solution like [Renovate-bot](https://github.com/renovatebot/renovate) to control updates.
 This can be best achieved to pinning to a specific sha release, which allows you to set the tag to follow.
 
-Note that by default renovate follows latest which can sometimes be undesirable for this image.  The author notes that `stable` follows the version declared stable on [Factorio.com[(https://Factorio.com)] and on Steam, and `latest` can at times diverge into testing/beta releases (which require a Steam opt-in for downloading with traffic being forwarded from your router through open ports  
+Note that by default renovate follows latest which can sometimes be undesirable for this image.  The author notes that `stable` follows the version declared stable on [Factorio.com[(https://Factorio.com)] and on Steam, and `latest` can at times diverge into testing/beta releases (which require a Steam opt-in for downloading with traffic being forwarded from your router through open ports
 
 ### Pinning to one node
 
