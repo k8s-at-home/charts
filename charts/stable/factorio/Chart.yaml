@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: stable
+description: Factorio dedicated steam game server
+name: factorio
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - factorio
+  - steam
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/factorio
+icon: https://factorio.com/static/img/factorio-wheel.png
+sources:
+  - https://github.com/factoriotools/factorio-docker
+maintainers:
+  - name: Truxnell
+    email: nat@natallan.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version

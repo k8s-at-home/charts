@@ -1,0 +1,106 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "factorio.server-settings.json" -}}
+enabled: "true"
+mountPath: "/helmconfig/server-settings.json"
+subPath: "server-settings.json"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if .Values.config.factorioServer -}}
+{{- $_ := set .Values.persistence "factorio-config" (include "factorio.server-settings.json" . | fromYaml) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "factorio.rconPassword" -}}
+enabled: "true"
+mountPath: "/helmconfig/rconpw"
+subPath: "rconpw"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if .Values.config.rcon.password -}}
+{{- $_ := set .Values.persistence "factorio-config" (include "factorio.rconPassword" . | fromYaml) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "factorio.map_gen_settings" -}}
+enabled: "true"
+mountPath: "/helmconfig/map_gen_settings.json"
+subPath: "map_gen_settings.json"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if .Values.config.map_gen_settings -}}
+{{- $_ := set .Values.persistence "factorio-config" (include "factorio.map_gen_settings" . | fromYaml) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "factorio.map_settings" -}}
+enabled: "true"
+mountPath: "/helmconfig/map_settings.json"
+subPath: "map_settings.json"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if .Values.config.map_settings -}}
+{{- $_ := set .Values.persistence "factorio-config" (include "factorio.map_settings" . | fromYaml) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "factorio.server-adminlist" -}}
+enabled: "true"
+mountPath: "/helmconfig/server-adminlist.json"
+subPath: "server-adminlist.json"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if .Values.config.adminlist -}}
+{{- $_ := set .Values.persistence "factorio-config" (include "factorio.server-adminlist" . | fromYaml) -}}
+{{- end -}}
+
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "factorio.server-whitelist" -}}
+enabled: "true"
+mountPath: "/helmconfig/server-whitelist.json"
+subPath: "server-whitelist.json"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if .Values.config.whitelist -}}
+{{- $_ := set .Values.persistence "factorio-config" (include "factorio.server-whitelist" . | fromYaml) -}}
+{{- end -}}
+
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "factorio.server-banlist" -}}
+enabled: "true"
+mountPath: "/helmconfig/server-banlist.json"
+subPath: "server-banlist.json"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if .Values.config.banlist -}}
+{{- $_ := set .Values.persistence "factorio-config" (include "factorio.server-banlist" . | fromYaml) -}}
+{{- end -}}
+
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
