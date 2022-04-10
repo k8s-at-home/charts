@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: v1.7.3
+description: theme-park helm package
+name: theme-park
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - theme-park
+home: https://github.com/GilbN/theme.park
+icon: https://github.com/GilbN/theme.park/blob/master/resources/landing-page/assets/img/themepark-logo.png
+sources:
+  - https://github.com/GilbN/theme.park
+  - https://github.com/k8s-at-home/container-images/tree/main/apps/theme-park
+maintainers:
+  - name: Truxnell
+    email: nat@natallan.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
