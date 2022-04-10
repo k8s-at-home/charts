@@ -1,0 +1,28 @@
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "common.names.serviceAccountName" . }}
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "pods"]
+  verbs:
+    - list
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["nodes", "pods"]
+  verbs:
+    - get
+    - list
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "common.names.serviceAccountName" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "common.names.serviceAccountName" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "common.names.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}

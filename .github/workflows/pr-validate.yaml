@@ -36,6 +36,7 @@ jobs:
       - charts-changelog
     with:
       checkoutCommit: ${{ needs.charts-changelog.outputs.commitHash }}
+      chartChangesDetected: ${{ needs.pr-metadata.outputs.addedOrModified }}
 
   charts-test:
     uses: k8s-at-home/charts/.github/workflows/charts-test.yaml@master
@@ -45,3 +46,4 @@ jobs:
       - charts-lint
     with:
       checkoutCommit: ${{ needs.charts-changelog.outputs.commitHash }}
+      chartChangesDetected: ${{ needs.pr-metadata.outputs.addedOrModified }}

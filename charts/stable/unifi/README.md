@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 4.6.1](https://img.shields.io/badge/Version-4.6.1-informational?style=flat-square) ![AppVersion: v6.5.55](https://img.shields.io/badge/AppVersion-v6.5.55-informational?style=flat-square)
+![Version: 4.7.0](https://img.shields.io/badge/Version-4.7.0-informational?style=flat-square) ![AppVersion: v6.5.55](https://img.shields.io/badge/AppVersion-v6.5.55-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -16,7 +16,7 @@ Ubiquiti Network's Unifi Controller
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mongodb | 10.30.12 |
+| https://charts.bitnami.com/bitnami | mongodb | 10.31.5 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -145,7 +145,7 @@ service:
 
 ## Changelog
 
-### Version 4.6.1
+### Version 4.7.0
 
 #### Added
 
@@ -153,7 +153,7 @@ N/A
 
 #### Changed
 
-* Upgraded `jacobalberty/unifi` image to version `v6.5.55`.
+* Upgraded `mongodb` chart dependency to version `10.31.5`.
 
 #### Fixed
 

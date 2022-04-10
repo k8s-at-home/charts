@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v0.5.6
 description: Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
 name: mealie
-version: 4.0.0
+version: 4.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - grocy
@@ -19,11 +19,9 @@ dependencies:
     version: 4.3.0
   - name: postgresql
     repository: https://charts.bitnami.com/bitnami
-    version: 10.14.4
+    version: 10.16.2
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded app version `v0.5.6`.
-    - kind: changed
-      description: Removed deprecated DB_TYPE environment variable in favour of DB_ENGINE.
+      description: Upgraded `postgresql` chart dependency to version `10.16.2`.

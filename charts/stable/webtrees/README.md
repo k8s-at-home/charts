@@ -1,6 +1,6 @@
 # webtrees
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 2.0.19](https://img.shields.io/badge/AppVersion-2.0.19-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 2.0.19](https://img.shields.io/badge/AppVersion-2.0.19-informational?style=flat-square)
 
 Open-source online collaborative genealogy application
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.4.4 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -103,7 +103,7 @@ N/A
 
 ## Changelog
 
-### Version 1.1.0
+### Version 1.2.0
 
 #### Added
 
@@ -111,7 +111,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `mariadb` chart dependency to version `10.4.4`.
 
 #### Fixed
 

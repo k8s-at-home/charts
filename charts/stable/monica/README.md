@@ -1,6 +1,6 @@
 # monica
 
-![Version: 7.0.1](https://img.shields.io/badge/Version-7.0.1-informational?style=flat-square) ![AppVersion: 3.7.0-apache](https://img.shields.io/badge/AppVersion-3.7.0--apache-informational?style=flat-square)
+![Version: 7.1.0](https://img.shields.io/badge/Version-7.1.0-informational?style=flat-square) ![AppVersion: 3.7.0-apache](https://img.shields.io/badge/AppVersion-3.7.0--apache-informational?style=flat-square)
 
 A Personal Relationship Management tool to help you organize your social life
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.2.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.4.4 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -79,12 +79,6 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [monica documentation](https://raw.githubusercontent.com/monicahq/monica/master/.env.example) for more details. |
 | env.APP_ENV | string | `"production"` | Use `local` if you want to install Monica as a development version. Use `production` otherwise. |
-| env.APP_KEY | string | `nil` | The encryption key. This is the most important part of the application. Keep this secure otherwise, everyone will be able to access your application. Must be 32 characters long exactly. Use `php artisan key:generate` or `echo -n 'base64:'; openssl rand -base64 32` to generate a random key. |
-| env.APP_URL | string | `"https://crm.k8s-at-home.com"` | The URL of your application. |
-| env.DB_DATABASE | string | `nil` | Database to connect to |
-| env.DB_HOST | string | `nil` | Database hostname |
-| env.DB_PASSWORD | string | `nil` | Database password |
-| env.DB_USERNAME | string | `nil` | Database username |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"monica"` | image repository |
@@ -96,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 7.0.1
+### Version 7.1.0
 
 #### Added
 
@@ -104,7 +98,7 @@ N/A
 
 #### Changed
 
-* Upgraded app to version `3.7.0-apache` from `3.1.1-apache`.
+* Upgraded `mariadb` chart dependency to version `10.4.4`.
 
 #### Fixed
 

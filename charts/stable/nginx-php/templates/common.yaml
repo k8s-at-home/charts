@@ -1,0 +1,47 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "nginx-php.settingsVolume-server.conf" -}}
+enabled: "true"
+mountPath: "/etc/nginx/conf.d/server.conf"
+subPath: "nginx-server.conf"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if (index .Values.config "nginx-server.conf") -}}
+{{- $_ := set .Values.persistence "nginx-php-server-conf" (include "nginx-php.settingsVolume-server.conf" . | fromYaml) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "nginx-php.settingsVolume-php-settings.ini" -}}
+enabled: "true"
+mountPath: "/etc/php8/conf.d/settings.ini"
+subPath: "php-settings.ini"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if (index .Values.config "php-settings.ini") -}}
+{{- $_ := set .Values.persistence "nginx-php-settings-ini" (include "nginx-php.settingsVolume-php-settings.ini" . | fromYaml) -}}
+{{- end -}}
+
+{{/* Append the configMap volume to the volumes */}}
+{{- define "nginx-php.settingsVolume-php-fpm-server.conf" -}}
+enabled: "true"
+mountPath: "/etc/php8/php-fpm.d/server.conf"
+subPath: "php-fpm-server.conf"
+type: "custom"
+volumeSpec:
+  configMap:
+    name: {{ include "common.names.fullname" . }}-settings
+{{- end -}}
+{{- if (index .Values.config "php-fpm-server.conf") -}}
+{{- $_ := set .Values.persistence "nginx-php-fpm-server-conf" (include "nginx-php.settingsVolume-php-fpm-server.conf" . | fromYaml) -}}
+{{- end -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}

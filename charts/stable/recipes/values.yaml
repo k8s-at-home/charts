@@ -21,9 +21,11 @@ sidecar:
     tag: 1.21.6
     # -- nginx sidecar image pull policy
     pullPolicy: IfNotPresent
-  # -- specify nginx related configs
   config:
+    # -- define the max body size to allow larger files to be uploaded
     client_max_body_size: "128M"
+    # -- define the name of the variable in the header containing the authenticated user. It is used together with enabling `REVERSE_PROXY_AUTH`
+    reverse_proxy_header_username: x_authentik_username
 
 # -- environment variables. See [project docs](https://raw.githubusercontent.com/vabene1111/recipes/master/.env.template) for more details.
 # @default -- See below
@@ -42,6 +44,7 @@ env:
   FRACTION_PREF_DEFAULT: "0"
   COMMENT_PREF_DEFAULT: "1"
   SHOPPING_MIN_AUTOSYNC_INTERVAL: "5"
+  REVERSE_PROXY_AUTH: 0
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

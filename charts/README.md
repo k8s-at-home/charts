@@ -47,6 +47,7 @@
 | [ghost](stable/ghost) | Ghost is a blogging and publishing software |
 | [gollum](stable/gollum) | Gollum is a simple wiki system built on top of Git |
 | [gonic](stable/gonic) | Music streaming server / subsonic server API implementation |
+| [gotify](stable/gotify) | A simple server for sending and receiving messages |
 | [grocy](stable/grocy) | ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home |
 | [haste-server](stable/haste-server) | Simple text sharing |
 | [healthchecks](stable/healthchecks) | Healthchecks is a cron job monitoring service. It listens for HTTP requests and email messages ("pings") from your cron jobs and scheduled tasks ("checks"). When a ping does not arrive on time, Healthchecks sends out alerts. |
@@ -65,6 +66,7 @@
 | [joplin-server](stable/joplin-server) | This server allows you to sync any Joplin client |
 | [kanboard](stable/kanboard) | Kanboard is a free and open source Kanban project management software. |
 | [komga](stable/komga) | A comics/mangas server to serve/stream pages via API |
+| [kube-ops-view](stable/kube-ops-view) | kube-ops-view helm package |
 | [lazylibrarian](stable/lazylibrarian) | A Helm chart for deploying LazyLibrarian |
 | [leaf2mqtt](stable/leaf2mqtt) | Nissan Leaf connected services to MQTT adapter |
 | [librespeed](stable/librespeed) | Librespeed is a HTML5 webpage to test upload and download speeds |
@@ -84,6 +86,7 @@
 | [navidrome](stable/navidrome) | Navidrome is an open source web-based music collection server and streamer |
 | [neolink](stable/neolink) | Neolink - RTSP bridge to Reolink IP cameras |
 | [network-ups-tools](stable/network-ups-tools) | Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware. |
+| [nginx-php](stable/nginx-php) | Nginx and PHP FPM for running PHP applications |
 | [node-red](stable/node-red) | Node-RED is low-code programming for event-driven applications |
 | [nullserv](stable/nullserv) | A simple null file http and https server |
 | [nzbget](stable/nzbget) | NZBGet is a Usenet downloader client |
@@ -174,12 +177,14 @@
 ### Incubator charts:
 | Chart | Description |
 | ----- | ----------- |
+| [babybuddy](incubator/babybuddy) | A buddy for babies! Helps caregivers track sleep, feedings, diaper changes, tummy time and more to learn about and predict baby's needs without (as much) guess work. |
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
 | [cryptpad](incubator/cryptpad) | cryptpad helm package |
 | [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [scrypted](incubator/scrypted) | scrypted helm package |
+| [sdtd](incubator/sdtd) | Dedicated server for 7 Days to Die |
 | [signal-cli-rest-api](incubator/signal-cli-rest-api) | Dockerized Signal Messenger REST API |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
 | [strongswan](incubator/strongswan) | strongSwan – the OpenSource IPsec-based VPN Solution |

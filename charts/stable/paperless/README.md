@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 8.5.0](https://img.shields.io/badge/Version-8.5.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
+![Version: 8.6.0](https://img.shields.io/badge/Version-8.6.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.14.4 |
-| https://charts.bitnami.com/bitnami | redis | 15.6.10 |
+| https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
+| https://charts.bitnami.com/bitnami | redis | 15.7.6 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
 
 ## TL;DR
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 8.5.0
+### Version 8.6.0
 
 #### Added
 
@@ -104,7 +104,8 @@ N/A
 
 #### Changed
 
-* Upgrade to 1.6.0 and set default value for PAPERLESS_PORT to prevent CrashLoopBackoff. See https://github.com/paperless-ngx/paperless-ngx/issues/264.
+* Upgraded `postgresql` chart dependency to version `10.16.2`.
+* Upgraded `redis` chart dependency to version `15.7.6`.
 
 #### Fixed
 
