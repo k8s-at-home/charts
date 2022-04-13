@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 2022.3.2
+appVersion: 2022.4.0
 description: Home Assistant
 name: home-assistant
-version: 12.2.0
+version: 13.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - home-assistant
@@ -22,7 +22,7 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.3.0
   - name: postgresql
-    version: 10.16.2
+    version: 11.1.13
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: mariadb
@@ -30,12 +30,13 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
   - name: influxdb
-    version: 1.1.9
+    version: 4.0.8
     repository: https://charts.bitnami.com/bitnami
     condition: influxdb.enabled
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `10.4.4`.
-    - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+      description: "Upgraded image version to latest upstream release - 2022.4.0"
+      links:
+        - name: Upstream release notes
+          url: https://www.home-assistant.io/blog/2022/04/06/release-20224/

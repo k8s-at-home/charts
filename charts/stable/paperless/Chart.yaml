@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 1.6.0
 description: Paperless - Index and archive all of your scanned paper documents
 name: paperless
-version: 8.6.0
+version: 8.6.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - paperless
@@ -31,6 +31,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
-    - kind: changed
-      description: Upgraded `redis` chart dependency to version `15.7.6`.
+      description: Added admin username and password env variables to values.yaml
