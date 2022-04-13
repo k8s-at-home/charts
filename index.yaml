@@ -90125,6 +90125,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Updated Unifi version to version `v7.0.25`.
+    apiVersion: v2
+    appVersion: v7.0.25
+    created: "2022-04-13T14:21:20.367479326Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.31.5
+    description: Ubiquiti Network's Unifi Controller
+    digest: 0cda0432484a7461109cbfbd5744be247236aac92fd39e2d1c9a2db78c0348aa
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi
+    icon: https://prd-www-cdn.ubnt.com/static/favicon-152.png
+    keywords:
+    - ubiquiti
+    - unifi
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: mike@quadra-tec.net
+      name: mcronce
+    name: unifi
+    sources:
+    - https://github.com/jacobalberty/unifi-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-4.8.0/unifi-4.8.0.tgz
+    version: 4.8.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `mongodb` chart dependency to version `10.31.5`.
       artifacthub.io/containsSecurityUpdates: "true"
     apiVersion: v2
@@ -102446,4 +102479,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-13T13:49:59.662744609Z"
+generated: "2022-04-13T14:21:20.383787057Z"
