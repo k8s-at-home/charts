@@ -5,6 +5,10 @@
 {{- define "custom.custom.configuration" -}}
 {{ template "custom.custom.configuration.header" . }}
 
+### Cart credits
+
+This chart is partially inspired by [https://github.com/SQLJames/factorio-server-charts](https://github.com/SQLJames/factorio-server-charts) and the yaml for the server settings defaults is sourced from here.  Many thanks to @SQLJames for his work on that chart and the inspiration.
+
 ### Keeping server up to date
 
 By default, this helm chart will follow `Factoriotools/Factorio:stable`.  Game servers need to be kept up to date regularly, but you might not want it updating during gameplay with traffic being forwarded from your router through open ports
@@ -31,6 +35,10 @@ affinity:
                 - <yourhostname>
 
 ```
+
+### Map generation
+
+This chart has yaml to allow you to pick map gen settings for first load.  One way that *may* be eaiser to get a map howver, is to generate the map in your local game with the UI, ensure you are happy with it.  You can run this helm once with default settings (to generate the folder structure in a PVC), spin it back down and mount the pvc in a test pod.  You can then copy your generated `map.zip` to the container and spin it back up - the server will load the 'latest' save and run your map.
 
 ### Networking
 
