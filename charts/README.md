@@ -146,6 +146,7 @@
 | [teedy](stable/teedy) | Teedy is an open source, lightweight document management system for individuals and businesses. |
 | [teslamate](stable/teslamate) | A self-hosted data logger for your Tesla 🚘 |
 | [thelounge](stable/thelounge) | The Lounge, modern web IRC client designed for self-hosting |
+| [theme-park](stable/theme-park) | theme-park helm package |
 | [traccar](stable/traccar) | Traccar is an open source GPS tracking system. |
 | [traefik-forward-auth](stable/traefik-forward-auth) | A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer |
 | [transmission](stable/transmission) | Transmission is a cross-platform BitTorrent client |
@@ -181,6 +182,7 @@
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
 | [cryptpad](incubator/cryptpad) | cryptpad helm package |
 | [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
+| [kah-common-chart](incubator/kah-common-chart) | A KaH-common powered chart template. This can be useful for small projects that don't have their own chart. |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [scrypted](incubator/scrypted) | scrypted helm package |
