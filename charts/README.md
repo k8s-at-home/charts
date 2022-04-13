@@ -182,6 +182,7 @@
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
 | [cryptpad](incubator/cryptpad) | cryptpad helm package |
 | [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
+| [kah-common-chart](incubator/kah-common-chart) | A KaH-common powered chart template. This can be useful for small projects that don't have their own chart. |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [scrypted](incubator/scrypted) | scrypted helm package |
