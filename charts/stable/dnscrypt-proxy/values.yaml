@@ -62,34 +62,42 @@ persistence: {}
 controller:
   replicas: 1
 
-# -- Configure dnscrypt-proxy
-config:
-  # -- Enable chart's configuration. If set to false, you need to mount a /config containing dnscrypt-proxy.toml by yourself
-  enabled: true
+# -- Configure configMaps for the chart here.
+# Additional configMaps can be added by adding a dictionary key similar to the 'config' object.
+# @default -- See below
+configmap:
+  config:
+    # -- Enables or disables the configMap
+    enabled: false
+    # -- Labels to add to the configMap
+    labels: {}
+    # -- Annotations to add to the configMap
+    annotations: {}
+    # -- configMap data content. Helm template enabled.
+    data:
+      # -- Configuration
+      # This is a simple configuration. You can find a sample config here :
+      # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
+      # And the manual : https://github.com/DNSCrypt/dnscrypt-proxy/wiki
+      dnscrypt-proxy.toml: |
+        listen_addresses = ['0.0.0.0:5353']
+        log_level = 1
 
-  # -- Configuration
-  # This is a simple configuration. You can find a sample config here :
-  # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
-  # And the manual : https://github.com/DNSCrypt/dnscrypt-proxy/wiki
-  values: |
-    listen_addresses = ['0.0.0.0:5353']
-    log_level = 1
+        ipv4_servers = true
+        ipv6_servers = false
+        dnscrypt_servers = true
+        doh_servers = false
+        odoh_servers = false
+        bootstrap_resolvers = ['9.9.9.11:53', '8.8.8.8:53']
+        lb_strategy = 'p2'
 
-    ipv4_servers = true
-    ipv6_servers = false
-    dnscrypt_servers = true
-    doh_servers = false
-    odoh_servers = false
-    bootstrap_resolvers = ['9.9.9.11:53', '8.8.8.8:53']
-    lb_strategy = 'p2'
+        require_nolog = true
+        require_nofilter = true
 
-    require_nolog = true
-    require_nofilter = true
-
-    [sources]
-      [sources.public-resolvers]
-        urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/public-resolvers.md']
-        cache_file = 'public-resolvers.md'
-        minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
-        refresh_delay = 72
-        prefix = ''
+        [sources]
+          [sources.public-resolvers]
+            urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md', 'https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md', 'https://ipv6.download.dnscrypt.info/resolvers-list/v3/public-resolvers.md']
+            cache_file = 'public-resolvers.md'
+            minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
+            refresh_delay = 72
+            prefix = ''

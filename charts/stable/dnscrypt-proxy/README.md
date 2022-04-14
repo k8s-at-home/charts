@@ -83,8 +83,8 @@ N/A
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
-| config.enabled | boolean | true | Enable configMap storing configuration |
-| config.values | string | simple configuration | Configuration to mount to dnscrypt-proxy |
+| configmap.enabled | boolean | true | Enable configMap storing configuration |
+| configmap.values | string | simple configuration | Configuration to mount to dnscrypt-proxy |
 
 ## Changelog
 

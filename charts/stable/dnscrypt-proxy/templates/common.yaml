@@ -1,23 +1,24 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
-{{/* Append the configMap volume to the volumes */}}
-{{- define "dnscryptproxy.configVolume" -}}
-enabled: "true"
-mountPath: "/config/dnscrypt-proxy.toml"
-subPath: "dnscrypt-proxy.toml"
-type: "custom"
-volumeSpec:
-  configMap:
-    name: {{ include "common.names.fullname" . }}
+{{/* Append the harcoded settings */}}
+{{- define "dnscryptproxy.harcodedValues" -}}
+  {{- if .Values.configmap.enabled }}
+    {{/* Do a change on podAnnotation to force a restart */}}
+    podAnnotations:
+      configmap/checksum: "{{ .Values.configmap.config.data | toYaml | sha256sum }}"
+
+    {{/* Append the configMap volume to the volumes */}}
+    persistence:
+      config:
+        enabled: true
+        type: "configMap"
+        name: "{{ printf "%v-config" (include "common.names.fullname" .) }}"
+        mountPath: "/config"
+  {{- end }}
 {{- end -}}
 
-
-{{- if .Values.config.enabled }}
-    {{/* To force pod restart on config update */}}
-    {{- $_ := set .Values.persistence "config" (include "dnscryptproxy.configVolume" . | fromYaml) -}}
-    {{- $_ := set .Values.podAnnotations "config/hash" (.Values.config.values | sha256sum ) -}}
-{{- end }}
-
+{{/* Applying change to original values.yaml content */}}
+{{- $_ := mergeOverwrite .Values (include "dnscryptproxy.harcodedValues" . | fromYaml) -}}
 
 {{ include "common.all" . }}
