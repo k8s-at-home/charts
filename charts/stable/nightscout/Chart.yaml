@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: nightscout helm package
+name: nightscout
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- nightscout
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nightscout
+icon: https://nightscout.org/icon
+sources:
+- https://github.com/nightscout/nightscout-docker
+maintainers:
+- name: nchilder
+  email: nchilder@redhat.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
