@@ -18815,6 +18815,35 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/facebox-1.0.0/facebox-1.0.0.tgz
     version: 1.0.0
+  factorio:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: stable
+    created: "2022-04-14T05:47:14.740362977Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Factorio dedicated steam game server
+    digest: c5f88e1538e8899738632febe3b8aabbccbbbf4a64e7ea35d799e734221f4045
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/factorio
+    icon: https://factorio.com/static/img/factorio-wheel.png
+    keywords:
+    - factorio
+    - steam
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nat@natallan.com
+      name: Truxnell
+    name: factorio
+    sources:
+    - https://github.com/factoriotools/factorio-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/factorio-1.0.0/factorio-1.0.0.tgz
+    version: 1.0.0
   filebrowser:
   - annotations:
       artifacthub.io/changes: |
@@ -102479,4 +102508,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-13T14:21:20.383787057Z"
+generated: "2022-04-14T05:47:14.759498943Z"
