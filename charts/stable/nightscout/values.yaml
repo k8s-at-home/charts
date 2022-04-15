@@ -6,12 +6,8 @@
 #
 
 image:
-  # -- image repository
   repository: nightscout/cgm-remote-monitor
-  # -- image tag
-  # @default -- chart.appVersion
   tag: 14.2.5
-  # -- image pull policy
   pullPolicy: IfNotPresent
 
 # -- environment variables. See more environment variables in the [Nightscout/cgm-remote-monitor documentation](https://github.com/nightscout/cgm-remote-monitor#environment).
@@ -20,9 +16,9 @@ env:
   # -- Set the container timezone
   TZ: UTC
   # -- MongoDB URI, eg mongodb://sally:sallypass@ds099999.mongolab.com:99999/nightscout
-  MONGODB_URI:
+  MONGODB_URI: ''
   # -- API secret, must be at least 12 characters long
-  API_SECRET:
+  API_SECRET: ''
   # -- MongoDB collection for BG entries
   MONGODB_COLLECTION: entries
   # -- Display units for BG. Valid values are mg/dl or mmol
