@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: filerun helm package
+name: filerun
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- filerun
+home: https://github.com/akarthik10/charts/tree/master/charts/stable/filerun
+icon: https://docs.filerun.com/lib/tpl/bootstrap3/images/logo.png
+sources:
+- https://github.com/filerun/docker
+maintainers:
+- name: filerun
+  email: filerun@filerun.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.3.0
+- name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.1.1
+  condition: mariadb.enabled  
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version

@@ -1,0 +1,68 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: filerun/filerun
+  # -- image tag
+  # @default -- chart.appVersion
+  tag: latest
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [filerun documentation](https://filerun.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  FR_DB_HOST: filerun-mariadb  # filerun-mysql
+  FR_DB_PORT: 3306
+  FR_DB_NAME: filerun
+  FR_DB_USER: filerun
+  FR_DB_PASS: filerun-pass
+  APACHE_RUN_USER: www-data
+  APACHE_RUN_USER_ID: 33
+  APACHE_RUN_GROUP: www-data
+  APACHE_RUN_GROUP_ID: 33
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false
+    mountPath: /user-files
+  html:
+    enabled: false
+    mountPath: /var/www/html
+
+
+mariadb:
+  enabled: true
+  architecture: standalone
+  auth:
+    database: filerun
+    username: filerun
+    password: filerun-pass
+    rootPassword: filerunrootoass
+  primary:
+    persistance:
+      enabled: false
+      # storageClass: ""    
