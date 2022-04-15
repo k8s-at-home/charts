@@ -27,7 +27,7 @@ service:
     enabled: false
   dns-udp:
     enabled: true
-    type: LoadBalancer
+    type: ClusterIP
     ports:
       dns-udp:
         enabled: true
