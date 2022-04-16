@@ -1,5 +1,5 @@
 {{- if .Values.dendrite.polylithEnabled }}
-  {{ $components := list "clientapi" "appserviceapi" "federationapi" "userapi" "keyserver" "mediaapi" "syncapi" "roomserver" "eduserver" }}
+  {{ $components := list "clientapi" "appserviceapi" "federationapi" "userapi" "keyserver" "mediaapi" "syncapi" "roomserver" }}
   {{- range $components }}
     {{- include "common.values.setup" (index $.Subcharts .) }}
     {{- with (index $.Values .) }}
