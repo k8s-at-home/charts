@@ -18,16 +18,16 @@ stringData:
       well_known_server_name: {{ default "" .Values.dendrite.global.well_known_server_name | quote }}
       trusted_third_party_id_servers:
       {{- toYaml .Values.dendrite.global.trusted_third_party_id_servers | nindent 8 }}
-      disable_federation: {{ .Values.dendrite.global.disable_federation }}
+      disable_federation: {{ default false .Values.dendrite.global.disable_federation }}
       presence:
-        enable_inbound: {{ .Values.dendrite.global.presence.enable_inbound}}
-        enable_outbound: {{ .Values.dendrite.global.presence.enable_outbound }}
+        enable_inbound: {{ default false .Values.dendrite.global.presence.enable_inbound}}
+        enable_outbound: {{ default false .Values.dendrite.global.presence.enable_outbound }}
       server_notices:
-        enabled: {{ .Values.dendrite.global.server_notices.enabled }}
-        local_part: {{ .Values.dendrite.dendrite.global.server_notices.local_part }}
-        display_name: {{ .Values.dendrite.dendrite.global.server_notices.display_name }}
-        avatar_url: {{ .Values.dendrite.dendrite.global.server_notices.avatar_url }}
-        room_name: {{ .Values.dendrite.dendrite.global.server_notices.room_name }}
+        enabled: {{ default false .Values.dendrite.global.server_notices.enabled }}
+        local_part: {{ default "_server" .Values.dendrite.dendrite.global.server_notices.local_part | quote }}
+        display_name: {{ default "Server alerts" .Values.dendrite.dendrite.global.server_notices.display_name | quote }}
+        avatar_url: {{ default "" .Values.dendrite.dendrite.global.server_notices.avatar_url | quote }}
+        room_name: {{ default "Server Alerts" .Values.dendrite.dendrite.global.server_notices.room_name | quote }}
       jetstream:
         addresses:
           {{- if .Values.nats.enabled }}
