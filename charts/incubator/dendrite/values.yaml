@@ -267,28 +267,6 @@ roomserver:
           port: 7770
   args: "roomserver"
 
-# -- Configure the edu server
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
-# @default -- values.yaml
-eduserver:
-  image:
-    # -- image repository
-    repository: matrixdotorg/dendrite-polylith
-    # -- image tag
-    # @default -- chart.appVersion
-    tag:
-    # -- image pull policy
-    pullPolicy: IfNotPresent
-  service:
-    main:
-      ports:
-        http:
-          enabled: false
-        internal:
-          enabled: true
-          port: 7778
-  args: "eduserver"
-
 # -- Configure the Media API
 # For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
 # @default -- values.yaml
@@ -374,6 +352,26 @@ dendrite:
     trusted_third_party_id_servers:
       - matrix.org
       - vector.im
+    # -- Disables federation
+    disable_federation: false
+    # -- Configure handling of presence events
+    presence:
+      # -- Whether inbound presence events are allowed, e.g. receiving presence events from other servers
+      enable_inbound: false
+      # -- Whether outbound presence events are allowed, e.g. sending presence events to other servers
+      enable_outbound: false
+
+    # -- Server notices allows server admins to send messages to all users.
+    server_notices:
+      enabled: false
+      # -- The server localpart to be used when sending notices, ensure this is not yet taken
+      local_part: "_server"
+      # -- The displayname to be used when sending notices
+      display_name: "Server alerts"
+      # -- The mxid of the avatar to use
+      avatar_url: ""
+      # -- The roomname to be used when creating messages
+      room_name: "Server Alerts"
     # -- Configure prometheus metrics collection for dendrite.
     # @default -- See values.yaml
     metrics:

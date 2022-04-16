@@ -18,6 +18,16 @@ stringData:
       well_known_server_name: {{ default "" .Values.dendrite.global.well_known_server_name | quote }}
       trusted_third_party_id_servers:
       {{- toYaml .Values.dendrite.global.trusted_third_party_id_servers | nindent 8 }}
+      disable_federation: {{ .Values.dendrite.global.disable_federation }}
+      presence:
+        enable_inbound: {{ .Values.dendrite.global.presence.enable_inbound}}
+        enable_outbound: {{ .Values.dendrite.global.presence.enable_outbound }}
+      server_notices:
+        enabled: {{ .Values.dendrite.global.server_notices.enabled }}
+        local_part: {{ .Values.dendrite.dendrite.global.server_notices.local_part }}
+        display_name: {{ .Values.dendrite.dendrite.global.server_notices.display_name }}
+        avatar_url: {{ .Values.dendrite.dendrite.global.server_notices.avatar_url }}
+        room_name: {{ .Values.dendrite.dendrite.global.server_notices.room_name }}
       jetstream:
         addresses:
           {{- if .Values.nats.enabled }}
@@ -65,10 +75,6 @@ stringData:
         enabled: {{ default true .Values.clientapi.config.rate_limiting.enabled }}
         threshold: {{ default 5 .Values.clientapi.config.rate_limiting.threshold }}
         cooloff_ms: {{ default 500 .Values.clientapi.config.rate_limiting.cooloff_ms }}
-    edu_server:
-      internal_api:
-        listen: http://0.0.0.0:7778
-        connect: http://{{ include "common.names.fullname" . }}-eduserver:7778
     federation_api:
       internal_api:
         listen: http://0.0.0.0:7772
