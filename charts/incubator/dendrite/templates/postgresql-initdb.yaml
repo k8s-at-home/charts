@@ -8,7 +8,7 @@ metadata:
 data:
   create-db.sh: |
     #!/bin/sh
-    for db in userapi_accounts userapi_devices mediaapi syncapi roomserver keyserver federationapi appservice naffka; do
+    for db in userapi_accounts mediaapi syncapi roomserver keyserver federationapi appservice; do
     createdb -U {{ .Values.postgresql.postgresqlUsername }} -O {{ .Values.postgresql.postgresqlUsername }} dendrite_$db
     done
 {{- end }}
