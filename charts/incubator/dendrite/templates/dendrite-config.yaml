@@ -24,10 +24,10 @@ stringData:
         enable_outbound: {{ default false .Values.dendrite.global.presence.enable_outbound }}
       server_notices:
         enabled: {{ default false .Values.dendrite.global.server_notices.enabled }}
-        local_part: {{ default "_server" .Values.dendrite.dendrite.global.server_notices.local_part | quote }}
-        display_name: {{ default "Server alerts" .Values.dendrite.dendrite.global.server_notices.display_name | quote }}
-        avatar_url: {{ default "" .Values.dendrite.dendrite.global.server_notices.avatar_url | quote }}
-        room_name: {{ default "Server Alerts" .Values.dendrite.dendrite.global.server_notices.room_name | quote }}
+        local_part: {{ default "_server" .Values.dendrite.global.server_notices.local_part | quote }}
+        display_name: {{ default "Server alerts" .Values.dendrite.global.server_notices.display_name | quote }}
+        avatar_url: {{ default "" .Values.dendrite.global.server_notices.avatar_url | quote }}
+        room_name: {{ default "Server Alerts" .Values.dendrite.global.server_notices.room_name | quote }}
       jetstream:
         addresses:
           {{- if .Values.nats.enabled }}
