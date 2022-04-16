@@ -422,9 +422,10 @@ postgresql:
   image:
     repository: bitnami/postgresql
     tag: "14.1.0"
-  postgresqlUsername: dendrite
-  postgresqlPassword: changeme
-  postgresqlDatabase: dendrite
+  auth:
+    postgresqlUsername: dendrite
+    postgresqlPassword: changeme
+    postgresqlDatabase: dendrite
   persistence:
     enabled: false
   initdbScriptsConfigMap: "dendrite-postgresql-init-scripts"
