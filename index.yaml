@@ -33232,6 +33232,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Updated the docker image to the latest version v0.20.892.
+    apiVersion: v2
+    appVersion: v0.20.892
+    created: "2022-04-17T14:06:12.223112186Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: API Support for your favorite torrent trackers
+    digest: 4a7e1223b55912c17693ee723966ad3fd821ec4561452f4d2ff930cdb62713da
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jackett
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/jackett-banner.png
+    keywords:
+    - jackett
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: jackett
+    sources:
+    - https://github.com/Jackett/Jackett
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jackett-11.4.0/jackett-11.4.0.tgz
+    version: 11.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: v0.18.791
@@ -102627,4 +102656,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-17T13:56:17.181750136Z"
+generated: "2022-04-17T14:06:12.240789463Z"
