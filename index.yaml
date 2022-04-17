@@ -78086,6 +78086,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Changed docker image version to the latest one.
+    apiVersion: v2
+    appVersion: v3.0.7.1477
+    created: "2022-04-17T13:53:57.449933408Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: 86a9c63bcd447c7049a2abe7fffd6a1c811dd6a11ac6bf429c5bc465cf3e43dc
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-16.1.0/sonarr-16.1.0.tgz
+    version: 16.1.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Inherit persistence.config.subPath in metrics exporter
     apiVersion: v2
     appVersion: v3.0.6.1342
@@ -102538,4 +102568,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-17T13:02:02.971796189Z"
+generated: "2022-04-17T13:53:57.473486546Z"
