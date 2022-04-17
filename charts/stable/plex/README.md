@@ -81,7 +81,7 @@ N/A
 | hostNetwork | bool | `false` | Enable devices to be discoverable |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/plex"` | image repository |
-| image.tag | string | `"v1.25.9.5721-965587f64"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | podSecurityContext | object | `{}` | Configure the Security Context for the Pod |
