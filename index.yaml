@@ -61271,6 +61271,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Update image to v1.25.9.5721-965587f64.
+    apiVersion: v2
+    appVersion: v1.25.9.5721-965587f64
+    created: "2022-04-17T18:04:24.5660991Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Plex Media Server
+    digest: 63870f66076b9da61a7c414f8aea0f4e49aeac84ec1b8945b5f57dc588802f51
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    - plex-media-server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: plex
+    sources:
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/plex
+    - https://github.com/k8s-at-home/container-images/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/plex-6.2.1/plex-6.2.1.tgz
+    version: 6.2.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: v1.24.1.4931-1a38e63c6
@@ -102690,4 +102719,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-17T14:09:05.462954167Z"
+generated: "2022-04-17T18:04:24.585795623Z"
