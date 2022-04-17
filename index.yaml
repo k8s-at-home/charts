@@ -92835,6 +92835,36 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Update appVersion to 1.14.0
+    apiVersion: v2
+    appVersion: 1.14.0
+    created: "2022-04-17T13:02:02.952114645Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: A fancy self-hosted monitoring tool for your websites and applications
+    digest: 3f8ffb218a2b0c0a83934f9116fe86bef64454f94b59c48f68d663c0a818ebb5
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/uptime-kuma
+    icon: https://github.com/louislam/uptime-kuma/raw/master/public/icon.svg
+    keywords:
+    - uptime-kuma
+    - status
+    - status-page
+    - monitoring
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: pysen@svartavillan.se
+      name: pysen
+    name: uptime-kuma
+    sources:
+    - https://github.com/louislam/uptime-kuma
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/uptime-kuma-1.2.1/uptime-kuma-1.2.1.tgz
+    version: 1.2.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Update appVersion to v1.13.1, including a security fix in v1.11.4 ('Update vulnerable packages') and v1.12.1 ('Update axios to 0.26.0 due to vulnerability')
       artifacthub.io/containsSecurityUpdates: "true"
     apiVersion: v2
@@ -102508,4 +102538,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-14T05:47:14.759498943Z"
+generated: "2022-04-17T13:02:02.971796189Z"
