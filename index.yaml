@@ -4334,6 +4334,40 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Updated to use the latest docker image.
+    apiVersion: v2
+    appVersion: v1.0.3
+    created: "2022-04-17T14:09:05.443479782Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Bazarr is a companion application to Sonarr and Radarr. It manages
+      and downloads subtitles based on your requirements
+    digest: c1c1a5b0de8d42c35f76f7390a1476a410ea879bb4cd5e3c2cd8f02280f8164a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/bazarr
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/bazarr.png
+    keywords:
+    - bazarr
+    - radarr
+    - sonarr
+    - subtitles
+    - usenet
+    - torrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: bazarr
+    sources:
+    - https://github.com/morpheus65535/bazarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/bazarr-10.4.0/bazarr-10.4.0.tgz
+    version: 10.4.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: v0.9.9
@@ -102656,4 +102690,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-17T14:06:12.240789463Z"
+generated: "2022-04-17T14:09:05.462954167Z"
