@@ -1,6 +1,6 @@
 # uptime-kuma
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: 1.13.1](https://img.shields.io/badge/AppVersion-1.13.1-informational?style=flat-square)
+![Version: 1.2.1](https://img.shields.io/badge/Version-1.2.1-informational?style=flat-square) ![AppVersion: 1.14.0](https://img.shields.io/badge/AppVersion-1.14.0-informational?style=flat-square)
 
 A fancy self-hosted monitoring tool for your websites and applications
 
@@ -86,7 +86,7 @@ N/A
 
 ## Changelog
 
-### Version 1.2.0
+### Version 1.2.1
 
 #### Added
 
@@ -94,7 +94,7 @@ N/A
 
 #### Changed
 
-* Update appVersion to v1.13.1, including a security fix in v1.11.4 ('Update vulnerable packages') and v1.12.1 ('Update axios to 0.26.0 due to vulnerability')
+* Update appVersion to 1.14.0
 
 #### Fixed
 
