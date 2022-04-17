@@ -80,7 +80,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/jackett"` | image repository |
-| image.tag | string | `"v0.20.892"` | image tag |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Updated the docker image to the latest version v0.20.892
+* Updated the docker image to the latest version v0.20.892.
 
 #### Fixed
 
