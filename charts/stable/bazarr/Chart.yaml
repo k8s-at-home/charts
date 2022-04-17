@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v0.9.9
+appVersion: v1.0.3
 description: Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements
 name: bazarr
-version: 10.3.0
+version: 10.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - bazarr
@@ -26,4 +26,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
+      description: Updated to use the latest docker image.

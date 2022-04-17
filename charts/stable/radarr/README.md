@@ -1,6 +1,6 @@
 # radarr
 
-![Version: 16.0.1](https://img.shields.io/badge/Version-16.0.1-informational?style=flat-square) ![AppVersion: v3.2.2.5080](https://img.shields.io/badge/AppVersion-v3.2.2.5080-informational?style=flat-square)
+![Version: 16.1.0](https://img.shields.io/badge/Version-16.1.0-informational?style=flat-square) ![AppVersion: v4.1.0.6175](https://img.shields.io/badge/AppVersion-v4.1.0.6175-informational?style=flat-square)
 
 A fork of Sonarr to work with movies à la Couchpotato
 
@@ -80,7 +80,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/radarr"` | image repository |
-| image.tag | string | `"v3.2.2.5080"` | image tag |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus serviceMonitor. |
 | metrics.exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
@@ -100,7 +100,7 @@ N/A
 
 ## Changelog
 
-### Version 16.0.1
+### Version 16.1.0
 
 #### Added
 
@@ -108,7 +108,7 @@ N/A
 
 #### Changed
 
-* Inherit persistence.config.subPath in metrics exporter
+* Updated docker image to version v4.1.0.6175
 
 #### Fixed
 
