@@ -81,7 +81,7 @@ N/A
 | hostNetwork | bool | `false` | Enable devices to be discoverable |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/plex"` | image repository |
-| image.tag | string | chart.appVersion | image tag |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | podSecurityContext | object | `{}` | Configure the Security Context for the Pod |
@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 6.2.0
+### Version 6.2.1
 
 #### Added
 
@@ -98,7 +98,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Update image to v1.25.9.5721-965587f64.
 
 #### Fixed
 
