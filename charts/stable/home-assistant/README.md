@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 13.0.1](https://img.shields.io/badge/Version-13.0.1-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
+![Version: 13.0.2](https://img.shields.io/badge/Version-13.0.2-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
 
 Home Assistant
 
@@ -175,7 +175,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 ## Changelog
 
-### Version 13.0.1
+### Version 13.0.2
 
 #### Added
 
@@ -183,7 +183,7 @@ N/A
 
 #### Changed
 
-* Upgraded image version to latest upstream release - 2022.4.0
+* Upgraded values.yaml to fix issue for postgresql pvc creation
 
 #### Fixed
 
