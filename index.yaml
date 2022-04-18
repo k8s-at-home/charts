@@ -42654,6 +42654,39 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Upgraded miniflux to version 2.0.36.
+    apiVersion: v2
+    appVersion: 2.0.36
+    created: "2022-04-18T19:37:56.705764511Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.16.2
+    description: Miniflux is a minimalist and opinionated feed reader.
+    digest: 10413015ceb1b560ac9d3041942eef8ae7c1e255a2400095dff626275f1d8d53
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/miniflux
+    icon: https://raw.githubusercontent.com/miniflux/logo/master/icon.svg
+    keywords:
+    - miniflux
+    - rss
+    - news
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: trly@users.noreply.github.com
+      name: trly
+    name: miniflux
+    sources:
+    - https://github.com/miniflux/v2
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/miniflux-4.6.1/miniflux-4.6.1.tgz
+    version: 4.6.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `postgresql` chart dependency to version `10.16.2`.
     apiVersion: v2
     appVersion: 2.0.35
@@ -102762,4 +102795,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-18T19:11:02.998420477Z"
+generated: "2022-04-18T19:37:56.724394745Z"
