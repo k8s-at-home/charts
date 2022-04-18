@@ -84,8 +84,9 @@ postgresql:
   postgresqlPassword: home-assistant-pass
   postgresqlDatabase: home-assistant
   persistence:
-    enabled: false
-    # storageClass: ""
+    primary:
+      enabled: false
+      # storageClass: ""
 
 # -- Enable and configure influxdb database subchart under this key.
 #    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb)
