@@ -26735,6 +26735,49 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: "Upgraded values.yaml to fix issue for postgresql pvc creation"
+    apiVersion: v2
+    appVersion: 2022.4.0
+    created: "2022-04-18T19:11:02.980667945Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.13
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.4
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 4.0.8
+    description: Home Assistant
+    digest: ddaba4dac17f57ba158378bf70be18b775afc771727a73d0614419a3b46a0439
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-13.0.2/home-assistant-13.0.2.tgz
+    version: 13.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: "Upgraded image version to latest upstream release - 2022.4.0"
           links:
             - name: Upstream release notes
@@ -102719,4 +102762,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-17T18:04:24.585795623Z"
+generated: "2022-04-18T19:11:02.998420477Z"
