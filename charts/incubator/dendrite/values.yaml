@@ -423,12 +423,14 @@ postgresql:
     repository: bitnami/postgresql
     tag: "14.1.0"
   auth:
-    postgresqlUsername: dendrite
-    postgresqlPassword: changeme
-    postgresqlDatabase: dendrite
+    username: dendrite
+    password: changeme
+    database: dendrite
   persistence:
     enabled: false
-  initdbScriptsConfigMap: "dendrite-postgresql-init-scripts"
+  primary: 
+    initdb: 
+      scriptsConfigMap: "dendrite-postgresql-init-scripts"
 
 nats:
   # -- Enable and configure NATS for dendrite. Can be disabled for monolith

@@ -1,6 +1,6 @@
 {{- $connectionString := "file:" -}}
 {{- if .Values.postgresql.enabled}}
-{{- $connectionString = print "postgresql://" .Values.postgresql.auth.postgresqlUsername ":" .Values.postgresql.auth.postgresqlPassword "@" (include "common.names.fullname" .)  "-postgresql/" -}}
+{{- $connectionString = print "postgresql://" .Values.postgresql.auth.username ":" .Values.postgresql.auth.password "@" (include "common.names.fullname" .)  "-postgresql/" -}}
 {{- end}}
 ---
 apiVersion: v1
