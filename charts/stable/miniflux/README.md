@@ -1,6 +1,6 @@
 # miniflux
 
-![Version: 4.6.0](https://img.shields.io/badge/Version-4.6.0-informational?style=flat-square) ![AppVersion: 2.0.35](https://img.shields.io/badge/AppVersion-2.0.35-informational?style=flat-square)
+![Version: 4.6.1](https://img.shields.io/badge/Version-4.6.1-informational?style=flat-square) ![AppVersion: 2.0.36](https://img.shields.io/badge/AppVersion-2.0.36-informational?style=flat-square)
 
 Miniflux is a minimalist and opinionated feed reader.
 
@@ -85,7 +85,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone. |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"miniflux/miniflux"` |  |
-| image.tag | string | `"2.0.35"` |  |
+| image.tag | string | `"2.0.36"` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | postgresql | object | Enabled (see values.yaml for more details) | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
 | probes | object | See values.yaml | Configures the probes for the main Pod. |
@@ -93,7 +93,7 @@ N/A
 
 ## Changelog
 
-### Version 4.6.0
+### Version 4.6.1
 
 #### Added
 
@@ -101,7 +101,7 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `10.16.2`.
+* Upgraded miniflux to version 2.0.36.
 
 #### Fixed
 
