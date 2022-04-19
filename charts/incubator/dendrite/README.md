@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: v0.6.3](https://img.shields.io/badge/AppVersion-v0.6.3-informational?style=flat-square)
+![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: v0.8.1](https://img.shields.io/badge/AppVersion-v0.8.1-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -21,13 +21,12 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 11.1.15 |
 | https://library-charts.k8s-at-home.com | common | 4.3.0 |
-| https://library-charts.k8s-at-home.com | federationapi(common) | 4.3.0 |
+| https://library-charts.k8s-at-home.com | keyserver(common) | 4.3.0 |
 | https://library-charts.k8s-at-home.com | clientapi(common) | 4.3.0 |
 | https://library-charts.k8s-at-home.com | mediaapi(common) | 4.3.0 |
 | https://library-charts.k8s-at-home.com | syncapi(common) | 4.3.0 |
 | https://library-charts.k8s-at-home.com | roomserver(common) | 4.3.0 |
-| https://library-charts.k8s-at-home.com | eduserver(common) | 4.3.0 |
-| https://library-charts.k8s-at-home.com | keyserver(common) | 4.3.0 |
+| https://library-charts.k8s-at-home.com | federationapi(common) | 4.3.0 |
 | https://library-charts.k8s-at-home.com | userapi(common) | 4.3.0 |
 | https://library-charts.k8s-at-home.com | appserviceapi(common) | 4.3.0 |
 | https://nats-io.github.io/k8s/helm/charts/ | nats | 0.15.1 |
@@ -110,13 +109,22 @@ For more information see:
 | dendrite | object | See values.yaml | Configuration for Dendrite. For more information see [the sample denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | dendrite.database | object | See values.yaml | Configure database connection parameters. |
 | dendrite.global | object | See values.yaml | Configure the global settings for dendrite. |
+| dendrite.global.disable_federation | bool | `false` | Disables federation |
 | dendrite.global.dns_cache | object | See values.yaml | Configure DNS cache. |
 | dendrite.global.dns_cache.enabled | bool | See values.yaml | If enabled, dns cache will be enabled. |
 | dendrite.global.key_validity_period | string | `"168h0m0s"` | Configure the key_validity period |
 | dendrite.global.metrics | object | See values.yaml | Configure prometheus metrics collection for dendrite. |
 | dendrite.global.metrics.enabled | bool | See values.yaml | If enabled, metrics collection will be enabled |
 | dendrite.global.mscs | list | `[]` | Configure experimental MSC's |
+| dendrite.global.presence | object | `{"enable_inbound":false,"enable_outbound":false}` | Configure handling of presence events |
+| dendrite.global.presence.enable_inbound | bool | `false` | Whether inbound presence events are allowed, e.g. receiving presence events from other servers |
+| dendrite.global.presence.enable_outbound | bool | `false` | Whether outbound presence events are allowed, e.g. sending presence events to other servers |
 | dendrite.global.server_name | string | `"localhost"` | (required) Configure the server name for the dendrite instance. |
+| dendrite.global.server_notices | object | `{"avatar_url":"","display_name":"Server alerts","enabled":false,"local_part":"_server","room_name":"Server Alerts"}` | Server notices allows server admins to send messages to all users. |
+| dendrite.global.server_notices.avatar_url | string | `""` | The mxid of the avatar to use |
+| dendrite.global.server_notices.display_name | string | `"Server alerts"` | The displayname to be used when sending notices |
+| dendrite.global.server_notices.local_part | string | `"_server"` | The server localpart to be used when sending notices, ensure this is not yet taken |
+| dendrite.global.server_notices.room_name | string | `"Server Alerts"` | The roomname to be used when creating messages |
 | dendrite.global.trusted_third_party_id_servers | list | `["matrix.org","vector.im"]` | Configure the list of domains the server will trust as identity servers |
 | dendrite.global.well_known_server_name | string | `""` | Configure the well-known server name and optional port |
 | dendrite.logging | list | See values.yaml | Configure logging. |
@@ -127,10 +135,6 @@ For more information see:
 | dendrite.polylithEnabled | bool | `false` | Enable polylith deployment |
 | dendrite.tls_secret | object | See values.yaml | If enabled, use an existing secrets for the TLS certificate and key. Otherwise, to enable TLS a `server.crt` and `server.key` must be mounted at `/etc/dendrite`. |
 | dendrite.tracing | object | See values.yaml | Configure opentracing. |
-| eduserver | object | values.yaml | Configure the edu server For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
-| eduserver.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| eduserver.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
-| eduserver.image.tag | string | chart.appVersion | image tag |
 | federationapi | object | values.yaml | Configure the Federation API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | federationapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | federationapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
@@ -153,14 +157,14 @@ For more information see:
 | nats.nats.jetstream.enabled | bool | `true` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | persistence.jetstream | object | See values.yaml | Configure Jetsream persistence. This is highly recommended in production. |
+| postgresql.auth.database | string | `"dendrite"` |  |
+| postgresql.auth.password | string | `"changeme"` |  |
+| postgresql.auth.username | string | `"dendrite"` |  |
 | postgresql.enabled | bool | See value.yaml | Enable and configure postgres as the database for dendrite. |
 | postgresql.image.repository | string | `"bitnami/postgresql"` |  |
 | postgresql.image.tag | string | `"14.1.0"` |  |
-| postgresql.initdbScriptsConfigMap | string | `"dendrite-postgresql-init-scripts"` |  |
 | postgresql.persistence.enabled | bool | `false` |  |
-| postgresql.postgresqlDatabase | string | `"dendrite"` |  |
-| postgresql.postgresqlPassword | string | `"changeme"` |  |
-| postgresql.postgresqlUsername | string | `"dendrite"` |  |
+| postgresql.primary.initdb.scriptsConfigMap | string | `"dendrite-postgresql-init-scripts"` |  |
 | roomserver | object | values.yaml | Configure the Room Server For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
 | roomserver.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | roomserver.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
@@ -179,15 +183,15 @@ For more information see:
 
 ## Changelog
 
-### Version 4.0.0
+### Version 4.1.0
 
 #### Added
 
-N/A
+* Added healthchecks
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `11.1.15`.
+* Update to Dendrite 0.8.1
 
 #### Fixed
 
