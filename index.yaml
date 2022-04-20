@@ -66215,6 +66215,37 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Uplifted the docker image to use the latest version v0.3.0.1710
+    apiVersion: v2
+    appVersion: v0.3.0.1710
+    created: "2022-04-20T22:36:23.747369005Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Indexer manager/proxy built on the popular arr net base stack to
+      integrate with your various PVR apps.
+    digest: 7b1bceef75ad13fd84de6fdff6d5e981731cc03ccd94e57021b0e259db92edec
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prowlarr
+    icon: https://raw.githubusercontent.com/Prowlarr/Prowlarr/develop/Logo/400.png
+    keywords:
+    - prowlarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: prowlarr
+    sources:
+    - https://github.com/Prowlarr/Prowlarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/prowlarr-4.3.0/prowlarr-4.3.0.tgz
+    version: 4.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Upgraded `common` chart dependency to version `4.3.0`.
     apiVersion: v2
     appVersion: v0.1.0.421
@@ -102911,4 +102942,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-19T14:25:36.738972762Z"
+generated: "2022-04-20T22:36:23.769666368Z"
