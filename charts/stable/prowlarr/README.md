@@ -1,6 +1,6 @@
 # prowlarr
 
-![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: v0.1.0.421](https://img.shields.io/badge/AppVersion-v0.1.0.421-informational?style=flat-square)
+![Version: 4.3.0](https://img.shields.io/badge/Version-4.3.0-informational?style=flat-square) ![AppVersion: v0.3.0.1710](https://img.shields.io/badge/AppVersion-v0.3.0.1710-informational?style=flat-square)
 
 Indexer manager/proxy built on the popular arr net base stack to integrate with your various PVR apps.
 
@@ -80,14 +80,14 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/prowlarr"` | image repository |
-| image.tag | string | `"v0.1.0.421"` | image tag |
+| image.tag | string | `"v0.3.0.1710"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 4.2.0
+### Version 4.3.0
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Uplifted the docker image to use the latest version v0.3.0.1710
 
 #### Fixed
 
