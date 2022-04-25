@@ -1,6 +1,6 @@
 # audiobookshelf
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.0.3](https://img.shields.io/badge/AppVersion-2.0.3-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 2.0.3](https://img.shields.io/badge/AppVersion-2.0.3-informational?style=flat-square)
 
 Self-hosted audiobook server for managing and playing your audiobooks
 
@@ -78,7 +78,7 @@ N/A
 | env | object | See below | environment variables. See more environment variables in the [audiobookshelf documentation](https://hub.docker.com/r/advplyr/audiobookshelf) |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"advplyr/audiobookshelf"` | image repository |
+| image.repository | string | `"ghcr.io/advplyr/audiobookshelf"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | string | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -90,23 +90,12 @@ N/A
 
 #### Added
 
-#### Changed
-
-* Updated container image to latest
-* Changed image repository to ghcr
-
-#### Fixed
-
-
-### Version 1.0.0
-
-#### Added
-
-* Initial version
-
-#### Changed
-
 N/A
+
+#### Changed
+
+* Updated Audiobookshelf image to latest
+* Changed default image repository to ghcr
 
 #### Fixed
 
