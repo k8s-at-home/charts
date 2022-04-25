@@ -1,6 +1,6 @@
 # audiobookshelf
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.6.69](https://img.shields.io/badge/AppVersion-1.6.69-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 2.0.3](https://img.shields.io/badge/AppVersion-2.0.3-informational?style=flat-square)
 
 Self-hosted audiobook server for managing and playing your audiobooks
 
@@ -85,6 +85,18 @@ N/A
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
+
+### Version 1.0.1
+
+#### Added
+
+#### Changed
+
+* Updated container image to latest
+* Changed image repository to ghcr
+
+#### Fixed
+
 
 ### Version 1.0.0
 
