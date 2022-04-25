@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: "1.6.69"
+appVersion: "2.0.3"
 description: Self-hosted audiobook server for managing and playing your audiobooks
 name: audiobookshelf
-version: 1.0.0
+version: 1.0.1
 kubeVersion: ">= 1.16.0-0"
 keywords:
   - audiobookshelf
@@ -21,5 +21,7 @@ dependencies:
     version: 4.3.0
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Initial version
+    - kind: changed
+      description: Updated Audiobookshelf image to latest
+    - kind: changed
+      description: Changed default image repository to ghcr
