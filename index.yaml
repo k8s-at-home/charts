@@ -3672,6 +3672,37 @@ entries:
   audiobookshelf:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Updated Audiobookshelf image to latest
+        - kind: changed
+          description: Changed default image repository to ghcr
+    apiVersion: v2
+    appVersion: 2.0.3
+    created: "2022-04-25T20:41:34.640919773Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Self-hosted audiobook server for managing and playing your audiobooks
+    digest: e42949c73c6bce22e44921cf032fd0e09ca37c4ed28479af476fea849ecb4a2c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/audiobookshelf
+    icon: https://github.com/advplyr/audiobookshelf/blob/master/static/Logo.png
+    keywords:
+    - audiobookshelf
+    - books
+    - audiobooks
+    kubeVersion: '>= 1.16.0-0'
+    maintainers:
+    - email: tvories@gmail.com
+      name: tvories
+    name: audiobookshelf
+    sources:
+    - https://github.com/advplyr/audiobookshelf
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/audiobookshelf-1.0.1/audiobookshelf-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Initial version
     apiVersion: v2
@@ -103001,4 +103032,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-25T06:40:21.782671398Z"
+generated: "2022-04-25T20:41:34.667844138Z"
