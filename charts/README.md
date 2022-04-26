@@ -88,6 +88,7 @@
 | [neolink](stable/neolink) | Neolink - RTSP bridge to Reolink IP cameras |
 | [network-ups-tools](stable/network-ups-tools) | Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware. |
 | [nginx-php](stable/nginx-php) | Nginx and PHP FPM for running PHP applications |
+| [nightscout](stable/nightscout) | nightscout helm package |
 | [node-red](stable/node-red) | Node-RED is low-code programming for event-driven applications |
 | [nullserv](stable/nullserv) | A simple null file http and https server |
 | [nzbget](stable/nzbget) | NZBGet is a Usenet downloader client |
