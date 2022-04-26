@@ -48477,6 +48477,34 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/nginx-php-1.0.0/nginx-php-1.0.0.tgz
     version: 1.0.0
+  nightscout:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial version
+    apiVersion: v2
+    appVersion: 14.2.5
+    created: "2022-04-26T06:11:14.165228941Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: nightscout helm package
+    digest: 280bc21d5c5f3c765eadcfea1faf166b06b4aa327e6dcc6669a6873dfaae4f3c
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nightscout
+    icon: https://github.com/nightscout/cgm-remote-monitor/blob/master/static/images/favicon-96x96.png
+    keywords:
+    - nightscout
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nchilder@redhat.com
+      name: nchilder
+    name: nightscout
+    sources:
+    - https://github.com/nightscout/nightscout-docker
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/nightscout-1.0.0/nightscout-1.0.0.tgz
+    version: 1.0.0
   node-feature-discovery:
   - apiVersion: v2
     appVersion: 0.7.0
@@ -103032,4 +103060,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-25T20:41:34.667844138Z"
+generated: "2022-04-26T06:11:14.189161717Z"
