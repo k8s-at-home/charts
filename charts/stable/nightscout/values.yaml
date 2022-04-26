@@ -6,8 +6,12 @@
 #
 
 image:
+  # -- image repository
   repository: nightscout/cgm-remote-monitor
-  tag: 14.2.5
+  # -- image tag
+  # @default -- chart.appVersion
+  tag: 
+  # -- image pull policy
   pullPolicy: IfNotPresent
 
 # -- environment variables. See more environment variables in the [Nightscout/cgm-remote-monitor documentation](https://github.com/nightscout/cgm-remote-monitor#environment).
