@@ -58846,6 +58846,44 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Update appVersion to 1.7.0
+    apiVersion: v2
+    appVersion: ngx-1.7.0
+    created: "2022-04-27T20:12:28.102287892Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.16.2
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.7.6
+    description: Paperless - Index and archive all of your scanned paper documents
+    digest: 27cebae21ba779651f23dcf25f012c126623fc80655afa26a89b2460c86b8444
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paperless
+    icon: https://avatars.githubusercontent.com/u/47271576?s=200&v=4
+    keywords:
+    - paperless
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: mr-onion-2
+    - email: jonathan@jonnobrow.co.uk
+      name: jonnobrow
+    - email: charts@mor.re
+      name: morremeyer
+    name: paperless
+    sources:
+    - https://github.com/paperless-ngx/paperless-ngx
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/paperless-8.6.2/paperless-8.6.2.tgz
+    version: 8.6.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Added admin username and password env variables to values.yaml
     apiVersion: v2
     appVersion: 1.6.0
@@ -103060,4 +103098,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-26T06:11:14.189161717Z"
+generated: "2022-04-27T20:12:28.118948662Z"
