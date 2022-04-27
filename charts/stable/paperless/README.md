@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 8.6.0](https://img.shields.io/badge/Version-8.6.0-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
+![Version: 8.6.2](https://img.shields.io/badge/Version-8.6.2-informational?style=flat-square) ![AppVersion: ngx-1.7.0](https://img.shields.io/badge/AppVersion-ngx--1.7.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 8.6.0
+### Version 8.6.2
 
 #### Added
 
@@ -104,8 +104,7 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `10.16.2`.
-* Upgraded `redis` chart dependency to version `15.7.6`.
+* Update appVersion to 1.7.0
 
 #### Fixed
 
