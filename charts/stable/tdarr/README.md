@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 4.4.1](https://img.shields.io/badge/Version-4.4.1-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
+![Version: 4.4.1](https://img.shields.io/badge/Version-4.4.1-informational?style=flat-square) ![AppVersion: 2.00.18](https://img.shields.io/badge/AppVersion-2.00.18-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -85,7 +85,7 @@ N/A
 | env.webUIPort | string | `"{{ .Values.service.main.ports.http.port }}"` | tdarr web UI listening port (same as Service port) |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"haveagitgat/tdarr"` | image repository |
-| image.tag | string | `"2.00.10"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | node.enabled | bool | `true` | Deploy a tdarr node. |
 | node.id | string | `"node"` | Node ID |
@@ -103,20 +103,6 @@ N/A
 ## Changelog
 
 ### Version 4.4.1
-
-#### Added
-
-N/A
-
-#### Changed
-
-node mountPath for media now matches server
-
-#### Fixed
-
-N/A
-
-### Version 4.4.0
 
 #### Added
 
