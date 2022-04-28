@@ -83924,6 +83924,41 @@ entries:
   tdarr:
   - annotations:
       artifacthub.io/changes: |
+        - kind: change
+          description: Ensure node mountPath matches server for media volume
+        - kind: change
+          description: Update appVersion to 2.00.18
+    apiVersion: v2
+    appVersion: 2.00.18
+    created: "2022-04-28T11:04:46.803607351Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Tdarr is a self hosted web-app for automating media library transcode/remux
+      management and making sure your files are exactly how you need them to be in
+      terms of codecs/streams/containers etc.
+    digest: fe65719292e86202b9ad109d887ebafcba9c8c1b5b5bf3b60724ba6779508212
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/tdarr
+    icon: https://s7.gifyu.com/images/GifCroppedTran.gif
+    keywords:
+    - transcoding
+    - remux
+    - media
+    - video
+    maintainers:
+    - email: k8s-at-home@xpander.eml.cc
+      name: auricom
+    name: tdarr
+    sources:
+    - https://www.github.com/HaveAGitGat/Tdarr
+    - https://hub.docker.com/r/haveagitgat/tdarr/
+    - https://tdarr.io/docs/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/tdarr-4.4.1/tdarr-4.4.1.tgz
+    version: 4.4.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: add
           description: Explicitly Add PUID and PGID environment variables for server and node.
     apiVersion: v2
@@ -103098,4 +103133,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-27T20:12:28.118948662Z"
+generated: "2022-04-28T11:04:46.824327216Z"
