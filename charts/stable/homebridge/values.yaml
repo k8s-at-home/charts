@@ -9,7 +9,8 @@ image:
   # -- image repository
   repository: ghcr.io/oznu/homebridge
   # -- image tag
-  tag: latest@sha256:4703dca68510307587361f4312e6bad0e765e85f8986a7517e0f393d8d0e2410
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -51,7 +52,7 @@ persistence:
 
 # -- Custom startup.sh script to install additional packages in the container
 # @default -- string
-config: |
+startupScript: |
   #!/bin/sh
 
   #
@@ -72,3 +73,4 @@ config: |
   #
   # If you're running a debian based version of this container please use apt-get to install packages.
   #
+  echo "Started successfully."

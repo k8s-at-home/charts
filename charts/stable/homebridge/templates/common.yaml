@@ -9,10 +9,10 @@ subPath: "startup.sh"
 type: "custom"
 volumeSpec:
   configMap:
-    name: {{ include "common.names.fullname" . }}-config
+    name: {{ include "common.names.fullname" . }}-scripts
     defaultMode: 0755
 {{- end -}}
-{{- $_ := set .Values.persistence "homebridge-config" (include "homebridge.configVolume" . | fromYaml) -}}
+{{- $_ := set .Values.persistence "homebridge-scripts" (include "homebridge.configVolume" . | fromYaml) -}}
 
 {{/* Render the templates */}}
 {{ include "common.all" . }}
