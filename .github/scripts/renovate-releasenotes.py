@@ -56,7 +56,7 @@ def main(
     if check_branch:
         logger.info(f"Trying to find branch {check_branch}...")
         branch = next(
-            (ref for ref in git_repository.remotes.origin.refs if ref.name == check_branch),
+            (ref for ref in git_repository.refs if ref.name == check_branch),
             None
         )
 
@@ -122,9 +122,10 @@ def main(
           })
 
     annotations = YAML(typ=['rt', 'string']).dump_to_string(annotations)
-    new_chart_metadata["annotations"]["artifacthub.io/changes"] = LiteralScalarString(annotations)
 
-    yaml.dump(new_chart_metadata, chart_metadata_file)
+    if annotations:
+      new_chart_metadata["annotations"]["artifacthub.io/changes"] = LiteralScalarString(annotations)
+      yaml.dump(new_chart_metadata, chart_metadata_file)
 
 if __name__ == "__main__":
     app()
