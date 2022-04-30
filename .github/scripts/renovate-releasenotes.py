@@ -54,13 +54,24 @@ def main(
     git_repository = Repo(search_parent_directories=True)
 
     if check_branch:
-        check_branch = next(
-            ref for ref in git_repository.remotes.origin.refs if ref.name == check_branch)
-    else:
-        check_branch = next(
-            ref for ref in git_repository.remotes.origin.refs if ref.name == "origin/HEAD")
+        logger.info(f"Trying to find branch {check_branch}...")
+        branch = next(
+            (ref for ref in git_repository.remotes.origin.refs if ref.name == check_branch),
+            None
+        )
 
-    logger.info(f"Comparing against branch {check_branch}")
+        if not branch:
+          logger.error(f"Could not find branch {check_branch}")
+          raise typer.Exit()
+
+    else:
+        logger.info(f"Trying to determine default branch...")
+        branch = next(
+            (ref for ref in git_repository.remotes.origin.refs if ref.name == "origin/HEAD"),
+            None
+        )
+
+    logger.info(f"Comparing against branch {branch}")
 
     logger.info(f"Updating changelog annotation for chart {chart_folder}")
 
@@ -70,7 +81,7 @@ def main(
     yaml.preserve_quotes = True
 
     old_chart_metadata = yaml.load(
-        git_repository.git.show(f"{check_branch}:{chart_metadata_file}")
+        git_repository.git.show(f"{branch}:{chart_metadata_file}")
     )
     new_chart_metadata = yaml.load(chart_metadata_file.read_text())
 
