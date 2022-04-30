@@ -56,7 +56,7 @@ def main(
     if check_branch:
         logger.info(f"Trying to find branch {check_branch}...")
         branch = next(
-            (ref for ref in git_repository.refs if ref.name == check_branch),
+            (ref for ref in git_repository.remotes.origin.refs if ref.name == check_branch),
             None
         )
 
