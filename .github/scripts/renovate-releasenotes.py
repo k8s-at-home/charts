@@ -64,7 +64,7 @@ def main(
     if not branch:
         logger.error(
             f"Could not find branch {check_branch} to compare against.")
-        raise typer.Exit()
+        raise typer.Exit(1)
 
     logger.info(f"Comparing against branch {branch}")
 
@@ -72,13 +72,13 @@ def main(
         chart_folder = chart_base_folder.joinpath(chart_folder)
         if not chart_folder.is_dir():
             logger.error(f"Could not find folder {str(chart_folder)}")
-            raise typer.Exit()
+            raise typer.Exit(1)
 
         chart_metadata_file = chart_folder.joinpath('Chart.yaml')
 
         if not chart_metadata_file.is_file():
             logger.error(f"Could not find file {str(chart_metadata_file)}")
-            raise typer.Exit()
+            raise typer.Exit(1)
 
         logger.info(f"Updating changelog annotation for chart {chart_folder}")
 
