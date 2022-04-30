@@ -63169,6 +63169,35 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Change default port for VPN to 1194
+    apiVersion: v2
+    appVersion: 1.2.6
+    created: "2022-04-30T10:23:43.897318286Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.3.0
+    description: Admision controller to change the default gateway and DNS server
+      of PODs
+    digest: a6b63ecd3ff5602724f725fcf80f21cc394b36bbc8eaa801b88e1ca10f2e8821
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/pod-gateway
+    icon: https://pod-gateway.org/icon
+    keywords:
+    - pod-gateway
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: git@angelnu.com
+      name: angelnu
+    name: pod-gateway
+    sources:
+    - https://github.com/k8s-at-home/gateway-admision-controller
+    - https://github.com/k8s-at-home/pod-gateway
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/pod-gateway-5.3.0/pod-gateway-5.3.0.tgz
+    version: 5.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Added option to override mutated pod's DNSPolicy.
     apiVersion: v2
     appVersion: 1.2.6
@@ -103262,4 +103291,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-30T08:37:54.399262315Z"
+generated: "2022-04-30T10:23:43.919112868Z"
