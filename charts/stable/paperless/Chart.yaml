@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: ngx-1.7.0
 description: Paperless - Index and archive all of your scanned paper documents
 name: paperless
-version: 8.6.2
+version: 8.7.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - paperless
@@ -30,5 +30,5 @@ dependencies:
     condition: redis.enabled
 annotations:
   artifacthub.io/changes: |
-    - kind: changed
-      description: Update appVersion to 1.7.0
+    - kind: added
+      description: Set PAPERLESS_URL automatically

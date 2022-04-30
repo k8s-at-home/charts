@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 8.6.2](https://img.shields.io/badge/Version-8.6.2-informational?style=flat-square) ![AppVersion: ngx-1.7.0](https://img.shields.io/badge/AppVersion-ngx--1.7.0-informational?style=flat-square)
+![Version: 8.7.0](https://img.shields.io/badge/Version-8.7.0-informational?style=flat-square) ![AppVersion: ngx-1.7.0](https://img.shields.io/badge/AppVersion-ngx--1.7.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -96,15 +96,15 @@ N/A
 
 ## Changelog
 
-### Version 8.6.2
+### Version 8.7.0
 
 #### Added
 
-N/A
+* Set PAPERLESS_URL automatically
 
 #### Changed
 
-* Update appVersion to 1.7.0
+N/A
 
 #### Fixed
 
