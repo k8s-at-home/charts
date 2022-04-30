@@ -61,7 +61,7 @@ jobs:
           for i in "${CHARTS[@]}"
           do
               IFS='/' read -r -a chart_parts <<< "$i"
-                ./.github/scripts/renovate-releasenotes.py "charts/${chart_parts[0]}/${chart_parts[1]}"
+                ./.github/scripts/renovate-releasenotes.py --check-branch "$CHECK_BRANCH" "charts/${chart_parts[0]}/${chart_parts[1]}"
               echo ""
           done
 
