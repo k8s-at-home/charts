@@ -48,7 +48,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - run: git branch
+      - run: git branch -r
 
       - name: Setup Python
         uses: actions/setup-python@v3.1.2
