@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 3.13.6
 description: TeamSpeak Server
@@ -18,8 +19,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Merged ports into single service.
-    - kind: added
-      description: Added metrics sidecar.
+      description: Upgraded common chart dependency to version 4.4.0

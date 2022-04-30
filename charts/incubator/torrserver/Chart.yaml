@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 1.0.111
 description: TorrServer streams torrent to http
@@ -5,20 +6,20 @@ name: torrserver
 version: 1.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- torrserver
+  - torrserver
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/torrserver
 icon: https://github.com/YouROK/TorrServer/raw/6868979f1fee009204ffe272f89905fcaa03fb72/server/web/pages/template/pages/apple-touch-icon.png
 sources:
-- https://github.com/MGlants/docker-torrserver
-- https://github.com/YouROK/TorrServer
+  - https://github.com/MGlants/docker-torrserver
+  - https://github.com/YouROK/TorrServer
 maintainers:
-- name: MGlants
-  email: mark@glants.xyz
+  - name: MGlants
+    email: mark@glants.xyz
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.4.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: Initial version
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded common chart dependency to version 4.4.0

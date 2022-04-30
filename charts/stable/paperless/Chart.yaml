@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: ngx-1.7.0
 description: Paperless - Index and archive all of your scanned paper documents
@@ -29,6 +30,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: Set PAPERLESS_URL automatically
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded common chart dependency to version 4.4.0

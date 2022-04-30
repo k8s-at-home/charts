@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: version-2.5.201
 description: Make documentation a joy to write using Wiki.js's beautiful and intuitive interface!
@@ -20,6 +21,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Removed the forced env {} so they can be populated elsewhere (envFrom secrets for example)
+      description: Upgraded common chart dependency to version 4.4.0

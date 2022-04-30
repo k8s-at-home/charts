@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: v0.5.6
 description: Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
@@ -22,6 +23,6 @@ dependencies:
     version: 10.16.2
     condition: postgresql.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+      description: Upgraded common chart dependency to version 4.4.0

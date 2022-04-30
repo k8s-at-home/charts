@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: "2022-04-28"
 description: A lightweight NodeJS server that emulates the iOS HomeKit API
@@ -20,8 +21,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: "**BREAKING:** Moved startup script configuration to configMap.scripts key"
-    - kind: changed
-      description: Updated appVersion to 2022-04-28
+      description: Upgraded common chart dependency to version 4.4.0

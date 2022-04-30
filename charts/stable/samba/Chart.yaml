@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 4.15.5
 description: A simple in-cluster Samba server
@@ -18,6 +19,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Migrated to docker image `crazy-max/samba` in order to fix https://github.com/k8s-at-home/charts/issues/1401
+      description: Upgraded common chart dependency to version 4.4.0

@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 2.0.36
 description: Miniflux is a minimalist and opinionated feed reader.
@@ -24,6 +25,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded miniflux to version 2.0.36.
+      description: Upgraded common chart dependency to version 4.4.0

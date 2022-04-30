@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 2.6.0
 description: Server error pages in the docker image
@@ -5,20 +6,20 @@ name: error-pages
 version: 1.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- traefik
-- error-pages
+  - traefik
+  - error-pages
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/error-pages
 icon: https://hsto.org/webt/rm/9y/ww/rm9ywwx3gjv9agwkcmllhsuyo7k.png
 sources:
-- https://github.com/tarampampam/error-pages
+  - https://github.com/tarampampam/error-pages
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.4.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: Initial version
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded common chart dependency to version 4.4.0

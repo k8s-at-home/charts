@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: "20220121"
 description: PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
@@ -26,6 +27,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `10.4.4`.
+      description: Upgraded common chart dependency to version 4.4.0

@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 2.00.18
 description: Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
@@ -22,8 +23,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
-    - kind: change
-      description: Ensure node mountPath matches server for media volume
-    - kind: change
-      description: Update appVersion to 2.00.18
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded common chart dependency to version 4.4.0

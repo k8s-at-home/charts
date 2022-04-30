@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: v2.2.0
 description: RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE
@@ -5,21 +6,19 @@ name: rtsp-to-web
 version: 2.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- rtsp-to-web
+  - rtsp-to-web
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rtsp-to-web
 icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/WebRTC_Logo.svg/440px-WebRTC_Logo.svg.png
 sources:
-- https://github.com/deepch/RTSPtoWeb/
+  - https://github.com/deepch/RTSPtoWeb/
 maintainers:
-- name: allenporter
-  email: allen.porter@gmail.com
+  - name: allenporter
+    email: allen.porter@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.4.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: "Upgrade RTSPtoWeb to v2.2.0"
-    - kind: changed
-      description: "**BREAKING** The config directory is now located at `/config/config.json`"
+      description: Upgraded common chart dependency to version 4.4.0

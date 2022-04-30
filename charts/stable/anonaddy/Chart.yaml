@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 0.8.4
 description: "Anonaddy: Anonymous email forwarding"
@@ -26,6 +27,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `redis` chart dependency to version `16.8.2`.
+      description: Upgraded common chart dependency to version 4.4.0

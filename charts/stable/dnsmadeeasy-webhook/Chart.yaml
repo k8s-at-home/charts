@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 1.2.0
 description: Cert-Manager Webhook for DNSMadeEasy
@@ -24,6 +25,6 @@ dependencies:
     version: v1.7.2
     condition: cert-manager.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `cert-manager` chart dependency to version `v1.7.2`.
+      description: Upgraded common chart dependency to version 4.4.0

@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 version: 3.3.0
 description: Creates a postgres cluster using the Zalando Postgres operator and local storage
@@ -19,6 +20,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: documented that operator has to be installed before this chart.
+      description: Upgraded common chart dependency to version 4.4.0

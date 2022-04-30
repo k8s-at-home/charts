@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: v0.9.0
 description: An exporter for metrics in the InfluxDB format, transforms them and exposes them for consumption by Prometheus.
@@ -18,6 +19,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
-    - kind: fixed
-      description: Update image to 0.9.0 (InfluxDB v2 clients support), use differnt port for UDP.
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded common chart dependency to version 4.4.0

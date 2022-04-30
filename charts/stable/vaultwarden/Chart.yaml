@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 1.24.0
 description: Vaultwarden is a Bitwarden compatable server in Rust
@@ -27,8 +28,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `10.4.4`.
-    - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+      description: Upgraded common chart dependency to version 4.4.0

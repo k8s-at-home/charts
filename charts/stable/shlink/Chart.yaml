@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 2.7.1
 description: A self-hosted and PHP-based URL shortener application with CLI and REST interfaces
@@ -27,8 +28,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version `10.4.4`.
-    - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+      description: Upgraded common chart dependency to version 4.4.0

@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: "2021.06.01"
 description: DSMR-protocol reader, telegram data storage and energy consumption visualizer.
@@ -24,6 +25,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `11.1.12`.
+      description: Upgraded common chart dependency to version 4.4.0

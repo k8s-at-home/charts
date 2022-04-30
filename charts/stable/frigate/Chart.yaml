@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 0.10.0-amd64
 description: NVR With Realtime Object Detection for IP Cameras
@@ -25,13 +26,6 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: |
-        **Breaking:** Updated image tag to version `0.10.0-amd64`. See the application release notes for the breaking changes.
-      links:
-        - name: Application release notes
-          url: https://github.com/blakeblackshear/frigate/releases/tag/v0.10.0
-    - kind: changed
-      description: |
-        **Breaking:** Use the common library built-in configMap for configuration.
+      description: Upgraded common chart dependency to version 4.4.0
