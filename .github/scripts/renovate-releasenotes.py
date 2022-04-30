@@ -129,12 +129,12 @@ def main(
                 if "alias" in dependency.keys():
                     annotations.append({
                         "kind": "changed",
-                        "description": f"Upgraded {dependency['name']} chart dependency to version {dependency['version']} for alias '{dependency['alias']}'"
+                        "description": f"Upgraded `{dependency['name']}` chart dependency to version {dependency['version']} for alias '{dependency['alias']}'"
                     })
                 else:
                     annotations.append({
                         "kind": "changed",
-                        "description": f"Upgraded {dependency['name']} chart dependency to version {dependency['version']}"
+                        "description": f"Upgraded `{dependency['name']}` chart dependency to version {dependency['version']}"
                     })
 
         if annotations:
