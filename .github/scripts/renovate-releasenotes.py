@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import sys
 import typer
 
@@ -39,6 +40,8 @@ def main(
         ..., help="Folders containing the chart to process"),
     check_branch: str = typer.Option(
         None, help="The branch to compare against."),
+    chart_base_folder: Path = typer.Option(
+        "charts", help="The base folder where the charts reside."),
     debug: bool = False,
 ):
     _setup_logging(debug)
@@ -66,6 +69,7 @@ def main(
     logger.info(f"Comparing against branch {branch}")
 
     for chart_folder in chart_folders:
+        chart_folder = chart_base_folder.joinpath(chart_folder)
         if not chart_folder.is_dir():
             logger.error(f"Could not find folder {str(chart_folder)}")
             raise typer.Exit()
