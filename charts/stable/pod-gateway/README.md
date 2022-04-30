@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 5.2.1](https://img.shields.io/badge/Version-5.2.1-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 5.3.0](https://img.shields.io/badge/Version-5.3.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -101,9 +101,9 @@ certificates. It does not install it as dependency to avoid conflicts.
 |-----|------|---------|-------------|
 | DNS | string | `"172.16.0.1"` | IP address of the DNS server within the vxlan tunnel. All mutated PODs will get this as their DNS server. It must match VXLAN_GATEWAY_IP in settings.sh |
 | DNSPolicy | string | `"None"` | The DNSPolicy to apply to the POD. Only when set to "None" will the DNS value above apply. To avoid altering POD DNS (i.e., to allow initContainers to use DNS before the the VXLAN is up), set to "ClusterFirst" |
-| addons | object | `{"vpn":{"enabled":false,"networkPolicy":{"egress":[{"ports":[{"port":443,"protocol":"UDP"}],"to":[{"ipBlock":{"cidr":"0.0.0.0/0"}}]},{"to":[{"ipBlock":{"cidr":"10.0.0.0/8"}}]}],"enabled":true},"type":"openvpn"}}` |    IP: 10   ports:   - type: udp     port: 18289   - type: tcp     port: 18289 |
+| addons | object | `{"vpn":{"enabled":false,"networkPolicy":{"egress":[{"ports":[{"port":1194,"protocol":"UDP"}],"to":[{"ipBlock":{"cidr":"0.0.0.0/0"}}]},{"to":[{"ipBlock":{"cidr":"10.0.0.0/8"}}]}],"enabled":true},"type":"openvpn"}}` |    IP: 10   ports:   - type: udp     port: 18289   - type: tcp     port: 18289 |
 | addons.vpn.enabled | bool | `false` | Enable the VPN if you want to route through a VPN. You might also want to set VPN_BLOCK_OTHER_TRAFFIC to true for extra safeness in case the VPN does connect |
-| addons.vpn.networkPolicy | object | `{"egress":[{"ports":[{"port":443,"protocol":"UDP"}],"to":[{"ipBlock":{"cidr":"0.0.0.0/0"}}]},{"to":[{"ipBlock":{"cidr":"10.0.0.0/8"}}]}],"enabled":true}` |  wireguard: env: configFileSecret: openvpn |
+| addons.vpn.networkPolicy | object | `{"egress":[{"ports":[{"port":1194,"protocol":"UDP"}],"to":[{"ipBlock":{"cidr":"0.0.0.0/0"}}]},{"to":[{"ipBlock":{"cidr":"10.0.0.0/8"}}]}],"enabled":true}` |  wireguard: env: configFileSecret: openvpn |
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy of the gateway and inserted helper cotainers |
 | image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` | image repository of the gateway and inserted helper containers |
@@ -115,7 +115,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | settings.VPN_BLOCK_OTHER_TRAFFIC | bool | `false` | Prevent non VPN traffic to leave the gateway |
 | settings.VPN_INTERFACE | string | `"tun0"` | If using a VPN, interface name created by it |
 | settings.VPN_LOCAL_CIDRS | string | `"10.0.0.0/8 192.168.0.0/16"` | Traffic to these IPs will be send through the K8S gateway |
-| settings.VPN_TRAFFIC_PORT | int | `443` | If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port |
+| settings.VPN_TRAFFIC_PORT | int | `1194` | If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port |
 | settings.VXLAN_GATEWAY_FIRST_DYNAMIC_IP | int | `20` | Keep a range of IPs for static assignment in nat.conf |
 | settings.VXLAN_ID | int | `42` | Vxlan ID to use |
 | settings.VXLAN_IP_NETWORK | string | `"172.16.0"` | VXLAN needs an /24 IP range not conflicting with K8S and local IP ranges |
@@ -132,7 +132,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 
 ## Changelog
 
-### Version 5.2.1
+### Version 5.3.0
 
 #### Added
 
@@ -140,7 +140,7 @@ N/A
 
 #### Changed
 
-* Added option to override mutated pod's DNSPolicy.
+* Change default port for VPN to 1194
 
 #### Fixed
 
