@@ -84,8 +84,7 @@ jobs:
     name: Install charts
     strategy:
       matrix: ${{ fromJson(needs.generate-install-matrix.outputs.matrix) }}
-      fail-fast: true
-      max-parallel: 15
+      fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
