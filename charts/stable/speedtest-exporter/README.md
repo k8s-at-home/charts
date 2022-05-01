@@ -1,6 +1,6 @@
 # speedtest-exporter
 
-![Version: 5.3.0](https://img.shields.io/badge/Version-5.3.0-informational?style=flat-square) ![AppVersion: v3.2.2](https://img.shields.io/badge/AppVersion-v3.2.2-informational?style=flat-square)
+![Version: 5.3.1](https://img.shields.io/badge/Version-5.3.1-informational?style=flat-square) ![AppVersion: v3.2.2](https://img.shields.io/badge/AppVersion-v3.2.2-informational?style=flat-square)
 
 Speedtest Exporter made in python using the official speedtest bin
 
@@ -94,7 +94,7 @@ N/A
 
 ## Changelog
 
-### Version 5.3.0
+### Version 5.3.1
 
 #### Added
 

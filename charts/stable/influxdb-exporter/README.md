@@ -1,6 +1,6 @@
 # influxdb-exporter
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v0.9.0](https://img.shields.io/badge/AppVersion-v0.9.0-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: v0.9.0](https://img.shields.io/badge/AppVersion-v0.9.0-informational?style=flat-square)
 
 An exporter for metrics in the InfluxDB format, transforms them and exposes them for consumption by Prometheus.
 
@@ -105,7 +105,7 @@ Override the default container `args:` with optons:
 
 ## Changelog
 
-### Version 1.1.0
+### Version 1.1.1
 
 #### Added
 
