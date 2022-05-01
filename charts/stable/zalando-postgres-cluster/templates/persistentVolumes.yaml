@@ -1,3 +1,4 @@
+{{- include "common.values.setup" . -}}
 {{- range $i:= untilStep 0 (len $.Values.persistentVolumes.replicaNodes) 1 -}}
 ---
 apiVersion: v1
@@ -26,7 +27,7 @@ spec:
     path: {{ include "zalando-postgres-cluster.localPath" $ }}
   #Since it is created directly this does not delete it from cluster
   persistentVolumeReclaimPolicy: "{{ $.Values.persistentVolumes.reclaimPolicy }}"
-  
+
   {{- $e := index $.Values.persistentVolumes.replicaNodes $i }}
   nodeAffinity:
     required:

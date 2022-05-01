@@ -1,8 +1,9 @@
+---
 apiVersion: v2
 appVersion: v0.18
 description: DNS proxy as ad-blocker for local network
 name: blocky
-version: 10.1.1
+version: 10.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - blocky
@@ -18,8 +19,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `appversion` to version `0.18` and made it use Chart.appversion by default for ease of maintenance.
+      description: Upgraded `common` chart dependency to version 4.4.0

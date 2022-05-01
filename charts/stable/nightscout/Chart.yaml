@@ -1,23 +1,24 @@
+---
 apiVersion: v2
 appVersion: 14.2.5
 description: nightscout helm package
 name: nightscout
-version: 1.0.0
+version: 1.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- nightscout
+  - nightscout
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/nightscout
 icon: https://github.com/nightscout/cgm-remote-monitor/blob/master/static/images/favicon-96x96.png
 sources:
-- https://github.com/nightscout/nightscout-docker
+  - https://github.com/nightscout/nightscout-docker
 maintainers:
-- name: nchilder
-  email: nchilder@redhat.com
+  - name: nchilder
+    email: nchilder@redhat.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: Initial version
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 4.4.0

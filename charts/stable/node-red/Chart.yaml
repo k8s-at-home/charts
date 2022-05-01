@@ -1,21 +1,26 @@
+---
 apiVersion: v2
 appVersion: 2.1.4
 description: Node-RED is low-code programming for event-driven applications
 name: node-red
-version: 10.0.0
+version: 10.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
-- nodered
-- node-red
+  - nodered
+  - node-red
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/node-red
 icon: https://nodered.org/about/resources/media/node-red-icon-2.png
 sources:
-- https://github.com/node-red/node-red-docker
-- https://github.com/k8s-at-home/charts/tree/master/charts/node-red
+  - https://github.com/node-red/node-red-docker
+  - https://github.com/k8s-at-home/charts/tree/master/charts/node-red
 maintainers:
-- name: billimek
-  email: jeff@billimek.com
+  - name: billimek
+    email: jeff@billimek.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.0
+annotations:
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 4.4.0

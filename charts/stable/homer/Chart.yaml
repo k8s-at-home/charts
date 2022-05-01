@@ -1,10 +1,11 @@
+---
 apiVersion: v2
 appVersion: 21.09.2
 description: A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
 icon: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/logo.png
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/homer
 name: homer
-version: 7.1.0
+version: 7.2.0
 kubeVersion: ">=1.16.0-0"
 sources:
   - https://github.com/bastienwirtz/homer
@@ -14,8 +15,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version `4.3.0`.
+      description: Upgraded `common` chart dependency to version 4.4.0

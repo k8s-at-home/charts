@@ -1,5 +1,7 @@
+{{- include "common.values.setup" . -}}
 {{- range .Values.instances }}
 {{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
+---
 apiVersion: v1
 kind: Service
 metadata:

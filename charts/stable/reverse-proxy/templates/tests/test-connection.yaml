@@ -1,7 +1,9 @@
+{{- include "common.values.setup" . -}}
 {{- $wget_opts := printf "--spider -T %0.f" .Values.connectionTest.readtimeout }}
 {{- range $instance := .Values.instances }}
 {{- if or ( not ( hasKey $instance "enabled" ) ) $instance.enabled }}
 {{- if or ( not ( hasKey $instance "test" ) ) ( $instance.test ) }}
+---
 apiVersion: v1
 kind: Pod
 metadata:

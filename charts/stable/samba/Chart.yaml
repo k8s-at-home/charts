@@ -1,8 +1,9 @@
+---
 apiVersion: v2
 appVersion: 4.15.5
 description: A simple in-cluster Samba server
 name: samba
-version: 6.0.0
+version: 6.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - samba
@@ -16,8 +17,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Migrated to docker image `crazy-max/samba` in order to fix https://github.com/k8s-at-home/charts/issues/1401
+      description: Upgraded `common` chart dependency to version 4.4.0

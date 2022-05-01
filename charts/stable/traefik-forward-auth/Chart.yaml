@@ -1,8 +1,9 @@
+---
 apiVersion: v2
 appVersion: 2.2.0
 description: A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
 name: traefik-forward-auth
-version: 2.0.0
+version: 2.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - traefik
@@ -20,12 +21,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.0
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: >
-        **BREAKING** Added `common` chart dependency.
-        This will likely require you to update your chart values.
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Reuse existing secret if present.
+      description: Upgraded `common` chart dependency to version 4.4.0

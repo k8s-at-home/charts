@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v1.23.4
 description: "A self-hosted data logger for your Tesla \U0001F698"
 name: teslamate
-version: 6.6.0
+version: 6.7.0
 keywords:
   - teslamate
   - tesla
@@ -15,7 +15,7 @@ sources:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.0
   - name: postgresql
     version: 10.16.2
     repository: https://charts.bitnami.com/bitnami
@@ -24,6 +24,6 @@ maintainers:
   - name: billimek
     email: jeff@billimek.com
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+      description: Upgraded `common` chart dependency to version 4.4.0

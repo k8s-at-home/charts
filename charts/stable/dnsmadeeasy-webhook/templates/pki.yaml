@@ -1,4 +1,5 @@
 {{- if .Values.generateCerts }}
+{{- include "common.values.setup" . -}}
 ---
 # Create a selfsigned Issuer, in order to create a root CA certificate for
 # signing webhook serving certificates
