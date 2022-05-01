@@ -6774,6 +6774,35 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: v0.18
+    created: "2022-05-01T17:32:19.84612263Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: DNS proxy as ad-blocker for local network
+    digest: 4f81d9dd38025c1b58fc6b9b7a1dcedef9680dfa5e8d0bdf4563f57313aca171
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/blocky
+    icon: https://github.com/0xERR0R/blocky/raw/master/docs/blocky.svg?sanitize=true
+    keywords:
+    - blocky
+    - adblock
+    - dns
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: blocky
+    sources:
+    - https://github.com/0xERR0R/blocky
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/blocky-10.2.1/blocky-10.2.1.tgz
+    version: 10.2.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v0.18
     created: "2022-05-01T16:10:50.846859094Z"
     dependencies:
     - name: common
@@ -28581,6 +28610,49 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: 2022.4.0
+    created: "2022-05-01T17:32:20.007529098Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.13
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.4.4
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 4.0.8
+    description: Home Assistant
+    digest: a76362c14b80e62163fcfd3b73b377cf08ca021a72c5c5edf984a3f64c7cca75
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/cdr/code-server
+    - https://github.com/k8s-at-home/charts/tree/master/charts/stable/home-assistant
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/home-assistant-13.1.1/home-assistant-13.1.1.tgz
+    version: 13.1.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: 2022.4.0
     created: "2022-05-01T16:10:55.04501724Z"
     dependencies:
     - name: common
@@ -34881,6 +34953,34 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: v0.9.0
+    created: "2022-05-01T17:32:20.139717128Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: An exporter for metrics in the InfluxDB format, transforms them and
+      exposes them for consumption by Prometheus.
+    digest: 3e2a49ceebd700dd8b1d1552692b3f41490b4c6f3e2411f89794c3fc11a8b946
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/influxdb-exporter
+    icon: https://influxdata.github.io/branding/img/downloads/influxdata-logo--symbol--pool.jpg
+    keywords:
+    - influxdb-exporter
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: admin@aste.tools
+      name: Aste88
+    name: influxdb-exporter
+    sources:
+    - https://github.com/prometheus/influxdb_exporter
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/influxdb-exporter-1.1.1/influxdb-exporter-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v0.9.0
     created: "2022-05-01T16:10:55.653450493Z"
     dependencies:
     - name: common
@@ -37984,6 +38084,69 @@ entries:
           email: nick@cajun.pro
           url: https://github.com/DirtyCajunRice
     apiVersion: v2
+    created: "2022-05-01T17:32:20.269060426Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Projector is a technology to run and access JetBrains IDEs remotely
+    digest: 8333cb41c2ee162a979ac7c109bfb8f950b0cd2ec415d2de9ced2daa771789c6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jetbrains-projector
+    icon: https://pbs.twimg.com/profile_images/1369990348580216834/dorDbokA_400x400.png
+    keywords:
+    - jetbrains
+    - projector
+    - jetbrains-projector
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: nick@cajun.pro
+      name: DirtyCajunRice
+    name: jetbrains-projector
+    sources:
+    - https://github.com/JetBrains/projector-server
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/jetbrains-projector-3.3.1/jetbrains-projector-3.3.1.tgz
+    version: 3.3.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+      artifacthub.io/images: |
+        - name: CLion
+          image: ghcr.io/k8s-at-home/projector-clion:v2021.1
+        - name: DataGrip
+          image: ghcr.io/k8s-at-home/projector-datagriip:v2021.1
+        - name: GoLand
+          image: ghcr.io/k8s-at-home/projector-goland:v2021.1
+        - name: Intellij Idea Community
+          image: ghcr.io/k8s-at-home/projector-idea-c:v2021.1
+        - name: Intellij dea Ultimate
+          image: ghcr.io/k8s-at-home/projector-idea-u:v2021.1
+        - name: PhpStorm
+          image: ghcr.io/k8s-at-home/projector-phpstorm:v2021.1
+        - name: PyCharm Community
+          image: ghcr.io/k8s-at-home/projector-pycharm-c:v2021.1
+        - name: Pycharm Professional
+          image: ghcr.io/k8s-at-home/projector-pycharm-p:v2021.1
+        - name: WebStorm
+          image: ghcr.io/k8s-at-home/projector-webstorm:v2021.1
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jetbrains-projector
+        - name: Upstream Project
+          url: https://github.com/JetBrains/projector-server
+        - name: Original Containers
+          url: https://github.com/JetBrains/projector-docker
+        - name: Support
+          url: https://discord.com/invite/sTMX7Vh
+        - name: Containers
+          url: https://github.com/orgs/k8s-at-home/packages?tab=packages&q=projector
+      artifacthub.io/maintainers: |
+        - name: Nicholas St. Germain
+          email: nick@cajun.pro
+          url: https://github.com/DirtyCajunRice
+    apiVersion: v2
     created: "2022-05-01T16:10:56.073351768Z"
     dependencies:
     - name: common
@@ -40364,6 +40527,33 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: 20.4.0
+    created: "2022-05-01T17:32:20.405423504Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: kube-ops-view helm package
+    digest: fb9cd6051820b2bbd1fc4e682b8225b058a8abd5dab78905b43db14510a632a3
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/kube-ops-view
+    icon: https://codeberg.org/repo-avatars/677-c51f6426305941cab515fdd98368f0bb
+    keywords:
+    - kube-ops-view
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: dennis.zhang.nrg@gmail.com
+      name: FlipEnergy
+    name: kube-ops-view
+    sources:
+    - https://codeberg.org/hjacobs/kube-ops-view
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/kube-ops-view-1.1.1/kube-ops-view-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: 20.4.0
     created: "2022-05-01T16:10:56.602027256Z"
     dependencies:
     - name: common
@@ -41797,6 +41987,36 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/librespeed-1.0.0/librespeed-1.0.0.tgz
     version: 1.0.0
   lidarr:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v1.0.0.2255
+    created: "2022-05-01T17:32:20.53549141Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Looks and smells like Sonarr but made for music
+    digest: 1a7080b5e711cd13a7e9024553b453c3f24cf8eff1c739c0a6fdff190965ec25
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/lidarr
+    icon: https://github.com/lidarr/Lidarr/blob/develop/Logo/512.png?raw=true
+    keywords:
+    - lidarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: lidarr
+    sources:
+    - https://github.com/Lidarr/Lidarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/lidarr-14.1.1/lidarr-14.1.1.tgz
+    version: 14.1.1
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
@@ -50664,6 +50884,36 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/neolink-1.0.0/neolink-1.0.0.tgz
     version: 1.0.0
   network-ups-tools:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v2.7.4-2479-g86a32237
+    created: "2022-05-01T17:32:20.676122738Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Network UPS Tools is a collection of programs which provide a common
+      interface for monitoring and administering UPS, PDU and SCD hardware.
+    digest: 889d157d09f69f506541cdfaac85bb8ba8198d27e07afa5ed4c512946671f78a
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/network-ups-tools
+    icon: https://avatars0.githubusercontent.com/u/3526263?s=400&v=4
+    keywords:
+    - nut
+    - network-ups-tools
+    - ups
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: network-ups-tools
+    sources:
+    - https://github.com/networkupstools/nut
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/network-ups-tools-6.3.1/network-ups-tools-6.3.1.tgz
+    version: 6.3.1
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
@@ -68908,6 +69158,34 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: latest
+    created: "2022-05-01T17:32:20.80768026Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Discord bot that provides metrics from a Discord server
+    digest: 9050f14bf230d3998014354e8fa46f313788760b98913d1ed2a4e54db34a5ff8
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/promcord
+    keywords:
+    - promcord
+    - discord
+    - metrics
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: hello@chipwolf.uk
+      name: ChipWolf
+    name: promcord
+    sources:
+    - https://github.com/nimarion/promcord
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/promcord-5.3.1/promcord-5.3.1.tgz
+    version: 5.3.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: latest
     created: "2022-05-01T16:11:01.898657165Z"
     dependencies:
     - name: common
@@ -69271,6 +69549,35 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/promcord-1.0.0/promcord-1.0.0.tgz
     version: 1.0.0
   prometheus-nut-exporter:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: 1.1.1
+    created: "2022-05-01T17:32:20.953247645Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Prometheus NUT Exporter a service monitor to send NUT server metrics
+      to a Prometheus instance.
+    digest: 375f07b8887419b7d013959a38d5993d5928f7f62fe873519042b9970dfdf28f
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/prometheus-nut-exporter
+    icon: https://www.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/125-512.png
+    keywords:
+    - nut
+    - prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: prometheus-nut-exporter
+    sources:
+    - https://github.com/HON95/prometheus-nut-exporter
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/prometheus-nut-exporter-5.3.1/prometheus-nut-exporter-5.3.1.tgz
+    version: 5.3.1
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
@@ -71732,6 +72039,35 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: v4.4.2
+    created: "2022-05-01T17:32:21.138296388Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: 65c2e03ca4ce50a45de2502fbdabd7fa1843005dc677f36599aaf8da857512c6
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: qbittorrent
+    sources:
+    - https://github.com/qbittorrent/qBittorrent
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/qbittorrent-13.4.1/qbittorrent-13.4.1.tgz
+    version: 13.4.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v4.4.2
     created: "2022-05-01T16:11:02.594290664Z"
     dependencies:
     - name: common
@@ -73015,6 +73351,36 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/qbittorrent-2.0.1/qbittorrent-2.0.1.tgz
     version: 2.0.1
   radarr:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v4.1.0.6175
+    created: "2022-05-01T17:32:21.270086513Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: A fork of Sonarr to work with movies à la Couchpotato
+    digest: 91154c753101edf3635f93fa019d5e6e5f42a86f38899d716f5c5eb2ee961285
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/radarr
+    icon: https://github.com/Radarr/Radarr/blob/aphrodite/Logo/512.png?raw=true
+    keywords:
+    - radarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: radarr
+    sources:
+    - https://github.com/Radarr/Radarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/radarr-16.2.1/radarr-16.2.1.tgz
+    version: 16.2.1
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
@@ -83251,6 +83617,36 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: v3.0.8.1507
+    created: "2022-05-01T17:32:21.392394529Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Smart PVR for newsgroup and bittorrent users
+    digest: 578e13065d1ad6eb452288abc34c4ba226cc5c511fbe9c3705746b534d52e838
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/sonarr
+    icon: https://github.com/Sonarr/Sonarr/blob/phantom-develop/Logo/512.png?raw=true
+    keywords:
+    - sonarr
+    - torrent
+    - usenet
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: sonarr
+    sources:
+    - https://github.com/Sonarr/Sonarr
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/sonarr-16.2.1/sonarr-16.2.1.tgz
+    version: 16.2.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v3.0.8.1507
     created: "2022-05-01T16:11:04.925050245Z"
     dependencies:
     - name: common
@@ -85173,6 +85569,33 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/speedtest-2.0.0/speedtest-2.0.0.tgz
     version: 2.0.0
   speedtest-exporter:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: v3.2.2
+    created: "2022-05-01T17:32:21.544622491Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Speedtest Exporter made in python using the official speedtest bin
+    digest: c0eda2774619a5ef8aeaf0e7c21211baa7d0da3773e6e1ed275526dfe5fc6c5b
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/speedtest-exporter
+    keywords:
+    - speedtest-exporter
+    - speedtest
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: devin.kray@gmail.com
+      name: onedr0p
+    name: speedtest-exporter
+    sources:
+    - https://github.com/MiguelNdeCarvalho/speedtest-exporter/
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/speedtest-exporter-5.3.1/speedtest-exporter-5.3.1.tgz
+    version: 5.3.1
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
@@ -96971,6 +97394,40 @@ entries:
           description: Upgraded `common` chart dependency to version 4.4.0
     apiVersion: v2
     appVersion: 2.1.3
+    created: "2022-05-01T17:32:21.677952334Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.1.9
+    description: Collect ALL UniFi Controller, Site, Device & Client Data - Export
+      to InfluxDB or Prometheus
+    digest: e96df58b5e68a870f1dd7d5349ac6b3b255071770500e233d31c3b67189688b0
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/unifi-poller
+    icon: https://raw.githubusercontent.com/wiki/unifi-poller/unifi-poller/images/unifi-poller-logo.png
+    keywords:
+    - unifi
+    - unifi-poller
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: unifi-poller
+    sources:
+    - https://github.com/unifi-poller/unifi-poller
+    - https://hub.docker.com/r/golift/unifi-poller
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/unifi-poller-10.3.1/unifi-poller-10.3.1.tgz
+    version: 10.3.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: 2.1.3
     created: "2022-05-01T16:11:07.249445545Z"
     dependencies:
     - name: common
@@ -99209,6 +99666,36 @@ entries:
     - https://github.com/billimek/billimek-charts/releases/download/uptimerobot-2.0.0/uptimerobot-2.0.0.tgz
     version: 2.0.0
   uptimerobot-prometheus:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-05-01T17:32:21.81235119Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Prometheus Exporter for the official uptimerobot CLI
+    digest: 3ba30f6644a30ee0c4b6efb38aaf6e6520ffce5b2e097bc3d454431671a5488d
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/uptimerobot-prometheus
+    icon: https://cdn.foliovision.com/images/2019/03/icon-uptimerobot-1024.png
+    keywords:
+    - uptimerobot
+    - prometheus
+    - grafana
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: uptimerobot-prometheus
+    sources:
+    - https://github.com/lekpamartin/uptimerobot_exporter
+    - https://github.com/k8s-at-home/charts/tree/master/charts/uptimerobot-prometheus
+    type: application
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/uptimerobot-prometheus-6.3.1/uptimerobot-prometheus-6.3.1.tgz
+    version: 6.3.1
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
@@ -103611,6 +104098,36 @@ entries:
     - https://github.com/k8s-at-home/charts/releases/download/wikijs-2.5.191/wikijs-2.5.191.tgz
     version: 2.5.191
   wireguard:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.4.0
+    apiVersion: v2
+    appVersion: 1.0.20210424
+    created: "2022-05-01T17:32:21.942456896Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.4.0
+    description: Fast, modern, secure VPN tunnel
+    digest: c29d3c4300b801486a3cb4d2091e52a8f310d62f05247edc68ab60e235fb5e65
+    icon: https://avatars.githubusercontent.com/u/13991055?s=200&v=4
+    keywords:
+    - vpn
+    - privacy
+    - security
+    - wireguard
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: j_r0dd@icloud.com
+      name: jr0dd
+    name: wireguard
+    sources:
+    - https://github.com/k8s-at-home/container-images
+    - https://github.com/k8s-at-home/charts
+    urls:
+    - https://github.com/k8s-at-home/charts/releases/download/wireguard-1.3.1/wireguard-1.3.1.tgz
+    version: 1.3.1
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
@@ -109187,4 +109704,4 @@ entries:
     urls:
     - https://github.com/k8s-at-home/charts/releases/download/zwavejs2mqtt-1.0.0/zwavejs2mqtt-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-01T16:11:09.304794584Z"
+generated: "2022-05-01T17:32:21.964004446Z"
