@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 5.3.0](https://img.shields.io/badge/Version-5.3.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -132,7 +132,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 
 ## Changelog
 
-### Version 5.3.0
+### Version 5.4.0
 
 #### Added
 
@@ -140,7 +140,7 @@ N/A
 
 #### Changed
 
-* Change default port for VPN to 1194
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

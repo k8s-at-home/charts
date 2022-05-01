@@ -1,6 +1,6 @@
 # bazarr
 
-![Version: 10.4.0](https://img.shields.io/badge/Version-10.4.0-informational?style=flat-square) ![AppVersion: v1.0.3](https://img.shields.io/badge/AppVersion-v1.0.3-informational?style=flat-square)
+![Version: 10.5.0](https://img.shields.io/badge/Version-10.5.0-informational?style=flat-square) ![AppVersion: v1.0.3](https://img.shields.io/badge/AppVersion-v1.0.3-informational?style=flat-square)
 
 Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -87,7 +87,7 @@ N/A
 
 ## Changelog
 
-### Version 10.4.0
+### Version 10.5.0
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Updated to use the latest docker image.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

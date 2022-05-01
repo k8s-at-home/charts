@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 10.1.1](https://img.shields.io/badge/Version-10.1.1-informational?style=flat-square) ![AppVersion: v0.18](https://img.shields.io/badge/AppVersion-v0.18-informational?style=flat-square)
+![Version: 10.2.0](https://img.shields.io/badge/Version-10.2.0-informational?style=flat-square) ![AppVersion: v0.18](https://img.shields.io/badge/AppVersion-v0.18-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -97,7 +97,7 @@ N/A
 
 ## Changelog
 
-### Version 10.1.1
+### Version 10.2.0
 
 #### Added
 
@@ -105,7 +105,7 @@ N/A
 
 #### Changed
 
-* Upgraded `appversion` to version `0.18` and made it use Chart.appversion by default for ease of maintenance.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

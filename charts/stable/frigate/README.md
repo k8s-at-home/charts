@@ -1,6 +1,6 @@
 # frigate
 
-![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: 0.10.0-amd64](https://img.shields.io/badge/AppVersion-0.10.0--amd64-informational?style=flat-square)
+![Version: 8.1.0](https://img.shields.io/badge/Version-8.1.0-informational?style=flat-square) ![AppVersion: 0.10.0-amd64](https://img.shields.io/badge/AppVersion-0.10.0--amd64-informational?style=flat-square)
 
 NVR With Realtime Object Detection for IP Cameras
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -111,7 +111,7 @@ config: |
 
 ## Changelog
 
-### Version 8.0.0
+### Version 8.1.0
 
 #### Added
 
@@ -119,9 +119,7 @@ N/A
 
 #### Changed
 
-* **Breaking:** Updated image tag to version `0.10.0-amd64`. See the application release notes for the breaking changes.
-
-* **Breaking:** Use the common library built-in configMap for configuration.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

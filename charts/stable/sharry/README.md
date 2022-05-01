@@ -1,6 +1,6 @@
 # sharry
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: 1.8.0](https://img.shields.io/badge/AppVersion-1.8.0-informational?style=flat-square)
+![Version: 5.3.0](https://img.shields.io/badge/Version-5.3.0-informational?style=flat-square) ![AppVersion: 1.8.0](https://img.shields.io/badge/AppVersion-1.8.0-informational?style=flat-square)
 
 Sharry allows to share files with others in a simple way. It is a self-hosted web application. The basic concept is to upload files and get a url back that can then be shared.
 
@@ -17,7 +17,7 @@ Sharry allows to share files with others in a simple way. It is a self-hosted we
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -84,7 +84,7 @@ N/A
 
 ## Changelog
 
-### Version 5.2.0
+### Version 5.3.0
 
 #### Added
 
@@ -92,7 +92,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

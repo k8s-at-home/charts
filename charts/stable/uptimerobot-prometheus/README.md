@@ -1,6 +1,6 @@
 # uptimerobot-prometheus
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 Prometheus Exporter for the official uptimerobot CLI
 
@@ -17,7 +17,7 @@ Prometheus Exporter for the official uptimerobot CLI
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -93,7 +93,7 @@ You can find an [example grafana dashboard](https://github.com/lekpamartin/uptim
 
 ## Changelog
 
-### Version 6.2.0
+### Version 6.3.0
 
 #### Added
 
@@ -101,7 +101,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

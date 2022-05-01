@@ -1,6 +1,6 @@
 # radarr
 
-![Version: 16.1.0](https://img.shields.io/badge/Version-16.1.0-informational?style=flat-square) ![AppVersion: v4.1.0.6175](https://img.shields.io/badge/AppVersion-v4.1.0.6175-informational?style=flat-square)
+![Version: 16.2.0](https://img.shields.io/badge/Version-16.2.0-informational?style=flat-square) ![AppVersion: v4.1.0.6175](https://img.shields.io/badge/AppVersion-v4.1.0.6175-informational?style=flat-square)
 
 A fork of Sonarr to work with movies à la Couchpotato
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -100,7 +100,7 @@ N/A
 
 ## Changelog
 
-### Version 16.1.0
+### Version 16.2.0
 
 #### Added
 
@@ -108,7 +108,7 @@ N/A
 
 #### Changed
 
-* Updated docker image to version v4.1.0.6175
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

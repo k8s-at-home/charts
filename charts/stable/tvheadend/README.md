@@ -1,6 +1,6 @@
 # tvheadend
 
-![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: version-eb59284b](https://img.shields.io/badge/AppVersion-version--eb59284b-informational?style=flat-square)
+![Version: 5.3.0](https://img.shields.io/badge/Version-5.3.0-informational?style=flat-square) ![AppVersion: version-eb59284b](https://img.shields.io/badge/AppVersion-version--eb59284b-informational?style=flat-square)
 
 TVheadend - a TV streaming server and digital video recorder
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -88,7 +88,7 @@ N/A
 
 ## Changelog
 
-### Version 5.2.0
+### Version 5.3.0
 
 #### Added
 
@@ -96,7 +96,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

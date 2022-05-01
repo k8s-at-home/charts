@@ -1,6 +1,6 @@
 # sabnzbd
 
-![Version: 9.2.0](https://img.shields.io/badge/Version-9.2.0-informational?style=flat-square) ![AppVersion: v3.3.1](https://img.shields.io/badge/AppVersion-v3.3.1-informational?style=flat-square)
+![Version: 9.3.0](https://img.shields.io/badge/Version-9.3.0-informational?style=flat-square) ![AppVersion: v3.3.1](https://img.shields.io/badge/AppVersion-v3.3.1-informational?style=flat-square)
 
 Free and easy binary newsreader
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -89,7 +89,7 @@ To address this issue, you can set an environment variable named `HOST_WHITELIST
 
 ## Changelog
 
-### Version 9.2.0
+### Version 9.3.0
 
 #### Added
 
@@ -97,7 +97,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

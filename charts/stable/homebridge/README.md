@@ -1,6 +1,6 @@
 # homebridge
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 2022-04-28](https://img.shields.io/badge/AppVersion-2022--04--28-informational?style=flat-square)
+![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 2022-04-28](https://img.shields.io/badge/AppVersion-2022--04--28-informational?style=flat-square)
 
 A lightweight NodeJS server that emulates the iOS HomeKit API
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -93,7 +93,7 @@ N/A
 
 ## Changelog
 
-### Version 5.0.0
+### Version 5.1.0
 
 #### Added
 
@@ -101,8 +101,7 @@ N/A
 
 #### Changed
 
-* **BREAKING:** Moved startup script configuration to configMap.scripts key
-* Updated appVersion to 2022-04-28
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

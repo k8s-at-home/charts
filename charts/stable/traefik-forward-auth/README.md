@@ -1,6 +1,6 @@
 # traefik-forward-auth
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: 2.2.0](https://img.shields.io/badge/AppVersion-2.2.0-informational?style=flat-square)
 
 A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -86,15 +86,15 @@ N/A
 
 ## Changelog
 
-### Version 2.0.0
+### Version 2.1.0
 
 #### Added
 
-* **BREAKING** Added `common` chart dependency. This will likely require you to update your chart values.
+N/A
 
 #### Changed
 
-* Reuse existing secret if present.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 4.4.1](https://img.shields.io/badge/Version-4.4.1-informational?style=flat-square) ![AppVersion: 2.00.18](https://img.shields.io/badge/AppVersion-2.00.18-informational?style=flat-square)
+![Version: 4.5.0](https://img.shields.io/badge/Version-4.5.0-informational?style=flat-square) ![AppVersion: 2.00.18](https://img.shields.io/badge/AppVersion-2.00.18-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -18,7 +18,7 @@ Tdarr is a self hosted web-app for automating media library transcode/remux mana
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -102,7 +102,7 @@ N/A
 
 ## Changelog
 
-### Version 4.4.1
+### Version 4.5.0
 
 #### Added
 
@@ -110,7 +110,7 @@ N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

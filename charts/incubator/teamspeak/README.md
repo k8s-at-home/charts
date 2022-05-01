@@ -1,6 +1,6 @@
 # teamspeak
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 3.13.6](https://img.shields.io/badge/AppVersion-3.13.6-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![AppVersion: 3.13.6](https://img.shields.io/badge/AppVersion-3.13.6-informational?style=flat-square)
 
 TeamSpeak Server
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -124,15 +124,15 @@ service:
 
 ## Changelog
 
-### Version 0.4.0
+### Version 0.5.0
 
 #### Added
 
-* Added metrics sidecar.
+N/A
 
 #### Changed
 
-* Merged ports into single service.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

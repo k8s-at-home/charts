@@ -1,6 +1,6 @@
 # scrypted
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.138](https://img.shields.io/badge/AppVersion-0.0.138-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.138](https://img.shields.io/badge/AppVersion-0.0.138-informational?style=flat-square)
 
 scrypted helm package
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -86,15 +86,15 @@ N/A
 
 ## Changelog
 
-### Version 0.1.0
+### Version 0.2.0
 
 #### Added
 
-* Initial version
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

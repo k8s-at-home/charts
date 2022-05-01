@@ -1,6 +1,6 @@
 # qbittorrent
 
-![Version: 13.3.0](https://img.shields.io/badge/Version-13.3.0-informational?style=flat-square) ![AppVersion: v4.4.2](https://img.shields.io/badge/AppVersion-v4.4.2-informational?style=flat-square)
+![Version: 13.4.0](https://img.shields.io/badge/Version-13.4.0-informational?style=flat-square) ![AppVersion: v4.4.2](https://img.shields.io/badge/AppVersion-v4.4.2-informational?style=flat-square)
 
 qBittorrent is a cross-platform free and open-source BitTorrent client
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -101,7 +101,7 @@ N/A
 
 ## Changelog
 
-### Version 13.3.0
+### Version 13.4.0
 
 #### Added
 
@@ -109,7 +109,7 @@ N/A
 
 #### Changed
 
-* Updated docker image to be the latest one.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

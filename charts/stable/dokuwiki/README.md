@@ -1,6 +1,6 @@
 # dokuwiki
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 20200729.0.0](https://img.shields.io/badge/AppVersion-20200729.0.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 20200729.0.0](https://img.shields.io/badge/AppVersion-20200729.0.0-informational?style=flat-square)
 
 DokuWiki is a simple to use and highly versatile Open Source wiki software that doesn't require a database.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -77,7 +77,7 @@ N/A
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below (only deviations from the default settings are specified) | environment variables. See [image docs](https://docs.kanboard.org/en/latest/admin_guide/docker.html#environment-variables) and [application docs](# https://docs.kanboard.org/en/latest/admin_guide/config_file.html) for more details. |
-| env.TZ | string | `"Europe/London"` | Application Timezone |
+| env.TZ | string | `"UTC"` | Application Timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"linuxserver/dokuwiki"` | image repository |
 | image.tag | string | `"version-2020-07-29"` | image tag |
@@ -87,15 +87,15 @@ N/A
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.1.0
 
 #### Added
 
-* Initial chart version
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

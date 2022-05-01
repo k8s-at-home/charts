@@ -1,6 +1,6 @@
 # powerdns-admin
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v0.2.4](https://img.shields.io/badge/AppVersion-v0.2.4-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v0.2.4](https://img.shields.io/badge/AppVersion-v0.2.4-informational?style=flat-square)
 
 A PowerDNS web interface with advanced features
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -77,10 +77,9 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below (only deviations from the default settings are specified) | environment variables. See [undocumented configs](https://github.com/PowerDNS-Admin/PowerDNS-Admin/blob/master/configs/docker_config.py) and [application docs](# https://github.com/PowerDNS-Admin/PowerDNS-Admin/blob/master/configs/development.py) for more details. |
 | env.GUNICORN_LOGLEVEL | string | `"DEBUG"` | Gunicorn loglevel to use |
-| env.GUNICORN_TIMEOUT | int | `60` | Timeout for Gunicorn workers |
+| env.GUNICORN_TIMEOUT | int | `60` | Database connection string - if not set uses internal sqlite db SQLALCHEMY_DATABASE_URI: mysql://db_user:db_pass@db_host/powerdns_admin -- Timeout for Gunicorn workers |
 | env.GUNICORN_WORKERS | int | `2` | How many Gunicorn workers to spawn |
 | env.SECRET_KEY | string | `"changeme"` | Unique app Key |
-| env.SQLALCHEMY_DATABASE_URI | string | `"mysql://db_user:db_pass@db_host/powerdns_admin"` | Database connection string - if not set uses internal sqlite db |
 | env.TZ | string | `"UTC"` | Application Timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ngoduykhanh/powerdns-admin"` | image repository |
@@ -91,15 +90,15 @@ N/A
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.1.0
 
 #### Added
 
-* Initial chart version
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 

@@ -1,6 +1,6 @@
 # gonic
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v0.13.1](https://img.shields.io/badge/AppVersion-v0.13.1-informational?style=flat-square)
+![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![AppVersion: v0.13.1](https://img.shields.io/badge/AppVersion-v0.13.1-informational?style=flat-square)
 
 Music streaming server / subsonic server API implementation
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.0 |
 
 ## TL;DR
 
@@ -87,7 +87,7 @@ N/A
 
 ## Changelog
 
-### Version 6.2.0
+### Version 6.3.0
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `common` chart dependency to version 4.4.0
 
 #### Fixed
 
