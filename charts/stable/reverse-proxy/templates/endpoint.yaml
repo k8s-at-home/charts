@@ -1,6 +1,8 @@
+{{- include "common.values.setup" . -}}
 {{- range .Values.instances }}
 {{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
 {{- if .ip -}}
+---
 apiVersion: v1
 kind: Endpoints
 metadata:
@@ -12,7 +14,6 @@ subsets:
       - ip: {{ .ip }}
     ports:
       - port: {{ .port | default 80 }}
----
 {{- end }}
 {{- end }}
 {{- end }}

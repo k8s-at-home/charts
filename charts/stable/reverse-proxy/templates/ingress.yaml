@@ -1,3 +1,4 @@
+{{- include "common.values.setup" . -}}
 {{- range .Values.instances }}
 {{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
 {{- $name := printf "%s-%s" (include "common.names.fullname" $) .name }}
