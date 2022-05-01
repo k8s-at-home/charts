@@ -1,4 +1,6 @@
 {{- if eq .Values.config.mode "values" -}}
+{{- include "common.values.setup" . -}}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:

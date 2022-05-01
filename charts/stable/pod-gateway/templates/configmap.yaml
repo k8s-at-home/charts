@@ -1,4 +1,5 @@
 {{- range $namespace := append .Values.routed_namespaces .Release.Namespace }}
+{{- include "common.values.setup" . -}}
 ---
 apiVersion: v1
 kind: ConfigMap
