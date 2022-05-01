@@ -4,7 +4,7 @@
 {{/* Append the hardcoded settings */}}
 {{- define "paperless.harcodedValues" -}}
 env:
-    PAPERLESS_URL: {{ (first .Values.ingress.main.hosts).host }}
+    PAPERLESS_URL: http{{if ne ( len .Values.ingress.main.tls ) 0 }}s{{end}}://{{ (first .Values.ingress.main.hosts).host }}
 {{- end -}}
 {{- $_ := merge .Values (include "paperless.harcodedValues" . | fromYaml) -}}
 
