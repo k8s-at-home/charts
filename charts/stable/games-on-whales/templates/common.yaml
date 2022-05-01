@@ -255,7 +255,9 @@ service:
         primary: true
         port: 47990
         protocol: HTTPS
+    {{- if (or (eq .Values.service.main.type "LoadBalancer") (eq .Values.service.main.type "NodePort")) }}
     externalTrafficPolicy: Local
+    {{- end }}
   udp:
     enabled: true
     ports:
@@ -271,7 +273,9 @@ service:
         enabled: true
         port: 48000
         protocol: UDP
+    {{- if (or (eq .Values.service.udp.type "LoadBalancer") (eq .Values.service.udp.type "NodePort")) }}
     externalTrafficPolicy: Local
+    {{- end }}
 
 # Required for udev to work
 hostNetwork: true
