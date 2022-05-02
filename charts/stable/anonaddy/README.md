@@ -1,6 +1,6 @@
 # anonaddy
 
-![Version: 3.1.0](https://img.shields.io/badge/Version-3.1.0-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
+![Version: 3.1.1](https://img.shields.io/badge/Version-3.1.1-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
 
 Anonaddy: Anonymous email forwarding
 
@@ -18,9 +18,9 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.4.4 |
-| https://charts.bitnami.com/bitnami | redis | 16.8.2 |
-| https://library-charts.k8s-at-home.com | common | 4.4.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.5.1 |
+| https://charts.bitnami.com/bitnami | redis | 16.8.9 |
+| https://library-charts.k8s-at-home.com | common | 4.4.1 |
 
 ## TL;DR
 
@@ -93,7 +93,7 @@ N/A
 
 ## Changelog
 
-### Version 3.1.0
+### Version 3.1.1
 
 #### Added
 
@@ -101,7 +101,9 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.0
+* Upgraded `common` chart dependency to version 4.4.1
+* Upgraded `mariadb` chart dependency to version 10.5.1
+* Upgraded `redis` chart dependency to version 16.8.9
 
 #### Fixed
 

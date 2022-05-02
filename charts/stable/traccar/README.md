@@ -1,6 +1,6 @@
 # traccar
 
-![Version: 7.2.0](https://img.shields.io/badge/Version-7.2.0-informational?style=flat-square) ![AppVersion: v4.13](https://img.shields.io/badge/AppVersion-v4.13-informational?style=flat-square)
+![Version: 7.2.1](https://img.shields.io/badge/Version-7.2.1-informational?style=flat-square) ![AppVersion: v4.13](https://img.shields.io/badge/AppVersion-v4.13-informational?style=flat-square)
 
 Traccar is an open source GPS tracking system.
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.4.4 |
-| https://library-charts.k8s-at-home.com | common | 4.4.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.5.1 |
+| https://library-charts.k8s-at-home.com | common | 4.4.1 |
 
 ## TL;DR
 
@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 7.2.0
+### Version 7.2.1
 
 #### Added
 
@@ -98,7 +98,8 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.0
+* Upgraded `common` chart dependency to version 4.4.1
+* Upgraded `mariadb` chart dependency to version 10.5.1
 
 #### Fixed
 

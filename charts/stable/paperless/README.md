@@ -1,6 +1,6 @@
 # paperless
 
-![Version: 8.8.0](https://img.shields.io/badge/Version-8.8.0-informational?style=flat-square) ![AppVersion: ngx-1.7.0](https://img.shields.io/badge/AppVersion-ngx--1.7.0-informational?style=flat-square)
+![Version: 8.8.1](https://img.shields.io/badge/Version-8.8.1-informational?style=flat-square) ![AppVersion: ngx-1.7.0](https://img.shields.io/badge/AppVersion-ngx--1.7.0-informational?style=flat-square)
 
 Paperless - Index and archive all of your scanned paper documents
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
 | https://charts.bitnami.com/bitnami | redis | 15.7.6 |
-| https://library-charts.k8s-at-home.com | common | 4.4.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.1 |
 
 ## TL;DR
 
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 8.8.0
+### Version 8.8.1
 
 #### Added
 
@@ -104,7 +104,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.0
+* Upgraded `common` chart dependency to version 4.4.1
 
 #### Fixed
 

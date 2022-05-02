@@ -1,6 +1,6 @@
 # komga
 
-![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![AppVersion: 0.99.4](https://img.shields.io/badge/AppVersion-0.99.4-informational?style=flat-square)
+![Version: 2.3.1](https://img.shields.io/badge/Version-2.3.1-informational?style=flat-square) ![AppVersion: 0.99.4](https://img.shields.io/badge/AppVersion-0.99.4-informational?style=flat-square)
 
 A comics/mangas server to serve/stream pages via API
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.1 |
 
 ## TL;DR
 
@@ -86,7 +86,7 @@ N/A
 
 ## Changelog
 
-### Version 2.3.0
+### Version 2.3.1
 
 #### Added
 
@@ -94,7 +94,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.0
+* Upgraded `common` chart dependency to version 4.4.1
 
 #### Fixed
 
