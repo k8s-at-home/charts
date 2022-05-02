@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v4.3.1
 description: PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
 name: powerdns
-version: 4.1.1
+version: 4.2.0
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/powerdns
 sources:
   - http://www.github.com/PowerDNS/
@@ -16,7 +16,7 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: mariadb
-    version: 10.4.4
+    version: 10.5.1
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
