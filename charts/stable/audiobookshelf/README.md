@@ -1,6 +1,6 @@
 # audiobookshelf
 
-![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: 2.0.3](https://img.shields.io/badge/AppVersion-2.0.3-informational?style=flat-square)
+![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![AppVersion: 2.0.3](https://img.shields.io/badge/AppVersion-2.0.3-informational?style=flat-square)
 
 Self-hosted audiobook server for managing and playing your audiobooks
 
@@ -81,12 +81,12 @@ N/A
 | image.repository | string | `"ghcr.io/advplyr/audiobookshelf"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| persistence | string | See values.yaml | Configure persistence settings for the chart under this key. |
+| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 1.1.1
+### Version 1.1.2
 
 #### Added
 
@@ -94,11 +94,11 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.1
+N/A
 
 #### Fixed
 
-N/A
+* Fixed persistence not being respected
 
 ### Older versions
 
