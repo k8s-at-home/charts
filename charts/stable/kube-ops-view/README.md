@@ -1,8 +1,8 @@
 # kube-ops-view
 
-![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![AppVersion: 20.4.0](https://img.shields.io/badge/AppVersion-20.4.0-informational?style=flat-square)
+![Version: 1.1.3](https://img.shields.io/badge/Version-1.1.3-informational?style=flat-square) ![AppVersion: 20.4.0](https://img.shields.io/badge/AppVersion-20.4.0-informational?style=flat-square)
 
-kube-ops-view helm package
+A read-only system dashboard for multiple K8s clusters
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -89,7 +89,7 @@ N/A
 
 ## Changelog
 
-### Version 1.1.2
+### Version 1.1.3
 
 #### Added
 
@@ -97,7 +97,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.1
+* Updated chart description
 
 #### Fixed
 
