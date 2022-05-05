@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: 5.2.0
+description: A web application made to ease shared budget management
+name: ihatemoney
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- ihatemoney
+- finance
+- bills
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ihatemoney
+sources:
+- https://github.com/spiral-project/ihatemoney
+maintainers:
+- name: FlipEnergy
+  email: dennis.zhang.nrg@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.4.1
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
