@@ -1,6 +1,6 @@
 # photoprism
 
-![Version: 6.6.2](https://img.shields.io/badge/Version-6.6.2-informational?style=flat-square) ![AppVersion: 220302](https://img.shields.io/badge/AppVersion-220302-informational?style=flat-square)
+![Version: 6.6.2](https://img.shields.io/badge/Version-6.6.2-informational?style=flat-square) ![AppVersion: 220302-impish](https://img.shields.io/badge/AppVersion-220302--impish-informational?style=flat-square)
 
 PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
 
@@ -101,7 +101,7 @@ N/A
 
 ## Changelog
 
-### Version 6.6.1
+### Version 6.6.2
 
 #### Added
 
@@ -109,8 +109,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.1
-* Upgraded `mariadb` chart dependency to version 10.5.1
+* Updated photoprism to version 220302
 
 #### Fixed
 
