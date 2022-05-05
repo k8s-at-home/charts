@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: "20220121"
+appVersion: "220302-impish"
 description: PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
 name: photoprism
-version: 6.6.1
+version: 6.6.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - photos
@@ -29,6 +29,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1
-    - kind: changed
-      description: Upgraded `mariadb` chart dependency to version 10.5.1
+      description: Updated photoprism to version 220302
