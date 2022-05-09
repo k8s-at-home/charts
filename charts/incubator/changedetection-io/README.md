@@ -1,6 +1,6 @@
 # changedetection-io
 
-![Version: 1.4.1](https://img.shields.io/badge/Version-1.4.1-informational?style=flat-square) ![AppVersion: 0.39.4](https://img.shields.io/badge/AppVersion-0.39.4-informational?style=flat-square)
+![Version: 1.4.2](https://img.shields.io/badge/Version-1.4.2-informational?style=flat-square) ![AppVersion: 0.39.4](https://img.shields.io/badge/AppVersion-0.39.4-informational?style=flat-square)
 
 changedetection-io helm package
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.1 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -87,7 +87,7 @@ N/A
 
 ## Changelog
 
-### Version 1.4.1
+### Version 1.4.2
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.1
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

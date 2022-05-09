@@ -1,6 +1,6 @@
 # comcast
 
-![Version: 6.3.1](https://img.shields.io/badge/Version-6.3.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 6.3.2](https://img.shields.io/badge/Version-6.3.2-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 periodic comcast data usage checks and save the results to InfluxDB
 
@@ -17,7 +17,7 @@ periodic comcast data usage checks and save the results to InfluxDB
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.1 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -91,7 +91,7 @@ helm install comcast k8s-at-home/comcast -f values.yaml
 
 ## Changelog
 
-### Version 6.3.1
+### Version 6.3.2
 
 #### Added
 
@@ -99,7 +99,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.1
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

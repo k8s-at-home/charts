@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 13.1.2](https://img.shields.io/badge/Version-13.1.2-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
+![Version: 13.1.3](https://img.shields.io/badge/Version-13.1.3-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
 
 Home Assistant
 
@@ -23,7 +23,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | influxdb | 4.0.12 |
 | https://charts.bitnami.com/bitnami | mariadb | 10.5.1 |
 | https://charts.bitnami.com/bitnami | postgresql | 11.1.25 |
-| https://library-charts.k8s-at-home.com | common | 4.4.1 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -175,7 +175,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 ## Changelog
 
-### Version 13.1.2
+### Version 13.1.3
 
 #### Added
 
@@ -183,10 +183,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.1
-* Upgraded `postgresql` chart dependency to version 11.1.25
-* Upgraded `mariadb` chart dependency to version 10.5.1
-* Upgraded `influxdb` chart dependency to version 4.0.12
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

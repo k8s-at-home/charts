@@ -1,6 +1,6 @@
 # wallabag
 
-![Version: 6.2.1](https://img.shields.io/badge/Version-6.2.1-informational?style=flat-square) ![AppVersion: 2.4.2](https://img.shields.io/badge/AppVersion-2.4.2-informational?style=flat-square)
+![Version: 6.2.2](https://img.shields.io/badge/Version-6.2.2-informational?style=flat-square) ![AppVersion: 2.4.2](https://img.shields.io/badge/AppVersion-2.4.2-informational?style=flat-square)
 
 A self hostable application for saving web pages, freely.
 
@@ -22,7 +22,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | mariadb | 10.5.1 |
 | https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
 | https://charts.bitnami.com/bitnami | redis | 15.7.6 |
-| https://library-charts.k8s-at-home.com | common | 4.4.1 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -93,7 +93,7 @@ Default login is `wallabag:wallabag`.
 
 ## Changelog
 
-### Version 6.2.1
+### Version 6.2.2
 
 #### Added
 
@@ -101,8 +101,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.1
-* Upgraded `mariadb` chart dependency to version 10.5.1
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 
