@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.8.1
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 4.2.1
+version: 4.2.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -22,7 +22,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
   - name: postgresql
     version: 11.1.25
     repository: https://charts.bitnami.com/bitnami
@@ -34,72 +34,68 @@ dependencies:
   # Client API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: clientapi
     condition: dendrite.polylithEnabled
   # Media API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: mediaapi
     condition: dendrite.polylithEnabled
   # Sync API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: syncapi
     condition: dendrite.polylithEnabled
   # Room Server
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: roomserver
     condition: dendrite.polylithEnabled
   # Federation API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: federationapi
     condition: dendrite.polylithEnabled
   # Key Server
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: keyserver
     condition: dendrite.polylithEnabled
   # User API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: userapi
     condition: dendrite.polylithEnabled
   # App Service API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
     alias: appserviceapi
     condition: dendrite.polylithEnabled
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1
+      description: Upgraded `common` chart dependency to version 4.4.2
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version 11.1.25
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'clientapi'
     - kind: changed
-      description: Upgraded `nats` chart dependency to version 0.16.0
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'mediaapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'clientapi'
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'syncapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'mediaapi'
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'roomserver'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'syncapi'
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'federationapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'roomserver'
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'keyserver'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'federationapi'
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'userapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'keyserver'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'userapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1 for alias 'appserviceapi'
+      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'appserviceapi'

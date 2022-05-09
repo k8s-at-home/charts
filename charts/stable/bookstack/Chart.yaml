@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v21.12
 description: A simple, self-hosted, easy-to-use platform for organising and storing information.
 name: bookstack
-version: 4.2.1
+version: 4.2.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - bookstack
@@ -23,7 +23,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
   - name: mariadb
     version: 10.5.1
     repository: https://charts.bitnami.com/bitnami
@@ -31,6 +31,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1
-    - kind: changed
-      description: Upgraded `mariadb` chart dependency to version 10.5.1
+      description: Upgraded `common` chart dependency to version 4.4.2

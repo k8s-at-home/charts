@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 3.1.1.0
 description: A simple CalDAV (calendar) and CardDAV (contact) server.
 name: radicale
-version: 1.1.1
+version: 1.1.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - radicale
@@ -19,7 +19,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.1
+    version: 4.4.2
 annotations:
   artifacthub.io/links: |
     - name: Helm source
@@ -30,4 +30,4 @@ annotations:
       url: https://github.com/tomsquest/docker-radicale
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.1
+      description: Upgraded `common` chart dependency to version 4.4.2
