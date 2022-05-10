@@ -1,3 +1,5 @@
+{{- include "common.values.setup" . -}}
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -39,4 +41,3 @@ spec:
               name: {{ include "zalando-postgres-cluster.superuser_secret" . }}
               key: password
       restartPolicy: Never
-

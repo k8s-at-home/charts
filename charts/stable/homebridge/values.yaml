@@ -9,7 +9,8 @@ image:
   # -- image repository
   repository: ghcr.io/oznu/homebridge
   # -- image tag
-  tag: latest@sha256:4703dca68510307587361f4312e6bad0e765e85f8986a7517e0f393d8d0e2410
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -49,26 +50,33 @@ persistence:
     enabled: false
     mountPath: /homebridge
 
-# -- Custom startup.sh script to install additional packages in the container
-# @default -- string
-config: |
-  #!/bin/sh
+configmap:
+  scripts:
+    # -- Enable custom homebridge startup script
+    enabled: false
 
-  #
-  # Docker Homebridge Custom Startup Script - oznu/homebridge
-  #
-  # This script can be used to customise the environment and will be executed as
-  # the root user each time the container starts.
-  #
-  # If using this to install plugins DO NOT use the global flag (-g).
-  #
-  # Example installing homebridge plugin:
-  #
-  # npm install homebridge-hue
-  #
-  # Example installing packages using default image (Alpine Linux):
-  #
-  # apk add --no-cache ffmpeg ffmpeg-libs libpcap-dev
-  #
-  # If you're running a debian based version of this container please use apt-get to install packages.
-  #
+    data:
+      # -- Custom homebridge startup script contents
+      # @default -- See values.yaml
+      startup.sh: |
+        #!/bin/sh
+
+        #
+        # Docker Homebridge Custom Startup Script - oznu/homebridge
+        #
+        # This script can be used to customise the environment and will be executed as
+        # the root user each time the container starts.
+        #
+        # If using this to install plugins DO NOT use the global flag (-g).
+        #
+        # Example installing homebridge plugin:
+        #
+        # npm install homebridge-hue
+        #
+        # Example installing packages using default image (Alpine Linux):
+        #
+        # apk add --no-cache ffmpeg ffmpeg-libs libpcap-dev
+        #
+        # If you're running a debian based version of this container please use apt-get to install packages.
+        #
+        echo "Started successfully."

@@ -1,6 +1,6 @@
 # photoprism
 
-![Version: 6.5.0](https://img.shields.io/badge/Version-6.5.0-informational?style=flat-square) ![AppVersion: 20220121](https://img.shields.io/badge/AppVersion-20220121-informational?style=flat-square)
+![Version: 6.6.3](https://img.shields.io/badge/Version-6.6.3-informational?style=flat-square) ![AppVersion: 220302-impish](https://img.shields.io/badge/AppVersion-220302--impish-informational?style=flat-square)
 
 PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
 
@@ -19,8 +19,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.4.4 |
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.5.1 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -101,7 +101,7 @@ N/A
 
 ## Changelog
 
-### Version 6.5.0
+### Version 6.6.3
 
 #### Added
 
@@ -109,7 +109,7 @@ N/A
 
 #### Changed
 
-* Upgraded `mariadb` chart dependency to version `10.4.4`.
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

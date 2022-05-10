@@ -1,6 +1,6 @@
 # sonarr
 
-![Version: 16.0.1](https://img.shields.io/badge/Version-16.0.1-informational?style=flat-square) ![AppVersion: v3.0.6.1342](https://img.shields.io/badge/AppVersion-v3.0.6.1342-informational?style=flat-square)
+![Version: 16.2.3](https://img.shields.io/badge/Version-16.2.3-informational?style=flat-square) ![AppVersion: v3.0.8.1507](https://img.shields.io/badge/AppVersion-v3.0.8.1507-informational?style=flat-square)
 
 Smart PVR for newsgroup and bittorrent users
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -80,7 +80,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/sonarr"` | image repository |
-| image.tag | string | `"v3.0.6.1342"` | image tag |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | metrics.enabled | bool | See values.yaml | Enable and configure Exportarr sidecar and Prometheus serviceMonitor. |
 | metrics.exporter.env.additionalMetrics | bool | `false` | Set to true to enable gathering of additional metrics (slow) |
@@ -100,7 +100,7 @@ N/A
 
 ## Changelog
 
-### Version 16.0.1
+### Version 16.2.3
 
 #### Added
 
@@ -108,7 +108,7 @@ N/A
 
 #### Changed
 
-* Inherit persistence.config.subPath in metrics exporter
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

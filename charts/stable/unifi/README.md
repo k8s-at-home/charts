@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 4.7.0](https://img.shields.io/badge/Version-4.7.0-informational?style=flat-square) ![AppVersion: v6.5.55](https://img.shields.io/badge/AppVersion-v6.5.55-informational?style=flat-square)
+![Version: 4.9.2](https://img.shields.io/badge/Version-4.9.2-informational?style=flat-square) ![AppVersion: v7.0.25](https://img.shields.io/badge/AppVersion-v7.0.25-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -17,7 +17,7 @@ Ubiquiti Network's Unifi Controller
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mongodb | 10.31.5 |
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -128,7 +128,7 @@ service:
 | env.UNIFI_UID | string | `"999"` | Specify the user ID the application will run as |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jacobalberty/unifi"` | image repository |
-| image.tag | string | `"v6.5.55"` | image tag |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | ingress.portal | object | See values.yaml | Enable and configure settings for the captive portal ingress under this key. |
 | mongodb | object | See values.yaml | Enable and configure mongodb database subchart under this key.    For more options see [mongodb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mongodb) |
@@ -145,7 +145,7 @@ service:
 
 ## Changelog
 
-### Version 4.7.0
+### Version 4.9.2
 
 #### Added
 
@@ -153,7 +153,7 @@ N/A
 
 #### Changed
 
-* Upgraded `mongodb` chart dependency to version `10.31.5`.
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

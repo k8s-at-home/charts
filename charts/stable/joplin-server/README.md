@@ -1,6 +1,6 @@
 # joplin-server
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 2.1.2](https://img.shields.io/badge/AppVersion-2.1.2-informational?style=flat-square)
+![Version: 5.1.2](https://img.shields.io/badge/Version-5.1.2-informational?style=flat-square) ![AppVersion: 2.1.2](https://img.shields.io/badge/AppVersion-2.1.2-informational?style=flat-square)
 
 This server allows you to sync any Joplin client
 
@@ -18,8 +18,8 @@ This server allows you to sync any Joplin client
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 11.1.15 |
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.1.25 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -95,7 +95,7 @@ N/A
 
 ## Changelog
 
-### Version 5.0.0
+### Version 5.1.2
 
 #### Added
 
@@ -103,7 +103,7 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `11.1.15`.
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

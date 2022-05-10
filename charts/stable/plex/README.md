@@ -1,6 +1,6 @@
 # plex
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v1.24.1.4931-1a38e63c6](https://img.shields.io/badge/AppVersion-v1.24.1.4931--1a38e63c6-informational?style=flat-square)
+![Version: 6.3.2](https://img.shields.io/badge/Version-6.3.2-informational?style=flat-square) ![AppVersion: v1.26.0.5715-8cf78dab3](https://img.shields.io/badge/AppVersion-v1.26.0.5715--8cf78dab3-informational?style=flat-square)
 
 Plex Media Server
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -81,7 +81,7 @@ N/A
 | hostNetwork | bool | `false` | Enable devices to be discoverable |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/k8s-at-home/plex"` | image repository |
-| image.tag | string | `"v1.24.1.4931-1a38e63c6"` | image tag |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | podSecurityContext | object | `{}` | Configure the Security Context for the Pod |
@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 6.2.0
+### Version 6.3.2
 
 #### Added
 
@@ -98,7 +98,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

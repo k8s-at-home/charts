@@ -1,8 +1,9 @@
+---
 apiVersion: v2
-appVersion: v3.0.6.1342
+appVersion: v3.0.8.1507
 description: Smart PVR for newsgroup and bittorrent users
 name: sonarr
-version: 16.0.1
+version: 16.2.3
 kubeVersion: ">=1.16.0-0"
 keywords:
   - sonarr
@@ -19,8 +20,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.2
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Inherit persistence.config.subPath in metrics exporter
+      description: Upgraded `common` chart dependency to version 4.4.2

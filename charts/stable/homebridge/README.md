@@ -1,6 +1,6 @@
 # homebridge
 
-![Version: 4.3.1](https://img.shields.io/badge/Version-4.3.1-informational?style=flat-square) ![AppVersion: 4.0.0](https://img.shields.io/badge/AppVersion-4.0.0-informational?style=flat-square)
+![Version: 5.1.2](https://img.shields.io/badge/Version-5.1.2-informational?style=flat-square) ![AppVersion: 2022-04-28](https://img.shields.io/badge/AppVersion-2022--04--28-informational?style=flat-square)
 
 A lightweight NodeJS server that emulates the iOS HomeKit API
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -76,7 +76,8 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | string | Custom startup.sh script to install additional packages in the container |
+| configmap.scripts.data."startup.sh" | string | See values.yaml | Custom homebridge startup script contents |
+| configmap.scripts.enabled | bool | `false` | Enable custom homebridge startup script |
 | env | object | See below | environment variables. See [image docs](https://github.com/oznu/docker-homebridge#parameters) for more details. |
 | env.HOMEBRIDGE_CONFIG_UI | int | `1` | Enable the Homebridge UI |
 | env.PGID | string | `"1000"` | Specify the group ID the application will run as |
@@ -85,14 +86,14 @@ N/A
 | hostNetwork | bool | `false` | Enable hostNetwork - needed for discovery to work |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/oznu/homebridge"` | image repository |
-| image.tag | string | `"latest@sha256:4703dca68510307587361f4312e6bad0e765e85f8986a7517e0f393d8d0e2410"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 4.3.1
+### Version 5.1.2
 
 #### Added
 
@@ -100,11 +101,11 @@ N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 
-* Set permissions for startup.sh to be executable
+N/A
 
 ### Older versions
 

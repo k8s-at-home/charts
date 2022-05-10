@@ -1,23 +1,24 @@
+---
 apiVersion: v2
 appVersion: 1.0.0
 description: strongSwan – the OpenSource IPsec-based VPN Solution
 name: strongswan
-version: 0.1.0
+version: 0.2.2
 kubeVersion: ">=1.16.0-0"
 keywords:
-- strongswan
+  - strongswan
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/strongswan
 icon: https://strongswan.org/images/strongswan_neu.png
 sources:
-- https://github.com/reitermarkus/strongswan
+  - https://github.com/reitermarkus/strongswan
 maintainers:
-- name: reitermarkus
-  email: me@reitermark.us
+  - name: reitermarkus
+    email: me@reitermark.us
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.3.0
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
 annotations:
-  artifacthub.io/changes: |
-    - kind: added
-      description: Initial version
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 4.4.2

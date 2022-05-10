@@ -35,6 +35,7 @@
 | [error-pages](stable/error-pages) | Server error pages in the docker image |
 | [esphome](stable/esphome) | ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems. |
 | [facebox](stable/facebox) | Facebox detects and identifies faces in photos. You can teach facebox with as little as one sample image. |
+| [factorio](stable/factorio) | Factorio dedicated steam game server |
 | [filebrowser](stable/filebrowser) | filebrowser provides a file managing interface within a specified directory |
 | [flaresolverr](stable/flaresolverr) | FlareSolverr is a proxy server to bypass Cloudflare protection |
 | [flood](stable/flood) | Flood is a monitoring service for various torrent clients |
@@ -58,6 +59,7 @@
 | [hyperion-ng](stable/hyperion-ng) | Hyperion is an opensource Bias or Ambient Lighting implementation |
 | [icantbelieveitsnotvaletudo](stable/icantbelieveitsnotvaletudo) | Create live map data from Valetudo powered robots |
 | [icinga2](stable/icinga2) | A monitoring system which checks the availability of your network resources, notifies users of outages, and generates performance data for reporting. |
+| [ihatemoney](stable/ihatemoney) | A web application made to ease shared budget management |
 | [influxdb-exporter](stable/influxdb-exporter) | An exporter for metrics in the InfluxDB format, transforms them and exposes them for consumption by Prometheus. |
 | [intel-gpu-plugin](stable/intel-gpu-plugin) | The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware |
 | [jackett](stable/jackett) | API Support for your favorite torrent trackers |
@@ -66,7 +68,7 @@
 | [joplin-server](stable/joplin-server) | This server allows you to sync any Joplin client |
 | [kanboard](stable/kanboard) | Kanboard is a free and open source Kanban project management software. |
 | [komga](stable/komga) | A comics/mangas server to serve/stream pages via API |
-| [kube-ops-view](stable/kube-ops-view) | kube-ops-view helm package |
+| [kube-ops-view](stable/kube-ops-view) | A read-only system dashboard for multiple K8s clusters |
 | [lazylibrarian](stable/lazylibrarian) | A Helm chart for deploying LazyLibrarian |
 | [leaf2mqtt](stable/leaf2mqtt) | Nissan Leaf connected services to MQTT adapter |
 | [librespeed](stable/librespeed) | Librespeed is a HTML5 webpage to test upload and download speeds |
@@ -87,6 +89,7 @@
 | [neolink](stable/neolink) | Neolink - RTSP bridge to Reolink IP cameras |
 | [network-ups-tools](stable/network-ups-tools) | Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware. |
 | [nginx-php](stable/nginx-php) | Nginx and PHP FPM for running PHP applications |
+| [nightscout](stable/nightscout) | nightscout helm package |
 | [node-red](stable/node-red) | Node-RED is low-code programming for event-driven applications |
 | [nullserv](stable/nullserv) | A simple null file http and https server |
 | [nzbget](stable/nzbget) | NZBGet is a Usenet downloader client |
@@ -146,6 +149,7 @@
 | [teedy](stable/teedy) | Teedy is an open source, lightweight document management system for individuals and businesses. |
 | [teslamate](stable/teslamate) | A self-hosted data logger for your Tesla 🚘 |
 | [thelounge](stable/thelounge) | The Lounge, modern web IRC client designed for self-hosting |
+| [theme-park](stable/theme-park) | theme-park helm package |
 | [traccar](stable/traccar) | Traccar is an open source GPS tracking system. |
 | [traefik-forward-auth](stable/traefik-forward-auth) | A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer |
 | [transmission](stable/transmission) | Transmission is a cross-platform BitTorrent client |
@@ -181,6 +185,7 @@
 | [changedetection-io](incubator/changedetection-io) | changedetection-io helm package |
 | [cryptpad](incubator/cryptpad) | cryptpad helm package |
 | [dendrite](incubator/dendrite) | Dendrite Matrix Homeserver |
+| [kah-common-chart](incubator/kah-common-chart) | A KaH-common powered chart template. This can be useful for small projects that don't have their own chart. |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
 | [openhab](incubator/openhab) | openhab helm package |
 | [scrypted](incubator/scrypted) | scrypted helm package |

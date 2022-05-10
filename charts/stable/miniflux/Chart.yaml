@@ -1,8 +1,9 @@
+---
 apiVersion: v2
-appVersion: 2.0.35
+appVersion: 2.0.36
 description: Miniflux is a minimalist and opinionated feed reader.
 name: miniflux
-version: 4.6.0
+version: 4.7.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - miniflux
@@ -18,12 +19,12 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.2
   - name: postgresql
     version: 10.16.2
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version `10.16.2`.
+      description: Upgraded `common` chart dependency to version 4.4.2

@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 13.0.1](https://img.shields.io/badge/Version-13.0.1-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
+![Version: 13.1.3](https://img.shields.io/badge/Version-13.1.3-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
 
 Home Assistant
 
@@ -20,10 +20,10 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | influxdb | 4.0.8 |
-| https://charts.bitnami.com/bitnami | mariadb | 10.4.4 |
-| https://charts.bitnami.com/bitnami | postgresql | 11.1.13 |
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://charts.bitnami.com/bitnami | influxdb | 4.0.12 |
+| https://charts.bitnami.com/bitnami | mariadb | 10.5.1 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.1.25 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -76,7 +76,7 @@ helm install home-assistant k8s-at-home/home-assistant -f values.yaml
 
 When configuring Home Assistant behind a reverse proxy make sure you configure the [http](https://www.home-assistant.io/integrations/http) component and set `trusted_proxies` correctly and `use_x_forwarded_for` to `true`.
 
-For example:
+For example (by edit the configuration.yaml hosted in your pod):
 
 ```yaml
 http:
@@ -175,7 +175,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 ## Changelog
 
-### Version 13.0.1
+### Version 13.1.3
 
 #### Added
 
@@ -183,7 +183,7 @@ N/A
 
 #### Changed
 
-* Upgraded image version to latest upstream release - 2022.4.0
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

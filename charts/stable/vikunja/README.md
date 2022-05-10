@@ -1,6 +1,6 @@
 # vikunja
 
-![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
+![Version: 5.5.2](https://img.shields.io/badge/Version-5.5.2-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
 
 The to-do app to organize your life
 
@@ -21,7 +21,7 @@ The to-do app to organize your life
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 5.4.0
+### Version 5.5.2
 
 #### Added
 
@@ -104,7 +104,7 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version `10.16.2`.
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

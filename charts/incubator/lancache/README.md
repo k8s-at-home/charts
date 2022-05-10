@@ -1,6 +1,6 @@
 # lancache
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.5.2](https://img.shields.io/badge/Version-0.5.2-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 LanCache Monolithic - a caching proxy server for game download content
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -104,15 +104,15 @@ N/A
 
 ## Changelog
 
-### Version 0.4.0
+### Version 0.5.2
 
 #### Added
 
-* Added probes for LanCache DNS container.
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

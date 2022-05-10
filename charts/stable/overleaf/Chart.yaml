@@ -1,8 +1,9 @@
+---
 apiVersion: v2
 appVersion: 2.7.1
 description: A web-based collaborative LaTeX editor
 name: overleaf
-version: 2.4.0
+version: 2.5.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - overleaf
@@ -17,7 +18,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.3.0
+    version: 4.4.2
   - name: redis
     version: 15.7.6
     repository: https://charts.bitnami.com/bitnami
@@ -27,8 +28,6 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: mongodb.enabled
 annotations:
-  artifacthub.io/changes: |
+  artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `mongodb` chart dependency to version `10.31.5`.
-    - kind: changed
-      description: Upgraded `redis` chart dependency to version `15.7.6`.
+      description: Upgraded `common` chart dependency to version 4.4.2

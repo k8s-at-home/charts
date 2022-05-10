@@ -1,0 +1,53 @@
+{{- if .Values.config -}}
+{{- include "common.values.setup" . -}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-settings
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+{{- with .Values.config.server_settings -}}
+{{- if . }}
+  server-settings.json: |
+{{ toPrettyJson . | indent 4 }}
+{{- end -}}
+{{- end -}}
+{{- with .Values.config.rcon.password -}}
+{{- if . }}
+  rconpw: |
+{{ . | indent 4 }}
+{{- end -}}
+{{- end -}}
+{{- with .Values.config.map_gen_settings -}}
+{{- if . }}
+  map-gen-settings.json: |
+{{ toPrettyJson . | indent 4 }}
+{{- end -}}
+{{- end -}}
+{{- with .Values.config.map_settings -}}
+{{- if . }}
+  map-settings.json: |
+{{ toPrettyJson . | indent 4 }}
+{{- end -}}
+{{- end -}}
+{{- with .Values.config.admin_list -}}
+{{- if . }}
+  server-adminlist.json: |
+{{ toPrettyJson . | indent 4 }}
+{{- end -}}
+{{- end -}}
+{{- with .Values.config.white_list -}}
+{{- if . }}
+  server-whitelist.json: |
+{{ toPrettyJson . | indent 4 }}
+{{- end -}}
+{{- end -}}
+{{- with .Values.config.ban_list -}}
+{{- if . }}
+  server-banlist.json: |
+{{ toPrettyJson . | indent 4 }}
+{{- end -}}
+{{- end -}}
+{{- end -}}

@@ -1,6 +1,6 @@
 # tdarr
 
-![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 2.00.10](https://img.shields.io/badge/AppVersion-2.00.10-informational?style=flat-square)
+![Version: 4.5.2](https://img.shields.io/badge/Version-4.5.2-informational?style=flat-square) ![AppVersion: 2.00.18](https://img.shields.io/badge/AppVersion-2.00.18-informational?style=flat-square)
 
 Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc.
 
@@ -18,7 +18,7 @@ Tdarr is a self hosted web-app for automating media library transcode/remux mana
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -85,7 +85,7 @@ N/A
 | env.webUIPort | string | `"{{ .Values.service.main.ports.http.port }}"` | tdarr web UI listening port (same as Service port) |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"haveagitgat/tdarr"` | image repository |
-| image.tag | string | `"2.00.10"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | node.enabled | bool | `true` | Deploy a tdarr node. |
 | node.id | string | `"node"` | Node ID |
@@ -102,7 +102,7 @@ N/A
 
 ## Changelog
 
-### Version 4.4.0
+### Version 4.5.2
 
 #### Added
 
@@ -110,7 +110,7 @@ N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

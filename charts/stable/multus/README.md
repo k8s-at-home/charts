@@ -1,6 +1,6 @@
 # multus
 
-![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: v3.7.1](https://img.shields.io/badge/AppVersion-v3.7.1-informational?style=flat-square)
+![Version: 3.4.2](https://img.shields.io/badge/Version-3.4.2-informational?style=flat-square) ![AppVersion: v3.7.1](https://img.shields.io/badge/AppVersion-v3.7.1-informational?style=flat-square)
 
 multus CNI allows multiple NICs per pod
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -103,7 +103,7 @@ rm -rf  /var/lib/rancher/k3s/agent/etc/cni/net.d/*multus*
 
 ## Changelog
 
-### Version 3.3.0
+### Version 3.4.2
 
 #### Added
 
@@ -111,7 +111,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version `4.3.0`.
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

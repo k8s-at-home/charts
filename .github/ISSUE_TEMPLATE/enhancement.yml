@@ -1,0 +1,40 @@
+---
+name: Feature request
+description: Suggest an idea for this project
+title: '[<chart name>] Concise description of the enhancement'
+labels: ["enhancement"]
+
+# Header
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question? 👉 [Start a new discussion](https://github.com/k8s-at-home/organization/discussions/new) or [ask on our Discord](https://discord.gg/k8s-at-home).
+
+# Helm Chart details
+
+  - type: input
+    id: chart-name
+    attributes:
+      label: Helm chart name
+      description: Name of the Helm chart this issue relates to
+      placeholder: e.g. sonarr
+    validations:
+      required: true
+
+# Enhancement details
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-info
+    attributes:
+      label: Additional Information
+      description: Anything to give further context to the requested new feature

@@ -1,6 +1,6 @@
 # recipes
 
-![Version: 6.4.0](https://img.shields.io/badge/Version-6.4.0-informational?style=flat-square) ![AppVersion: 1.0.5.2](https://img.shields.io/badge/AppVersion-1.0.5.2-informational?style=flat-square)
+![Version: 6.5.2](https://img.shields.io/badge/Version-6.5.2-informational?style=flat-square) ![AppVersion: 1.0.5.2](https://img.shields.io/badge/AppVersion-1.0.5.2-informational?style=flat-square)
 
 Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files.
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.3.0 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -91,15 +91,15 @@ N/A
 
 ## Changelog
 
-### Version 6.4.0
+### Version 6.5.2
 
 #### Added
 
-* Support for reverse proxy authentication.
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.4.2
 
 #### Fixed
 

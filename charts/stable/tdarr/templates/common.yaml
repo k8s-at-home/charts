@@ -30,7 +30,7 @@ additionalContainers:
       {{ end }}
       {{ if .Values.persistence.media.enabled }}
       - name: media
-        mountPath: /media
+        mountPath: {{ .Values.persistence.media.mountPath }}
       {{ end }}
       {{ if .Values.persistence.shared.enabled }}
       - name: shared

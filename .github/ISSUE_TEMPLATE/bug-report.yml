@@ -1,0 +1,98 @@
+---
+name: Bug report
+description: Create a report to help us improve
+title: '[<chart name>] Concise description of the issue'
+labels: ["bug"]
+
+# Header
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question? 👉 [Start a new discussion](https://github.com/k8s-at-home/organization/discussions/new) or [ask on our Discord](https://discord.gg/k8s-at-home).
+
+        Before opening an issue, please check [the documentation](https://docs.k8s-at-home.com/our-helm-charts/introduction/) and see if it helps you resolve your issue. Please also make sure that you followed the installation instructions.
+
+        Finally, please search issues and discussions before opening a new bug report.
+
+# Helm Chart details
+
+  - type: input
+    id: chart-name
+    attributes:
+      label: Helm chart name
+      description: Name of the Helm chart this issue relates to
+      placeholder: e.g. sonarr
+    validations:
+      required: true
+
+  - type: input
+    id: chart-version
+    attributes:
+      label: Helm chart version
+      description: Version of the Helm chart this issue relates to
+      placeholder: e.g. 16.1.0
+    validations:
+      required: true
+
+# Container details
+
+  - type: input
+    id: container-image
+    attributes:
+      label: Container name
+      description: Name of the container image this issue relates to
+      placeholder: e.g. ghcr.io/k8s-at-home/sonarr
+    validations:
+      required: true
+
+  - type: input
+    id: container-tag
+    attributes:
+      label: Container tag
+      description: Tag of the container image this issue relates to
+      placeholder: e.g. v3.0.7.1477
+    validations:
+      required: true
+
+# Issue details
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: Expected result
+      description: What did you expect to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: helm-values
+    attributes:
+      label: Helm values to reproduce
+      description: A snippet of the relevant Helm values
+      placeholder: |
+        Enter your relevant YAML values here
+      render: YAML
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-info
+    attributes:
+      label: Additional Information
+      description: Anything to give further context to the bug report or information that will assist in solving the issue
+
+  - type: textarea
+    id: repository-link
+    attributes:
+      label: Repo link
+      description: A link to a (public) Git repository where your values are available

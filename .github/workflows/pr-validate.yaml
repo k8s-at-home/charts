@@ -7,7 +7,7 @@ on:
 
 concurrency:
   group: ${{ github.head_ref }}-pr-validate
-  # cancel-in-progress: true
+  cancel-in-progress: true
 
 jobs:
   pr-metadata:
@@ -43,7 +43,6 @@ jobs:
     needs:
       - pr-metadata
       - charts-changelog
-      - charts-lint
     with:
       checkoutCommit: ${{ needs.charts-changelog.outputs.commitHash }}
       chartChangesDetected: ${{ needs.pr-metadata.outputs.addedOrModified }}

@@ -1,4 +1,6 @@
+{{- include "common.values.setup" . -}}
 {{- if or .Values.dumpBackup.enabled .Values.dumpBackup.existingClaim -}}
+---
 # ------------------- CronJob ------------------- #
 apiVersion: batch/v1beta1
 kind: CronJob
