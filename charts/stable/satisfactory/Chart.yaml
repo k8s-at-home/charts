@@ -1,0 +1,25 @@
+apiVersion: v2
+appVersion: latest
+description: Satisfactory dedicated server
+name: satisfactory
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - satisfactory
+  - steam
+  - game
+home: https://www.satisfactorygame.com
+icon: https://img2.storyblok.com/fit-in/0x200/filters:format(webp)/f/110098/268x268/d1ebbafe03/logo.png
+sources:
+  - https://github.com/wolveix/satisfactory-server
+maintainers:
+  - name: Truxnell
+    email: nat@natallanc.om
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.3.0
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
