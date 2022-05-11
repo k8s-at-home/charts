@@ -63,7 +63,8 @@ persistence:
   config:
     enabled: false
     mountPath: /config
-  # server download game files from steam to the below folder
+
+    # server download game files from steam to the below folder
   # recommend this is kept in a seperate PVC so just config can be backed up.
   # no point backing up downloaded game content
   server-cache:
