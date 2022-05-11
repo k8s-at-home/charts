@@ -1,0 +1,26 @@
+---
+apiVersion: v2
+appVersion: v0.23.0
+description: autobrr is a cross-platform free and open-source BitTorrent client
+name: autobrr
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - autobrr
+  - torrrent
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/autobrr
+icon: https://avatars.githubusercontent.com/u/88781313?s=200&v=4
+sources:
+  - https://github.com/autobrr/autobrr
+  - https://github.com/k8s-at-home/container-images
+maintainers:
+  - name: funkypenguin
+    email: davidy@funkypenguin.co.nz
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |-
+    - kind: added
+      description: Initial release
