@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 10.2.3](https://img.shields.io/badge/Version-10.2.3-informational?style=flat-square) ![AppVersion: v0.18](https://img.shields.io/badge/AppVersion-v0.18-informational?style=flat-square)
+![Version: 10.3.0](https://img.shields.io/badge/Version-10.3.0-informational?style=flat-square) ![AppVersion: v0.18](https://img.shields.io/badge/AppVersion-v0.18-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -12,12 +12,13 @@ DNS proxy as ad-blocker for local network
 
 ## Requirements
 
-Kubernetes: `>=1.16.0-0`
+Kubernetes: `>=1.19.0-0`
 
 ## Dependencies
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://charts.bitnami.com/bitnami | redis | 16.9.1 |
 | https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
@@ -67,6 +68,15 @@ helm install blocky k8s-at-home/blocky -f values.yaml
 
 ## Custom configuration
 
+### [10.3.0]
+
+### Added
+
+- Add dependency for redis database as the application now supports it. [Redis - Blocky](https://0xerr0r.github.io/blocky/configuration/#redis)
+- The redis dependency increases the minimum latest version of k8s to version 1.19+
+
+### [10.2.3]
+
 N/A
 
 ## Values
@@ -75,7 +85,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/v0.17/docs/config.yml |
+| config | string | see URL to default config | Full list of options https://github.com/0xERR0R/blocky/blob/v0.18/docs/config.yml |
 | controller.replicas | int | `1` | (int) Number of pods to load balance between |
 | controller.strategy | string | `"RollingUpdate"` | Set the controller upgrade strategy |
 | env | object | See below | environment variables. See [image docs](https://0xerr0r.github.io/blocky/installation/#run-with-docker) for more details. |
@@ -83,6 +93,7 @@ N/A
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/0xerr0r/blocky"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
+| ingress | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
 | metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
 | metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
@@ -93,19 +104,21 @@ N/A
 | metrics.serviceMonitor.scrapeTimeout | string | `"10s"` | Timeout after which the scrape is ended |
 | metrics.serviceMonitor.targetLabels | list | `[]` | TargetLabels transfers labels from the Kubernetes `Service`` onto the created metrics. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| redis | object | See values.yaml | Enable and configure redis subchart under this key. Useful if you're running more than one replica of blocky dns. For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis) |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 10.2.3
+### Version 10.3.0
 
 #### Added
 
-N/A
+* Added `redis` dependency for use with multiple blocky replicas
 
 #### Changed
 
 * Upgraded `common` chart dependency to version 4.4.2
+* Added chart tests, modified default values and added default ingress for blocky api
 
 #### Fixed
 
