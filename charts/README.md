@@ -12,6 +12,7 @@
 | [appdaemon](stable/appdaemon) | AppDaemon is a loosely coupled, multi-threaded, sandboxed python execution environment for writing automation apps for various types of Home Automation Software including Home Assistant and MQTT. |
 | [aria2](stable/aria2) | aria server for downloading web content |
 | [audiobookshelf](stable/audiobookshelf) | Self-hosted audiobook server for managing and playing your audiobooks |
+| [autobrr](stable/autobrr) | autobrr is a cross-platform free and open-source BitTorrent client |
 | [baikal](stable/baikal) | Baïkal is a lightweight CalDAV+CardDAV server. It offers a web interface with management of users, address books and calendars. |
 | [bazarr](stable/bazarr) | Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements |
 | [beets](stable/beets) | beets helm package |
