@@ -30,6 +30,7 @@ env:
 # @default -- See values.yaml
 service:
   main:
+    enabled: false
     ports:
       http:
         port: 4000
@@ -53,6 +54,19 @@ service:
         port: 53
         protocol: UDP
         targetPort: 53
+
+# -- Enable and configure ingress settings for the chart under this key.
+# @default -- See values.yaml
+ingress:
+  main:
+    enabled: false
+    hosts:
+      - host: blocky-api.local
+        paths:
+        - path: /
+          pathType: Prefix
+          service:
+            port: 4000
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
@@ -97,7 +111,16 @@ metrics:
       #   labels:
       #     severity: critical
 
-# -- Full list of options https://github.com/0xERR0R/blocky/blob/v0.17/docs/config.yml
+# -- Enable and configure redis subchart under this key.
+# Useful if you're running more than one replica of blocky dns.
+# For more options see [redis chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/redis)
+# @default -- See values.yaml
+redis:
+  enabled: false
+  # auth:
+  #   enabled: false
+
+# -- Full list of options https://github.com/0xERR0R/blocky/blob/v0.18/docs/config.yml
 # @default -- see URL to default config
 config: |
   upstream:
@@ -262,7 +285,7 @@ config: |
   #certFile: server.crt
   #keyFile: server.key
   # optional: use this DNS server to resolve blacklist urls and upstream DNS servers. Useful if no DNS resolver is configured and blocky needs to resolve a host name. Format net:IP:port, net must be udp or tcp
-  bootstrapDns: tcp:1.1.1.1
+  bootstrapDns: tcp+udp:1.1.1.1
   # optional: Drop all AAAA query if set to true. Default: false
   disableIPv6: false
   # optional: Log level (one from debug, info, warn, error). Default: info
@@ -273,3 +296,10 @@ config: |
   logTimestamp: true
   # optional: obfuscate log output (replace all alphanumeric characters with *) for user sensitive data like request domains or responses to increase privacy. Default: false
   logPrivacy: false
+  #redis:
+    #address: blocky-redis-headless:6379
+    #password: passwd
+    #database: 2
+    #required: true
+    #connectionAttempts: 10
+    #connectionCooldown: 3s

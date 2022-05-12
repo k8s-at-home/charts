@@ -1,0 +1,35 @@
+config: |
+  upstream:
+    default:
+      - tcp-tls:1.1.1.1:853
+      - tcp-tls:8.8.8.8:853
+
+  bootstrapDns: tcp+udp:1.1.1.1
+  redis:
+    address: blocky-redis-headless:6379
+    database: 2
+    required: true
+    connectionAttempts: 10
+    connectionCooldown: 3s
+
+service:
+  dns-udp:
+    enabled: true
+    type: NodePort
+    externalTrafficPolicy: Local
+    ports:
+      dns-udp:
+        enabled: true
+        port: 53
+        protocol: UDP
+        targetPort: 53
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+  fullnameOverride: blocky-redis

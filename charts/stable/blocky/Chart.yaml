@@ -3,8 +3,8 @@ apiVersion: v2
 appVersion: v0.18
 description: DNS proxy as ad-blocker for local network
 name: blocky
-version: 10.2.3
-kubeVersion: ">=1.16.0-0"
+version: 10.3.0
+kubeVersion: ">=1.19.0-0"
 keywords:
   - blocky
   - adblock
@@ -20,7 +20,15 @@ dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
+  - name: redis
+    repository: https://charts.bitnami.com/bitnami
+    version: 16.9.1
+    condition: redis.enabled
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
       description: Upgraded `common` chart dependency to version 4.4.2
+    - kind: added
+      description: Added `redis` dependency for use with multiple blocky replicas
+    - kind: changed
+      description: Added chart tests, modified default values and added default ingress for blocky api
