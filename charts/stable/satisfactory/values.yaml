@@ -1,0 +1,86 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: wolveix/satisfactory-server
+  # -- image tag
+  # @default -- chart.appVersion
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [wolverix docker documentation](https://github.com/wolveix/satisfactory-server).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # AUTOPAUSE: true # -- pause game when no player is connected
+  # AUTOSAVEINTERVAL: 300 # -- autosave interval in seconds
+  # AUTOSAVENUM: 3 # -- number of rotating autosave files
+  # AUTOSAVEONDISCONNECT: true # -- autosave when last player disconnects
+  # CRASHREPORT: true # -- automatic crash reporting
+  # DEBUG: false # -- for debugging the server
+  # DISABLESEASONALEVENTS: false # -- disable the FICSMAS event (you miserable bastard)
+  # MAXPLAYERS: 4 # -- set the player limit for your server
+  # PGID: 1000 # -- set the group ID of the user the server will run as
+  # PUID: 1000 # -- set the user ID of the user the server will run as
+  # SERVERBEACONPORT: 15000 # -- set the game's beacon port
+  # SERVERGAMEPORT: 7777 # -- set the game's port
+  # SERVERIP: 0.0.0.0    # -- set the game's ip (usually not needed)
+  # SERVERQUERYPORT: 15777 # -- set the game's query port
+  # SKIPUPDATE: false # -- avoid updating the game on container start/restart
+  # STEAMBETA: false # -- set experimental game version
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        enabled: false
+        primary: false
+      query:
+        enabled: true
+        port: 15777
+        protocol: UDP
+      beacon:
+        enabled: true
+        port: 15000
+        protocol: UDP
+      game:
+        enabled: true
+        port: 7777
+        protocol: UDP
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
+    mountPath: /config
+
+    # server download game files from steam to the below folder
+  # recommend this is kept in a seperate PVC so just config can be backed up.
+  # no point backing up downloaded game content
+  server-cache:
+    enabled: false
+    mountPath: /config/gamefiles
+    accessMode: ReadWriteOnce
+    size: 20Gi
+
+# Probes are not currently used
+# as it is difficult to detect liveness of a UDP server
+probes:
+  startup:
+    enabled: false
+
+  liveness:
+    enabled: false
+
+  readiness:
+    enabled: false
