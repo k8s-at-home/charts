@@ -75,10 +75,6 @@ helm install blocky k8s-at-home/blocky -f values.yaml
 - Add dependency for redis database as the application now supports it. [Redis - Blocky](https://0xerr0r.github.io/blocky/configuration/#redis)
 - The redis dependency increases the minimum latest version of k8s to version 1.19+
 
-### [10.2.3]
-
-N/A
-
 ## Values
 
 **Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
