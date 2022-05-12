@@ -1,5 +1,19 @@
 {{/* Make sure all variables are set properly */}}
 {{- include "common.values.setup" . }}
 
+{{/* Append the hardcoded settings */}}
+{{- define "autobrr.harcodedValues" -}}
+persistence:
+  autobrr-config:
+    enabled: true
+    mountPath: "/config/config.toml"
+    subPath: "config.toml"
+    type: "custom"
+    volumeSpec:
+      configMap:
+        name: {{ include "common.names.fullname" . }}-config
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "autobrr.harcodedValues" . | fromYaml) -}}
+
 {{/* Render the templates */}}
 {{ include "common.all" . }}
