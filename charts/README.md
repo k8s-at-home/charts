@@ -134,6 +134,7 @@
 | [rtsp-to-web](stable/rtsp-to-web) | RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE |
 | [sabnzbd](stable/sabnzbd) | Free and easy binary newsreader |
 | [samba](stable/samba) | A simple in-cluster Samba server |
+| [satisfactory](stable/satisfactory) | Satisfactory dedicated server |
 | [seafile](stable/seafile) | seafile helm package |
 | [searx](stable/searx) | Searx is a privacy-respecting, hackable metasearch engine |
 | [ser2sock](stable/ser2sock) | Serial to Socket Redirector |
