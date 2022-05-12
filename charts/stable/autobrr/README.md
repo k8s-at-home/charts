@@ -1,6 +1,6 @@
 # autobrr
 
-![Version: 13.4.3](https://img.shields.io/badge/Version-13.4.3-informational?style=flat-square) ![AppVersion: v4.4.2](https://img.shields.io/badge/AppVersion-v4.4.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v0.23.0](https://img.shields.io/badge/AppVersion-v0.23.0-informational?style=flat-square)
 
 autobrr is a cross-platform free and open-source BitTorrent client
 
@@ -76,6 +76,7 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| config | string | `"# config.toml\n\n# Hostname / IP\n#\n# Default: \"localhost\"\n#\nhost = \"0.0.0.0\"\n\n# Port\n#\n# Default: 7474\n#\nport = 7474\n\n# Base url\n# Set custom baseUrl eg /autobrr/ to serve in subdirectory.\n# Not needed for subdomain, or by accessing with the :port directly.\n#\n# Optional\n#\n#baseUrl = \"/autobrr/\"\n\n# autobrr logs file\n# If not defined, logs to stdout\n#\n# Optional\n#\n#logPath = \"log/autobrr.log\"\n\n# Log level\n#\n# Default: \"DEBUG\"\n#\n# Options: \"ERROR\", \"DEBUG\", \"INFO\", \"WARN\"\n#\nlogLevel = \"INFO\"\n\n# Session secret\n#\nsessionSecret = \"secret-session-key\"\n\n# Custom definitions\n#\n#customDefinitions = \"test/definitions\"\n"` |  |
 | env | object | See below | environment variables. See [image docs](https://docs.k8s-at-home.com/our-container-images/configuration/) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
@@ -91,7 +92,19 @@ N/A
 
 #### Added
 
-Initial release
+* Initial release
+
+#### Changed
+
+N/A
+
+#### Fixed
+
+N/A
+
+### Older versions
+
+A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/autobrr?modal=changelog)
 
 ## Support
 
