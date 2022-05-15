@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 13.2.0](https://img.shields.io/badge/Version-13.2.0-informational?style=flat-square) ![AppVersion: 2022.4.0](https://img.shields.io/badge/AppVersion-2022.4.0-informational?style=flat-square)
+![Version: 13.2.0](https://img.shields.io/badge/Version-13.2.0-informational?style=flat-square) ![AppVersion: 2022.5.4](https://img.shields.io/badge/AppVersion-2022.5.4-informational?style=flat-square)
 
 Home Assistant
 
@@ -152,6 +152,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| addons.codeserver | object | See values.yaml | Enable and configure codeserver for the chart.    This allows for easy access to configuration.yaml |
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
@@ -179,7 +180,7 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 #### Added
 
-* Added codeserver defaults to values.
+* Added codeserver defaults to values and bumped image version to 2022.5.4
 
 #### Changed
 
