@@ -1,0 +1,22 @@
+---
+apiVersion: v2
+appVersion: v3.8.0
+description: A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
+icon: https://github.com/TwiN/gatus/raw/master/.github/assets/logo-with-dark-text.png
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/gatus
+name: homer
+version: 1.0.0.
+kubeVersion: ">=1.16.0-0"
+sources:
+  - https://github.com/TwiN/gatus
+maintainers:
+  - name: funkypenguin
+    email: davidy@funkypenguin.co.nz
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |-
+    - kind: added
+      description: Initial version

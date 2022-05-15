@@ -1,0 +1,26 @@
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "gatus.harcodedValues" -}}
+  {{- if .Values.configmap.config.enabled }}
+  {{/* merge gatus specific annotations with podAnnotations*/}}
+  podAnnotations:
+    configmap/checksum: "{{ .Values.configmap.config.data | toYaml | sha256sum }}"
+  {{- end }}
+
+  {{- if .Values.configmap.config.enabled }}
+  {{/* Append the configMap volume to the volumes */}}
+  persistence:
+    config:
+      enabled: true
+      type: "configMap"
+      name: "{{ include "common.names.fullname" . }}-config"
+      mountPath: "/www/assets/config.yml"
+      subPath: "config.yml"
+  {{- end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "gatus.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "common.all" . }}
