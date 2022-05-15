@@ -172,7 +172,6 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 | securityContext | object | `{"privileged":null}` | Enable devices to be discoverable hostNetwork: true -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet dnsPolicy: ClusterFirstWithHostNet |
 | securityContext.privileged | bool | `nil` | Privileged securityContext may be required if USB devics are accessed directly through the host machine |
 | service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
-| 
 
 ## Changelog
 
