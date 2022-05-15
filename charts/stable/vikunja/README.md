@@ -1,6 +1,6 @@
 # vikunja
 
-![Version: 5.5.2](https://img.shields.io/badge/Version-5.5.2-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
+![Version: 5.5.3](https://img.shields.io/badge/Version-5.5.3-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
 
 The to-do app to organize your life
 
@@ -81,7 +81,7 @@ N/A
 | additionalContainers.api | object | See values.yaml | Set up the vikunja API container. |
 | additionalContainers.api.env | list | See below | You can declare most Vikunja parameters as environment variables. Please consult https://vikunja.io/docs/config-options/ to see all parameters. Note that parameters that are an array cannot be defined as environment variables (like the OpenID Connect settings). Use the vikunja.config Value for that. |
 | additionalContainers.api.image | string | `"vikunja/api:0.17.1"` | Vikunja api image and tag |
-| additionalContainers.api.volumeMounts | list | `[{"mountPath":"/etc/vikunja/config.yml","name":"vikunja-config","subPath":"Vikunja.yml"}]` |    value: myVeryComplexJWTSecret - name: VIKUNJA_DATABASE_TYPE   value: "postgres" - name: VIKUNJA_DATABASE_HOST   value: db - name: VIKUNJA_DATABASE_DATABASE   value: vikunja - name: VIKUNJA_DATABASE_USER   value: "vikunja" - name: VIKUNJA_DATABASE_PASSWORD   value: password |
+| additionalContainers.api.volumeMounts | list | `[{"mountPath":"/etc/vikunja/config.yml","name":"vikunja-config","subPath":"Vikunja.yaml"}]` |    value: myVeryComplexJWTSecret - name: VIKUNJA_DATABASE_TYPE   value: "postgres" - name: VIKUNJA_DATABASE_HOST   value: db - name: VIKUNJA_DATABASE_DATABASE   value: vikunja - name: VIKUNJA_DATABASE_USER   value: "vikunja" - name: VIKUNJA_DATABASE_PASSWORD   value: password |
 | additionalContainers.frontend | object | See values.yaml | Set up the vikunja frontend container. |
 | additionalContainers.frontend.image | string | `"vikunja/frontend:0.17.0"` | Vikunja frontend image and tag |
 | caddy.noTls | bool | `false` | Disable auto tls if behind another loadbalancer or ingress |
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 5.5.2
+### Version 5.5.3
 
 #### Added
 
@@ -104,11 +104,11 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+N/A
 
 #### Fixed
 
-N/A
+* Fix subpath in configmap to match persistence value
 
 ### Older versions
 
