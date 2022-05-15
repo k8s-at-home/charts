@@ -146,6 +146,7 @@
 | [stash](stable/stash) | An organizer for your porn, written in Go |
 | [statping](stable/statping) | Status page for monitoring your websites and applications |
 | [syncthing](stable/syncthing) | Open Source Continuous File Synchronization |
+| [syslog-ng](stable/syslog-ng) | syslog-ng allows you to flexibly collect, parse, classify, rewrite and correlate logs. |
 | [tautulli](stable/tautulli) | A Python based monitoring and tracking tool for Plex Media Server |
 | [tdarr](stable/tdarr) | Tdarr is a self hosted web-app for automating media library transcode/remux management and making sure your files are exactly how you need them to be in terms of codecs/streams/containers etc. |
 | [teedy](stable/teedy) | Teedy is an open source, lightweight document management system for individuals and businesses. |
