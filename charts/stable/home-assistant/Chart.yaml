@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 2022.4.0
+appVersion: 2022.5.4
 description: Home Assistant
 name: home-assistant
-version: 13.1.3
+version: 13.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - home-assistant
@@ -36,5 +36,5 @@ dependencies:
     condition: influxdb.enabled
 annotations:
   artifacthub.io/changes: |-
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+    - kind: added
+      description: Added codeserver defaults to values and bumped image version to 2022.5.4

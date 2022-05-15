@@ -133,3 +133,18 @@ metrics:
       #   for: 5m
       #   labels:
       #     severity: critical
+
+addons:
+  # -- Enable and configure codeserver for the chart.
+  #    This allows for easy access to configuration.yaml
+  # @default -- See values.yaml
+  codeserver:
+    enabled: false
+    args:
+      - --auth
+      - none
+      - --user-data-dir
+      - /data/config/.vscode
+    volumeMounts:
+    - name: config
+      mountPath: /data/config
