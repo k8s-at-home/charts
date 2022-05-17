@@ -1,7 +1,7 @@
 {{- include "common.values.setup" . -}}
 {{- range .Values.instances }}
 {{- if or ( not ( hasKey . "enabled" ) ) .enabled }}
-{{- if .ip -}}
+{{- if .ip }}
 ---
 apiVersion: v1
 kind: Endpoints

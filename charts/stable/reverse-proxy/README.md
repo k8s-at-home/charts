@@ -95,7 +95,7 @@ N/A
 
 ## Changelog
 
-### Version 2.3.2
+### Version 2.3.3
 
 #### Added
 
@@ -103,11 +103,11 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+N/A
 
 #### Fixed
 
-N/A
+* Fixed template to not trim whitespace for the endpoint object
 
 ### Older versions
 
