@@ -1,6 +1,6 @@
 # reverse-proxy
 
-![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 2.3.3](https://img.shields.io/badge/Version-2.3.3-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
 
 Creates ingress reverse-proxies for external hosts with minimum boilerplate
 
@@ -107,7 +107,7 @@ N/A
 
 #### Fixed
 
-* Fixed template to not trim whitespace for the endpoint object
+* Minor bug fix to not trim whitespace for endpoint objects
 
 ### Older versions
 
