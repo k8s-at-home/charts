@@ -65,7 +65,6 @@
 | [intel-gpu-plugin](stable/intel-gpu-plugin) | The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware |
 | [jackett](stable/jackett) | API Support for your favorite torrent trackers |
 | [jellyfin](stable/jellyfin) | Jellyfin is a Free Software Media System |
-| [jetbrains-projector](stable/jetbrains-projector) | Projector is a technology to run and access JetBrains IDEs remotely |
 | [joplin-server](stable/joplin-server) | This server allows you to sync any Joplin client |
 | [kanboard](stable/kanboard) | Kanboard is a free and open source Kanban project management software. |
 | [komga](stable/komga) | A comics/mangas server to serve/stream pages via API |
@@ -109,11 +108,9 @@
 | [owncloud-ocis](stable/owncloud-ocis) | ownCloud Infinite Scale is a self-hosted file sync and share server. |
 | [paperless](stable/paperless) | Paperless - Index and archive all of your scanned paper documents |
 | [photoprism](stable/photoprism) | PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection |
-| [piaware](stable/piaware) | Program for forwarding ADS-B data to FlightAware |
 | [plex](stable/plex) | Plex Media Server |
 | [pod-gateway](stable/pod-gateway) | Admision controller to change the default gateway and DNS server of PODs |
 | [powerdns-admin](stable/powerdns-admin) | A PowerDNS web interface with advanced features |
-| [powerdns](stable/powerdns) | PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program. |
 | [pretend-youre-xyzzy](stable/pretend-youre-xyzzy) | pretend-youre-xyzzy, a cards against humanity clone |
 | [privatebin](stable/privatebin) | A minimalist, open source online pastebin running on an Nginx, php-fpm & Alpine Linux stack |
 | [promcord](stable/promcord) | Discord bot that provides metrics from a Discord server |
@@ -127,7 +124,6 @@
 | [radicale](stable/radicale) | A simple CalDAV (calendar) and CardDAV (contact) server. |
 | [readarr](stable/readarr) | A fork of Radarr to work with Books & AudioBooks |
 | [recipes](stable/recipes) | Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files. |
-| [reg](stable/reg) | Docker registry v2 command line client and repo listing generator with security checks. |
 | [resilio-sync](stable/resilio-sync) | Resilio Sync is a fast, reliable, and simple file sync and share solution, powered by P2P technology |
 | [reverse-proxy](stable/reverse-proxy) | Creates ingress reverse-proxies for external hosts with minimum boilerplate |
 | [rtorrent-flood](stable/rtorrent-flood) | rTorrent is a stable, high-performance and low resource consumption BitTorrent client. |
@@ -153,10 +149,8 @@
 | [teslamate](stable/teslamate) | A self-hosted data logger for your Tesla 🚘 |
 | [thelounge](stable/thelounge) | The Lounge, modern web IRC client designed for self-hosting |
 | [theme-park](stable/theme-park) | theme-park helm package |
-| [traccar](stable/traccar) | Traccar is an open source GPS tracking system. |
 | [traefik-forward-auth](stable/traefik-forward-auth) | A minimal forward authentication service that provides OAuth/SSO login and authentication for the traefik reverse proxy/load balancer |
 | [transmission](stable/transmission) | Transmission is a cross-platform BitTorrent client |
-| [truecommand](stable/truecommand) | Central Management of TrueNAS storage systems |
 | [tt-rss](stable/tt-rss) | Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator |
 | [tvheadend](stable/tvheadend) | TVheadend - a TV streaming server and digital video recorder |
 | [unifi-poller](stable/unifi-poller) | Collect ALL UniFi Controller, Site, Device & Client Data - Export to InfluxDB or Prometheus |
