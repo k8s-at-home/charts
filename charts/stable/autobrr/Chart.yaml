@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
 appVersion: v0.23.0
-description: autobrr is a cross-platform free and open-source BitTorrent client
+description: Autobrr monitors IRC announce channels to get releases as soon as they are available with good filtering
 name: autobrr
-version: 1.0.0
+version: 1.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - autobrr
@@ -22,5 +22,7 @@ dependencies:
     version: 4.4.2
 annotations:
   artifacthub.io/changes: |-
+    - kind: fixed
+      description: Corrected app description
     - kind: added
       description: Initial release
