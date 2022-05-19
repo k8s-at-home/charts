@@ -4,6 +4,7 @@ description: Projector is a technology to run and access JetBrains IDEs remotely
 name: jetbrains-projector
 version: 3.3.3
 kubeVersion: ">=1.16.0-0"
+deprecated: true
 keywords:
   - jetbrains
   - projector
@@ -12,49 +13,11 @@ home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jetbrains-
 icon: https://pbs.twimg.com/profile_images/1369990348580216834/dorDbokA_400x400.png
 sources:
   - https://github.com/JetBrains/projector-server
-maintainers:
-  - name: DirtyCajunRice
-    email: nick@cajun.pro
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
 annotations:
-  artifacthub.io/license: Apache-2.0
-  artifacthub.io/links: |
-    - name: Chart Source
-      url: https://github.com/k8s-at-home/charts/tree/master/charts/stable/jetbrains-projector
-    - name: Upstream Project
-      url: https://github.com/JetBrains/projector-server
-    - name: Original Containers
-      url: https://github.com/JetBrains/projector-docker
-    - name: Support
-      url: https://discord.com/invite/sTMX7Vh
-    - name: Containers
-      url: https://github.com/orgs/k8s-at-home/packages?tab=packages&q=projector
-  artifacthub.io/maintainers: |
-    - name: Nicholas St. Germain
-      email: nick@cajun.pro
-      url: https://github.com/DirtyCajunRice
-  artifacthub.io/images: |
-    - name: CLion
-      image: ghcr.io/k8s-at-home/projector-clion:v2021.1
-    - name: DataGrip
-      image: ghcr.io/k8s-at-home/projector-datagriip:v2021.1
-    - name: GoLand
-      image: ghcr.io/k8s-at-home/projector-goland:v2021.1
-    - name: Intellij Idea Community
-      image: ghcr.io/k8s-at-home/projector-idea-c:v2021.1
-    - name: Intellij dea Ultimate
-      image: ghcr.io/k8s-at-home/projector-idea-u:v2021.1
-    - name: PhpStorm
-      image: ghcr.io/k8s-at-home/projector-phpstorm:v2021.1
-    - name: PyCharm Community
-      image: ghcr.io/k8s-at-home/projector-pycharm-c:v2021.1
-    - name: Pycharm Professional
-      image: ghcr.io/k8s-at-home/projector-pycharm-p:v2021.1
-    - name: WebStorm
-      image: ghcr.io/k8s-at-home/projector-webstorm:v2021.1
   artifacthub.io/changes: |-
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+    - kind: deprecated
+      description: Deprecate Helm chart

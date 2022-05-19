@@ -3,8 +3,9 @@ apiVersion: v2
 appVersion: 2.0.1
 description: Central Management of TrueNAS storage systems
 name: truecommand
-version: 3.3.2
+version: 4.0.0
 kubeVersion: ">=1.16.0-0"
+deprecated: true
 keywords:
   - storage
   - truenas
@@ -13,14 +14,11 @@ icon: https://www.ixsystems.com/documentation/truecommand/1.2/_static/tv-logo.pn
 sources:
   - https://www.truenas.com/truecommand
   - https://hub.docker.com/r/ixsystems/truecommand
-maintainers:
-  - name: ornias1993
-    email: kjeld@schouten-lebbing.nl
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
 annotations:
   artifacthub.io/changes: |-
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+    - kind: deprecated
+      description: Deprecate Helm chart - This was a chart created by @ornias1993 but is no longer in use

@@ -3,8 +3,9 @@ apiVersion: v2
 appVersion: 0.16.1
 description: Docker registry v2 command line client and repo listing generator with security checks.
 name: reg
-version: 3.3.2
+version: 4.0.0
 kubeVersion: ">=1.16.0-0"
+deprecated: true
 keywords:
   - reg
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/reg
@@ -12,14 +13,11 @@ icon: https://avatars.githubusercontent.com/u/37218338
 sources:
   - https://github.com/genuinetools/reg
   - https://github.com/k8s-at-home/container-images/
-maintainers:
-  - name: nicholaswilde
-    email: ncwilde43@gmail.com
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
 annotations:
   artifacthub.io/changes: |-
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+    - kind: deprecated
+      description: Deprecate Helm chart - This was a chart created by @nicholaswilde but is no longer in use
