@@ -1,6 +1,6 @@
 # jetbrains-projector
 
-![Version: 3.3.3](https://img.shields.io/badge/Version-3.3.3-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square)
 
 Projector is a technology to run and access JetBrains IDEs remotely
 
@@ -100,7 +100,7 @@ helm install jetbrains-projector k8s-at-home/jetbrains-projector -f values.yaml
 
 ## Changelog
 
-### Version 3.3.3
+### Version 4.0.0
 
 #### Added
 
@@ -108,7 +108,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+N/A
 
 #### Fixed
 

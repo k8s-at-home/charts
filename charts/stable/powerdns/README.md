@@ -1,6 +1,6 @@
 # powerdns
 
-![Version: 4.1.2](https://img.shields.io/badge/Version-4.1.2-informational?style=flat-square) ![AppVersion: v4.3.1](https://img.shields.io/badge/AppVersion-v4.3.1-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v4.3.1](https://img.shields.io/badge/AppVersion-v4.3.1-informational?style=flat-square)
 
 PowerDNS is a DNS server, written in C++ and licensed under the GPL. It runs on most Unix derivatives. PowerDNS features a large number of different backends ranging from simple BIND style zonefiles to relational databases and load balancing/failover algorithms. A DNS recursor is provided as a separate program.
 
@@ -119,7 +119,7 @@ N/A
 
 ## Changelog
 
-### Version 4.1.2
+### Version 5.0.0
 
 #### Added
 
@@ -127,7 +127,7 @@ N/A
 
 #### Changed
 
-* Upgraded `mariadb` chart dependency to version 10.5.1
+N/A
 
 #### Fixed
 

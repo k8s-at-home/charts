@@ -1,6 +1,6 @@
 # reg
 
-![Version: 3.3.2](https://img.shields.io/badge/Version-3.3.2-informational?style=flat-square) ![AppVersion: 0.16.1](https://img.shields.io/badge/AppVersion-0.16.1-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 0.16.1](https://img.shields.io/badge/AppVersion-0.16.1-informational?style=flat-square)
 
 Docker registry v2 command line client and repo listing generator with security checks.
 
@@ -86,7 +86,7 @@ N/A
 
 ## Changelog
 
-### Version 3.3.2
+### Version 4.0.0
 
 #### Added
 
@@ -94,7 +94,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+N/A
 
 #### Fixed
 
