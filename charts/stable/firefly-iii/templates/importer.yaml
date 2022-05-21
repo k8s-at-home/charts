@@ -1,0 +1,108 @@
+{{- include "common.values.setup" . -}}
+{{- if .Values.importer.enabled -}}
+{{- range .Values.importer.specs }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-%s-importer" (include "common.names.fullname" $) ( .importerName ) | quote }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+    {{- with $.Values.importer.controllerLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $.Values.importer.controllerAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ printf "%s-%s-importer" (include "common.names.name" $) ( .importerName ) | quote }}
+      app.kubernetes.io/instance: {{ printf "%s-%s" ( $.Release.Name ) ( .importerName ) | quote }}
+  template:
+    metadata:
+      {{- with $.Values.importer.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app.kubernetes.io/name: {{ printf "%s-%s-importer" (include "common.names.name" $) ( .importerName ) | quote }}
+        app.kubernetes.io/instance: {{ printf "%s-%s" ( $.Release.Name ) ( .importerName ) | quote }}
+    spec:
+      {{- with $.Values.importer.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.importer.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ printf "%s-%s-importer" (include "common.names.name" $) ( .importerName ) | quote }}
+          {{- with $.Values.importer.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ $.Values.importer.image.repository }}:{{ $.Values.importer.image.tag }}"
+          imagePullPolicy: {{ $.Values.importer.image.pullPolicy }}
+          env:
+            - name: FIREFLY_III_ACCESS_TOKEN
+              value: {{ .accessToken }}
+            - name: FIREFLY_III_URL
+              value: "http://{{ include "common.names.fullname" $ }}:{{ $.Values.service.main.ports.http.port }}"
+            {{- if .vanityUrl }}
+            - name: VANITY_URL
+              value: {{ .vanityUrl }}
+            {{- end }}
+            - name: TRUSTED_PROXIES
+              value: {{ $.Values.env.TRUSTED_PROXIES | quote }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: http
+          readinessProbe:
+            tcpSocket:
+              port: http
+          {{- with $.Values.importer.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with $.Values.importer.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.importer.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.importer.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ printf "%s-%s-importer" (include "common.names.fullname" $) ( .importerName ) | quote }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+    {{- with $.Values.importer.controllerLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ printf "%s-%s-importer" (include "common.names.name" $) ( .importerName ) | quote }}
+    app.kubernetes.io/instance: {{ printf "%s-%s" ( $.Release.Name ) ( .importerName ) | quote }}
+{{- end }}
+{{- end }}
