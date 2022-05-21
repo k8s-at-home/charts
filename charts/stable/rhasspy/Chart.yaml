@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 2.5.11
+description: rhasspy helm package
+name: rhasspy
+version: 1.1.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+- rhasspy
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rhasspy
+icon: https://rhasspy.org/icon
+sources:
+- https://github.com/rhasspy/rhasspy-docker
+maintainers:
+- name: Ivan Greguric Ortolan
+  email: ivan.g.ortolan@gmail.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.4.1
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
