@@ -59,7 +59,7 @@ persistence:
     size: 1Gi
 
 # -- Configure the key server.
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- See values.yaml
 keyserver:
   image:
@@ -79,9 +79,24 @@ keyserver:
           enabled: true
           port: 7779
   args: "keyserver"
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
 
 # -- Configure the app service api.
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- See values.yaml
 appserviceapi:
   image:
@@ -101,11 +116,26 @@ appserviceapi:
           enabled: true
           port: 7777
   args: "appservice"
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
   config:
     config_files: []
 
 # -- Configuration for the client api component.
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- See values.yaml
 clientapi:
   image:
@@ -157,7 +187,7 @@ clientapi:
       cooloff_ms: 500
 
 # -- Configure the Federation API
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- values.yaml
 federationapi:
   image:
@@ -180,6 +210,21 @@ federationapi:
           enabled: true
           port: 8072
   args: "federationapi"
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
   config:
     federation-certificates: []
     send-max_retires: 16
@@ -199,7 +244,7 @@ federationapi:
     prefer_direct_fetch: false
 
 # -- Configure the User API
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- values.yaml
 userapi:
   image:
@@ -219,9 +264,24 @@ userapi:
           enabled: true
           port: 7781
   args: "userapi"
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
 
 # -- Configure the Sync API
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- values.yaml
 syncapi:
   image:
@@ -244,9 +304,24 @@ syncapi:
           enabled: true
           port: 8073
   args: "syncapi"
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
 
 # -- Configure the Room Server
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- values.yaml
 roomserver:
   image:
@@ -266,9 +341,24 @@ roomserver:
           enabled: true
           port: 7770
   args: "roomserver"
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
 
 # -- Configure the Media API
-# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- values.yaml
 mediaapi:
   image:
@@ -291,6 +381,21 @@ mediaapi:
           enabled: true
           port: 8074
   args: "mediaapi"
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
   config:
     base_path: *mediaPath
     max_file_size_bytes: 10485760
@@ -307,9 +412,29 @@ mediaapi:
         height: 480
         method: scale
 
+# -- Configuration for experimental MSCs
+# For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
+# @default -- values.yaml
+mscs:
+  # -- Override general dendrite.database parameters.
+  # @default -- See values.yaml
+  database:
+    # -- Custom connection string
+    # @default -- file or derived from included postgresql deployment
+    connection_string: null
+    # -- Maximum open connections
+    # @default -- dendrite.database.max_open_conns
+    max_open_conns: null
+    # -- Maximum dile connections
+    # @default -- dendrite.database.max_idle_conns
+    max_idle_conns: null
+    # -- Maximum connection lifetime
+    # @default -- dendrite.database.conn_max_lifetime
+    conn_max_lifetime: null
+
 # -- Configuration for Dendrite.
 # For more information see [the sample
-# denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml)
+# denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
 # @default -- See values.yaml
 dendrite:
   # -- Enable polylith deployment

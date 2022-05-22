@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.8.1
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 4.2.2
+version: 4.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -82,20 +82,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'clientapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'mediaapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'syncapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'roomserver'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'federationapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'keyserver'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'userapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2 for alias 'appserviceapi'
+      description: Enable database configuration on a per-API (component) level
