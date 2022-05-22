@@ -46,7 +46,7 @@
 {{- else if .Values.mariadb.enabled }}
     {{- printf "%s" .Values.mariadb.auth.database -}}
 {{- else -}}
-    {{- printf "firefly" -}}
+    {{- printf "" -}}
 {{- end -}}
 {{ end }}
 
@@ -97,10 +97,12 @@ env:
   DB_DATABASE: {{ include "firefly.DB_DATABASE" . | quote }}
   DB_USERNAME: {{ include "firefly.DB_USERNAME" . | quote }}
   DB_PASSWORD:
+  {{ if or (.Values.postgresql.enabled) (.Values.mariadb.enabled) }}
     valueFrom:
       secretKeyRef:
         name: {{ include "firefly.DB_PASSWORD_SECRET" . | quote }}
         key: {{ include "firefly.DB_PASSWORD_SECRET_KEY" . | quote }}
+  {{- end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "firefly.harcodedValues" . | fromYaml) -}}
 
