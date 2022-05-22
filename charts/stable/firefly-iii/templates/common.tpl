@@ -96,7 +96,7 @@ env:
   DB_PORT: {{ include "firefly.DB_PORT" . | quote }}
   DB_DATABASE: {{ include "firefly.DB_DATABASE" . | quote }}
   DB_USERNAME: {{ include "firefly.DB_USERNAME" . | quote }}
-  DB_PASSWORD: 
+  DB_PASSWORD:
     valueFrom:
       secretKeyRef:
         name: {{ include "firefly.DB_PASSWORD_SECRET" . | quote }}
