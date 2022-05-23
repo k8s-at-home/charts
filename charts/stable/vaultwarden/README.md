@@ -1,6 +1,6 @@
 # vaultwarden
 
-![Version: 4.2.2](https://img.shields.io/badge/Version-4.2.2-informational?style=flat-square) ![AppVersion: 1.24.0](https://img.shields.io/badge/AppVersion-1.24.0-informational?style=flat-square)
+![Version: 4.2.3](https://img.shields.io/badge/Version-4.2.3-informational?style=flat-square) ![AppVersion: 1.25.0](https://img.shields.io/badge/AppVersion-1.25.0-informational?style=flat-square)
 
 Vaultwarden is a Bitwarden compatable server in Rust
 
@@ -89,7 +89,7 @@ persistence:
 | env.DATA_FOLDER | string | `"config"` | Config dir |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"vaultwarden/server"` | image repository |
-| image.tag | string | `"1.24.0"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb.enabled | bool | `false` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -99,7 +99,7 @@ persistence:
 
 ## Changelog
 
-### Version 4.2.2
+### Version 4.2.3
 
 #### Added
 
@@ -107,7 +107,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Updated Vaultwarden App Version to v1.25.0.
 
 #### Fixed
 
