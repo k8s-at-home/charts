@@ -17,10 +17,10 @@ strategy:
   type: Recreate
 
 cronjobs:
-  # -- Enable cronjob for creating recurring transactions
   recurring:
+    # -- Enable cronjob for creating recurring transactions
     enabled: false
-    # Schedule time in UTC
+    # -- Schedule time in UTC
     schedule: "0 3 * * *"
     image:
       repository: curlimages/curl
@@ -52,8 +52,8 @@ cronjobs:
 
     affinity: {}
 
-# -- Deploy transaction importer
 importer:
+  # -- Deploy transaction importer
   enabled: false
   controllerAnnotations: {}
 
@@ -93,12 +93,12 @@ importer:
 # -- environment variables. See [image docs](https://github.com/firefly-iii/firefly-iii/blob/main/.env.example) for more details.
 # @default -- See below
 env:
-  # You can leave this on "local". If you change it to production most console commands will ask for extra confirmation.
-  # Never set it to "testing".
+  # -- You can leave this on "local". If you change it to production most console commands will ask for extra confirmation.
+  #   Never set it to "testing".
   APP_ENV: local
 
-  # Set to true if you want to see debug information in error screens.
-  APP_DEBUG: true
+  # -- Set to true if you want to see debug information in error screens.
+  APP_DEBUG: false
 
   # This should be your email address.
   # If you use Docker or similar, you can set this variable from a file by using SITE_OWNER_FILE
@@ -119,9 +119,9 @@ env:
   # by default this value is the same as whatever the language is.
   DEFAULT_LOCALE: equal
 
-  # Change this value to your preferred time zone.
-  # Example: Europe/Amsterdam
-  # For a list of supported time zones, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # -- Change this value to your preferred time zone.
+  #   Example: Europe/Amsterdam
+  #   For a list of supported time zones, see [this](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
   TZ: Europe/Amsterdam
 
   # TRUSTED_PROXIES is a useful variable when using Docker and/or a reverse proxy.
@@ -221,9 +221,9 @@ env:
   COOKIE_SECURE: false
   COOKIE_SAMESITE: lax
 
-  # If you want Firefly III to email you, update these settings
-  # For instructions, see: https://docs.firefly-iii.org/advanced-installation/email
-  # If you use Docker or similar, you can set these variables from a file by appending them with _FILE
+  # -- If you want Firefly III to email you, update these settings
+  #   For instructions, see [this](https://docs.firefly-iii.org/advanced-installation/email)
+  #   If you use Docker or similar, you can set these variables from a file by appending them with _FILE
   MAIL_MAILER: log
   MAIL_HOST: ""
   MAIL_PORT: 2525
@@ -245,13 +245,16 @@ env:
   MANDRILL_SECRET: ""
   SPARKPOST_SECRET: ""
 
-  # Firefly III can send you the following messages.
+  # -- Send mail on new registrations.
   SEND_REGISTRATION_MAIL: true
+  # -- Send mail on errors.
   SEND_ERROR_MESSAGE: true
+  # -- Send mail on logins from new IP.
   SEND_LOGIN_NEW_IP_WARNING: true
 
-  # These messages contain (sensitive) transaction information:
-  SEND_REPORT_JOURNALS: true
+  # -- Send mail on recurring transactions.
+  #   These messages contain (sensitive) transaction information:
+  SEND_REPORT_JOURNALS: false
 
   # Set this value to true if you want to set the location
   # of certain things, like transactions. Since this involves an external service, it's optional
@@ -314,13 +317,13 @@ env:
   ALLOW_WEBHOOKS: false
 
   #
-  # The static cron job token can be useful when you use Docker and wish to manage cron jobs.
-  # 1. Set this token to any 32-character value (this is important!).
-  # 2. Use this token in the cron URL instead of a user's command line token.
+  # -- The static cron job token can be useful when you use Docker and wish to manage cron jobs.
+  #   1. Set this token to any 32-character value (this is important!).
+  #   2. Use this token in the cron URL instead of a user's command line token.
   #
-  # For more info: https://docs.firefly-iii.org/firefly-iii/advanced-installation/cron/
+  #   For more info: https://docs.firefly-iii.org/firefly-iii/advanced-installation/cron/
   #
-  # You can set this variable from a file by appending it with _FILE
+  #   You can set this variable from a file by appending it with _FILE
   #
   STATIC_CRON_TOKEN: ""
 
@@ -374,6 +377,8 @@ env:
   DEMO_USERNAME: ""
   DEMO_PASSWORD: ""
   IS_HEROKU: false
+
+  # -- Set UI layout version
   FIREFLY_III_LAYOUT: v1
 
   #
