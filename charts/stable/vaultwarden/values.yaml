@@ -11,7 +11,8 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: 1.24.0
+  # @default -- chart.appVersion
+  tag:
 
 strategy:
   type: Recreate
