@@ -1,0 +1,70 @@
+{{- include "common.values.setup" . -}}
+{{- if .Values.cronjobs.recurring.enabled -}}
+---
+# ------------------- CronJob ------------------- #
+{{- if .Capabilities.APIVersions.Has "batch/v1" }}
+apiVersion: batch/v1
+{{- else -}}
+apiVersion: batch/v1beta1
+{{- end }}
+kind: CronJob
+metadata:
+  name: {{ include "common.names.fullname" . }}-recurring-transactions
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.cronjobs.recurring.schedule | quote }}
+  concurrencyPolicy: Replace
+  {{- with .Values.cronjobs.recurring.successfulJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ . }}
+  {{- end }}
+  {{- with .Values.cronjobs.recurring.failedJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ . }}
+  {{- end }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: {{ include "common.names.fullname" . }}-recurring-transactions
+          labels:
+            {{- include "common.labels.selectorLabels" . | nindent 12 }}
+          {{- with .Values.cronjobs.recurring.podAnnotations }}
+          annotations: {{- toYaml . | nindent 12 }}
+          {{- end }}
+        spec:
+          containers:
+            - name: recurring-transactions
+              image: "{{ .Values.cronjobs.recurring.image.repository }}:{{ .Values.cronjobs.recurring.image.tag }}"
+              imagePullPolicy: {{ .Values.cronjobs.recurring.image.pullPolicy }}
+              command:
+                - /usr/bin/curl
+              args:
+                - --silent
+                - --show-error
+                - --fail
+                - "http://{{ include "common.names.fullname" . }}:{{ .Values.service.main.ports.http.port }}/api/v1/cron/$(FIREFLY_III_TOKEN)"
+              resources:
+                {{- .Values.cronjobs.recurring.resources | toYaml | nindent 16 }}
+              env:
+              - name: FIREFLY_III_TOKEN
+                value: {{ .Values.env.STATIC_CRON_TOKEN }}
+              {{- with .Values.cronjobs.recurring.securityContext }}
+              securityContext: {{- toYaml . | nindent 16 }}
+              {{- end }}
+          {{- with .Values.cronjobs.recurring.nodeSelector }}
+          nodeSelector: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.cronjobs.recurring.affinity }}
+          affinity: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.cronjobs.recurring.tolerations }}
+          tolerations: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.cronjobs.recurring.imagePullSecrets }}
+          imagePullSecrets: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.cronjobs.recurring.podSecurityContext }}
+          securityContext: {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: {{ .Values.cronjobs.recurring.restartPolicy }}
+{{- end -}}
