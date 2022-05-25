@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-60-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-61-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -124,6 +124,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.jonathangazeley.com"><img src="https://avatars.githubusercontent.com/u/604595?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jonathan</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=djjudas21" title="Code">💻</a></td>
     <td align="center"><a href="https://www.b1-systems.de"><img src="https://avatars.githubusercontent.com/u/26167225?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Johannes Kastl</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=johanneskastl" title="Code">💻</a></td>
     <td align="center"><a href="https://www.funkypenguin.co.nz"><img src="https://avatars.githubusercontent.com/u/1524686?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Young</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=funkypenguin" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/bikram990"><img src="https://avatars.githubusercontent.com/u/6782131?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bikramjeet Singh</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=bikram990" title="Code">💻</a></td>
   </tr>
 </table>
 
