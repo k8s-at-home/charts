@@ -1,0 +1,79 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: kpetrem/mqtt-exporter
+  # -- image tag
+  tag: latest
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See [image docs](https://developer.us-1.veritone.com/machinebox/overview) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Logging level (default: INFO)
+  LOG_LEVEL: INFO
+  # -- Comma-separated lists of topics to ignore. Accepts wildcards. (default: None)
+  MQTT_IGNORED_TOPICS:
+  # -- IP or hostname of MQTT broker (default: 127.0.0.1)
+  MQTT_ADDRESS: 127.0.0.1
+  # -- TCP port of MQTT broker (default: 1883)
+  MQTT_PORT: 1883
+  # -- Topic path to subscribe to (default: #)
+  MQTT_TOPIC: "#"
+  # -- Keep alive interval to maintain connection with MQTT broker (default: 60)
+  MQTT_KEEPALIVE: 60
+  # -- Username which should be used to authenticate against the MQTT broker (default: None)
+  MQTT_USERNAME:
+  # -- Password which should be used to authenticate against the MQTT broker (default: None)
+  MQTT_PASSWORD:
+  # -- HTTP server PORT to expose Prometheus metrics (default: 9000)
+  PROMETHEUS_PORT: 9000
+  # -- Prefix added to the metric name, example: mqtt_temperature (default: mqtt_)
+  PROMETHEUS_PREFIX: mqtt_
+  # --  Define the Prometheus label for the topic, example temperature{topic="device1"} (default: topic)
+  TOPIC_LABEL: topic
+  # --  Normalize sensor name for device availability metric added by Zigbee2MQTT (default: False)
+  ZIGBEE2MQTT_AVAILABILITY: "False"
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        enabled: false
+      metrics:
+        enabled: true
+        protocol: TCP
+        port: 9000
+
+metrics:
+  # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+  # @default -- See values.yaml
+  enabled: false
+  serviceMonitor:
+    # -- The interval field must use minutes for the padding to calculate properly.
+    interval: 60m
+    scrapeTimeout: 1m
+    labels: {}
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
+    mountPath: /conf
