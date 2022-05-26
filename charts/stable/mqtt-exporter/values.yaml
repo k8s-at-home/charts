@@ -60,9 +60,11 @@ metrics:
   # @default -- See values.yaml
   enabled: false
   serviceMonitor:
-    # -- The interval field must use minutes for the padding to calculate properly.
+    # -- Interval at which Prometheus should scrape metrics
     interval: 30s
+    # -- Timeout after which the scrape is ended
     scrapeTimeout: 10s
+    # -- Additional labels for the Kubernetes `ServiceMonitor` object
     labels: {}
 
 ingress:
