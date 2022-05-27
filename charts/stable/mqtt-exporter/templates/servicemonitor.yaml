@@ -10,14 +10,14 @@ metadata:
     {{- with .Values.metrics.serviceMonitor.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
-  annotations: 
+  annotations:
     {{- include "common.annotations" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-    - port: metrics
+    - port: http
       {{- with .Values.metrics.serviceMonitor.interval }}
       interval: {{ . }}
       {{- end }}

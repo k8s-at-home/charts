@@ -1,0 +1,10 @@
+# Test
+
+additionalContainers:
+  mosquitto:
+    name: mosquitto
+    image: eclipse-mosquitto:1.6.8
+    imagePullPolicy: IfNotPresent
+    ports:
+    - name: mqtt
+      containerPort: 1883
