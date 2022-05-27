@@ -30,27 +30,27 @@ Kubernetes: `>=1.16.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [image docs](https://developer.us-1.veritone.com/machinebox/overview) for more details. |
-| env.LOG_LEVEL | string | `"INFO"` | Logging level (default: INFO) |
-| env.MQTT_ADDRESS | string | `"127.0.0.1"` | IP or hostname of MQTT broker (default: 127.0.0.1) |
-| env.MQTT_IGNORED_TOPICS | string | `nil` | Comma-separated lists of topics to ignore. Accepts wildcards. (default: None) |
-| env.MQTT_KEEPALIVE | int | `60` | Keep alive interval to maintain connection with MQTT broker (default: 60) |
-| env.MQTT_PASSWORD | string | `nil` | Password which should be used to authenticate against the MQTT broker (default: None) |
-| env.MQTT_PORT | int | `1883` | TCP port of MQTT broker (default: 1883) |
-| env.MQTT_TOPIC | string | `"#"` | Topic path to subscribe to (default: #) |
-| env.MQTT_USERNAME | string | `nil` | Username which should be used to authenticate against the MQTT broker (default: None) |
-| env.PROMETHEUS_PORT | int | `9000` | HTTP server PORT to expose Prometheus metrics (default: 9000) |
-| env.PROMETHEUS_PREFIX | string | `"mqtt_"` | Prefix added to the metric name, example: mqtt_temperature (default: mqtt_) |
-| env.TOPIC_LABEL | string | `"topic"` | Define the Prometheus label for the topic, example temperature{topic="device1"} (default: topic) |
+| env.LOG_LEVEL | string | `"INFO"` | Logging level |
+| env.MQTT_ADDRESS | string | `"127.0.0.1"` | IP or hostname of MQTT broker |
+| env.MQTT_IGNORED_TOPICS | string | `nil` | Comma-separated lists of topics to ignore. Accepts wildcards. |
+| env.MQTT_KEEPALIVE | int | `60` | Keep alive interval to maintain connection with MQTT broker |
+| env.MQTT_PASSWORD | string | `nil` | Password which should be used to authenticate against the MQTT broker |
+| env.MQTT_PORT | int | `1883` | TCP port of MQTT broker |
+| env.MQTT_TOPIC | string | `"#"` | Topic path to subscribe to |
+| env.MQTT_USERNAME | string | `nil` | Username which should be used to authenticate against the MQTT broker |
+| env.PROMETHEUS_PORT | int | `9000` | HTTP server PORT to expose Prometheus metrics |
+| env.PROMETHEUS_PREFIX | string | `"mqtt_"` | Prefix added to the metric name, example: mqtt_temperature |
+| env.TOPIC_LABEL | string | `"topic"` | Define the Prometheus label for the topic, example temperature{topic="device1"} |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| env.ZIGBEE2MQTT_AVAILABILITY | string | `"False"` | Normalize sensor name for device availability metric added by Zigbee2MQTT (default: False) |
+| env.ZIGBEE2MQTT_AVAILABILITY | string | `"False"` | Normalize sensor name for device availability metric added by Zigbee2MQTT |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"kpetrem/mqtt-exporter"` | image repository |
 | image.tag | string | `"latest"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
-| metrics.serviceMonitor.interval | string | `"60m"` | The interval field must use minutes for the padding to calculate properly. |
-| metrics.serviceMonitor.labels | object | `{}` |  |
-| metrics.serviceMonitor.scrapeTimeout | string | `"1m"` |  |
+| metrics.serviceMonitor.interval | string | `"30s"` | Interval at which Prometheus should scrape metrics |
+| metrics.serviceMonitor.labels | object | `{}` | Additional labels for the Kubernetes `ServiceMonitor` object |
+| metrics.serviceMonitor.scrapeTimeout | string | `"10s"` | Timeout after which the scrape is ended |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
