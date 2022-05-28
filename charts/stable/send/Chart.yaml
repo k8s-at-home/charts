@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: v3.4.20
+description: Simple, private file sharing.
+name: send
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+- send
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/send
+icon: https://gitlab.com/timvisee/send/-/raw/master/assets/icon.svg
+sources:
+  - https://gitlab.com/timvisee/send
+maintainers:
+- name: geraldwuhoo
+  email: gerald@geraldwu.com
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.4.2
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.10.0
+  condition: redis.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
