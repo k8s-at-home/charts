@@ -1,6 +1,6 @@
 # cryptpad
 
-![Version: 0.3.2](https://img.shields.io/badge/Version-0.3.2-informational?style=flat-square) ![AppVersion: v4.12.0-nginx](https://img.shields.io/badge/AppVersion-v4.12.0--nginx-informational?style=flat-square)
+![Version: 0.3.3](https://img.shields.io/badge/Version-0.3.3-informational?style=flat-square) ![AppVersion: v4.14.1-nginx](https://img.shields.io/badge/AppVersion-v4.14.1--nginx-informational?style=flat-square)
 
 cryptpad helm package
 
@@ -95,7 +95,7 @@ N/A
 
 ## Changelog
 
-### Version 0.3.2
+### Version 0.3.3
 
 #### Added
 
@@ -103,7 +103,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded cryptpad-docker to v4.14.1-nginx
 
 #### Fixed
 
