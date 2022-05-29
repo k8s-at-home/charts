@@ -279,6 +279,10 @@ userapi:
     # -- Maximum connection lifetime
     # @default -- dendrite.database.conn_max_lifetime
     conn_max_lifetime: null
+  config:
+    # -- bcrypt cost (2^[cost] = rounds)
+    # @default -- 10
+    bcrypt_cost: 10
 
 # -- Configure the Sync API
 # For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
@@ -289,7 +293,7 @@ syncapi:
     repository: matrixdotorg/dendrite-polylith
     # -- image tag
     # @default -- chart.appVersion
-    tag: latest
+    tag:
     # -- image pull policy
     pullPolicy: IfNotPresent
   service:
@@ -439,6 +443,13 @@ mscs:
 dendrite:
   # -- Enable polylith deployment
   polylithEnabled: false
+  # -- Usage statistics reporting configuration
+  report_stats:
+    # -- Enable or disable usage reporting
+    # @default -- false
+    enabled: false
+    # -- Push endpoint for usage statistics
+    endpoint: ""
   # -- If enabled, use an existing secrets for the TLS certificate and key.
   # Otherwise, to enable TLS a `server.crt` and `server.key` must be mounted at
   # `/etc/dendrite`.

@@ -22,6 +22,9 @@ stringData:
       presence:
         enable_inbound: {{ default false .Values.dendrite.global.presence.enable_inbound}}
         enable_outbound: {{ default false .Values.dendrite.global.presence.enable_outbound }}
+      report_stats:
+        enabled: {{ default false .Values.dendrite.report_stats.enabled }}
+        endpoint: {{ default "https://matrix.org/report-usage-stats/push" .Values.dendrite.report_stats.endpoint }}
       server_notices:
         enabled: {{ default false .Values.dendrite.global.server_notices.enabled }}
         local_part: {{ default "_server" .Values.dendrite.global.server_notices.local_part | quote }}
@@ -63,7 +66,7 @@ stringData:
         connect: http://{{ include "common.names.fullname" . }}-clientapi:{{ .Values.clientapi.service.main.ports.internal.port }}
       external_api:
         listen: http://0.0.0.0:{{ .Values.clientapi.service.main.ports.external.port }}
-      registration_disabled: {{ default false .Values.clientapi.config.registration_disabled }}
+      registration_disabled: {{ default true .Values.clientapi.config.registration_disabled }}
       registration_shared_secret: {{ default "" .Values.clientapi.config.registration_shared_secret | quote }}
       enable_registration_captcha: {{ default false .Values.clientapi.config.captcha.enabled }}
       recaptcha_public_key: {{ default "" .Values.clientapi.config.captcha.recaptcha_public_key | quote }}
@@ -157,6 +160,7 @@ stringData:
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.userapi.database.max_open_conns }}
         max_idle_conns: {{ default .Values.dendrite.database.max_idle_conns .Values.userapi.database.max_idle_conns }}
         conn_max_lifetime: {{ default .Values.dendrite.database.conn_max_lifetime .Values.userapi.database.conn_max_lifetime }}
+      bcrypt_cost: {{ default 10 .Values.userapi.config.bcrypt_cost }}
     tracing:
       enabled: {{ .Values.dendrite.tracing.enabled }}
       jaeger: {{- toYaml .Values.dendrite.tracing.jaeger | nindent 8 }}
