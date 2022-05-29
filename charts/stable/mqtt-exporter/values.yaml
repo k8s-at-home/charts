@@ -75,3 +75,11 @@ persistence:
   config:
     enabled: false
     mountPath: /conf
+
+securityContext:
+  capabilities:
+    drop:
+     - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65534

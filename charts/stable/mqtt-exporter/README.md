@@ -52,6 +52,10 @@ Kubernetes: `>=1.16.0-0`
 | metrics.serviceMonitor.labels | object | `{}` | Additional labels for the Kubernetes `ServiceMonitor` object |
 | metrics.serviceMonitor.scrapeTimeout | string | `"10s"` | Timeout after which the scrape is ended |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| securityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| securityContext.readOnlyRootFilesystem | bool | `true` |  |
+| securityContext.runAsNonRoot | bool | `true` |  |
+| securityContext.runAsUser | int | `65534` |  |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ----------------------------------------------
