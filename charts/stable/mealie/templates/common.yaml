@@ -14,6 +14,10 @@ additionalContainers:
     env:
       - name: API_PORT
         value: "9000"
+      {{- range $name, $value := .Values.api.env }}
+      - name: {{ $name }}
+        value: {{ $value }}
+      {{- end }}
     ports:
       - name: api
         containerPort: 9000
