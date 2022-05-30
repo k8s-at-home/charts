@@ -1,0 +1,25 @@
+env:
+  REDIS_HOST: send-redis-master
+  FILE_DIR: /uploads
+
+podSecurityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+  fsGroupChangePolicy: "OnRootMismatch"
+
+persistence:
+  uploads:
+    enabled: true
+    type: emptyDir
+    mountPath: /uploads
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+  fullnameOverride: send-redis
