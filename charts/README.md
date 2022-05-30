@@ -134,6 +134,7 @@
 | [satisfactory](stable/satisfactory) | Satisfactory dedicated server |
 | [seafile](stable/seafile) | seafile helm package |
 | [searx](stable/searx) | Searx is a privacy-respecting, hackable metasearch engine |
+| [send](stable/send) | Simple, private file sharing. |
 | [ser2sock](stable/ser2sock) | Serial to Socket Redirector |
 | [sharry](stable/sharry) | Sharry allows to share files with others in a simple way. It is a self-hosted web application. The basic concept is to upload files and get a url back that can then be shared. |
 | [shlink](stable/shlink) | A self-hosted and PHP-based URL shortener application with CLI and REST interfaces |
