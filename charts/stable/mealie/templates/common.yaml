@@ -1,1 +1,28 @@
+---
+{{/* Make sure all variables are set properly */}}
+{{- include "common.values.setup" . }}
+
+{{/* Append the hardcoded settings */}}
+{{- define "mealie.hardcodedValues"  -}}
+env:
+  API_URL: "http://localhost:9000"
+additionalContainers:
+  api:
+    name: mealie-api
+    image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
+    imagePullPolicy: "{{ .Values.api.image.pullPolicy }}"
+    env:
+      - name: API_PORT
+        value: "9000"
+    ports:
+      - name: api
+        containerPort: 9000
+    {{- with (.Values.api.volumeMounts | toYaml) }}
+    volumeMounts:
+      {{- nindent 6 . }}
+    {{- end }}
+{{- end -}}
+{{- $_ := mergeOverwrite .Values (include "mealie.hardcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
 {{ include "common.all" . }}

@@ -9,18 +9,9 @@ image:
   # -- image repository
   repository: hkotel/mealie
   # -- image tag
-  # @default -- chart.appVersion
-  tag:
+  tag: frontend-v1.0.0beta-2
   # -- image pull policy
   pullPolicy: IfNotPresent
-
-# -- environment variables. See [image docs](https://hay-kot.github.io/mealie/documentation/getting-started/install/#env-variables) for more details.
-# @default -- See below
-env:
-  # -- Set the container timezone
-  TZ: UTC
-  # -- Set the application database type
-  DB_ENGINE: sqlite
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -28,7 +19,16 @@ service:
   main:
     ports:
       http:
-        port: 80
+        port: 3000
+      api:
+        enabled: true
+        port: 9000
+
+#  -- environment variables. See [frontend config](https://nightly.mealie.io/documentation/getting-started/installation/frontend-config/) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -39,18 +39,29 @@ ingress:
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
-  config:
-    enabled: false
+  api-data:
+    enabled: true
     mountPath: /app/data/
+    accessMode: ReadWriteOnce
+    size: 10Gi
 
-# -- Enable and configure postgresql database subchart under this key.
-#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
-# @default -- See values.yaml
-postgresql:
-  enabled: false
-  postgresqlUsername: mealie
-  postgresqlPassword: mealie-pass
-  postgresqlDatabase: mealie
-  persistence:
-    enabled: false
-    # storageClass: ""
+api:
+  image:
+    # -- image repository
+    repository: hkotel/mealie
+    # -- image tag
+    tag: api-v1.0.0beta-2
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+
+  #  -- environment variables. See [backend config](https://nightly.mealie.io/documentation/getting-started/installation/backend-config/) for more details.
+  # @default -- See below
+  env:
+    # -- Set the container timezone
+    TZ: UTC
+
+  #  -- volume mounts. Name should match a key in .Values.persistence
+  # @default -- See below
+  volumeMounts:
+    - name: api-data
+      mountPath: /app/data/
