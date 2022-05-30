@@ -1,14 +1,14 @@
+#
 # IMPORTANT NOTE
 #
 # This chart inherits from our common library chart. You can check the default values/options here:
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
----
+
 image:
   # -- image repository
   repository: hkotel/mealie
   # -- image tag
-  # @default -- chart.appVersion
   tag: frontend-v1.0.0beta-2
   # -- image pull policy
   pullPolicy: IfNotPresent
@@ -23,6 +23,12 @@ service:
       api:
         enabled: true
         port: 9000
+
+#  -- environment variables. See [frontend config](https://nightly.mealie.io/documentation/getting-started/installation/frontend-config/) for more details.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -41,12 +47,21 @@ persistence:
 
 api:
   image:
+    # -- image repository
     repository: hkotel/mealie
+    # -- image tag
     tag: api-v1.0.0beta-2
+    # -- image pull policy
     pullPolicy: IfNotPresent
 
-  env: {}
+  #  -- environment variables. See [backend config](https://nightly.mealie.io/documentation/getting-started/installation/backend-config/) for more details.
+  # @default -- See below
+  env:
+    # -- Set the container timezone
+    TZ: UTC
 
+  #  -- volume mounts. Name should match a key in .Values.persistence
+  # @default -- See below
   volumeMounts:
     - name: api-data
       mountPath: /app/data/
