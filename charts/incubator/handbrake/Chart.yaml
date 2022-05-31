@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: handbrake helm package
+name: handbrake
+version: 1.24.2
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - handbrake
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/handbrake
+icon: https://handbrake.org/icon
+sources:
+  - https://hub.docker.com/r/jlesage/handbrake
+maintainers:
+  - name: lucacalcaterra
+    email: calcaterra.luca@gmail.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version

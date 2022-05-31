@@ -1,0 +1,51 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: jlesage/handbrake
+  # -- image tag
+  # @default -- chart.appVersion
+  tag: v1.24.2
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [handbrake documentation](https://handbrake.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 5800
+      vnc:
+        enabled: false
+        port: 5900
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+ppersistence:
+  config:
+    enabled: false
+    mountPath: "/config"
+  storage:
+    enabled: false
+    mountPath: "/storage"
+  output:
+    enabled: false
+    mountPath: "/output"
