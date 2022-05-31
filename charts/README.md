@@ -127,6 +127,7 @@
 | [recipes](stable/recipes) | Recipes is a Django application to manage, tag and search recipes using either built in models or external storage providers hosting PDF's, Images or other files. |
 | [resilio-sync](stable/resilio-sync) | Resilio Sync is a fast, reliable, and simple file sync and share solution, powered by P2P technology |
 | [reverse-proxy](stable/reverse-proxy) | Creates ingress reverse-proxies for external hosts with minimum boilerplate |
+| [rhasspy](stable/rhasspy) | rhasspy helm package |
 | [rtorrent-flood](stable/rtorrent-flood) | rTorrent is a stable, high-performance and low resource consumption BitTorrent client. |
 | [rtsp-to-web](stable/rtsp-to-web) | RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE |
 | [sabnzbd](stable/sabnzbd) | Free and easy binary newsreader |
