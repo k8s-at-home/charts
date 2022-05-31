@@ -1,6 +1,6 @@
 # mealie
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v1.0.0beta-2](https://img.shields.io/badge/AppVersion-v1.0.0beta--2-informational?style=flat-square)
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: v1.0.0beta-2](https://img.shields.io/badge/AppVersion-v1.0.0beta--2-informational?style=flat-square)
 
 Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
 
@@ -92,7 +92,7 @@ N/A
 
 ## Changelog
 
-### Version 5.0.0
+### Version 5.0.1
 
 #### Added
 
@@ -100,12 +100,11 @@ N/A
 
 #### Changed
 
-* Removed `postgresql` chart dependency.
-* **BREAKING** Updated mealie to v1.0.0beta-2. Please check the application documentation for upgrade steps.
+N/A
 
 #### Fixed
 
-N/A
+* Fixed loading API environment variables.
 
 ### Older versions
 
