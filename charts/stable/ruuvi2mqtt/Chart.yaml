@@ -1,0 +1,21 @@
+---
+apiVersion: v2
+appVersion: 1.0.1
+description: Bluetooth to MQTT for Ruuvitag sensors
+name: ruuvi2mqtt
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - ruuvi
+  - mqtt
+  - home-assistant
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ruuvi2mqtt
+sources:
+  - https://github.com/tmatilai/ruuvi2mqtt
+maintainers:
+  - name: samip5
+    email: sm+git@samip.fi
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
