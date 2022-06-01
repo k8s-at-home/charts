@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-63-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-64-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -127,6 +127,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/bikram990"><img src="https://avatars.githubusercontent.com/u/6782131?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bikramjeet Singh</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=bikram990" title="Code">💻</a></td>
     <td align="center"><a href="http://geraldwu.com"><img src="https://avatars.githubusercontent.com/u/22160945?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gerald Wu</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=geraldwuhoo" title="Code">💻</a></td>
     <td align="center"><a href="http://ntrpigo.blogspot.com"><img src="https://avatars.githubusercontent.com/u/720492?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ivan Gregurić Ortolan</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=ntrp" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/lucacalcaterra"><img src="https://avatars.githubusercontent.com/u/879825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luca Calcaterra</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=lucacalcaterra" title="Code">💻</a></td>
   </tr>
 </table>
 
