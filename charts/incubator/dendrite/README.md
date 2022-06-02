@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 4.2.2](https://img.shields.io/badge/Version-4.2.2-informational?style=flat-square) ![AppVersion: v0.8.1](https://img.shields.io/badge/AppVersion-v0.8.1-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v0.8.7](https://img.shields.io/badge/AppVersion-v0.8.7-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -93,11 +93,16 @@ For more information see:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| appserviceapi | object | See values.yaml | Configure the app service api. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| appserviceapi | object | See values.yaml | Configure the app service api. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| appserviceapi.database | object | See values.yaml | Override general dendrite.database parameters. |
+| appserviceapi.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| appserviceapi.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| appserviceapi.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| appserviceapi.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | appserviceapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | appserviceapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | appserviceapi.image.tag | string | chart.appVersion | image tag |
-| clientapi | object | See values.yaml | Configuration for the client api component. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| clientapi | object | See values.yaml | Configuration for the client api component. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
 | clientapi.config.captcha | object | See values.yaml | Configure captcha for registration |
 | clientapi.config.rate_limiting | object | values.yaml | Configure rate limiting. |
 | clientapi.config.registration_disabled | bool | `false` | Enable or disable registration for this homeserver. |
@@ -106,7 +111,7 @@ For more information see:
 | clientapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | clientapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | clientapi.image.tag | string | chart.appVersion | image tag |
-| dendrite | object | See values.yaml | Configuration for Dendrite. For more information see [the sample denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| dendrite | object | See values.yaml | Configuration for Dendrite. For more information see [the sample denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
 | dendrite.database | object | See values.yaml | Configure database connection parameters. |
 | dendrite.global | object | See values.yaml | Configure the global settings for dendrite. |
 | dendrite.global.disable_federation | bool | `false` | Disables federation |
@@ -133,9 +138,17 @@ For more information see:
 | dendrite.matrix_key_secret.keyBody | string | `""` | New Key Body |
 | dendrite.matrix_key_secret.secretPath | string | `"matrix_key.pem"` | Field in the secret to get the key from |
 | dendrite.polylithEnabled | bool | `false` | Enable polylith deployment |
+| dendrite.report_stats | object | `{"enabled":false,"endpoint":""}` | Usage statistics reporting configuration |
+| dendrite.report_stats.enabled | bool | false | Enable or disable usage reporting |
+| dendrite.report_stats.endpoint | string | `""` | Push endpoint for usage statistics |
 | dendrite.tls_secret | object | See values.yaml | If enabled, use an existing secrets for the TLS certificate and key. Otherwise, to enable TLS a `server.crt` and `server.key` must be mounted at `/etc/dendrite`. |
 | dendrite.tracing | object | See values.yaml | Configure opentracing. |
-| federationapi | object | values.yaml | Configure the Federation API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| federationapi | object | values.yaml | Configure the Federation API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| federationapi.database | object | See values.yaml | Override general dendrite.database parameters. |
+| federationapi.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| federationapi.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| federationapi.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| federationapi.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | federationapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | federationapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | federationapi.image.tag | string | chart.appVersion | image tag |
@@ -144,14 +157,30 @@ For more information see:
 | image.repository | string | `"matrixdotorg/dendrite-monolith"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| keyserver | object | See values.yaml | Configure the key server. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| keyserver | object | See values.yaml | Configure the key server. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| keyserver.database | object | See values.yaml | Override general dendrite.database parameters. |
+| keyserver.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| keyserver.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| keyserver.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| keyserver.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | keyserver.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | keyserver.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | keyserver.image.tag | string | chart.appVersion | image tag |
-| mediaapi | object | values.yaml | Configure the Media API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| mediaapi | object | values.yaml | Configure the Media API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| mediaapi.database | object | See values.yaml | Override general dendrite.database parameters. |
+| mediaapi.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| mediaapi.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| mediaapi.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| mediaapi.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | mediaapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | mediaapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | mediaapi.image.tag | string | chart.appVersion | image tag |
+| mscs | object | values.yaml | Configuration for experimental MSCs For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| mscs.database | object | See values.yaml | Override general dendrite.database parameters. |
+| mscs.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| mscs.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| mscs.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| mscs.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | nats.enabled | bool | See value.yaml | Enable and configure NATS for dendrite. Can be disabled for monolith deployments - an internal NATS server will be used in its place. |
 | nats.nats.image | string | `"nats:2.7.1-alpine"` |  |
 | nats.nats.jetstream.enabled | bool | `true` |  |
@@ -165,25 +194,41 @@ For more information see:
 | postgresql.image.tag | string | `"14.1.0"` |  |
 | postgresql.persistence.enabled | bool | `false` |  |
 | postgresql.primary.initdb.scriptsConfigMap | string | `"dendrite-postgresql-init-scripts"` |  |
-| roomserver | object | values.yaml | Configure the Room Server For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| roomserver | object | values.yaml | Configure the Room Server For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| roomserver.database | object | See values.yaml | Override general dendrite.database parameters. |
+| roomserver.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| roomserver.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| roomserver.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| roomserver.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | roomserver.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | roomserver.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | roomserver.image.tag | string | chart.appVersion | image tag |
 | service | object | See values.yaml | If added dendrite will start a HTTP and HTTPS listener args:   - "--tls-cert=server.crt"   - "--tls-key=server.key" -- Configures service settings for the chart. |
 | service.main.ports.http | object | See values.yaml | Configures the default HTTP listener for dendrite |
 | service.main.ports.https | object | See values.yaml | Configures the HTTPS listener for dendrite |
-| syncapi | object | values.yaml | Configure the Sync API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| syncapi | object | values.yaml | Configure the Sync API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| syncapi.database | object | See values.yaml | Override general dendrite.database parameters. |
+| syncapi.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| syncapi.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| syncapi.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| syncapi.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | syncapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | syncapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | syncapi.image.tag | string | chart.appVersion | image tag |
-| userapi | object | values.yaml | Configure the User API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/master/build/docker/config/dendrite-config.yaml) |
+| userapi | object | values.yaml | Configure the User API For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
+| userapi.config.bcrypt_cost | int | 10 | bcrypt cost (2^[cost] = rounds) |
+| userapi.database | object | See values.yaml | Override general dendrite.database parameters. |
+| userapi.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| userapi.database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| userapi.database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| userapi.database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | userapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | userapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | userapi.image.tag | string | chart.appVersion | image tag |
 
 ## Changelog
 
-### Version 4.2.2
+### Version 5.0.0
 
 #### Added
 
@@ -191,19 +236,13 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'clientapi'
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'mediaapi'
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'syncapi'
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'roomserver'
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'federationapi'
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'keyserver'
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'userapi'
-* Upgraded `common` chart dependency to version 4.4.2 for alias 'appserviceapi'
+* Enable database configuration on a per-API (component) level
+* Bump dendrite to v0.8.7
+* Set client api registration to disabled by default
 
 #### Fixed
 
-N/A
+* Fix syncapi version pinning
 
 ### Older versions
 
