@@ -21,6 +21,10 @@ env:
   TZ: UTC
   LOG_LEVEL: ruuvi2mqtt=DEBUG
 
+service:
+  main:
+    enabled: false
+
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml
@@ -36,7 +40,6 @@ securityContext:
 persistence:
   config:
     enabled: false
-    mountPath: /app/
   dbus:
     enabled: false
     type: hostPath
