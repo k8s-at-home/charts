@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 4.9.2](https://img.shields.io/badge/Version-4.9.2-informational?style=flat-square) ![AppVersion: v7.0.25](https://img.shields.io/badge/AppVersion-v7.0.25-informational?style=flat-square)
+![Version: 4.10.0](https://img.shields.io/badge/Version-4.10.0-informational?style=flat-square) ![AppVersion: v7.1.66](https://img.shields.io/badge/AppVersion-v7.1.66-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -145,7 +145,7 @@ service:
 
 ## Changelog
 
-### Version 4.9.2
+### Version 4.10.0
 
 #### Added
 
@@ -153,7 +153,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded unifi app to v7.1.66
 
 #### Fixed
 
