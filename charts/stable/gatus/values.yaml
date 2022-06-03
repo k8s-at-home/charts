@@ -26,7 +26,7 @@ service:
   main:
     ports:
       http:
-        port: 80
+        port: 8080
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -48,9 +48,9 @@ persistence:
 
 configmap:
   config:
-    # -- Store homer configuration as a ConfigMap
+    # -- Store gatus configuration as a ConfigMap
     enabled: true
-    # -- Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information.
+    # -- Gatus configuration. See [image documentation](https://github.com/TwiN/gatus/blob/master/config.yaml) for more information.
     # @default -- See values.yaml
     data:
       config.yaml: |
