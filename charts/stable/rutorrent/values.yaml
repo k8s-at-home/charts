@@ -5,23 +5,31 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 
+# -- Use an initContainer to delete the rtorrent.lock file when the pod starts
+# this is only required if `session.use_lock.set = no` is NOT set
+# @default -- See values.yaml
+initContainers: {}
+  # remove-session-lock:
+  #   image: busybox
+  #   command: ["sh", "-c", "rm -rf /config/.local/share/rtorrent/.session/rtorrent.lock"]
+  #   volumeMounts:
+  #   - name: config
+  #     mountPath: /config
+
 image:
   # -- image repository
-  repository: crazy-max/rtorrent-rutorrent
-  # -- image tag
-  tag: 
+  repository: crazymax/rtorrent-rutorrent
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
-# -- environment variables. See more environment variables in the [beets documentation](https://beets.org/docs).
+# -- environment variables. See [image docs](https://github.com/crazy-max/docker-rtorrent-rutorrent#environment-variables) for more details.
 # @default -- See below
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Set the container user id
-  PUID: "568"
-  # -- Set the container group id
-  PGID: "568"
+  RUTORRENT_PORT: 8080
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -40,6 +48,8 @@ ingress:
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
-  config:
+  data:
     enabled: false
-    mountPath: /config
+
+  downloads:
+    enabled: false

@@ -1,15 +1,15 @@
-# beets
+# rutorrent
 
-![Version: 1.3.2](https://img.shields.io/badge/Version-1.3.2-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 13.4.3](https://img.shields.io/badge/Version-13.4.3-informational?style=flat-square) ![AppVersion: v4.4.2](https://img.shields.io/badge/AppVersion-v4.4.2-informational?style=flat-square)
 
-beets helm package
+rutorrent monitors IRC announce channels to get releases as soon as they are available with good filtering
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/beetbox/beets>
-* <https://github.com/linuxserver/docker-beets>
+* <https://github.com/rutorrent/rutorrent>
+* <https://github.com/k8s-at-home/container-images>
 
 ## Requirements
 
@@ -26,23 +26,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install beets k8s-at-home/beets
+helm install rutorrent k8s-at-home/rutorrent
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `beets`
+To install the chart with the release name `rutorrent`
 
 ```console
-helm install beets k8s-at-home/beets
+helm install rutorrent k8s-at-home/rutorrent
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `beets` deployment
+To uninstall the `rutorrent` deployment
 
 ```console
-helm uninstall beets
+helm uninstall rutorrent
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +55,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install beets \
+helm install rutorrent \
   --set env.TZ="America/New York" \
-    k8s-at-home/beets
+    k8s-at-home/rutorrent
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install beets k8s-at-home/beets -f values.yaml
+helm install rutorrent k8s-at-home/rutorrent -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,36 +76,22 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See more environment variables in the [beets documentation](https://beets.org/docs). |
-| env.PGID | string | `"1001"` | Set the container group id |
-| env.PUID | string | `"1001"` | Set the container user id |
+| env | object | See below | environment variables. See [image docs](https://docs.k8s-at-home.com/our-container-images/configuration/) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"linuxserver/beets"` | image repository |
-| image.tag | string | `"1.5.0"` | image tag |
+| image.repository | string | `"ghcr.io/rutorrent/rutorrent"` | image repository |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 1.3.2
+### Version 1.0.0
 
 #### Added
 
-N/A
-
-#### Changed
-
-* Upgraded `common` chart dependency to version 4.4.2
-
-#### Fixed
-
-N/A
-
-### Older versions
-
-A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/beets?modal=changelog)
+Initial release
 
 ## Support
 
