@@ -85,6 +85,7 @@
 | [modem-stats](stable/modem-stats) | periodic cable modem data collection and save the results to InfluxDB |
 | [monica](stable/monica) | A Personal Relationship Management tool to help you organize your social life |
 | [mosquitto](stable/mosquitto) | Eclipse Mosquitto - An open source MQTT broker |
+| [mqtt-exporter](stable/mqtt-exporter) | Simple and generic Prometheus exporter for MQTT. Tested with Mosquitto MQTT and Xiaomi sensors. |
 | [multus](stable/multus) | multus CNI allows multiple NICs per pod |
 | [mylar](stable/mylar) | Mylar is the automated Comic Book downloader (cbr/cbz) for use with various download clients. |
 | [navidrome](stable/navidrome) | Navidrome is an open source web-based music collection server and streamer |
