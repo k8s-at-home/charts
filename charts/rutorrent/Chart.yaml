@@ -1,0 +1,25 @@
+---
+apiVersion: v2
+appVersion: 3.10-0.9.8-0.13.8
+description: ruTorrent is a popular rtorrent client with a webui for ease of use.
+name: rutorrent
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - rutorrent
+  - torrrent
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rutorrent
+icon: https://avatars.githubusercontent.com/u/88781313?s=200&v=4
+sources:
+  - https://github.com/Novik/ruTorrent
+maintainers:
+  - name: funkypenguin
+    email: davidy@funkypenguin.co.nz
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |-
+    - kind: added
+      description: Initial release

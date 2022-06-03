@@ -1,0 +1,24 @@
+---
+apiVersion: v2
+appVersion: v3.10-ls122
+description: rutorrent
+name: rutorrent
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - rutorrent
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/rutorrent
+icon: https://fleet.linuxserver.io/images/linuxserver_rutorrent.png
+sources:
+  - https://github.com/beetbox/beets
+maintainers:
+  - name: funkypenguin
+    email: davidy@funkypenguin.co.nz
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |-
+    - kind: added
+      description: Initial release
