@@ -1,0 +1,26 @@
+---
+apiVersion: v2
+appVersion: 1.0.0
+description: Simple and generic Prometheus exporter for MQTT. Tested with Mosquitto MQTT and Xiaomi sensors.
+name: mqtt-exporter
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - zigbee2mqtt
+  - prometheus
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mqtt-exporter
+icon: https://static.veritone.com/assets/favicon/favicon.ico
+sources:
+  - https://github.com/kpetremann/mqtt-exporter
+  - https://hub.docker.com/r/kpetrem/mqtt-exporter
+maintainers:
+  - name: philipp
+    email: phil@hellmi.de
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |-
+    - kind: added
+      description: Initial version
