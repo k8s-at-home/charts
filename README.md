@@ -1,6 +1,6 @@
 # Helm charts
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-65-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-66-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![docs](https://img.shields.io/badge/docs-rtfm-yellow?logo=gitbook&logoColor=white&style=for-the-badge)](https://docs.k8s-at-home.com/)
@@ -131,6 +131,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/lucacalcaterra"><img src="https://avatars.githubusercontent.com/u/879825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luca Calcaterra</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=lucacalcaterra" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Omar007"><img src="https://avatars.githubusercontent.com/u/5380079?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Omar Pakker</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=Omar007" title="Code">💻</a></td>
+    <td align="center"><a href="https://resume.frezbo.dev"><img src="https://avatars.githubusercontent.com/u/18496730?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Noel Georgi</b></sub></a><br /><a href="https://github.com/k8s-at-home/charts/commits?author=frezbo" title="Code">💻</a></td>
   </tr>
 </table>
 
