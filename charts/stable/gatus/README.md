@@ -1,6 +1,6 @@
 # gatus
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v3.8.0](https://img.shields.io/badge/AppVersion-v3.8.0-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: v3.8.0](https://img.shields.io/badge/AppVersion-v3.8.0-informational?style=flat-square)
 
 A developer-oriented health dashboard that gives you the ability to monitor your services using HTTP, ICMP, TCP, and even DNS queries.
 
@@ -88,11 +88,11 @@ N/A
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.0.1
 
 #### Added
 
-* Initial version
+N/A
 
 #### Changed
 
