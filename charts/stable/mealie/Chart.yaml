@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v1.0.0beta-2
 description: Mealie is a self hosted recipe manager and meal planner with a RestAPI backend and a reactive frontend application built in Vue for a pleasant user experience for the whole family.
 name: mealie
-version: 5.0.1
+version: 5.0.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - grocy
@@ -23,4 +23,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: fixed
-      description: Fixed loading API environment variables.
+      description: Fixed quoting of API environment variables.
