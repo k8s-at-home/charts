@@ -14,10 +14,8 @@
   persistence:
     config:
       enabled: true
-      type: "configMap"
+      type: configMap
       name: "{{ include "common.names.fullname" . }}-config"
-      mountPath: "/www/assets/config.yml"
-      subPath: "config.yml"
   {{- end }}
 {{- end -}}
 {{- $_ := mergeOverwrite .Values (include "gatus.harcodedValues" . | fromYaml) -}}

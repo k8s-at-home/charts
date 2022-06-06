@@ -37,14 +37,9 @@ ingress:
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
-  config:
-    enabled: "true"
-    mountPath: "/config/config.yaml"
-    subPath: "config.yaml"
-    type: "custom"
-    volumeSpec:
-      configMap:
-        name: gatus-config
+  data:
+    enabled: true
+    type: emptyDir
 
 configmap:
   config:
