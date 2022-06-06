@@ -9,7 +9,7 @@ Node-RED is low-code programming for event-driven applications
 ## Source Code
 
 * <https://github.com/node-red/node-red-docker>
-* <https://github.com/k8s-at-home/charts/tree/master/charts/node-red>
+* <https://github.com/k8s-at-home/charts/tree/master/charts/stable/node-red>
 
 ## Requirements
 
