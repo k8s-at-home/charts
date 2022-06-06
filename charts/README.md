@@ -131,6 +131,7 @@
 | [reverse-proxy](stable/reverse-proxy) | Creates ingress reverse-proxies for external hosts with minimum boilerplate |
 | [rhasspy](stable/rhasspy) | rhasspy helm package |
 | [rtorrent-flood](stable/rtorrent-flood) | rTorrent is a stable, high-performance and low resource consumption BitTorrent client. |
+| [rtorrent-rutorrent](stable/rtorrent-rutorrent) | ruTorrent is a popular rtorrent client with a webui for ease of use. |
 | [rtsp-to-web](stable/rtsp-to-web) | RTSPtoWeb converts RTSP streams to WebRTC, LL-HLS, HLS, MSE |
 | [sabnzbd](stable/sabnzbd) | Free and easy binary newsreader |
 | [samba](stable/samba) | A simple in-cluster Samba server |
