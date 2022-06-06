@@ -36,6 +36,11 @@ env:
   # STATDB_URI:  # mongodb://unifi-mongodb:27017/unifi_stat
   # DB_NAME:  # unifi
 
+# -- pod security context.
+# @default -- See below
+podSecurityContext:
+  fsGroup: 999
+
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
 service:
