@@ -1,15 +1,14 @@
-# rutorrent
+# rtorrent-rutorrent
 
-![Version: 13.4.3](https://img.shields.io/badge/Version-13.4.3-informational?style=flat-square) ![AppVersion: v4.4.2](https://img.shields.io/badge/AppVersion-v4.4.2-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 3.10-0.9.8-0.13.8](https://img.shields.io/badge/AppVersion-3.10--0.9.8--0.13.8-informational?style=flat-square)
 
-rutorrent monitors IRC announce channels to get releases as soon as they are available with good filtering
+ruTorrent is a popular rtorrent client with a webui for ease of use.
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
 ## Source Code
 
-* <https://github.com/rutorrent/rutorrent>
-* <https://github.com/k8s-at-home/container-images>
+* <https://github.com/Novik/ruTorrent>
 
 ## Requirements
 
@@ -26,23 +25,23 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install rutorrent k8s-at-home/rutorrent
+helm install rtorrent-rutorrent k8s-at-home/rtorrent-rutorrent
 ```
 
 ## Installing the Chart
 
-To install the chart with the release name `rutorrent`
+To install the chart with the release name `rtorrent-rutorrent`
 
 ```console
-helm install rutorrent k8s-at-home/rutorrent
+helm install rtorrent-rutorrent k8s-at-home/rtorrent-rutorrent
 ```
 
 ## Uninstalling the Chart
 
-To uninstall the `rutorrent` deployment
+To uninstall the `rtorrent-rutorrent` deployment
 
 ```console
-helm uninstall rutorrent
+helm uninstall rtorrent-rutorrent
 ```
 
 The command removes all the Kubernetes components associated with the chart **including persistent volumes** and deletes the release.
@@ -55,15 +54,15 @@ Other values may be used from the [values.yaml](https://github.com/k8s-at-home/l
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ```console
-helm install rutorrent \
+helm install rtorrent-rutorrent \
   --set env.TZ="America/New York" \
-    k8s-at-home/rutorrent
+    k8s-at-home/rtorrent-rutorrent
 ```
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart.
 
 ```console
-helm install rutorrent k8s-at-home/rutorrent -f values.yaml
+helm install rtorrent-rutorrent k8s-at-home/rtorrent-rutorrent -f values.yaml
 ```
 
 ## Custom configuration
@@ -76,12 +75,13 @@ N/A
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| env | object | See below | environment variables. See [image docs](https://docs.k8s-at-home.com/our-container-images/configuration/) for more details. |
+| env | object | See below | environment variables. See [image docs](https://github.com/crazy-max/docker-rtorrent-rutorrent#environment-variables) for more details. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"ghcr.io/rutorrent/rutorrent"` | image repository |
+| image.repository | string | `"crazymax/rtorrent-rutorrent"` | image repository |
 | image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| initContainers | object | See values.yaml | Use an initContainer to delete the rtorrent.lock file when the pod starts this is only required if `session.use_lock.set = no` is NOT set |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
@@ -91,7 +91,19 @@ N/A
 
 #### Added
 
-Initial release
+* Initial release
+
+#### Changed
+
+N/A
+
+#### Fixed
+
+N/A
+
+### Older versions
+
+A historical overview of changes can be found on [ArtifactHUB](https://artifacthub.io/packages/helm/k8s-at-home/rtorrent-rutorrent?modal=changelog)
 
 ## Support
 
