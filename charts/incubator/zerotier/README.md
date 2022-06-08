@@ -25,7 +25,7 @@ Kubernetes: `>=1.16.0-0`
 ```console
 helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
-helm install zerotier k8s-at-home/zerotier --set 
+helm install zerotier k8s-at-home/zerotier --set
 'args={ZeroTierNetworkId}' --set 'image.tag=1.8.10-[arm64|amd64]'
 ```
 

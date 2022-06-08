@@ -14,7 +14,7 @@ image:
   tag: 1.8.10-amd64
   # -- image pull policy
   pullPolicy: IfNotPresent
-args: 
+args:
   # the only arg which need's to be parse is the network id
   # which you want to join
   - "ZeroTierNetworkId"
@@ -65,7 +65,7 @@ persistence:
   tun:
     enabled: true
     type: hostPath
-    mountPath: /dev/net/tun 
+    mountPath: /dev/net/tun
     hostPath: /dev/net/tun
 
 
