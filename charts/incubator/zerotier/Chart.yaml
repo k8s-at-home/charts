@@ -1,0 +1,27 @@
+---
+apiVersion: v2
+appVersion: 1.8.10
+description: securely connected any device
+name: zerotier
+version: 1.8.10
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - vpn
+  - privacy
+  - security
+  - zerotier
+sources:
+  - https://github.com/k8s-at-home/container-images
+  - https://github.com/k8s-at-home/charts
+icon: https://www.zerotier.com/wp-content/uploads/2020/08/cropped-ZeroTierIcon-192x192-1.png
+maintainers:
+  - name: fastandfearless
+    email: meno.abels@adviser.com
+dependencies:
+  - name: common
+    version: 4.4.2
+    repository: https://library-charts.k8s-at-home.com
+annotations:
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 4.4.2

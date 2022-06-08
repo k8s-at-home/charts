@@ -1,0 +1,101 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: zerotier/zerotier
+  # -- image tag
+  # currently there is no zerotier manifest which
+  # allow to have a arch generic tag
+  tag: 1.8.10-arm64
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+args: 
+  # the only arg which need's to be parse is the network id
+  # which you want to join
+  - "ZeroTierNetworkId"
+
+hostNetwork: true
+
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  #
+  # ZEROTIER_API_SECRET: replaces the authtoken.secret before booting and allows you to manage the control socket's authentication key.
+  # ZEROTIER_IDENTITY_PUBLIC: the identity.public file for zerotier-one. Use zerotier-idtool to generate one of these for you.
+  # ZEROTIER_IDENTITY_SECRET: the identity.secret file for zerotier-one. Use zerotier-idtool to generate one of these for you.
+
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    enabled: false
+    ports:
+      vpnudp:
+        enabled: true
+        port: 9993
+        protocol: UDP
+      vpntcp:
+        enabled: true
+        port: 9993
+        protocol: TCP
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  # You need for every pod a hostPath to store the
+  # hostKey and the configuration parameters
+  config:
+    enabled: true
+    type: hostPath
+    mountPath: /var/lib/zerotier-one
+    hostPath: /mam-wl-m1/zerotier
+  tun:
+    enabled: true
+    type: hostPath
+    mountPath: /dev/net/tun 
+    hostPath: /dev/net/tun
+
+
+# -- Security contexts required for container.
+# @default -- see values.yaml
+securityContext:
+  capabilities:
+    add:
+    - NET_ADMIN
+    - SYS_MODULE
+
+# -- Configures the probes for the main Pod.
+# @default -- See values.yaml
+probes:
+  liveness:
+    enabled: false
+    # won't work without a API-Key
+    # zerotier returns without at anytime 40x
+    #spec:
+    #  failureThreshold: 3
+    #  httpGet:
+    #    path: /
+    #    port: 9993
+    #    scheme: HTTP
+    #  initialDelaySeconds: 10
+    #  periodSeconds: 10
+    #  successThreshold: 1
+    #  timeoutSeconds: 2
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
