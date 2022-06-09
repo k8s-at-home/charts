@@ -1,0 +1,76 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: jaedb/iris
+  # -- image tag
+  # @default -- chart.appVersion
+  tag: latest
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [mopidy documentation](https://mopidy.org/docs).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  PIP_PACKAGES: Mopidy-Mixcloud Mopidy-Subidy
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 6680
+      # mopidy JSON-RPC port
+      json-rpc:
+        enabled: true
+        port: 6600
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # data:
+  #   enabled: false
+  #   mountPath: /data
+
+config: |
+  [core]
+  data_dir = /var/lib/mopidy
+
+  [audio]
+  output = audioresample ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! tcpclientsink host=snapcast port=4953
+
+  [http]
+  hostname = 0.0.0.0
+  default_app = iris
+
+  [mpd]
+  hostname = 0.0.0.0
+
+  [mixcloud]
+  enabled = false
+
+  [subidy]
+  enabled = true
+  url = http://gonic
+  username = admin
+  password = admin
+
+  [spotify]
+  enabled = false
+  # Fast startup because we use the Spotify HTTP API to load these instead
+  # Makes playlists unavailable under Browse > Spotify.
+  allow_playlists = false
