@@ -1,0 +1,241 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: saiyato/snapserver
+  # -- image tag
+  # @default -- chart.appVersion
+  tag: v0.26.0
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 1780
+      # -- Snapcast clients connect on port 1704 (default)
+      clients:
+        enabled: true
+        port: 1704
+      # -- Snapcast control on port 1705 (default)
+      control:
+        enabled: true
+        port: 1705
+  # -- Configure stream ports when using TCP server sockets as snapserver input streams
+  streams:
+    enabled: true
+    ports:
+      stream1:
+        enabled: true
+        port: 4953
+      stream2:
+        enabled: true
+        port: 4954
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence: {}
+  # data:
+  #   enabled: false
+  #   mountPath: /data
+
+# -- Snapserver configuration, see https://github.com/badaix/snapcast/blob/master/doc/configuration.md
+# @default -- See values.yaml
+config: |
+  ###############################################################################
+  #     ______                                                                  #
+  #    / _____)                                                                 #
+  #   ( (____   ____   _____  ____    ___  _____   ____  _   _  _____   ____    #
+  #    \____ \ |  _ \ (____ ||  _ \  /___)| ___ | / ___)| | | || ___ | / ___)   #
+  #    _____) )| | | |/ ___ || |_| ||___ || ____|| |     \ V / | ____|| |       #
+  #   (______/ |_| |_|\_____||  __/ (___/ |_____)|_|      \_/  |_____)|_|       #
+  #                          |_|                                                #
+  #                                                                             #
+  #  Snapserver config file                                                     #
+  #                                                                             #
+  ###############################################################################
+
+  # default values are commented
+  # uncomment and edit to change them
+
+  # Settings can be overwritten on command line with:
+  #  "--<section>.<name>=<value>", e.g. --server.threads=4
+
+
+  # General server settings #####################################################
+  #
+  [server]
+  # Number of additional worker threads to use
+  # - For values < 0 the number of threads will be 2 (on single and dual cores)
+  #   or 4 (for quad and more cores)
+  # - 0 will utilize just the processes main thread and might cause audio drops
+  #   in case there are a couple of longer running tasks, such as encoding
+  #   multiple audio streams
+  #threads = -1
+
+  # the pid file when running as daemon
+  #pidfile = /var/run/snapserver/pid
+
+  # the user to run as when daemonized
+  #user = snapserver
+  # the group to run as when daemonized
+  #group = snapserver
+
+  # directory where persistent data is stored (server.json)
+  # if empty, data dir will be
+  #  - "/var/lib/snapserver/" when running as daemon
+  #  - "$HOME/.config/snapserver/" when not running as daemon
+  #datadir =
+
+  #
+  ###############################################################################
+
+
+  # HTTP RPC ####################################################################
+  #
+  [http]
+  # enable HTTP Json RPC (HTTP POST and websockets)
+  #enabled = true
+
+  # address to listen on, can be specified multiple times
+  # use "0.0.0.0" to bind to any IPv4 address or :: to bind to any IPv6 address
+  # or "127.0.0.1" or "::1" to bind to localhost IPv4 or IPv6, respectively
+  # use the address of a specific network interface to just listen to and accept
+  # connections from that interface
+  #bind_to_address = 0.0.0.0
+
+  # which port the server should listen to
+  #port = 1780
+
+  # serve a website from the doc_root location
+  # disabled if commented or empty
+  doc_root = /usr/share/snapserver/snapweb
+
+  # Hostname or IP under which clients can reach this host
+  # used to serve cached cover art
+  # use <hostname> as placeholder for your actual host name
+  #host = <hostname>
+
+  #
+  ###############################################################################
+
+
+  # TCP RPC #####################################################################
+  #
+  [tcp]
+  # enable TCP Json RPC
+  #enabled = true
+
+  # address to listen on, can be specified multiple times
+  # use "0.0.0.0" to bind to any IPv4 address or :: to bind to any IPv6 address
+  # or "127.0.0.1" or "::1" to bind to localhost IPv4 or IPv6, respectively
+  # use the address of a specific network interface to just listen to and accept
+  # connections from that interface
+  #bind_to_address = 0.0.0.0
+
+  # which port the server should listen to
+  #port = 1705
+  #
+  ###############################################################################
+
+
+  # Stream settings #############################################################
+  #
+  [stream]
+  # address to listen on, can be specified multiple times
+  # use "0.0.0.0" to bind to any IPv4 address or :: to bind to any IPv6 address
+  # or "127.0.0.1" or "::1" to bind to localhost IPv4 or IPv6, respectively
+  # use the address of a specific network interface to just listen to and accept
+  # connections from that interface
+  #bind_to_address = 0.0.0.0
+
+  # which port the server should listen to
+  #port = 1704
+
+  # source URI of the PCM input stream, can be configured multiple times
+  # The following notation is used in this paragraph:
+  #  <angle brackets>: the whole expression must be replaced with your specific setting
+  # [square brackets]: the whole expression is optional and can be left out
+  # [key=value]: if you leave this option out, "value" will be the default for "key"
+  #
+  # Format: TYPE://host/path?name=<name>[&codec=<codec>][&sampleformat=<sampleformat>][&chunk_ms=<chunk ms>][&controlscript=<control script filename>]
+  #  parameters have the form "key=value", they are concatenated with an "&" character
+  #  parameter "name" is mandatory for all sources, while codec, sampleformat and chunk_ms are optional
+  #  and will override the default codec, sampleformat or chunk_ms settings
+  # Non blocking sources support the dryout_ms parameter: when no new data is read from the source, send silence to the clients
+  # Available types are:
+  # pipe: pipe:///<path/to/pipe>?name=<name>[&mode=create][&dryout_ms=2000], mode can be "create" or "read"
+  # librespot: librespot:///<path/to/librespot>?name=<name>[&dryout_ms=2000][&username=<my username>&password=<my password>][&devicename=Snapcast][&bitrate=320][&wd_timeout=7800][&volume=100][&onevent=""][&nomalize=false][&autoplay=false][&params=<generic librepsot process arguments>]
+  #  note that you need to have the librespot binary on your machine
+  #  sampleformat will be set to "44100:16:2"
+  # file: file:///<path/to/PCM/file>?name=<name>
+  # process: process:///<path/to/process>?name=<name>[&dryout_ms=2000][&wd_timeout=0][&log_stderr=false][&params=<process arguments>]
+  # airplay: airplay:///<path/to/airplay>?name=<name>[&dryout_ms=2000][&port=5000]
+  #  note that you need to have the airplay binary on your machine
+  #  sampleformat will be set to "44100:16:2"
+  # tcp server: tcp://<listen IP, e.g. 127.0.0.1>:<port>?name=<name>[&mode=server]
+  # tcp client: tcp://<server IP, e.g. 127.0.0.1>:<port>?name=<name>&mode=client
+  # alsa: alsa://?name=<name>&device=<alsa device>[&send_silence=false][&idle_threshold=100][&silence_threshold_percent=0.0]
+  # meta: meta:///<name of source#1>/<name of source#2>/.../<name of source#N>?name=<name>
+  #source = pipe:///tmp/snapfifo?name=default
+  #source = tcp://127.0.0.1?name=mopidy_tcp
+
+  source = tcp://0.0.0.0:4953?name=stream1&mode=server
+  source = tcp://0.0.0.0:4954?name=stream2&mode=server
+
+  # Default sample format: <sample rate>:<bits per sample>:<channels>
+  #sampleformat = 48000:16:2
+
+  # Default transport codec
+  # (flac|ogg|opus|pcm)[:options]
+  # Start Snapserver with "--stream:codec=<codec>:?" to get codec specific options
+  #codec = flac
+
+  # Default source stream read chunk size [ms].
+  # The server will continously read this number of milliseconds from the source into buffer and pass this buffer to the encoder.
+  # The encoded buffer is sent to the clients. Some codecs have a higher latency and will need more data, e.g. Flac will need ~26ms chunks
+  #chunk_ms = 20
+
+  # Buffer [ms]
+  # The end-to-end latency, from capturing a sample on the server until the sample is played-out on the client
+  #buffer = 1000
+
+  # Send audio to muted clients
+  #send_to_muted = false
+  #
+  ###############################################################################
+
+
+  # Logging options #############################################################
+  #
+  [logging]
+
+  # log sink [null,system,stdout,stderr,file:<filename>]
+  # when left empty: if running as daemon "system" else "stdout"
+  #sink =
+
+  # log filter <tag>:<level>[,<tag>:<level>]*
+  # with tag = * or <log tag> and level = [trace,debug,info,notice,warning,error,fatal]
+  #filter = *:info
+  #
+  ###############################################################################
