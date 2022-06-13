@@ -191,6 +191,7 @@
 | [handbrake](incubator/handbrake) | handbrake helm package |
 | [kah-common-chart](incubator/kah-common-chart) | A KaH-common powered chart template. This can be useful for small projects that don't have their own chart. |
 | [lancache](incubator/lancache) | LanCache Monolithic - a caching proxy server for game download content |
+| [mopidy](incubator/mopidy) | mopidy helm package |
 | [openhab](incubator/openhab) | openhab helm package |
 | [scrypted](incubator/scrypted) | scrypted helm package |
 | [sdtd](incubator/sdtd) | Dedicated server for 7 Days to Die |
