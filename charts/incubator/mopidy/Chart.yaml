@@ -5,18 +5,18 @@ name: mopidy
 version: 0.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
-- mopidy
+  - mopidy
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/mopidy
 icon: https://mopidy.org/icon
 sources:
-- https://github.com/mopidy/mopidy-docker
+  - https://github.com/mopidy/mopidy-docker
 maintainers:
-- name: lanquarden
-  email: lanquarden@gmail.com
+  - name: lanquarden
+    email: lanquarden@gmail.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.4.2
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
 annotations:
   artifacthub.io/changes: |
     - kind: added
