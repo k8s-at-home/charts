@@ -5,18 +5,18 @@ name: ${CHARTNAME}
 version: 1.1.2
 kubeVersion: ">=1.16.0-0"
 keywords:
-- ${CHARTNAME}
+  - ${CHARTNAME}
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/${CHARTNAME}
 icon: https://${CHARTNAME}.org/icon
 sources:
-- https://github.com/${CHARTNAME}/${CHARTNAME}-docker
+  - https://github.com/${CHARTNAME}/${CHARTNAME}-docker
 maintainers:
-- name: ${CHARTNAME}
-  email: ${CHARTNAME}@${CHARTNAME}.com
+  - name: ${CHARTNAME}
+    email: ${CHARTNAME}@${CHARTNAME}.com
 dependencies:
-- name: common
-  repository: https://library-charts.k8s-at-home.com
-  version: 4.4.2
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
 annotations:
   artifacthub.io/changes: |
     - kind: added
