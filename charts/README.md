@@ -197,6 +197,7 @@
 | [sdtd](incubator/sdtd) | Dedicated server for 7 Days to Die |
 | [signal-cli-rest-api](incubator/signal-cli-rest-api) | Dockerized Signal Messenger REST API |
 | [sinusbot](incubator/sinusbot) | TeamSpeak & Discord Bot |
+| [snapcast](incubator/snapcast) | snapcast helm package |
 | [strongswan](incubator/strongswan) | strongSwan – the OpenSource IPsec-based VPN Solution |
 | [teamspeak](incubator/teamspeak) | TeamSpeak Server |
 | [torrserver](incubator/torrserver) | TorrServer streams torrent to http |
