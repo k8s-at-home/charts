@@ -32,6 +32,8 @@ additionalContainers:
     args:
       - -listen
       - :{{ .Values.metrics.exporter.env.port }}
+      - -remote
+      - {{ .Values.metrics.exporter.env.remote }}
       {{- if .Values.metrics.exporter.env.enableChannelMetrics }}
       - -enablechannelmetrics
       {{- end }}
