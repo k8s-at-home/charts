@@ -28,6 +28,9 @@ auth:
   # -- By enabling this, `allow_anonymous` gets set to `false` in the mosquitto config.
   enabled: false
 
+# -- By enabling this, authentication and access control settings will be controlled on a per-listener basis
+perListenerSettings: false
+
 persistence:
   # -- Configure a persistent volume to place mosquitto data in.
   # When enabled, this enables `persistence` and `persistence_location` in the mosquitto config.
