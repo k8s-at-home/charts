@@ -1,6 +1,6 @@
 # teamspeak
 
-![Version: 0.5.2](https://img.shields.io/badge/Version-0.5.2-informational?style=flat-square) ![AppVersion: 3.13.6](https://img.shields.io/badge/AppVersion-3.13.6-informational?style=flat-square)
+![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![AppVersion: 3.13.6](https://img.shields.io/badge/AppVersion-3.13.6-informational?style=flat-square)
 
 TeamSpeak Server
 
@@ -104,6 +104,7 @@ service:
 | metrics.enabled | bool | See values.yaml | Enable and configure ts3exporter sidecar and Prometheus serviceMonitor. |
 | metrics.exporter.env.enableChannelMetrics | bool | `false` | Set to true to enable gathering of channel metrics |
 | metrics.exporter.env.port | int | `9189` | metrics port |
+| metrics.exporter.env.remote | string | `"localhost:10011"` | TeamSpeak query endpoint |
 | metrics.exporter.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | metrics.exporter.image.repository | string | `"quay.io/ricardbejarano/ts3exporter"` | image repository |
 | metrics.exporter.image.tag | string | `"0.0.7"` | image tag |
@@ -124,7 +125,7 @@ service:
 
 ## Changelog
 
-### Version 0.5.2
+### Version 0.6.0
 
 #### Added
 
@@ -132,7 +133,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Adds support for setting the metric exporter remote
 
 #### Fixed
 
