@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 3.13.6
 description: TeamSpeak Server
 name: teamspeak
-version: 0.5.2
+version: 0.6.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - teamspeak
@@ -21,4 +21,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+      description: Adds support for setting the metric exporter remote
