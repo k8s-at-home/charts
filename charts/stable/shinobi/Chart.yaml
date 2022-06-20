@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: shinobi helm package
+name: shinobi
+version: 1.1.2
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - shinobi
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/shinobi
+icon: https://shinobi.org/icon
+sources:
+  - https://github.com/shinobi/shinobi-docker
+maintainers:
+  - name: shinobi
+    email: shinobi@shinobi.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
