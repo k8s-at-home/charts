@@ -7,14 +7,14 @@
 
 image:
   # -- image repository
-  repository: shinobi/shinobi
+  repository: shinobisystems/shinobi
   # -- image tag
   # @default -- chart.appVersion
   tag:
   # -- image pull policy
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
-# -- environment variables. See more environment variables in the [shinobi documentation](https://shinobi.org/docs).
+# -- environment variables. See more environment variables in the [shinobi documentation](https://shinobi.video/docs/).
 # @default -- See below
 env:
   # -- Set the container timezone
@@ -26,7 +26,7 @@ service:
   main:
     ports:
       http:
-        port: 1880
+        port: 8080
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -36,7 +36,25 @@ ingress:
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
-persistence: {}
-  # data:
-  #   enabled: false
-  #   mountPath: /data
+persistence:
+  config:
+    enabled: false
+    mountPath: /config
+  custom-auto-load:
+    enabled: false
+    mountPath: /home/Shinobi/libs/customAutoLoad
+  database:
+    enabled: false
+    mountPath: /var/lib/mysql
+  videos:
+    enabled: false
+    mountPath: /home/Shinobi/videos
+  plugins:
+    enabled: false
+    mountPath: /home/Shinobi/plugins
+  shm:
+    enabled: true
+    type: emptyDir
+    medium: Memory
+    sizeLimit: 1Gi
+    mountPath: /dev/shm/streams
