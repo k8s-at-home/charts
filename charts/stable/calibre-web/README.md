@@ -1,6 +1,6 @@
 # calibre-web
 
-![Version: 8.3.2](https://img.shields.io/badge/Version-8.3.2-informational?style=flat-square) ![AppVersion: 0.6.12](https://img.shields.io/badge/AppVersion-0.6.12-informational?style=flat-square)
+![Version: 8.3.3](https://img.shields.io/badge/Version-8.3.3-informational?style=flat-square) ![AppVersion: 0.6.18](https://img.shields.io/badge/AppVersion-0.6.18-informational?style=flat-square)
 
 Calibre-Web is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database.
 
@@ -82,22 +82,23 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"linuxserver/calibre-web"` | image repository |
-| image.tag | string | `"version-0.6.12"` | image tag |
+| image.tag | string | `"version-0.6.18"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 8.3.2
+### Version 8.3.3
 
 #### Added
 
-N/A
+Environment variable to inject calibre binaries for ebook conversion. 
+For more context see [here](https://github.com/linuxserver/docker-calibre-web#application-setup).
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded calibre-web version to 0.6.18
 
 #### Fixed
 
