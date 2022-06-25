@@ -26,15 +26,48 @@ service:
     ports:
       http:
         port: 8043
+  management:
+    enabled: false
+    ports:
+      tcp29811:
+        enabled: true
+        port: 29811
+        protocol: TCP
+        primary: false
+      tcp29812:
+        enabled: true
+        port: 29812
+        protocol: TCP
+        primary: false
+      tcp29813:
+        enabled: true
+        port: 29813
+        protocol: TCP
+        primary: false
+    discovery:
+      enabled: false
+      ports:
+        udp29810:
+          enabled: true
+          port: 29810
+          protocol: UDP
+          primary: false
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml
   main:
     enabled: false
+    # annotations:
+    #   nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    #   nginx.ingress.kubernetes.io/proxy-redirect-from: https://$http_host:8043/
+    #   nginx.ingress.kubernetes.io/proxy-redirect-to: https://$http_host/
+    #   nginx.ingress.kubernetes.io/configuration-snippet: |
+    #     proxy_set_header        Host $http_host:8043;
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:
   data:
     enabled: false
+    mountPath: /opt/tplink/EAPController/data
