@@ -15,8 +15,8 @@ spec:
     matchLabels:
       {{- include "common.labels.selectorLabels" . | nindent 6 }}
   endpoints:
-    - port: metrics
     {{- range .Values.metrics.serviceMonitor.targets }}
+    - port: metrics
       interval: {{ .interval }}
       scrapeTimeout: {{ .scrapeTimeout }}
       path: /metrics
