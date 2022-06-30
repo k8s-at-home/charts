@@ -1,6 +1,6 @@
 # prometheus-nut-exporter
 
-![Version: 5.3.3](https://img.shields.io/badge/Version-5.3.3-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
+![Version: 5.3.4](https://img.shields.io/badge/Version-5.3.4-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
 
 Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance.
 
@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 5.3.3
+### Version 5.3.4
 
 #### Added
 
@@ -98,11 +98,11 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+N/A
 
 #### Fixed
 
-N/A
+* Fixed `ServiceMonitor` endpoints loop.
 
 ### Older versions
 
