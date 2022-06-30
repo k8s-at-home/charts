@@ -28,5 +28,5 @@ spec:
           - "localhost:{{ .Values.service.main.ports.server.port }}"
       relabelings:
         - sourceLabels: [__param_target]
-          targetLabel: target
+          targetLabel: instance
 {{- end }}

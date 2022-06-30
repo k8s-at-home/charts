@@ -25,6 +25,6 @@ spec:
           - "{{ .hostname }}:{{ .port }}"
       relabelings:
         - sourceLabels: [__param_target]
-          targetLabel: target
+          targetLabel: instance
     {{- end }}
 {{- end }}

@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v2.7.4-2479-g86a32237
 description: Network UPS Tools is a collection of programs which provide a common interface for monitoring and administering UPS, PDU and SCD hardware.
 name: network-ups-tools
-version: 6.3.3
+version: 7.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - nut
@@ -23,4 +23,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+      description: `ServiceMonitor` now sets `instance` label instead of `target`.
