@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: v3.4.20
 description: Simple, private file sharing.
 name: send
-version: 1.0.0
+version: 1.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
 - send
@@ -19,7 +19,7 @@ dependencies:
   version: 4.4.2
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 16.10.0
+  version: 16.13.1
   condition: redis.enabled
 annotations:
   artifacthub.io/changes: |
