@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 1.7.1
 description: Paperless - Index and archive all of your scanned paper documents
 name: paperless
-version: 8.8.3
+version: 9.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - paperless
@@ -22,7 +22,7 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
   - name: postgresql
-    version: 10.16.2
+    version: 11.6.12
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: redis
