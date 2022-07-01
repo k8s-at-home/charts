@@ -21,11 +21,11 @@ env:
   # -- Postgres database hostname
   DATABASE_HOST: '{{ include "common.names.fullname" .}}-postgresql'
   # -- Postgres database user name
-  DATABASE_USER: "{{ .Values.postgresql.postgresqlUsername }}"
+  DATABASE_USER: postgres
   # -- Postgres database password
-  DATABASE_PASS: "{{ .Values.postgresql.postgresqlPassword }}"
+  DATABASE_PASS: "{{ .Values.postgresql.auth.postgresPassword }}"
   # -- Postgres database password
-  DATABASE_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
+  DATABASE_NAME: "{{ .Values.postgresql.auth.database }}"
   # -- Disables the MQTT feature if `true`
   DISABLE_MQTT: "false"
 
@@ -55,9 +55,9 @@ persistence:
 # @default -- See values.yaml
 postgresql:
   enabled: false
-  postgresqlUsername: postgres
-  postgresqlPassword: teslamate-pass
-  postgresqlDatabase: teslamate
+  auth:
+    postgresPassword: teslamate-pass
+    database: teslamate
   persistence:
     enabled: false
     # storageClass: ""
