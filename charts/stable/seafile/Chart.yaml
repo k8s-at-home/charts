@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 8.0.7
 description: seafile helm package
 name: seafile
-version: 2.2.2
+version: 3.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - seafile
@@ -19,10 +19,10 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
   - name: mariadb
-    version: 10.5.1
+    version: 11.0.14
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+      description: Upgraded `mariadb` chart dependency to version 11.0.14
