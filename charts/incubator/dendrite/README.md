@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v0.8.7](https://img.shields.io/badge/AppVersion-v0.8.7-informational?style=flat-square)
+![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: v0.8.7](https://img.shields.io/badge/AppVersion-v0.8.7-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 11.1.25 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
 | https://library-charts.k8s-at-home.com | common | 4.4.2 |
 | https://library-charts.k8s-at-home.com | keyserver(common) | 4.4.2 |
 | https://library-charts.k8s-at-home.com | clientapi(common) | 4.4.2 |
@@ -29,7 +29,7 @@ Kubernetes: `>=1.16.0-0`
 | https://library-charts.k8s-at-home.com | federationapi(common) | 4.4.2 |
 | https://library-charts.k8s-at-home.com | userapi(common) | 4.4.2 |
 | https://library-charts.k8s-at-home.com | appserviceapi(common) | 4.4.2 |
-| https://nats-io.github.io/k8s/helm/charts/ | nats | 0.16.0 |
+| https://nats-io.github.io/k8s/helm/charts/ | nats | 0.17.1 |
 
 ## TL;DR
 
@@ -228,7 +228,7 @@ For more information see:
 
 ## Changelog
 
-### Version 5.0.0
+### Version 5.1.0
 
 #### Added
 
@@ -236,13 +236,12 @@ N/A
 
 #### Changed
 
-* Enable database configuration on a per-API (component) level
-* Bump dendrite to v0.8.7
-* Set client api registration to disabled by default
+* Upgraded `postgresql` chart dependency to version 11.6.12
+* Upgraded `nats` chart dependency to version 0.17.1
 
 #### Fixed
 
-* Fix syncapi version pinning
+N/A
 
 ### Older versions
 

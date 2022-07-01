@@ -1,6 +1,6 @@
 # firefly-iii
 
-![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-informational?style=flat-square) ![AppVersion: version-5.6.14](https://img.shields.io/badge/AppVersion-version--5.6.14-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: version-5.6.14](https://img.shields.io/badge/AppVersion-version--5.6.14-informational?style=flat-square)
 
 Firefly III: a personal finances manager
 
@@ -19,9 +19,9 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 11.0.2 |
-| https://charts.bitnami.com/bitnami | postgresql | 11.1.28 |
-| https://charts.bitnami.com/bitnami | redis | 16.9.0 |
-| https://library-charts.k8s-at-home.com | common | 4.4.1 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
+| https://charts.bitnami.com/bitnami | redis | 16.13.1 |
+| https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
 
@@ -172,7 +172,7 @@ N/A
 
 ## Changelog
 
-### Version 0.0.1
+### Version 0.1.0
 
 #### Added
 
@@ -180,10 +180,8 @@ N/A
 
 #### Changed
 
-* Added `common` chart dependency to version 4.4.1
-* Added `mariadb` chart dependency to version 11.0.2
-* Added `postgresql` chart dependency to version 11.1.28
-* Added `redis` chart dependency to version 16.9.0
+* Upgraded `postgresql` chart dependency to version 11.6.12
+* Upgraded `redis` chart dependency to version 16.13.1
 
 #### Fixed
 

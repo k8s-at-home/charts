@@ -1,6 +1,6 @@
 # send
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v3.4.20](https://img.shields.io/badge/AppVersion-v3.4.20-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v3.4.20](https://img.shields.io/badge/AppVersion-v3.4.20-informational?style=flat-square)
 
 Simple, private file sharing.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | redis | 16.10.0 |
+| https://charts.bitnami.com/bitnami | redis | 16.13.1 |
 | https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
@@ -89,15 +89,15 @@ N/A
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.1.0
 
 #### Added
 
-* Initial version
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `redis` chart dependency to version 16.13.1
 
 #### Fixed
 
