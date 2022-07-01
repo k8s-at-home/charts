@@ -1,6 +1,6 @@
 # statping
 
-![Version: 5.7.2](https://img.shields.io/badge/Version-5.7.2-informational?style=flat-square) ![AppVersion: v0.90.74](https://img.shields.io/badge/AppVersion-v0.90.74-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v0.90.74](https://img.shields.io/badge/AppVersion-v0.90.74-informational?style=flat-square)
 
 Status page for monitoring your websites and applications
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
 | https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
@@ -78,10 +78,10 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [application docs](https://github.com/statping/statping/wiki/Config-with-.env-File) for more details. |
 | env.DB_CONN | string | `"postgres"` | Type of database to use |
-| env.DB_DATABASE | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` | Postgres database name |
+| env.DB_DATABASE | string | `"{{ .Values.postgresql.auth.database }}"` | Postgres database name |
 | env.DB_HOST | string | internal postgresql URL | Postgres database hostname |
-| env.DB_PASS | string | `"{{ .Values.postgresql.postgresqlPassword }}"` | Postgres database password |
-| env.DB_USER | string | `"{{ .Values.postgresql.postgresqlUsername }}"` | Postgres database user name |
+| env.DB_PASS | string | `"{{ .Values.postgresql.auth.postgresPassword }}"` | Postgres database password |
+| env.DB_USER | string | `"postgres"` | Postgres database user name |
 | env.DESCRIPTION | string | `"This is a Statping instance deployed as Helm chart"` | Description of the Statping instance |
 | env.DISABLE_LOGS | bool | `false` | Disable logs from appearing and writing to disk |
 | env.NAME | string | `"Statping Example"` | Name of the Statping instance |
@@ -99,7 +99,7 @@ N/A
 
 ## Changelog
 
-### Version 5.7.2
+### Version 6.0.0
 
 #### Added
 
@@ -107,7 +107,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `postgresql` chart dependency to version 11.6.12
 
 #### Fixed
 
