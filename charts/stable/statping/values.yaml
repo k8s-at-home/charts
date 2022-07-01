@@ -32,11 +32,11 @@ env:
   # -- Enable ssl_mode for postgres (To enable use `require`)
   POSTGRES_SSLMODE: "disable"
   # -- Postgres database user name
-  DB_USER: "{{ .Values.postgresql.postgresqlUsername }}"
+  DB_USER: "postgres"
   # -- Postgres database password
-  DB_PASS: "{{ .Values.postgresql.postgresqlPassword }}"
+  DB_PASS: "{{ .Values.postgresql.auth.postgresPassword }}"
   # -- Postgres database name
-  DB_DATABASE: "{{ .Values.postgresql.postgresqlDatabase }}"
+  DB_DATABASE: "{{ .Values.postgresql.auth.database }}"
   # -- Use CDN for static context from third-parties
   USE_CDN: false
   # -- Disable logs from appearing and writing to disk
@@ -74,9 +74,9 @@ persistence:
 # @default -- See values.yaml
 postgresql:
   enabled: true
-  postgresqlUsername: postgres
-  postgresqlPassword: "changeme"
-  postgresqlDatabase: postgres
+  auth:
+    postgresPassword: "changeme"
+    database: postgres
   persistence:
     enabled: false
     # storageClass: ""
