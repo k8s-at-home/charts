@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: "220617-jammy"
 description: PhotoPrism® is a server-based application for browsing, organizing and sharing your personal photo collection
 name: photoprism
-version: 6.6.4
+version: 7.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - photos
@@ -23,10 +23,10 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
   - name: mariadb
-    version: 10.5.1
+    version: 11.0.14
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Update app image to 220617-jammy
+      description: Upgraded `mariadb` chart dependency to version 11.0.14
