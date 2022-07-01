@@ -20,11 +20,11 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
   - name: redis
-    version: 15.7.6
+    version: 16.13.1
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
   - name: postgresql
-    version: 10.16.2
+    version: 11.6.12
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: mariadb
@@ -35,3 +35,7 @@ annotations:
   artifacthub.io/changes: |-
     - kind: changed
       description: Upgraded `mariadb` chart dependency to version 11.0.14
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version 11.6.12
+    - kind: changed
+      description: Upgraded `redis` chart dependency to version 16.13.1
