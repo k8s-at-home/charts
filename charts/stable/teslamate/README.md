@@ -1,6 +1,6 @@
 # teslamate
 
-![Version: 6.7.2](https://img.shields.io/badge/Version-6.7.2-informational?style=flat-square) ![AppVersion: v1.23.4](https://img.shields.io/badge/AppVersion-v1.23.4-informational?style=flat-square)
+![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: v1.23.4](https://img.shields.io/badge/AppVersion-v1.23.4-informational?style=flat-square)
 
 A self-hosted data logger for your Tesla 🚘
 
@@ -17,7 +17,7 @@ A self-hosted data logger for your Tesla 🚘
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
 | https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
@@ -77,9 +77,9 @@ N/A
 |-----|------|---------|-------------|
 | env | object | See below | environment variables. See [teslamate docs](https://docs.teslamate.org/docs/configuration/environment_variables) for more details. |
 | env.DATABASE_HOST | string | `"{{ include \"common.names.fullname\" .}}-postgresql"` | Postgres database hostname |
-| env.DATABASE_NAME | string | `"{{ .Values.postgresql.postgresqlDatabase }}"` | Postgres database password |
-| env.DATABASE_PASS | string | `"{{ .Values.postgresql.postgresqlPassword }}"` | Postgres database password |
-| env.DATABASE_USER | string | `"{{ .Values.postgresql.postgresqlUsername }}"` | Postgres database user name |
+| env.DATABASE_NAME | string | `"{{ .Values.postgresql.auth.database }}"` | Postgres database password |
+| env.DATABASE_PASS | string | `"{{ .Values.postgresql.auth.postgresPassword }}"` | Postgres database password |
+| env.DATABASE_USER | string | `"postgres"` | Postgres database user name |
 | env.DISABLE_MQTT | string | `"false"` | Disables the MQTT feature if `true` |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
@@ -92,7 +92,7 @@ N/A
 
 ## Changelog
 
-### Version 6.7.2
+### Version 7.0.0
 
 #### Added
 
@@ -100,7 +100,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `postgresql` chart dependency to version 11.6.12
 
 #### Fixed
 
