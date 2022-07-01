@@ -25,13 +25,13 @@ env:
   # -- Postgres database port.
   TTRSS_DB_PORT: "5432"
   # -- Postgres database user name
-  # @default -- postgresql.postgresqlUsername value
+  # @default -- postgresql.auth.username value
   TTRSS_DB_USER: ""
   # -- Postgres database password
-  # @default -- postgresql.postgresqlPassword value
+  # @default -- postgresql.auth.password value
   TTRSS_DB_PASS: ""
   # -- Postgres database password
-  # @default -- postgresql.postgresqlDatabase value
+  # @default -- postgresql.auth.database value
   TTRSS_DB_NAME: ""
 
 # -- Configure the services for the chart here.
@@ -53,12 +53,13 @@ ingress:
 postgresql:
   # -- By default uses an internal postgress. Dissable if you use your own Postgres.
   enabled: true
-  # -- Postgres database user name
-  postgresqlUsername: postgres
-  # -- Postgres database password
-  postgresqlPassword: "changeme"
-  # -- Postgres database password
-  postgresqlDatabase: tt-rss
+  auth:
+    # -- Postgres database user name
+    username: tt-rss
+    # -- Postgres database password
+    password: "changeme"
+    # -- Postgres database
+    database: tt-rss
   persistence:
     # -- if database is stored to a PVC. Set to true when you are done testing.
     enabled: false

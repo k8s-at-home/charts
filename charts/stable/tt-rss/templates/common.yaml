@@ -7,15 +7,15 @@
 {{- end -}}
 {{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
 {{- if eq .Values.env.TTRSS_DB_USER "" -}}
-  {{- $_ := set .Values.env "TTRSS_DB_USER" .Values.postgresql.postgresqlUsername -}}
+  {{- $_ := set .Values.env "TTRSS_DB_USER" .Values.postgresql.auth.username -}}
 {{- end -}}
 {{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
 {{- if eq .Values.env.TTRSS_DB_PASS "" -}}
-  {{- $_ := set .Values.env "TTRSS_DB_PASS" .Values.postgresql.postgresqlPassword -}}
+  {{- $_ := set .Values.env "TTRSS_DB_PASS" .Values.postgresql.auth.password -}}
 {{- end -}}
 {{/* if TTRSS_DB_USER is not set use internal postgres chart */}}
 {{- if eq .Values.env.TTRSS_DB_NAME "" -}}
-  {{- $_ := set .Values.env "TTRSS_DB_NAME" .Values.postgresql.postgresqlDatabase -}}
+  {{- $_ := set .Values.env "TTRSS_DB_NAME" .Values.postgresql.auth.database -}}
 {{- end -}}
 
 {{/* Render the templates */}}
