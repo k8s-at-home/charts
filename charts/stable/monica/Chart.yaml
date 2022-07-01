@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 3.7.0-apache
 description: A Personal Relationship Management tool to help you organize your social life
 name: monica
-version: 7.2.2
+version: 8.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - crm
@@ -20,10 +20,10 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
   - name: mariadb
-    version: 10.5.1
+    version: 11.0.14
     repository: https://charts.bitnami.com/bitnami
     condition: mariadb.enabled
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+      description: Upgraded `mariadb` chart dependency to version 11.0.14
