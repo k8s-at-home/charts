@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 0.17.0
 description: The to-do app to organize your life
 name: vikunja
-version: 5.5.3
+version: 6.0.0
 keywords:
   - vikunja
   - to-do
@@ -26,10 +26,10 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
   - name: postgresql
-    version: 10.16.2
+    version: 11.6.12
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |-
-    - kind: fixed
-      description: Fix subpath in configmap to match persistence value
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version 11.6.12
