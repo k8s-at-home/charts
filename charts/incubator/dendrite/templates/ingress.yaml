@@ -1,0 +1,46 @@
+{{- if .Values.dendrite.polylith_ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "common.names.fullname" . }}
+spec:
+  rules:
+    - host: {{ .Values.dendrite.polylith_ingress.host | quote }}
+      http:
+        paths:
+        - path: /_matrix/client/
+          pathType: Prefix
+          backend:
+            service:
+              name: {{ include "common.names.fullname" (index $.Subcharts  "syncapi") }}
+              port:
+                number: {{ .Values.syncapi.service.main.ports.external.port }}
+        - path: /_matrix/client
+          pathType: Exact
+          backend:
+            service:
+              name: {{ include "common.names.fullname" (index $.Subcharts  "clientapi") }}
+              port:
+                number: {{ .Values.clientapi.service.main.ports.external.port }}
+        - path: /_matrix/federation
+          pathType: Exact
+          backend:
+            service:
+              name: {{ include "common.names.fullname" (index $.Subcharts  "federationapi") }}
+              port:
+                number: {{ .Values.federationapi.service.main.ports.external.port }}
+        - path: /_matrix/key
+          pathType: Exact
+          backend:
+            service:
+              name: {{ include "common.names.fullname" (index $.Subcharts  "federationapi") }}
+              port:
+                number: {{ .Values.federationapi.service.main.ports.external.port }}
+        - path: /_matrix/media
+          pathType: Exact
+          backend:
+            service:
+              name: {{ include "common.names.fullname" (index $.Subcharts  "mediaapi") }}
+              port:
+                number: {{ .Values.mediaapi.service.main.ports.external.port }}
+{{- end -}}

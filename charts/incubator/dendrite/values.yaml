@@ -37,7 +37,8 @@ service:
         protocol: HTTPS
 
 ingress:
-  # -- Enable and configure ingress settings for the chart under this key.
+  # -- (Monolith Only) Enable and configure ingress settings for the chart under
+  # this key.
   # @default -- See values.yaml
   main:
     enabled: false
@@ -115,6 +116,8 @@ appserviceapi:
         internal:
           enabled: true
           port: 7777
+  ingress:
+
   args: "appservice"
   # -- Override general dendrite.database parameters.
   # @default -- See values.yaml
@@ -185,6 +188,7 @@ clientapi:
       enabled: true
       threshold: 5
       cooloff_ms: 500
+      exempt_user_ids: []
 
 # -- Configure the Federation API
 # For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml)
@@ -459,6 +463,7 @@ dendrite:
     existingSecret: ""
     crtPath: tls.crt
     keyPath: tls.key
+
   matrix_key_secret:
     # -- Create matrix_key secret using the keyBody below.
     create: false
@@ -468,6 +473,15 @@ dendrite:
     existingSecret: ""
     # -- Field in the secret to get the key from
     secretPath: matrix_key.pem
+
+  # -- Enable and configure polylith ingress as per
+  # https://github.com/matrix-org/dendrite/blob/main/docs/nginx/polylith-sample.conf
+  # @default -- See values.yaml
+  polylith_ingress:
+    enabled: false
+    host: ""
+    annotations: []
+    tls: {}
 
   # -- Configure database connection parameters.
   # @default -- See values.yaml
