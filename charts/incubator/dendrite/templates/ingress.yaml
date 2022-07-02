@@ -4,6 +4,12 @@ kind: Ingress
 metadata:
   name: {{ include "common.names.fullname" . }}
 spec:
+  {{- if .Values.dendrite.tls_secret.enabled }}
+  tls:
+  - hosts:
+      - {{ .Values.dendrite.polylith_ingress.host | quote }}
+    secretName: {{ .Values.dendrite.tls_secret.existingSecret }}
+  {{- end }}
   rules:
     - host: {{ .Values.dendrite.polylith_ingress.host | quote }}
       http:
