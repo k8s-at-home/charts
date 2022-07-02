@@ -1,0 +1,51 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: registry.gitlab.com/bockiii/deemix-docker
+  # -- image tag
+  # @default -- chart.appVersion
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [deemix-docker documentation](https://gitlab.com/Bockiii/deemix-docker).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: "UTC"
+  # -- User ID of the user you want the container to run as in order to fix folder permission issues
+  PUID: "1000"
+  # -- Group ID, see PUID
+  PGID: "1000"
+  # -- Default umask for downloaded files
+  UMASK_SET: "022"
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 6595
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: false
+    mountPath: /config
+  downloads:
+    enabled: false
+    mountPath: /downloads
