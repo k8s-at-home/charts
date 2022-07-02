@@ -2,6 +2,7 @@
 {{- if .Values.postgresql.enabled}}
 {{- $connectionString = print "postgresql://" .Values.postgresql.auth.username ":" .Values.postgresql.auth.password "@" (include "common.names.fullname" .)  "-postgresql/" -}}
 {{- end}}
+{{- $componentSpecificDatabaseConfig := or (.Values.polylithEnabled) (not .Values.postgresql.enabled) -}}
 ---
 apiVersion: v1
 kind: Secret
@@ -50,7 +51,7 @@ stringData:
         enabled: {{ default false .Values.dendrite.global.dns_cache.enabled }}
         cache_size: {{ default 256 .Values.dendrite.global.dns_cache.cache_size }}
         cache_lifetime: {{ default "5m" .Values.dendrite.global.dns_cache.cache_lifetime }}
-      {{- if not .Values.dendrite.polylithEnabled }}
+      {{- if not $componentSpecificDatabaseConfig }}
       database:
         connection_string: {{ default (print $connectionString "dendrite?sslmode=disable") .Values.database.connection_string }}
         max_open_conns: {{ default 100 .Values.database.max_open_conns }}
@@ -61,7 +62,9 @@ stringData:
       {{- if .Values.dendrite.polylithEnabled }}
       internal_api:
         listen: http://0.0.0.0:{{ .Values.appserviceapi.service.main.ports.internal.port }}
-        connect: http://{{ include "common.names.fullname" (index .Subcharts "appserviceapi") }}:{{ .Values.appserviceapi.service.main.ports.internal.port }}
+        connect: http://{{ include "common.names.fullname" (index $.Subcharts "appserviceapi") }}:{{ .Values.appserviceapi.service.main.ports.internal.port }}
+      {{- end }}
+      {{- if $componentSpecificDatabaseConfig }}
       database:
         connection_string: {{ default (print $connectionString "dendrite_appservice?sslmode=disable") .Values.appserviceapi.database.connection_string }}
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.appserviceapi.database.max_open_conns }}
@@ -73,7 +76,7 @@ stringData:
       {{- if .Values.dendrite.polylithEnabled }}
       internal_api:
         listen: http://0.0.0.0:{{ .Values.clientapi.service.main.ports.internal.port }}
-        connect: http://{{ include "common.names.fullname" (index .Subcharts "clientapi") }}:{{ .Values.clientapi.service.main.ports.internal.port }}
+        connect: http://{{ include "common.names.fullname" (index $.Subcharts "clientapi") }}:{{ .Values.clientapi.service.main.ports.internal.port }}
       external_api:
         listen: http://0.0.0.0:{{ .Values.clientapi.service.main.ports.external.port }}
       {{- end }}
@@ -97,18 +100,19 @@ stringData:
         connect: http://{{ include "common.names.fullname" (index $.Subcharts "federationapi") }}:7772
       external_api:
         listen: http://0.0.0.0:8072
-      database:
-        connection_string: {{ default (print $connectionString "dendrite_federationapi?sslmode=disable") .Values.federationapi.database.connection_string }}
-        max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.federationapi.database.max_open_conns }}
-        max_idle_conns: {{ default .Values.dendrite.database.max_idle_conns .Values.federationapi.database.max_idle_conns }}
         conn_max_lifetime: {{ default .Values.dendrite.database.conn_max_lifetime .Values.federationapi.database.conn_max_lifetime }}
-
       federation_certificates: {{- toYaml .Values.federationapi.config.federation_certificates | nindent 8 }}
       proxy_outbound:
         enabled: {{ default false .Values.federationapi.config.proxy_outbound.enabled }}
         protocol: {{ default "http" .Values.federationapi.config.proxy_outbound.protocol | quote }}
         host: {{ default "localhost" .Values.federationapi.config.proxy_outbound.host | quote }}
         port: {{ default 8080 .Values.federationapi.config.proxy_outbound.port }}
+      {{- end }}
+      {{- if $componentSpecificDatabaseConfig }}
+      database:
+        connection_string: {{ default (print $connectionString "dendrite_federationapi?sslmode=disable") .Values.federationapi.database.connection_string }}
+        max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.federationapi.database.max_open_conns }}
+        max_idle_conns: {{ default .Values.dendrite.database.max_idle_conns .Values.federationapi.database.max_idle_conns }}
       {{- end }}
       send_max_retries: {{ default 16 .Values.federationapi.config.send_max_retries }}
       disable_tls_validation: {{ default false .Values.federationapi.config.disable_tls_validation }}
@@ -132,6 +136,8 @@ stringData:
         connect: http://{{ include "common.names.fullname" (index $.Subcharts "mediaapi") }}:7774
       external_api:
         listen: http://0.0.0.0:8074
+      {{- end }}
+      {{- if $componentSpecificDatabaseConfig }}
       database:
         connection_string: {{ default (print $connectionString "dendrite_mediaapi?sslmode=disable") .Values.mediaapi.database.connection_string }}
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.mediaapi.database.max_open_conns }}
@@ -145,7 +151,7 @@ stringData:
       thumbnail_sizes: {{- toYaml .Values.mediaapi.config.thumbnail_sizes | nindent 8 }}
     mscs:
       mscs: {{ .Values.dendrite.global.mscs | toYaml | nindent 8 }}
-      {{- if .Values.dendrite.polylithEnabled }}
+      {{- if $componentSpecificDatabaseConfig }}
       database:
         connection_string: {{ default (print $connectionString "dendrite_mscs?sslmode=disable") .Values.mscs.database.connection_string }}
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.mscs.database.max_open_conns }}
@@ -170,6 +176,8 @@ stringData:
         connect: http://{{ include "common.names.fullname" (index $.Subcharts "syncapi") }}:7773
       external_api:
           listen: http://0.0.0.0:8073
+      {{- end }}
+      {{- if $componentSpecificDatabaseConfig }}
       database:
         connection_string: {{ default (print $connectionString "dendrite_syncapi?sslmode=disable") .Values.syncapi.database.connection_string }}
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.syncapi.database.max_open_conns }}
@@ -181,6 +189,8 @@ stringData:
       internal_api:
         listen: http://0.0.0.0:7781
         connect: http://{{ include "common.names.fullname" (index $.Subcharts "userapi") }}:7781
+      {{- end }}
+      {{- if $componentSpecificDatabaseConfig }}
       account_database:
         connection_string: {{ default (print $connectionString "dendrite_userapi_accounts?sslmode=disable") .Values.userapi.database.connection_string }}
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.userapi.database.max_open_conns }}
