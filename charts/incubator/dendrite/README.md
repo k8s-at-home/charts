@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: v0.8.7](https://img.shields.io/badge/AppVersion-v0.8.7-informational?style=flat-square)
+![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -111,6 +111,11 @@ For more information see:
 | clientapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | clientapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | clientapi.image.tag | string | chart.appVersion | image tag |
+| database | object | See values.yaml | Override general dendrite.database parameters. |
+| database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
+| database.connection_string | string | file or derived from included postgresql deployment | Custom connection string |
+| database.max_idle_conns | string | dendrite.database.max_idle_conns | Maximum dile connections |
+| database.max_open_conns | string | dendrite.database.max_open_conns | Maximum open connections |
 | dendrite | object | See values.yaml | Configuration for Dendrite. For more information see [the sample denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
 | dendrite.database | object | See values.yaml | Configure database connection parameters. |
 | dendrite.global | object | See values.yaml | Configure the global settings for dendrite. |
@@ -138,6 +143,8 @@ For more information see:
 | dendrite.matrix_key_secret.keyBody | string | `""` | New Key Body |
 | dendrite.matrix_key_secret.secretPath | string | `"matrix_key.pem"` | Field in the secret to get the key from |
 | dendrite.polylithEnabled | bool | `false` | Enable polylith deployment |
+| dendrite.polylith_ingress | object | See values.yaml | Enable and configure polylith ingress as per https://github.com/matrix-org/dendrite/blob/main/docs/nginx/polylith-sample.conf |
+| dendrite.polylith_ingress.syncapi_paths | list | See values.yaml | Sync API Paths are a little tricky since they require regular expressions. Therefore the paths will depend on the ingress controller used. See values.yaml for nginx and traefik. |
 | dendrite.report_stats | object | `{"enabled":false,"endpoint":""}` | Usage statistics reporting configuration |
 | dendrite.report_stats.enabled | bool | false | Enable or disable usage reporting |
 | dendrite.report_stats.endpoint | string | `""` | Push endpoint for usage statistics |
@@ -156,7 +163,7 @@ For more information see:
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"matrixdotorg/dendrite-monolith"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
-| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
+| ingress.main | object | See values.yaml | (Monolith Only) Enable and configure ingress settings for the chart under this key. |
 | keyserver | object | See values.yaml | Configure the key server. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
 | keyserver.database | object | See values.yaml | Override general dendrite.database parameters. |
 | keyserver.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
@@ -228,16 +235,16 @@ For more information see:
 
 ## Changelog
 
-### Version 5.1.0
+### Version 6.0.0
 
 #### Added
 
-N/A
+* Added ingress for polylith mode
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version 11.6.12
-* Upgraded `nats` chart dependency to version 0.17.1
+* Upgraded `dendrite` dependency to version 0.8.9
+* **Breaking**: Updated default config as per separate monolith/polylith samples
 
 #### Fixed
 
