@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: murmur helm package
+name: murmur
+version: 1.4.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - murmur
+  - mumble
+  - voice
+  - chat
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/murmur
+icon: https://github.com/mumble-voip/mumble/blob/master/icons/murmur.64x64.png?raw=true
+sources:
+  - https://github.com/mumble-voip/mumble
+  - https://hub.docker.com/r/genericeric/murmur
+maintainers:
+  - name: GenericEric
+    email: eric@bgeneric.net
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
