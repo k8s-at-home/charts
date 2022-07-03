@@ -58,7 +58,8 @@ postgresql:
   auth:
     postgresPassword: teslamate-pass
     database: teslamate
-  persistence:
-    enabled: false
-    # storageClass: ""
-    # size: 8Gi
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
+      # size: 8Gi
