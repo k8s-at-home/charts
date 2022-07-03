@@ -1,6 +1,6 @@
 # teslamate
 
-![Version: 7.0.0](https://img.shields.io/badge/Version-7.0.0-informational?style=flat-square) ![AppVersion: v1.23.4](https://img.shields.io/badge/AppVersion-v1.23.4-informational?style=flat-square)
+![Version: 7.0.1](https://img.shields.io/badge/Version-7.0.1-informational?style=flat-square) ![AppVersion: v1.23.4](https://img.shields.io/badge/AppVersion-v1.23.4-informational?style=flat-square)
 
 A self-hosted data logger for your Tesla 🚘
 
@@ -92,7 +92,7 @@ N/A
 
 ## Changelog
 
-### Version 7.0.0
+### Version 7.0.1
 
 #### Added
 
@@ -100,7 +100,7 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version 11.6.12
+* Update `postgresql` chart dependency persistence values
 
 #### Fixed
 
