@@ -496,7 +496,21 @@ dendrite:
   polylith_ingress:
     enabled: false
     host: ""
-    annotations: []
+    annotations: {}
+    # -- Sync API Paths are a little tricky since they require regular expressions. Therefore
+    # the paths will depend on the ingress controller used. See values.yaml for nginx and traefik.
+    # @default -- See values.yaml
+    syncapi_paths: []
+      # For Traefik uncomment these lines
+      # - /_matrix/client/{version:.*?}/rooms/{roomid:.*?}/messages
+      # - /_matrix/client/{version:.*?}/keys/changes
+      # - /_matrix/client/{version:.*?}/user/{userid:.*?}/filter/{filterid:.*?}
+      # - /_matrix/client/{version:.*?}/user/{userid:.*?}/filter
+      # - /_matrix/client/{version:.*?}/sync
+      #
+      # For nginx uncomment these lines and add the annotations here:
+      # https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#use-regex
+      # - /_matrix/client/.*?/(sync|user/.*?/filter/?.*|keys/changes|rooms/.*?/messages)$ 
 
   # -- Configure database connection parameters.
   # @default -- See values.yaml

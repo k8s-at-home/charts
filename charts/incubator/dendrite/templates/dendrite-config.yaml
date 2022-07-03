@@ -1,8 +1,8 @@
 {{- $connectionString := "file:" -}}
 {{- if .Values.postgresql.enabled}}
-{{- $connectionString = print "postgresql://" .Values.postgresql.auth.username ":" .Values.postgresql.auth.password "@" (include "common.names.fullname" .)  "-postgresql/" -}}
+{{- $connectionString = print "postgresql://" .Values.postgresql.auth.username ":" .Values.postgresql.auth.password "@" (include "common.names.fullname" $.Subcharts.postgresql) "/" -}}
 {{- end}}
-{{- $componentSpecificDatabaseConfig := or (.Values.polylithEnabled) (not .Values.postgresql.enabled) -}}
+{{- $componentSpecificDatabaseConfig := or .Values.dendrite.polylithEnabled (not .Values.postgresql.enabled) -}}
 ---
 apiVersion: v1
 kind: Secret
@@ -35,7 +35,7 @@ stringData:
       jetstream:
         addresses:
           {{- if .Values.nats.enabled }}
-          - {{ template "common.names.fullname" . }}-nats:4222
+          - {{ template "common.names.fullname" $.Subcharts.nats }}:4222
           {{- else }}
           []
           {{- end }}
@@ -118,17 +118,19 @@ stringData:
       disable_tls_validation: {{ default false .Values.federationapi.config.disable_tls_validation }}
       key_perspectives: {{- toYaml .Values.federationapi.config.key_perspectives | nindent 8 }}
       prefer_direct_fetch: {{ default false .Values.federationapi.config.prefer_direct_fetch }}
-    {{- if .Values.dendrite.polylithEnabled }}
     key_server:
+      {{- if .Values.dendrite.polylithEnabled }}
       internal_api:
         listen: http://0.0.0.0:7779
         connect: http://{{ include "common.names.fullname" (index $.Subcharts "keyserver") }}:7779
+      {{- end }}
+      {{- if $componentSpecificDatabaseConfig }}
       database:
         connection_string: {{ default (print $connectionString "dendrite_keyserver?sslmode=disable") .Values.keyserver.database.connection_string }}
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.keyserver.database.max_open_conns }}
         max_idle_conns: {{ default .Values.dendrite.database.max_idle_conns .Values.keyserver.database.max_idle_conns }}
         conn_max_lifetime: {{ default .Values.dendrite.database.conn_max_lifetime .Values.keyserver.database.conn_max_lifetime }}
-    {{- end }}
+      {{- end }}
     media_api:
       {{- if .Values.dendrite.polylithEnabled }}
       internal_api:
@@ -158,17 +160,19 @@ stringData:
         max_idle_conns: {{ default .Values.dendrite.database.max_idle_conns .Values.mscs.database.max_idle_conns }}
         conn_max_lifetime: {{ default .Values.dendrite.database.conn_max_lifetime .Values.mscs.database.conn_max_lifetime }}
       {{- end }}
-    {{- if .Values.dendrite.polylithEnabled }}
     room_server:
+      {{- if .Values.dendrite.polylithEnabled }}
       internal_api:
         listen: http://0.0.0.0:7770
         connect: http://{{ include "common.names.fullname" (index $.Subcharts "roomserver") }}:7770
+      {{- end }}
+      {{- if $componentSpecificDatabaseConfig }}
       database:
         connection_string: {{ default (print $connectionString "dendrite_roomserver?sslmode=disable") .Values.roomserver.database.connection_string }}
         max_open_conns: {{ default .Values.dendrite.database.max_open_conns .Values.roomserver.database.max_open_conns }}
         max_idle_conns: {{ default .Values.dendrite.database.max_idle_conns .Values.roomserver.database.max_idle_conns }}
         conn_max_lifetime: {{ default .Values.dendrite.database.conn_max_lifetime .Values.roomserver.database.conn_max_lifetime }}
-    {{- end }}
+      {{- end }}
     sync_api:
       {{- if .Values.dendrite.polylithEnabled }}
       internal_api:
