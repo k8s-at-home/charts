@@ -11,7 +11,8 @@ image:
   # -- image pull policy of the gateway and inserted helper cotainers
   pullPolicy: IfNotPresent
   # -- image tag of the gateway and inserted helper containers
-  tag: v1.2.6
+  # @default -- chart.appVersion
+  tag:
 
 # -- IP address of the DNS server within the vxlan tunnel.
 # All mutated PODs will get this as their DNS server.
@@ -110,7 +111,7 @@ webhook:
     # -- image pullPolicy of the webhook
     pullPolicy: IfNotPresent
     # -- image tag of the webhook
-    tag: v3.3.2
+    tag: v3.5.0
 
   # -- number of webhook instances to deploy
   replicas: 1

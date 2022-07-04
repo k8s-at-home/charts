@@ -32,7 +32,7 @@ initContainers:
   routes:
     name: "routes"
     # -- Image for the init container
-    image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+    image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
     # -- Will be set automatically
     # @default -- <image.pullPolicy>
     imagePullPolicy: {{ .Values.image.pullPolicy }}
