@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 5.4.2](https://img.shields.io/badge/Version-5.4.2-informational?style=flat-square) ![AppVersion: 1.2.6](https://img.shields.io/badge/AppVersion-1.2.6-informational?style=flat-square)
+![Version: 5.5.0](https://img.shields.io/badge/Version-5.5.0-informational?style=flat-square) ![AppVersion: v1.6.0](https://img.shields.io/badge/AppVersion-v1.6.0-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -107,7 +107,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 | clusterName | string | `"cluster.local"` | cluster name used to derive the gateway full name |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy of the gateway and inserted helper cotainers |
 | image.repository | string | `"ghcr.io/k8s-at-home/pod-gateway"` | image repository of the gateway and inserted helper containers |
-| image.tag | string | `"v1.2.6"` | image tag of the gateway and inserted helper containers |
+| image.tag | string | chart.appVersion | image tag of the gateway and inserted helper containers |
 | publicPorts | string | `nil` | settings to expose ports, usually through a VPN provider. NOTE: if you change it you will need to manually restart the gateway POD |
 | routed_namespaces | list | `[]` | Namespaces that might contain routed PODs and therefore require a copy of the gneerated settings configmap. |
 | settings.DNS_LOCAL_CIDRS | string | `"local"` | DNS queries to these domains will be resolved by K8S DNS instead of the default (typcally the VPN client changes it) |
@@ -125,14 +125,14 @@ certificates. It does not install it as dependency to avoid conflicts.
 | webhook.gatewayLabel | string | `"setGateway"` | label name to check when evaluating POD. If true the POD will get the gateway. If not set setGatewayDefault will apply. |
 | webhook.image.pullPolicy | string | `"IfNotPresent"` | image pullPolicy of the webhook |
 | webhook.image.repository | string | `"ghcr.io/k8s-at-home/gateway-admision-controller"` | image repository of the webhook |
-| webhook.image.tag | string | `"v3.3.2"` | image tag of the webhook |
+| webhook.image.tag | string | `"v3.5.0"` | image tag of the webhook |
 | webhook.namespaceSelector | object | `{"custom":{},"label":"routed-gateway","type":"label"}` | Selector for namespace. All pods in this namespace will get evaluated by the webhook. **IMPORTANT**: Do not select the namespace where the webhook is deployed to or you will get locking issues. |
 | webhook.replicas | int | `1` | number of webhook instances to deploy |
 | webhook.strategy | object | `{"type":"RollingUpdate"}` | strategy for updates |
 
 ## Changelog
 
-### Version 5.4.2
+### Version 5.5.0
 
 #### Added
 
@@ -140,7 +140,8 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `pod-gateway` tag dependency to v1.6.0
+* Upgraded `gateway-admision-controller` tag dependency to v3.5.0
 
 #### Fixed
 
