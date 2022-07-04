@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 1.2.6
+appVersion: v1.6.0
 description: Admision controller to change the default gateway and DNS server of PODs
 name: pod-gateway
-version: 5.4.2
+version: 5.5.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - pod-gateway
@@ -22,4 +22,6 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+      description: Upgraded `pod-gateway` tag dependency to v1.6.0
+    - kind: changed
+      description: Upgraded `gateway-admision-controller` tag dependency to v3.5.0
