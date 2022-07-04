@@ -36,8 +36,8 @@ initContainers:
 image:
   # -- image repository
   repository: adguard/adguardhome
-  # -- image tag
-  tag: v0.106.3
+  # @default -- chart.appVersion
+  tag:
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -104,8 +104,7 @@ config: |
   auth_attempts: 5
   block_auth_min: 15
   http_proxy: ""
-  language: en
-  rlimit_nofile: 0
+  language: ""
   debug_pprof: false
   web_session_ttl: 720
   dns:
@@ -115,7 +114,7 @@ config: |
     statistics_interval: 1
     querylog_enabled: true
     querylog_file_enabled: true
-    querylog_interval: 90
+    querylog_interval: 2160h
     querylog_size_memory: 1000
     anonymize_client_ip: false
     protection_enabled: true
@@ -125,7 +124,7 @@ config: |
     blocked_response_ttl: 10
     parental_block_host: family-block.dns.adguard.com
     safebrowsing_block_host: standard-block.dns.adguard.com
-    ratelimit: 0
+    ratelimit: 20
     ratelimit_whitelist: []
     refuse_any: true
     upstream_dns:
@@ -138,12 +137,20 @@ config: |
     - 2620:fe::fe:10
     all_servers: false
     fastest_addr: false
+    fastest_timeout: 1s
     allowed_clients: []
     disallowed_clients: []
-    blocked_hosts: []
+    blocked_hosts:
+    - version.bind
+    - id.server
+    - hostname.bind
+    trusted_proxies:
+    - 127.0.0.0/8
+    - ::1/128
     cache_size: 4194304
     cache_ttl_min: 0
     cache_ttl_max: 0
+    cache_optimistic: false
     bogus_nxdomain: []
     aaaa_disabled: false
     enable_dnssec: false
@@ -161,8 +168,9 @@ config: |
     cache_time: 30
     rewrites: []
     blocked_services: []
-    local_domain_name: lan
-    resolve_clients: true
+    upstream_timeout: 10s
+    private_networks: []
+    use_private_ptr_resolvers: true
     local_ptr_upstreams: []
   tls:
     enabled: false
@@ -170,7 +178,7 @@ config: |
     force_https: false
     port_https: 443
     port_dns_over_tls: 853
-    port_dns_over_quic: 784
+    port_dns_over_quic: 853
     port_dnscrypt: 0
     dnscrypt_config_file: ""
     allow_unencrypted_doh: false
@@ -186,17 +194,14 @@ config: |
     id: 1
   - enabled: false
     url: https://adaway.org/hosts.txt
-    name: AdAway
+    name: AdAway Default Blocklist
     id: 2
-  - enabled: false
-    url: https://www.malwaredomainlist.com/hostslist/hosts.txt
-    name: MalwareDomainList.com Hosts List
-    id: 4
   whitelist_filters: []
   user_rules: []
   dhcp:
     enabled: false
     interface_name: ""
+    local_domain_name: lan
     dhcpv4:
       gateway_ip: ""
       subnet_mask: ""
@@ -210,7 +215,14 @@ config: |
       lease_duration: 86400
       ra_slaac_only: false
       ra_allow_slaac: false
-  clients: []
+  clients:
+    runtime_sources:
+      whois: true
+      arp: true
+      rdns: true
+      dhcp: true
+      hosts: true
+    persistent: []
   log_compress: false
   log_localtime: false
   log_max_backups: 0
@@ -218,4 +230,8 @@ config: |
   log_max_age: 3
   log_file: ""
   verbose: false
-  schema_version: 10
+  os:
+    group: ""
+    user: ""
+    rlimit_nofile: 0
+  schema_version: 14

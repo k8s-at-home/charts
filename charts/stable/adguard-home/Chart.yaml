@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: v0.106.3
+appVersion: v0.107.7
 description: DNS proxy as ad-blocker for local network
 name: adguard-home
-version: 5.3.2
+version: 5.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - adguard-home
@@ -23,4 +23,6 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+      description: Upgraded adguard-home to version v0.107.7.
+    - kind: changed
+      description: Synced the default adguard-home configuration with the new version.

@@ -1,6 +1,6 @@
 # adguard-home
 
-![Version: 5.3.2](https://img.shields.io/badge/Version-5.3.2-informational?style=flat-square) ![AppVersion: v0.106.3](https://img.shields.io/badge/AppVersion-v0.106.3-informational?style=flat-square)
+![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![AppVersion: v0.107.7](https://img.shields.io/badge/AppVersion-v0.107.7-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -82,14 +82,14 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"adguard/adguardhome"` | image repository |
-| image.tag | string | `"v0.106.3"` | image tag |
+| image.tag | string | `"v0.107.7"` | image tag |
 | initContainers.copy-configmap | object | See values.yaml | Configures an initContainer that copies the configmap to the AdGuardHome conf directory It does NOT overwrite when the file already exists. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 5.3.2
+### Version 5.4.0
 
 #### Added
 
@@ -97,7 +97,9 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded adguard-home to version v0.107.7.
+
+* Synced the default adguard-home configuration with the new version.
 
 #### Fixed
 
