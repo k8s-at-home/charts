@@ -1,0 +1,26 @@
+apiVersion: v2
+appVersion: "2022.5.28-r206.a752a63e0e"
+description: "Deemix is a Deezer Download Manager"
+name: deemix
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - deemix
+  - music
+  - deezer
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/deemix
+icon: https://gitlab.com/RemixDev/deemix-webui/-/raw/e63a8c709c477a8e68e61037f4b82359d23f4a32/src/assets/deemix-icon.svg
+sources:
+  - https://gitlab.com/Bockiii/deemix-docker
+  - https://gitlab.com/RemixDev/deemix-gui
+maintainers:
+  - name: preisschild
+    email: florian@florianstroeger.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
