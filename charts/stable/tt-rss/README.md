@@ -1,6 +1,6 @@
 # tt-rss
 
-![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: v1.8723.0](https://img.shields.io/badge/AppVersion-v1.8723.0-informational?style=flat-square)
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: v1.8723.0](https://img.shields.io/badge/AppVersion-v1.8723.0-informational?style=flat-square)
 
 Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 
@@ -97,7 +97,7 @@ N/A
 
 ## Changelog
 
-### Version 5.0.0
+### Version 5.0.1
 
 #### Added
 
@@ -105,12 +105,11 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version 11.6.12
-* Changed the default user for the postgresql database to `tt-rss`
+N/A
 
 #### Fixed
 
-N/A
+* Fixed the default values for the database environment variables.
 
 ### Older versions
 
