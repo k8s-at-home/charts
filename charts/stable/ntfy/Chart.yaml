@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: v1.27.2
+description: "Send push notifications to your phone or desktop using PUT/POST"
+name: ntfy
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - ntfy
+  - notification
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/ntfy
+icon: https://raw.githubusercontent.com/binwiederhier/ntfy/main/web/public/static/img/ntfy.png
+sources:
+  - https://github.com/binwiederhier/ntfy
+maintainers:
+  - name: geraldwuhoo
+    email: gerald@geraldwu.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
