@@ -21,18 +21,18 @@ env:
   TTRSS_SELF_URL_PATH: ""
   # -- Postgres database hostname
   # @default -- internal postgresql URL
-  TTRSS_DB_HOST: ""
+  TTRSS_DB_HOST: "{{ printf \"%s-postgresql\" .Release.Name }}"
   # -- Postgres database port.
   TTRSS_DB_PORT: "5432"
   # -- Postgres database user name
   # @default -- postgresql.auth.username value
-  TTRSS_DB_USER: ""
+  TTRSS_DB_USER: "{{ .Values.postgresql.auth.username }}"
   # -- Postgres database password
   # @default -- postgresql.auth.password value
-  TTRSS_DB_PASS: ""
+  TTRSS_DB_PASS: "{{ .Values.postgresql.auth.password }}"
   # -- Postgres database password
   # @default -- postgresql.auth.database value
-  TTRSS_DB_NAME: ""
+  TTRSS_DB_NAME: "{{ .Values.postgresql.auth.database }}"
 
 # -- Configure the services for the chart here.
 # @default -- See below.

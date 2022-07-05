@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v1.8723.0
 description: Tiny Tiny RSS is a free and open source web-based news feed (RSS/Atom) reader and aggregator
 name: tt-rss
-version: 5.0.0
+version: 5.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - tt-rss
@@ -24,7 +24,5 @@ dependencies:
     condition: postgresql.enabled
 annotations:
   artifacthub.io/changes: |-
-    - kind: changed
-      description: Upgraded `postgresql` chart dependency to version 11.6.12
-    - kind: changed
-      description: Changed the default user for the postgresql database to `tt-rss`
+    - kind: fixed
+      description: Fixed the default values for the database environment variables.
