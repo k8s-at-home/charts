@@ -54,12 +54,12 @@ spec:
             - --tls-key-file-path=/tls/tls.key
             - --DNSPolicy={{ .Values.DNSPolicy }}
             # Init container
-            - --initImage={{ .Values.image.repository }}:{{ .Values.image.tag }}
+            - --initImage={{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
             - --initImagePullPol={{ .Values.image.pullPolicy }}
             - --initCmd=/bin/client_init.sh
             - --initMountPoint=/config
             # Sidecar container
-            - --sidecarImage={{ .Values.image.repository }}:{{ .Values.image.tag }}
+            - --sidecarImage={{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
             - --sidecarImagePullPol={{ .Values.image.pullPolicy }}
             - --sidecarCmd=/bin/client_sidecar.sh
             - --sidecarMountPoint=/config
