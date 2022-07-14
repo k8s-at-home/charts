@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 5.5.0](https://img.shields.io/badge/Version-5.5.0-informational?style=flat-square) ![AppVersion: v1.6.0](https://img.shields.io/badge/AppVersion-v1.6.0-informational?style=flat-square)
+![Version: 5.5.1](https://img.shields.io/badge/Version-5.5.1-informational?style=flat-square) ![AppVersion: v1.6.0](https://img.shields.io/badge/AppVersion-v1.6.0-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -132,7 +132,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 
 ## Changelog
 
-### Version 5.5.0
+### Version 5.5.1
 
 #### Added
 
@@ -140,12 +140,11 @@ N/A
 
 #### Changed
 
-* Upgraded `pod-gateway` tag dependency to v1.6.0
-* Upgraded `gateway-admision-controller` tag dependency to v3.5.0
+N/A
 
 #### Fixed
 
-N/A
+* Set proper defaults for image tags in webhook deployment.
 
 ### Older versions
 
