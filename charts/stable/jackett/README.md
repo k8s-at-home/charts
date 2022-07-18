@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded container inamge to v0.20.1316
+* Upgraded container image to v0.20.1316
 
 #### Fixed
 
