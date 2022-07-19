@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 1.25.0
+appVersion: 1.25.1
 description: Vaultwarden is a Bitwarden compatable server in Rust
 name: vaultwarden
-version: 5.0.0
+version: 5.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - Vaultwarden
@@ -30,6 +30,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version 11.0.14
-    - kind: changed
-      description: Upgraded `postgresql` chart dependency to version 11.6.12
+      description: Updated App Version to 1.25.1
