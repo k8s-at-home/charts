@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 6.3.3
+### Version 6.3.4
 
 #### Added
 
@@ -98,7 +98,7 @@ N/A
 
 #### Changed
 
-* Update image to v1.26.1.5798-99a4a6ac9.
+* Update image to v1.27.2.5929-a806c5905.
 
 #### Fixed
 
