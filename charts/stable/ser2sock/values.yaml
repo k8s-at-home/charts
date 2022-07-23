@@ -29,6 +29,8 @@ env:
 # @default -- See values.yaml
 service:
   main:
+    type: ClusterIP
+    clusterIP: None
     ports:
       http:
         enabled: false
