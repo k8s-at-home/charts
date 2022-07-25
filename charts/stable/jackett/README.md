@@ -1,6 +1,6 @@
 # jackett
 
-![Version: 11.5.2](https://img.shields.io/badge/Version-11.5.2-informational?style=flat-square) ![AppVersion: v0.20.892](https://img.shields.io/badge/AppVersion-v0.20.892-informational?style=flat-square)
+![Version: 11.6.0](https://img.shields.io/badge/Version-11.6.0-informational?style=flat-square) ![AppVersion: v0.20.1316](https://img.shields.io/badge/AppVersion-v0.20.1316-informational?style=flat-square)
 
 API Support for your favorite torrent trackers
 
@@ -87,7 +87,7 @@ N/A
 
 ## Changelog
 
-### Version 11.5.2
+### Version 11.6.0
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded container image to v0.20.1316
 
 #### Fixed
 
