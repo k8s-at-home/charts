@@ -1,6 +1,6 @@
 # pod-gateway
 
-![Version: 5.5.1](https://img.shields.io/badge/Version-5.5.1-informational?style=flat-square) ![AppVersion: v1.6.1](https://img.shields.io/badge/AppVersion-v1.6.1-informational?style=flat-square)
+![Version: 5.5.2](https://img.shields.io/badge/Version-5.5.2-informational?style=flat-square) ![AppVersion: v1.6.1](https://img.shields.io/badge/AppVersion-v1.6.1-informational?style=flat-square)
 
 Admision controller to change the default gateway and DNS server of PODs
 
@@ -132,7 +132,7 @@ certificates. It does not install it as dependency to avoid conflicts.
 
 ## Changelog
 
-### Version 5.5.1
+### Version 5.5.2
 
 #### Added
 
