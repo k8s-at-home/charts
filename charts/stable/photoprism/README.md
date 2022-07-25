@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mariadb | 10.5.1 |
+| https://charts.bitnami.com/bitnami | mariadb | 11.0.14 |
 | https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
@@ -101,7 +101,7 @@ N/A
 
 ## Changelog
 
-### Version 6.6.4
+### Version 7.0.1
 
 #### Added
 
@@ -109,7 +109,7 @@ N/A
 
 #### Changed
 
-* Update app image to 220617-jammy
+* Update app image to 220629-jammy
 
 #### Fixed
 
