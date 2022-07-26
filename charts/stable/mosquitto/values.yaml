@@ -32,6 +32,10 @@ auth:
 # -- By enabling this, authentication and access control settings will be controlled on a per-listener basis
 perListenerSettings: false
 
+# -- When enabled, this adds the `listener` option to the mosquitto config.
+# Change this to false when using TLS.
+addListener: true
+
 persistence:
   # -- Configure a persistent volume to place mosquitto data in.
   # When enabled, this enables `persistence` and `persistence_location` in the mosquitto config.
