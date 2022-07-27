@@ -8,10 +8,11 @@
 image:
   # -- image repository
   repository: anonaddy/anonaddy
-  # -- image tag
-  tag: 0.8.4
   # -- image pull policy
   pullPolicy: IfNotPresent
+  # -- image tag
+  # @default -- chart.appVersion
+  tag:
 
 strategy:
   type: Recreate
@@ -26,6 +27,8 @@ env:
   ANONADDY_DOMAIN: chart-example.local
   # -- Long random string used when hashing data for the anonymous replies
   ANONADDY_SECRET:
+  # -- MySQL database hostname / IP address
+  DB_HOST:
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
