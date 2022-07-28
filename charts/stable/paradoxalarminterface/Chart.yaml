@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: 3.0.1
+description: Middleware that aims to connect to a Paradox Alarm panel, exposing the interface for monitoring and control via several technologies.
+name: paradoxalarminterface
+version: 1.0.9
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - paradox
+  - pai
+  - alarm
+  - home-assistant
+  - mqtt
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/paradoxalarminterface
+icon: https://raw.githubusercontent.com/ParadoxAlarmInterface/pai/master/docs/pai_logo.png
+sources:
+  - https://github.com/ParadoxAlarmInterface/pai
+maintainers:
+  - name: wipash
+    email: paichart@dont.ltd
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.4.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
