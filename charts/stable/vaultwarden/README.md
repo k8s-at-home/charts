@@ -1,6 +1,6 @@
 # vaultwarden
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 1.25.1](https://img.shields.io/badge/AppVersion-1.25.1-informational?style=flat-square)
+![Version: 5.2.0](https://img.shields.io/badge/Version-5.2.0-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square)
 
 Vaultwarden is a Bitwarden compatable server in Rust
 
@@ -99,7 +99,7 @@ persistence:
 
 ## Changelog
 
-### Version 5.1.0
+### Version 5.2.0
 
 #### Added
 
@@ -107,7 +107,7 @@ N/A
 
 #### Changed
 
-* Updated App Version to 1.25.1
+* Updated App Version to 1.25.2
 
 #### Fixed
 
