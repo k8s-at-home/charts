@@ -1,6 +1,6 @@
 # anonaddy
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 0.8.4](https://img.shields.io/badge/AppVersion-0.8.4-informational?style=flat-square)
+![Version: 5.0.0](https://img.shields.io/badge/Version-5.0.0-informational?style=flat-square) ![AppVersion: 0.12.3](https://img.shields.io/badge/AppVersion-0.12.3-informational?style=flat-square)
 
 Anonaddy: Anonymous email forwarding
 
@@ -81,9 +81,10 @@ N/A
 | env.ANONADDY_DOMAIN | string | `"chart-example.local"` | Root domain to receive email from |
 | env.ANONADDY_SECRET | string | `nil` | Long random string used when hashing data for the anonymous replies |
 | env.APP_KEY | string | `nil` | Application key for encrypter service You can generate one through `anonaddy key:generate --show` or `echo "base64:$(openssl rand -base64 32)"` |
+| env.DB_HOST | string | `nil` | MySQL database hostname / IP address |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"anonaddy/anonaddy"` | image repository |
-| image.tag | string | `"0.8.4"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | mariadb.enabled | bool | `false` |  |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
@@ -93,7 +94,7 @@ N/A
 
 ## Changelog
 
-### Version 4.1.0
+### Version 5.0.0
 
 #### Added
 
@@ -101,7 +102,7 @@ N/A
 
 #### Changed
 
-* Upgraded `redis` chart dependency to version 16.13.1
+* Updated App Version to 0.12.3
 
 #### Fixed
 
