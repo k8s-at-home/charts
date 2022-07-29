@@ -600,14 +600,14 @@ postgresql:
   enabled: false
   image:
     repository: bitnami/postgresql
-    tag: "14.1.0"
+    tag: "14.4.0"
   auth:
     username: dendrite
     password: changeme
     database: dendrite
-  persistence:
-    enabled: false
   primary:
+    persistence:
+      enabled: false
     initdb:
       scriptsConfigMap: "dendrite-postgresql-init-scripts"
 
@@ -620,3 +620,4 @@ nats:
     image: nats:2.7.1-alpine
     jetstream:
       enabled: true
+

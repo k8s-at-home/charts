@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.8.9
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 6.0.0
+version: 6.0.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -24,7 +24,7 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.4.2
   - name: postgresql
-    version: 11.6.12
+    version: 11.6.16
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: nats
