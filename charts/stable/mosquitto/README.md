@@ -80,21 +80,22 @@ N/A
 | image.repository | string | `"eclipse-mosquitto"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
 | perListenerSettings | bool | `false` | By enabling this, authentication and access control settings will be controlled on a per-listener basis |
+| addListener | bool | `true` | When enabled the `listener` option is added to the mosquitto config. |
 | persistence.configinc | object | See values.yaml | Configure a persistent volume to place *.conf mosquitto-config-files in. When enabled, this gets set as `include_dir` in the mosquitto config. |
 | persistence.data | object | See values.yaml | Configure a persistent volume to place mosquitto data in. When enabled, this enables `persistence` and `persistence_location` in the mosquitto config. |
 | service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
 
 ## Changelog
 
-### Version 4.5.1
+### Version 4.6.0
 
 #### Added
 
-N/A
+* Option to disable adding of the `listener` option to the config
 
 #### Changed
 
-* Use appVersion as image tag by default
+N/A
 
 #### Fixed
 
