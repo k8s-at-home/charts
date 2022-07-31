@@ -88,6 +88,16 @@ N/A
 
 ## Changelog
 
+### Version 9.5.2
+
+#### Changed
+
+* Updated Jellyfin to 10.8.1
+
+#### Fixed
+
+* Fixed typo in homepage URL
+
 ### Version 9.5.1
 
 #### Added
