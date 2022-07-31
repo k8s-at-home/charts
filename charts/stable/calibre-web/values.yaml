@@ -11,7 +11,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: version-0.6.12
+  tag: version-0.6.18
 
 # -- environment variables. See more environment variables in the [calibre-web documentation](https://github.com/linuxserver/docker-calibre-web#parameters).
 # @default -- See below
@@ -22,6 +22,10 @@ env:
   PUID: "1001"
   # -- Specify the group ID the application will run as
   PGID: "1001"
+  # -- uncomment to inject calibre binaries in container to use ebook file format convertion within calibre-web
+  # -- see: https://github.com/linuxserver/docker-calibre-web#application-setup
+  # -- To activate set "Calibre E-Book Converter" to "/usr/bin/ebook-convert" at basic configuration in admin page
+  #DOCKER_MODS: "linuxserver/calibre-web:calibre"
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 0.6.12
+appVersion: 0.6.18
 description: Calibre-Web is a web app providing a clean interface for browsing, reading and downloading eBooks using an existing Calibre database.
 name: calibre-web
-version: 8.3.2
+version: 8.3.3
 kubeVersion: ">=1.16.0-0"
 keywords:
   - calibre
@@ -23,4 +23,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.4.2
+      description: Updated Calibre-Web version and added option for ebook conversion binaries
