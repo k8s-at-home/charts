@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: "2021.06.01"
 description: DSMR-protocol reader, telegram data storage and energy consumption visualizer.
 name: dsmr-reader
-version: 6.2.0
+version: 6.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dsmr-reader
@@ -19,7 +19,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.2
+    version: 4.5.0
   - name: postgresql
     version: 11.6.12
     repository: https://charts.bitnami.com/bitnami
@@ -27,4 +27,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `postgresql` chart dependency to version 11.6.12
+      description: Upgraded `common` chart dependency to version 4.5.0
