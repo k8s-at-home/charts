@@ -80,7 +80,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jellyfin/jellyfin"` | image repository |
-| image.tag | string | `"10.7.7"` | image tag |
+| image.tag | string | `"10.8.1"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | podSecurityContext | object | `{}` | Configure the Security Context for the Pod |
