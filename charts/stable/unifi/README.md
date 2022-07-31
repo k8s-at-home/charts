@@ -1,6 +1,6 @@
 # unifi
 
-![Version: 4.10.1](https://img.shields.io/badge/Version-4.10.1-informational?style=flat-square) ![AppVersion: v7.1.68](https://img.shields.io/badge/AppVersion-v7.1.68-informational?style=flat-square)
+![Version: 5.0.1](https://img.shields.io/badge/Version-5.0.1-informational?style=flat-square) ![AppVersion: v7.1.68](https://img.shields.io/badge/AppVersion-v7.1.68-informational?style=flat-square)
 
 Ubiquiti Network's Unifi Controller
 
@@ -16,7 +16,7 @@ Ubiquiti Network's Unifi Controller
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mongodb | 10.31.5 |
+| https://charts.bitnami.com/bitnami | mongodb | 12.1.22 |
 | https://library-charts.k8s-at-home.com | common | 4.4.2 |
 
 ## TL;DR
@@ -146,7 +146,7 @@ service:
 
 ## Changelog
 
-### Version 4.10.1
+### Version 5.0.1
 
 #### Added
 
@@ -154,7 +154,7 @@ N/A
 
 #### Changed
 
-* Set right fsGroup policy for unifi pod
+* Upgraded unifi app to v7.1.68
 
 #### Fixed
 
