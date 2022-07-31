@@ -17,7 +17,7 @@ env:
   # -- Set the container timezone.
   TZ: UTC
   # -- Postgresql connection parameters. See [lib/pq](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters) for more details.
-  DATABASE_URL: postgres://{{ .Values.postgresql.postgresqlUsername }}:{{ .Values.postgresql.postgresqlPassword }}@{{ include "common.names.fullname" .}}-postgresql/{{ .Values.postgresql.postgresqlDatabase }}?sslmode=disable
+  DATABASE_URL: postgres://{{ .Values.postgresql.auth.username }}:{{ .Values.postgresql.auth.password }}@{{ include "common.names.fullname" .}}-postgresql/{{ .Values.postgresql.auth.database }}?sslmode=disable
   # -- Set to `1` to run database migrations during application startup.
   RUN_MIGRATIONS: '1'
   # -- Set to `1` to create an admin user from environment variables.
@@ -60,11 +60,14 @@ probes:
 #    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
 # @default -- Enabled (see values.yaml for more details)
 postgresql:
+  # -- By default uses an internal postgress. Dissable if you use your own Postgres.
   enabled: true
-  postgresqlDatabase: miniflux
-  postgresqlUsername: postgres
-  postgresqlPassword: miniflux
+  auth:
+    # -- Postgres database user name
+    username: miniflux
+    # -- Postgres database password
+    password: "miniflux"
+    # -- Postgres database
+    database: miniflux
   persistence:
     enabled: false
-    # storageClass: ""
-    # size: 8Gi
