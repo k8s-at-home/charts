@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 6.0.0](https://img.shields.io/badge/Version-6.0.0-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
+![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -20,15 +20,15 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
-| https://library-charts.k8s-at-home.com | keyserver(common) | 4.4.2 |
-| https://library-charts.k8s-at-home.com | clientapi(common) | 4.4.2 |
-| https://library-charts.k8s-at-home.com | mediaapi(common) | 4.4.2 |
-| https://library-charts.k8s-at-home.com | syncapi(common) | 4.4.2 |
-| https://library-charts.k8s-at-home.com | roomserver(common) | 4.4.2 |
-| https://library-charts.k8s-at-home.com | federationapi(common) | 4.4.2 |
-| https://library-charts.k8s-at-home.com | userapi(common) | 4.4.2 |
-| https://library-charts.k8s-at-home.com | appserviceapi(common) | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
+| https://library-charts.k8s-at-home.com | keyserver(common) | 4.5.0 |
+| https://library-charts.k8s-at-home.com | clientapi(common) | 4.5.0 |
+| https://library-charts.k8s-at-home.com | mediaapi(common) | 4.5.0 |
+| https://library-charts.k8s-at-home.com | syncapi(common) | 4.5.0 |
+| https://library-charts.k8s-at-home.com | roomserver(common) | 4.5.0 |
+| https://library-charts.k8s-at-home.com | federationapi(common) | 4.5.0 |
+| https://library-charts.k8s-at-home.com | userapi(common) | 4.5.0 |
+| https://library-charts.k8s-at-home.com | appserviceapi(common) | 4.5.0 |
 | https://nats-io.github.io/k8s/helm/charts/ | nats | 0.17.1 |
 
 ## TL;DR
@@ -235,16 +235,23 @@ For more information see:
 
 ## Changelog
 
-### Version 6.0.0
+### Version 6.1.0
 
 #### Added
 
-* Added ingress for polylith mode
+N/A
 
 #### Changed
 
-* Upgraded `dendrite` dependency to version 0.8.9
-* **Breaking**: Updated default config as per separate monolith/polylith samples
+* Upgraded `common` chart dependency to version 4.5.0
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'clientapi'
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'mediaapi'
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'syncapi'
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'roomserver'
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'federationapi'
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'keyserver'
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'userapi'
+* Upgraded `common` chart dependency to version 4.5.0 for alias 'appserviceapi'
 
 #### Fixed
 

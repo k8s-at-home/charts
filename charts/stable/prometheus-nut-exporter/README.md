@@ -1,6 +1,6 @@
 # prometheus-nut-exporter
 
-![Version: 5.3.4](https://img.shields.io/badge/Version-5.3.4-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
+![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![AppVersion: 1.1.1](https://img.shields.io/badge/AppVersion-1.1.1-informational?style=flat-square)
 
 Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 5.3.4
+### Version 5.4.0
 
 #### Added
 
@@ -98,11 +98,11 @@ N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 
-* Fixed `ServiceMonitor` endpoints loop.
+N/A
 
 ### Older versions
 

@@ -1,6 +1,6 @@
 # ombi
 
-![Version: 11.4.0](https://img.shields.io/badge/Version-11.4.0-informational?style=flat-square) ![AppVersion: 4.16.12](https://img.shields.io/badge/AppVersion-4.16.12-informational?style=flat-square)
+![Version: 11.5.0](https://img.shields.io/badge/Version-11.5.0-informational?style=flat-square) ![AppVersion: 4.16.12](https://img.shields.io/badge/AppVersion-4.16.12-informational?style=flat-square)
 
 Want a Movie or TV Show on Plex or Emby? Use Ombi!
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -89,7 +89,7 @@ N/A
 
 ## Changelog
 
-### Version 11.4.0
+### Version 11.5.0
 
 #### Added
 
@@ -97,7 +97,7 @@ N/A
 
 #### Changed
 
-* Upgraded application image version to 4.16.12
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

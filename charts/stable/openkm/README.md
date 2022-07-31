@@ -1,6 +1,6 @@
 # openkm
 
-![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 OpenKM integrates all essential documents management, collaboration and an advanced search functionality into one easy to use solution.
 
@@ -21,7 +21,7 @@ Kubernetes: `>=1.16.0-0`
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 11.0.14 |
 | https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -91,7 +91,7 @@ N/A
 
 ## Changelog
 
-### Version 4.0.0
+### Version 4.1.0
 
 #### Added
 
@@ -99,8 +99,7 @@ N/A
 
 #### Changed
 
-* Upgraded `postgresql` chart dependency to version 11.6.12
-* Upgraded `mariadb` chart dependency to version 11.0.14
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

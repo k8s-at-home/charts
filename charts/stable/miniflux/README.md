@@ -1,6 +1,6 @@
 # miniflux
 
-![Version: 4.7.2](https://img.shields.io/badge/Version-4.7.2-informational?style=flat-square) ![AppVersion: 2.0.36](https://img.shields.io/badge/AppVersion-2.0.36-informational?style=flat-square)
+![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 2.0.36](https://img.shields.io/badge/AppVersion-2.0.36-informational?style=flat-square)
 
 Miniflux is a minimalist and opinionated feed reader.
 
@@ -18,8 +18,8 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -80,7 +80,7 @@ N/A
 | env.ADMIN_PASSWORD | string | `"changeme"` | Admin user password, it's used only if `CREATE_ADMIN` is enabled. |
 | env.ADMIN_USERNAME | string | `"admin"` | Admin user login, it's used only if `CREATE_ADMIN` is enabled. |
 | env.CREATE_ADMIN | string | `"1"` | Set to `1` to create an admin user from environment variables. |
-| env.DATABASE_URL | string | `"postgres://{{ .Values.postgresql.postgresqlUsername }}:{{ .Values.postgresql.postgresqlPassword }}@{{ include \"common.names.fullname\" .}}-postgresql/{{ .Values.postgresql.postgresqlDatabase }}?sslmode=disable"` | Postgresql connection parameters. See [lib/pq](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters) for more details. |
+| env.DATABASE_URL | string | `"postgres://{{ .Values.postgresql.auth.username }}:{{ .Values.postgresql.auth.password }}@{{ include \"common.names.fullname\" .}}-postgresql/{{ .Values.postgresql.auth.database }}?sslmode=disable"` | Postgresql connection parameters. See [lib/pq](https://pkg.go.dev/github.com/lib/pq#hdr-Connection_String_Parameters) for more details. |
 | env.RUN_MIGRATIONS | string | `"1"` | Set to `1` to run database migrations during application startup. |
 | env.TZ | string | `"UTC"` | Set the container timezone. |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -88,12 +88,16 @@ N/A
 | image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | postgresql | object | Enabled (see values.yaml for more details) | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| postgresql.auth.database | string | `"miniflux"` | Postgres database |
+| postgresql.auth.password | string | `"miniflux"` | Postgres database password |
+| postgresql.auth.username | string | `"miniflux"` | Postgres database user name |
+| postgresql.enabled | bool | `true` | By default uses an internal postgress. Dissable if you use your own Postgres. |
 | probes | object | See values.yaml | Configures the probes for the main Pod. |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 4.7.2
+### Version 5.1.0
 
 #### Added
 
@@ -101,7 +105,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

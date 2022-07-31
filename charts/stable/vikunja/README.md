@@ -1,6 +1,6 @@
 # vikunja
 
-![Version: 5.5.3](https://img.shields.io/badge/Version-5.5.3-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
+![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: 0.17.0](https://img.shields.io/badge/AppVersion-0.17.0-informational?style=flat-square)
 
 The to-do app to organize your life
 
@@ -20,8 +20,8 @@ The to-do app to organize your life
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 10.16.2 |
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -96,7 +96,7 @@ N/A
 
 ## Changelog
 
-### Version 5.5.3
+### Version 6.1.0
 
 #### Added
 
@@ -104,11 +104,11 @@ N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 
-* Fix subpath in configmap to match persistence value
+N/A
 
 ### Older versions
 

@@ -1,6 +1,6 @@
 # intel-gpu-plugin
 
-![Version: 4.3.2](https://img.shields.io/badge/Version-4.3.2-informational?style=flat-square) ![AppVersion: 0.20.0](https://img.shields.io/badge/AppVersion-0.20.0-informational?style=flat-square)
+![Version: 4.4.0](https://img.shields.io/badge/Version-4.4.0-informational?style=flat-square) ![AppVersion: 0.20.0](https://img.shields.io/badge/AppVersion-0.20.0-informational?style=flat-square)
 
 The Intel GPU plugin facilitates offloading the processing of computation intensive workloads to GPU hardware
 
@@ -16,7 +16,7 @@ The Intel GPU plugin facilitates offloading the processing of computation intens
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -101,7 +101,7 @@ affinity:
 
 ## Changelog
 
-### Version 4.3.2
+### Version 4.4.0
 
 #### Added
 
@@ -109,7 +109,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 
