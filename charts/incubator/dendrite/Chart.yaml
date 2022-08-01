@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.8.9
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 6.1.0
+version: 6.1.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -24,11 +24,11 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.5.0
   - name: postgresql
-    version: 11.6.12
+    version: 11.6.20
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: nats
-    version: 0.17.1
+    version: 0.17.3
     repository: https://nats-io.github.io/k8s/helm/charts/
     condition: nats.enabled
   # Client API
@@ -82,20 +82,6 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Upgraded `postgresql` chart dependency to version 11.6.20
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'clientapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'mediaapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'syncapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'roomserver'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'federationapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'keyserver'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'userapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'appserviceapi'
+      description: Upgraded `nats` chart dependency to version 0.17.3

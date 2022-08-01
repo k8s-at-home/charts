@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 1.2.0
 description: Cert-Manager Webhook for DNSMadeEasy
 name: dnsmadeeasy-webhook
-version: 4.7.0
+version: 4.7.1
 keywords:
   - cert-manager
   - dnsmadeeasy
@@ -22,9 +22,9 @@ dependencies:
     version: 4.5.0
   - name: cert-manager
     repository: https://charts.jetstack.io
-    version: v1.8.0
+    version: v1.8.2
     condition: cert-manager.enabled
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Upgraded `cert-manager` chart dependency to version v1.8.2

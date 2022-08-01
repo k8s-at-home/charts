@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 2.4.2
 description: A self hostable application for saving web pages, freely.
 name: wallabag
-version: 7.1.0
+version: 7.1.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - wallabag
@@ -20,11 +20,11 @@ dependencies:
     repository: https://library-charts.k8s-at-home.com
     version: 4.5.0
   - name: redis
-    version: 16.13.1
+    version: 16.13.2
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
   - name: postgresql
-    version: 11.6.12
+    version: 11.6.20
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: mariadb
@@ -34,4 +34,6 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Upgraded `redis` chart dependency to version 16.13.2
+    - kind: changed
+      description: Upgraded `postgresql` chart dependency to version 11.6.20
