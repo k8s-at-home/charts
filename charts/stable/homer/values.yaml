@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: b4bz/homer
   # -- image tag
-  tag: 21.09.2
+  tag: v22.07.2
   # -- image pull policy
   pullPolicy: IfNotPresent
 
@@ -18,10 +18,6 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # -- Specify the user ID the application will run as
-  UID: "911"
-  # -- Specify the group ID the application will run as
-  GID: "911"
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -36,6 +32,12 @@ ingress:
   # @default -- See values.yaml
   main:
     enabled: false
+
+securityContext:
+  runAsUser: 1000
+  runAsNonRoot: true
+  runAsGroup: 1000
+  fsGroup: 1000
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
