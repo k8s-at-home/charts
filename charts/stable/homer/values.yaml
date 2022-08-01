@@ -34,8 +34,11 @@ ingress:
     enabled: false
 
 securityContext:
+  # -- Specify the user ID the application will run as
   runAsUser: 1000
+  # -- Enable validation that the container must run as non-root user
   runAsNonRoot: true
+  # -- Specify the group ID the application will run as
   runAsGroup: 1000
   fsGroup: 1000
 
