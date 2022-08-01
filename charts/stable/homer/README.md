@@ -1,6 +1,6 @@
 # homer
 
-![Version: 7.3.0](https://img.shields.io/badge/Version-7.3.0-informational?style=flat-square) ![AppVersion: 21.09.2](https://img.shields.io/badge/AppVersion-21.09.2-informational?style=flat-square)
+![Version: 8.0.0](https://img.shields.io/badge/Version-8.0.0-informational?style=flat-square) ![AppVersion: v22.07.2](https://img.shields.io/badge/AppVersion-v22.07.2-informational?style=flat-square)
 
 A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
 
@@ -78,19 +78,20 @@ N/A
 | configmap.config.data | object | See values.yaml | Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information. |
 | configmap.config.enabled | bool | `false` | Store homer configuration as a ConfigMap |
 | env | object | See below | environment variables. |
-| env.GID | string | `"911"` | Specify the group ID the application will run as |
 | env.TZ | string | `"UTC"` | Set the container timezone |
-| env.UID | string | `"911"` | Specify the user ID the application will run as |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"b4bz/homer"` | image repository |
-| image.tag | string | `"21.09.2"` | image tag |
+| image.tag | string | `nil` |  |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
+| securityContext.runAsGroup | int | `1000` | Specify the group ID the application will run as |
+| securityContext.runAsNonRoot | bool | `true` | Enable validation that the container must run as non-root user |
+| securityContext.runAsUser | int | `1000` | Specify the user ID the application will run as |
 | service | object | See values.yaml | Configures service settings for the chart. |
 
 ## Changelog
 
-### Version 7.3.0
+### Version 8.0.0
 
 #### Added
 
@@ -98,11 +99,11 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.0
+* Switch from env vars to security context object.
 
 #### Fixed
 
-N/A
+* Upgraded app version to v22.07.2
 
 ### Older versions
 
