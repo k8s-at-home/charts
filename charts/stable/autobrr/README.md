@@ -1,8 +1,8 @@
 # autobrr
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v0.23.0](https://img.shields.io/badge/AppVersion-v0.23.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: v0.23.0](https://img.shields.io/badge/AppVersion-v0.23.0-informational?style=flat-square)
 
-autobrr is a cross-platform free and open-source BitTorrent client
+Autobrr monitors IRC announce channels to get releases as soon as they are available with good filtering
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/k8s-at-home/charts/issues/new/choose)**
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -88,15 +88,15 @@ N/A
 
 ## Changelog
 
-### Version 1.0.0
+### Version 1.1.0
 
 #### Added
 
-* Initial release
+N/A
 
 #### Changed
 
-N/A
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

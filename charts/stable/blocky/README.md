@@ -1,6 +1,6 @@
 # blocky
 
-![Version: 10.4.0](https://img.shields.io/badge/Version-10.4.0-informational?style=flat-square) ![AppVersion: v0.18](https://img.shields.io/badge/AppVersion-v0.18-informational?style=flat-square)
+![Version: 10.5.0](https://img.shields.io/badge/Version-10.5.0-informational?style=flat-square) ![AppVersion: v0.18](https://img.shields.io/badge/AppVersion-v0.18-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.19.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | redis | 16.13.1 |
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -105,7 +105,7 @@ helm install blocky k8s-at-home/blocky -f values.yaml
 
 ## Changelog
 
-### Version 10.4.0
+### Version 10.5.0
 
 #### Added
 
@@ -113,7 +113,7 @@ N/A
 
 #### Changed
 
-* Upgraded `redis` chart dependency to version 16.13.1
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

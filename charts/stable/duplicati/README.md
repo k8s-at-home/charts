@@ -1,6 +1,6 @@
 # duplicati
 
-![Version: 5.3.2](https://img.shields.io/badge/Version-5.3.2-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 Store securely encrypted backups on cloud storage services!
 
@@ -17,7 +17,7 @@ Store securely encrypted backups on cloud storage services!
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -91,7 +91,7 @@ If you get `Error: rendered manifests contain a resource that already exists. Un
 
 ## Changelog
 
-### Version 5.3.2
+### Version 5.4.0
 
 #### Added
 
@@ -99,7 +99,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

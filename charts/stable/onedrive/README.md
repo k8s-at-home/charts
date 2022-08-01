@@ -1,6 +1,6 @@
 # onedrive
 
-![Version: 2.3.3](https://img.shields.io/badge/Version-2.3.3-informational?style=flat-square) ![AppVersion: v2.4.17](https://img.shields.io/badge/AppVersion-v2.4.17-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![AppVersion: v2.4.17](https://img.shields.io/badge/AppVersion-v2.4.17-informational?style=flat-square)
 
 A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365, and SharePoint
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -98,7 +98,7 @@ In order to generate an authentication response value you must do the following:
 
 ## Changelog
 
-### Version 2.3.3
+### Version 2.4.0
 
 #### Added
 
@@ -106,7 +106,7 @@ N/A
 
 #### Changed
 
-* Upgraded docker / app image to v2.4.17
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

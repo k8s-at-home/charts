@@ -1,6 +1,6 @@
 # influxdb-exporter
 
-![Version: 1.1.3](https://img.shields.io/badge/Version-1.1.3-informational?style=flat-square) ![AppVersion: v0.9.0](https://img.shields.io/badge/AppVersion-v0.9.0-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: v0.9.0](https://img.shields.io/badge/AppVersion-v0.9.0-informational?style=flat-square)
 
 An exporter for metrics in the InfluxDB format, transforms them and exposes them for consumption by Prometheus.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -105,7 +105,7 @@ Override the default container `args:` with optons:
 
 ## Changelog
 
-### Version 1.1.3
+### Version 1.2.0
 
 #### Added
 
@@ -113,7 +113,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 
