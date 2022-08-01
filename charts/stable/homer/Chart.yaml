@@ -19,4 +19,9 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Switch from env vars to security context object.
+    - kind: fixed
+      description: Upgraded app version to v22.07.2
+      links:
+        - name: GitHub Issue
+          url: https://github.com/k8s-at-home/charts/issues/1713
