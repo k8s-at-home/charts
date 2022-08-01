@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: v2.4.17
+appVersion: 2.4.20
 description: A free Microsoft OneDrive Client which supports OneDrive Personal, OneDrive for Business, OneDrive for Office365, and SharePoint
 name: onedrive
-version: 2.4.0
+version: 2.4.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - onedrive
@@ -21,5 +21,7 @@ dependencies:
     version: 4.5.0
 annotations:
   artifacthub.io/changes: |-
+    - kind: changed
+      description: Moved to upstream docker image
     - kind: changed
       description: Upgraded `common` chart dependency to version 4.5.0
