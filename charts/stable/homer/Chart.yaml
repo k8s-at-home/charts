@@ -1,11 +1,11 @@
 ---
 apiVersion: v2
-appVersion: 21.09.2
+appVersion: v22.07.2
 description: A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
 icon: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/logo.png
 home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/homer
 name: homer
-version: 7.3.0
+version: 8.0.0
 kubeVersion: ">=1.16.0-0"
 sources:
   - https://github.com/bastienwirtz/homer
@@ -19,4 +19,9 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Switch from env vars to security context object.
+    - kind: fixed
+      description: Upgraded app version to v22.07.2
+      links:
+        - name: GitHub Issue
+          url: https://github.com/k8s-at-home/charts/issues/1713
