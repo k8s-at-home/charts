@@ -1,6 +1,6 @@
 # adguard-home
 
-![Version: 5.4.0](https://img.shields.io/badge/Version-5.4.0-informational?style=flat-square) ![AppVersion: v0.107.7](https://img.shields.io/badge/AppVersion-v0.107.7-informational?style=flat-square)
+![Version: 5.5.0](https://img.shields.io/badge/Version-5.5.0-informational?style=flat-square) ![AppVersion: v0.107.7](https://img.shields.io/badge/AppVersion-v0.107.7-informational?style=flat-square)
 
 DNS proxy as ad-blocker for local network
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -89,7 +89,7 @@ N/A
 
 ## Changelog
 
-### Version 5.4.0
+### Version 5.5.0
 
 #### Added
 
@@ -97,8 +97,7 @@ N/A
 
 #### Changed
 
-* Upgraded adguard-home to version v0.107.7.
-* Synced the default adguard-home configuration with the new version.
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

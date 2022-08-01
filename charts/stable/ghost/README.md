@@ -1,6 +1,6 @@
 # ghost
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![AppVersion: 4.37.0](https://img.shields.io/badge/AppVersion-4.37.0-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: 4.37.0](https://img.shields.io/badge/AppVersion-4.37.0-informational?style=flat-square)
 
 Ghost is a blogging and publishing software
 
@@ -20,7 +20,7 @@ Kubernetes: `>=1.19.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 11.0.14 |
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -100,7 +100,7 @@ N/A
 
 ## Changelog
 
-### Version 2.0.0
+### Version 2.1.0
 
 #### Added
 
@@ -108,7 +108,7 @@ N/A
 
 #### Changed
 
-* Upgraded `mariadb` chart dependency to version 11.0.14
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 

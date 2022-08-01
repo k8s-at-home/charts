@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 1.1.1
 description: Prometheus NUT Exporter a service monitor to send NUT server metrics to a Prometheus instance.
 name: prometheus-nut-exporter
-version: 5.3.4
+version: 5.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - nut
@@ -18,8 +18,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.2
+    version: 4.5.0
 annotations:
   artifacthub.io/changes: |-
-    - kind: fixed
-      description: Fixed `ServiceMonitor` endpoints loop.
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 4.5.0

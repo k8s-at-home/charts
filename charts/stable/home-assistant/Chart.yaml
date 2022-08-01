@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 2022.5.4
 description: Home Assistant
 name: home-assistant
-version: 13.3.0
+version: 13.4.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - home-assistant
@@ -21,7 +21,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.4.2
+    version: 4.5.0
   - name: postgresql
     version: 11.6.12
     repository: https://charts.bitnami.com/bitnami
@@ -37,6 +37,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `mariadb` chart dependency to version 11.0.14
-    - kind: changed
-      description: Upgraded `influxdb` chart dependency to version 5.3.5
+      description: Upgraded `common` chart dependency to version 4.5.0

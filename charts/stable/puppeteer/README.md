@@ -1,6 +1,6 @@
 # puppeteer
 
-![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![AppVersion: v13.3.2](https://img.shields.io/badge/AppVersion-v13.3.2-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![AppVersion: v13.3.2](https://img.shields.io/badge/AppVersion-v13.3.2-informational?style=flat-square)
 
 Headless Chrome Node.js API
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.4.2 |
+| https://library-charts.k8s-at-home.com | common | 4.5.0 |
 
 ## TL;DR
 
@@ -129,7 +129,7 @@ const dns = require('dns').promises;
 
 ## Changelog
 
-### Version 1.1.2
+### Version 1.2.0
 
 #### Added
 
@@ -137,7 +137,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.4.2
+* Upgraded `common` chart dependency to version 4.5.0
 
 #### Fixed
 
