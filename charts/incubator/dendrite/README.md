@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 6.1.0](https://img.shields.io/badge/Version-6.1.0-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
+![Version: 6.1.1](https://img.shields.io/badge/Version-6.1.1-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
+| https://charts.bitnami.com/bitnami | postgresql | 11.6.21 |
 | https://library-charts.k8s-at-home.com | common | 4.5.0 |
 | https://library-charts.k8s-at-home.com | keyserver(common) | 4.5.0 |
 | https://library-charts.k8s-at-home.com | clientapi(common) | 4.5.0 |
@@ -198,9 +198,9 @@ For more information see:
 | postgresql.auth.username | string | `"dendrite"` |  |
 | postgresql.enabled | bool | See value.yaml | Enable and configure postgres as the database for dendrite. |
 | postgresql.image.repository | string | `"bitnami/postgresql"` |  |
-| postgresql.image.tag | string | `"14.1.0"` |  |
-| postgresql.persistence.enabled | bool | `false` |  |
+| postgresql.image.tag | string | `"14.4.0"` |  |
 | postgresql.primary.initdb.scriptsConfigMap | string | `"dendrite-postgresql-init-scripts"` |  |
+| postgresql.primary.persistence.enabled | bool | `false` |  |
 | roomserver | object | values.yaml | Configure the Room Server For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
 | roomserver.database | object | See values.yaml | Override general dendrite.database parameters. |
 | roomserver.database.conn_max_lifetime | string | dendrite.database.conn_max_lifetime | Maximum connection lifetime |
@@ -235,7 +235,7 @@ For more information see:
 
 ## Changelog
 
-### Version 6.1.0
+### Version 6.1.1
 
 #### Added
 
@@ -243,15 +243,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.0
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'clientapi'
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'mediaapi'
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'syncapi'
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'roomserver'
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'federationapi'
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'keyserver'
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'userapi'
-* Upgraded `common` chart dependency to version 4.5.0 for alias 'appserviceapi'
+* Corrected postgres persistence definition and bumped chart version
 
 #### Fixed
 
