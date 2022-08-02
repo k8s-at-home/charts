@@ -87,7 +87,7 @@ N/A
 
 ## Changelog
 
-### Version 4.7.1
+### Version 4.8.1
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.1
+* Remove some storage fields from the `persistence.configinc` value
 
 #### Fixed
 
