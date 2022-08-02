@@ -1,6 +1,6 @@
 # jellyfin
 
-![Version: 9.5.1](https://img.shields.io/badge/Version-9.5.1-informational?style=flat-square) ![AppVersion: 10.7.7](https://img.shields.io/badge/AppVersion-10.7.7-informational?style=flat-square)
+![Version: 9.5.2](https://img.shields.io/badge/Version-9.5.2-informational?style=flat-square) ![AppVersion: 10.8.1](https://img.shields.io/badge/AppVersion-10.8.1-informational?style=flat-square)
 
 Jellyfin is a Free Software Media System
 
@@ -80,7 +80,7 @@ N/A
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"jellyfin/jellyfin"` | image repository |
-| image.tag | string | `"10.8.1"` | image tag |
+| image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | podSecurityContext | object | `{}` | Configure the Security Context for the Pod |
@@ -90,27 +90,17 @@ N/A
 
 ### Version 9.5.2
 
-#### Changed
-
-* Updated Jellyfin to 10.8.1
-
-#### Fixed
-
-* Fixed typo in homepage URL
-
-### Version 9.5.1
-
 #### Added
 
 N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.1
+* Upgraded Jellyfin to 10.8.1
 
 #### Fixed
 
-N/A
+* Fixed typo in homepage URL
 
 ### Older versions
 
