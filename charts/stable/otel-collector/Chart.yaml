@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 0.46.0
 description: OpenTelemetry collector helm package
 name: otel-collector
-version: 1.2.0
+version: 1.2.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - otel-collector, open telemetry, tracing
@@ -17,8 +17,8 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Upgraded `common` chart dependency to version 4.5.1

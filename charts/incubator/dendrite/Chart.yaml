@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v0.8.9
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 6.1.0
+version: 6.1.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -22,9 +22,9 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
   - name: postgresql
-    version: 11.6.12
+    version: 11.6.21
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: nats
@@ -34,68 +34,68 @@ dependencies:
   # Client API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: clientapi
     condition: dendrite.polylithEnabled
   # Media API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: mediaapi
     condition: dendrite.polylithEnabled
   # Sync API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: syncapi
     condition: dendrite.polylithEnabled
   # Room Server
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: roomserver
     condition: dendrite.polylithEnabled
   # Federation API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: federationapi
     condition: dendrite.polylithEnabled
   # Key Server
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: keyserver
     condition: dendrite.polylithEnabled
   # User API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: userapi
     condition: dendrite.polylithEnabled
   # App Service API
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
     alias: appserviceapi
     condition: dendrite.polylithEnabled
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Upgraded `common` chart dependency to version 4.5.1
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'clientapi'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'clientapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'mediaapi'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'mediaapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'syncapi'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'syncapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'roomserver'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'roomserver'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'federationapi'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'federationapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'keyserver'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'keyserver'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'userapi'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'userapi'
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0 for alias 'appserviceapi'
+      description: Upgraded `common` chart dependency to version 4.5.1 for alias 'appserviceapi'

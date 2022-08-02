@@ -1,6 +1,6 @@
 # firefly-iii
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![AppVersion: version-5.6.14](https://img.shields.io/badge/AppVersion-version--5.6.14-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![AppVersion: version-5.6.14](https://img.shields.io/badge/AppVersion-version--5.6.14-informational?style=flat-square)
 
 Firefly III: a personal finances manager
 
@@ -21,7 +21,7 @@ Kubernetes: `>=1.16.0-0`
 | https://charts.bitnami.com/bitnami | mariadb | 11.0.2 |
 | https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
 | https://charts.bitnami.com/bitnami | redis | 16.13.1 |
-| https://library-charts.k8s-at-home.com | common | 4.5.0 |
+| https://library-charts.k8s-at-home.com | common | 4.5.1 |
 
 ## TL;DR
 
@@ -172,7 +172,7 @@ N/A
 
 ## Changelog
 
-### Version 0.2.0
+### Version 0.2.1
 
 #### Added
 
@@ -180,7 +180,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.0
+* Upgraded `common` chart dependency to version 4.5.1
 
 #### Fixed
 

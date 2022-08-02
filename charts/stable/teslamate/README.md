@@ -1,6 +1,6 @@
 # teslamate
 
-![Version: 7.1.0](https://img.shields.io/badge/Version-7.1.0-informational?style=flat-square) ![AppVersion: v1.23.4](https://img.shields.io/badge/AppVersion-v1.23.4-informational?style=flat-square)
+![Version: 7.1.1](https://img.shields.io/badge/Version-7.1.1-informational?style=flat-square) ![AppVersion: v1.23.4](https://img.shields.io/badge/AppVersion-v1.23.4-informational?style=flat-square)
 
 A self-hosted data logger for your Tesla 🚘
 
@@ -18,7 +18,7 @@ A self-hosted data logger for your Tesla 🚘
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
-| https://library-charts.k8s-at-home.com | common | 4.5.0 |
+| https://library-charts.k8s-at-home.com | common | 4.5.1 |
 
 ## TL;DR
 
@@ -92,7 +92,7 @@ N/A
 
 ## Changelog
 
-### Version 7.1.0
+### Version 7.1.1
 
 #### Added
 
@@ -100,7 +100,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.0
+* Upgraded `common` chart dependency to version 4.5.1
 
 #### Fixed
 

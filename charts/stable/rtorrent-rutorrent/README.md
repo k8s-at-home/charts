@@ -1,6 +1,6 @@
 # rtorrent-rutorrent
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![AppVersion: 3.10-0.9.8-0.13.8](https://img.shields.io/badge/AppVersion-3.10--0.9.8--0.13.8-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: 3.10-0.9.8-0.13.8](https://img.shields.io/badge/AppVersion-3.10--0.9.8--0.13.8-informational?style=flat-square)
 
 ruTorrent is a popular rtorrent client with a webui for ease of use.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.5.0 |
+| https://library-charts.k8s-at-home.com | common | 4.5.1 |
 
 ## TL;DR
 
@@ -87,7 +87,7 @@ N/A
 
 ## Changelog
 
-### Version 1.1.0
+### Version 1.1.1
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.0
+* Upgraded `common` chart dependency to version 4.5.1
 
 #### Fixed
 
