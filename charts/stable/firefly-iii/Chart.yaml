@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: version-5.6.14
 description: "Firefly III: a personal finances manager"
 name: firefly-iii
-version: 0.2.0
+version: 0.2.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - firefly-iii
@@ -18,7 +18,7 @@ maintainers:
 dependencies:
   - name: common
     repository: https://library-charts.k8s-at-home.com
-    version: 4.5.0
+    version: 4.5.1
   - name: mariadb
     version: 11.0.2
     repository: https://charts.bitnami.com/bitnami
@@ -34,4 +34,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.0
+      description: Upgraded `common` chart dependency to version 4.5.1
