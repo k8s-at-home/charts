@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 6.4.0
+### Version 6.4.1
 
 #### Added
 
@@ -98,7 +98,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.0
+* Upgraded image to v1.28.0.5999-97678ded3.
 
 #### Fixed
 
