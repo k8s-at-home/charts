@@ -1,6 +1,6 @@
 # plex
 
-![Version: 6.4.2](https://img.shields.io/badge/Version-6.4.2-informational?style=flat-square) ![AppVersion: v1.28.0.5999-97678ded3](https://img.shields.io/badge/AppVersion-v1.28.0.5999--97678ded3-informational?style=flat-square)
+![Version: 6.4.3](https://img.shields.io/badge/Version-6.4.3-informational?style=flat-square) ![AppVersion: v1.28.0.5999-97678ded3](https://img.shields.io/badge/AppVersion-v1.28.0.5999--97678ded3-informational?style=flat-square)
 
 Plex Media Server
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.5.1 |
+| https://library-charts.k8s-at-home.com | common | 4.5.2 |
 
 ## TL;DR
 
@@ -90,7 +90,7 @@ N/A
 
 ## Changelog
 
-### Version 6.4.2
+### Version 6.4.3
 
 #### Added
 
@@ -98,7 +98,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.1
+* Upgraded `common` chart dependency to version 4.5.2
 
 #### Fixed
 

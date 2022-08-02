@@ -1,6 +1,6 @@
 # apache-musicindex
 
-![Version: 2.4.1](https://img.shields.io/badge/Version-2.4.1-informational?style=flat-square) ![AppVersion: v1.4.1-2](https://img.shields.io/badge/AppVersion-v1.4.1--2-informational?style=flat-square)
+![Version: 2.4.2](https://img.shields.io/badge/Version-2.4.2-informational?style=flat-square) ![AppVersion: v1.4.1-2](https://img.shields.io/badge/AppVersion-v1.4.1--2-informational?style=flat-square)
 
 Index and stream music using apache-musicindex and m3u playlists
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.5.1 |
+| https://library-charts.k8s-at-home.com | common | 4.5.2 |
 
 ## TL;DR
 
@@ -92,7 +92,7 @@ playlist.m3u.
 
 ## Changelog
 
-### Version 2.4.1
+### Version 2.4.2
 
 #### Added
 
@@ -100,7 +100,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.1
+* Upgraded `common` chart dependency to version 4.5.2
 
 #### Fixed
 

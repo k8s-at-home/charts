@@ -1,6 +1,6 @@
 # smarter-device-manager
 
-![Version: 6.5.1](https://img.shields.io/badge/Version-6.5.1-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
+![Version: 6.5.2](https://img.shields.io/badge/Version-6.5.2-informational?style=flat-square) ![AppVersion: 1.20.7](https://img.shields.io/badge/AppVersion-1.20.7-informational?style=flat-square)
 
 Manage hardware resource allocation without a need for privileged containers
 
@@ -19,7 +19,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.5.1 |
+| https://library-charts.k8s-at-home.com | common | 4.5.2 |
 
 ## TL;DR
 
@@ -129,7 +129,7 @@ In this case host device `/dev/ttyUSB-Conbee-2` will be given at the same path, 
 
 ## Changelog
 
-### Version 6.5.1
+### Version 6.5.2
 
 #### Added
 
@@ -137,7 +137,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.1
+* Upgraded `common` chart dependency to version 4.5.2
 
 #### Fixed
 

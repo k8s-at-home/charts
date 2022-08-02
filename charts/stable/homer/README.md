@@ -1,6 +1,6 @@
 # homer
 
-![Version: 8.0.1](https://img.shields.io/badge/Version-8.0.1-informational?style=flat-square) ![AppVersion: v22.07.2](https://img.shields.io/badge/AppVersion-v22.07.2-informational?style=flat-square)
+![Version: 8.0.2](https://img.shields.io/badge/Version-8.0.2-informational?style=flat-square) ![AppVersion: v22.07.2](https://img.shields.io/badge/AppVersion-v22.07.2-informational?style=flat-square)
 
 A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.
 
@@ -18,7 +18,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://library-charts.k8s-at-home.com | common | 4.5.1 |
+| https://library-charts.k8s-at-home.com | common | 4.5.2 |
 
 ## TL;DR
 
@@ -91,7 +91,7 @@ N/A
 
 ## Changelog
 
-### Version 8.0.1
+### Version 8.0.2
 
 #### Added
 
@@ -99,7 +99,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.1
+* Upgraded `common` chart dependency to version 4.5.2
 
 #### Fixed
 

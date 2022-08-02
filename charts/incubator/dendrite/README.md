@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 6.1.2](https://img.shields.io/badge/Version-6.1.2-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
+![Version: 6.1.3](https://img.shields.io/badge/Version-6.1.3-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -20,15 +20,15 @@ Kubernetes: `>=1.16.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | postgresql | 11.6.21 |
-| https://library-charts.k8s-at-home.com | common | 4.5.1 |
-| https://library-charts.k8s-at-home.com | keyserver(common) | 4.5.1 |
-| https://library-charts.k8s-at-home.com | clientapi(common) | 4.5.1 |
-| https://library-charts.k8s-at-home.com | mediaapi(common) | 4.5.1 |
-| https://library-charts.k8s-at-home.com | syncapi(common) | 4.5.1 |
-| https://library-charts.k8s-at-home.com | roomserver(common) | 4.5.1 |
-| https://library-charts.k8s-at-home.com | federationapi(common) | 4.5.1 |
-| https://library-charts.k8s-at-home.com | userapi(common) | 4.5.1 |
-| https://library-charts.k8s-at-home.com | appserviceapi(common) | 4.5.1 |
+| https://library-charts.k8s-at-home.com | common | 4.5.2 |
+| https://library-charts.k8s-at-home.com | keyserver(common) | 4.5.2 |
+| https://library-charts.k8s-at-home.com | clientapi(common) | 4.5.2 |
+| https://library-charts.k8s-at-home.com | mediaapi(common) | 4.5.2 |
+| https://library-charts.k8s-at-home.com | syncapi(common) | 4.5.2 |
+| https://library-charts.k8s-at-home.com | roomserver(common) | 4.5.2 |
+| https://library-charts.k8s-at-home.com | federationapi(common) | 4.5.2 |
+| https://library-charts.k8s-at-home.com | userapi(common) | 4.5.2 |
+| https://library-charts.k8s-at-home.com | appserviceapi(common) | 4.5.2 |
 | https://nats-io.github.io/k8s/helm/charts/ | nats | 0.17.1 |
 
 ## TL;DR
@@ -235,7 +235,7 @@ For more information see:
 
 ## Changelog
 
-### Version 6.1.2
+### Version 6.1.3
 
 #### Added
 
@@ -243,15 +243,15 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.1
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'clientapi'
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'mediaapi'
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'syncapi'
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'roomserver'
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'federationapi'
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'keyserver'
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'userapi'
-* Upgraded `common` chart dependency to version 4.5.1 for alias 'appserviceapi'
+* Upgraded `common` chart dependency to version 4.5.2
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'clientapi'
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'mediaapi'
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'syncapi'
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'roomserver'
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'federationapi'
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'keyserver'
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'userapi'
+* Upgraded `common` chart dependency to version 4.5.2 for alias 'appserviceapi'
 
 #### Fixed
 
