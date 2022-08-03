@@ -87,7 +87,7 @@ N/A
 
 ## Changelog
 
-### Version 4.8.2
+### Version 4.8.3
 
 #### Added
 
@@ -95,7 +95,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.2
+* Reverted breaking change introduced with version 4.8.1
 
 #### Fixed
 

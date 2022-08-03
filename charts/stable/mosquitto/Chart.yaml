@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 2.0.14
 description: Eclipse Mosquitto - An open source MQTT broker
 name: mosquitto
-version: 4.8.2
+version: 4.8.3
 kubeVersion: ">=1.16.0-0"
 keywords:
   - mosquitto
@@ -23,4 +23,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2
+      description: Reverted breaking change that removed default configuration
