@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: v0.8.9
+appVersion: v0.9.1
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 6.1.3
+version: 6.2.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -81,21 +81,9 @@ dependencies:
     condition: dendrite.polylithEnabled
 annotations:
   artifacthub.io/changes: |-
+    - kind: added
+      description: Configuration options for in-memory cache
+    - kind: added
+      description: Configuration option for .well-known/matrix/client
     - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'clientapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'mediaapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'syncapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'roomserver'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'federationapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'keyserver'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'userapi'
-    - kind: changed
-      description: Upgraded `common` chart dependency to version 4.5.2 for alias 'appserviceapi'
+      description: Upgraded dendrite to 0.9.1

@@ -16,7 +16,11 @@ stringData:
       server_name: {{ required "A server_name must be provided." .Values.dendrite.global.server_name | quote }}
       private_key: matrix_key.pem
       key_validity_period: {{ default "168h0m0s" .Values.dendrite.global.key_validity_period | quote }}
+      cache:
+        max_size_estimated: {{ default "1gb" .Values.dendrite.global.cache.max_size_estimated | quote }}
+        max_age: {{ default "1h" .Values.dendrite.global.cache.max_age | quote }}
       well_known_server_name: {{ default "" .Values.dendrite.global.well_known_server_name | quote }}
+      well_known_client_name: {{ default "" .Values.dendrite.global.well_known_client_name | quote }}
       trusted_third_party_id_servers:
       {{- toYaml .Values.dendrite.global.trusted_third_party_id_servers | nindent 8 }}
       disable_federation: {{ default false .Values.dendrite.global.disable_federation }}
