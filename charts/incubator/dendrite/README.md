@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 6.1.3](https://img.shields.io/badge/Version-6.1.3-informational?style=flat-square) ![AppVersion: v0.8.9](https://img.shields.io/badge/AppVersion-v0.8.9-informational?style=flat-square)
+![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v0.9.1](https://img.shields.io/badge/AppVersion-v0.9.1-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -119,6 +119,9 @@ For more information see:
 | dendrite | object | See values.yaml | Configuration for Dendrite. For more information see [the sample denrite-config.yaml](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
 | dendrite.database | object | See values.yaml | Configure database connection parameters. |
 | dendrite.global | object | See values.yaml | Configure the global settings for dendrite. |
+| dendrite.global.cache | object | `{"max_age":"1h","max_size_estimated":"1gb"}` | Congigure the in-memory caches |
+| dendrite.global.cache.max_age | string | `"1h"` | The maximum amount of time that a cache entry can live for in memory |
+| dendrite.global.cache.max_size_estimated | string | `"1gb"` | Configure the maximum estimated cache size (not a hard limit) |
 | dendrite.global.disable_federation | bool | `false` | Disables federation |
 | dendrite.global.dns_cache | object | See values.yaml | Configure DNS cache. |
 | dendrite.global.dns_cache.enabled | bool | See values.yaml | If enabled, dns cache will be enabled. |
@@ -136,6 +139,7 @@ For more information see:
 | dendrite.global.server_notices.local_part | string | `"_server"` | The server localpart to be used when sending notices, ensure this is not yet taken |
 | dendrite.global.server_notices.room_name | string | `"Server Alerts"` | The roomname to be used when creating messages |
 | dendrite.global.trusted_third_party_id_servers | list | `["matrix.org","vector.im"]` | Configure the list of domains the server will trust as identity servers |
+| dendrite.global.well_known_client_name | string | `""` | Configure the well-known client name and optional port |
 | dendrite.global.well_known_server_name | string | `""` | Configure the well-known server name and optional port |
 | dendrite.logging | list | See values.yaml | Configure logging. |
 | dendrite.matrix_key_secret.create | bool | `false` | Create matrix_key secret using the keyBody below. |
@@ -235,23 +239,16 @@ For more information see:
 
 ## Changelog
 
-### Version 6.1.3
+### Version 6.2.0
 
 #### Added
 
-N/A
+* Configuration options for in-memory cache
+* Configuration option for .well-known/matrix/client
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.2
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'clientapi'
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'mediaapi'
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'syncapi'
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'roomserver'
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'federationapi'
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'keyserver'
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'userapi'
-* Upgraded `common` chart dependency to version 4.5.2 for alias 'appserviceapi'
+* Upgraded dendrite to 0.9.1
 
 #### Fixed
 
