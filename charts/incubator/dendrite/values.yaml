@@ -525,8 +525,16 @@ dendrite:
     server_name: localhost
     # -- Configure the key_validity period
     key_validity_period: 168h0m0s
+    # -- Congigure the in-memory caches
+    cache:
+      # -- Configure the maximum estimated cache size (not a hard limit)
+      max_size_estimated: "1gb"
+      # -- The maximum amount of time that a cache entry can live for in memory
+      max_age: "1h"
     # -- Configure the well-known server name and optional port
     well_known_server_name: ""
+    # -- Configure the well-known client name and optional port
+    well_known_client_name: ""
     # -- Configure the list of domains the server will trust as identity servers
     trusted_third_party_id_servers:
       - matrix.org
