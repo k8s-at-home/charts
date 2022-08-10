@@ -1,0 +1,26 @@
+apiVersion: v2
+appVersion: development
+description: Search and Download eBooks
+name: openbooks
+version: 1.2.2
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - openbooks
+  - download
+  - irc
+  - books
+  - ebooks
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/openbooks
+sources:
+  - https://github.com/evan-buss/openbooks
+maintainers:
+  - name: Kab1r
+    email: kabir+k8s-at-home@kwatra.me
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.5.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
