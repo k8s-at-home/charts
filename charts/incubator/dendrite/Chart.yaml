@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: v0.9.1
+appVersion: v0.9.2
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 6.2.0
+version: 6.3.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -81,9 +81,7 @@ dependencies:
     condition: dendrite.polylithEnabled
 annotations:
   artifacthub.io/changes: |-
-    - kind: added
-      description: Configuration options for in-memory cache
-    - kind: added
-      description: Configuration option for .well-known/matrix/client
     - kind: changed
-      description: Upgraded dendrite to 0.9.1
+      description: Changed the default dendrite image repo to use from Docker Hub to Github Containers.
+    - kind: changed
+      description: Upgraded dendrite to 0.9.2
