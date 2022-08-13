@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: "5.8"
+description: language-tool helm package
+name: language-tool
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - language-tool
+home: https://github.com/k8s-at-home/charts/tree/master/charts/incubator/language-tool
+icon: https://language-tool.org/icon
+sources:
+  - https://github.com/language-tool/language-tool-docker
+maintainers:
+  - name: zekker6
+    email: zekker6@gmail.com
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.5.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
