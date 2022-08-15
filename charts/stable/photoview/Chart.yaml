@@ -1,0 +1,30 @@
+---
+apiVersion: v2
+appVersion: "2.3"
+description: Photoview is a simple and user-friendly photo gallery that's made for photographers and aims to provide an easy and fast way to navigate directories, with thousands of high-resolution photos.
+name: photoview
+version: 1.0.0
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - photos
+  - photoview
+  - pictures
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/photoview
+icon: https://github.com/photoview/photoview/blob/master/screenshots/photoview-logo.svg
+sources:
+  - https://github.com/photoview/photoview
+maintainers:
+  - name: brandon099
+    email: brandon@clifford.sh
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.5.2
+  - name: mariadb
+    version: 11.0.14
+    repository: https://charts.bitnami.com/bitnami
+    condition: mariadb.enabled
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
