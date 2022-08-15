@@ -1,6 +1,6 @@
 # node-red
 
-![Version: 10.3.2](https://img.shields.io/badge/Version-10.3.2-informational?style=flat-square) ![AppVersion: 2.2.2](https://img.shields.io/badge/AppVersion-2.2.2-informational?style=flat-square)
+![Version: 11.0.0](https://img.shields.io/badge/Version-11.0.0-informational?style=flat-square) ![AppVersion: 3.0.2](https://img.shields.io/badge/AppVersion-3.0.2-informational?style=flat-square)
 
 Node-RED is low-code programming for event-driven applications
 
@@ -91,7 +91,7 @@ N/A
 
 ## Changelog
 
-### Version 10.3.2
+### Version 11.0.0
 
 #### Added
 
@@ -99,7 +99,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.2
+* Upgraded to Node Red 3.0.2 upstream image*
 
 #### Fixed
 
