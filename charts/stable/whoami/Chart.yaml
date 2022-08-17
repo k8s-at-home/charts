@@ -1,0 +1,24 @@
+apiVersion: v2
+appVersion: v1.8.1
+description: Simple webserver used for diagnostics
+name: whoami
+version: 1.0.0
+kubeVersion: ">=1.19.0-0"
+keywords:
+  - echo
+  - server
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/whoami
+sources:
+  - https://github.com/traefik/whoami
+  - https://github.com/k8s-at-home/charts/tree/master/charts/stable/whoami
+maintainers:
+  - name: Skyler Mäntysaari
+    email: sm+k8s@skym.fi
+dependencies:
+  - name: common
+    repository: https://library-charts.k8s-at-home.com
+    version: 4.5.2
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial version
