@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v3.00
 description: Transmission is a cross-platform BitTorrent client
 name: transmission
-version: 8.4.2
+version: 8.4.3
 kubeVersion: ">=1.16.0-0"
 keywords:
   - transmission
@@ -24,5 +24,7 @@ dependencies:
     version: 4.5.2
 annotations:
   artifacthub.io/changes: |-
+    - kind: changed
+      description: Fixed icon URL
     - kind: changed
       description: Upgraded `common` chart dependency to version 4.5.2
