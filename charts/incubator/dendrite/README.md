@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 6.2.0](https://img.shields.io/badge/Version-6.2.0-informational?style=flat-square) ![AppVersion: v0.9.1](https://img.shields.io/badge/AppVersion-v0.9.1-informational?style=flat-square)
+![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![AppVersion: v0.9.3](https://img.shields.io/badge/AppVersion-v0.9.3-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -163,9 +163,9 @@ For more information see:
 | federationapi.image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | federationapi.image.repository | string | `"matrixdotorg/dendrite-polylith"` | image repository |
 | federationapi.image.tag | string | chart.appVersion | image tag |
-| image | object | `{"pullPolicy":"IfNotPresent","repository":"matrixdotorg/dendrite-monolith","tag":null}` |  IMPORTANT NOTE This chart inherits from our common library chart. You can check the default values/options here: https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml |
+| image | object | `{"pullPolicy":"IfNotPresent","repository":"ghcr.io/matrix-org/dendrite-monolith","tag":null}` |  IMPORTANT NOTE This chart inherits from our common library chart. You can check the default values/options here: https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"matrixdotorg/dendrite-monolith"` | image repository |
+| image.repository | string | `"ghcr.io/matrix-org/dendrite-monolith"` | image repository |
 | image.tag | string | chart.appVersion | image tag |
 | ingress.main | object | See values.yaml | (Monolith Only) Enable and configure ingress settings for the chart under this key. |
 | keyserver | object | See values.yaml | Configure the key server. For more information see [the sample dendrite configuration](https://github.com/matrix-org/dendrite/blob/main/dendrite-sample.polylith.yaml) |
@@ -239,16 +239,16 @@ For more information see:
 
 ## Changelog
 
-### Version 6.2.0
+### Version 6.3.0
 
 #### Added
 
-* Configuration options for in-memory cache
-* Configuration option for .well-known/matrix/client
+N/A
 
 #### Changed
 
-* Upgraded dendrite to 0.9.1
+* Changed the default dendrite image repo to use from Docker Hub to Github Containers.
+* Upgraded dendrite to 0.9.3
 
 #### Fixed
 
