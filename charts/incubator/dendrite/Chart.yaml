@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: v0.9.3
+appVersion: v0.9.4
 description: Dendrite Matrix Homeserver
 name: dendrite
-version: 6.3.0
+version: 6.3.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - dendrite
@@ -82,6 +82,4 @@ dependencies:
 annotations:
   artifacthub.io/changes: |-
     - kind: changed
-      description: Changed the default dendrite image repo to use from Docker Hub to Github Containers.
-    - kind: changed
-      description: Upgraded dendrite to 0.9.3
+      description: Upgraded dendrite to 0.9.4
