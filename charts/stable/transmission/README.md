@@ -1,6 +1,6 @@
 # transmission
 
-![Version: 8.4.2](https://img.shields.io/badge/Version-8.4.2-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
+![Version: 8.4.3](https://img.shields.io/badge/Version-8.4.3-informational?style=flat-square) ![AppVersion: v3.00](https://img.shields.io/badge/AppVersion-v3.00-informational?style=flat-square)
 
 Transmission is a cross-platform BitTorrent client
 
@@ -96,7 +96,7 @@ To view more environment variables [see here](https://github.com/k8s-at-home/con
 
 ## Changelog
 
-### Version 8.4.2
+### Version 8.4.3
 
 #### Added
 
@@ -104,6 +104,7 @@ N/A
 
 #### Changed
 
+* Fixed icon URL
 * Upgraded `common` chart dependency to version 4.5.2
 
 #### Fixed
