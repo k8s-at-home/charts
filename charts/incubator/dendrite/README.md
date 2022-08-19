@@ -1,6 +1,6 @@
 # dendrite
 
-![Version: 6.3.0](https://img.shields.io/badge/Version-6.3.0-informational?style=flat-square) ![AppVersion: v0.9.3](https://img.shields.io/badge/AppVersion-v0.9.3-informational?style=flat-square)
+![Version: 6.3.1](https://img.shields.io/badge/Version-6.3.1-informational?style=flat-square) ![AppVersion: v0.9.4](https://img.shields.io/badge/AppVersion-v0.9.4-informational?style=flat-square)
 
 Dendrite Matrix Homeserver
 
@@ -239,7 +239,7 @@ For more information see:
 
 ## Changelog
 
-### Version 6.3.0
+### Version 6.3.1
 
 #### Added
 
@@ -247,8 +247,7 @@ N/A
 
 #### Changed
 
-* Changed the default dendrite image repo to use from Docker Hub to Github Containers.
-* Upgraded dendrite to 0.9.3
+* Upgraded dendrite to 0.9.4
 
 #### Fixed
 
