@@ -88,7 +88,7 @@ N/A
 
 ## Changelog
 
-### Version 9.5.3
+### Version 9.5.4
 
 #### Added
 
@@ -96,7 +96,7 @@ N/A
 
 #### Changed
 
-* Upgraded `common` chart dependency to version 4.5.2
+* Updated Jellyfin to 10.8.4
 
 #### Fixed
 
