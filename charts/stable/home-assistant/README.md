@@ -1,6 +1,6 @@
 # home-assistant
 
-![Version: 13.4.2](https://img.shields.io/badge/Version-13.4.2-informational?style=flat-square) ![AppVersion: 2022.5.4](https://img.shields.io/badge/AppVersion-2022.5.4-informational?style=flat-square)
+![Version: 13.5.0](https://img.shields.io/badge/Version-13.5.0-informational?style=flat-square) ![AppVersion: 2022.8.2](https://img.shields.io/badge/AppVersion-2022.8.2-informational?style=flat-square)
 
 Home Assistant
 
@@ -18,12 +18,12 @@ Kubernetes: `>=1.16.0-0`
 
 ## Dependencies
 
-| Repository | Name | Version |
-|------------|------|---------|
-| https://charts.bitnami.com/bitnami | influxdb | 5.3.5 |
-| https://charts.bitnami.com/bitnami | mariadb | 11.0.14 |
-| https://charts.bitnami.com/bitnami | postgresql | 11.6.12 |
-| https://library-charts.k8s-at-home.com | common | 4.5.2 |
+| Repository                             | Name       | Version |
+| -------------------------------------- | ---------- | ------- |
+| https://charts.bitnami.com/bitnami     | influxdb   | 5.3.5   |
+| https://charts.bitnami.com/bitnami     | mariadb    | 11.0.14 |
+| https://charts.bitnami.com/bitnami     | postgresql | 11.6.12 |
+| https://library-charts.k8s-at-home.com | common     | 4.5.2   |
 
 ## TL;DR
 
@@ -150,29 +150,29 @@ endpoint in your Home-Assistant configuration. See the [official documentation](
 
 **Important**: When deploying an application Helm chart you can add more values from our common library chart [here](https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common)
 
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| addons.codeserver | object | See values.yaml | Enable and configure codeserver for the chart.    This allows for easy access to configuration.yaml |
-| env | object | See below | environment variables. |
-| env.TZ | string | `"UTC"` | Set the container timezone |
-| image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"ghcr.io/home-assistant/home-assistant"` | image repository |
-| image.tag | string | chart.appVersion | image tag |
-| influxdb | object | See values.yaml | Enable and configure influxdb database subchart under this key.    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb) |
-| ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
-| mariadb | object | See values.yaml | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) |
-| metrics.enabled | bool | See values.yaml | Enable and configure a Prometheus serviceMonitor for the chart under this key. |
-| metrics.prometheusRule | object | See values.yaml | Enable and configure Prometheus Rules for the chart under this key. |
-| metrics.prometheusRule.rules | list | See prometheusrules.yaml | Configure additionial rules for the chart under this key. |
-| metrics.serviceMonitor.interval | string | `"1m"` |  |
-| metrics.serviceMonitor.labels | object | `{}` |  |
-| metrics.serviceMonitor.scrapeTimeout | string | `"30s"` |  |
-| persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
-| persistence.usb | object | See values.yaml | Configure a hostPathMount to mount a USB device in the container. |
-| postgresql | object | See values.yaml | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
-| securityContext | object | `{"privileged":null}` | Enable devices to be discoverable hostNetwork: true -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet dnsPolicy: ClusterFirstWithHostNet |
-| securityContext.privileged | bool | `nil` | Privileged securityContext may be required if USB devics are accessed directly through the host machine |
-| service | object | See values.yaml | Configures service settings for the chart. Normally this does not need to be modified. |
+| Key                                  | Type   | Default                                   | Description                                                                                                                                                                                  |
+| ------------------------------------ | ------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| addons.codeserver                    | object | See values.yaml                           | Enable and configure codeserver for the chart.    This allows for easy access to configuration.yaml                                                                                          |
+| env                                  | object | See below                                 | environment variables.                                                                                                                                                                       |
+| env.TZ                               | string | `"UTC"`                                   | Set the container timezone                                                                                                                                                                   |
+| image.pullPolicy                     | string | `"IfNotPresent"`                          | image pull policy                                                                                                                                                                            |
+| image.repository                     | string | `"ghcr.io/home-assistant/home-assistant"` | image repository                                                                                                                                                                             |
+| image.tag                            | string | chart.appVersion                          | image tag                                                                                                                                                                                    |
+| influxdb                             | object | See values.yaml                           | Enable and configure influxdb database subchart under this key.    For more options see [influxdb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/influxdb)       |
+| ingress.main                         | object | See values.yaml                           | Enable and configure ingress settings for the chart under this key.                                                                                                                          |
+| mariadb                              | object | See values.yaml                           | Enable and configure mariadb database subchart under this key.    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)          |
+| metrics.enabled                      | bool   | See values.yaml                           | Enable and configure a Prometheus serviceMonitor for the chart under this key.                                                                                                               |
+| metrics.prometheusRule               | object | See values.yaml                           | Enable and configure Prometheus Rules for the chart under this key.                                                                                                                          |
+| metrics.prometheusRule.rules         | list   | See prometheusrules.yaml                  | Configure additionial rules for the chart under this key.                                                                                                                                    |
+| metrics.serviceMonitor.interval      | string | `"1m"`                                    |                                                                                                                                                                                              |
+| metrics.serviceMonitor.labels        | object | `{}`                                      |                                                                                                                                                                                              |
+| metrics.serviceMonitor.scrapeTimeout | string | `"30s"`                                   |                                                                                                                                                                                              |
+| persistence                          | object | See values.yaml                           | Configure persistence settings for the chart under this key.                                                                                                                                 |
+| persistence.usb                      | object | See values.yaml                           | Configure a hostPathMount to mount a USB device in the container.                                                                                                                            |
+| postgresql                           | object | See values.yaml                           | Enable and configure postgresql database subchart under this key.    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) |
+| securityContext                      | object | `{"privileged":null}`                     | Enable devices to be discoverable hostNetwork: true -- When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet dnsPolicy: ClusterFirstWithHostNet                                  |
+| securityContext.privileged           | bool   | `nil`                                     | Privileged securityContext may be required if USB devics are accessed directly through the host machine                                                                                      |
+| service                              | object | See values.yaml                           | Configures service settings for the chart. Normally this does not need to be modified.                                                                                                       |
 
 ## Changelog
 
@@ -196,10 +196,10 @@ A historical overview of changes can be found on [ArtifactHUB](https://artifacth
 
 ## Support
 
-- See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
-- Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
-- Ask a [question](https://github.com/k8s-at-home/organization/discussions)
-- Join our [Discord](https://discord.gg/sTMX7Vh) community
+* See the [Docs](https://docs.k8s-at-home.com/our-helm-charts/getting-started/)
+* Open an [issue](https://github.com/k8s-at-home/charts/issues/new/choose)
+* Ask a [question](https://github.com/k8s-at-home/organization/discussions)
+* Join our [Discord](https://discord.gg/sTMX7Vh) community
 
 ----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v0.1.1](https://github.com/k8s-at-home/helm-docs/releases/v0.1.1)
