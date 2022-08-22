@@ -1,0 +1,80 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: erikvl87/languagetool
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+  # -- image tag
+  tag:
+
+# -- environment variables. See more environment variables in the [container documentation](https://github.com/Erikvl87/docker-languagetool).
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+  # -- Make sure this matches values at `.Values.resources.requests.memory`
+  Java_Xms: 1024m
+  # -- Make sure this matches values at `.Values.resources.limits.memory`
+  Java_Xmx: 1024m
+  # -- Make sure this matches `.Values.persistence.config.mountPath`
+  langtool_languageModel: /ngrams
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8010
+
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+initContainers:
+  # -- Init container to set up ngram files.
+  # For other languages check for archives (here)[https://languagetool.org/download/ngram-data/]
+  # @default -- See values.yaml
+  download-ngrams:
+    image: alpine:3
+    command:
+      - sh
+      - -c
+      - |
+        set -ex
+        apk add --no-cache unzip
+        ls -lah /ngrams
+        cd /ngrams
+
+        if [ ! -d /ngrams/en ]; then
+          wget https://languagetool.org/download/ngram-data/ngrams-en-20150817.zip -O en.zip
+          unzip -d /ngrams en.zip
+          rm en.zip
+        fi
+
+        chown -R 100:101 /ngrams
+    volumeMounts:
+      - name: config
+        # -- Make sure this matches `.Values.persistence.config.mountPath`
+        mountPath: /ngrams
+
+
+# -- Configure persistence settings for the chart under this key.
+# ngram archive for EN is 9G in size, please ensure your pod have enough disk space to download and unpack files
+# By default init container only installs EN ngram files, that would take approx 14G after unpacking + 9GB for downloading
+# Also, it will take some time to download archive depending on download speed available
+# @default -- See values.yaml
+persistence:
+#   config:
+#     enabled: true
+#     mountPath: /ngrams
+#     size: 30Gi
