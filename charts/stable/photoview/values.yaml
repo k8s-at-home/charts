@@ -1,0 +1,83 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: viktorstrate/photoview
+  # -- image tag
+  # @default -- chart.appVersion
+  tag:
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+
+# -- environment variables. See more environment variables in the [photoview documentation](https://photoview.org/docs).
+# @default -- See below
+env:
+  # -- Database Driver; options are "mysql", "postgres", and "sqlite"
+  PHOTOVIEW_DATABASE_DRIVER: sqlite
+  # -- Cache directory to store optimized versions of photos for UI
+  PHOTOVIEW_MEDIA_CACHE: /app/cache
+  # -- MySQL database connection string
+  PHOTOVIEW_MYSQL_URL: photoview:photoview@tcp(photoview-mariadb)/photoview
+  # -- Sqlite DB path, if using Sqlite as the DB driver
+  PHOTOVIEW_SQLITE_PATH: /app/photoview.db
+  # -- Disable Facial Recongition
+  PHOTOVIEW_DISABLE_FACE_RECOGNITION: false
+  # -- Disable Video encoding via FFMPEG
+  PHOTOVIEW_DISABLE_VIDEO_ENCODING: false
+  # -- Disable processing of RAW format photos using Darktable-cli
+  PHOTOVIEW_DISABLE_RAW_PROCESSING: false
+
+  # Optional: To enable map related features, you need to create a mapbox token.
+  # A token can be generated for free here https://account.mapbox.com/access-tokens/
+  # It's a good idea to limit the scope of the token to your own domain, to prevent others from using it.
+  # MAPBOX_TOKEN=<YOUR TOKEN HERE>
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 80
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  mediaCache:
+    enabled: false
+    mountPath: /app/cache
+    # storageClass: ""
+  photos:
+    enabled: false
+    mountPath: /photos
+  sqlite:
+    enabled: false
+    mountPath: /sqlite
+    # storageClass: ""
+
+# -- Enable and configure mariadb database subchart under this key.
+#    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+# @default -- See values.yaml
+mariadb:
+  enabled: false
+  architecture: standalone
+  auth:
+    database: photoview
+    username: photoview
+    password: photoview
+    rootPassword: photoview
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
