@@ -1,0 +1,12 @@
+{{- define "custom.custom.configuration.header" -}}
+## Custom configuration
+{{- end -}}
+
+{{- define "custom.custom.configuration" -}}
+{{ template "custom.custom.configuration.header" . }}
+
+ZeroTier Network Id: {{ .args[0] }}
+HostNetwork: {{ .hostNetwork }}
+HostPath: {{ .persistence.config.hostPath }}
+
+{{- end -}}
