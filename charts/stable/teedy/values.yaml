@@ -68,9 +68,11 @@ persistence:
 # @default -- See values.yaml
 postgresql:
   enabled: false
-  postgresqlUsername: teedyuser
-  postgresqlPassword: teedypassword
-  postgresqlDatabase: teedydb
-  persistence:
-    enabled: false
-    # storageClass: ""
+  auth:
+    username: teedyuser
+    password: teedypassword
+    database: teedydb
+  primary:
+    persistence:
+      enabled: false
+      # storageClass: ""
