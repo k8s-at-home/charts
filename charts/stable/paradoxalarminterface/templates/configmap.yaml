@@ -1,0 +1,65 @@
+{{- include "common.values.setup" . -}}
+
+{{- define "paradoxalarminterface.configValueFormat" }}
+  {{- $value := . }}
+  {{- if or (kindIs "bool" $value) (eq "none" ($value | toString | lower)) -}}
+  {{ $value | toString | title }}
+  {{- else if or (kindIs "float64" $value) (hasPrefix "r\"" ($value | toString)) -}}
+  {{ $value }}
+  {{- else -}}
+  {{ $value | squote }}
+  {{- end -}}
+{{- end }}
+
+{{- define "paradoxalarminterface.mapFormat" }}
+    {{- $value := index . 0 }}
+    {{- $ind := index . 1 }}
+        {{- range $key, $value := $value }}
+        {{- if $value }}
+{{ $key | squote | indent ($ind | int) }}: {{ include "paradoxalarminterface.configFormat" (list $value (add $ind 4)) }},
+        {{- end }}
+        {{- end }}
+{{- end }}
+
+{{- define "paradoxalarminterface.sliceFormat" }}
+    {{- $value := index . 0 }}
+    {{- $ind := index . 1 }}
+        {{- range $i, $value := $value }}
+        {{- if $i }},{{ end }}{{- include "paradoxalarminterface.configFormat" (list $value (add $ind 4)) }}
+        {{- end }}
+{{- end }}
+
+{{- define "paradoxalarminterface.configFormat" }}
+{{- $value := index . 0 }}
+{{- $ind := index . 1 }}
+{{- if kindIs "map" $value -}}
+    {{ "{" }}
+    {{- include "paradoxalarminterface.mapFormat" (list $value (add $ind 4)) }}
+    {{- "}" | nindent ($ind | int) }}
+{{- else if kindIs "slice" $value -}}
+    {{ "[" }}
+    {{- include "paradoxalarminterface.sliceFormat" (list $value 4) }}
+    {{- "]" }}
+{{- else }}
+    {{- include "paradoxalarminterface.configValueFormat" $value }}
+{{- end }}
+{{- end }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.names.fullname" . }}-config
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+data:
+  pai.conf: |
+    ###
+    import logging
+    ###
+{{- range $key := (keys $.Values.config | uniq | sortAlpha) }}
+    {{- $value := index $.Values.config $key }}
+    {{- if $value }}
+    {{ $key | snakecase | upper }} = {{ include "paradoxalarminterface.configFormat" (list $value 4) }}
+    {{- end }}
+{{- end }}
